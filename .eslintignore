@@ -1,0 +1,6 @@
+node_modules
+config
+lib
+build
+.dll
+.sweetrc.js

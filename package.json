@@ -1,0 +1,65 @@
+{
+  "name": "antd-schema-form",
+  "version": "0.0.1",
+  "description": "基于antd，通过json schema配置表单。",
+  "main": "lib/index.js",
+  "author": {
+    "name": "段昊辰",
+    "email": "duanhaochen@126.com",
+    "url": "https://github.com/duan602728596"
+  },
+  "license": "MIT",
+  "scripts": {
+    "example-dll": "milktea dll --config=\"./config/example/.sweetrc.js\"",
+    "example-start": "milktea start --server --config=\"./config/example/.sweetrc.js\"",
+    "eslint": "eslint ./src",
+    "update": "milktea update"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.0.0",
+    "antd": "^3.10.8",
+    "prop-types": "^15.6.2",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.6",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-proposal-decorators": "^7.1.6",
+    "@babel/plugin-proposal-do-expressions": "^7.0.0",
+    "@babel/plugin-proposal-export-default-from": "^7.0.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/plugin-proposal-optional-chaining": "^7.0.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+    "@babel/preset-env": "^7.1.6",
+    "@babel/preset-flow": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "@sweet/milktea": "github:duan602728596/sweet#build-milktea",
+    "@sweet/milktea-cli": "github:duan602728596/sweet#build-milktea-cli",
+    "@sweet/server": "github:duan602728596/sweet#build-server",
+    "@sweet/util-tools": "github:duan602728596/sweet#build-util-tools",
+    "babel-eslint": "^10.0.1",
+    "babel-plugin-import": "^1.11.0",
+    "chai": "^4.2.0",
+    "classnames": "^2.2.6",
+    "cross-env": "^5.2.0",
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.7.0",
+    "eslint": "^5.8.0",
+    "eslint-plugin-flowtype": "^3.2.0",
+    "eslint-plugin-react": "^7.11.1",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^8.0.0",
+    "gulp-changed": "^3.2.0",
+    "gulp-notify": "^3.2.0",
+    "gulp-plumber": "^1.2.0",
+    "mocha": "^5.2.0",
+    "pre-commit": "^1.2.2",
+    "rimraf": "^2.6.2"
+  },
+  "pre-commit": {
+    "run": [
+      "eslint"
+    ]
+  }
+}

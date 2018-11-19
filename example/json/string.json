@@ -1,0 +1,13 @@
+{
+  "$id": "$root/properties/string",
+  "type": "object",
+  "title": "字符串",
+  "description": "渲染字符串类型的组件。",
+  "properties": {
+    "default": {
+      "$id": "$root/properties/string/properties/default",
+      "type": "string",
+      "title": "默认组件"
+    }
+  }
+}
