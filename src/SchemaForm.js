@@ -15,13 +15,14 @@ class SchemaForm extends Component{
     super(...arguments);
   }
   render(): React.Element{
-    const { form, json }: {
+    const { form, json, onUpload }: {
       form: Object,
-      json: Object
+      json: Object,
+      onUpload: ?Function
     } = this.props;
 
     return (
-      <Context.Provider value={{ form }}>
+      <Context.Provider value={{ form, onUpload }}>
         <FormObject root={ json } />
       </Context.Provider>
     );

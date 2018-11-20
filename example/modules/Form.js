@@ -13,8 +13,12 @@ const json: Object = {
   }
 };
 
+async function handleFileUpload(file: Array<File>): Promise<string>{
+  return `${ file[0].lastModified }`;
+}
+
 function Form(props: Object): React.Element{
-  return <SchemaForm json={ json } />;
+  return <SchemaForm json={ json } onUpload={ handleFileUpload } />;
 }
 
 export default Form;

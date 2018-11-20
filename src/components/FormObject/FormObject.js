@@ -3,8 +3,12 @@ import PropTypes from 'prop-types';
 import { Collapse } from 'antd';
 import Context from '../../context';
 import styleName from '../../utils/styleName';
+import FormString from '../FormString/FormString';
 
-/* 当类型为object时的组件渲染 */
+/**
+ * 当类型为object时的组件渲染
+ * json schema的属性包括：$id、type、title、description、properties、required
+ */
 class FormObject extends Component{
   static contextType: Object = Context;
   static propTypes: Object = {
@@ -13,9 +17,14 @@ class FormObject extends Component{
 
   // 根据type渲染不同的组件
   renderComponentByTypeView(root: Object): ?React.Element{
-    switch(root.type){
+    const { $id, type }: {
+      $id: string,
+      type: string
+    } = root;
+
+    switch(type){
       case 'string':
-        return 'string';
+        return <FormString key={ $id } root={ root } />;
       case 'number':
         return 'number';
       case 'boolean':
