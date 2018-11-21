@@ -25,6 +25,13 @@
       "$readOnly": true,
       "$defaultValue": "默认值"
     },
+    "required": {
+      "$id": "$root/properties/string/properties/required",
+      "type": "string",
+      "title": "表单必填",
+      "description": "表单必填",
+      "$required": true
+    },
     "enum": {
       "$id": "$root/properties/string/properties/enum",
       "type": "string",

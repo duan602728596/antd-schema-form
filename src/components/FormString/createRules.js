@@ -24,7 +24,7 @@ function createRules(root: Object): Array{
   // 判断表单是否必填
   if($required === true){
     rules.push({
-      $required: true,
+      required: true,
       message: $requiredMessage || '该选项为必填项',
       whitespace: true
     });
