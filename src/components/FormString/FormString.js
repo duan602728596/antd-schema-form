@@ -9,10 +9,10 @@ import createRules from './createRules';
 
 /**
  * 当类型为string时的组件渲染
- * json schema的属性包括：$id、type、title、description、pattern、minLength、maxLength、required
- * 扩展属性前必须加上"_"
- * 扩展属性包括：componentType、readonly、length、patternOption、lengthMessage，requiredMessage、patternMessage、
- *   minLengthMessage、maxLengthMessage、options、defaultValue、placeholder
+ * json schema的属性包括：$id、type、title、description、pattern、minLength、maxLength、enum
+ * 扩展属性前必须加上"$"
+ * 扩展属性包括：required, componentType, readonly, length, patternOption, lengthMessage, requiredMessage, patternMessage、
+ *   minLengthMessage, maxLengthMessage, options, defaultValue, placeholder
  */
 class FormString extends Component{
   static contextType: Object = Context;
@@ -48,54 +48,54 @@ class FormString extends Component{
   }
   render(): React.Element{
     const { getFieldDecorator }: { getFieldDecorator: Function } = this.context.form;
-    const { $id, title, description, required, _componentType, _readonly, _defaultValue, _options, _placeholder }: {
+    const { $id, title, description, $required, $componentType, $readOnly, $defaultValue, $options, $placeholder }: {
       $id: string,
       title: string,
       description: string,
-      required: boolean,
-      _componentType: ?string,
-      _readonly: ?boolean,
-      _defaultValue: ?string,
-      _options: ?Array<{ label: string, value: string}>,
-      _placeholder: ?string
+      $required: boolean,
+      $componentType: ?string,
+      $readOnly: ?boolean,
+      $defaultValue: ?string,
+      $options: ?Array<{ label: string, value: string}>,
+      $placeholder: ?string
     } = this.props.root;
     const rules: Array = createRules(this.props.root);
     const option: Object = { rules };
     let element: ?(React.Element | React.ChildrenArray<React.Element>) = null;
 
     // 表单默认值
-    if(_defaultValue){
-      option.initialValue = _defaultValue;
+    if($defaultValue){
+      option.initialValue = $defaultValue;
     }
 
     // 格式化日历的日期
-    if(_componentType === 'date' && isString(_defaultValue)){
-      option.initialValue = moment(_defaultValue);
+    if($componentType === 'date' && isString($defaultValue)){
+      option.initialValue = moment($defaultValue);
     }
 
-    switch(_componentType){
+    switch($componentType){
       // 渲染select
       case 'select':
         element = getFieldDecorator($id, option)(
           <Select className={ styleName('string-select') }
-            readOnly={ _readonly }
-            placeholder={ _placeholder }
-            allowClear={ !required }
+            readOnly={ $readOnly }
+            placeholder={ $placeholder }
+            allowClear={ !$required }
           >
-            { this.selectOptionsView(_options) }
+            { this.selectOptionsView($options) }
           </Select>
         );
         break;
 
       // 渲染radio
       case 'radio':
-        element = getFieldDecorator($id, option)(<Radio.Group options={ _options } />);
+        element = getFieldDecorator($id, option)(<Radio.Group options={ $options } />);
         break;
 
       // 渲染日期组件
       case 'date':
         element = getFieldDecorator($id, option)(
-          <DatePicker format="YYYY-MM-DD HH:mm:ss" showTime={ true } placeholder={ _placeholder } />
+          <DatePicker format="YYYY-MM-DD HH:mm:ss" showTime={ true } placeholder={ $placeholder } />
         );
         break;
 
@@ -107,7 +107,7 @@ class FormString extends Component{
             <Input.Search key="input"
               enterButton="选择文件"
               readOnly={ true }
-              placeholder={ _placeholder }
+              placeholder={ $placeholder }
               onSearch={ this.handleFileUpdateClick.bind(this, id) }
             />
           ),
@@ -122,7 +122,7 @@ class FormString extends Component{
 
       // 渲染默认组件
       default:
-        element = getFieldDecorator($id, option)(<Input readOnly={ _readonly } placeholder={ _placeholder } />);
+        element = getFieldDecorator($id, option)(<Input readOnly={ $readOnly } placeholder={ $placeholder } />);
         break;
     }
 

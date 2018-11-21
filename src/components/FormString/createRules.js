@@ -2,28 +2,28 @@ import { isSpace, isNumber, isString } from '../../utils/type';
 
 function createRules(root: Object): Array{
   const {
-    pattern, minLength, maxLength, required, _length, _patternOption, _lengthMessage, _requiredMessage,
-    _patternMessage, _minLengthMessage, _maxLengthMessage
+    pattern, minLength, maxLength, $required, $length, $patternOption, $lengthMessage, $requiredMessage,
+    $patternMessage, $minLengthMessage, $maxLengthMessage
   }: {
     pattern: ?string,
     minLength: ?number,
     maxLength: ?number,
-    required: ?boolean,
-    _length: ?number,
-    _patternOption: ?string,
-    _lengthMessage: ?string,
-    _requiredMessage: ?string,
-    _patternMessage: ?string,
-    _minLengthMessage: ?string,
-    _maxLengthMessage: ?string
+    $required: ?boolean,
+    $length: ?number,
+    $patternOption: ?string,
+    $lengthMessage: ?string,
+    $requiredMessage: ?string,
+    $patternMessage: ?string,
+    $minLengthMessage: ?string,
+    $maxLengthMessage: ?string
   } = root;
   const rules: [] = [];
 
   // 判断表单是否必填
-  if(required === true){
+  if($required === true){
     rules.push({
-      required: true,
-      message: _requiredMessage || '该选项为必填项'
+      $required: true,
+      message: $requiredMessage || '该选项为必填项'
     });
   }
 
@@ -31,7 +31,7 @@ function createRules(root: Object): Array{
   if(!isSpace(minLength) && isNumber(minLength)){
     rules.push({
       min: minLength,
-      message: _minLengthMessage || `字段的最小长度为${ minLength }`
+      message: $minLengthMessage || `字段的最小长度为${ minLength }`
     });
   }
 
@@ -39,25 +39,25 @@ function createRules(root: Object): Array{
   if(!isSpace(maxLength)){
     rules.push({
       max: maxLength,
-      message: _maxLengthMessage || `字段的最大长度为${ maxLength }`
+      message: $maxLengthMessage || `字段的最大长度为${ maxLength }`
     });
   }
 
   // 字段的长度
-  if(!isSpace(_length) && isNumber(_length)){
+  if(!isSpace($length) && isNumber($length)){
     rules.push({
-      len: _length,
-      message: _lengthMessage || `字段的长度为${ _length }`
+      len: $length,
+      message: $lengthMessage || `字段的长度为${ $length }`
     });
   }
 
   // 正则表达式
   if(pattern){
-    const reg: RegExp = new RegExp(pattern, isString(_patternOption) ? _patternOption : undefined);
+    const reg: RegExp = new RegExp(pattern, isString($patternOption) ? $patternOption : undefined);
 
     rules.push({
       pattern: reg,
-      message: _patternMessage || `数据格式错误，格式必须为：/${ pattern }/${ isString(_patternOption) ? _patternOption : '' }`
+      message: $patternMessage || `数据格式错误，格式必须为：/${ pattern }/${ isString($patternOption) ? $patternOption : '' }`
     });
   }
 
