@@ -5,11 +5,11 @@ import moment from 'moment';
 import Context from '../../context';
 import styleName from '../../utils/styleName';
 import { isString, isFunction } from '../../utils/type';
-import createRules from './createRules';
+import createStringRules from './createStringRules';
 
 /**
  * 当类型为string时的组件渲染
- * json schema的属性包括：$id、type、title、description、pattern、minLength、maxLength、enum
+ * json schema的属性包括：$id, type, title, description, pattern, minLength, maxLength, enum
  *
  * 扩展属性前必须加上"$"
  * 扩展属性包括：required, componentType, readOnly, length, patternOption, enumMessage, lengthMessage, requiredMessage, patternMessage、
@@ -63,7 +63,7 @@ class FormString extends Component{
       $options: ?Array<{ label: string, value: string}>,
       $placeholder: ?string
     } = this.props.root;
-    const rules: Array = createRules(this.props.root, required);
+    const rules: Array = createStringRules(this.props.root, required);
     const option: Object = { rules };
     let element: ?(React.Element | React.ChildrenArray<React.Element>) = null;
 

@@ -1,6 +1,6 @@
 import { isSpace, isNumber, isString } from '../../utils/type';
 
-function createRules(root: Object, required: boolean): Array{
+function createStringRules(root: Object, required: boolean): Array{
   const {
     pattern, minLength, maxLength, $required, $length, $patternOption, $enumMessage, $lengthMessage, $requiredMessage,
     $patternMessage, $minLengthMessage, $maxLengthMessage
@@ -76,4 +76,4 @@ function createRules(root: Object, required: boolean): Array{
   return rules;
 }
 
-export default createRules;
+export default createStringRules;

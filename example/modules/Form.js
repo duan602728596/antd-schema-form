@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SchemaForm from '../../src/index';
 import '../../src/style/antd-schema-form.sass';
 import stringJson from '../json/string.json';
+import numberJson from '../json/number.json';
 
 const json: Object = {
   $id: '$root',
@@ -9,7 +10,8 @@ const json: Object = {
   title: 'schema form',
   description: '这是一个通过json schema渲染的表单。',
   properties: {
-    string: stringJson
+    string: stringJson,
+    number: numberJson
   }
 };
 

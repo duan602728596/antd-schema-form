@@ -4,6 +4,7 @@ import { Collapse } from 'antd';
 import Context from '../../context';
 import styleName from '../../utils/styleName';
 import FormString from '../FormString/FormString';
+import FormNumber from '../FormNumber/FormNumber';
 
 /**
  * 当类型为object时的组件渲染
@@ -27,7 +28,7 @@ class FormObject extends Component{
         return <FormString key={ $id } root={ root } required={ required } />;
       case 'integer':
       case 'number':
-        return 'number';
+        return <FormNumber key={ $id } root={ root } required={ required } />;
       case 'boolean':
         return 'boolean';
       case 'array':
@@ -55,7 +56,7 @@ class FormObject extends Component{
     }
 
     return (
-      <Collapse key={ $id } defaultActiveKey={ [$id] }>
+      <Collapse key={ $id } className={ styleName('object-collapse') } defaultActiveKey={ [$id] }>
         <Collapse.Panel key={ $id }
           header={[
             <b key="title">{ title || $id }</b>,
