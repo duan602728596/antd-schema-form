@@ -10,8 +10,9 @@ import createRules from './createRules';
 /**
  * 当类型为string时的组件渲染
  * json schema的属性包括：$id、type、title、description、pattern、minLength、maxLength、enum
+ *
  * 扩展属性前必须加上"$"
- * 扩展属性包括：required, componentType, readonly, length, patternOption, lengthMessage, requiredMessage, patternMessage、
+ * 扩展属性包括：required, componentType, readOnly, length, patternOption, enumMessage, lengthMessage, requiredMessage, patternMessage、
  *   minLengthMessage, maxLengthMessage, options, defaultValue, placeholder
  */
 class FormString extends Component{
@@ -74,6 +75,11 @@ class FormString extends Component{
     }
 
     switch($componentType){
+      // 文本域
+      case 'textArea':
+        element = getFieldDecorator($id, option)(<Input.TextArea rows={ 6 } readOnly={ $readOnly } placeholder={ $placeholder } />);
+        break;
+
       // 渲染select
       case 'select':
         element = getFieldDecorator($id, option)(
@@ -99,6 +105,7 @@ class FormString extends Component{
         );
         break;
 
+      // 文件上传
       case 'file':
         const id: string = `${ $id }@file`;
 

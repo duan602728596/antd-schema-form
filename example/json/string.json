@@ -17,13 +17,24 @@
       "description": "组件有默认值",
       "$defaultValue": "默认值"
     },
-    "readonly": {
-      "$id": "$root/properties/string/properties/readonly",
+    "readOnly": {
+      "$id": "$root/properties/string/properties/readOnly",
       "type": "string",
       "title": "组件只读",
       "description": "组件只读",
       "$readOnly": true,
       "$defaultValue": "默认值"
+    },
+    "enum": {
+      "$id": "$root/properties/string/properties/enum",
+      "type": "string",
+      "title": "枚举",
+      "description": "枚举",
+      "enum": [
+        "apple",
+        "orange"
+      ],
+      "$placeholder": "apple, orange"
     },
     "minLength": {
       "$id": "$root/properties/string/properties/minLength",
@@ -57,6 +68,13 @@
       "pattern": "^[a-z]+$",
       "$patternOption": "ig",
       "$placeholder": "/^[a-z]+$/ig"
+    },
+    "textArea": {
+      "$id": "$root/properties/string/properties/textArea",
+      "type": "string",
+      "title": "文本域",
+      "description": "文本域组件",
+      "$componentType": "textArea"
     },
     "select": {
       "$id": "$root/properties/string/properties/select",

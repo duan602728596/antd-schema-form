@@ -2,7 +2,7 @@ import { isSpace, isNumber, isString } from '../../utils/type';
 
 function createRules(root: Object): Array{
   const {
-    pattern, minLength, maxLength, $required, $length, $patternOption, $lengthMessage, $requiredMessage,
+    pattern, minLength, maxLength, $required, $length, $patternOption, $enumMessage, $lengthMessage, $requiredMessage,
     $patternMessage, $minLengthMessage, $maxLengthMessage
   }: {
     pattern: ?string,
@@ -11,19 +11,31 @@ function createRules(root: Object): Array{
     $required: ?boolean,
     $length: ?number,
     $patternOption: ?string,
+    $enumMessage: ?string,
     $lengthMessage: ?string,
     $requiredMessage: ?string,
     $patternMessage: ?string,
     $minLengthMessage: ?string,
     $maxLengthMessage: ?string
   } = root;
+  const enums: ?Array<string> = root?.enum;
   const rules: [] = [];
 
   // 判断表单是否必填
   if($required === true){
     rules.push({
       $required: true,
-      message: $requiredMessage || '该选项为必填项'
+      message: $requiredMessage || '该选项为必填项',
+      whitespace: true
+    });
+  }
+
+  // 枚举
+  if(enums){
+    rules.push({
+      type: 'enum',
+      enum: enums,
+      message: $enumMessage || `值不在集合 [${ enums.join(', ') }] 里`
     });
   }
 
