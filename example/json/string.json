@@ -32,6 +32,12 @@
       "description": "表单必填",
       "$required": true
     },
+    "objectRequired": {
+      "$id": "$root/properties/string/properties/objectRequired",
+      "type": "string",
+      "title": "另一种形式的表单必填",
+      "description": "另一种形式的表单必填"
+    },
     "enum": {
       "$id": "$root/properties/string/properties/enum",
       "type": "string",
@@ -132,5 +138,8 @@
       "description": "文件上传",
       "$componentType": "file"
     }
-  }
+  },
+  "required": [
+    "objectRequired"
+  ]
 }

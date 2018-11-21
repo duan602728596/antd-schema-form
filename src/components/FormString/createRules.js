@@ -1,6 +1,6 @@
 import { isSpace, isNumber, isString } from '../../utils/type';
 
-function createRules(root: Object): Array{
+function createRules(root: Object, required: boolean): Array{
   const {
     pattern, minLength, maxLength, $required, $length, $patternOption, $enumMessage, $lengthMessage, $requiredMessage,
     $patternMessage, $minLengthMessage, $maxLengthMessage
@@ -22,7 +22,7 @@ function createRules(root: Object): Array{
   const rules: [] = [];
 
   // 判断表单是否必填
-  if($required === true){
+  if($required === true || required === true){
     rules.push({
       required: true,
       message: $requiredMessage || '该选项为必填项',

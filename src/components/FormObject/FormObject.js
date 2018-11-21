@@ -16,7 +16,7 @@ class FormObject extends Component{
   };
 
   // 根据type渲染不同的组件
-  renderComponentByTypeView(root: Object): ?React.Element{
+  renderComponentByTypeView(root: Object, required: boolean): ?React.Element{
     const { $id, type }: {
       $id: string,
       type: string
@@ -24,7 +24,8 @@ class FormObject extends Component{
 
     switch(type){
       case 'string':
-        return <FormString key={ $id } root={ root } />;
+        return <FormString key={ $id } root={ root } required={ required } />;
+      case 'integer':
       case 'number':
         return 'number';
       case 'boolean':
@@ -44,12 +45,13 @@ class FormObject extends Component{
       title: string,
       description: string
     } = root;
+    const required: Array<string> = root?.required || [];
     const properties: ?Object = root?.properties || {};
     const element: React.ChildrenArray<React.Element> = [];
 
     // 判断object下组件的类型并渲染
     for(const key: string in properties){
-      element.push(this.renderComponentByTypeView(properties[key]));
+      element.push(this.renderComponentByTypeView(properties[key], required.includes(key)));
     }
 
     return (

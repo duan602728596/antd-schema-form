@@ -18,7 +18,8 @@ import createRules from './createRules';
 class FormString extends Component{
   static contextType: Object = Context;
   static propTypes: Object = {
-    root: PropTypes.object
+    root: PropTypes.object,
+    required: PropTypes.bool
   };
 
   // 文件上传点击事件
@@ -49,6 +50,8 @@ class FormString extends Component{
   }
   render(): React.Element{
     const { getFieldDecorator }: { getFieldDecorator: Function } = this.context.form;
+    // type=object时，会判断key是否存在于required数组中
+    const { required }: { required: boolean } = this.props;
     const { $id, title, description, $required, $componentType, $readOnly, $defaultValue, $options, $placeholder }: {
       $id: string,
       title: string,
@@ -60,7 +63,7 @@ class FormString extends Component{
       $options: ?Array<{ label: string, value: string}>,
       $placeholder: ?string
     } = this.props.root;
-    const rules: Array = createRules(this.props.root);
+    const rules: Array = createRules(this.props.root, required);
     const option: Object = { rules };
     let element: ?(React.Element | React.ChildrenArray<React.Element>) = null;
 
