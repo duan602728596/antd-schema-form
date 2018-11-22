@@ -7,10 +7,10 @@ import createNumberRules from './createNumberRules';
 
 /**
  * 当类型为number和integer时的组件渲染
- * json schema的属性包括：$id, type, title, description, minimum, maximum, enum
+ * json schema的属性包括：$id, type, title, description, minimum, maximum, enum, exclusiveMaximum, exclusiveMinimum
  *
  * 扩展属性前必须加上"$"
- * 扩展属性包括：required, componentType, readOnly, enumMessage, lengthMessage, requiredMessage, minimumMessage、
+ * 扩展属性包括：required, componentType, readOnly, enumMessage, requiredMessage, minimumMessage、
  *   maximumMessage, options, defaultValue
  */
 class FormNumber extends Component{
