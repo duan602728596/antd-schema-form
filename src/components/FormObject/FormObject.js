@@ -22,19 +22,25 @@ class FormObject extends Component{
       $id: string,
       type: string
     } = root;
+    const props: Object = { key: $id, root, required };
 
     switch(type){
       case 'string':
-        return <FormString key={ $id } root={ root } required={ required } />;
+        return <FormString { ...props } />;
+
       case 'integer':
       case 'number':
-        return <FormNumber key={ $id } root={ root } required={ required } />;
+        return <FormNumber { ...props } />;
+
       case 'boolean':
         return 'boolean';
+
       case 'array':
         return 'array';
+
       case 'object':
         return this.renderObjectComponentView(root);
+
       default:
         return null;
     }
