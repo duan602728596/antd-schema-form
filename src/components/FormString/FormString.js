@@ -52,8 +52,8 @@ class FormString extends Component{
     const { getFieldDecorator }: { getFieldDecorator: Function } = this.context.form;
     // type=object时，会判断key是否存在于required数组中
     const { required }: { required: boolean } = this.props;
-    const { $id, title, description, $required, $componentType, $readOnly, $defaultValue, $options, $placeholder }: {
-      $id: string,
+    const $id: string = root?.$id || root?.id;
+    const { title, description, $required, $componentType, $readOnly, $defaultValue, $options, $placeholder }: {
       title: string,
       description: string,
       $required: boolean,

@@ -18,10 +18,8 @@ class FormObject extends Component{
 
   // 根据type渲染不同的组件
   renderComponentByTypeView(root: Object, required: boolean): ?React.Element{
-    const { $id, type }: {
-      $id: string,
-      type: string
-    } = root;
+    const $id: string = root?.$id || root?.id;
+    const { type }: { type: string } = root;
     const props: Object = { key: $id, root, required };
 
     switch(type){
@@ -47,8 +45,8 @@ class FormObject extends Component{
   }
   // 渲染一个object组件
   renderObjectComponentView(root: Object): React.Element{
-    const { $id, title, description }: {
-      $id: string,
+    const $id: string = root?.$id || root?.id;
+    const { title, description }: {
       title: string,
       description: string
     } = root;

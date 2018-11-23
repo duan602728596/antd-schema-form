@@ -24,12 +24,11 @@ class FormNumber extends Component{
     const { getFieldDecorator }: { getFieldDecorator: Function } = this.context.form;
     // type=object时，会判断key是否存在于required数组中
     const { required }: { required: boolean } = this.props;
-    const { $id, type, title, description, $required, $componentType, $readOnly, $defaultValue, $options, $placeholder }: {
-      $id: string,
+    const $id: string = root?.$id || root?.id;
+    const { type, title, description, $componentType, $readOnly, $defaultValue, $options, $placeholder }: {
       type: string,
       title: string,
       description: string,
-      $required: boolean,
       $componentType: ?string,
       $readOnly: ?boolean,
       $defaultValue: ?string,
