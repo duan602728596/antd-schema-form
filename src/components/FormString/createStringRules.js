@@ -2,21 +2,21 @@ import { isSpace, isNumber, isString } from '../../utils/type';
 
 function createStringRules(root: Object, required: boolean): Array{
   const {
-    pattern, minLength, maxLength, $required, $length, $patternOption, $enumMessage, $lengthMessage, $requiredMessage,
-    $patternMessage, $minLengthMessage, $maxLengthMessage
+    $required, $requiredMessage, pattern, $patternOption, $patternMessage, minLength, maxLength, $minLengthMessage,
+    $maxLengthMessage, $length, $lengthMessage, $enumMessage
   }: {
+    $required: ?boolean,
+    $requiredMessage: ?string,
     pattern: ?string,
+    $patternOption: ?string,
+    $patternMessage: ?string,
     minLength: ?number,
     maxLength: ?number,
-    $required: ?boolean,
-    $length: ?number,
-    $patternOption: ?string,
-    $enumMessage: ?string,
-    $lengthMessage: ?string,
-    $requiredMessage: ?string,
-    $patternMessage: ?string,
     $minLengthMessage: ?string,
-    $maxLengthMessage: ?string
+    $maxLengthMessage: ?string,
+    $length: ?number,
+    $lengthMessage: ?string,
+    $enumMessage: ?string
   } = root;
   const enums: ?Array<string> = root?.enum;
   const rules: [] = [];

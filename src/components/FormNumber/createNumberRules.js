@@ -12,19 +12,19 @@ function judgeMaximum(value: number, maximum: number, exclusiveMaximum: boolean)
 
 function createNumberRules(root: Object, required: boolean, isInteger: boolean): Array{
   const {
-    minimum, maximum, exclusiveMinimum, exclusiveMaximum, $required, $enumMessage, $requiredMessage, $minimumLengthMessage,
-    $maximumMessage, $integerMessage
+    $required, $requiredMessage, minimum, maximum, exclusiveMinimum, exclusiveMaximum, $minimumMessage,
+    $maximumMessage, $integer, $integerMessage, $enumMessage
   }: {
+    $required: ?boolean,
+    $requiredMessage: ?string,
     minimum: ?number,
     maximum: ?number,
     exclusiveMinimum: ?boolean,
     exclusiveMaximum: ?boolean,
-    $required: ?boolean,
-    $enumMessage: ?string,
-    $requiredMessage: ?string,
-    $minimumLengthMessage: ?string,
+    $minimumMessage: ?string,
     $maximumMessage: ?string,
-    $integerMessage: ?string
+    $integerMessage: ?string,
+    $enumMessage: ?string
   } = root;
   const enums: ?Array<string> = root?.enum;
   const rules: [] = [];
@@ -48,7 +48,7 @@ function createNumberRules(root: Object, required: boolean, isInteger: boolean):
   }
 
   // 整数
-  if(isInteger){
+  if(isInteger || $integer){
     rules.push({
       type: 'integer',
       message: $integerMessage || '值必须是整数'
@@ -62,7 +62,7 @@ function createNumberRules(root: Object, required: boolean, isInteger: boolean):
         if(judgeMinimum(value, minimum, exclusiveMinimum)) callback(rule.message);
         else callback();
       },
-      message: $minimumLengthMessage || `值必须大于${ exclusiveMinimum === true ? '' : '等于' }${ minimum }`
+      message: $minimumMessage || `值必须大于${ exclusiveMinimum === true ? '' : '等于' }${ minimum }`
     });
   }
 
