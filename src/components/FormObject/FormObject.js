@@ -5,6 +5,7 @@ import Context from '../../context';
 import styleName from '../../utils/styleName';
 import FormString from '../FormString/FormString';
 import FormNumber from '../FormNumber/FormNumber';
+import FormBoolean from '../FormBoolean/FormBoolean';
 
 /**
  * 当类型为object时的组件渲染
@@ -31,7 +32,7 @@ class FormObject extends Component{
         return <FormNumber { ...props } />;
 
       case 'boolean':
-        return 'boolean';
+        return <FormBoolean { ...props } />;
 
       case 'array':
         return 'array';

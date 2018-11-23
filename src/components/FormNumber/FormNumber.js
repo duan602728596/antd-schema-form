@@ -23,7 +23,10 @@ class FormNumber extends Component{
   render(): React.Element{
     const { getFieldDecorator }: { getFieldDecorator: Function } = this.context.form;
     // type=object时，会判断key是否存在于required数组中
-    const { required }: { required: boolean } = this.props;
+    const { root, required }: {
+      root: Object,
+      required: boolean
+    } = this.props;
     const $id: string = root?.$id || root?.id;
     const { type, title, description, $componentType, $readOnly, $defaultValue, $options, $placeholder }: {
       type: string,
@@ -34,15 +37,13 @@ class FormNumber extends Component{
       $defaultValue: ?string,
       $options: ?Array<{ label: string, value: string}>,
       $placeholder: ?string
-    } = this.props.root;
+    } = root;
     const rules: Array = createNumberRules(this.props.root, required, type === 'integer');
     const option: Object = { rules };
-    let element: ?(React.Element | React.ChildrenArray<React.Element>) = null;
+    let element: ?React.Element = null;
 
     // 表单默认值
-    if($defaultValue){
-      option.initialValue = $defaultValue;
-    }
+    if($defaultValue) option.initialValue = $defaultValue;
 
     switch($componentType){
       // 渲染radio

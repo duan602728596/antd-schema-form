@@ -12,8 +12,8 @@ function judgeMaximum(value: number, maximum: number, exclusiveMaximum: boolean)
 
 function createNumberRules(root: Object, required: boolean, isInteger: boolean): Array{
   const {
-    $required, $requiredMessage, minimum, maximum, exclusiveMinimum, exclusiveMaximum, $minimumMessage,
-    $maximumMessage, $integer, $integerMessage, $enumMessage
+    $required, $requiredMessage, minimum, maximum, exclusiveMinimum, exclusiveMaximum, $minimumMessage, $maximumMessage,
+    $integer, $integerMessage, $enumMessage
   }: {
     $required: ?boolean,
     $requiredMessage: ?string,

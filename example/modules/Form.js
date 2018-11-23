@@ -3,6 +3,7 @@ import SchemaForm from '../../src/index';
 import '../../src/style/antd-schema-form.sass';
 import stringJson from '../json/string.json';
 import numberJson from '../json/number.json';
+import booleanJson from '../json/boolean.json';
 
 const json: Object = {
   $id: '$root',
@@ -11,7 +12,8 @@ const json: Object = {
   description: '这是一个通过json schema渲染的表单。',
   properties: {
     string: stringJson,
-    number: numberJson
+    number: numberJson,
+    boolean: booleanJson
   }
 };
 

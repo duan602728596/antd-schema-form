@@ -51,7 +51,10 @@ class FormString extends Component{
   render(): React.Element{
     const { getFieldDecorator }: { getFieldDecorator: Function } = this.context.form;
     // type=object时，会判断key是否存在于required数组中
-    const { required }: { required: boolean } = this.props;
+    const { root, required }: {
+      root: Object,
+      required: boolean
+    } = this.props;
     const $id: string = root?.$id || root?.id;
     const { title, description, $required, $componentType, $readOnly, $defaultValue, $options, $placeholder }: {
       title: string,
@@ -62,15 +65,13 @@ class FormString extends Component{
       $defaultValue: ?string,
       $options: ?Array<{ label: string, value: string}>,
       $placeholder: ?string
-    } = this.props.root;
+    } = root;
     const rules: Array = createStringRules(this.props.root, required);
     const option: Object = { rules };
     let element: ?(React.Element | React.ChildrenArray<React.Element>) = null;
 
     // 表单默认值
-    if($defaultValue){
-      option.initialValue = $defaultValue;
-    }
+    if($defaultValue) option.initialValue = $defaultValue;
 
     // 格式化日历的日期
     if($componentType === 'date' && isString($defaultValue)){
