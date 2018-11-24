@@ -61,6 +61,29 @@
         "description": "数组内的对象"
       },
       "$defaultValue": [1, 2, 3]
+    },
+    "checkbox": {
+      "$id": "$root/properties/array/properties/checkbox",
+      "type": "array",
+      "title": "多选框",
+      "description": "多选框",
+      "items": {
+        "$id": "$root/properties/array/properties/checkbox/items",
+        "type": "string",
+        "title": "多选框",
+        "description": "多选框"
+      },
+      "$componentType": "checkbox",
+      "$options": [
+        {
+          "label": "选项1",
+          "value": "选项1值"
+        },
+        {
+          "label": "选项2",
+          "value": "选项2值"
+        }
+      ]
     }
   }
 }

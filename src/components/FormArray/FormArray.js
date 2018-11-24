@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Form, Tooltip } from 'antd';
+import { Form, Tooltip, Checkbox } from 'antd';
 import Context from '../../context';
 import TableComponent from './TableComponent';
 
@@ -21,11 +21,12 @@ class FormArray extends Component{
     const { getFieldDecorator }: { getFieldDecorator: Function } = this.context.form;
     const { root }: { root: Object } = this.props;
     const $id: string = root?.$id || root?.id;
-    const { title, description, $componentType, $defaultValue }: {
+    const { title, description, $componentType, $defaultValue, $options }: {
       title: string,
       description: string,
       $componentType: ?string,
-      $defaultValue: ?string
+      $defaultValue: ?string,
+      $options: Array<{ babel: string, value: string | number }>
     } = root;
     const option: Object = {};
     let element: ?React.Element = null;
@@ -34,6 +35,10 @@ class FormArray extends Component{
     if($defaultValue) option.initialValue = $defaultValue;
 
     switch($componentType){
+      case 'checkbox':
+        element = getFieldDecorator($id, option)(<Checkbox.Group options={ $options } />);
+        break;
+
       default:
         element = <TableComponent root={ root } option={ option } />;
     }
