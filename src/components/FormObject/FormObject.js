@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Collapse } from 'antd';
+import { Collapse, Button } from 'antd';
 import Context from '../../context';
 import styleName from '../../utils/styleName';
 import FormString from '../FormString/FormString';
@@ -15,7 +15,9 @@ import FormArray from '../FormArray/FormArray';
 class FormObject extends Component{
   static contextType: Object = Context;
   static propTypes: Object = {
-    root: PropTypes.object
+    root: PropTypes.object,
+    onOk: PropTypes.func,
+    onCancel: PropTypes.func
   };
 
   // 根据type渲染不同的组件
@@ -75,9 +77,27 @@ class FormObject extends Component{
     );
   }
   render(): React.Element{
-    const { root }: { root: Object } = this.props;
+    const { root, onOk, onCancel }: {
+      root: Object,
+      onOk: ?Function,
+      onCancel: ?Function
+    } = this.props;
 
-    return this.renderObjectComponentView(root);
+    return (
+      <Fragment>
+        { this.renderComponentByTypeView(root) }
+        {
+          do{
+            if(onOk || onCancel){
+              <div className={ styleName('object-click-button-box') }>
+                { onOk ? <Button type="primary" onClick={ onOk }>确定</Button> : null }
+                { onCancel ? <Button className={ styleName('object-cancel') } onClick={ onCancel }>取消</Button> : null }
+              </div>;
+            }
+          }
+        }
+      </Fragment>
+    );
   }
 }
 
