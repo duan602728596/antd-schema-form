@@ -4,6 +4,7 @@ import '../../src/style/antd-schema-form.sass';
 import stringJson from '../json/string.json';
 import numberJson from '../json/number.json';
 import booleanJson from '../json/boolean.json';
+import arrayJson from '../json/array.json';
 
 const json: Object = {
   $id: '$root',
@@ -13,7 +14,8 @@ const json: Object = {
   properties: {
     string: stringJson,
     number: numberJson,
-    boolean: booleanJson
+    boolean: booleanJson,
+    array: arrayJson
   }
 };
 

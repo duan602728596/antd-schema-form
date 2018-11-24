@@ -4,6 +4,13 @@ import { Form, Tooltip, Checkbox, Switch } from 'antd';
 import Context from '../../context';
 import { isSpace } from '../../utils/type';
 
+/**
+ * 当类型为boolean时的组件渲染
+ * json schema的属性包括：$id, type, title, description
+ *
+ * 扩展属性前必须加上"$"
+ * 扩展属性包括：componentType
+ */
 class FormBoolean extends Component{
   static contextType: Object = Context;
   static propTypes: Object = {

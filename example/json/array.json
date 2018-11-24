@@ -1,0 +1,66 @@
+{
+
+  "$id": "$root/properties/array",
+  "type": "object",
+  "title": "数组",
+  "description": "渲染数组类型的组件。",
+  "properties": {
+    "default": {
+      "$id": "$root/properties/array/properties/default",
+      "type": "array",
+      "title": "默认组件",
+      "description": "默认组件",
+      "items": {
+        "$id": "$root/properties/array/properties/default/items",
+        "type": "object",
+        "title": "数组内的对象",
+        "description": "数组内的对象",
+        "properties": {
+          "col1": {
+            "$id": "$root/properties/array/properties/default/items/properties/col1",
+            "type": "string",
+            "title": "第一列",
+            "description": "第一列"
+          },
+          "col2": {
+            "$id": "$root/properties/array/properties/default/items/properties/col2",
+            "type": "number",
+            "title": "第二列",
+            "description": "第二列"
+          },
+          "col3": {
+            "$id": "$root/properties/array/properties/default/items/properties/col3",
+            "type": "boolean",
+            "title": "第三列",
+            "description": "第三列"
+          }
+        }
+      },
+      "$defaultValue": [
+        {
+          "col1": "数据1",
+          "col2": 1,
+          "col3": true
+        },
+        {
+          "col1": "数据2",
+          "col2": 2,
+          "col3": false
+        }
+      ]
+    },
+    "item": {
+      "$id": "$root/properties/array/properties/item",
+      "type": "array",
+      "title": "数组内不是object",
+      "description": "数组内不是object",
+      "items": {
+        "$id": "$root/properties/array/properties/item/items",
+        "type": "number",
+        "title": "数组内的对象",
+        "description": "数组内的对象"
+      },
+      "$defaultValue": [1, 2, 3]
+    }
+  }
+}
