@@ -4,6 +4,7 @@ import { Table, Button, Popconfirm, Drawer } from 'antd';
 import Context from '../../context';
 import { isSpace, isBoolean, isObjectOrArray } from '../../utils/type';
 import getValueFromObject, { formatValueBeforeGetValue } from '../../utils/getValueFromObject';
+import getObjectFromValue from '../../utils/getObjectFromValue';
 import { formatTableValue, getKeysFromObject } from './tableFunction';
 import FormObject from '../FormObject/FormObject';
 
@@ -13,19 +14,21 @@ class TableComponent extends Component{
     root: PropTypes.object
   };
 
+  editIndex: ?number;
   state: {
-    isDisplayAddDataDrawer: boolean
+    isDisplayDataDrawer: boolean
   };
 
   constructor(): void{
     super(...arguments);
 
+    this.editIndex = null; // 编辑表单时选择的数组索引
     this.state = {
-      isDisplayAddDataDrawer: false // 添加数据的抽屉的显示和隐藏
+      isDisplayDataDrawer: false // 添加和修改数据的抽屉的显示和隐藏
     };
   }
-  // 点击确认添加数据
-  handleAddDataClick: Function = (event: Event): void=>{
+  // 添加和修改数据
+  handleAddOrEditDataClick: Function = (event: Event): void=>{
     const { form }: { form: Object } = this.context;
     const { root }: { root: Object } = this.props;
     const { items }: { items: Object } = root;
@@ -39,11 +42,42 @@ class TableComponent extends Component{
       let tableValue: Array<any> = form.getFieldValue($id);
 
       tableValue = isSpace(tableValue) ? (root?.$defaultValue || []) : tableValue;
-      tableValue.push(result.items);
+
+      // 判断是修改还是添加
+      if(this.editIndex === null){
+        tableValue.push(result.items);
+      }else{
+        tableValue[this.editIndex] = result.items;
+      }
+
       form.setFieldsValue({ [$id]: tableValue });
-      form.resetFields(keys);
+
+      if(this.editIndex === null){
+        form.resetFields(keys);
+      }else{
+        this.editIndex = null;
+        this.setState({ isDisplayDataDrawer: false });
+      }
     });
   };
+  // 修改数据抽屉的显示
+  handleDrawEditDataDisplayClick(index: number, event: Event): void{
+    const { form }: { form: Object } = this.context;
+    const { root }: { root: Object } = this.props;
+    const $id: string = root?.$id || root?.id;
+    let tableValue: Array<any> = form.getFieldValue($id);
+
+    tableValue = isSpace(tableValue) ? (root?.$defaultValue || []) : tableValue;
+
+    const itemValue: any = tableValue[index];
+    const result: Object = getObjectFromValue({ items: itemValue }, $id);
+
+    this.editIndex = index;
+
+    this.setState({
+      isDisplayDataDrawer: true
+    }, (): void => form.setFieldsValue(result));
+  }
   // 抽屉的显示和隐藏
   handleDrawerDisplayClick(key: string, value: string, event: Event): void{
     this.setState({ [key]: value });
@@ -62,6 +96,7 @@ class TableComponent extends Component{
     columnArr.push({
       title: '',
       key: 'lineNumber',
+      width: 65,
       render: (value: any, item: Object, index: number): React.Element=>{
         return <a>{ index + 1 }</a>;
       }
@@ -104,7 +139,7 @@ class TableComponent extends Component{
       render: (value: any, item: Object, index: number): React.Element=>{
         return (
           <Button.Group size="middle">
-            <Button>修改</Button>
+            <Button onClick={ this.handleDrawEditDataDisplayClick.bind(this, index) }>修改</Button>
             <Popconfirm title="确认要删除数据吗？">
               <Button type="danger">删除</Button>
             </Popconfirm>
@@ -120,7 +155,7 @@ class TableComponent extends Component{
     const { form }: { form: Object } = this.context;
     const $id: string = root?.$id || root?.id;
     const { items }: { items: Object } = root;
-    const { isDisplayAddDataDrawer }: { isDisplayAddDataDrawer: boolean } = this.state;
+    const { isDisplayDataDrawer }: { isDisplayDataDrawer: boolean } = this.state;
     let value: Array<any> = form.getFieldValue($id);
 
     value = isSpace(value) ? (root?.$defaultValue || []) : value;
@@ -135,7 +170,7 @@ class TableComponent extends Component{
             (): React.Element => (
               <Button type="primary"
                 icon="plus-circle"
-                onClick={ this.handleDrawerDisplayClick.bind(this, 'isDisplayAddDataDrawer', true) }
+                onClick={ this.handleDrawerDisplayClick.bind(this, 'isDisplayDataDrawer', true) }
               >
                 添加数据
               </Button>
@@ -147,11 +182,11 @@ class TableComponent extends Component{
             showSizeChanger: true
           }}
         />
-        {/* 添加数据的抽屉组件 */}
-        <Drawer width="100%" visible={ isDisplayAddDataDrawer } destroyOnClose={ true } closable={ false }>
+        {/* 添加和修改数据的抽屉组件 */}
+        <Drawer width="100%" visible={ isDisplayDataDrawer } destroyOnClose={ true } closable={ false }>
           <FormObject root={ items }
-            onOk={ this.handleAddDataClick }
-            onCancel={ this.handleDrawerDisplayClick.bind(this, 'isDisplayAddDataDrawer', false) }
+            onOk={ this.handleAddOrEditDataClick }
+            onCancel={ this.handleDrawerDisplayClick.bind(this, 'isDisplayDataDrawer', false) }
           />
         </Drawer>
       </Fragment>
