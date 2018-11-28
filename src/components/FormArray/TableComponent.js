@@ -52,6 +52,7 @@ class TableComponent extends Component{
 
       form.setFieldsValue({ [$id]: tableValue });
 
+      // 重置状态
       if(this.editIndex === null){
         form.resetFields(keys);
       }else{
@@ -60,6 +61,17 @@ class TableComponent extends Component{
       }
     });
   };
+  // 删除数据
+  handleDeleteDataClick(index: number, event: Event): void{
+    const { form }: { form: Object } = this.context;
+    const { root }: { root: Object } = this.props;
+    const $id: string = root?.$id || root?.id;
+    let tableValue: Array<any> = form.getFieldValue($id);
+
+    tableValue = isSpace(tableValue) ? (root?.$defaultValue || []) : tableValue;
+    tableValue.splice(index, 1);
+    form.setFieldsValue({ [$id]: tableValue });
+  }
   // 修改数据抽屉的显示
   handleDrawEditDataDisplayClick(index: number, event: Event): void{
     const { form }: { form: Object } = this.context;
@@ -140,7 +152,7 @@ class TableComponent extends Component{
         return (
           <Button.Group size="middle">
             <Button onClick={ this.handleDrawEditDataDisplayClick.bind(this, index) }>修改</Button>
-            <Popconfirm title="确认要删除数据吗？">
+            <Popconfirm title="确认要删除数据吗？" onConfirm={ this.handleDeleteDataClick.bind(this, index) }>
               <Button type="danger">删除</Button>
             </Popconfirm>
           </Button.Group>
