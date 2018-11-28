@@ -18,7 +18,10 @@ class FormArray extends Component{
   };
 
   render(): React.Element{
-    const { getFieldDecorator }: { getFieldDecorator: Function } = this.context.form;
+    const { getFieldDecorator, getFieldProps }: {
+      getFieldDecorator: Function,
+      getFieldProps: Function
+    } = this.context.form;
     const { root }: { root: Object } = this.props;
     const $id: string = root?.$id || root?.id;
     const { title, description, $componentType, $defaultValue, $options }: {
@@ -40,7 +43,7 @@ class FormArray extends Component{
         break;
 
       default:
-        element = <TableComponent root={ root } option={ option } />;
+        element = <TableComponent root={ root } { ...getFieldProps($id, option) } />;
     }
 
     return (

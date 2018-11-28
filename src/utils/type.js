@@ -15,6 +15,14 @@ export function isObjectOrArray(value: any): boolean{
   return typeof value === 'object';
 }
 
+export function isObject(value: any): boolean{
+  return isObjectOrArray(value) && Object.prototype.toString.call(value) === '[object Object]';
+}
+
+export function isArray(value: any): boolean{
+  return isObjectOrArray(value) && Object.prototype.toString.call(value) === '[object Array]';
+}
+
 export function isFunction(value: any): boolean{
   return typeof value === 'function';
 }

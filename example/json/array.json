@@ -62,6 +62,24 @@
       },
       "$defaultValue": [1, 2, 3]
     },
+    "arrayInArray": {
+      "$id": "$root/properties/array/properties/arrayInArray",
+      "type": "array",
+      "title": "数组复杂嵌套",
+      "description": "数组复杂嵌套",
+      "items": {
+        "$id": "$root/properties/array/properties/arrayInArray/items",
+        "type": "array",
+        "title": "数组复杂嵌套",
+        "description": "数组复杂嵌套",
+        "items": {
+          "$id": "$root/properties/array/properties/arrayInArray/items/items",
+          "type": "string",
+          "title": "输入",
+          "description": "输入"
+        }
+      }
+    },
     "checkbox": {
       "$id": "$root/properties/array/properties/checkbox",
       "type": "array",

@@ -3,56 +3,45 @@ import PropTypes from 'prop-types';
 import { Table, Button, Popconfirm, Drawer } from 'antd';
 import Context from '../../context';
 import { isSpace, isBoolean, isObjectOrArray } from '../../utils/type';
-import styleName from '../../utils/styleName';
+import getValueFromObject, { formatValueBeforeGetValue } from '../../utils/getValueFromObject';
 import { formatTableValue, getKeysFromObject } from './tableFunction';
 import FormObject from '../FormObject/FormObject';
 
 class TableComponent extends Component{
   static contextType: Object = Context;
   static propTypes: Object = {
-    root: PropTypes.object,
-    option: PropTypes.object
+    root: PropTypes.object
   };
 
   state: {
-    form: Object,
-    value: Array<any>,
     isDisplayAddDataDrawer: boolean
   };
 
   constructor(): void{
     super(...arguments);
 
-    const { form }: { form: Object } = this.context;
-    const { root }: { root: Object } = this.props;
-    const $id: string = root?.$id || root?.id;
-    const value: Array<any> = form.getFieldValue($id);
-
     this.state = {
-      form,
-      value: isSpace(value) ? (root?.$defaultValue || []) : value,
       isDisplayAddDataDrawer: false // 添加数据的抽屉的显示和隐藏
-    };
-  }
-  static getDerivedStateFromProps(nextProps: Object, prevState: Object): ?Object{
-    const { form }: { form: Object } = prevState;
-    const { root }: { root: Object } = nextProps;
-    const $id: string = root?.$id || root?.id;
-    const value: Array<any> = form.getFieldValue($id);
-
-    return {
-      value: isSpace(value) ? (root?.$defaultValue || []) : value
     };
   }
   // 点击确认添加数据
   handleAddDataClick: Function = (event: Event): void=>{
     const { form }: { form: Object } = this.context;
-    const { items }: { items: Object } = this.props.root;
+    const { root }: { root: Object } = this.props;
+    const { items }: { items: Object } = root;
+    const $id: string = root?.$id || root?.id;
     // 获取需要验证和获取值的key
     const keys: string[] = getKeysFromObject(items);
 
     form.validateFields(keys, (err: Array, value: Object): void=>{
-      console.log(value);
+      const formatValue: Object = formatValueBeforeGetValue(value, $id);
+      const result: Object = getValueFromObject(formatValue);
+      let tableValue: Array<any> = form.getFieldValue($id);
+
+      tableValue = isSpace(tableValue) ? (root?.$defaultValue || []) : tableValue;
+      tableValue.push(result.items);
+      form.setFieldsValue({ [$id]: tableValue });
+      form.resetFields(keys);
     });
   };
   // 抽屉的显示和隐藏
@@ -127,32 +116,31 @@ class TableComponent extends Component{
     return columnArr;
   }
   render(): React.Element{
-    const { getFieldProps }: { getFieldProps: Function } = this.context.form;
-    const { root, option }: {
-      root: Object,
-      option: Object
-    } = this.props;
+    const { root }: { root: Object } = this.props;
+    const { form }: { form: Object } = this.context;
     const $id: string = root?.$id || root?.id;
     const { items }: { items: Object } = root;
-    const { value, isDisplayAddDataDrawer }: {
-      value: Array<value>,
-      isDisplayAddDataDrawer: boolean
-    } = this.state;
+    const { isDisplayAddDataDrawer }: { isDisplayAddDataDrawer: boolean } = this.state;
+    let value: Array<any> = form.getFieldValue($id);
+
+    value = isSpace(value) ? (root?.$defaultValue || []) : value;
 
     return (
       <Fragment>
-        <div className={ styleName('array-tools') } { ...getFieldProps($id, option) }>
-          <Button type="primary"
-            icon="plus-circle"
-            onClick={ this.handleDrawerDisplayClick.bind(this, 'isDisplayAddDataDrawer', true) }
-          >
-            添加数据
-          </Button>
-        </div>
         <Table size="middle"
           dataSource={ items.type === 'object' ? value : formatTableValue(value) }
           columns={ this.columns() }
           bordered={ true }
+          title={
+            (): React.Element => (
+              <Button type="primary"
+                icon="plus-circle"
+                onClick={ this.handleDrawerDisplayClick.bind(this, 'isDisplayAddDataDrawer', true) }
+              >
+                添加数据
+              </Button>
+            )
+          }
           rowKey={ (item: Object, index: number): number => index }
           pagination={{
             showQuickJumper: true,
@@ -161,7 +149,10 @@ class TableComponent extends Component{
         />
         {/* 添加数据的抽屉组件 */}
         <Drawer width="100%" visible={ isDisplayAddDataDrawer } destroyOnClose={ true } closable={ false }>
-          <FormObject root={ items } onOk={ this.handleAddDataClick } />
+          <FormObject root={ items }
+            onOk={ this.handleAddDataClick }
+            onCancel={ this.handleDrawerDisplayClick.bind(this, 'isDisplayAddDataDrawer', false) }
+          />
         </Drawer>
       </Fragment>
     );
