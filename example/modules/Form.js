@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SchemaForm from '../../src/index';
+import SchemaForm from '../../src/SchemaForm';
 import '../../src/style/antd-schema-form.sass';
 import stringJson from '../json/string.json';
 import numberJson from '../json/number.json';

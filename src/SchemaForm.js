@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Form } from 'antd';
 import Context from './context';
 import FormObject from './components/FormObject/FormObject';
 
+@Form.create()
 class SchemaForm extends Component{
   static propTypes: Object = {
     form: PropTypes.object,

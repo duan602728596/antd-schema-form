@@ -2,7 +2,7 @@
   "name": "antd-schema-form",
   "version": "0.0.1",
   "description": "基于antd，通过json schema配置表单。",
-  "main": "lib/index.js",
+  "main": "lib/SchemaForm.js",
   "author": {
     "name": "段昊辰",
     "email": "duanhaochen@126.com",
