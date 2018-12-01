@@ -245,10 +245,7 @@ class TableComponent extends Component{
             )
           }
           rowKey={ (item: Object, index: number): number => index }
-          pagination={{
-            showQuickJumper: true,
-            showSizeChanger: true
-          }}
+          pagination={ false }
         />
         {/* 添加和修改数据的抽屉组件 */}
         <Drawer width="100%" visible={ isDisplayDataDrawer } destroyOnClose={ true } closable={ false }>
