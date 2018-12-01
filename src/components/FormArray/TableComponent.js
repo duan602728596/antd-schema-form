@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Table, Button, Popconfirm, Drawer } from 'antd';
+import { Table, Button, Popconfirm, Drawer, Input } from 'antd';
 import Context from '../../context';
 import { isSpace, isBoolean, isObjectOrArray } from '../../utils/type';
 import getValueFromObject, { formatValueBeforeGetValue } from '../../utils/getValueFromObject';
@@ -16,7 +16,8 @@ class TableComponent extends Component{
 
   editIndex: ?number;
   state: {
-    isDisplayDataDrawer: boolean
+    isDisplayDataDrawer: boolean,
+    inputDisplayIndex: ?number
   };
 
   constructor(): void{
@@ -24,8 +25,50 @@ class TableComponent extends Component{
 
     this.editIndex = null; // 编辑表单时选择的数组索引
     this.state = {
-      isDisplayDataDrawer: false // 添加和修改数据的抽屉的显示和隐藏
+      isDisplayDataDrawer: false, // 添加和修改数据的抽屉的显示和隐藏
+      inputDisplayIndex: null,    // 编辑框修改位置的状态
+      inputChangeIndex: null      // 编辑框的值
     };
+  }
+  // 编辑位置框修改位置
+  handleInputDisplayClick(index: number, event: Event): void{
+    this.setState({
+      inputDisplayIndex: index,
+      inputChangeIndex: index + 1
+    });
+  }
+  // 编辑位置框数据修改
+  handleIndexInputChange: Function = (event: Event): void=>{
+    this.setState({ inputChangeIndex: event.target.value });
+  };
+  // 编辑位置框失去焦点
+  handleIndexInputBlur(index: number, event: Event): void{
+    const { form }: { form: Object } = this.context;
+    const { root }: { root: Object } = this.props;
+    const $id: string = root?.$id || root?.id;
+    let tableValue: Array<any> = form.getFieldValue($id);
+
+    tableValue = isSpace(tableValue) ? (root?.$defaultValue || []) : tableValue;
+
+    const length: number = tableValue.length;
+    const { inputChangeIndex }: { inputChangeIndex: ?number } = this.state;
+    let newIndex: number = inputChangeIndex - 1;
+
+    if(newIndex !== index){
+      if(newIndex < 0)newIndex = 0;
+      if(newIndex > length) newIndex = length;
+
+      // 修改位置
+      tableValue.splice(newIndex, 0, tableValue[index]);
+      // 删除旧数据
+      tableValue.splice(newIndex > index ? index : (index + 1), 1);
+      form.setFieldsValue({ [$id]: tableValue });
+    }
+
+    this.setState({
+      inputDisplayIndex: null,
+      inputChangeIndex: null
+    });
   }
   // 添加和修改数据
   handleAddOrEditDataClick: Function = (event: Event): void=>{
@@ -97,6 +140,10 @@ class TableComponent extends Component{
   // columns
   columns(): Array{
     const { items }: { items: Object } = this.props.root;
+    const { inputDisplayIndex, inputChangeIndex }: {
+      inputDisplayIndex: ?number,
+      inputChangeIndex: ?number
+    } = this.state;
     const { type, properties, title }: {
       type: string,
       properties: ?Object,
@@ -110,7 +157,17 @@ class TableComponent extends Component{
       key: 'lineNumber',
       width: 65,
       render: (value: any, item: Object, index: number): React.Element=>{
-        return <a>{ index + 1 }</a>;
+        if(inputDisplayIndex === null || inputDisplayIndex !== index){
+          return <a onClick={ this.handleInputDisplayClick.bind(this, index) }>{ index + 1 }</a>;
+        }else{
+          return (
+            <Input value={ inputChangeIndex }
+              onChange={ this.handleIndexInputChange }
+              onBlur={ this.handleIndexInputBlur.bind(this, index) }
+              onPressEnter={ this.handleIndexInputBlur.bind(this, index) }
+            />
+          );
+        }
       }
     });
 
