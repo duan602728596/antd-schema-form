@@ -10,7 +10,7 @@ class SchemaForm extends PureComponent{
   static propTypes: Object = {
     form: PropTypes.object,
     json: PropTypes.object,
-    value: PropTypes.any,
+    value: PropTypes.object,
     onOk: PropTypes.func,
     onCancel: PropTypes.func
   };

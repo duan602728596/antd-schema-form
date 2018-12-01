@@ -58,7 +58,7 @@ class FormString extends PureComponent{
       required: boolean
     } = this.props;
     const $id: string = root?.$id || root?.id;
-    const { title, description, $required, $componentType, $readOnly, $defaultValue, $options, $placeholder }: {
+    const { title, description, $required, $componentType, $readOnly, $defaultValue, $options = [], $placeholder }: {
       title: string,
       description: string,
       $required: boolean,
@@ -112,9 +112,7 @@ class FormString extends PureComponent{
         break;
 
       // 文件上传
-      case 'file':
-        const id: string = `${ $id }@file`;
-
+      case 'upload':
         element = [
           getFieldDecorator($id, option)(
             <Input.Search key="input"

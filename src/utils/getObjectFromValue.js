@@ -11,7 +11,7 @@ function getObjectFromValue(obj: Object, basicId: ?string): Object{
   for(const key: string in obj){
     const item: any = obj[key];
 
-    if(isObject(item)){
+    if(isObject(item) && !item._isAMomentObject){
       const result: Object = getObjectFromValue(
         item,
         basicId ? `${ basicId }/${ key }/properties` : `${ key }/properties`

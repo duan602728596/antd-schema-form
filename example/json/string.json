@@ -136,7 +136,7 @@
       "type": "string",
       "title": "文件上传",
       "description": "文件上传",
-      "$componentType": "file"
+      "$componentType": "upload"
     }
   },
   "required": [

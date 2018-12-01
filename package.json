@@ -12,6 +12,8 @@
   "scripts": {
     "example-dll": "milktea dll --config=\"./config/example/.sweetrc.js\"",
     "example-start": "milktea start --server --config=\"./config/example/.sweetrc.js\"",
+    "testinit": "mocha init test",
+    "test": "milktea start --server --config=\"./config/test/.sweetrc.js\" --httpPort=6060",
     "eslint": "eslint ./src",
     "update": "milktea update"
   },
