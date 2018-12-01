@@ -14,7 +14,8 @@ export default {
   externals: {
     mocha: 'window.mocha',
     chai: 'window.chai',
-    describe: 'window.describe'
+    describe: 'window.describe',
+    it: 'window.it'
   },
   rules: [
     {

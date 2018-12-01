@@ -4,7 +4,7 @@ import React from 'react';
 import SchemaForm from '../../../src/SchemaForm';
 
 /* 渲染默认组件 */
-export function renderDefaultComponent(): void{
+export function renderDefault(): void{
   const json: Object = {
     $id: '$root',
     type: 'string',
@@ -40,14 +40,8 @@ export function renderSelect(): void{
     title: '渲染下拉框',
     $componentType: 'select',
     $options: [
-      {
-        label: '选项1',
-        value: '值1'
-      },
-      {
-        label: '选项2',
-        value: '值2'
-      }
+      { label: '选项1', value: '值1' },
+      { label: '选项2', value: '值2' }
     ]
   };
   const wrapper: Object = mount(<SchemaForm json={ json } />);
@@ -64,14 +58,8 @@ export function renderRadio(): void{
     title: '渲染单选组件',
     $componentType: 'radio',
     $options: [
-      {
-        label: '选项1',
-        value: '值1'
-      },
-      {
-        label: '选项2',
-        value: '值2'
-      }
+      { label: '选项1', value: '值1' },
+      { label: '选项2', value: '值2' }
     ]
   };
   const wrapper: Object = mount(<SchemaForm json={ json } />);
@@ -81,7 +69,7 @@ export function renderRadio(): void{
 }
 
 /* 渲染日期组件 */
-export function renderDateComponent(): void{
+export function renderDate(): void{
   const json: Object = {
     $id: '$root',
     type: 'string',
@@ -95,7 +83,7 @@ export function renderDateComponent(): void{
 }
 
 /* 渲染文件上传组件 */
-export function renderFileUploadComponent(): void{
+export function renderFileUpload(): void{
   const json: Object = {
     $id: '$root',
     type: 'string',
