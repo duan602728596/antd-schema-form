@@ -34,8 +34,8 @@ async function handleFileUpload(file: Array<File>): Promise<string>{
   return `${ file[0].lastModified }`;
 }
 
-function handleClick(form: Object, value: Object): void{
-  console.log(value);
+function handleClick(form: Object, value: Object, keys: string): void{
+  console.log(value, keys);
 }
 
 function Form(props: Object): React.Element{

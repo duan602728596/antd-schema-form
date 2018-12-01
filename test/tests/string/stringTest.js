@@ -7,6 +7,10 @@ import {
   radioHastValue, dateHasDefaultValue, dateHasValue, theValueOfTheComponentOverridesTheDefaultValue
 } from './hasValue';
 import { componentReadOnly, componentPlaceholder, selectComponentPlaceholder } from './attrs';
+import {
+  componentNoverification, componentRequired, componentEnum, componentMinLength, componentMaxLength, componentLength,
+  componentPattern
+} from './verification';
 
 /* 字符串组件测试用例 */
 describe('字符串组件测试用例', function(): void{
@@ -38,6 +42,16 @@ describe('字符串组件测试用例', function(): void{
       it('组件只读', componentReadOnly);
       it('组件的placeholder属性', componentPlaceholder);
       it('select组件的placeholder属性', selectComponentPlaceholder);
+    });
+
+    describe('表单验证', function(): void{
+      it('表单没有验证', componentNoverification);
+      it('表单必填', componentRequired);
+      it('组件的枚举', componentEnum);
+      it('组件的最小值', componentMinLength);
+      it('组件的最大值', componentMaxLength);
+      it('组件的固定长度', componentLength);
+      it('组件的正则表达式验证', componentPattern);
     });
   });
 });

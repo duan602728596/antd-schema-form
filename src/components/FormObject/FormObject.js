@@ -8,6 +8,7 @@ import FormNumber from '../FormNumber/FormNumber';
 import FormBoolean from '../FormBoolean/FormBoolean';
 import FormArray from '../FormArray/FormArray';
 import getValueFromObject from '../../utils/getValueFromObject';
+import getKeysFromObject from '../../utils/getKeysFromObject';
 
 /**
  * 当类型为object时的组件渲染
@@ -80,10 +81,19 @@ class FormObject extends PureComponent{
   // ok事件
   handleOkClick: Function = (event: Event): void=>{
     const { form }: { form: Object } = this.context;
-    const { onOk }: { onOk: Function } = this.props;
-    const value: Object = getValueFromObject(form.getFieldsValue());
+    const { root, onOk }: {
+      root: Object,
+      onOk: Function
+    } = this.props;
+    const keys: string[] = getKeysFromObject(root);
 
-    onOk(form, value);
+    form.validateFields(keys, (err: any, value: Object): void=>{
+      if(err) return void 0;
+
+      const value2: Object = getValueFromObject(value);
+
+      onOk(form, value2, keys);
+    });
   };
   // cancel事件
   handleCancelClick: Function = (event: Event): void=>{

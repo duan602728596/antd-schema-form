@@ -33,8 +33,7 @@ function createNumberRules(root: Object, required: boolean, isInteger: boolean):
   if($required === true || required === true){
     rules.push({
       required: true,
-      message: $requiredMessage || '该选项为必填项',
-      whitespace: true
+      message: $requiredMessage || '该选项为必填项'
     });
   }
 

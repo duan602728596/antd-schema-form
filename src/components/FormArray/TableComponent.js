@@ -5,7 +5,7 @@ import Context from '../../context';
 import { isSpace, isBoolean, isObjectOrArray } from '../../utils/type';
 import getValueFromObject, { formatValueBeforeGetValue } from '../../utils/getValueFromObject';
 import getObjectFromValue from '../../utils/getObjectFromValue';
-import { formatTableValue, getKeysFromObject } from './tableFunction';
+import { formatTableValue } from './tableFunction';
 import FormObject from '../FormObject/FormObject';
 
 class TableComponent extends Component{
@@ -73,38 +73,35 @@ class TableComponent extends Component{
     });
   }
   // 添加和修改数据
-  handleAddOrEditDataClick: Function = (value: Object, form2: Object): void=>{
+  handleAddOrEditDataClick: Function = (value: Object, form2: Object, keys: string[]): void=>{
     const { form }: { form: Object } = this.context;
     const { root }: { root: Object } = this.props;
-    const { items }: { items: Object } = root;
     const $id: string = root?.$id || root?.id;
     // 获取需要验证和获取值的key
-    const keys: string[] = getKeysFromObject(items);
+    const value2: Object = form.getFieldsValue(keys);
 
-    form.validateFields(keys, (err: Array, value: Object): void=>{
-      const formatValue: Object = formatValueBeforeGetValue(value, $id);
-      const result: Object = getValueFromObject(formatValue);
-      let tableValue: Array<any> = form.getFieldValue($id);
+    const formatValue: Object = formatValueBeforeGetValue(value2, $id);
+    const result: Object = getValueFromObject(formatValue);
+    let tableValue: Array<any> = form.getFieldValue($id);
 
-      tableValue = isSpace(tableValue) ? (root?.$defaultValue || []) : tableValue;
+    tableValue = isSpace(tableValue) ? (root?.$defaultValue || []) : tableValue;
 
-      // 判断是修改还是添加
-      if(this.editIndex === null){
-        tableValue.push(result.items);
-      }else{
-        tableValue[this.editIndex] = result.items;
-      }
+    // 判断是修改还是添加
+    if(this.editIndex === null){
+      tableValue.push(result.items);
+    }else{
+      tableValue[this.editIndex] = result.items;
+    }
 
-      form.setFieldsValue({ [$id]: tableValue });
+    form.setFieldsValue({ [$id]: tableValue });
 
-      // 重置状态
-      if(this.editIndex === null){
-        form.resetFields(keys);
-      }else{
-        this.editIndex = null;
-        this.setState({ isDisplayDataDrawer: false });
-      }
-    });
+    // 重置状态
+    if(this.editIndex === null){
+      form.resetFields(keys);
+    }else{
+      this.editIndex = null;
+      this.setState({ isDisplayDataDrawer: false });
+    }
   };
   // 删除数据
   handleDeleteDataClick(index: number, event: Event): void{

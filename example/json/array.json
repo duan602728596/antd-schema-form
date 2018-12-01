@@ -58,7 +58,8 @@
         "$id": "$root/properties/array/properties/item/items",
         "type": "number",
         "title": "数组内的对象",
-        "description": "数组内的对象"
+        "description": "数组内的对象",
+        "$required": true
       },
       "$defaultValue": [1, 2, 3]
     },
