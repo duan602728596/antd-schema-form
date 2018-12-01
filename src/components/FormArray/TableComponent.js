@@ -15,6 +15,8 @@ class TableComponent extends Component{
   };
 
   editIndex: ?number;
+  inputTableDragIndex: ?number;
+  inputTableDragTr: ?Element;
   state: {
     isDisplayDataDrawer: boolean,
     inputDisplayIndex: ?number
@@ -55,7 +57,7 @@ class TableComponent extends Component{
     let newIndex: number = inputChangeIndex - 1;
 
     if(newIndex !== index){
-      if(newIndex < 0)newIndex = 0;
+      if(newIndex < 0) newIndex = 0;
       if(newIndex > length) newIndex = length;
 
       // 修改位置
@@ -71,7 +73,7 @@ class TableComponent extends Component{
     });
   }
   // 添加和修改数据
-  handleAddOrEditDataClick: Function = (event: Event): void=>{
+  handleAddOrEditDataClick: Function = (value: Object, form2: Object): void=>{
     const { form }: { form: Object } = this.context;
     const { root }: { root: Object } = this.props;
     const { items }: { items: Object } = root;
@@ -134,7 +136,7 @@ class TableComponent extends Component{
     }, (): void => form.setFieldsValue(result));
   }
   // 抽屉的显示和隐藏
-  handleDrawerDisplayClick(key: string, value: string, event: Event): void{
+  handleDrawerDisplayClick(key: string, value: string, eventOrObject: Event | Object): void{
     this.setState({ [key]: value });
   }
   // columns

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Tooltip, InputNumber, Radio } from 'antd';
 import Context from '../../context';
@@ -13,7 +13,7 @@ import createNumberRules from './createNumberRules';
  * 扩展属性包括：required, componentType, readOnly, enumMessage, requiredMessage, minimumMessage、
  *   maximumMessage, options, defaultValue
  */
-class FormNumber extends Component{
+class FormNumber extends PureComponent{
   static contextType: Object = Context;
   static propTypes: Object = {
     root: PropTypes.object,

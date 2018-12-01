@@ -19,12 +19,27 @@ const json: Object = {
   }
 };
 
+const value: Object = {
+  $root: {
+    string: {
+      default: 'abcdefg'
+    },
+    number: {
+      default: 12345
+    }
+  }
+};
+
 async function handleFileUpload(file: Array<File>): Promise<string>{
   return `${ file[0].lastModified }`;
 }
 
+function handleClick(form: Object, value: Object): void{
+  console.log(value);
+}
+
 function Form(props: Object): React.Element{
-  return <SchemaForm json={ json } onUpload={ handleFileUpload } />;
+  return <SchemaForm json={ json } value={ value } onOk={ handleClick } onUpload={ handleFileUpload } />;
 }
 
 export default Form;

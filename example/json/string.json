@@ -23,7 +23,7 @@
       "title": "组件只读",
       "description": "组件只读",
       "$readOnly": true,
-      "$defaultValue": "默认值"
+      "$defaultValue": "只读"
     },
     "required": {
       "$id": "$root/properties/string/properties/required",

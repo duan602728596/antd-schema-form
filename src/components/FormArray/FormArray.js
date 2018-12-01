@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Tooltip, Checkbox } from 'antd';
 import Context from '../../context';
@@ -11,7 +11,7 @@ import TableComponent from './TableComponent';
  * 扩展属性前必须加上"$"
  * 扩展属性包括：componentType, options
  */
-class FormArray extends Component{
+class FormArray extends PureComponent{
   static contextType: Object = Context;
   static propTypes: Object = {
     root: PropTypes.object

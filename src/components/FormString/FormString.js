@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent, createRef } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Tooltip, Input, Select, Radio, DatePicker } from 'antd';
 import moment from 'moment';
@@ -15,17 +15,19 @@ import createStringRules from './createStringRules';
  * 扩展属性包括：required, componentType, readOnly, length, patternOption, enumMessage, lengthMessage, requiredMessage, patternMessage、
  *   minLengthMessage, maxLengthMessage, options, defaultValue, placeholder
  */
-class FormString extends Component{
+class FormString extends PureComponent{
   static contextType: Object = Context;
   static propTypes: Object = {
     root: PropTypes.object,
     required: PropTypes.bool
   };
 
+  inputRef: Object = createRef();
+
   // 文件上传点击事件
-  handleFileUpdateClick(id: string, event: Event): void{
-    document.getElementById(id).click();
-  }
+  handleFileUpdateClick: Function = (event: Event): void=>{
+    this.inputRef.current.click();
+  };
   // 文件input的change事件
   async handleInputChange($id: string, event: Event): Promise<void>{
     const { form, onUpload }: {
@@ -119,12 +121,12 @@ class FormString extends Component{
               enterButton="选择文件"
               readOnly={ true }
               placeholder={ $placeholder }
-              onSearch={ this.handleFileUpdateClick.bind(this, id) }
+              onSearch={ this.handleFileUpdateClick }
             />
           ),
           <input key="file"
+            ref={ this.inputRef }
             className={ styleName('string-file') }
-            id={ id }
             type="file"
             onChange={ this.handleInputChange.bind(this, $id) }
           />
