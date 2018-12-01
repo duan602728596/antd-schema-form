@@ -1,4 +1,4 @@
-import React, { PureComponent, createRef } from 'react';
+import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Tooltip, Input, Select, Radio, DatePicker } from 'antd';
 import moment from 'moment';
@@ -15,7 +15,7 @@ import createStringRules from './createStringRules';
  * 扩展属性包括：required, componentType, readOnly, length, patternOption, enumMessage, lengthMessage, requiredMessage, patternMessage、
  *   minLengthMessage, maxLengthMessage, options, defaultValue, placeholder
  */
-class FormString extends PureComponent{
+class FormString extends Component{
   static contextType: Object = Context;
   static propTypes: Object = {
     root: PropTypes.object,

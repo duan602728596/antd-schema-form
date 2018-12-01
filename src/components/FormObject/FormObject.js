@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Collapse, Button } from 'antd';
 import Context from '../../context';
@@ -14,7 +14,7 @@ import getKeysFromObject from '../../utils/getKeysFromObject';
  * 当类型为object时的组件渲染
  * json schema的属性包括：$id、type、title、description、properties、required
  */
-class FormObject extends PureComponent{
+class FormObject extends Component{
   static contextType: Object = Context;
   static propTypes: Object = {
     root: PropTypes.object,

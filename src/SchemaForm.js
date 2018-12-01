@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Form } from 'antd';
 import Context from './context';
@@ -6,7 +6,7 @@ import FormObject from './components/FormObject/FormObject';
 import getObjectFromValue from './utils/getObjectFromValue';
 
 @Form.create()
-class SchemaForm extends PureComponent{
+class SchemaForm extends Component{
   static propTypes: Object = {
     form: PropTypes.object,
     json: PropTypes.object,

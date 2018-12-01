@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Tooltip, Checkbox, Switch } from 'antd';
 import Context from '../../context';
@@ -11,7 +11,7 @@ import { isSpace } from '../../utils/type';
  * 扩展属性前必须加上"$"
  * 扩展属性包括：componentType
  */
-class FormBoolean extends PureComponent{
+class FormBoolean extends Component{
   static contextType: Object = Context;
   static propTypes: Object = {
     root: PropTypes.object
