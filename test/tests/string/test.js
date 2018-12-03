@@ -1,6 +1,5 @@
 import describe from 'describe';
 import it from 'it';
-import React from 'react';
 import { renderDefault, renderTextArea, renderSelect, renderRadio, renderDate, renderFileUpload } from './componentRendering';
 import {
   componentHasDefaultValue, componentHastValue, selectHasDefaultValue, selectHasValue, radioHasDefaultValue,
@@ -13,7 +12,7 @@ import {
 } from './verification';
 
 /* 字符串组件测试用例 */
-describe('字符串组件测试用例', function(): void{
+describe('字符串组件', function(): void{
   /* 组件渲染 */
   describe('组件渲染', function(): void{
     it('渲染默认组件', renderDefault);
@@ -48,8 +47,8 @@ describe('字符串组件测试用例', function(): void{
       it('表单没有验证', componentNoverification);
       it('表单必填', componentRequired);
       it('组件的枚举', componentEnum);
-      it('组件的最小值', componentMinLength);
-      it('组件的最大值', componentMaxLength);
+      it('组件值的最小长度', componentMinLength);
+      it('组件值的最大长度', componentMaxLength);
       it('组件的固定长度', componentLength);
       it('组件的正则表达式验证', componentPattern);
     });

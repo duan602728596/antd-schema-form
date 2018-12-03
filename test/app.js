@@ -11,7 +11,8 @@ Enzyme.configure({
 
 (async function(): void{
   await Promise.all([
-    import('./tests/string/stringTest')
+    import('./tests/string/test'),
+    import('./tests/number/test')
   ]);
 
   mocha.run();
