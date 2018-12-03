@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
-    "antd": "^3.10.8",
+    "antd": "^3.11.0",
     "moment": "^2.22.2",
     "prop-types": "^15.6.2",
     "react": "^16.6.3",
