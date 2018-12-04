@@ -14,7 +14,8 @@ Enzyme.configure({
     import('./tests/string/test'),
     import('./tests/number/test'),
     import('./tests/boolean/test'),
-    import('./tests/array/test')
+    import('./tests/array/test'),
+    import('./tests/object/test')
   ]);
 
   mocha.run();
