@@ -1,5 +1,5 @@
 /**
- * 获取对象下所有的key
+ * 获取schema.json下所有的key
  * @param { Object } item: 对象
  */
 function getKeysFromObject(item: Object): Array<string>{
