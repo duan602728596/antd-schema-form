@@ -1,5 +1,4 @@
 {
-
   "$id": "$root/properties/array",
   "type": "object",
   "title": "数组",

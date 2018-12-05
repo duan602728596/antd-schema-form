@@ -1,5 +1,4 @@
 {
-
   "$id": "$root/properties/boolean",
   "type": "object",
   "title": "布尔值",
