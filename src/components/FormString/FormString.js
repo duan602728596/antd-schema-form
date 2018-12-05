@@ -83,7 +83,9 @@ class FormString extends Component{
     switch($componentType){
       // 文本域
       case 'textArea':
-        element = getFieldDecorator($id, option)(<Input.TextArea rows={ 6 } readOnly={ $readOnly } placeholder={ $placeholder } />);
+        element = getFieldDecorator($id, option)(
+          <Input.TextArea rows={ 6 } readOnly={ $readOnly } placeholder={ $placeholder } />
+        );
         break;
 
       // 渲染select

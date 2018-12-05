@@ -35,6 +35,30 @@ export function renderDefault(): void{
   expect(table).to.have.lengthOf(1);
 }
 
+/* 渲染Select的multiple模式 */
+export function renderSelectMultiple(): void{
+  const json: Object = {
+    $id: '$root',
+    type: 'array',
+    title: '渲染多选组件',
+    items: {
+      $id: '$root/items',
+      type: 'string',
+      title: '数组内的对象'
+    },
+    $componentType: 'multiple',
+    $options: [
+      { label: '选项1', value: '值1' },
+      { label: '选项2', value: '值2' }
+    ]
+  };
+
+  const wrapper: Object = mount(<SchemaForm json={ json } />);
+  const antSelectSelection: Object = wrapper.find('.ant-select-selection');
+
+  expect(antSelectSelection).to.have.lengthOf(1);
+}
+
 /* 渲染多选组件 */
 export function renderCheckboxGroup(): void{
   const json: Object = {

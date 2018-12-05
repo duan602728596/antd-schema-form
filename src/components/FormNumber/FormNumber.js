@@ -28,7 +28,7 @@ class FormNumber extends Component{
       required: boolean
     } = this.props;
     const $id: string = root?.$id || root?.id;
-    const { type, title, description, $componentType, $readOnly, $defaultValue, $options, $placeholder }: {
+    const { type, title, description, $componentType, $readOnly, $defaultValue, $options = [], $placeholder }: {
       type: string,
       title: string,
       description: string,

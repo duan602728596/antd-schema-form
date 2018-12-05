@@ -81,6 +81,29 @@
         }
       }
     },
+    "multiple": {
+      "$id": "$root/properties/array/properties/multiple",
+      "type": "array",
+      "title": "Select多选模式",
+      "description": "Select多选模式",
+      "items": {
+        "$id": "$root/properties/array/properties/multiple/items",
+        "type": "string",
+        "title": "Select多选模式",
+        "description": "Select多选模式"
+      },
+      "$componentType": "multiple",
+      "$options": [
+        {
+          "label": "选项1",
+          "value": "选项1值"
+        },
+        {
+          "label": "选项2",
+          "value": "选项2值"
+        }
+      ]
+    },
     "checkbox": {
       "$id": "$root/properties/array/properties/checkbox",
       "type": "array",

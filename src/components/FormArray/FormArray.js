@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Form, Tooltip, Checkbox } from 'antd';
+import { Form, Tooltip, Select, Checkbox } from 'antd';
 import Context from '../../context';
 import TableComponent from './TableComponent';
+import styleName from '../../utils/styleName';
 
 /**
  * 当类型为array时的组件渲染
@@ -17,6 +18,12 @@ class FormArray extends Component{
     root: PropTypes.object
   };
 
+  // select的下拉框
+  selectOptionsView(options: Array<{ label: string, value: string }>): React.ChildrenArray<React.Element>{
+    return options.map((item: Object, index: number): React.Element=>{
+      return <Select.Option key={ index } value={ item.value }>{ item.label }</Select.Option>;
+    });
+  }
   render(): React.Element{
     const { getFieldDecorator, getFieldProps }: {
       getFieldDecorator: Function,
@@ -24,7 +31,7 @@ class FormArray extends Component{
     } = this.context.form;
     const { root }: { root: Object } = this.props;
     const $id: string = root?.$id || root?.id;
-    const { title, description, $componentType, $defaultValue, $options }: {
+    const { title, description, $componentType, $defaultValue, $options = [] }: {
       title: string,
       description: string,
       $componentType: ?string,
@@ -40,6 +47,14 @@ class FormArray extends Component{
     switch($componentType){
       case 'checkbox':
         element = getFieldDecorator($id, option)(<Checkbox.Group options={ $options } />);
+        break;
+
+      case 'multiple':
+        element = getFieldDecorator($id, option)(
+          <Select className={ styleName('array-multiple') } mode="multiple">
+            { this.selectOptionsView($options) }
+          </Select>
+        );
         break;
 
       default:
