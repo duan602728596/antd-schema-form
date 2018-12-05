@@ -2,7 +2,7 @@
   "name": "antd-schema-form",
   "version": "0.0.1",
   "description": "基于antd，通过json schema配置表单。",
-  "main": "lib/SchemaForm.js",
+  "main": "lib/index.js",
   "author": {
     "name": "段昊辰",
     "email": "duanhaochen@126.com",
@@ -12,6 +12,8 @@
   "scripts": {
     "example-dll": "milktea dll --config=\"./config/example/.sweetrc.js\"",
     "example-start": "milktea start --server --config=\"./config/example/.sweetrc.js\"",
+    "build": "npm run clearlib && cross-env NODE_ENV=production gulp",
+    "clearlib": "rimraf lib",
     "testinit": "mocha init test",
     "test": "milktea start --server --config=\"./config/test/.sweetrc.js\" --httpPort=6060",
     "eslint": "eslint ./src",
@@ -53,9 +55,7 @@
     "eslint-plugin-react": "^7.11.1",
     "gulp": "^3.9.1",
     "gulp-babel": "^8.0.0",
-    "gulp-changed": "^3.2.0",
-    "gulp-notify": "^3.2.0",
-    "gulp-plumber": "^1.2.0",
+    "gulp-sass": "^4.0.2",
     "mocha": "^5.2.0",
     "pre-commit": "^1.2.2",
     "rimraf": "^2.6.2"

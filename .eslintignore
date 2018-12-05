@@ -2,5 +2,6 @@ node_modules
 config
 lib
 build
+gulpfile.js
 .dll
 .sweetrc.js

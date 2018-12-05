@@ -10,6 +10,7 @@ yarn-error.log
 # webstorm
 .idea
 
+.editorconfig
 .gitignore
 .eslintignore
 .eslintrc.yml
@@ -18,5 +19,5 @@ yarn-error.log
 .dll
 config
 example
-src
 test
+gulpfile.js
