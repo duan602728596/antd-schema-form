@@ -8,7 +8,7 @@ import {
 import { componentPlaceholder, componentReadOnly } from './attrs';
 import {
   componentNoverification, componentRequired, componentEnum, componentInteger, componentIntegerTrue, componentMinimum,
-  componentMinimumExclusiveMinimum, componentMaximum, componentMaximumExclusiveMaximum
+  componentMaximum
 } from './verification';
 
 describe('数字类型组件', function(): void{
@@ -39,8 +39,6 @@ describe('数字类型组件', function(): void{
     it('组件值是整数', componentInteger);
     it('组件值是整数', componentIntegerTrue);
     it('组件的最小值', componentMinimum);
-    it('组件的最小值（不包括配置的数）', componentMinimumExclusiveMinimum);
     it('组件的最大值', componentMaximum);
-    it('组件的最大值（不包括配置的数）', componentMaximumExclusiveMaximum);
   });
 });

@@ -57,15 +57,6 @@
       "minimum": 5,
       "$placeholder": "最小值为5"
     },
-    "minimum2": {
-      "id": "$root/properties/number/properties/minimum2",
-      "type": "number",
-      "title": "最小值",
-      "description": "最小值",
-      "minimum": 5,
-      "exclusiveMinimum": true,
-      "$placeholder": "最小值为5（不包括5）"
-    },
     "maximum": {
       "id": "$root/properties/number/properties/maximum",
       "type": "number",
@@ -73,15 +64,6 @@
       "description": "最大值",
       "maximum": 800.5,
       "$placeholder": "最大值为800.5"
-    },
-    "maximum2": {
-      "id": "$root/properties/number/properties/maximum2",
-      "type": "number",
-      "title": "最大值",
-      "description": "最大值",
-      "maximum": 800.5,
-      "exclusiveMaximum": true,
-      "$placeholder": "最大值为800.5（不包括800.5）"
     },
     "radio": {
       "id": "$root/properties/number/properties/radio",

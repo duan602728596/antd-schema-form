@@ -122,27 +122,6 @@ export function componentMinimum(): void{
   expect(result.value).to.be.null;
 }
 
-/* 组件值的最小值（不包括配置的数） */
-export function componentMinimumExclusiveMinimum(): void{
-  const json: Object = {
-    id: '$root',
-    type: 'number',
-    title: '组件值的最小值（不包括配置的数）',
-    minimum: 3,
-    exclusiveMinimum: true,
-    $minimumMessage: '最小值验证信息'
-  };
-  const value: Object = { $root: 3 };
-  const result: Object = { value: null };
-  const wrapper: Object = mount(<SchemaForm json={ json } value={ value } onOk={ CreateHandleClickFn(result) } />);
-  wrapper.find('button').simulate('click');
-
-  const antFormExplain: Object = wrapper.find('.ant-form-explain');
-  expect(antFormExplain).to.be.lengthOf(1);
-  expect(antFormExplain.text()).to.be.equal('最小值验证信息');
-  expect(result.value).to.be.null;
-}
-
 /* 组件值的最大值 */
 export function componentMaximum(): void{
   const json: Object = {
@@ -153,27 +132,6 @@ export function componentMaximum(): void{
     $maximumMessage: '最大值验证信息'
   };
   const value: Object = { $root: 200 };
-  const result: Object = { value: null };
-  const wrapper: Object = mount(<SchemaForm json={ json } value={ value } onOk={ CreateHandleClickFn(result) } />);
-  wrapper.find('button').simulate('click');
-
-  const antFormExplain: Object = wrapper.find('.ant-form-explain');
-  expect(antFormExplain).to.be.lengthOf(1);
-  expect(antFormExplain.text()).to.be.equal('最大值验证信息');
-  expect(result.value).to.be.null;
-}
-
-/* 组件值的最大值（不包括配置的数） */
-export function componentMaximumExclusiveMaximum(): void{
-  const json: Object = {
-    id: '$root',
-    type: 'number',
-    title: '组件值的最da值（不包括配置的数）',
-    maximum: 100,
-    exclusiveMaximum: true,
-    $maximumMessage: '最大值验证信息'
-  };
-  const value: Object = { $root: 100 };
   const result: Object = { value: null };
   const wrapper: Object = mount(<SchemaForm json={ json } value={ value } onOk={ CreateHandleClickFn(result) } />);
   wrapper.find('button').simulate('click');
