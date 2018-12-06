@@ -7,7 +7,7 @@ import booleanJson from '../json/boolean.json';
 import arrayJson from '../json/array.json';
 
 const json: Object = {
-  $id: '$root',
+  id: '$root',
   type: 'object',
   title: 'schema form',
   description: '这是一个通过json schema渲染的表单。',

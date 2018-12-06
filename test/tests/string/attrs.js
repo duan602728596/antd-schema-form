@@ -6,7 +6,7 @@ import SchemaForm from '../../../src/SchemaForm';
 /* 组件只读 */
 export function componentReadOnly(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'string',
     title: '组件只读',
     $readOnly: true
@@ -20,7 +20,7 @@ export function componentReadOnly(): void{
 /* 组件的placeholder属性 */
 export function componentPlaceholder(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'string',
     title: '组件的placeholder属性',
     $placeholder: '组件的placeholder属性'
@@ -34,7 +34,7 @@ export function componentPlaceholder(): void{
 /* select组件的placeholder属性 */
 export function selectComponentPlaceholder(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'string',
     title: 'select组件的placeholder属性',
     $componentType: 'select',

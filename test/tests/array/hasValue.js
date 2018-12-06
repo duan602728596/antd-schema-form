@@ -6,21 +6,21 @@ import SchemaForm from '../../../src/SchemaForm';
 /* 组件有默认值 */
 export function componentHasDefaultValue(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'array',
     title: '组件有默认值',
     items: {
-      $id: '$root/items',
+      id: '$root/items',
       type: 'object',
       title: '数组内的对象',
       properties: {
         col1: {
-          $id: '$root/items/properties/col1',
+          id: '$root/items/properties/col1',
           type: 'string',
           title: 'col1'
         },
         col2: {
-          $id: '$root/items/properties/col2',
+          id: '$root/items/properties/col2',
           type: 'number',
           title: 'col2'
         }
@@ -50,26 +50,26 @@ export function componentHasDefaultValue(): void{
 /* 组件有值 */
 export function componentHasValue(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'array',
     title: '组件有默认值',
     items: {
-      $id: '$root/items',
+      id: '$root/items',
       type: 'object',
       title: '数组内的对象',
       properties: {
         col1: {
-          $id: '$root/items/properties/col1',
+          id: '$root/items/properties/col1',
           type: 'string',
           title: 'col1'
         },
         col2: {
-          $id: '$root/items/properties/col2',
+          id: '$root/items/properties/col2',
           type: 'number',
           title: 'col2'
         },
         col3: {
-          $id: '$root/items/properties/col3',
+          id: '$root/items/properties/col3',
           type: 'boolean',
           title: 'col3'
         }
@@ -104,11 +104,11 @@ export function componentHasValue(): void{
 /* 数组内为字符串或数字 */
 export function componentItemsIsStringOrNumber(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'array',
     title: '数组内为字符串或数字',
     items: {
-      $id: '$root/items',
+      id: '$root/items',
       type: 'string',
       title: '数组内的字符串或数字'
     }
@@ -133,11 +133,11 @@ export function componentItemsIsStringOrNumber(): void{
 /* 多选框有默认值 */
 export function CheckboxGroupHastDefaultValue(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'array',
     title: '多选框有值',
     items: {
-      $id: '$root/items',
+      id: '$root/items',
       type: 'string',
       title: '值'
     },
@@ -160,11 +160,11 @@ export function CheckboxGroupHastDefaultValue(): void{
 /* 多选框有值 */
 export function CheckboxGroupHastValue(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'array',
     title: '多选框有值',
     items: {
-      $id: '$root/items',
+      id: '$root/items',
       type: 'string',
       title: '值'
     },

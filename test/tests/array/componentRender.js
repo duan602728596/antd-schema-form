@@ -6,21 +6,21 @@ import SchemaForm from '../../../src/SchemaForm';
 /* 渲染默认组件 */
 export function renderDefault(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'array',
     title: '渲染默认组件',
     items: {
-      $id: '$root/items',
+      id: '$root/items',
       type: 'object',
       title: '数组内的对象',
       properties: {
         col1: {
-          $id: '$root/items/properties/col1',
+          id: '$root/items/properties/col1',
           type: 'string',
           title: 'col1'
         },
         col2: {
-          $id: '$root/items/properties/col2',
+          id: '$root/items/properties/col2',
           type: 'number',
           title: 'col2'
         }
@@ -38,11 +38,11 @@ export function renderDefault(): void{
 /* 渲染Select的multiple模式 */
 export function renderSelectMultiple(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'array',
     title: '渲染多选组件',
     items: {
-      $id: '$root/items',
+      id: '$root/items',
       type: 'string',
       title: '数组内的对象'
     },
@@ -62,11 +62,11 @@ export function renderSelectMultiple(): void{
 /* 渲染多选组件 */
 export function renderCheckboxGroup(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'array',
     title: '渲染多选组件',
     items: {
-      $id: '$root/items',
+      id: '$root/items',
       type: 'string',
       title: '数组内的对象'
     },

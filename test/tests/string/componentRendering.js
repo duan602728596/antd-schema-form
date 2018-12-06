@@ -6,7 +6,7 @@ import SchemaForm from '../../../src/SchemaForm';
 /* 渲染默认组件 */
 export function renderDefault(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'string',
     title: '渲染默认组件'
   };
@@ -20,7 +20,7 @@ export function renderDefault(): void{
 /* 渲染文本域 */
 export function renderTextArea(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'string',
     title: '渲染文本域',
     $componentType: 'textArea'
@@ -35,7 +35,7 @@ export function renderTextArea(): void{
 /* 渲染下拉框 */
 export function renderSelect(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'string',
     title: '渲染下拉框',
     $componentType: 'select',
@@ -53,7 +53,7 @@ export function renderSelect(): void{
 /* 渲染单选组件 */
 export function renderRadio(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'string',
     title: '渲染单选组件',
     $componentType: 'radio',
@@ -71,7 +71,7 @@ export function renderRadio(): void{
 /* 渲染日期组件 */
 export function renderDate(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'string',
     title: '渲染日期组件',
     $componentType: 'date'
@@ -85,7 +85,7 @@ export function renderDate(): void{
 /* 渲染文件上传组件 */
 export function renderFileUpload(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'string',
     title: '渲染文件上传组件',
     $componentType: 'upload'

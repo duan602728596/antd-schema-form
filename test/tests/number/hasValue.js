@@ -6,7 +6,7 @@ import SchemaForm from '../../../src/SchemaForm';
 /* 组件有默认值 */
 export function componentHasDefaultValue(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'number',
     title: '组件有默认值',
     $defaultValue: 8964
@@ -20,7 +20,7 @@ export function componentHasDefaultValue(): void{
 /* 组件有值 */
 export function componentHastValue(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'number',
     title: '组件有值'
   };
@@ -34,7 +34,7 @@ export function componentHastValue(): void{
 /* 单选框有默认值 */
 export function radioHasDefaultValue(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'number',
     title: '单选框有默认值',
     $componentType: 'radio',
@@ -55,7 +55,7 @@ export function radioHasDefaultValue(): void{
 /* 单选框有值 */
 export function radioHastValue(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'string',
     title: '单选框有值',
     $componentType: 'radio',
@@ -76,7 +76,7 @@ export function radioHastValue(): void{
 /* 组件的值会覆盖默认值 */
 export function theValueOfTheComponentOverridesTheDefaultValue(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'number',
     title: '组件的值会覆盖默认值',
     $defaultValue: 32

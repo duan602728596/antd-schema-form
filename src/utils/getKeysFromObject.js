@@ -12,9 +12,9 @@ function getKeysFromObject(item: Object): Array<string>{
       idArr.push(...objIdArr);
     }
   }else{
-    const $id: string = item?.$id || item?.id;
+    const id: string = item.id;
 
-    idArr.push($id);
+    idArr.push(id);
   }
 
   return idArr;

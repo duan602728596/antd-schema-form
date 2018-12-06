@@ -1,24 +1,24 @@
 {
-  "$id": "$root/properties/number",
+  "id": "$root/properties/number",
   "type": "object",
   "title": "数字",
   "description": "渲染数字类型的组件。",
   "properties": {
     "default": {
-      "$id": "$root/properties/number/properties/default",
+      "id": "$root/properties/number/properties/default",
       "type": "number",
       "title": "默认组件",
       "description": "默认组件"
     },
     "hasValue": {
-      "$id": "$root/properties/number/properties/hasValue",
+      "id": "$root/properties/number/properties/hasValue",
       "type": "number",
       "title": "组件有默认值",
       "description": "组件有默认值",
       "$defaultValue": 10000000
     },
     "readOnly": {
-      "$id": "$root/properties/number/properties/readOnly",
+      "id": "$root/properties/number/properties/readOnly",
       "type": "number",
       "title": "组件只读",
       "description": "组件只读",
@@ -26,14 +26,14 @@
       "$readOnly": true
     },
     "required": {
-      "$id": "$root/properties/number/properties/required",
+      "id": "$root/properties/number/properties/required",
       "type": "number",
       "title": "表单必填",
       "description": "表单必填",
       "$required": true
     },
     "enum": {
-      "$id": "$root/properties/number/properties/enum",
+      "id": "$root/properties/number/properties/enum",
       "type": "number",
       "title": "枚举",
       "description": "枚举",
@@ -44,13 +44,13 @@
       "$placeholder": "11, 22"
     },
     "integer": {
-      "$id": "$root/properties/number/properties/integer",
+      "id": "$root/properties/number/properties/integer",
       "type": "integer",
       "title": "整数",
       "description": "整数"
     },
     "minimum": {
-      "$id": "$root/properties/number/properties/minimum",
+      "id": "$root/properties/number/properties/minimum",
       "type": "number",
       "title": "最小值",
       "description": "最小值",
@@ -58,7 +58,7 @@
       "$placeholder": "最小值为5"
     },
     "minimum2": {
-      "$id": "$root/properties/number/properties/minimum2",
+      "id": "$root/properties/number/properties/minimum2",
       "type": "number",
       "title": "最小值",
       "description": "最小值",
@@ -67,7 +67,7 @@
       "$placeholder": "最小值为5（不包括5）"
     },
     "maximum": {
-      "$id": "$root/properties/number/properties/maximum",
+      "id": "$root/properties/number/properties/maximum",
       "type": "number",
       "title": "最大值",
       "description": "最大值",
@@ -75,7 +75,7 @@
       "$placeholder": "最大值为800.5"
     },
     "maximum2": {
-      "$id": "$root/properties/number/properties/maximum2",
+      "id": "$root/properties/number/properties/maximum2",
       "type": "number",
       "title": "最大值",
       "description": "最大值",
@@ -84,7 +84,7 @@
       "$placeholder": "最大值为800.5（不包括800.5）"
     },
     "radio": {
-      "$id": "$root/properties/number/properties/radio",
+      "id": "$root/properties/number/properties/radio",
       "type": "number",
       "title": "单选框组件",
       "description": "单选框组件",

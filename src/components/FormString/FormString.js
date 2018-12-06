@@ -9,7 +9,7 @@ import createStringRules from './createStringRules';
 
 /**
  * 当类型为string时的组件渲染
- * json schema的属性包括：$id, type, title, description, pattern, minLength, maxLength, enum
+ * json schema的属性包括：id, type, title, description, pattern, minLength, maxLength, enum
  *
  * 扩展属性前必须加上"$"
  * 扩展属性包括：required, componentType, readOnly, length, patternOption, enumMessage, lengthMessage, requiredMessage, patternMessage、
@@ -29,7 +29,7 @@ class FormString extends Component{
     this.inputRef.current.click();
   };
   // 文件input的change事件
-  async handleInputChange($id: string, event: Event): Promise<void>{
+  async handleInputChange(id: string, event: Event): Promise<void>{
     const { form, onUpload }: {
       form: Object,
       onUpload: ?Function
@@ -39,9 +39,9 @@ class FormString extends Component{
     if(onUpload && isFunction(onUpload)){
       const value: string = await onUpload(files);
 
-      form.setFieldsValue({ [$id]: value });
+      form.setFieldsValue({ [id]: value });
     }else{
-      form.setFieldsValue({ [$id]: files[0].name });
+      form.setFieldsValue({ [id]: files[0].name });
     }
   }
   // select的下拉框
@@ -57,8 +57,8 @@ class FormString extends Component{
       root: Object,
       required: boolean
     } = this.props;
-    const $id: string = root?.$id || root?.id;
-    const { title, description, $required, $componentType, $readOnly, $defaultValue, $options = [], $placeholder }: {
+    const { id, title, description, $required, $componentType, $readOnly, $defaultValue, $options = [], $placeholder }: {
+      id: string,
       title: string,
       description: string,
       $required: boolean,
@@ -83,14 +83,14 @@ class FormString extends Component{
     switch($componentType){
       // 文本域
       case 'textArea':
-        element = getFieldDecorator($id, option)(
+        element = getFieldDecorator(id, option)(
           <Input.TextArea rows={ 6 } readOnly={ $readOnly } placeholder={ $placeholder } />
         );
         break;
 
       // 渲染select
       case 'select':
-        element = getFieldDecorator($id, option)(
+        element = getFieldDecorator(id, option)(
           <Select className={ styleName('string-select') }
             readOnly={ $readOnly }
             placeholder={ $placeholder }
@@ -103,12 +103,12 @@ class FormString extends Component{
 
       // 渲染radio
       case 'radio':
-        element = getFieldDecorator($id, option)(<Radio.Group options={ $options } />);
+        element = getFieldDecorator(id, option)(<Radio.Group options={ $options } />);
         break;
 
       // 渲染日期组件
       case 'date':
-        element = getFieldDecorator($id, option)(
+        element = getFieldDecorator(id, option)(
           <DatePicker format="YYYY-MM-DD HH:mm:ss" showTime={ true } placeholder={ $placeholder } />
         );
         break;
@@ -116,7 +116,7 @@ class FormString extends Component{
       // 文件上传
       case 'upload':
         element = [
-          getFieldDecorator($id, option)(
+          getFieldDecorator(id, option)(
             <Input.Search key="input"
               enterButton="选择文件"
               readOnly={ true }
@@ -128,14 +128,14 @@ class FormString extends Component{
             ref={ this.inputRef }
             className={ styleName('string-file') }
             type="file"
-            onChange={ this.handleInputChange.bind(this, $id) }
+            onChange={ this.handleInputChange.bind(this, id) }
           />
         ];
         break;
 
       // 渲染默认组件
       default:
-        element = getFieldDecorator($id, option)(<Input readOnly={ $readOnly } placeholder={ $placeholder } />);
+        element = getFieldDecorator(id, option)(<Input readOnly={ $readOnly } placeholder={ $placeholder } />);
         break;
     }
 

@@ -7,7 +7,7 @@ import styleName from '../../utils/styleName';
 
 /**
  * 当类型为array时的组件渲染
- * json schema的属性包括：$id, type, title, description, items
+ * json schema的属性包括：id, type, title, description, items
  *
  * 扩展属性前必须加上"$"
  * 扩展属性包括：componentType, options
@@ -30,8 +30,8 @@ class FormArray extends Component{
       getFieldProps: Function
     } = this.context.form;
     const { root }: { root: Object } = this.props;
-    const $id: string = root?.$id || root?.id;
-    const { title, description, $componentType, $defaultValue, $options = [] }: {
+    const { id, title, description, $componentType, $defaultValue, $options = [] }: {
+      id: string,
       title: string,
       description: string,
       $componentType: ?string,
@@ -46,11 +46,11 @@ class FormArray extends Component{
 
     switch($componentType){
       case 'checkbox':
-        element = getFieldDecorator($id, option)(<Checkbox.Group options={ $options } />);
+        element = getFieldDecorator(id, option)(<Checkbox.Group options={ $options } />);
         break;
 
       case 'multiple':
-        element = getFieldDecorator($id, option)(
+        element = getFieldDecorator(id, option)(
           <Select className={ styleName('array-multiple') } mode="multiple">
             { this.selectOptionsView($options) }
           </Select>
@@ -58,7 +58,7 @@ class FormArray extends Component{
         break;
 
       default:
-        element = <TableComponent root={ root } { ...getFieldProps($id, option) } />;
+        element = <TableComponent root={ root } { ...getFieldProps(id, option) } />;
     }
 
     return (

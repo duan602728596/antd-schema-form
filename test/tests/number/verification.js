@@ -12,7 +12,7 @@ function CreateHandleClickFn(result: Object): void{
 /* 组件值没有验证 */
 export function componentNoverification(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'number',
     title: '组件值没有验证'
   };
@@ -27,7 +27,7 @@ export function componentNoverification(): void{
 /* 表单必填 */
 export function componentRequired(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'number',
     title: '表单必填',
     $required: true,
@@ -46,7 +46,7 @@ export function componentRequired(): void{
 /* 组件值的枚举 */
 export function componentEnum(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'number',
     title: '组件值的枚举',
     enum: [13, 24],
@@ -66,7 +66,7 @@ export function componentEnum(): void{
 /* 组件值是整数 */
 export function componentInteger(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'integer',
     title: '组件值是整数',
     $integerMessage: '必须是整数'
@@ -85,7 +85,7 @@ export function componentInteger(): void{
 /* 组件值是整数 */
 export function componentIntegerTrue(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'number',
     title: '组件值是整数',
     $integer: true,
@@ -105,7 +105,7 @@ export function componentIntegerTrue(): void{
 /* 组件值的最小值 */
 export function componentMinimum(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'number',
     title: '组件值的最小值',
     minimum: 3,
@@ -125,7 +125,7 @@ export function componentMinimum(): void{
 /* 组件值的最小值（不包括配置的数） */
 export function componentMinimumExclusiveMinimum(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'number',
     title: '组件值的最小值（不包括配置的数）',
     minimum: 3,
@@ -146,7 +146,7 @@ export function componentMinimumExclusiveMinimum(): void{
 /* 组件值的最大值 */
 export function componentMaximum(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'number',
     title: '组件值的最大值',
     maximum: 100,
@@ -166,7 +166,7 @@ export function componentMaximum(): void{
 /* 组件值的最大值（不包括配置的数） */
 export function componentMaximumExclusiveMaximum(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'number',
     title: '组件值的最da值（不包括配置的数）',
     maximum: 100,

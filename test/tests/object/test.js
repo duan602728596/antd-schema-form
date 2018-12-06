@@ -10,37 +10,37 @@ describe('组件渲染', function(): void{
   describe('组件渲染', function(): void{
     it('组件渲染', function(): void{
       const json: Object = {
-        $id: '$root',
+        id: '$root',
         type: 'object',
         title: '渲染组件',
         properties: {
           name: {
-            $id: '$root/properties/name',
+            id: '$root/properties/name',
             type: 'string',
             title: 'name'
           },
           age: {
-            $id: '$root/properties/age',
+            id: '$root/properties/age',
             type: 'number',
             title: 'age'
           },
           etc: {
-            $id: '$root/properties/etc',
+            id: '$root/properties/etc',
             type: 'object',
             title: 'etc',
             properties: {
               school: {
-                $id: '$root/properties/etc/properties/school',
+                id: '$root/properties/etc/properties/school',
                 type: 'string',
                 title: 'school'
               },
               city: {
-                $id: '$root/properties/etc/properties/city',
+                id: '$root/properties/etc/properties/city',
                 type: 'string',
                 title: 'city'
               },
               isMarried: {
-                $id: '$root/properties/etc/properties/isMarried',
+                id: '$root/properties/etc/properties/isMarried',
                 type: 'boolean',
                 title: 'isMarried'
               }

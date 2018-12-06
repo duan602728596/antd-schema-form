@@ -6,7 +6,7 @@ import SchemaForm from '../../../src/SchemaForm';
 /* 渲染默认组件 */
 export function renderDefault(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'boolean',
     title: '渲染默认组件'
   };
@@ -19,7 +19,7 @@ export function renderDefault(): void{
 /* 渲染开关组件 */
 export function renderSwitch(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'boolean',
     title: '渲染开关组件',
     $componentType: 'switch'

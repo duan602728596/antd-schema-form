@@ -12,7 +12,7 @@ function CreateHandleClickFn(result: Object): void{
 /* 组件值没有验证 */
 export function componentNoverification(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'string',
     title: '组件值没有验证'
   };
@@ -27,7 +27,7 @@ export function componentNoverification(): void{
 /* 表单必填 */
 export function componentRequired(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'string',
     title: '表单必填',
     $required: true,
@@ -46,7 +46,7 @@ export function componentRequired(): void{
 /* 组件值的枚举 */
 export function componentEnum(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'string',
     title: '组件值的枚举',
     enum: ['枚举1', '枚举2'],
@@ -66,7 +66,7 @@ export function componentEnum(): void{
 /* 组件值的最小长度 */
 export function componentMinLength(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'string',
     title: '组件值的最小值',
     minLength: 10,
@@ -86,7 +86,7 @@ export function componentMinLength(): void{
 /* 组件值的最大长度 */
 export function componentMaxLength(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'string',
     title: '组件值的最大值',
     maxLength: 3,
@@ -106,7 +106,7 @@ export function componentMaxLength(): void{
 /* 组件值的固定长度 */
 export function componentLength(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'string',
     title: '组件值的固定长度',
     $length: 5,
@@ -126,7 +126,7 @@ export function componentLength(): void{
 /* 组件的正则表达式验证 */
 export function componentPattern(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'string',
     title: '组件值的正则验证',
     pattern: /^[a-z]+$/,

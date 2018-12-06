@@ -1,24 +1,24 @@
 {
-  "$id": "$root/properties/string",
+  "id": "$root/properties/string",
   "type": "object",
   "title": "字符串",
   "description": "渲染字符串类型的组件。",
   "properties": {
     "default": {
-      "$id": "$root/properties/string/properties/default",
+      "id": "$root/properties/string/properties/default",
       "type": "string",
       "title": "默认组件",
       "description": "默认组件"
     },
     "hasValue": {
-      "$id": "$root/properties/string/properties/hasValue",
+      "id": "$root/properties/string/properties/hasValue",
       "type": "string",
       "title": "组件有默认值",
       "description": "组件有默认值",
       "$defaultValue": "默认值"
     },
     "readOnly": {
-      "$id": "$root/properties/string/properties/readOnly",
+      "id": "$root/properties/string/properties/readOnly",
       "type": "string",
       "title": "组件只读",
       "description": "组件只读",
@@ -26,20 +26,20 @@
       "$defaultValue": "只读"
     },
     "required": {
-      "$id": "$root/properties/string/properties/required",
+      "id": "$root/properties/string/properties/required",
       "type": "string",
       "title": "表单必填",
       "description": "表单必填",
       "$required": true
     },
     "objectRequired": {
-      "$id": "$root/properties/string/properties/objectRequired",
+      "id": "$root/properties/string/properties/objectRequired",
       "type": "string",
       "title": "另一种形式的表单必填",
       "description": "另一种形式的表单必填"
     },
     "enum": {
-      "$id": "$root/properties/string/properties/enum",
+      "id": "$root/properties/string/properties/enum",
       "type": "string",
       "title": "枚举",
       "description": "枚举",
@@ -50,7 +50,7 @@
       "$placeholder": "apple, orange"
     },
     "minLength": {
-      "$id": "$root/properties/string/properties/minLength",
+      "id": "$root/properties/string/properties/minLength",
       "type": "string",
       "title": "组件有最小长度",
       "description": "组件有最小长度",
@@ -58,7 +58,7 @@
       "$placeholder": "组件有最小长度：3"
     },
     "maxLength": {
-      "$id": "$root/properties/string/properties/maxLength",
+      "id": "$root/properties/string/properties/maxLength",
       "type": "string",
       "title": "组件有最大长度",
       "description": "组件有最大长度",
@@ -66,7 +66,7 @@
       "$placeholder": "组件有最大长度：5"
     },
     "length": {
-      "$id": "$root/properties/string/properties/length",
+      "id": "$root/properties/string/properties/length",
       "type": "string",
       "title": "组件有固定长度",
       "description": "组件有固定长度",
@@ -74,7 +74,7 @@
       "$placeholder": "组件有固定长度：5"
     },
     "pattern": {
-      "$id": "$root/properties/string/properties/pattern",
+      "id": "$root/properties/string/properties/pattern",
       "type": "string",
       "title": "组件正则验证",
       "description": "组件正则验证",
@@ -83,14 +83,14 @@
       "$placeholder": "/^[a-z]+$/ig"
     },
     "textArea": {
-      "$id": "$root/properties/string/properties/textArea",
+      "id": "$root/properties/string/properties/textArea",
       "type": "string",
       "title": "文本域",
       "description": "文本域组件",
       "$componentType": "textArea"
     },
     "select": {
-      "$id": "$root/properties/string/properties/select",
+      "id": "$root/properties/string/properties/select",
       "type": "string",
       "title": "下拉框组件",
       "description": "下拉框组件",
@@ -107,7 +107,7 @@
       ]
     },
     "radio": {
-      "$id": "$root/properties/string/properties/radio",
+      "id": "$root/properties/string/properties/radio",
       "type": "string",
       "title": "单选框组件",
       "description": "单选框组件",
@@ -124,7 +124,7 @@
       ]
     },
     "date": {
-      "$id": "$root/properties/string/properties/date",
+      "id": "$root/properties/string/properties/date",
       "type": "string",
       "title": "日期组件",
       "description": "日期组件",
@@ -132,7 +132,7 @@
       "$defaultValue": "2010-12-15 08:12:14"
     },
     "file": {
-      "$id": "$root/properties/string/properties/file",
+      "id": "$root/properties/string/properties/file",
       "type": "string",
       "title": "文件上传",
       "description": "文件上传",

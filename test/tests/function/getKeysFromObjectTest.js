@@ -3,31 +3,31 @@ import getKeysFromObject from '../../../src/utils/getKeysFromObject';
 
 export function getKeysFromObjectTest0(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'object',
     title: '$root',
     properties: {
       col1: {
-        $id: '$root/properties/col1',
+        id: '$root/properties/col1',
         type: 'string',
         title: 'col1'
       },
       col2: {
-        $id: '$root/properties/col2',
+        id: '$root/properties/col2',
         type: 'object',
         title: 'col2',
         properties: {
           col1: {
-            $id: '$root/properties/col2/properties/col1',
+            id: '$root/properties/col2/properties/col1',
             type: 'array',
             title: 'col1',
             items: {
-              $id: '$root/properties/col2/properties/col1/items',
+              id: '$root/properties/col2/properties/col1/items',
               type: 'object',
               title: 'items',
               properties: {
                 col3: {
-                  $id: '$root/properties/col2/properties/col1/items/properties/col3',
+                  id: '$root/properties/col2/properties/col1/items/properties/col3',
                   type: 'string',
                   title: 'col3'
                 }
@@ -35,7 +35,7 @@ export function getKeysFromObjectTest0(): void{
             }
           },
           col2: {
-            $id: '$root/properties/col2/properties/col2',
+            id: '$root/properties/col2/properties/col2',
             type: 'boolean',
             title: 'col12'
           }
@@ -53,31 +53,31 @@ export function getKeysFromObjectTest0(): void{
 
 export function getKeysFromObjectTest1(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'object',
     title: '$root',
     properties: {
       col1: {
-        $id: '$root/properties/col1',
+        id: '$root/properties/col1',
         type: 'array',
         title: 'col1',
         items: {
-          $id: '$root/properties/col1/items',
+          id: '$root/properties/col1/items',
           type: 'object',
           title: 'items',
           properties: {
             col1: {
-              $id: '$root/properties/col1/item1/properties/col1',
+              id: '$root/properties/col1/item1/properties/col1',
               type: 'string',
               title: 'col1'
             },
             col2: {
-              $id: '$root/properties/col1/item1/properties/col2',
+              id: '$root/properties/col1/item1/properties/col2',
               type: 'number',
               title: 'col2'
             },
             col3: {
-              $id: '$root/properties/col1/item1/properties/col3',
+              id: '$root/properties/col1/item1/properties/col3',
               type: 'boolean',
               title: 'col3'
             }

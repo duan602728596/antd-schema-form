@@ -7,7 +7,7 @@ import SchemaForm from '../../../src/SchemaForm';
 /* 组件有默认值 */
 export function componentHasDefaultValue(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'string',
     title: '组件有默认值',
     $defaultValue: '这是默认值'
@@ -21,7 +21,7 @@ export function componentHasDefaultValue(): void{
 /* 组件有值 */
 export function componentHastValue(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'string',
     title: '组件有值'
   };
@@ -35,7 +35,7 @@ export function componentHastValue(): void{
 /* 下拉框有默认值 */
 export function selectHasDefaultValue(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'string',
     title: '下拉框有默认值',
     $componentType: 'select',
@@ -54,7 +54,7 @@ export function selectHasDefaultValue(): void{
 /* 下拉框有值 */
 export function selectHasValue(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'string',
     title: '下拉框有值',
     $componentType: 'select',
@@ -73,7 +73,7 @@ export function selectHasValue(): void{
 /* 单选框有默认值 */
 export function radioHasDefaultValue(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'string',
     title: '单选框有默认值',
     $componentType: 'radio',
@@ -94,7 +94,7 @@ export function radioHasDefaultValue(): void{
 /* 单选框有值 */
 export function radioHastValue(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'string',
     title: '单选框有值',
     $componentType: 'radio',
@@ -115,7 +115,7 @@ export function radioHastValue(): void{
 /* 日期选择有默认值 */
 export function dateHasDefaultValue(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'string',
     title: '日期选择有默认值',
     $componentType: 'date',
@@ -130,7 +130,7 @@ export function dateHasDefaultValue(): void{
 /* 日期选择有值 */
 export function dateHasValue(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'string',
     title: '日期选择有值',
     $componentType: 'date'
@@ -145,7 +145,7 @@ export function dateHasValue(): void{
 /* 组件的值会覆盖默认值 */
 export function theValueOfTheComponentOverridesTheDefaultValue(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'string',
     title: '组件的值会覆盖默认值',
     $defaultValue: '这是默认值'

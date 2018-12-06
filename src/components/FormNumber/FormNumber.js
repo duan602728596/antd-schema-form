@@ -7,7 +7,7 @@ import createNumberRules from './createNumberRules';
 
 /**
  * 当类型为number和integer时的组件渲染
- * json schema的属性包括：$id, type, title, description, minimum, maximum, enum, exclusiveMaximum, exclusiveMinimum
+ * json schema的属性包括：id, type, title, description, minimum, maximum, enum, exclusiveMaximum, exclusiveMinimum
  *
  * 扩展属性前必须加上"$"
  * 扩展属性包括：required, componentType, readOnly, enumMessage, requiredMessage, minimumMessage、
@@ -27,8 +27,8 @@ class FormNumber extends Component{
       root: Object,
       required: boolean
     } = this.props;
-    const $id: string = root?.$id || root?.id;
-    const { type, title, description, $componentType, $readOnly, $defaultValue, $options = [], $placeholder }: {
+    const { id, type, title, description, $componentType, $readOnly, $defaultValue, $options = [], $placeholder }: {
+      id: string,
       type: string,
       title: string,
       description: string,
@@ -48,11 +48,11 @@ class FormNumber extends Component{
     switch($componentType){
       // 渲染radio
       case 'radio':
-        element = getFieldDecorator($id, option)(<Radio.Group options={ $options } />);
+        element = getFieldDecorator(id, option)(<Radio.Group options={ $options } />);
         break;
 
       default:
-        element = getFieldDecorator($id, option)(
+        element = getFieldDecorator(id, option)(
           <InputNumber className={ styleName('number-input') } readOnly={ $readOnly } placeholder={ $placeholder } />
         );
     }

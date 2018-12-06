@@ -6,7 +6,7 @@ import { isSpace } from '../../utils/type';
 
 /**
  * 当类型为boolean时的组件渲染
- * json schema的属性包括：$id, type, title, description
+ * json schema的属性包括：id, type, title, description
  *
  * 扩展属性前必须加上"$"
  * 扩展属性包括：componentType
@@ -27,8 +27,8 @@ class FormBoolean extends Component{
 
     const { form }: { form: Object } = this.context;
     const { root }: { root: Object } = this.props;
-    const $id: string = root?.$id || root?.id;
-    const value: ?boolean = form.getFieldValue($id);
+    const id: string = root.id;
+    const value: ?boolean = form.getFieldValue(id);
 
     this.state = {
       form,
@@ -38,8 +38,8 @@ class FormBoolean extends Component{
   static getDerivedStateFromProps(nextProps: Object, prevState: Object): ?Object{
     const { form }: { form: Object } = prevState;
     const { root }: { root: Object } = nextProps;
-    const $id: string = root?.$id || root?.id;
-    const value: ?boolean = form.getFieldValue($id);
+    const id: string = root.id;
+    const value: ?boolean = form.getFieldValue(id);
 
     return {
       isChecked: isSpace(value) ? root.$defaultValue : value
@@ -48,8 +48,8 @@ class FormBoolean extends Component{
   render(): React.Element{
     const { getFieldDecorator }: { getFieldDecorator: Function } = this.context.form;
     const { root }: { root: Object } = this.props;
-    const $id: string = root?.$id || root?.id;
-    const { title, description, $componentType, $defaultValue }: {
+    const { id, title, description, $componentType, $defaultValue }: {
+      id: string,
       title: string,
       description: string,
       $componentType: ?string,
@@ -64,11 +64,11 @@ class FormBoolean extends Component{
 
     switch($componentType){
       case 'switch':
-        element = getFieldDecorator($id, option)(<Switch checked={ isChecked } />);
+        element = getFieldDecorator(id, option)(<Switch checked={ isChecked } />);
         break;
 
       default:
-        element = getFieldDecorator($id, option)(<Checkbox checked={ isChecked } />);
+        element = getFieldDecorator(id, option)(<Checkbox checked={ isChecked } />);
     }
 
     return (

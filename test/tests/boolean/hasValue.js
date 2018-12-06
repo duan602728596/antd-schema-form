@@ -6,7 +6,7 @@ import SchemaForm from '../../../src/SchemaForm';
 /* 组件有默认值 */
 export function componentHasDefaultValue(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'boolean',
     title: '组件有默认值',
     $defaultValue: true
@@ -20,7 +20,7 @@ export function componentHasDefaultValue(): void{
 /* 组件有值 */
 export function componentHastValue(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'boolean',
     title: '组件有值'
   };
@@ -34,7 +34,7 @@ export function componentHastValue(): void{
 /* 开关有默认值 */
 export function switchHasDefaultValue(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'boolean',
     title: '组件有默认值',
     $componentType: 'switch',
@@ -49,7 +49,7 @@ export function switchHasDefaultValue(): void{
 /* 开关有值 */
 export function switchHasValue(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'boolean',
     title: '组件有默认值',
     $componentType: 'switch'

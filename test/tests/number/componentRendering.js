@@ -6,7 +6,7 @@ import SchemaForm from '../../../src/SchemaForm';
 /* 渲染默认组件 */
 export function renderDefault(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'number',
     title: '渲染默认组件'
   };
@@ -20,7 +20,7 @@ export function renderDefault(): void{
 /* 渲染单选组件 */
 export function renderRadio(): void{
   const json: Object = {
-    $id: '$root',
+    id: '$root',
     type: 'number',
     title: '渲染单选组件',
     $componentType: 'radio',

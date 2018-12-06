@@ -1,24 +1,24 @@
 {
-  "$id": "$root/properties/boolean",
+  "id": "$root/properties/boolean",
   "type": "object",
   "title": "布尔值",
   "description": "渲染布尔类型的组件。",
   "properties": {
     "default": {
-      "$id": "$root/properties/boolean/properties/default",
+      "id": "$root/properties/boolean/properties/default",
       "type": "boolean",
       "title": "默认组件",
       "description": "默认组件"
     },
     "hasValue": {
-      "$id": "$root/properties/boolean/properties/hasValue",
+      "id": "$root/properties/boolean/properties/hasValue",
       "type": "boolean",
       "title": "有默认值",
       "description": "有默认值",
       "$defaultValue": true
     },
     "switch": {
-      "$id": "$root/properties/boolean/properties/switch",
+      "id": "$root/properties/boolean/properties/switch",
       "type": "boolean",
       "title": "开关",
       "description": "开关",

@@ -47,8 +47,8 @@ class TableComponent extends Component{
   handleIndexInputBlur(index: number, event: Event): void{
     const { form }: { form: Object } = this.context;
     const { root }: { root: Object } = this.props;
-    const $id: string = root?.$id || root?.id;
-    let tableValue: Array<any> = form.getFieldValue($id);
+    const id: string = root.id;
+    let tableValue: Array<any> = form.getFieldValue(id);
 
     tableValue = isSpace(tableValue) ? (root?.$defaultValue || []) : tableValue;
 
@@ -64,7 +64,7 @@ class TableComponent extends Component{
       tableValue.splice(newIndex, 0, tableValue[index]);
       // 删除旧数据
       tableValue.splice(newIndex > index ? index : (index + 1), 1);
-      form.setFieldsValue({ [$id]: tableValue });
+      form.setFieldsValue({ [id]: tableValue });
     }
 
     this.setState({
@@ -76,13 +76,13 @@ class TableComponent extends Component{
   handleAddOrEditDataClick: Function = (value: Object, form2: Object, keys: string[]): void=>{
     const { form }: { form: Object } = this.context;
     const { root }: { root: Object } = this.props;
-    const $id: string = root?.$id || root?.id;
+    const id: string = root.id;
     // 获取需要验证和获取值的key
     const value2: Object = form.getFieldsValue(keys);
 
-    const formatValue: Object = formatValueBeforeGetValue(value2, $id);
+    const formatValue: Object = formatValueBeforeGetValue(value2, id);
     const result: Object = getValueFromObject(formatValue);
-    let tableValue: Array<any> = form.getFieldValue($id);
+    let tableValue: Array<any> = form.getFieldValue(id);
 
     tableValue = isSpace(tableValue) ? (root?.$defaultValue || []) : tableValue;
 
@@ -93,7 +93,7 @@ class TableComponent extends Component{
       tableValue[this.editIndex] = result.items;
     }
 
-    form.setFieldsValue({ [$id]: tableValue });
+    form.setFieldsValue({ [id]: tableValue });
 
     // 重置状态
     if(this.editIndex === null){
@@ -107,24 +107,24 @@ class TableComponent extends Component{
   handleDeleteDataClick(index: number, event: Event): void{
     const { form }: { form: Object } = this.context;
     const { root }: { root: Object } = this.props;
-    const $id: string = root?.$id || root?.id;
-    let tableValue: Array<any> = form.getFieldValue($id);
+    const id: string = root.id;
+    let tableValue: Array<any> = form.getFieldValue(id);
 
     tableValue = isSpace(tableValue) ? (root?.$defaultValue || []) : tableValue;
     tableValue.splice(index, 1);
-    form.setFieldsValue({ [$id]: tableValue });
+    form.setFieldsValue({ [id]: tableValue });
   }
   // 修改数据抽屉的显示
   handleDrawEditDataDisplayClick(index: number, event: Event): void{
     const { form }: { form: Object } = this.context;
     const { root }: { root: Object } = this.props;
-    const $id: string = root?.$id || root?.id;
-    let tableValue: Array<any> = form.getFieldValue($id);
+    const id: string = root.id;
+    let tableValue: Array<any> = form.getFieldValue(id);
 
     tableValue = isSpace(tableValue) ? (root?.$defaultValue || []) : tableValue;
 
     const itemValue: any = tableValue[index];
-    const result: Object = getObjectFromValue({ items: itemValue }, $id);
+    const result: Object = getObjectFromValue({ items: itemValue }, id);
 
     this.editIndex = index;
 
@@ -221,10 +221,12 @@ class TableComponent extends Component{
   render(): React.Element{
     const { root }: { root: Object } = this.props;
     const { form }: { form: Object } = this.context;
-    const $id: string = root?.$id || root?.id;
-    const { items }: { items: Object } = root;
+    const { id, items }: {
+      id: string,
+      items: Object
+    } = root;
     const { isDisplayDataDrawer }: { isDisplayDataDrawer: boolean } = this.state;
-    let value: Array<any> = form.getFieldValue($id);
+    let value: Array<any> = form.getFieldValue(id);
 
     value = isSpace(value) ? (root?.$defaultValue || []) : value;
 
