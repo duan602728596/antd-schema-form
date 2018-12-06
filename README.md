@@ -8,7 +8,7 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Schemaform from 'antd-schema-form';
-import 'antd-schema-form/lib/style/antd-schema-form.css'; // 引入样式表
+import 'antd-schema-form/lib/style/antd-schema-form.css'; // 引入样式
 
 // json schema
 const json = {
@@ -153,6 +153,11 @@ ReactDOM.render(
   | checkbox | 多选框 |
   | multiple | 下拉框的多选模式 |
   
-* `$options: Array<{ label: string, value: number }>`：当$componentType为checkbox、multiple时，可选的选项。
+* `$options: Array<{ label: string, value: string | number }>`：当$componentType为checkbox、multiple时，可选的选项。
+
+## 开发和测试
+
+* 运行命令`npm run example-dll`、`npm run example-start`，在浏览器中输入`http://127.0.0.1:5050`查看demo。
+* 运行命令`npm run example-dll`、`npm run test`，在浏览器中输入`http://127.0.0.1:6060`运行测试用例。
 
 
