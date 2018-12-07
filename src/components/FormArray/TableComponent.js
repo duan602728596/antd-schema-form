@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment, createRef } from 'react';
 import PropTypes from 'prop-types';
 import { Table, Button, Popconfirm, Drawer, Input } from 'antd';
 import Context from '../../context';
@@ -14,9 +14,8 @@ class TableComponent extends Component{
     root: PropTypes.object
   };
 
+  changeIndexRef: Object = createRef();
   editIndex: ?number;
-  inputTableDragIndex: ?number;
-  inputTableDragTr: ?Element;
   state: {
     isDisplayDataDrawer: boolean,
     inputDisplayIndex: ?number
@@ -37,6 +36,8 @@ class TableComponent extends Component{
     this.setState({
       inputDisplayIndex: index,
       inputChangeIndex: index + 1
+    }, (): void=>{
+      this.changeIndexRef.current.focus();
     });
   }
   // 编辑位置框数据修改
@@ -54,14 +55,14 @@ class TableComponent extends Component{
 
     const length: number = tableValue.length;
     const { inputChangeIndex }: { inputChangeIndex: ?number } = this.state;
-    let newIndex: number = inputChangeIndex - 1;
+    let newIndex: number = Number(inputChangeIndex) - 1;
 
-    if(newIndex !== index){
+    if(newIndex !== index && /^[0-9]+$/.test(inputChangeIndex)){
       if(newIndex < 0) newIndex = 0;
       if(newIndex > length) newIndex = length;
 
       // 修改位置
-      tableValue.splice(newIndex, 0, tableValue[index]);
+      tableValue.splice(newIndex > index ? (newIndex + 1) : newIndex, 0, tableValue[index]);
       // 删除旧数据
       tableValue.splice(newIndex > index ? index : (index + 1), 1);
       form.setFieldsValue({ [id]: tableValue });
@@ -160,7 +161,8 @@ class TableComponent extends Component{
           return <a onClick={ this.handleInputDisplayClick.bind(this, index) }>{ index + 1 }</a>;
         }else{
           return (
-            <Input value={ inputChangeIndex }
+            <Input ref={ this.changeIndexRef }
+              value={ inputChangeIndex }
               onChange={ this.handleIndexInputChange }
               onBlur={ this.handleIndexInputBlur.bind(this, index) }
               onPressEnter={ this.handleIndexInputBlur.bind(this, index) }
