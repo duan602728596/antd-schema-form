@@ -1,6 +1,6 @@
 # antd-schema-form
 
-antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Schema](http://json-schema.org/draft-07/json-schema-validation.html#rfc.section.10.3)快速生成可交互的表单。
+antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Schema](http://json-schema.org/draft-07/json-schema-validation.html#rfc.section.10.3)配置快速生成可交互的表单。
 
 ## 开始使用
 
@@ -32,7 +32,6 @@ ReactDOM.render(
 | value | 表单的值 | object |
 | onOk | 表单的确认事件 | (form: object, value: object, keys: Array&lt;string&gt;) => void |
 | onCancel | 表单的取消事件 | (form: object) => void |
-| onCancel | 表单的取消事件 | (form: object) => void |
 | onUpload | 文件上传事件 | (file: Array&lt;File&gt;) => Promise&lt;string&gt;) |
 
 ## json schema配置
@@ -46,29 +45,29 @@ ReactDOM.render(
   当type为`object`时，需要加`/properties/`，例如：
   
   ```json
-    {
-      "id": "$root",
-      "type": "object",
-      "properties": {
-        "key": {
-          "id": "$root/properties/key",
-          "type": "string"
-        }
+  {
+    "id": "$root",
+    "type": "object",
+    "properties": {
+      "key": {
+        "id": "$root/properties/key",
+        "type": "string"
       }
     }
+  }
   ```
   
   当type为`array`时，items需要加`/items/`，例如：
   
   ```json
-    {
-      "id": "$root",
-      "type": "array",
-      "items": {
-        "id": "$root/items",
-        "type": "string"
-      }
+  {
+    "id": "$root",
+    "type": "array",
+    "items": {
+      "id": "$root/items",
+      "type": "string"
     }
+  }
   ```
   
 * `type: string`：数据类型，包括string、number、integer、boolean、array、object。schema form根据该类型渲染不同的组件。
