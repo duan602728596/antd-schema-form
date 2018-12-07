@@ -1,0 +1,7 @@
+server
+node_modules
+config
+bin
+.dll
+build
+.sweetrc.js

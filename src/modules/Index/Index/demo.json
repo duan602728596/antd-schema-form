@@ -1,0 +1,51 @@
+{
+  "id": "$root",
+  "type": "object",
+  "title": "Demo",
+  "description": "Schema form demo.",
+  "properties": {
+    "name": {
+      "id": "$root/properties/name",
+      "type": "string",
+      "title": "姓名",
+      "description": "请输入姓名",
+      "$required": true
+    },
+    "age": {
+      "id": "$root/properties/age",
+      "type": "number",
+      "title": "年龄",
+      "description": "请输入年龄"
+    },
+    "gender": {
+      "id": "$root/properties/gender",
+      "type": "string",
+      "title": "性别",
+      "description": "请选择性别",
+      "$componentType": "radio",
+      "$options": [
+        {
+          "label": "男",
+          "value": "男"
+        },
+        {
+          "label": "女",
+          "value": "女"
+        }
+      ]
+    },
+    "schools": {
+      "id": "$root/properties/schools",
+      "type": "array",
+      "title": "教育经历",
+      "description": "教育经历",
+      "items": {
+        "id": "$root/properties/schools/items",
+        "type": "string",
+        "title": "请填写学校",
+        "description": "就读院校",
+        "$required": true
+      }
+    }
+  }
+}
