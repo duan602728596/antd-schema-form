@@ -16,13 +16,7 @@ class Header extends Component{
               </Link>
             </li>
             <li>
-              <Link to="/">
-                <Icon type="book" theme="twoTone" />
-                <span>文档</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/">
+              <Link to="/CreateForm">
                 <Icon type="file-text" theme="twoTone" />
                 <span>表单生成</span>
               </Link>
@@ -38,6 +32,15 @@ class Header extends Component{
                 <Icon type="interation" theme="twoTone" />
                 <span>json schema生成</span>
               </Link>
+            </li>
+            <li>
+              <a href="https://github.com/duan602728596/antd-schema-form#antd-schema-form"
+                target="_blank"
+                ref="noopener noreferrer"
+              >
+                <Icon type="book" theme="twoTone" />
+                <span>文档</span>
+              </a>
             </li>
           </ul>
         </nav>

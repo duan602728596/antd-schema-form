@@ -1,8 +1,8 @@
 {
   "id": "$root",
   "type": "object",
-  "title": "Demo",
-  "description": "Schema form demo.",
+  "title": "表单",
+  "description": "表单预览。",
   "properties": {
     "name": {
       "id": "$root/properties/name",
