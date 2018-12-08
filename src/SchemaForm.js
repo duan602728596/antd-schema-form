@@ -12,7 +12,16 @@ class SchemaForm extends Component{
     json: PropTypes.object,
     value: PropTypes.object,
     onOk: PropTypes.func,
-    onCancel: PropTypes.func
+    onCancel: PropTypes.func,
+    okText: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+    ]),
+    cancelText: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+    ]),
+    footer: PropTypes.func
   };
 
   constructor(): void{
@@ -43,28 +52,27 @@ class SchemaForm extends Component{
 
     return null;
   }
-  // 拼凑成值
-  setFormValueObject(keys: string[], value: Object): Object{
-    const obj: Object = {};
-
-    for(const item: string of keys){
-      obj[item] = value[item];
-    }
-
-    return obj;
-  }
   render(): React.Element{
-    const { form, json, onUpload, onOk, onCancel }: {
+    const { form, json, onUpload, onOk, onCancel, okText, cancelText, footer }: {
       form: Object,
       json: Object,
       onUpload: ?Function,
       onOk: ?Function,
-      onCancel: ?Function
+      onCancel: ?Function,
+      okText: ?(string | number),
+      cancelText: ?(string | number),
+      footer: ?Function
     } = this.props;
 
     return (
       <Context.Provider value={{ form, onUpload }}>
-        <FormObject root={ json } onOk={ onOk } onCancel={ onCancel } />
+        <FormObject root={ json }
+          onOk={ onOk }
+          onCancel={ onCancel }
+          okText={ okText }
+          cancelText={ cancelText }
+          footer={ footer }
+        />
       </Context.Provider>
     );
   }

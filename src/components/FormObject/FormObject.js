@@ -19,7 +19,20 @@ class FormObject extends Component{
   static propTypes: Object = {
     root: PropTypes.object,
     onOk: PropTypes.func,
-    onCancel: PropTypes.func
+    onCancel: PropTypes.func,
+    okText: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+    ]),
+    cancelText: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+    ]),
+    footer: PropTypes.func
+  };
+  static defaultProps: Object = {
+    okText: '确认',
+    cancelText: '取消'
   };
 
   // 根据type渲染不同的组件
@@ -102,40 +115,51 @@ class FormObject extends Component{
 
     onCancel(form);
   };
-  render(): React.Element{
-    const { root, onOk, onCancel }: {
-      root: Object,
+  // 确认和取消按钮
+  footerView(): ?React.Element{
+    const { onOk, onCancel, okText, cancelText }: {
       onOk: ?Function,
-      onCancel: ?Function
+      onCancel: ?Function,
+      okText: string,
+      cancelText: string
+    } = this.props;
+
+    if(onOk || onCancel){
+      return (
+        <div className={ styleName('object-click-button-box') }>
+          {
+            onOk
+              ? <Button type="primary" onClick={ this.handleOkClick }>{ okText }</Button>
+              : null
+          }
+          {
+            onCancel
+              ? (
+                <Button className={ onOk ? styleName('object-cancel') : null }
+                  onClick={ this.handleCancelClick }
+                >
+                  { cancelText }
+                </Button>
+              )
+              : null
+          }
+        </div>
+      );
+    }else{
+      return null;
+    }
+  }
+  render(): React.Element{
+    const { form }: { form: Object } = this.context;
+    const { root, footer }: {
+      root: Object,
+      footer: ?Function
     } = this.props;
 
     return (
       <Fragment>
         { this.renderComponentByTypeView(root) }
-        {
-          do{
-            if(onOk || onCancel){
-              <div className={ styleName('object-click-button-box') }>
-                {
-                  onOk
-                    ? <Button type="primary" onClick={ this.handleOkClick }>确定</Button>
-                    : null
-                }
-                {
-                  onCancel
-                    ? (
-                      <Button className={ styleName('object-cancel') }
-                        onClick={ this.handleCancelClick }
-                      >
-                        取消
-                      </Button>
-                    )
-                    : null
-                }
-              </div>;
-            }
-          }
-        }
+        { footer ? footer(form) : this.footerView() }
       </Fragment>
     );
   }
