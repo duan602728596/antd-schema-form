@@ -5,8 +5,10 @@ const sass = require('gulp-sass');
 
 // 文件目录地址
 const jsSrc = path.join(__dirname, 'src/**/*.js');
-const sassSrc = path.join(__dirname, 'src/**/*.sass');
+const sassSrc = path.join(__dirname, 'src/style/**/*.sass');
 const libPath = path.join(__dirname, 'lib');
+const esPath = path.join(__dirname, 'es');
+const stylePath = path.join(__dirname, 'style');
 
 // bebel配置
 const babelConfig = {
@@ -14,12 +16,26 @@ const babelConfig = {
     [
       '@babel/preset-env',
       {
-        targets: { ie: 11, edge: 12, chrome: 40, firefox: 40 },
+        targets: { ie: 11, edge: 12, chrome: 62, firefox: 56 },
         debug: false,
         modules: false,
         useBuiltIns: 'usage'
       }
     ],
+    '@babel/preset-react',
+    '@babel/preset-flow'
+  ],
+  plugins: [
+    ['@babel/plugin-proposal-decorators', { legacy: true }],
+    '@babel/plugin-proposal-do-expressions',
+    '@babel/plugin-proposal-optional-chaining',
+    '@babel/plugin-proposal-class-properties'
+  ]
+};
+
+// babel es配置
+const babelEsConfig = {
+  presets: [
     '@babel/preset-react',
     '@babel/preset-flow'
   ],
@@ -40,15 +56,24 @@ function babelProject(){
 
 gulp.task('babelProject', babelProject);
 
+/* babel es */
+function babelEsProject(){
+  return gulp.src(jsSrc)
+    .pipe(babel(babelEsConfig))
+    .pipe(gulp.dest(esPath));
+}
+
+gulp.task('babelEsProject', babelEsProject);
+
 /* sass */
 function sassProject(){
   return gulp.src(sassSrc)
     .pipe(sass({
       outputStyle: 'compressed'
     }).on('error', sass.logError))
-    .pipe(gulp.dest(libPath));
+    .pipe(gulp.dest(stylePath));
 }
 
 gulp.task('sassProject', sassProject);
 
-gulp.task('default', ['babelProject', 'sassProject']);
+gulp.task('default', ['babelProject', 'babelEsProject', 'sassProject']);

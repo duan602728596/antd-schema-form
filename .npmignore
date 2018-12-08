@@ -21,3 +21,4 @@ config
 example
 test
 gulpfile.js
+src

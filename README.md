@@ -12,7 +12,7 @@ import Schemaform, {
   getObjectFromValue, // object对象，格式化成表单需要的值
   getValueFromObject. // 从form获取到的表单的值，格式化成object对象
 } from 'antd-schema-form';
-import 'antd-schema-form/lib/style/antd-schema-form.css'; // 引入样式
+import 'antd-schema-form/style/antd-schema-form.css'; // 引入样式
 
 // json schema
 const json = {

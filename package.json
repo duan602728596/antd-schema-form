@@ -12,8 +12,10 @@
   "scripts": {
     "example-dll": "milktea dll --config=\"./config/example/.sweetrc.js\"",
     "example-start": "milktea start --server --config=\"./config/example/.sweetrc.js\"",
-    "build": "npm run clearlib && cross-env NODE_ENV=production gulp",
+    "build": "npm run clearlib && npm run cleares && npm run clearstyle && cross-env NODE_ENV=production gulp",
     "clearlib": "rimraf lib",
+    "cleares": "rimraf es",
+    "clearstyle": "rimraf style",
     "testinit": "mocha init test",
     "test": "milktea start --server --config=\"./config/test/.sweetrc.js\" --httpPort=6060",
     "eslint": "eslint ./src",

@@ -26,3 +26,5 @@ build
 *.key
 
 lib
+es
+style
