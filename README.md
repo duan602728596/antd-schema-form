@@ -7,7 +7,11 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
 ```javascript
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import Schemaform from 'antd-schema-form';
+import Schemaform, { 
+  getKeysFromObject,  // 获取schema.json下所有的key
+  getObjectFromValue, // object对象，格式化成表单需要的值
+  getValueFromObject. // 从form获取到的表单的值，格式化成object对象
+} from 'antd-schema-form';
 import 'antd-schema-form/lib/style/antd-schema-form.css'; // 引入样式
 
 // json schema
@@ -32,7 +36,10 @@ ReactDOM.render(
 | value | 表单的值 | object |
 | onOk | 表单的确认事件 | (form: object, value: object, keys: Array&lt;string&gt;) => void |
 | onCancel | 表单的取消事件 | (form: object) => void |
-| onUpload | 文件上传事件 | (file: Array&lt;File&gt;) => Promise&lt;string&gt;) |
+| okText | 确认按钮文字 | string |
+| cancelText | 取消按钮文字 | string |
+| footer | 自定义底部内容 |  (form: object) => React.Node  |
+| onUpload | 文件上传事件 | (file: Array&lt;File&gt;) => Promise&lt;string&gt; |
 
 ## json schema配置
 
