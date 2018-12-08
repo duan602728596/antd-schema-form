@@ -80,7 +80,6 @@ class TableComponent extends Component{
     const id: string = root.id;
     // 获取需要验证和获取值的key
     const value2: Object = form.getFieldsValue(keys);
-
     const formatValue: Object = formatValueBeforeGetValue(value2, id);
     const result: Object = getValueFromObject(formatValue);
     let tableValue: Array<any> = form.getFieldValue(id);

@@ -1,7 +1,7 @@
 import { isObject } from './type';
 
 /**
- * object对象，格式化成表单的值
+ * object对象，格式化成表单需要的值
  * @param { Object } obj: 对象
  * @param { ?string } basicId: 前置id
  */
