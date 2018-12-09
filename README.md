@@ -1,6 +1,6 @@
 # antd-schema-form
 
-antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Schema](http://json-schema.org/draft-07/json-schema-validation.html#rfc.section.10.3)配置快速生成可交互的表单。
+antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Schema](http://json-schema.org/draft-07/json-schema-validation.html)配置快速生成可交互的表单。
 
 ## 开始使用
 
