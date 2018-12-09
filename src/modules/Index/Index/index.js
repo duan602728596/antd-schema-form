@@ -28,6 +28,18 @@ class Index extends Component{
   render(): React.Element{
     return (
       <Fragment>
+        <p className={ style.desc }>
+          antd-schema-form基于
+          <a href="https://ant.design/index-cn" target="_blank" rel="noopener noreferrer">Ant Design</a>
+          ，可以通过
+          <a href="http://json-schema.org/draft-07/json-schema-validation.html"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            JSON Schema
+          </a>
+          配置快速生成可交互的表单。
+        </p>
         <p className={ style.desc }>这个Demo简单的展示了通过配置schema.json构建一个表单。</p>
         <Row type="flex" gutter={ 10 }>
           <Col className={ style.mb10 } xs={ 24 } sm={ 24 } md={ 12 }>
