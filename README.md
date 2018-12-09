@@ -43,7 +43,7 @@ ReactDOM.render(
 
 ## json schema配置
 
-表单根据json schema配置，json schema属性参考[http://json-schema.org/draft-07/json-schema-validation.html#rfc.section.10.3](http://json-schema.org/draft-07/json-schema-validation.html#rfc.section.10.3)。   
+表单根据json schema配置，json schema属性参考[http://json-schema.org/draft-07/json-schema-validation.html](http://json-schema.org/draft-07/json-schema-validation.html)。   
 由于json schema的属性并不能完全满足表单的生成，所以也添加了一些自定义的属性，自定义的属性名称约定以`$`开头。
 
 ### 属性
