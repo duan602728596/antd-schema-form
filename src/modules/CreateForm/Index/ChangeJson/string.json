@@ -1,0 +1,165 @@
+{
+  "id": "$root",
+  "type": "object",
+  "title": "string类型",
+  "properties": {
+    "id": {
+      "id": "$root/properties/id",
+      "type": "string",
+      "title": "当前属性的id",
+      "$required": true
+    },
+    "type": {
+      "id": "$root/properties/type",
+      "type": "string",
+      "title": "数据类型",
+      "$required": true
+    },
+    "title": {
+      "id": "$root/properties/title",
+      "type": "string",
+      "title": "标题，用于描述关键字的作用",
+      "$required": true
+    },
+    "description": {
+      "id": "$root/properties/description",
+      "type": "string",
+      "title": "说明，用于描述关键字的作用"
+    },
+    "$required": {
+      "id": "$root/properties/$required",
+      "type": "boolean",
+      "title": "值必须存在"
+    },
+    "$requiredMessage": {
+      "id": "$root/properties/$requiredMessage",
+      "type": "string",
+      "title": "自定义$required的验证提示信息"
+    },
+    "pattern": {
+      "id": "$root/properties/pattern",
+      "type": "string",
+      "title": "正则表达式验证"
+    },
+    "$patternOption": {
+      "id": "$root/properties/$patternOption",
+      "type": "string",
+      "title": "指定全局匹配、区分大小写的匹配和多行匹配"
+    },
+    "$patternMessage": {
+      "id": "$root/properties/$patternMessage",
+      "type": "string",
+      "title": "自定义pattern的验证失败提示信息"
+    },
+    "minLength": {
+      "id": "$root/properties/minLength",
+      "type": "number",
+      "title": "字符串的最小长度验证"
+    },
+    "$minLengthMessage": {
+      "id": "$root/properties/$minLengthMessage",
+      "type": "string",
+      "title": "自定义minLength的验证失败提示信息"
+    },
+    "maxLength": {
+      "id": "$root/properties/maxLength",
+      "type": "number",
+      "title": "字符串的最大长度验证"
+    },
+    "$maxLengthMessage": {
+      "id": "$root/properties/$maxLengthMessage",
+      "type": "string",
+      "title": "自定义maxLength的验证失败提示信息"
+    },
+    "$length": {
+      "id": "$root/properties/$length",
+      "type": "number",
+      "title": "字符串的指定长度验证"
+    },
+    "$lengthMessage": {
+      "id": "$root/properties/$lengthMessage",
+      "type": "string",
+      "title": "自定义$length的验证失败提示信息"
+    },
+    "enum": {
+      "id": "$root/properties/enum",
+      "type": "array",
+      "title": "验证表单控件的值必须在此关键字的数组值中",
+      "items": {
+        "id": "$root/properties/enum/items",
+        "type": "string",
+        "title": "关键值"
+      }
+    },
+    "$enumMessage": {
+      "id": "$root/properties/$enumMessage",
+      "type": "string",
+      "title": "自定义enum的验证失败信息"
+    },
+    "$readOnly": {
+      "id": "$root/properties/$readOnly",
+      "type": "boolean",
+      "title": "表单控件只读"
+    },
+    "$placeholder": {
+      "id": "$root/properties/$placeholder",
+      "type": "string",
+      "title": "表单控件的placeholder属性"
+    },
+    "$defaultValue": {
+      "id": "$root/properties/$defaultValue",
+      "type": "string",
+      "title": "表单的默认值"
+    },
+    "$componentType": {
+      "id": "$root/properties/$componentType",
+      "type": "string",
+      "title": "渲染为其他组件",
+      "$componentType": "select",
+      "$options": [
+        {
+          "label": "文本域",
+          "value": "textArea"
+        },
+        {
+          "label": "下拉框",
+          "value": "select"
+        },
+        {
+          "label": "单选框",
+          "value": "radio"
+        },
+        {
+          "label": "日期选择器",
+          "value": "date"
+        },
+        {
+          "label": "文件上传",
+          "value": "upload"
+        }
+      ]
+    },
+    "$options": {
+      "id": "$root/properties/$options",
+      "type": "array",
+      "title": "可选的选项",
+      "items": {
+        "id": "$root/properties/$options/items",
+        "type": "object",
+        "title": "可选的选项",
+        "properties": {
+          "label": {
+            "id": "$root/properties/$options/items/properties/label",
+            "type": "string",
+            "title": "显示的文字"
+          },
+          "value": {
+            "id": "$root/properties/$options/items/properties/value",
+            "type": "string",
+            "title": "值"
+          }
+        }
+      }
+    }
+  }
+}

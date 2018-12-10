@@ -1,0 +1,129 @@
+{
+  "id": "$root",
+  "type": "object",
+  "title": "number类型",
+  "properties": {
+    "id": {
+      "id": "$root/properties/id",
+      "type": "string",
+      "title": "当前属性的id",
+      "$required": true
+    },
+    "type": {
+      "id": "$root/properties/type",
+      "type": "string",
+      "title": "数据类型",
+      "$required": true
+    },
+    "title": {
+      "id": "$root/properties/title",
+      "type": "string",
+      "title": "标题，用于描述关键字的作用",
+      "$required": true
+    },
+    "description": {
+      "id": "$root/properties/description",
+      "type": "string",
+      "title": "说明，用于描述关键字的作用"
+    },
+    "$required": {
+      "id": "$root/properties/$required",
+      "type": "boolean",
+      "title": "值必须存在"
+    },
+    "minimum": {
+      "id": "$root/properties/minimum",
+      "type": "number",
+      "title": "表单的最小值"
+    },
+    "$minimumMessage": {
+      "id": "$root/properties/$minimumMessage",
+      "type": "string",
+      "title": "自定义minimum的验证失败提示信息"
+    },
+    "maximum": {
+      "id": "$root/properties/maximum",
+      "type": "number",
+      "title": "表单的最大值"
+    },
+    "$maximumMessage": {
+      "id": "$root/properties/$maximumMessage",
+      "type": "string",
+      "title": "自定义maximum的验证失败提示信息"
+    },
+    "$integer": {
+      "id": "$root/properties/$integer",
+      "type": "boolean",
+      "title": "必须是整数"
+    },
+    "$integerMessage": {
+      "id": "$root/properties/$integerMessage",
+      "type": "string",
+      "title": "自定义$integer的验证失败提示信息"
+    },
+    "enum": {
+      "id": "$root/properties/enum",
+      "type": "array",
+      "title": "验证表单控件的值必须在此关键字的数组值中",
+      "items": {
+        "id": "$root/properties/enum/items",
+        "type": "number",
+        "title": "关键值"
+      }
+    },
+    "$enumMessage": {
+      "id": "$root/properties/$enumMessage",
+      "type": "string",
+      "title": "自定义enum的验证失败信息"
+    },
+    "$readOnly": {
+      "id": "$root/properties/$readOnly",
+      "type": "boolean",
+      "title": "表单控件只读"
+    },
+    "$placeholder": {
+      "id": "$root/properties/$placeholder",
+      "type": "string",
+      "title": "表单控件的placeholder属性"
+    },
+    "$defaultValue": {
+      "id": "$root/properties/$defaultValue",
+      "type": "number",
+      "title": "表单的默认值"
+    },
+    "$componentType": {
+      "id": "$root/properties/$componentType",
+      "type": "string",
+      "title": "渲染为其他组件",
+      "$componentType": "select",
+      "$options": [
+        {
+          "label": "单选框",
+          "value": "radio"
+        }
+      ]
+    },
+    "$options": {
+      "id": "$root/properties/$options",
+      "type": "array",
+      "title": "可选的选项",
+      "items": {
+        "id": "$root/properties/$options/items",
+        "type": "object",
+        "title": "可选的选项",
+        "properties": {
+          "label": {
+            "id": "$root/properties/$options/items/properties/label",
+            "type": "string",
+            "title": "显示的文字"
+          },
+          "value": {
+            "id": "$root/properties/$options/items/properties/value",
+            "type": "number",
+            "title": "值"
+          }
+        }
+      }
+    }
+  }
+}

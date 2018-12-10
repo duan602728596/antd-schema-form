@@ -1,0 +1,47 @@
+{
+  "id": "$root",
+  "type": "object",
+  "title": "boolean类型",
+  "properties": {
+    "id": {
+      "id": "$root/properties/id",
+      "type": "string",
+      "title": "当前属性的id",
+      "$required": true
+    },
+    "type": {
+      "id": "$root/properties/type",
+      "type": "string",
+      "title": "数据类型",
+      "$required": true
+    },
+    "title": {
+      "id": "$root/properties/title",
+      "type": "string",
+      "title": "标题，用于描述关键字的作用",
+      "$required": true
+    },
+    "description": {
+      "id": "$root/properties/description",
+      "type": "string",
+      "title": "说明，用于描述关键字的作用"
+    },
+    "$defaultValue": {
+      "id": "$root/properties/$defaultValue",
+      "type": "boolean",
+      "title": "表单的默认值"
+    },
+    "$componentType": {
+      "id": "$root/properties/$componentType",
+      "type": "string",
+      "title": "渲染为其他组件",
+      "$componentType": "select",
+      "$options": [
+        {
+          "label": "开关",
+          "value": "switch"
+        }
+      ]
+    }
+  }
+}
