@@ -28,12 +28,6 @@ class Header extends Component{
               </Link>
             </li>
             <li>
-              <Link to="/">
-                <Icon type="interation" theme="twoTone" />
-                <span>json schema生成</span>
-              </Link>
-            </li>
-            <li>
               <a href="https://github.com/duan602728596/antd-schema-form#antd-schema-form"
                 target="_blank"
                 ref="noopener noreferrer"
