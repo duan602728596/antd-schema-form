@@ -7,7 +7,7 @@ const initData: {
   schemaJson: Map({
     id: '$root',
     type: 'object',
-    title: 'title',
+    title: '$root',
     properties: {}
   })
 };
