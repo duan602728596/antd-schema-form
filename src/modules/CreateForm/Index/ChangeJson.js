@@ -1,16 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { createSelector, createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { Tag, Button, Collapse } from 'antd';
-import { setSchemaJson } from '../../store/reducer';
-import style from '../style.sass';
-import stringJson from './string.json';
-import numberJson from './number.json';
-import booleanJson from './boolean.json';
-import objectJson from './object.json';
-import arrayJson from './array.json';
+import { setSchemaJson } from '../store/reducer';
+import style from './style.sass';
+import json from './json/json';
 
 /* state */
 const state: Function = createStructuredSelector({
@@ -34,14 +30,6 @@ class ChangeJson extends Component{
     action: PropTypes.objectOf(PropTypes.func)
   };
 
-  json: Object = {
-    string: stringJson,
-    number: numberJson,
-    boolean: booleanJson,
-    object: objectJson,
-    array: arrayJson
-  };
-
   constructor(): void{
     super(...arguments);
 
@@ -61,6 +49,28 @@ class ChangeJson extends Component{
     }
 
     return null;
+  }
+  // 删除事件
+  handleDeleteItemClick(item: Object, event: Event): void{
+    event.stopPropagation();
+
+    const { id }: { id: string } = item;
+    const { schemaJson }: { schemaJson: Object } = this.state;
+    const idArr: string[] = id.split('/').slice(1);
+
+    if(idArr.length === 0){
+      this.props.action.setSchemaJson({});
+    }else{
+      for(let i: number = 0, j: number = idArr.length, k: Object = schemaJson; i < j; i++){
+        if(i === j - 1){
+          delete k[idArr[i]];
+        }else{
+          k = schemaJson[idArr[i]];
+        }
+      }
+
+      this.props.action.setSchemaJson(schemaJson);
+    }
   }
   // 根据不同的类型渲染不同的标签
   typeTagView(type: string): ?React.Element{
@@ -89,12 +99,20 @@ class ChangeJson extends Component{
     const element: [] = [];
     const { type }: { type: string } = item;
 
-    for(const key: string in this.json[type].properties){
+    for(const key: string in json[type].properties){
       if(key in item){
+        let value: any = item[key];
+
+        if(typeof value === 'boolean'){
+          value = String(value);
+        }else if(typeof value === 'object'){
+          value = Object.prototype.toString.call(value);
+        }
+
         element.push(
           <tr key={ key }>
             <th>{ key }</th>
-            <td>{ item[key] }</td>
+            <td>{ value }</td>
           </tr>
         );
       }
@@ -126,16 +144,31 @@ class ChangeJson extends Component{
               <Button.Group size="small">
                 <Button icon="plus" title="添加" />
                 <Button icon="edit" title="编辑" />
-                <Button type="danger" icon="delete" title="删除" />
+                <Button type="danger" icon="delete" title="删除" onClick={ this.handleDeleteItemClick.bind(this, item) } />
               </Button.Group>
             </div>
           </div>
         }>
           { this.infoTableView(item) }
         </Collapse.Panel>
-      </Collapse>,
-      <div key="children" className={ style.children } />
+      </Collapse>
     ];
+
+    const childrenList: React.ChildrenArray<React.Element> = [];
+
+    if(type === 'object'){
+      for(const key: string in item.properties){
+        childrenList.push(this.collapseListView(item.properties[key]));
+      }
+    }else if(type === 'array'){
+      childrenList.push(this.collapseListView(item.items));
+    }
+
+    if(childrenList.length > 0){
+      element.push(
+        <div key="children" className={ style.children }>{ childrenList }</div>
+      );
+    }
 
     return element;
   }
@@ -144,7 +177,9 @@ class ChangeJson extends Component{
     const len: Object = Object.values(schemaJson).length;
 
     return (
-      <div className={ style.collapse }>{ len === 0 ? null : this.collapseListView(schemaJson) }</div>
+      <Fragment>
+        <div className={ style.collapse }>{ len === 0 ? null : this.collapseListView(schemaJson) }</div>
+      </Fragment>
     );
   }
 }
