@@ -43,9 +43,7 @@ class ChangeJson extends Component{
     if(nextProps.schemaJson !== prevState.schemaJson){
       const { schemaJson }: { schemaJson: Object } = nextProps;
 
-      return {
-        schemaJson
-      };
+      return { schemaJson };
     }
 
     return null;

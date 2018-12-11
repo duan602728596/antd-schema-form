@@ -1,10 +1,8 @@
 import React, { Component, Fragment, createRef } from 'react';
 import classNames from 'classnames';
 import { Row, Col, Modal } from 'antd';
-import SchemaForm from 'antd-schema-form/es/index';
-import 'antd-schema-form/style/antd-schema-form.css';
-import hljs from 'highlightjs';
-import 'highlightjs/styles/github-gist.css';
+import SchemaForm from '../../../components/SchemaForm/SchemaForm';
+import hljs from '../../../components/highlightjs/highlightjs';
 import style from './style.sass';
 import demo from './demo.json';
 
