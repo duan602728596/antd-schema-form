@@ -54,16 +54,12 @@ function babelProject(){
     .pipe(gulp.dest(libPath));
 }
 
-gulp.task('babelProject', babelProject);
-
 /* babel es */
 function babelEsProject(){
   return gulp.src(jsSrc)
     .pipe(babel(babelEsConfig))
     .pipe(gulp.dest(esPath));
 }
-
-gulp.task('babelEsProject', babelEsProject);
 
 /* sass */
 function sassProject(){
@@ -74,6 +70,4 @@ function sassProject(){
     .pipe(gulp.dest(stylePath));
 }
 
-gulp.task('sassProject', sassProject);
-
-gulp.task('default', ['babelProject', 'babelEsProject', 'sassProject']);
+exports.default = gulp.series(gulp.parallel(babelProject, babelEsProject, sassProject));
