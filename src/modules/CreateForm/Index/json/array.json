@@ -13,7 +13,8 @@
       "id": "$root/properties/type",
       "type": "string",
       "title": "数据类型",
-      "$required": true
+      "$required": true,
+      "$readOnly": true
     },
     "title": {
       "id": "$root/properties/title",

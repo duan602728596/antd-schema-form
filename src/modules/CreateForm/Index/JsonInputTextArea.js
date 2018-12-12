@@ -30,6 +30,11 @@ class JsonInputTextArea extends Component{
     action: PropTypes.objectOf(PropTypes.func)
   };
 
+  state: {
+    schemaJson: Object,
+    textAreaValue: string
+  };
+
   constructor(): void{
     super(...arguments);
 
