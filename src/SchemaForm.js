@@ -38,6 +38,21 @@ class SchemaForm extends Component{
 
     form.setFieldsValue(obj);
   }
+  static getDerivedStateFromProps(nextProps: Object, prevState: Object): ?Object{
+    if(nextProps.value !== prevState.value){
+      const { form, value }: {
+        form: Object,
+        value: Object
+      } = nextProps;
+      const obj: Object = getObjectFromValue(value);
+
+      form.resetFields();
+      form.setFieldsValue(obj);
+
+      return { value: nextProps.value };
+    }
+    return null;
+  }
   render(): React.Element{
     const { form, json, onUpload, onOk, onCancel, okText, cancelText, footer }: {
       form: Object,
