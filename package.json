@@ -1,6 +1,6 @@
 {
   "name": "antd-schema-form",
-  "version": "0.0.1-alpha.2",
+  "version": "0.0.1-alpha.3",
   "description": "基于antd，通过json schema配置表单。",
   "main": "lib/index.js",
   "author": {
@@ -10,8 +10,8 @@
   },
   "license": "MIT",
   "scripts": {
-    "example-dll": "milktea dll --config=\"./config/example/.sweetrc.js\"",
-    "example-start": "milktea start --server --config=\"./config/example/.sweetrc.js\"",
+    "dll": "milktea dll --config=\"./config/example/.sweetrc.js\"",
+    "dev": "milktea start --server --config=\"./config/example/.sweetrc.js\"",
     "build": "npm run clearlib && npm run cleares && npm run clearstyle && cross-env NODE_ENV=production gulp",
     "clearlib": "rimraf lib",
     "cleares": "rimraf es",

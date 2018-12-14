@@ -163,7 +163,7 @@ ReactDOM.render(
 
 ## 开发和测试
 
-* 运行命令`npm run example-dll`、`npm run example-start`，在浏览器中输入`http://127.0.0.1:5050`查看demo。
-* 运行命令`npm run example-dll`、`npm run test`，在浏览器中输入`http://127.0.0.1:6060`运行测试用例。
+* 运行命令`npm run dll`、`npm run dev`，在浏览器中输入`http://127.0.0.1:5050`查看demo并开发。
+* 运行命令`npm run dll`、`npm run test`，在浏览器中输入`http://127.0.0.1:6060`运行测试用例。
 
 
