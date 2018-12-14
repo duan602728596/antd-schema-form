@@ -26,6 +26,17 @@
       "id": "$root/properties/description",
       "type": "string",
       "title": "说明，用于描述关键字的作用"
+    },
+    "required": {
+      "id": "$root/properties/required",
+      "type": "array",
+      "title": "对象必须包含的属性",
+      "items": {
+        "id": "$root/properties/required/items",
+        "type": "string",
+        "title": "对象必须包含的属性",
+        "$required": true
+      }
     }
   }
 }

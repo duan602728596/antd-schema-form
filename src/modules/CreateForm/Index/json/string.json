@@ -89,7 +89,8 @@
       "items": {
         "id": "$root/properties/enum/items",
         "type": "string",
-        "title": "关键值"
+        "title": "关键值",
+        "$required": true
       }
     },
     "$enumMessage": {
@@ -152,12 +153,14 @@
           "label": {
             "id": "$root/properties/$options/items/properties/label",
             "type": "string",
-            "title": "显示的文字"
+            "title": "显示的文字",
+            "$required": true
           },
           "value": {
             "id": "$root/properties/$options/items/properties/value",
             "type": "string",
-            "title": "值"
+            "title": "值",
+            "$required": true
           }
         }
       }

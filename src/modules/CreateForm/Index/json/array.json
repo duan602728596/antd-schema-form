@@ -55,12 +55,14 @@
           "label": {
             "id": "$root/properties/$options/items/properties/label",
             "type": "string",
-            "title": "显示的文字"
+            "title": "显示的文字",
+            "$required": true
           },
           "value": {
             "id": "$root/properties/$options/items/properties/value",
             "type": "string",
-            "title": "值"
+            "title": "值",
+            "$required": true
           }
         }
       }
