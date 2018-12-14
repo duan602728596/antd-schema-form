@@ -183,7 +183,7 @@ class ChangeJson extends Component{
     );
   }
   // 渲染面板
-  collapseListView(item: Object): React.Element{
+  collapseListView(item: Object, disableDelete: boolean): React.Element{
     const { type, title }: {
       type: string,
       title: string,
@@ -200,13 +200,18 @@ class ChangeJson extends Component{
             </div>
             <div className={ style.fr }>
               <Button.Group size="small">
-                {
-                  type === 'object' || type === 'array'
-                    ? <Button icon="plus" title="添加" onClick={ this.handleOpenAddDrawerClick.bind(this, item) } />
-                    : null
-                }
+                <Button icon="plus"
+                  title="添加"
+                  disabled={ !(type === 'object' || type === 'array') }
+                  onClick={ this.handleOpenAddDrawerClick.bind(this, item) }
+                />
                 <Button icon="edit" title="编辑" />
-                <Button type="danger" icon="delete" title="删除" onClick={ this.handleDeleteItemClick.bind(this, item) } />
+                <Button type="danger"
+                  icon="delete"
+                  title="删除"
+                  disabled={ disableDelete }
+                  onClick={ this.handleDeleteItemClick.bind(this, item) }
+                />
               </Button.Group>
             </div>
           </div>
@@ -244,7 +249,7 @@ class ChangeJson extends Component{
 
     return (
       <Fragment>
-        <div className={ style.collapse }>{ len === 0 ? null : this.collapseListView(schemaJson) }</div>
+        <div className={ style.collapse }>{ len === 0 ? null : this.collapseListView(schemaJson, true) }</div>
         <AddDrawer item={ addItem }
           visible={ isAddDrawerDisplay }
           onOk={ this.handleOkAddDrawerClick }

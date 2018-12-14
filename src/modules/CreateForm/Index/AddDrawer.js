@@ -1,4 +1,4 @@
-import React, { Component, createRef } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Drawer, Select } from 'antd';
 import SchemaForm from '../../../components/SchemaForm/SchemaForm';
@@ -13,7 +13,6 @@ class AddDrawer extends Component{
     onCancel: PropTypes.func
   };
 
-  formRef: Object = createRef();
   state: Object = {
     typeValue: null // 选择数据类型
   };
@@ -27,13 +26,7 @@ class AddDrawer extends Component{
   }
   // select change事件
   handleTypeSelect: Function = (value: string, option: Object): void=>{
-    this.setState({
-      typeValue: value
-    }, (): void=>{
-      this.formRef.current.setFieldsValue({
-        '$root/properties/type': value
-      });
-    });
+    this.setState({ typeValue: value });
   };
   render(): React.Element{
     const { visible, onOk, onCancel, item }: {
@@ -44,14 +37,12 @@ class AddDrawer extends Component{
     } = this.props;
     const { typeValue }: { typeValue: ?string } = this.state;
 
-    let value: ?Object = null;
+    const value: Object = {
+      $root: { type: typeValue }
+    };
 
     if(item && item.type === 'array'){
-      value = {
-        $root: {
-          id: 'items'
-        }
-      };
+      value.$root.id = 'items';
     }
 
     if(typeValue !== null){
@@ -72,8 +63,7 @@ class AddDrawer extends Component{
         </div>
         {
           typeValue ? (
-            <SchemaForm ref={ this.formRef }
-              json={ json[typeValue] }
+            <SchemaForm json={ json[typeValue] }
               value={ value }
               onOk={ onOk }
               onCancel={ onCancel }
