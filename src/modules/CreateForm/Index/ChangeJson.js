@@ -8,6 +8,7 @@ import { setSchemaJson } from '../store/reducer';
 import style from './style.sass';
 import json from './json/json';
 import AddDrawer from './AddDrawer';
+import EditDrawer from './EditDrawer';
 
 /* state */
 const state: Function = createStructuredSelector({
@@ -34,6 +35,7 @@ class ChangeJson extends Component{
   state: {
     schemaJson: Object,
     isAddDrawerDisplay: boolean,
+    isEditDrawerDisplay: boolean,
     addItem: ?Object,
     editItem: ?Object
   };
@@ -45,7 +47,8 @@ class ChangeJson extends Component{
 
     this.state = {
       schemaJson,
-      isAddDrawerDisplay: false, // 添加面板的显示和隐藏
+      isAddDrawerDisplay: false,  // 添加面板的显示和隐藏
+      isEditDrawerDisplay: false, // 编辑面板的显示和隐藏
       addItem: null,
       editItem: null
     };
@@ -74,7 +77,15 @@ class ChangeJson extends Component{
       addItem: item
     });
   }
-  // 确认事件
+  // 打开编辑面板
+  handleOpenEditDrawerClick(item: Object, event: Event): void{
+    event.stopPropagation();
+    this.setState({
+      isEditDrawerDisplay: true,
+      editItem: item
+    });
+  }
+  // 添加确认事件
   handleOkAddDrawerClick: Function = (form: Object, value: Object, keys: string[]): void=>{
     const { schemaJson, addItem }: {
       schemaJson: Object,
@@ -106,27 +117,63 @@ class ChangeJson extends Component{
       addItem: null
     });
   };
+  // 编辑确认事件
+  handleOkEditDrawerClick: Function = (form: Object, value: Object, keys: string[]): void=>{
+    const { schemaJson, editItem }: {
+      schemaJson: Object,
+      editItem: Object
+    } = this.state;
+    const { $root }: { $root: Object } = value;
+    const { id, ...etcValue }: {
+      id: string,
+      etcValue: Object
+    } = $root;
+
+    if(editItem.type === 'object'){
+      delete editItem.items;
+    }else if(editItem.type === 'array'){
+      delete editItem.properties;
+    }
+
+    // 合并数据
+    Object.assign(editItem, etcValue);
+
+    this.props.action.setSchemaJson(schemaJson);
+    this.setState({
+      isEditDrawerDisplay: false,
+      editItem: null
+    });
+  };
+  // 根据指定id查找并删除数据
+  findAndDelete(id: string, item: Object, father: ?Object, key: ?string): void{
+    if(item.id === id){
+      delete father[key];
+      return void 0;
+    }
+
+    if(item.type === 'object'){
+      for(const key: string in item.properties){
+        this.findAndDelete(id, item.properties[key], item.properties, key);
+      }
+
+      return void 0;
+    }
+
+    if(item.type === 'array'){
+      this.findAndDelete(id, item.items, item, 'items');
+
+      return void 0;
+    }
+  }
   // 删除事件
   handleDeleteItemClick(item: Object, event: Event): void{
     event.stopPropagation();
 
     const { id }: { id: string } = item;
     const { schemaJson }: { schemaJson: Object } = this.state;
-    const idArr: string[] = id.split('/').slice(1);
 
-    if(idArr.length === 0){
-      this.props.action.setSchemaJson({});
-    }else{
-      for(let i: number = 0, j: number = idArr.length, k: Object = schemaJson; i < j; i++){
-        if(i === j - 1){
-          delete k[idArr[i]];
-        }else{
-          k = schemaJson[idArr[i]];
-        }
-      }
-
-      this.props.action.setSchemaJson(schemaJson);
-    }
+    this.findAndDelete(id, schemaJson);
+    this.props.action.setSchemaJson(schemaJson);
   }
   // 根据不同的类型渲染不同的标签
   typeTagView(type: string): ?React.Element{
@@ -205,7 +252,7 @@ class ChangeJson extends Component{
                   disabled={ !(type === 'object' || type === 'array') }
                   onClick={ this.handleOpenAddDrawerClick.bind(this, item) }
                 />
-                <Button icon="edit" title="编辑" />
+                <Button icon="edit" title="编辑" onClick={ this.handleOpenEditDrawerClick.bind(this, item) } />
                 <Button type="danger"
                   icon="delete"
                   title="删除"
@@ -240,10 +287,12 @@ class ChangeJson extends Component{
     return element;
   }
   render(): React.Element{
-    const { schemaJson, isAddDrawerDisplay, addItem }: {
+    const { schemaJson, isAddDrawerDisplay, isEditDrawerDisplay, addItem, editItem }: {
       schemaJson: Object,
       isAddDrawerDisplay: boolean,
-      addItem: ?Object
+      isEditDrawerDisplay: boolean,
+      addItem: ?Object,
+      editItem: ?Object
     } = this.state;
     const len: Object = Object.values(schemaJson).length;
 
@@ -254,6 +303,11 @@ class ChangeJson extends Component{
           visible={ isAddDrawerDisplay }
           onOk={ this.handleOkAddDrawerClick }
           onCancel={ this.handleCloseDrawerClick.bind(this, 'addItem', 'isAddDrawerDisplay') }
+        />
+        <EditDrawer item={ editItem }
+          visible={ isEditDrawerDisplay }
+          onOk={ this.handleOkEditDrawerClick }
+          onCancel={ this.handleCloseDrawerClick.bind(this, 'editItem', 'isEditDrawerDisplay') }
         />
       </Fragment>
     );

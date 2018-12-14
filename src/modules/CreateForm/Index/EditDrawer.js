@@ -5,7 +5,7 @@ import SchemaForm from '../../../components/SchemaForm/SchemaForm';
 import json from './json/json';
 import style from './style.sass';
 
-class AddDrawer extends Component{
+class EditDrawer extends Component{
   static propTypes: Object = {
     item: PropTypes.object,
     visible: PropTypes.bool,
@@ -19,17 +19,20 @@ class AddDrawer extends Component{
     value: null,     // 表单值
     item: null
   };
-
   static getDerivedStateFromProps(nextProps: Object, prevState: Object): ?Object{
     if(nextProps.visible === false){
       return { typeValue: null };
     }
 
     if(nextProps.item && nextProps.visible === true && nextProps.item !== prevState.item){
+      const id: string[] = nextProps.item.id.split('/');
+
       return {
+        typeValue: nextProps.item.type,
         value: {
           $root: {
-            id: nextProps.item.type === 'array' ? 'items' : null
+            ...nextProps.item,
+            id: id[id.length - 1]
           }
         },
         item: nextProps.item
@@ -49,7 +52,7 @@ class AddDrawer extends Component{
     });
   };
   render(): React.Element{
-    const { visible, onOk, onCancel, item }: {
+    const { visible, onOk, onCancel }: {
       visible: boolean,
       onOk: Function,
       onCancel: Function,
@@ -61,7 +64,7 @@ class AddDrawer extends Component{
     } = this.state;
 
     if(typeValue !== null){
-      json[typeValue].properties.id.$readOnly = item && item.type === 'array';
+      json[typeValue].properties.id.$readOnly = true;
     }
 
     return (
@@ -90,4 +93,4 @@ class AddDrawer extends Component{
   }
 }
 
-export default AddDrawer;
+export default EditDrawer;
