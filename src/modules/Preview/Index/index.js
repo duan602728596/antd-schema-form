@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { createSelector, createStructuredSelector } from 'reselect';
@@ -77,27 +77,30 @@ class Index extends Component{
     const { schemaJson }: { schemaJson: ?Object } = this.props;
 
     return (
-      <Row className={ style.mb10 } type="flex" gutter={ 10 }>
-        <Col xs={ 24 } sm={ 24 } md={ 8 }>
-          <div className={ style.tools }>
-            <Button className={ style.mr10 }
-              icon="copy"
-              onClick={ handleCopyTextClick.bind(this, 'jsonSchemaTextArea2') }
-            >
-              复制
-            </Button>
-            <Button type="primary" icon="tablet" onClick={ this.handleRedoJsonSchema }>生成表单</Button>
-          </div>
-          <Input.TextArea id="jsonSchemaTextArea2"
-            rows={ 20 }
-            value={ textAreaValue }
-            onChange={ this.handleInputTextAreaChange }
-          />
-        </Col>
-        <Col xs={ 24 } sm={ 24 } md={ 16 }>
-          {schemaJson ? <SchemaForm json={ schemaJson } onOk={ this.handleOnFormOkClick } /> : null}
-        </Col>
-      </Row>
+      <Fragment>
+        <p>你可以粘贴json来生成并预览表单。</p>
+        <Row className={ style.mb10 } type="flex" gutter={ 10 }>
+          <Col xs={ 24 } sm={ 24 } md={ 8 }>
+            <div className={ style.tools }>
+              <Button className={ style.mr10 }
+                icon="copy"
+                onClick={ handleCopyTextClick.bind(this, 'jsonSchemaTextArea2') }
+              >
+                复制
+              </Button>
+              <Button type="primary" icon="tablet" onClick={ this.handleRedoJsonSchema }>生成表单</Button>
+            </div>
+            <Input.TextArea id="jsonSchemaTextArea2"
+              rows={ 20 }
+              value={ textAreaValue }
+              onChange={ this.handleInputTextAreaChange }
+            />
+          </Col>
+          <Col xs={ 24 } sm={ 24 } md={ 16 }>
+            {schemaJson ? <SchemaForm json={ schemaJson } onOk={ this.handleOnFormOkClick } /> : null}
+          </Col>
+        </Row>
+      </Fragment>
     );
   }
 }
