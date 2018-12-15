@@ -22,7 +22,7 @@ export default {
   entry: {
     app: [path.join(__dirname, 'src/app.js')]
   },
-  output: { publicPath: '/' },
+  output: { publicPath: isDevelopment ? '/' : '' },
   loaders: {
     svg: {
       test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
