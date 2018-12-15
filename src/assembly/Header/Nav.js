@@ -20,7 +20,7 @@ function Nav(props: Object): React.Element{
           </Link>
         </li>
         <li>
-          <Link to="/">
+          <Link to="/Preview">
             <Icon type="eye" theme="twoTone" />
             <span>表单预览</span>
           </Link>
