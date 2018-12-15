@@ -1,6 +1,6 @@
 {
   "name": "antd-schema-form",
-  "version": "0.0.1-alpha.3",
+  "version": "0.1.0-beta.1",
   "description": "基于antd，通过json schema配置表单。",
   "main": "lib/index.js",
   "author": {
@@ -61,6 +61,10 @@
     "mocha": "^5.2.0",
     "pre-commit": "^1.2.2",
     "rimraf": "^2.6.2"
+  },
+  "peerDependencies": {
+    "react": ">=16.6.0",
+    "react-dom": ">=16.6.0"
   },
   "pre-commit": {
     "run": [
