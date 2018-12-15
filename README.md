@@ -1,6 +1,9 @@
 # antd-schema-form
 
-antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Schema](http://json-schema.org/draft-07/json-schema-validation.html)配置快速生成可交互的表单。
+antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Schema](http://json-schema.org/draft-07/json-schema-validation.html)配置快速生成可交互的表单。   
+
+这个[Demo](https://duan602728596.github.io/antd-schema-form/#/)简单的展示了通过配置schema.json构建一个表单。
+
 
 ## 开始使用
 
@@ -43,13 +46,16 @@ ReactDOM.render(
 
 ## json schema配置
 
-表单根据json schema配置，json schema属性参考[http://json-schema.org/draft-07/json-schema-validation.html](http://json-schema.org/draft-07/json-schema-validation.html)。   
-由于json schema的属性并不能完全满足表单的生成，所以也添加了一些自定义的属性，自定义的属性名称约定以`$`开头。
+表单根据json schema配置，json schema属性参考[http://json-schema.org/draft-07/json-schema-validation.html](http://json-schema.org/draft-07/json-schema-validation.html)。      
+
+您可以通过[表单生成](https://duan602728596.github.io/antd-schema-form/#/CreateForm)和[表单预览](https://duan602728596.github.io/antd-schema-form/#/Preview)功能来代替一部分的手写json schema的工作。
 
 ### 属性
 
-* `id: string`：当前属性的id。一般约定以`$root`开头，以`/`作为分隔，例如`$root/key1/key2`。
-  当type为`object`时，需要加`/properties/`，例如：
+> 由于json schema的属性并不能完全满足表单的生成，所以也添加了一些自定义的属性，自定义的属性名称约定以`$`开头。
+
+* `id: string`：当前属性的id。一般约定以`$root`开头，以`/`作为分隔，例如`$root/key1/key2`，id和json的键名要对应。
+  当type为`object`时，需要加`/properties`，例如：
   
   ```json
   {
@@ -64,7 +70,7 @@ ReactDOM.render(
   }
   ```
   
-  当type为`array`时，items需要加`/items/`，例如：
+  当type为`array`时，items需要加`/items`，例如：
   
   ```json
   {
@@ -81,12 +87,16 @@ ReactDOM.render(
 * `title: string`：标题，用于描述关键字的作用。表单的标题。
 * `description: string`：说明，用于描述关键字的作用。表单的描述。
 
-### 当`type="object"`时，下面的属性生效：
+### `type="object"`：
+
+组件默认渲染折叠面板（[Collapse](https://ant.design/components/collapse-cn/)）。**配置属性：**
 
 * `properties: object`：当**type**为**object**时，列出对象下面的属性。
 * `required: Array<string>`：对象必须包含的属性。不同于`$required`属性。
 
-### 当`type="string"`时，下面的属性生效：
+### `type="string"`：
+
+组件默认渲染输入框（[Input](https://ant.design/components/input-cn/)）。**配置属性：**
 
 * `$required: boolean`：当前的对象值必须存在。对应表单的required验证。
 * `$requiredMessage: string`：自定义required的验证失败提示信息。
@@ -116,7 +126,9 @@ ReactDOM.render(
   
 * `$options: Array<{ label: string, value: string }>`：当$componentType为select、radio时，可选的选项。
   
-### 当`type="number"`或`type="integer"`时，下面的属性生效：
+### `type="number"`或`type="integer"`：
+
+组件默认渲染数字输入框（[InputNumber](https://ant.design/components/input-number-cn/)）。**配置属性：**
 
 * `$required: boolean`：当前的对象值必须存在。对应表单的required验证。
 * `$requiredMessage: string`：自定义required的验证失败提示信息。
@@ -139,7 +151,9 @@ ReactDOM.render(
   
 * `$options: Array<{ label: string, value: number }>`：当$componentType为radio时，可选的选项。
 
-### 当`type="boolean"`时，下面的属性生效：
+### `type="boolean"`：
+
+组件默认渲染多选框（[Checkbox](https://ant.design/components/checkbox-cn/)）。**配置属性：**
 
 * `$defaultValue: boolean`：表单控件的默认值。
 * `$componentType: string`：渲染为其他组件。
@@ -148,7 +162,9 @@ ReactDOM.render(
   | --- | --- | 
   | switch | 开关 |
   
-### 当`type="array"`时，下面的属性生效：
+### `type="array"`：
+
+组件默认渲染表格（[Table](https://ant.design/components/table-cn/)）。**配置属性：**
 
 * `items: object`：数组的内容。
 * `$defaultValue: Array<any>`：表单控件的默认值。
