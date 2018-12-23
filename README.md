@@ -7,29 +7,42 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
 
 ## 开始使用
 
-```javascript
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import Schemaform, { 
-  getKeysFromObject,  // 获取schema.json下所有的key
-  getObjectFromValue, // object对象，格式化成表单需要的值
-  getValueFromObject. // 从form获取到的表单的值，格式化成object对象
-} from 'antd-schema-form';
-import 'antd-schema-form/style/antd-schema-form.css'; // 引入样式
+1. 在使用之前，你需要在babel配置antd的[按需加载](https://ant.design/docs/react/introduce-cn#%E6%8C%89%E9%9C%80%E5%8A%A0%E8%BD%BD)。
+2. 如果你引入了es风格的代码，需要为babel-loader的exclude做如下配置：
 
-// json schema
-const json = {
-  $id: '$root',
-  type: 'object',
-  title: '$root',
-  properties: {}
-};
+  ```javascript
+  {
+    test: /^.*\.js$/,
+    use: 'babel-loader',
+    exclude: /node_modules[\\/](?!antd-schema-form)/
+  }
+  ```
 
-ReactDOM.render(
-  <SchemaForm json={ json } />,
-  document.getElementById('app')
-);
-```
+3. 组件的使用：
+
+  ```javascript
+  import React, { Component } from 'react';
+  import ReactDOM from 'react-dom';
+  import Schemaform, { 
+    getKeysFromObject,  // 获取schema.json下所有的key
+    getObjectFromValue, // object对象，格式化成表单需要的值
+    getValueFromObject. // 从form获取到的表单的值，格式化成object对象
+  } from 'antd-schema-form';
+  import 'antd-schema-form/style/antd-schema-form.css'; // 引入样式
+
+  // json schema
+  const json = {
+    $id: '$root',
+    type: 'object',
+    title: '$root',
+    properties: {}
+  };
+
+  ReactDOM.render(
+    <SchemaForm json={ json } />,
+    document.getElementById('app')
+  );
+ ```
 
 ## API
 
@@ -41,7 +54,7 @@ ReactDOM.render(
 | onCancel | 表单的取消事件 | (form: object) => void |
 | okText | 确认按钮文字 | string |
 | cancelText | 取消按钮文字 | string |
-| footer | 自定义底部内容 |  (form: object) => React.Node  |
+| footer | 自定义底部内容，[参考](https://github.com/duan602728596/antd-schema-form/blob/master/src/components/FormObject/FormObject.js#L95) |  (form: object) => React.Node  |
 | onUpload | 文件上传事件 | (file: Array&lt;File&gt;) => Promise&lt;string&gt; |
 
 ## json schema配置
