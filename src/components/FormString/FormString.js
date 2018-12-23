@@ -119,7 +119,7 @@ class FormString extends Component{
           getFieldDecorator(id, option)(
             <Input.Search key="input"
               enterButton="选择文件"
-              readOnly={ true }
+              readOnly={ $readOnly }
               placeholder={ $placeholder }
               onSearch={ this.handleFileUpdateClick }
             />
