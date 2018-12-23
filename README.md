@@ -18,7 +18,8 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
   }
   ```
 
-3. 组件的使用：
+3. React的版本`>=16.6.0`。
+4. 组件的使用：
 
   ```javascript
   import React, { Component } from 'react';
