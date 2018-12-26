@@ -54,6 +54,12 @@ class OneOf extends Component{
 
     this.switchCallback(newIndex, index);
   };
+  // 切换指定index
+  handleDesignationIndexClick(index: number, event: Event): void{
+    const index2: number = this.state.index;
+
+    this.switchCallback(index, index2);
+  }
   // 切换的callback
   switchCallback(newIndex: number, index: number): void{
     const { root }: { root: Object } = this.props;
@@ -74,6 +80,23 @@ class OneOf extends Component{
       index: newIndex
     });
   }
+  // 渲染dot
+  listBoxDot(index: number, len: number): React.ChildrenArray<React.Element>{
+    const element: React.ChildrenArray<React.Element> = [];
+
+    for(let i: number = 0; i < len; i++){
+      element.push(
+        <li key={ i }
+          className={ index === i ? styleName('oneOf-current') : null }
+          role="button"
+          tabIndex={1}
+          onClick={ this.handleDesignationIndexClick.bind(this, i) }
+        />
+      );
+    }
+
+    return element;
+  }
   render(): React.Element{
     const { element }: { element: React.ChildrenArray<React.Element> } = this.props;
     const { index }: { index: number } = this.state;
@@ -81,8 +104,8 @@ class OneOf extends Component{
     return (
       <div className={ styleName('oneOf-box') }>
         { element[index] }
-        {/* 切换按钮 */}
-        <p className={ styleName('oneOf-indexBox') }>{ index + 1 } / { element.length }</p>
+        {/* 渲染box */}
+        <ul className={ styleName('oneOf-indexBox') }>{ this.listBoxDot(index, element.length) }</ul>
         <Button.Group className={ styleName('oneOf-group') }>
           <Button icon="left" title="上一个" onClick={ this.handlePrevIndexClick } />
           <Button icon="right" title="下一个" onClick={ this.handleNextIndexClick } />
