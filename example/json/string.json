@@ -137,6 +137,24 @@
       "title": "文件上传",
       "description": "文件上传",
       "$componentType": "upload"
+    },
+    "oneOf": {
+      "id": "$root/properties/string/properties/oneOf",
+      "title": "oneOf",
+      "description": "oneOf",
+      "oneOf": [
+        {
+          "type": "string",
+          "$componentType": "date"
+        },
+        {
+          "type": "string"
+        },
+        {
+          "type": "string",
+          "$required": true
+        }
+      ]
     }
   },
   "required": [

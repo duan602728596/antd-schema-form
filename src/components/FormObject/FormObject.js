@@ -7,8 +7,10 @@ import FormString from '../FormString/FormString';
 import FormNumber from '../FormNumber/FormNumber';
 import FormBoolean from '../FormBoolean/FormBoolean';
 import FormArray from '../FormArray/FormArray';
+import OneOf from './OneOf';
 import getValueFromObject from '../../utils/getValueFromObject';
 import getKeysFromObject from '../../utils/getKeysFromObject';
+import { isArray, isNumber } from '../../utils/type';
 
 /**
  * 当类型为object时的组件渲染
@@ -37,9 +39,16 @@ class FormObject extends Component{
 
   // 根据type渲染不同的组件
   renderComponentByTypeView(root: Object, required: boolean): ?React.Element{
-    const id: string = root.id;
-    const { type }: { type: string } = root;
+    const { id, type }: {
+      id: string,
+      type: string
+    } = root;
     const props: Object = { key: id, root, required };
+
+    // 渲染oneOf
+    if('oneOf' in root && isArray(root.oneOf) && root.oneOf.length > 0){
+      return this.renderOneOfComponentView(root, required);
+    }
 
     switch(type){
       case 'string':
@@ -61,6 +70,24 @@ class FormObject extends Component{
       default:
         return null;
     }
+  }
+  // oneOf组件
+  renderOneOfComponentView(root: Object, required: boolean): ?React.Element{
+    const element: React.ChildrenArray<React.Element> = [];
+
+    root.oneOf.forEach((value: Object, index: number, array: Array): void=>{
+      const childrenRoot: Object = { ...value };
+
+      for(const key: string in root){
+        if(!(key in childrenRoot) && !['oneOf'].includes(key)){
+          childrenRoot[key] = root[key];
+        }
+      }
+
+      element.push(this.renderComponentByTypeView(childrenRoot, required));
+    });
+
+    return <OneOf key={ root.id } root={ root } element={ element } />;
   }
   // 渲染一个object组件
   renderObjectComponentView(root: Object): React.Element{
