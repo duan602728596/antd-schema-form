@@ -82,7 +82,7 @@ class OneOf extends Component{
       <div className={ styleName('oneOf-box') }>
         { element[index] }
         {/* 切换按钮 */}
-        <p className={ styleName('oneOf-index') }>{ index + 1 } / { element.length }</p>
+        <p className={ styleName('oneOf-indexBox') }>{ index + 1 } / { element.length }</p>
         <Button.Group className={ styleName('oneOf-group') }>
           <Button icon="left" title="上一个" onClick={ this.handlePrevIndexClick } />
           <Button icon="right" title="下一个" onClick={ this.handleNextIndexClick } />
