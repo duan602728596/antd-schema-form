@@ -100,6 +100,7 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
 * `type: string`：数据类型，包括string、number、integer、boolean、array、object。schema form根据该类型渲染不同的组件。
 * `title: string`：标题，用于描述关键字的作用。表单的标题。
 * `description: string`：说明，用于描述关键字的作用。表单的描述。
+* `oneOf: Array<object>`：关键字可能的多个类型。
 
 ### `type="object"`：
 
