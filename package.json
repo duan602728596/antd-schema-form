@@ -1,6 +1,6 @@
 {
   "name": "antd-schema-form",
-  "version": "0.2.0-beta.1",
+  "version": "0.3.0-beta.1",
   "description": "基于antd，通过json schema配置表单。",
   "main": "lib/index.js",
   "author": {
@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
-    "antd": "^3.11.6",
+    "antd": "^3.12.1",
     "moment": "^2.23.0",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
