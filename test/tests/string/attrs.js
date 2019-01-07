@@ -45,3 +45,20 @@ export function selectComponentPlaceholder(): void{
 
   expect(antSelectSelectionPlaceholder.text()).to.be.equal('select组件的placeholder属性');
 }
+
+/* password组件的type属性 */
+export function passwordComponentType(): void{
+  const json: Object = {
+    id: '$root',
+    type: 'string',
+    title: 'password组件的type属性',
+    $componentType: 'password'
+  };
+
+  const wrapper: Object = mount(<SchemaForm json={ json } />);
+  const antInput: Object = wrapper.find('.ant-input');
+
+  expect(antInput.getDOMNode().type).to.be.equal('password');
+  wrapper.find('.ant-input-suffix').find('i').simulate('click');
+  expect(antInput.getDOMNode().type).to.be.equal('text');
+}

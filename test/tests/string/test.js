@@ -5,7 +5,7 @@ import {
   componentHasDefaultValue, componentHastValue, selectHasDefaultValue, selectHasValue, radioHasDefaultValue,
   radioHastValue, dateHasDefaultValue, dateHasValue, theValueOfTheComponentOverridesTheDefaultValue
 } from './hasValue';
-import { componentReadOnly, componentPlaceholder, selectComponentPlaceholder } from './attrs';
+import { componentReadOnly, componentPlaceholder, selectComponentPlaceholder, passwordComponentType } from './attrs';
 import {
   componentNoverification, componentRequired, componentEnum, componentMinLength, componentMaxLength, componentLength,
   componentPattern
@@ -41,6 +41,7 @@ describe('字符串组件', function(): void{
       it('组件只读', componentReadOnly);
       it('组件的placeholder属性', componentPlaceholder);
       it('select组件的placeholder属性', selectComponentPlaceholder);
+      it('password组件的type属性', passwordComponentType);
     });
 
     describe('表单验证', function(): void{
