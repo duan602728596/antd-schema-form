@@ -138,6 +138,10 @@
         {
           "label": "文件上传",
           "value": "upload"
+        },
+        {
+          "label": "密码输入",
+          "value": "password"
         }
       ]
     },
