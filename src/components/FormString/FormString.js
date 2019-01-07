@@ -6,6 +6,7 @@ import Context from '../../context';
 import styleName from '../../utils/styleName';
 import { isString, isFunction } from '../../utils/type';
 import createStringRules from './createStringRules';
+import InputPassword from './InputPassword';
 
 /**
  * 当类型为string时的组件渲染
@@ -131,6 +132,16 @@ class FormString extends Component{
             onChange={ this.handleInputChange.bind(this, id) }
           />
         ];
+        break;
+
+      // password
+      case 'password':
+        element = getFieldDecorator(id, option)(
+          // 兼容Input.Password组件
+          'Password' in Input
+            ? <Input.Password readOnly={ $readOnly } placeholder={ $placeholder } />
+            : <InputPassword readOnly={ $readOnly } placeholder={ $placeholder } />
+        );
         break;
 
       // 渲染默认组件

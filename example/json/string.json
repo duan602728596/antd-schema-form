@@ -138,6 +138,14 @@
       "description": "文件上传",
       "$componentType": "upload"
     },
+    "password": {
+      "id": "$root/properties/string/properties/password",
+      "type": "string",
+      "title": "密码",
+      "description": "密码",
+      "$componentType": "password",
+      "$placeholder": "请输入密码"
+    },
     "oneOf": {
       "id": "$root/properties/string/properties/oneOf",
       "title": "oneOf",
