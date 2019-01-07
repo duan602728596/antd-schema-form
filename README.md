@@ -55,7 +55,7 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
 | onCancel | 表单的取消事件 | (form: object) => void |
 | okText | 确认按钮文字 | string |
 | cancelText | 取消按钮文字 | string |
-| footer | 自定义底部内容，[参考](https://github.com/duan602728596/antd-schema-form/blob/master/src/components/FormObject/FormObject.js#L95) |  (form: object) => React.Node  |
+| footer | 自定义底部内容，[参考](https://github.com/duan602728596/antd-schema-form/blob/master/src/components/FormObject/FormObject.js#L122) |  (form: object) => React.Node  |
 | onUpload | 文件上传事件 | (file: Array&lt;File&gt;) => Promise&lt;string&gt; |
 
 ## json schema配置
@@ -138,6 +138,7 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
   | radio | 单选框 |
   | date | 日期选择器 |
   | upload | 文件上传 |
+  | password | 密码框 |
   
 * `$options: Array<{ label: string, value: string }>`：当$componentType为select、radio时，可选的选项。
   
