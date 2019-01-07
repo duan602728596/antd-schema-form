@@ -10,11 +10,11 @@ import FormArray from '../FormArray/FormArray';
 import OneOf from './OneOf';
 import getValueFromObject from '../../utils/getValueFromObject';
 import getKeysFromObject from '../../utils/getKeysFromObject';
-import { isArray, isNumber } from '../../utils/type';
+import { isArray } from '../../utils/type';
 
 /**
  * 当类型为object时的组件渲染
- * json schema的属性包括：id、type、title、description、properties、required
+ * json schema的属性包括：id, type, title, description, properties, required
  */
 class FormObject extends Component{
   static contextType: Object = Context;

@@ -12,8 +12,8 @@ import createStringRules from './createStringRules';
  * json schema的属性包括：id, type, title, description, pattern, minLength, maxLength, enum
  *
  * 扩展属性前必须加上"$"
- * 扩展属性包括：required, componentType, readOnly, length, patternOption, enumMessage, lengthMessage, requiredMessage, patternMessage、
- *   minLengthMessage, maxLengthMessage, options, defaultValue, placeholder
+ * 扩展属性包括：required, componentType, readOnly, length, patternOption, enumMessage, lengthMessage, requiredMessage,
+ *   patternMessage, minLengthMessage, maxLengthMessage, options, defaultValue, placeholder
  */
 class FormString extends Component{
   static contextType: Object = Context;
