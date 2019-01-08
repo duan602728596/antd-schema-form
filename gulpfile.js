@@ -26,10 +26,24 @@ const babelConfig = {
     '@babel/preset-flow'
   ],
   plugins: [
-    ['@babel/plugin-proposal-decorators', { legacy: true }],
+    [
+      '@babel/plugin-proposal-decorators',
+      {
+        legacy: true
+      }
+    ],
     '@babel/plugin-proposal-do-expressions',
     '@babel/plugin-proposal-optional-chaining',
-    '@babel/plugin-proposal-class-properties'
+    '@babel/plugin-proposal-class-properties',
+    [
+      '@babel/plugin-transform-runtime',
+      {
+        corejs: false,
+        helpers: true,
+        regenerator: true,
+        useESModules: true
+      }
+    ]
   ]
 };
 
