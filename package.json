@@ -1,6 +1,6 @@
 {
   "name": "antd-schema-form",
-  "version": "0.3.0-beta.1",
+  "version": "0.3.0-beta.2",
   "description": "基于antd，通过json schema配置表单。",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -9,6 +9,11 @@
     "email": "duanhaochen@126.com",
     "url": "https://github.com/duan602728596"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:duan602728596/antd-schema-form.git"
+  },
+  "homepage": "https://duan602728596.github.io/antd-schema-form/#/",
   "license": "MIT",
   "scripts": {
     "dll": "milktea dll --config=\"./config/example/.sweetrc.js\"",
