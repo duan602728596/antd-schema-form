@@ -9,6 +9,11 @@
     "email": "duanhaochen@126.com",
     "url": "https://github.com/duan602728596"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:duan602728596/antd-schema-form.git"
+  },
+  "homepage": "https://duan602728596.github.io/antd-schema-form/#/",
   "license": "MIT",
   "scripts": {
     "dll": "milktea dll --config=\"./config/example/.sweetrc.js\"",

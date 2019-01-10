@@ -127,7 +127,7 @@ class FormObject extends Component{
     } = this.props;
     const keys: string[] = getKeysFromObject(root);
 
-    form.validateFields(keys, (err: any, value: Object): void=>{
+    form.validateFieldsAndScroll(keys, (err: any, value: Object): void=>{
       if(err) return void 0;
 
       const value2: Object = getValueFromObject(value);
