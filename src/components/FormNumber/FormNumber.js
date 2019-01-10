@@ -21,7 +21,11 @@ class FormNumber extends Component{
   };
 
   render(): React.Element{
-    const { getFieldDecorator }: { getFieldDecorator: Function } = this.context.form;
+    const { form, customComponent }: {
+      form: Object,
+      customComponent: Object
+    } = this.context;
+    const { getFieldDecorator }: { getFieldDecorator: Function } = form;
     // type=object时，会判断key是否存在于required数组中
     const { root, required }: {
       root: Object,
@@ -52,9 +56,11 @@ class FormNumber extends Component{
         break;
 
       default:
-        element = getFieldDecorator(id, option)(
-          <InputNumber className={ styleName('number-input') } readOnly={ $readOnly } placeholder={ $placeholder } />
-        );
+        element = $componentType in customComponent
+          ? customComponent[$componentType](root, option, form, required)
+          : getFieldDecorator(id, option)(
+            <InputNumber className={ styleName('number-input') } readOnly={ $readOnly } placeholder={ $placeholder } />
+          );
     }
 
     return (

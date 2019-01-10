@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Input, Icon } from 'antd';
 import SchemaForm from '../../src/SchemaForm';
 import '../../src/style/antd-schema-form.sass';
 import stringJson from '../json/string.json';
@@ -30,16 +31,36 @@ const value: Object = {
   }
 };
 
+// 文件上传
 async function handleFileUpload(file: Array<File>): Promise<string>{
   return `${ file[0].lastModified }`;
 }
 
+// 点击事件
 function handleClick(form: Object, value: Object, keys: string): void{
   console.log(value, keys);
 }
 
+// 自定义组件
+const customComponent: Object = {
+  custom(item: Object, option: Object, form: Object, required: boolean): React.Element{
+    const { getFieldDecorator }: { getFieldDecorator: Function } = form;
+
+    return getFieldDecorator(item.id, option)(
+      <Input placeholder="自定义组件" required={ required } addonAfter={ <Icon type="setting" /> } />
+    );
+  }
+};
+
 function Form(props: Object): React.Element{
-  return <SchemaForm json={ json } value={ value } onOk={ handleClick } onUpload={ handleFileUpload } />;
+  return (
+    <SchemaForm json={ json }
+      value={ value }
+      customComponent={ customComponent }
+      onOk={ handleClick }
+      onUpload={ handleFileUpload }
+    />
+  );
 }
 
 export default Form;

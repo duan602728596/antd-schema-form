@@ -14,7 +14,8 @@ import { isSpace } from '../../utils/type';
 class FormBoolean extends Component{
   static contextType: Object = Context;
   static propTypes: Object = {
-    root: PropTypes.object
+    root: PropTypes.object,
+    required: PropTypes.bool
   };
 
   state: {
@@ -46,8 +47,15 @@ class FormBoolean extends Component{
     };
   }
   render(): React.Element{
-    const { getFieldDecorator }: { getFieldDecorator: Function } = this.context.form;
-    const { root }: { root: Object } = this.props;
+    const { form, customComponent }: {
+      form: Object,
+      customComponent: Object
+    } = this.context;
+    const { getFieldDecorator }: { getFieldDecorator: Function } = form;
+    const { root, required }: {
+      root: Object,
+      required: boolean
+    } = this.props;
     const { id, title, description, $componentType, $defaultValue }: {
       id: string,
       title: string,
@@ -68,7 +76,9 @@ class FormBoolean extends Component{
         break;
 
       default:
-        element = getFieldDecorator(id, option)(<Checkbox checked={ isChecked } />);
+        element = $componentType in customComponent
+          ? customComponent[$componentType](root, option, form, required)
+          : getFieldDecorator(id, option)(<Checkbox checked={ isChecked } />);
     }
 
     return (

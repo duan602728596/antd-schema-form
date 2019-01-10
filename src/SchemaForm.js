@@ -21,7 +21,12 @@ class SchemaForm extends Component{
       PropTypes.string,
       PropTypes.number
     ]),
-    footer: PropTypes.func
+    footer: PropTypes.func,
+    customComponent: PropTypes.objectOf(PropTypes.func)
+  };
+
+  static defaultProps: Object = {
+    customComponent: {}
   };
 
   constructor(): void{
@@ -54,7 +59,7 @@ class SchemaForm extends Component{
     return null;
   }
   render(): React.Element{
-    const { form, json, onUpload, onOk, onCancel, okText, cancelText, footer }: {
+    const { form, json, onUpload, onOk, onCancel, okText, cancelText, footer, customComponent }: {
       form: Object,
       json: Object,
       onUpload: ?Function,
@@ -62,11 +67,12 @@ class SchemaForm extends Component{
       onCancel: ?Function,
       okText: ?(string | number),
       cancelText: ?(string | number),
-      footer: ?Function
+      footer: ?Function,
+      customComponent: Object
     } = this.props;
 
     return (
-      <Context.Provider value={{ form, onUpload }}>
+      <Context.Provider value={{ form, onUpload, customComponent }}>
         <FormObject root={ json }
           onOk={ onOk }
           onCancel={ onCancel }

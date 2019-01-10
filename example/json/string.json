@@ -146,6 +146,14 @@
       "$componentType": "password",
       "$placeholder": "请输入密码"
     },
+    "custom": {
+      "id": "$root/properties/string/properties/custom",
+      "type": "string",
+      "title": "自定义组件",
+      "description": "自定义组件",
+      "$componentType": "custom",
+      "$placeholder": "自定义组件"
+    },
     "oneOf": {
       "id": "$root/properties/string/properties/oneOf",
       "title": "oneOf",

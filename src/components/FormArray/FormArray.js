@@ -15,7 +15,8 @@ import styleName from '../../utils/styleName';
 class FormArray extends Component{
   static contextType: Object = Context;
   static propTypes: Object = {
-    root: PropTypes.object
+    root: PropTypes.object,
+    required: PropTypes.bool
   };
 
   // select的下拉框
@@ -25,11 +26,18 @@ class FormArray extends Component{
     });
   }
   render(): React.Element{
+    const { form, customComponent }: {
+      form: Object,
+      customComponent: Object
+    } = this.context;
     const { getFieldDecorator, getFieldProps }: {
       getFieldDecorator: Function,
       getFieldProps: Function
-    } = this.context.form;
-    const { root }: { root: Object } = this.props;
+    } = form;
+    const { root, required }: {
+      root: Object,
+      required: boolean
+    } = this.props;
     const { id, title, description, $componentType, $defaultValue, $options = [] }: {
       id: string,
       title: string,
@@ -58,7 +66,9 @@ class FormArray extends Component{
         break;
 
       default:
-        element = <TableComponent root={ root } { ...getFieldProps(id, option) } />;
+        element = $componentType in customComponent
+          ? customComponent[$componentType](root, option, form, required)
+          : <TableComponent root={ root } { ...getFieldProps(id, option) } />;
     }
 
     return (
