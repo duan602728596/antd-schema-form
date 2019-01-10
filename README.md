@@ -27,7 +27,7 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
   import Schemaform, { 
     getKeysFromObject,  // 获取schema.json下所有的key
     getObjectFromValue, // object对象，格式化成表单需要的值
-    getValueFromObject. // 从form获取到的表单的值，格式化成object对象
+    getValueFromObject  // 从form获取到的表单的值，格式化成object对象
   } from 'antd-schema-form';
   import 'antd-schema-form/style/antd-schema-form.css'; // 引入样式
 
@@ -57,6 +57,7 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
 | cancelText | 取消按钮文字 | string |
 | footer | 自定义底部内容，[参考](https://github.com/duan602728596/antd-schema-form/blob/master/src/components/FormObject/FormObject.js#L122) |  (form: object) => React.Node  |
 | onUpload | 文件上传事件 | (file: Array&lt;File&gt;) => Promise&lt;string&gt; |
+| customComponent | 自定义渲染组件，[参考](#自定义渲染组件) | object |
 
 ## json schema配置
 
@@ -192,6 +193,51 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
   | multiple | 下拉框的多选模式 |
   
 * `$options: Array<{ label: string, value: string | number }>`：当$componentType为checkbox、multiple时，可选的选项。
+
+## 自定义渲染组件
+
+自定义渲染组件允许开发者渲染个人定制的组件。
+
+```javascript
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import Schemaform from 'antd-schema-form';
+import 'antd-schema-form/style/antd-schema-form.css';
+
+const customComponent = {
+  // 自定义组件
+  custom(item, option, form, required){
+    const { getFieldDecorator } = form;
+
+    return getFieldDecorator(item.id, option)(
+      <Input placeholder="自定义组件" required={ required } />
+    );
+  },
+  // ...其他自定义组件
+};
+
+const schemaJson = {
+  id: '$root',
+  type: 'string',
+  title: '自定义渲染组件',
+  $componentType: 'custom' // 自定义组件的key
+};
+
+ReactDOM.render(
+  <SchemaForm json={ schemaJson } customComponent={ customComponent } />,
+  document.getElementById('app')
+);
+```
+
+SchemaForm的自定义组件属性`customComponent`类型为`object`，其中的每个值的类型都为`(item, option, form, required) => React.Node`。   
+函数参数：
+
+| 参数 | 说明 | 类型 |
+| --- | --- | --- |
+| item | 当前的组件需要的id、title等json schema的信息 | object |
+| option | form.getFieldDecorator的表单配置 | object |
+| form | antd的form对象 | object |
+| required | 字段是否必填 | boolean |
 
 ## 开发和测试
 
