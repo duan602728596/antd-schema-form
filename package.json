@@ -1,6 +1,6 @@
 {
   "name": "antd-schema-form",
-  "version": "0.3.0-beta.1",
+  "version": "0.4.0-beta.1",
   "description": "基于antd，通过json schema配置表单。",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -25,11 +25,8 @@
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
     "@babel/runtime": "^7.2.0",
-    "antd": "^3.12.1",
     "moment": "^2.23.0",
-    "prop-types": "^15.6.2",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "prop-types": "^15.6.2"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
@@ -48,6 +45,7 @@
     "@sweet/milktea-cli": "github:duan602728596/sweet#build-milktea-cli",
     "@sweet/server": "github:duan602728596/sweet#build-server",
     "@sweet/util-tools": "github:duan602728596/sweet#build-util-tools",
+    "antd": "^3.12.1",
     "babel-eslint": "^10.0.1",
     "babel-plugin-import": "^1.11.0",
     "chai": "^4.2.0",
@@ -63,9 +61,12 @@
     "gulp-sass": "^4.0.2",
     "mocha": "^5.2.0",
     "pre-commit": "^1.2.2",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
     "rimraf": "^2.6.2"
   },
   "peerDependencies": {
+    "antd": ">=3.12.0",
     "react": ">=16.6.0",
     "react-dom": ">=16.6.0"
   },
