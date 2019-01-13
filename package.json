@@ -15,6 +15,11 @@
   },
   "homepage": "https://duan602728596.github.io/antd-schema-form/#/",
   "license": "MIT",
+  "keywords": [
+    "form",
+    "antd",
+    "react-component"
+  ],
   "scripts": {
     "dll": "milktea dll --config=\"./config/example/.sweetrc.js\"",
     "dev": "milktea start --server --config=\"./config/example/.sweetrc.js\"",
