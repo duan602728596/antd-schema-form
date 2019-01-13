@@ -1,14 +1,13 @@
 # antd-schema-form
 
-antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Schema](http://json-schema.org/draft-07/json-schema-validation.html)配置快速生成可交互的表单。   
+[中文文档](README-zhCN.md)
 
-这个[Demo](https://duan602728596.github.io/antd-schema-form/#/)简单的展示了通过配置schema.json构建一个表单。
+Antd-schema-form based [Ant Design](https://ant.design/), quickly generate interactive forms with [JSON Schema](http://json-schema.org/draft-07/json-schema-validation.html) configuration.
 
+## Start using
 
-## 开始使用
-
-1. 在使用之前，你需要在babel配置antd的[按需加载](https://ant.design/docs/react/introduce-cn#%E6%8C%89%E9%9C%80%E5%8A%A0%E8%BD%BD)。
-2. 如果你引入了es风格的代码，需要为babel-loader的exclude做如下配置：
+1. Before using, you need to configure antd in the babel [on-demand loading](https://ant.design/docs/react/introduce#Use-modularized-antd).
+2. You need to configure the exclude of babel-loader as follows:
 
   ```javascript
   {
@@ -16,18 +15,18 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
     use: 'babel-loader',
     exclude: /node_modules[\\/](?!antd-schema-form)/
   }
-  ```
-
-3. React的版本`>=16.6.0`。
-4. 组件的使用：
+  ``` 
+  
+3. React version `>=16.6.0`.
+4. Use of components:
 
   ```javascript
   import React, { Component } from 'react';
   import ReactDOM from 'react-dom';
   import Schemaform, { 
-    getKeysFromObject,  // 获取schema.json下所有的key
-    getObjectFromValue, // object对象，格式化成表单需要的值
-    getValueFromObject  // 从form获取到的表单的值，格式化成object对象
+    getKeysFromObject,  // Get all the keys under schema.json
+    getObjectFromValue, // Object formatted into the value required by the form
+    getValueFromObject  // The value of the form obtained from the form, formatted into an object
   } from 'antd-schema-form';
   import 'antd-schema-form/style/antd-schema-form.css'; // 引入样式
 
@@ -44,33 +43,33 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
     document.getElementById('app')
   );
  ```
-
+ 
 ## API
 
-| 参数  | 说明 | 类型 |
+| Parameter | Description | Type |
 | --- | --- | --- |
-| json | json schema，必需 | object |
-| value | 表单的值 | object |
-| onOk | 表单的确认事件 | (form: object, value: object, keys: Array&lt;string&gt;) => void |
-| onCancel | 表单的取消事件 | (form: object) => void |
-| okText | 确认按钮文字 | string |
-| cancelText | 取消按钮文字 | string |
-| footer | 自定义底部内容，[参考](https://github.com/duan602728596/antd-schema-form/blob/master/src/components/FormObject/FormObject.js#L122) |  (form: object) => React.Node  |
-| onUpload | 文件上传事件 | (file: Array&lt;File&gt;) => Promise&lt;string&gt; |
-| customComponent | 自定义渲染组件，[参考](#自定义渲染组件) | object |
+| json | Json schema, required. | object |
+| value | Form value. | object |
+| onOk | Form confirmation event. | (form: object, value: object, keys: Array&lt;string&gt;) => void |
+| onCancel | Form cancellation event. | (form: object) => void |
+| okText | Confirm button text. | string |
+| cancelText | Cancel button text. | string |
+| footer | Custom bottom content, [reference](https://github.com/duan602728596/antd-schema-form/blob/master/src/components/FormObject/FormObject.js#L122) |  (form: object) => React.Node  |
+| onUpload | File upload event. | (file: Array&lt;File&gt;) => Promise&lt;string&gt; |
+| customComponent | Custom rendering component, [reference](#自定义渲染组件) | object |
 
-## json schema配置
+## Json schema configuration
 
-表单根据json schema配置，json schema属性参考[http://json-schema.org/draft-07/json-schema-validation.html](http://json-schema.org/draft-07/json-schema-validation.html)。      
+The form is configured according to json schema, json schema attribute reference [http://json-schema.org/draft-07/json-schema-validation.html](http://json-schema.org/draft-07/json-schema-validation.html).
 
-您可以通过[表单生成](https://duan602728596.github.io/antd-schema-form/#/CreateForm)和[表单预览](https://duan602728596.github.io/antd-schema-form/#/Preview)功能来代替一部分的手写json schema的工作。
+You can use [form generation](https://duan602728596.github.io/antd-schema-form/#/CreateForm) and [form preview](https://duan602728596.github.io/antd-schema-form/ The #/Preview) function replaces the work of a part of the handwritten json schema.
 
-### 属性
+### Attributes
 
-> 由于json schema的属性并不能完全满足表单的生成，所以也添加了一些自定义的属性，自定义的属性名称约定以`$`开头。
+> Since the properties of the json schema do not fully satisfy the generation of the form, some custom properties have been added. The custom property name convention begins with `$`.
 
-* `id: string`：当前属性的id。一般约定以`$root`开头，以`/`作为分隔，例如`$root/key1/key2`，id和json的键名要对应。
-  当type为`object`时，需要加`/properties`，例如：
+* `id: string`: The id of the current attribute. The general convention begins with `$root` and is separated by `/`. For example, `$root/key1/key2`, the id and json key names must correspond.
+  When type is `object`, you need to add `/properties`, for example:
   
   ```json
   {
@@ -85,7 +84,7 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
   }
   ```
   
-  当type为`array`时，items需要加`/items`，例如：
+  When type is `array`, items need to add `/items`, for example:
   
   ```json
   {
@@ -97,106 +96,106 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
     }
   }
   ```
-  
-* `type: string`：数据类型，包括string、number、integer、boolean、array、object。schema form根据该类型渲染不同的组件。
-* `title: string`：标题，用于描述关键字的作用。表单的标题。
-* `description: string`：说明，用于描述关键字的作用。表单的描述。
-* `oneOf: Array<object>`：关键字可能的多个类型。
 
-### `type="object"`：
+* `type: string`: data type, including string, number, integer, boolean, array, object. The schema form renders different components based on that type.
+* `title: string`: Title, used to describe the role of the keyword. The title of the form.
+* `description: string`: Description, used to describe the role of the keyword. A description of the form.
+* `oneOf: Array<object>`: Multiple types of keywords possible.
 
-组件默认渲染折叠面板（[Collapse](https://ant.design/components/collapse-cn/)）。**配置属性：**
+### `type="object"`:
 
-* `properties: object`：当**type**为**object**时，列出对象下面的属性。
-* `required: Array<string>`：对象必须包含的属性。不同于`$required`属性。
+The component renders the collapsed panel by default ([Collapse](https://ant.design/components/collapse-cn/)). **Configuration properties: **
 
-### `type="string"`：
+* `properties: object`: When **type** is **object**, the attributes below the object are listed.
+* `required: Array<string>`: The attributes that the object must contain. Unlike the `$required` attribute.
 
-组件默认渲染输入框（[Input](https://ant.design/components/input-cn/)）。**配置属性：**
+### `type="string"`:
 
-* `$required: boolean`：当前的对象值必须存在。对应表单的required验证。
-* `$requiredMessage: string`：自定义required的验证失败提示信息。
-* `pattern: string`：正则表达式验证。
-* `$patternOption: string`：用于指定全局匹配、区分大小写的匹配和多行匹配。
-* `$patternMessage: string`：自定义pattern的验证失败提示信息。
-* `minLength: number`：字符串的最小长度验证。
-* `$minLengthMessage: string`：自定义minLength的验证失败提示信息。
-* `maxLength: number`：字符串的最大长度验证。
-* `$maxLengthMessage: string`：自定义maxLength的验证失败提示信息。
-* `$length: number`：字符串的指定长度验证。
-* `$lengthMessage: string`：自定义$length的验证失败提示信息。
-* `enum: Array<string>`：验证表单控件的值必须在此关键字的数组值中。
-* `$enumMessage: string`：自定义enum的验证失败信息。
-* `$readOnly: boolean`：表单控件只读。
-* `$placeholder: string`：表单控件的placeholder属性。
-* `$defaultValue: string`：表单控件的默认值。
-* `$componentType: string`：渲染为其他组件。
+The component renders the input box by default ([Input](https://ant.design/components/input/)). **Configuration properties: **
 
-  | 值 | 组件名称 |
+* `required: boolean`: The current object value must exist. Corresponding validation of the corresponding form.
+* `$requiredMessage: string`: Customize the required verification failure message.
+* `pattern: string`: regular expression validation.
+* `$patternOption: string`: Used to specify global matches, case-sensitive matches, and multi-line matches.
+* `$patternMessage: string`: Custom pattern validation failure message.
+* `minLength: number`: The minimum length of the string is verified.
+* `$minLengthMessage: string`: Customize the verification failure message for minLength.
+* `maxLength: number`: The maximum length of the string is verified.
+* `$maxLengthMessage: string`: Customize the maxLength verification failure message.
+* `$length: number`: The specified length of the string is verified.
+* `$lengthMessage: string`: Customize the $length validation failure message.
+* `enum: Array<string>`: Verify that the value of the form control must be in the array value of this keyword.
+* `$enumMessage: string`: Customize the enum's validation failure message.
+* `$readOnly: boolean`: The form control is read-only.
+* `$placeholder: string`: The placeholder property of the form control.
+* `$defaultValue: string`: The default value of the form control.
+* `$componentType: string`: Rendered as other components.
+
+  | Value | Component Name |
   | --- | --- | 
-  | textArea | 文本域 |
-  | select | 下拉框 |
-  | radio | 单选框 |
-  | date | 日期选择器 |
-  | upload | 文件上传 |
-  | password | 密码框 |
-  
-* `$options: Array<{ label: string, value: string }>`：当$componentType为select、radio时，可选的选项。
-  
-### `type="number"`或`type="integer"`：
+  | textArea | Text field. |
+  | select | Drop-down box. |
+  | radio | Radio box. |
+  | date | Date picker. |
+  | upload | File Upload. |
+  | password | Password box. |
 
-组件默认渲染数字输入框（[InputNumber](https://ant.design/components/input-number-cn/)）。**配置属性：**
+* `$options: Array<{ label: string, value: string }>`: Optional when $componentType is select, radio.
 
-* `$required: boolean`：当前的对象值必须存在。对应表单的required验证。
-* `$requiredMessage: string`：自定义required的验证失败提示信息。
-* `minimum: number`：表单的最小值。
-* `$minimumMessage: string`：自定义minimum的验证失败提示信息。
-* `maximum: number`：表单的最大值。
-* `$maximumMessage: string`：自定义maximum的验证失败提示信息。
-* `$integer: boolean`：必须是整数。当type为integer时，默认验证此项。
-* `$integerMessage: string`：自定义$integer的验证失败提示信息。
-* `enum: Array<number>`：验证表单控件的值必须在此关键字的数组值中。
-* `$enumMessage: string`：自定义enum的验证失败信息。
-* `$readOnly: boolean`：表单控件只读。
-* `$placeholder: string`：表单控件的placeholder属性。
-* `$defaultValue: number`：表单控件的默认值。
-* `$componentType: string`：渲染为其他组件。
+### `type="number"` or `type="integer"`:
 
-  | 值 | 组件名称 |
+The component renders the numeric input box by default ([InputNumber](https://ant.design/components/input-number/)). **Configuration properties: **
+
+* `required: boolean`: The current object value must exist. Corresponding validation of the corresponding form.
+* `$requiredMessage: string`: Customize the required verification failure message.
+* `minimum: number`: the minimum value of the form.
+* `$minimumMessage: string`: Customize the verification failure message for the minimum.
+* `maximum: number`: the maximum value of the form.
+* `$maximumMessage: string`: Customize the verification failure message for maximum.
+* `$integer: boolean`: Must be an integer. When type is integer, this item is verified by default.
+* `$integerMessage: string`: Customize the authentication failure message for $integer.
+* `enum: Array<number>`: Verify that the value of the form control must be in the array value of this keyword.
+* `$enumMessage: string`: Customize the enum's validation failure message.
+* `$readOnly: boolean`: The form control is read-only.
+* `$placeholder: string`: The placeholder property of the form control.
+* `$defaultValue: number`: The default value of the form control.
+* `$componentType: string`: Rendered as other components.
+
+  | Value | Component Name |
   | --- | --- | 
-  | radio | 单选框 |
-  
-* `$options: Array<{ label: string, value: number }>`：当$componentType为radio时，可选的选项。
+  | radio | Radio box. |
 
-### `type="boolean"`：
+* `$options: Array<{ label: string, value: number }>`: Optional option when $componentType is radio.
 
-组件默认渲染多选框（[Checkbox](https://ant.design/components/checkbox-cn/)）。**配置属性：**
+### `type="boolean"`:
 
-* `$defaultValue: boolean`：表单控件的默认值。
-* `$componentType: string`：渲染为其他组件。
+The component renders a checkbox by default ([Checkbox](https://ant.design/components/checkbox/)). **Configuration properties: **
 
-  | 值 | 组件名称 |
+* `$defaultValue: boolean`: The default value of the form control.
+* `$componentType: string`: Rendered as other components.
+
+  | Value | Component Name |
   | --- | --- | 
-  | switch | 开关 |
-  
-### `type="array"`：
+  | switch | Switch. |
 
-组件默认渲染表格（[Table](https://ant.design/components/table-cn/)）。**配置属性：**
+### `type="array"`:
 
-* `items: object`：数组的内容。
-* `$defaultValue: Array<any>`：表单控件的默认值。
-* `$componentType: string`：渲染为其他组件。
+The component renders the table by default ([Table](https://ant.design/components/table/)). **Configuration properties: **
+ 
+* `items: object`: the contents of the array.
+* `$defaultValue: Array<any>`: The default value of the form control.
+* `$componentType: string`: Rendered as other components.
 
-  | 值 | 组件名称 |
-  | --- | --- | 
-  | checkbox | 多选框 |
-  | multiple | 下拉框的多选模式 |
-  
-* `$options: Array<{ label: string, value: string | number }>`：当$componentType为checkbox、multiple时，可选的选项。
+  | Value | Component Name |
+  | --- | --- |
+  | checkbox | Multiple checkbox. |
+  | multiple | Drop-down box multiple selection mode. |
 
-## 自定义渲染组件
+* `$options: Array<{ label: string, value: string | number }>`: Optional when $componentType is checkbox, multiple.
 
-自定义渲染组件允许开发者渲染个人定制的组件。
+## Custom rendering component
+
+Custom rendering components allow developers to render custom components.
 
 ```javascript
 import React, { Component } from 'react';
@@ -205,7 +204,7 @@ import Schemaform from 'antd-schema-form';
 import 'antd-schema-form/style/antd-schema-form.css';
 
 const customComponent = {
-  // 自定义组件
+  // Custom component
   custom(item, option, form, required){
     const { getFieldDecorator } = form;
 
@@ -213,14 +212,14 @@ const customComponent = {
       <Input placeholder="自定义组件" required={ required } />
     );
   },
-  // ...其他自定义组件
+  // ...Other custom components
 };
 
 const schemaJson = {
   id: '$root',
   type: 'string',
-  title: '自定义渲染组件',
-  $componentType: 'custom' // 自定义组件的key
+  title: 'Custom rendering component',
+  $componentType: 'custom' // Custom component key
 };
 
 ReactDOM.render(
@@ -229,19 +228,17 @@ ReactDOM.render(
 );
 ```
 
-SchemaForm的自定义组件属性`customComponent`类型为`object`，其中的每个值的类型都为`(item, option, form, required) => React.Node`。   
-函数参数：
+SchemaForm's custom component property `customComponent` is of type `object`, each of which has the type `(item, option, form, required) => React.Node`.   
+Function parameters:
 
-| 参数 | 说明 | 类型 |
+| Parameter | Description | Type |
 | --- | --- | --- |
-| item | 当前的组件需要的id、title等json schema的信息 | object |
-| option | form.getFieldDecorator的表单配置 | object |
-| form | antd的form对象 | object |
-| required | 字段是否必填 | boolean |
+| item | Information about the id, title, etc. Json schema required by the current. | component | object |
+| option | Form configuration for form.getFieldDecorator. | object |
+| form | Antd's form object. | object |
+| required | Field required | boolean |
 
-## 开发和测试
+## Development and testing
 
-* 运行命令`npm run dll`、`npm run dev`，在浏览器中输入`http://127.0.0.1:5050`查看demo并开发。
-* 运行命令`npm run dll`、`npm run test`，在浏览器中输入`http://127.0.0.1:6060`运行测试用例。
-
-
+* Run the command `npm run dll`, `npm run dev`, enter `http://127.0.0.1:5050` in the browser to view the demo and develop.
+* Run the command `npm run dll`, `npm run test`, and run `http://127.0.0.1:6060` in the browser to run the test case.
