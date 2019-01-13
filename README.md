@@ -56,7 +56,7 @@ Antd-schema-form based [Ant Design](https://ant.design/), quickly generate inter
 | cancelText | Cancel button text. | string |
 | footer | Custom bottom content, [reference](https://github.com/duan602728596/antd-schema-form/blob/master/src/components/FormObject/FormObject.js#L122) |  (form: object) => React.Node  |
 | onUpload | File upload event. | (file: Array&lt;File&gt;) => Promise&lt;string&gt; |
-| customComponent | Custom rendering component, [reference](#自定义渲染组件) | object |
+| customComponent | Custom rendering component, [reference](#custom-rendering-component) | object |
 
 ## Json schema configuration
 
@@ -209,7 +209,7 @@ const customComponent = {
     const { getFieldDecorator } = form;
 
     return getFieldDecorator(item.id, option)(
-      <Input placeholder="自定义组件" required={ required } />
+      <Input placeholder="Custom rendering component." required={ required } />
     );
   },
   // ...Other custom components
