@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Spin, Icon } from 'antd';
 import style from './style.sass';
 
-function SwitchLoading(): React.Element{
+function SwitchLoading(props: Object): React.Element{
   return (
     <div className={ style.loadingBox }>
       <div className={ style.loading }>
