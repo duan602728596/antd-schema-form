@@ -1,5 +1,6 @@
 import React, { Component, createContext } from 'react';
 import PropTypes from 'prop-types';
+import languagePack from './languagePack';
 
 export const I18NContext: Object = createContext({ language: 'default' });
 
@@ -32,7 +33,8 @@ export class I18N extends Component{
     const { language }: { language: string } = this.state;
     const contextValue: Object = {
       language,
-      onSelect: this.handleLanguageSelect
+      onSelect: this.handleLanguageSelect,
+      languagePack: language in languagePack ? languagePack[language] : languagePack.default
     };
 
     return <I18NContext.Provider value={ contextValue }>{ children }</I18NContext.Provider>;

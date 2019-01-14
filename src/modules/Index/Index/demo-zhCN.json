@@ -1,49 +1,49 @@
 {
   "id": "$root",
   "type": "object",
-  "title": "Form",
-  "description": "Form preview.",
+  "title": "表单",
+  "description": "表单预览。",
   "properties": {
     "name": {
       "id": "$root/properties/name",
       "type": "string",
-      "title": "Name",
-      "description": "Please type in your name.",
+      "title": "姓名",
+      "description": "请输入姓名",
       "$required": true
     },
     "age": {
       "id": "$root/properties/age",
       "type": "number",
-      "title": "Age",
-      "description": "Please enter age."
+      "title": "年龄",
+      "description": "请输入年龄"
     },
     "gender": {
       "id": "$root/properties/gender",
       "type": "string",
-      "title": "Gender",
-      "description": "Please select gender.",
+      "title": "性别",
+      "description": "请选择性别",
       "$componentType": "radio",
       "$options": [
         {
-          "label": "Male",
-          "value": "Male"
+          "label": "男",
+          "value": "男"
         },
         {
-          "label": "Female",
-          "value": "Female"
+          "label": "女",
+          "value": "女"
         }
       ]
     },
     "schools": {
       "id": "$root/properties/schools",
       "type": "array",
-      "title": "Educational experience",
-      "description": "Educational experience.",
+      "title": "教育经历",
+      "description": "教育经历",
       "items": {
         "id": "$root/properties/schools/items",
         "type": "string",
-        "title": "Institution",
-        "description": "Please fill in the school.",
+        "title": "就读院校",
+        "description": "请填写学校",
         "$required": true
       }
     }
