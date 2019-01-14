@@ -1,6 +1,6 @@
 {
   "name": "antd-schema-form",
-  "version": "0.4.0-beta.1",
+  "version": "1.0.0",
   "description": "基于antd，通过json schema配置表单。",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -55,7 +55,7 @@
     "@sweet/milktea-cli": "github:duan602728596/sweet#build-milktea-cli",
     "@sweet/server": "github:duan602728596/sweet#build-server",
     "@sweet/util-tools": "github:duan602728596/sweet#build-util-tools",
-    "antd": "^3.12.1",
+    "antd": "^3.12.3",
     "babel-eslint": "^10.0.1",
     "babel-plugin-import": "^1.11.0",
     "chai": "^4.2.0",
@@ -63,9 +63,9 @@
     "cross-env": "^5.2.0",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.7.1",
-    "eslint": "^5.11.0",
-    "eslint-plugin-flowtype": "^3.2.0",
-    "eslint-plugin-react": "^7.11.1",
+    "eslint": "^5.12.0",
+    "eslint-plugin-flowtype": "^3.2.1",
+    "eslint-plugin-react": "^7.12.3",
     "gulp": "^4.0.0",
     "gulp-babel": "^8.0.0",
     "gulp-sass": "^4.0.2",
@@ -73,7 +73,7 @@
     "pre-commit": "^1.2.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
-    "rimraf": "^2.6.2"
+    "rimraf": "^2.6.3"
   },
   "peerDependencies": {
     "antd": ">=3.12.0",
