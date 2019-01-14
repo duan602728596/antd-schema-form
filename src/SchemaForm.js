@@ -24,7 +24,6 @@ class SchemaForm extends Component{
     footer: PropTypes.func,
     customComponent: PropTypes.objectOf(PropTypes.func)
   };
-
   static defaultProps: Object = {
     customComponent: {}
   };
