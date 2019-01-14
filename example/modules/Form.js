@@ -58,6 +58,7 @@ function Form(props: Object): React.Element{
       value={ value }
       customComponent={ customComponent }
       onOk={ handleClick }
+      okText="提交"
       onUpload={ handleFileUpload }
     />
   );
