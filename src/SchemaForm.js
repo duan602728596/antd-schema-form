@@ -5,7 +5,7 @@ import Context from './context';
 import FormObject from './components/FormObject/FormObject';
 import getObjectFromValue from './utils/getObjectFromValue';
 import { isObject } from './utils/type';
-import languagePack from './language/languagePack';
+import languagePack from './languagePack';
 
 @Form.create()
 class SchemaForm extends Component{
