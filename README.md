@@ -28,7 +28,7 @@ Antd-schema-form based [Ant Design](https://ant.design/), quickly generate inter
     getObjectFromValue, // Object formatted into the value required by the form
     getValueFromObject  // The value of the form obtained from the form, formatted into an object
   } from 'antd-schema-form';
-  import 'antd-schema-form/style/antd-schema-form.css'; // 引入样式
+  import 'antd-schema-form/style/antd-schema-form.css'; // Introducing style
 
   // json schema
   const json = {
