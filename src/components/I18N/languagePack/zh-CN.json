@@ -9,5 +9,10 @@
     ],
     "demoTitle": "表单：",
     "modalTitle": "表单的值为："
+  },
+  "createForm": {
+    "introduction": "你可以通过配置功能来配置一个表单。",
+    "copy": "复制",
+    "refreshFormConfiguration": "刷新表单配置"
   }
 }

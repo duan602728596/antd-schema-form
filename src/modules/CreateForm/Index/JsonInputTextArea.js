@@ -7,6 +7,7 @@ import { Button, Input, message } from 'antd';
 import { setSchemaJson } from '../store/reducer';
 import style from './style.sass';
 import { handleCopyTextClick } from '../../../utils';
+import { I18NContext } from '../../../components/I18N/I18N';
 
 /* state */
 const state: Function = createStructuredSelector({
@@ -25,6 +26,7 @@ const dispatch: Function = (dispatch: Function): Object=>({
 
 @connect(state, dispatch)
 class JsonInputTextArea extends Component{
+  static contextType: Object = I18NContext;
   static propTypes: Object = {
     schemaJson: PropTypes.object,
     action: PropTypes.objectOf(PropTypes.func)
@@ -76,6 +78,7 @@ class JsonInputTextArea extends Component{
   };
   render(): React.Element{
     const { textAreaValue }: { textAreaValue: string } = this.state;
+    const { createForm }: { createForm: Object } = this.context.languagePack;
 
     return (
       <Fragment>
@@ -84,9 +87,9 @@ class JsonInputTextArea extends Component{
             icon="copy"
             onClick={ handleCopyTextClick.bind(this, 'jsonSchemaTextArea') }
           >
-            复制
+            { createForm.copy }
           </Button>
-          <Button icon="redo" onClick={ this.handleRedoJsonSchema }>刷新表单配置</Button>
+          <Button icon="redo" onClick={ this.handleRedoJsonSchema }>{ createForm.refreshFormConfiguration }</Button>
         </div>
         <Input.TextArea id="jsonSchemaTextArea"
           rows={ 20 }

@@ -9,5 +9,10 @@
     ],
     "demoTitle": "Form:",
     "modalTitle": "The value of the form is:"
+  },
+  "createForm": {
+    "introduction": "You can configure a form with the configuration function.",
+    "copy": "Copy",
+    "refreshFormConfiguration": "Refresh Form Configuration"
   }
 }
