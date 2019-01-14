@@ -82,8 +82,10 @@ class SchemaForm extends Component{
       form,
       onUpload,
       customComponent,
-      language,
-      languagePack: isObject(languagePack2) ? languagePack2 : (language in languagePack ? languagePack[language] : languagePack.default) // 语言包
+      language, // 系统语言
+      languagePack: isObject(languagePack2)
+        ? languagePack2
+        : (language in languagePack ? languagePack[language] : languagePack.default) // 语言包
     };
 
     return (
