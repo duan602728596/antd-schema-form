@@ -32,10 +32,6 @@ class FormObject extends Component{
     ]),
     footer: PropTypes.func
   };
-  static defaultProps: Object = {
-    okText: '确认',
-    cancelText: '取消'
-  };
 
   // 根据type渲染不同的组件
   renderComponentByTypeView(root: Object, required: boolean): ?React.Element{
@@ -144,7 +140,8 @@ class FormObject extends Component{
   };
   // 确认和取消按钮
   footerView(): ?React.Element{
-    const { onOk, onCancel, okText, cancelText }: {
+    const { languagePack }: { languagePack: Object } = this.context;
+    const { onOk, onCancel, okText = languagePack.formObject.okText, cancelText = languagePack.formObject.cancelText }: {
       onOk: ?Function,
       onCancel: ?Function,
       okText: string,

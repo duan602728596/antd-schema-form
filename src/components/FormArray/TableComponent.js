@@ -138,6 +138,7 @@ class TableComponent extends Component{
   }
   // columns
   columns(): Array{
+    const { languagePack }: { languagePack: Object } = this.context;
     const { items }: { items: Object } = this.props.root;
     const { inputDisplayIndex, inputChangeIndex }: {
       inputDisplayIndex: ?number,
@@ -202,15 +203,15 @@ class TableComponent extends Component{
     }
 
     columnArr.push({
-      title: '操作',
+      title: languagePack.formArray.operating,
       key: 'handle',
       width: 160,
       render: (value: any, item: Object, index: number): React.Element=>{
         return (
           <Button.Group size="middle">
-            <Button onClick={ this.handleDrawEditDataDisplayClick.bind(this, index) }>修改</Button>
-            <Popconfirm title="确认要删除数据吗？" onConfirm={ this.handleDeleteDataClick.bind(this, index) }>
-              <Button type="danger">删除</Button>
+            <Button onClick={ this.handleDrawEditDataDisplayClick.bind(this, index) }>{ languagePack.formArray.operatingEdit }</Button>
+            <Popconfirm title={ languagePack.formArray.operatingPopconfirmTitle } onConfirm={ this.handleDeleteDataClick.bind(this, index) }>
+              <Button type="danger">{ languagePack.formArray.operatingDelete }</Button>
             </Popconfirm>
           </Button.Group>
         );
@@ -221,7 +222,10 @@ class TableComponent extends Component{
   }
   render(): React.Element{
     const { root }: { root: Object } = this.props;
-    const { form }: { form: Object } = this.context;
+    const { form, languagePack }: {
+      form: Object,
+      languagePack: Object
+    } = this.context;
     const { id, items }: {
       id: string,
       items: Object
@@ -243,7 +247,7 @@ class TableComponent extends Component{
                 icon="plus-circle"
                 onClick={ this.handleDrawerDisplayClick.bind(this, 'isDisplayDataDrawer', true) }
               >
-                添加数据
+                { languagePack.formArray.operatingAdd }
               </Button>
             )
           }

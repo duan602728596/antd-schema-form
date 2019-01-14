@@ -98,6 +98,7 @@ class OneOf extends Component{
     return element;
   }
   render(): React.Element{
+    const { languagePack }: { languagePack: Object } = this.context;
     const { element }: { element: React.ChildrenArray<React.Element> } = this.props;
     const { index }: { index: number } = this.state;
 
@@ -107,8 +108,8 @@ class OneOf extends Component{
         {/* 渲染box */}
         <ul className={ styleName('oneOf-indexBox') }>{ this.listBoxDot(index, element.length) }</ul>
         <Button.Group className={ styleName('oneOf-group') }>
-          <Button icon="left" title="上一个" onClick={ this.handlePrevIndexClick } />
-          <Button icon="right" title="下一个" onClick={ this.handleNextIndexClick } />
+          <Button icon="left" title={ languagePack.formObject.oneOfLeftTitle } onClick={ this.handlePrevIndexClick } />
+          <Button icon="right" title={ languagePack.formObject.oneOfRightTitle } onClick={ this.handleNextIndexClick } />
         </Button.Group>
       </div>
     );

@@ -1,0 +1,18 @@
+{
+  "formString": {
+    "selectTheFile": "选择文件"
+  },
+  "formArray": {
+    "operating": "操作",
+    "operatingAdd": "添加数据",
+    "operatingPopconfirmTitle": "确认要删除数据吗？",
+    "operatingEdit": "修改",
+    "operatingDelete": "删除"
+  },
+  "formObject": {
+    "okText": "确认",
+    "cancelText": "取消",
+    "oneOfLeftTitle": "上一个",
+    "oneOfRightTitle": "下一个"
+  }
+}

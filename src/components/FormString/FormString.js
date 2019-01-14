@@ -52,9 +52,10 @@ class FormString extends Component{
     });
   }
   render(): React.Element{
-    const { form, customComponent }: {
+    const { form, customComponent, languagePack }: {
       form: Object,
-      customComponent: Object
+      customComponent: Object,
+      languagePack: Object
     } = this.context;
     const { getFieldDecorator }: { getFieldDecorator: Function } = form;
     // type=object时，会判断key是否存在于required数组中
@@ -123,7 +124,7 @@ class FormString extends Component{
         element = [
           getFieldDecorator(id, option)(
             <Input.Search key="input"
-              enterButton="选择文件"
+              enterButton={ languagePack.formString.selectTheFile }
               readOnly={ $readOnly }
               placeholder={ $placeholder }
               onSearch={ this.handleFileUpdateClick }

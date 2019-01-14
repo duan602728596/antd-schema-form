@@ -1,0 +1,18 @@
+{
+  "formString": {
+    "selectTheFile": "Select the file"
+  },
+  "formArray": {
+    "operating": "Operating",
+    "operatingAdd": "Adding data",
+    "operatingPopconfirmTitle": "Are you sure you want to delete the data?",
+    "operatingEdit": "Edit",
+    "operatingDelete": "Delete"
+  },
+  "formObject": {
+    "okText": "OK",
+    "cancelText": "Cancel",
+    "oneOfLeftTitle": "Previous",
+    "oneOfRightTitle": "Next"
+  }
+}
