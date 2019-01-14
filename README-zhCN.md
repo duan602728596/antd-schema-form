@@ -58,6 +58,7 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
 | footer | 自定义底部内容，[参考](https://github.com/duan602728596/antd-schema-form/blob/master/src/components/FormObject/FormObject.js#L122) |  (form: object) => React.Node  |
 | onUpload | 文件上传事件 | (file: Array&lt;File&gt;) => Promise&lt;string&gt; |
 | customComponent | 自定义渲染组件，[参考](#自定义渲染组件) | object |
+| languagePack | 语言配置，[参考](language/zh-CN.json) | object |
 
 ## json schema配置
 

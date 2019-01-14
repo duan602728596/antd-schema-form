@@ -57,6 +57,7 @@ Antd-schema-form based [Ant Design](https://ant.design/), quickly generate inter
 | footer | Custom bottom content, [reference](https://github.com/duan602728596/antd-schema-form/blob/master/src/components/FormObject/FormObject.js#L122) |  (form: object) => React.Node  |
 | onUpload | File upload event. | (file: Array&lt;File&gt;) => Promise&lt;string&gt; |
 | customComponent | Custom rendering component, [reference](#custom-rendering-component) | object |
+| languagePack | Language configuration, [reference](language/default.json) | object |
 
 ## Json schema configuration
 
