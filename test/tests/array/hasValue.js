@@ -39,12 +39,12 @@ export function componentHasDefaultValue(): void{
   const tr1td: Object = tr.at(1).find('td');
   const tr2td: Object = tr.at(2).find('td');
 
-  expect(tr0td.at(1).text()).to.be.equal('ddd');
-  expect(Number(tr0td.at(2).text())).to.be.equal(1);
-  expect(tr1td.at(1).text()).to.be.equal('zmh');
-  expect(Number(tr1td.at(2).text())).to.be.equal(16);
-  expect(tr2td.at(1).text()).to.be.equal('tsl');
-  expect(Number(tr2td.at(2).text())).to.be.equal(32);
+  expect(tr0td.at(2).text()).to.be.equal('ddd');
+  expect(Number(tr0td.at(3).text())).to.be.equal(1);
+  expect(tr1td.at(2).text()).to.be.equal('zmh');
+  expect(Number(tr1td.at(3).text())).to.be.equal(16);
+  expect(tr2td.at(2).text()).to.be.equal('tsl');
+  expect(Number(tr2td.at(3).text())).to.be.equal(32);
 }
 
 /* 组件有值 */
@@ -52,7 +52,7 @@ export function componentHasValue(): void{
   const json: Object = {
     id: '$root',
     type: 'array',
-    title: '组件有默认值',
+    title: '组件有值',
     items: {
       id: '$root/items',
       type: 'object',
@@ -90,15 +90,15 @@ export function componentHasValue(): void{
   const tr1td: Object = tr.at(1).find('td');
   const tr2td: Object = tr.at(2).find('td');
 
-  expect(tr0td.at(1).text()).to.be.equal('lsn');
-  expect(Number(tr0td.at(2).text())).to.be.equal(42);
-  expect(tr0td.at(3).text()).to.be.equal(String(true));
-  expect(tr1td.at(1).text()).to.be.equal('lx');
-  expect(Number(tr1td.at(2).text())).to.be.equal(167);
-  expect(tr1td.at(3).text()).to.be.equal(String(false));
-  expect(tr2td.at(1).text()).to.be.equal('xsy');
-  expect(Number(tr2td.at(2).text())).to.be.equal(32.57);
-  expect(tr2td.at(3).text()).to.be.equal(String(true));
+  expect(tr0td.at(2).text()).to.be.equal('lsn');
+  expect(Number(tr0td.at(3).text())).to.be.equal(42);
+  expect(tr0td.at(4).text()).to.be.equal(String(true));
+  expect(tr1td.at(2).text()).to.be.equal('lx');
+  expect(Number(tr1td.at(3).text())).to.be.equal(167);
+  expect(tr1td.at(4).text()).to.be.equal(String(false));
+  expect(tr2td.at(2).text()).to.be.equal('xsy');
+  expect(Number(tr2td.at(3).text())).to.be.equal(32.57);
+  expect(tr2td.at(4).text()).to.be.equal(String(true));
 }
 
 /* 数组内为字符串或数字 */
@@ -124,10 +124,10 @@ export function componentItemsIsStringOrNumber(): void{
   const tr2td: Object = tr.at(2).find('td');
   const tr3td: Object = tr.at(3).find('td');
 
-  expect(tr0td.at(1).text()).to.be.equal('a');
-  expect(tr1td.at(1).text()).to.be.equal('b');
-  expect(tr2td.at(1).text()).to.be.equal('c');
-  expect(tr3td.at(1).text()).to.be.equal('d');
+  expect(tr0td.at(2).text()).to.be.equal('a');
+  expect(tr1td.at(2).text()).to.be.equal('b');
+  expect(tr2td.at(2).text()).to.be.equal('c');
+  expect(tr3td.at(2).text()).to.be.equal('d');
 }
 
 /* 多选框有默认值 */
