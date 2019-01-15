@@ -1,3 +1,7 @@
+### v1.0.1
+
+* 🌟The Table component adds a multi-select box and removes the selected data.
+
 ### v1.0.0
 
 * 🎉The component is released in the official version.
