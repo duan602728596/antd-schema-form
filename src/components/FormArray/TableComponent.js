@@ -179,7 +179,7 @@ class TableComponent extends Component{
     columnArr.push({
       title: '',
       key: 'lineNumber',
-      aligin: 'center',
+      align: 'center',
       width: 65,
       render: (value: any, item: Object, index: number): React.Element=>{
         if(inputDisplayIndex === null || inputDisplayIndex !== index){
