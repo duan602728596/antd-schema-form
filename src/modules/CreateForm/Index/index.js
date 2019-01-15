@@ -15,7 +15,7 @@ function Index(): React.Element{
           return [
             <p key="introduction">{ createForm.introduction }</p>,
             <Row key="row" type="flex" gutter={ 10 }>
-              <Col className={ style.mb10 } xs={ 24 } sm={ 24 } md={ 8 }>
+              <Col className={ style.mediaMb10 } xs={ 24 } sm={ 24 } md={ 8 }>
                 <JsonInputTextArea />
               </Col>
               <Col xs={ 24 } sm={ 24 } md={ 16 }>

@@ -66,7 +66,7 @@ class AddDrawer extends Component{
 
     return (
       <Drawer visible={ visible } width={ 700 } destroyOnClose={ true } onClose={ onCancel }>
-        <div className={ style.tools }>
+        <div className={ style.mb10 }>
           <label>选择变量类型：</label>
           <Select className={ style.typeSelect } value={ typeValue } onSelect={ this.handleTypeSelect }>
             <Select.Option key="string" value="string">字符串（string）</Select.Option>

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { createSelector, createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
+import classNames from 'classnames';
 import { Button, Input, message } from 'antd';
 import { setSchemaJson } from '../store/reducer';
 import style from './style.sass';
@@ -82,14 +83,16 @@ class JsonInputTextArea extends Component{
 
     return (
       <Fragment>
-        <div className={ style.tools }>
-          <Button className={ style.mr10 }
+        <div>
+          <Button className={ classNames(style.mr10, style.mb10) }
             icon="copy"
             onClick={ handleCopyTextClick.bind(this, 'jsonSchemaTextArea') }
           >
             { createForm.copy }
           </Button>
-          <Button icon="redo" onClick={ this.handleRedoJsonSchema }>{ createForm.refreshFormConfiguration }</Button>
+          <Button className={ style.mb10 } icon="redo" onClick={ this.handleRedoJsonSchema }>
+            { createForm.refreshFormConfiguration }
+          </Button>
         </div>
         <Input.TextArea id="jsonSchemaTextArea"
           rows={ 20 }

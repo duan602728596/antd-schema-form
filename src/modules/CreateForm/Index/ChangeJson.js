@@ -9,6 +9,7 @@ import style from './style.sass';
 import json from './json/json';
 import AddDrawer from './AddDrawer';
 import EditDrawer from './EditDrawer';
+import { I18NContext } from '../../../components/I18N/I18N';
 
 /* state */
 const state: Function = createStructuredSelector({
@@ -27,6 +28,7 @@ const dispatch: Function = (dispatch: Function): Object=>({
 
 @connect(state, dispatch)
 class ChangeJson extends Component{
+  static contextType: Object = I18NContext;
   static propTypes: Object = {
     schemaJson: PropTypes.object,
     action: PropTypes.objectOf(PropTypes.func)
@@ -236,6 +238,7 @@ class ChangeJson extends Component{
       title: string,
       Description: string
     } = item;
+    const { createForm }: { createForm: Object } = this.context.languagePack;
 
     const element: React.Element = [
       <Collapse key="collapse" bordered={ false }>
@@ -248,14 +251,14 @@ class ChangeJson extends Component{
             <div className={ style.fr }>
               <Button.Group size="small">
                 <Button icon="plus"
-                  title="添加"
+                  title={ createForm.add }
                   disabled={ !(type === 'object' || type === 'array') }
                   onClick={ this.handleOpenAddDrawerClick.bind(this, item) }
                 />
-                <Button icon="edit" title="编辑" onClick={ this.handleOpenEditDrawerClick.bind(this, item) } />
+                <Button icon="edit" title={ createForm.edit } onClick={ this.handleOpenEditDrawerClick.bind(this, item) } />
                 <Button type="danger"
                   icon="delete"
-                  title="删除"
+                  title={ createForm.delete }
                   disabled={ disableDelete }
                   onClick={ this.handleDeleteItemClick.bind(this, item) }
                 />
