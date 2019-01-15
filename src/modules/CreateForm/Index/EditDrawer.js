@@ -1,11 +1,13 @@
 import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
 import { Drawer, Select } from 'antd';
-import SchemaForm from '../../../components/SchemaForm/SchemaForm';
+import SchemaForm, { schemaFormDefaultLang, schemaFormZhCNLang } from '../../../components/SchemaForm/SchemaForm';
 import json from './json/json';
 import style from './style.sass';
+import { I18NContext } from '../../../components/I18N/I18N';
 
 class EditDrawer extends Component{
+  static contextType: Object = I18NContext;
   static propTypes: Object = {
     item: PropTypes.object,
     visible: PropTypes.bool,
@@ -62,32 +64,40 @@ class EditDrawer extends Component{
       typeValue: ?string,
       value: Object
     } = this.state;
+    const { language, languagePack }: {
+      language: string,
+      languagePack: Object
+    } = this.context;
+    const { createForm }: { createForm: Object } = languagePack;
+    const json2: Object = language in json ? json[language] : json.default;
 
     if(typeValue !== null){
-      json[typeValue].properties.id.$readOnly = true;
+      json2[typeValue].properties.id.$readOnly = true;
     }
 
     return (
       <Drawer visible={ visible } width={ 700 } destroyOnClose={ true } onClose={ onCancel }>
         <div className={ style.mb10 }>
-          <label>选择变量类型：</label>
+          <label className={ style.mr10 }>{ createForm.drawerLabel }</label>
           <Select className={ style.typeSelect } value={ typeValue } onSelect={ this.handleTypeSelect }>
-            <Select.Option key="string" value="string">字符串（string）</Select.Option>
-            <Select.Option key="number" value="number">数字（number）</Select.Option>
-            <Select.Option key="boolean" value="boolean">布尔（boolean）</Select.Option>
-            <Select.Option key="array" value="array">数组（array）</Select.Option>
-            <Select.Option key="object" value="object">对象（object）</Select.Option>
+            <Select.Option key="string" value="string">{ createForm.selectOptions[0] }</Select.Option>
+            <Select.Option key="number" value="number">{ createForm.selectOptions[1] }</Select.Option>
+            <Select.Option key="boolean" value="boolean">{ createForm.selectOptions[2] }</Select.Option>
+            <Select.Option key="array" value="array">{ createForm.selectOptions[3] }</Select.Option>
+            <Select.Option key="object" value="object">{ createForm.selectOptions[4] }</Select.Option>
           </Select>
         </div>
         {
           typeValue ? (
             <SchemaForm ref={ this.formRef }
-              json={ json[typeValue] }
+              json={ json2[typeValue] }
               value={ value }
+              languagePack={ language === 'zh-cn' ? schemaFormZhCNLang : schemaFormDefaultLang }
               onOk={ onOk }
               onCancel={ onCancel }
             />
-          ) : null }
+          ) : null
+        }
       </Drawer>
     );
   }

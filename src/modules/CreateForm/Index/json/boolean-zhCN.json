@@ -1,45 +1,45 @@
 {
   "id": "$root",
   "type": "object",
-  "title": "Boolean type",
+  "title": "boolean类型",
   "properties": {
     "id": {
       "id": "$root/properties/id",
       "type": "string",
-      "title": "The id of the current attribute",
+      "title": "当前属性的id",
       "$required": true
     },
     "type": {
       "id": "$root/properties/type",
       "type": "string",
-      "title": "Type of data",
+      "title": "数据类型",
       "$required": true,
       "$readOnly": true
     },
     "title": {
       "id": "$root/properties/title",
       "type": "string",
-      "title": "Title, used to describe the role of the keyword",
+      "title": "标题，用于描述关键字的作用",
       "$required": true
     },
     "description": {
       "id": "$root/properties/description",
       "type": "string",
-      "title": "Description, used to describe the role of the keyword"
+      "title": "说明，用于描述关键字的作用"
     },
     "$defaultValue": {
       "id": "$root/properties/$defaultValue",
       "type": "boolean",
-      "title": "Default value of the form"
+      "title": "表单的默认值"
     },
     "$componentType": {
       "id": "$root/properties/$componentType",
       "type": "string",
-      "title": "Render as other components",
+      "title": "渲染为其他组件",
       "$componentType": "select",
       "$options": [
         {
-          "label": "Switch",
+          "label": "开关",
           "value": "switch"
         }
       ]

@@ -1,91 +1,91 @@
 {
   "id": "$root",
   "type": "object",
-  "title": "String type",
+  "title": "string类型",
   "properties": {
     "id": {
       "id": "$root/properties/id",
       "type": "string",
-      "title": "The id of the current attribute",
+      "title": "当前属性的id",
       "$required": true
     },
     "type": {
       "id": "$root/properties/type",
       "type": "string",
-      "title": "Type of data",
+      "title": "数据类型",
       "$required": true,
       "$readOnly": true
     },
     "title": {
       "id": "$root/properties/title",
       "type": "string",
-      "title": "Title, used to describe the role of the keyword",
+      "title": "标题，用于描述关键字的作用",
       "$required": true
     },
     "description": {
       "id": "$root/properties/description",
       "type": "string",
-      "title": "Description, used to describe the role of the keyword"
+      "title": "说明，用于描述关键字的作用"
     },
     "$required": {
       "id": "$root/properties/$required",
       "type": "boolean",
-      "title": "Value must exist"
+      "title": "值必须存在"
     },
     "$requiredMessage": {
       "id": "$root/properties/$requiredMessage",
       "type": "string",
-      "title": "Customize the verification prompt for $required"
+      "title": "自定义$required的验证提示信息"
     },
     "pattern": {
       "id": "$root/properties/pattern",
       "type": "string",
-      "title": "Regular expression verification"
+      "title": "正则表达式验证"
     },
     "$patternOption": {
       "id": "$root/properties/$patternOption",
       "type": "string",
-      "title": "Specify global, case-sensitive, and multi-line matching"
+      "title": "指定全局匹配、区分大小写的匹配和多行匹配"
     },
     "$patternMessage": {
       "id": "$root/properties/$patternMessage",
       "type": "string",
-      "title": "Custom pattern verification failure prompt message"
+      "title": "自定义pattern的验证失败提示信息"
     },
     "minLength": {
       "id": "$root/properties/minLength",
       "type": "number",
-      "title": "Minimum length verification of strings"
+      "title": "字符串的最小长度验证"
     },
     "$minLengthMessage": {
       "id": "$root/properties/$minLengthMessage",
       "type": "string",
-      "title": "Customize minLength's verification failure prompt message"
+      "title": "自定义minLength的验证失败提示信息"
     },
     "maxLength": {
       "id": "$root/properties/maxLength",
       "type": "number",
-      "title": "Maximum length verification of strings"
+      "title": "字符串的最大长度验证"
     },
     "$maxLengthMessage": {
       "id": "$root/properties/$maxLengthMessage",
       "type": "string",
-      "title": "Customize maxLength's verification failure prompt message"
+      "title": "自定义maxLength的验证失败提示信息"
     },
     "$length": {
       "id": "$root/properties/$length",
       "type": "number",
-      "title": "Specified length verification of the string"
+      "title": "字符串的指定长度验证"
     },
     "$lengthMessage": {
       "id": "$root/properties/$lengthMessage",
       "type": "string",
-      "title": "Customization of $length verification failure message"
+      "title": "自定义$length的验证失败提示信息"
     },
     "enum": {
       "id": "$root/properties/enum",
       "type": "array",
-      "title": "Verify that the value of the form control must be in the array value of this keyword",
+      "title": "验证表单控件的值必须在此关键字的数组值中",
       "items": {
         "id": "$root/properties/enum/items",
         "type": "string",
@@ -96,51 +96,51 @@
     "$enumMessage": {
       "id": "$root/properties/$enumMessage",
       "type": "string",
-      "title": "Custom enum verification failure message"
+      "title": "自定义enum的验证失败信息"
     },
     "$readOnly": {
       "id": "$root/properties/$readOnly",
       "type": "boolean",
-      "title": "Form control read only"
+      "title": "表单控件只读"
     },
     "$placeholder": {
       "id": "$root/properties/$placeholder",
       "type": "string",
-      "title": "Placeholder property of a form control"
+      "title": "表单控件的placeholder属性"
     },
     "$defaultValue": {
       "id": "$root/properties/$defaultValue",
       "type": "string",
-      "title": "Default value of the form"
+      "title": "表单的默认值"
     },
     "$componentType": {
       "id": "$root/properties/$componentType",
       "type": "string",
-      "title": "Render as other components",
+      "title": "渲染为其他组件",
       "$componentType": "select",
       "$options": [
         {
-          "label": "Text field",
+          "label": "文本域",
           "value": "textArea"
         },
         {
-          "label": "Drop down box",
+          "label": "下拉框",
           "value": "select"
         },
         {
-          "label": "Single box",
+          "label": "单选框",
           "value": "radio"
         },
         {
-          "label": "Date selector",
+          "label": "日期选择器",
           "value": "date"
         },
         {
-          "label": "File Upload",
+          "label": "文件上传",
           "value": "upload"
         },
         {
-          "label": "Password input",
+          "label": "密码输入",
           "value": "password"
         }
       ]
@@ -148,22 +148,22 @@
     "$options": {
       "id": "$root/properties/$options",
       "type": "array",
-      "title": "Optional option",
+      "title": "可选的选项",
       "items": {
         "id": "$root/properties/$options/items",
         "type": "object",
-        "title": "Optional option",
+        "title": "可选的选项",
         "properties": {
           "label": {
             "id": "$root/properties/$options/items/properties/label",
             "type": "string",
-            "title": "Displayed text",
+            "title": "显示的文字",
             "$required": true
           },
           "value": {
             "id": "$root/properties/$options/items/properties/value",
             "type": "string",
-            "title": "Value",
+            "title": "值",
             "$required": true
           }
         }

@@ -1,44 +1,44 @@
 {
   "id": "$root",
   "type": "object",
-  "title": "Array type",
+  "title": "array类型",
   "properties": {
     "id": {
       "id": "$root/properties/id",
       "type": "string",
-      "title": "The id of the current attribute",
+      "title": "当前属性的id",
       "$required": true
     },
     "type": {
       "id": "$root/properties/type",
       "type": "string",
-      "title": "Type of data",
+      "title": "数据类型",
       "$required": true,
       "$readOnly": true
     },
     "title": {
       "id": "$root/properties/title",
       "type": "string",
-      "title": "Title, used to describe the role of the keyword",
+      "title": "标题，用于描述关键字的作用",
       "$required": true
     },
     "description": {
       "id": "$root/properties/description",
       "type": "string",
-      "title": "Description, used to describe the role of the keyword"
+      "title": "说明，用于描述关键字的作用"
     },
     "$componentType": {
       "id": "$root/properties/$componentType",
       "type": "string",
-      "title": "Render as other components",
+      "title": "渲染为其他组件",
       "$componentType": "select",
       "$options": [
         {
-          "label": "Checkbox",
+          "label": "多选框",
           "value": "checkbox"
         },
         {
-          "label": "Multi-select mode of drop-down box",
+          "label": "下拉框的多选模式",
           "value": "multiple"
         }
       ]
@@ -46,22 +46,22 @@
     "$options": {
       "id": "$root/properties/$options",
       "type": "array",
-      "title": "Optional option",
+      "title": "可选的选项",
       "items": {
         "id": "$root/properties/$options/items",
         "type": "object",
-        "title": "Optional option",
+        "title": "可选的选项",
         "properties": {
           "label": {
             "id": "$root/properties/$options/items/properties/label",
             "type": "string",
-            "title": "Displayed text",
+            "title": "显示的文字",
             "$required": true
           },
           "value": {
             "id": "$root/properties/$options/items/properties/value",
             "type": "string",
-            "title": "Value",
+            "title": "值",
             "$required": true
           }
         }

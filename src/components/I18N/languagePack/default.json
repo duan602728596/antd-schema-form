@@ -1,5 +1,10 @@
 {
-  "nav": ["Home", "Form Generation", "Form Preview", "Document"],
+  "nav": [
+    "Home",
+    "Form Generation",
+    "Form Preview",
+    "Document"
+  ],
   "index": {
     "introduction": [
       "Antd-schema-form based",
@@ -13,6 +18,17 @@
   "createForm": {
     "introduction": "You can configure a form with the configuration function.",
     "copy": "Copy",
-    "refreshFormConfiguration": "Refresh Form Configuration"
+    "refreshFormConfiguration": "Refresh Form Configuration",
+    "add": "Add",
+    "edit": "Edit",
+    "delete": "Delete",
+    "drawerLabel": "Select the variable type:",
+    "selectOptions": [
+      "String",
+      "Number",
+      "Boolean",
+      "Array",
+      "Object"
+    ]
   }
 }

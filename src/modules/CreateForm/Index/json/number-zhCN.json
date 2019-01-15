@@ -1,106 +1,106 @@
 {
   "id": "$root",
   "type": "object",
-  "title": "Number type",
+  "title": "number类型",
   "properties": {
     "id": {
       "id": "$root/properties/id",
       "type": "string",
-      "title": "The id of the current attribute",
+      "title": "当前属性的id",
       "$required": true
     },
     "type": {
       "id": "$root/properties/type",
       "type": "string",
-      "title": "Type of data",
+      "title": "数据类型",
       "$required": true,
       "$readOnly": true
     },
     "title": {
       "id": "$root/properties/title",
       "type": "string",
-      "title": "Title, used to describe the role of the keyword",
+      "title": "标题，用于描述关键字的作用",
       "$required": true
     },
     "description": {
       "id": "$root/properties/description",
       "type": "string",
-      "title": "Description, used to describe the role of the keyword"
+      "title": "说明，用于描述关键字的作用"
     },
     "$required": {
       "id": "$root/properties/$required",
       "type": "boolean",
-      "title": "Value must exist"
+      "title": "值必须存在"
     },
     "minimum": {
       "id": "$root/properties/minimum",
       "type": "number",
-      "title": "Form minimum value"
+      "title": "表单的最小值"
     },
     "$minimumMessage": {
       "id": "$root/properties/$minimumMessage",
       "type": "string",
-      "title": "Customize the verification failure prompt message"
+      "title": "自定义minimum的验证失败提示信息"
     },
     "maximum": {
       "id": "$root/properties/maximum",
       "type": "number",
-      "title": "Form maximum value"
+      "title": "表单的最大值"
     },
     "$maximumMessage": {
       "id": "$root/properties/$maximumMessage",
       "type": "string",
-      "title": "Customize the verification failure message for maximum"
+      "title": "自定义maximum的验证失败提示信息"
     },
     "$integer": {
       "id": "$root/properties/$integer",
       "type": "boolean",
-      "title": "Must be an integer"
+      "title": "必须是整数"
     },
     "$integerMessage": {
       "id": "$root/properties/$integerMessage",
       "type": "string",
-      "title": "Customized $integer validation failure message"
+      "title": "自定义$integer的验证失败提示信息"
     },
     "enum": {
       "id": "$root/properties/enum",
       "type": "array",
-      "title": "Verify that the value of the form control must be in the array value of this keyword",
+      "title": "验证表单控件的值必须在此关键字的数组值中",
       "items": {
         "id": "$root/properties/enum/items",
         "type": "number",
-        "title": "Key value",
+        "title": "关键值",
         "$required": true
       }
     },
     "$enumMessage": {
       "id": "$root/properties/$enumMessage",
       "type": "string",
-      "title": "Custom enum verification failure message"
+      "title": "自定义enum的验证失败信息"
     },
     "$readOnly": {
       "id": "$root/properties/$readOnly",
       "type": "boolean",
-      "title": "Form control read only"
+      "title": "表单控件只读"
     },
     "$placeholder": {
       "id": "$root/properties/$placeholder",
       "type": "string",
-      "title": "Placeholder property of a form control"
+      "title": "表单控件的placeholder属性"
     },
     "$defaultValue": {
       "id": "$root/properties/$defaultValue",
       "type": "number",
-      "title": "Default value of the form"
+      "title": "表单的默认值"
     },
     "$componentType": {
       "id": "$root/properties/$componentType",
       "type": "string",
-      "title": "Render as other components",
+      "title": "渲染为其他组件",
       "$componentType": "select",
       "$options": [
         {
-          "label": "Single box",
+          "label": "单选框",
           "value": "radio"
         }
       ]
@@ -108,22 +108,22 @@
     "$options": {
       "id": "$root/properties/$options",
       "type": "array",
-      "title": "Optional option",
+      "title": "可选的选项",
       "items": {
         "id": "$root/properties/$options/items",
         "type": "object",
-        "title": "Optional option",
+        "title": "可选的选项",
         "properties": {
           "label": {
             "id": "$root/properties/$options/items/properties/label",
             "type": "string",
-            "title": "Displayed text",
+            "title": "显示的文字",
             "$required": true
           },
           "value": {
             "id": "$root/properties/$options/items/properties/value",
             "type": "number",
-            "title": "Value",
+            "title": "值",
             "$required": true
           }
         }

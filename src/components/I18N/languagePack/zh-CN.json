@@ -1,5 +1,10 @@
 {
-  "nav": ["首页", "表单生成", "表单预览", "文档"],
+  "nav": [
+    "首页",
+    "表单生成",
+    "表单预览",
+    "文档"
+  ],
   "index": {
     "introduction": [
       "antd-schema-form基于",
@@ -13,6 +18,17 @@
   "createForm": {
     "introduction": "你可以通过配置功能来配置一个表单。",
     "copy": "复制",
-    "refreshFormConfiguration": "刷新表单配置"
+    "refreshFormConfiguration": "刷新表单配置",
+    "add": "添加",
+    "edit": "编辑",
+    "delete": "删除",
+    "drawerLabel": "选择变量类型：",
+    "selectOptions": [
+      "字符串（string）",
+      "数字（number）",
+      "布尔（boolean）",
+      "数组（array）",
+      "对象（object）"
+    ]
   }
 }

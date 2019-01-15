@@ -203,8 +203,10 @@ class ChangeJson extends Component{
   infoTableView(item: Object): React.Element{
     const element: [] = [];
     const { type }: { type: string } = item;
+    const { language }: { language: string } = this.context;
+    const json2: Object = language in json ? json[language] : json.default;
 
-    for(const key: string in json[type].properties){
+    for(const key: string in json2[type].properties){
       if(key in item){
         let value: any = item[key];
 
