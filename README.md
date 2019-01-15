@@ -63,7 +63,7 @@ Antd-schema-form based [Ant Design](https://ant.design/), quickly generate inter
 
 The form is configured according to json schema, json schema attribute reference [http://json-schema.org/draft-07/json-schema-validation.html](http://json-schema.org/draft-07/json-schema-validation.html).
 
-You can use [form generation](https://duan602728596.github.io/antd-schema-form/#/CreateForm) and [form preview](https://duan602728596.github.io/antd-schema-form/ The #/Preview) function replaces the work of a part of the handwritten json schema.
+You can use [form generation](https://duan602728596.github.io/antd-schema-form/#/CreateForm) and [form preview](https://duan602728596.github.io/antd-schema-form/#/Preview) function replaces the work of a part of the handwritten json schema.
 
 ### Attributes
 
