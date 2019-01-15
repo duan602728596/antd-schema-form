@@ -11,3 +11,27 @@ export function formatTableValue(rawArray: Array): Array{
 
   return result;
 }
+
+/**
+ * 对数组内的index排序，从大到小
+ */
+export function sortIndex(rawArray: number[]): number[]{
+  if(rawArray.length <= 1) return rawArray;
+
+  for(let i: number = 0, j: number = rawArray.length; i < j; i++){
+    let max: number = i;
+
+    for(let k: number = i + 1; k < j; k++){
+      if(rawArray[k] > rawArray[max]) max = k;
+    }
+
+    if(max !== i){
+      const middle: number = rawArray[max];
+
+      rawArray.splice(max, 1);
+      rawArray.splice(i, 0, middle);
+    }
+  }
+
+  return rawArray;
+}

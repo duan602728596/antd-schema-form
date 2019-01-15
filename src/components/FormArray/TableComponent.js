@@ -5,8 +5,9 @@ import Context from '../../context';
 import { isSpace, isBoolean, isObjectOrArray } from '../../utils/type';
 import getValueFromObject, { formatValueBeforeGetValue } from '../../utils/getValueFromObject';
 import getObjectFromValue from '../../utils/getObjectFromValue';
-import { formatTableValue } from './tableFunction';
+import { formatTableValue, sortIndex } from './tableFunction';
 import FormObject from '../FormObject/FormObject';
+import styleName from '../../utils/styleName';
 
 class TableComponent extends Component{
   static contextType: Object = Context;
@@ -18,7 +19,9 @@ class TableComponent extends Component{
   editIndex: ?number;
   state: {
     isDisplayDataDrawer: boolean,
-    inputDisplayIndex: ?number
+    inputDisplayIndex: ?number,
+    inputChangeIndex: ?string,
+    selectedRowKeys: number[]
   };
 
   constructor(): void{
@@ -28,7 +31,8 @@ class TableComponent extends Component{
     this.state = {
       isDisplayDataDrawer: false, // 添加和修改数据的抽屉的显示和隐藏
       inputDisplayIndex: null,    // 编辑框修改位置的状态
-      inputChangeIndex: null      // 编辑框的值
+      inputChangeIndex: null,     // 编辑框的值
+      selectedRowKeys: []         // 多选框
     };
   }
   // 编辑位置框修改位置
@@ -136,6 +140,26 @@ class TableComponent extends Component{
   handleDrawerDisplayClick(key: string, value: string, eventOrObject: Event | Object): void{
     this.setState({ [key]: value });
   }
+  // 表格的单选和多选
+  handleColumnCheckboxChange: Function = (selectedRowKeys: number[], selectedRows: Object[]): void=>{
+    this.setState({ selectedRowKeys });
+  };
+  // 删除选中的数据
+  handleDeleteSelectDataClick: Function = (event: Event): void=>{
+    const { form }: { form: Object } = this.context;
+    const { root }: { root: Object } = this.props;
+    const { selectedRowKeys }: { selectedRowKeys: number[] } = this.state;
+    const id: string = root.id;
+    let tableValue: Array<any> = form.getFieldValue(id);
+
+    tableValue = isSpace(tableValue) ? (root?.$defaultValue || []) : tableValue;
+    // 删除选中的数据
+    const sortSelectedRowKeys: number[] = sortIndex(selectedRowKeys);
+
+    for(const item: number of sortSelectedRowKeys) tableValue.splice(item, 1);
+    form.setFieldsValue({ [id]: tableValue });
+    this.setState({ selectedRowKeys: [] });
+  };
   // columns
   columns(): Array{
     const { languagePack }: { languagePack: Object } = this.context;
@@ -155,6 +179,7 @@ class TableComponent extends Component{
     columnArr.push({
       title: '',
       key: 'lineNumber',
+      aligin: 'center',
       width: 65,
       render: (value: any, item: Object, index: number): React.Element=>{
         if(inputDisplayIndex === null || inputDisplayIndex !== index){
@@ -230,7 +255,10 @@ class TableComponent extends Component{
       id: string,
       items: Object
     } = root;
-    const { isDisplayDataDrawer }: { isDisplayDataDrawer: boolean } = this.state;
+    const { isDisplayDataDrawer, selectedRowKeys }: {
+      isDisplayDataDrawer: boolean,
+      selectedRowKeys: number[]
+    } = this.state;
     let value: Array<any> = form.getFieldValue(id);
 
     value = isSpace(value) ? (root?.$defaultValue || []) : value;
@@ -242,16 +270,27 @@ class TableComponent extends Component{
           columns={ this.columns() }
           bordered={ true }
           title={
-            (): React.Element => (
-              <Button type="primary"
+            (): React.ChildrenArray<React.Element> => [
+              <Button key="add"
+                type="primary"
                 icon="plus-circle"
                 onClick={ this.handleDrawerDisplayClick.bind(this, 'isDisplayDataDrawer', true) }
               >
                 { languagePack.formArray.operatingAdd }
-              </Button>
-            )
+              </Button>,
+              <Popconfirm key="delete" title={ languagePack.formArray.deleteSelectedText } onConfirm={ this.handleDeleteSelectDataClick }>
+                <Button className={ styleName('array-deleteAll') } type="danger" icon="delete">
+                  { languagePack.formArray.deleteSelected }
+                </Button>
+              </Popconfirm>
+            ]
           }
           rowKey={ (item: Object, index: number): number => index }
+          rowSelection={{
+            type: 'checkbox',
+            selectedRowKeys,
+            onChange: this.handleColumnCheckboxChange
+          }}
           pagination={ false }
         />
         {/* 添加和修改数据的抽屉组件 */}
