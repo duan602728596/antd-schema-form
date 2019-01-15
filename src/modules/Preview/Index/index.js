@@ -47,19 +47,19 @@ class Index extends Component{
     };
   }
   // 表单确认事件
-  handleOnFormOkClick(form: Object, value: Object, keys: string[]): void{
+  handleOnFormOkClick: Function = (form: Object, value: Object, keys: string[]): void=>{
     const { languagePack }: { languagePack: Object } = this.context;
-    const { message }: { message: Object } = languagePack;
+    const message2: Object = languagePack.message;
 
     Modal.info({
       content: (
         <div>
-          <h4>{ message.modalTitle }</h4>
+          <h4>{ message2.modalTitle }</h4>
           <pre>{ JSON.stringify(value, null, 2) }</pre>
         </div>
       )
     });
-  }
+  };
   // 表单预览
   handleRedoJsonSchema: Function = (event: Event): void=>{
     const { textAreaValue }: { textAreaValue: string } = this.state;
