@@ -7,7 +7,8 @@ import { Row, Col, Input, Button, message, Modal } from 'antd';
 import { setSchemaJson } from '../store/reducer';
 import style from './style.sass';
 import { handleCopyTextClick } from '../../../utils';
-import SchemaForm from '../../../components/SchemaForm/SchemaForm';
+import SchemaForm, { schemaFormDefaultLang, schemaFormZhCNLang } from '../../../components/SchemaForm/SchemaForm';
+import { I18NContext } from '../../../components/I18N/I18N';
 
 /* state */
 const state: Function = createStructuredSelector({
@@ -26,6 +27,7 @@ const dispatch: Function = (dispatch: Function): Object=>({
 
 @connect(state, dispatch)
 class Index extends Component{
+  static contextType: Object = I18NContext;
   static propTypes: Object = {
     schemaJson: PropTypes.object,
     action: PropTypes.objectOf(PropTypes.func)
@@ -46,10 +48,13 @@ class Index extends Component{
   }
   // 表单确认事件
   handleOnFormOkClick(form: Object, value: Object, keys: string[]): void{
+    const { languagePack }: { languagePack: Object } = this.context;
+    const { message }: { message: Object } = languagePack;
+
     Modal.info({
       content: (
         <div>
-          <h4>表单的值为：</h4>
+          <h4>{ message.modalTitle }</h4>
           <pre>{ JSON.stringify(value, null, 2) }</pre>
         </div>
       )
@@ -59,13 +64,14 @@ class Index extends Component{
   handleRedoJsonSchema: Function = (event: Event): void=>{
     const { textAreaValue }: { textAreaValue: string } = this.state;
     const { action }: { action: Object } = this.props;
+    const message2: Object = this.context.languagePack.message;
     let value: ?Object = null;
 
     try{
       value = JSON.parse(textAreaValue);
       action.setSchemaJson(value);
     }catch(err){
-      message.error('JSON格式错误！');
+      message.error(message2.jsonFormatError);
     }
   };
   // 表单的change事件
@@ -75,20 +81,23 @@ class Index extends Component{
   render(): React.Element{
     const { textAreaValue }: { textAreaValue: string } = this.state;
     const { schemaJson }: { schemaJson: ?Object } = this.props;
+    const { language, languagePack }: {
+      language: string,
+      languagePack: Object
+    } = this.context;
+    const { preview }: { preview: Object } = languagePack;
+    const message2: Object = languagePack.message;
 
     return (
       <Fragment>
-        <p>你可以粘贴json来生成并预览表单。</p>
+        <p>{ preview.introduction }</p>
         <Row className={ style.mb10 } type="flex" gutter={ 10 }>
           <Col xs={ 24 } sm={ 24 } md={ 8 }>
             <div className={ style.tools }>
-              <Button className={ style.mr10 }
-                icon="copy"
-                onClick={ handleCopyTextClick.bind(this, 'jsonSchemaTextArea2') }
-              >
-                复制
+              <Button className={ style.mr10 } icon="copy" onClick={ handleCopyTextClick.bind(this, 'jsonSchemaTextArea2', message2.copyMessage) }>
+                { preview.copy }
               </Button>
-              <Button type="primary" icon="tablet" onClick={ this.handleRedoJsonSchema }>生成表单</Button>
+              <Button type="primary" icon="tablet" onClick={ this.handleRedoJsonSchema }>{ preview.generateForm }</Button>
             </div>
             <Input.TextArea id="jsonSchemaTextArea2"
               rows={ 20 }
@@ -97,7 +106,14 @@ class Index extends Component{
             />
           </Col>
           <Col xs={ 24 } sm={ 24 } md={ 16 }>
-            {schemaJson ? <SchemaForm json={ schemaJson } onOk={ this.handleOnFormOkClick } /> : null}
+            {
+              schemaJson ? (
+                <SchemaForm json={ schemaJson }
+                  languagePack={ language === 'zh-cn' ? schemaFormZhCNLang : schemaFormDefaultLang }
+                  onOk={ this.handleOnFormOkClick }
+                />
+              ) : null
+            }
           </Col>
         </Row>
       </Fragment>

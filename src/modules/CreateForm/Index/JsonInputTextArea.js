@@ -68,25 +68,28 @@ class JsonInputTextArea extends Component{
   handleRedoJsonSchema: Function = (event: Event): void=>{
     const { textAreaValue }: { textAreaValue: string } = this.state;
     const { action }: { action: Object } = this.props;
+    const message2: Object = this.context.languagePack.message;
     let value: ?Object = null;
 
     try{
       value = JSON.parse(textAreaValue);
       action.setSchemaJson(value);
     }catch(err){
-      message.error('JSON格式错误！');
+      message.error(message2.jsonFormatError);
     }
   };
   render(): React.Element{
     const { textAreaValue }: { textAreaValue: string } = this.state;
-    const { createForm }: { createForm: Object } = this.context.languagePack;
+    const { languagePack }: { languagePack: Object } = this.context;
+    const { createForm }: { createForm: Object } = languagePack;
+    const message2: string = languagePack.message;
 
     return (
       <Fragment>
         <div>
           <Button className={ classNames(style.mr10, style.mb10) }
             icon="copy"
-            onClick={ handleCopyTextClick.bind(this, 'jsonSchemaTextArea') }
+            onClick={ handleCopyTextClick.bind(this, 'jsonSchemaTextArea', message2.copyMessage) }
           >
             { createForm.copy }
           </Button>

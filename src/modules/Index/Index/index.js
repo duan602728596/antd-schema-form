@@ -40,12 +40,12 @@ class Index extends Component{
   // 表单确认事件
   handleOnFormOkClick: Function = (form: Object, value: Object, keys: string[]): void=>{
     const { languagePack }: { languagePack: Object } = this.context;
-    const { index }: { index: Object } = languagePack;
+    const { message }: { message: Object } = languagePack;
 
     Modal.info({
       content: (
         <div>
-          <h4>{ index.modalTitle }</h4>
+          <h4>{ message.modalTitle }</h4>
           <pre>{ JSON.stringify(value, null, 2) }</pre>
         </div>
       )

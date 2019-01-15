@@ -76,7 +76,7 @@ class EditDrawer extends Component{
     }
 
     return (
-      <Drawer visible={ visible } width={ 700 } destroyOnClose={ true } onClose={ onCancel }>
+      <Drawer visible={ visible } width={ 800 } destroyOnClose={ true } maskClosable={ false } onClose={ onCancel }>
         <div className={ style.mb10 }>
           <label className={ style.mr10 }>{ createForm.drawerLabel }</label>
           <Select className={ style.typeSelect } value={ typeValue } onSelect={ this.handleTypeSelect }>

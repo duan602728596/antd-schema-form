@@ -1,7 +1,7 @@
 import { message } from 'antd';
 
 /* 复制 */
-export function handleCopyTextClick(id: string, event: Event): void{
+export function handleCopyTextClick(id: string, messageStr: string, event: Event): void{
   const range: Object = document.createRange();
   range.selectNode(document.getElementById(id));
 
@@ -11,5 +11,5 @@ export function handleCopyTextClick(id: string, event: Event): void{
 
   selection.addRange(range);
   document.execCommand('copy');
-  message.info('已复制到剪贴板。');
+  message.info(messageStr);
 }

@@ -4,13 +4,18 @@ import Helmet from 'react-helmet';
 import loadReducer from '../../store/loadReducer';
 import reducer from './store/reducer';
 import Index from './Index/index';
+import { I18NContext } from '../../components/I18N/I18N';
 
 @loadReducer(reducer)
 class ModuleLayout extends Component{
+  static contextType: Object = I18NContext;
+
   render(): React.ChildrenArray<React.Element>{
+    const { preview }: { preview: Object } = this.context.languagePack;
+
     return [
       <Helmet key="helmet">
-        <title>表单预览</title>
+        <title>{ preview.title }</title>
       </Helmet>,
       <Switch key="main">
         <Route path="/Preview" component={ Index } exact={ true } />

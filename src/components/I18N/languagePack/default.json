@@ -5,6 +5,7 @@
     "Form Preview",
     "Document"
   ],
+  "switchLoading": "Loading...",
   "index": {
     "introduction": [
       "Antd-schema-form based",
@@ -12,10 +13,10 @@
       "configuration.",
       "This demo simply shows how to build a form by configuring schema.json."
     ],
-    "demoTitle": "Form:",
-    "modalTitle": "The value of the form is:"
+    "demoTitle": "Form:"
   },
   "createForm": {
+    "title": "Form generation",
     "introduction": "You can configure a form with the configuration function.",
     "copy": "Copy",
     "refreshFormConfiguration": "Refresh Form Configuration",
@@ -30,5 +31,17 @@
       "Array",
       "Object"
     ]
+  },
+  "preview": {
+    "title": "Form preview",
+    "introduction": "You can paste json to generate and preview the form.",
+    "copy": "Copy",
+    "generateForm": "Generate form",
+    "modalTitle": "The value of the form is:"
+  },
+  "message": {
+    "modalTitle": "The value of the form is:",
+    "jsonFormatError": "JSON format error!",
+    "copyMessage": "It has been copied to the clipboard."
   }
 }

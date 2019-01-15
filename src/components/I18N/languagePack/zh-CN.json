@@ -5,6 +5,7 @@
     "表单预览",
     "文档"
   ],
+  "switchLoading": "加载中...",
   "index": {
     "introduction": [
       "antd-schema-form基于",
@@ -12,10 +13,10 @@
       "配置快速生成可交互的表单。",
       "这个Demo简单的展示了通过配置schema.json构建一个表单。"
     ],
-    "demoTitle": "表单：",
-    "modalTitle": "表单的值为："
+    "demoTitle": "表单："
   },
   "createForm": {
+    "title": "表单生成",
     "introduction": "你可以通过配置功能来配置一个表单。",
     "copy": "复制",
     "refreshFormConfiguration": "刷新表单配置",
@@ -30,5 +31,16 @@
       "数组（array）",
       "对象（object）"
     ]
+  },
+  "preview": {
+    "title": "表单预览",
+    "introduction": "你可以粘贴json来生成并预览表单。",
+    "copy": "复制",
+    "generateForm": "生成表单"
+  },
+  "message": {
+    "modalTitle": "表单的值为：",
+    "jsonFormatError": "JSON格式错误！",
+    "copyMessage": "已复制到剪贴板。"
   }
 }
