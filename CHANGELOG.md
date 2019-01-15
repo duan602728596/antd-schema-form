@@ -1,3 +1,7 @@
+### v1.0.2
+
+* 🐛Fix a spelling mistake, the serial number of the Table component is now centered.
+
 ### v1.0.1
 
 * 🌟The Table component adds a multi-select box and removes the selected data.
