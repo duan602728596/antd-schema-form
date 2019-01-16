@@ -138,7 +138,7 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
   | textArea | 文本域 |
   | select | 下拉框 |
   | radio | 单选框 |
-  | date | 日期选择器 |
+  | date | 日期选择器（**当组件为日期选择器时，值为Moment对象，需要自行对日期的值进行处理**） |
   | upload | 文件上传 |
   | password | 密码框 |
   
