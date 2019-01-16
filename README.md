@@ -137,7 +137,7 @@ The component renders the input box by default ([Input](https://ant.design/compo
   | textArea | Text field. |
   | select | Drop-down box. |
   | radio | Radio box. |
-  | date | Date picker. (**(When the component is a date picker, the value is a Moment object, and you need to process the value of the date yourself.)**) |
+  | date | Date picker. (**When the component is a date picker, the value is a Moment object, and you need to process the value of the date yourself.**) |
   | upload | File Upload. |
   | password | Password box. |
 
