@@ -6,3 +6,4 @@ build
 gulpfile.js
 .dll
 .sweetrc.js
+test/mocha/mocha.js
