@@ -1,3 +1,8 @@
+### v1.1.0
+
+* 🎉The array adds a new rendering component: **tags**.
+* 🎉Modified the effect of OneOf, now OneOf uses `Radio.Group` to switch between different states.
+
 ### v1.0.2
 
 * 🐛Fix a spelling mistake, the serial number of the Table component is now centered.
