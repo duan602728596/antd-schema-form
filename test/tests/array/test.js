@@ -1,6 +1,6 @@
 import describe from 'describe';
 import it from 'it';
-import { renderDefault, renderSelectMultiple, renderCheckboxGroup } from './componentRender';
+import { renderDefault, renderSelectMultiple, renderSelectTags, renderCheckboxGroup } from './componentRender';
 import {
   componentHasDefaultValue, componentHasValue, componentItemsIsStringOrNumber, CheckboxGroupHastDefaultValue,
   CheckboxGroupHastValue
@@ -11,6 +11,7 @@ describe('数组组件', function(): void{
   describe('组件渲染', function(): void{
     it('渲染默认组件', renderDefault);
     it('渲染Select的multiple模式', renderSelectMultiple);
+    it('渲染Select的tags模式', renderSelectTags);
     it('渲染多选组件', renderCheckboxGroup);
   });
 
