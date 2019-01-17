@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { LocaleProvider } from 'antd';
 import zhCN from 'antd/lib/locale-provider/zh_CN';
 import { hot } from 'react-hot-loader';
-import './common.sass';
+import style from './style.sass';
 import Form from './modules/Form';
 
 /* 热替换 */
@@ -11,7 +11,7 @@ class App extends Component{
   render(): React.Element{
     return (
       <LocaleProvider locale={ zhCN }>
-        <div className="box">
+        <div className={ style.box }>
           <Form />
         </div>
       </LocaleProvider>
