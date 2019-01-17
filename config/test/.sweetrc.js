@@ -45,7 +45,6 @@ export default {
     exclude: /(dll\.js|node_modules|mocha|chai)/
   },
   sass: {
-    modules: false,
     include: /(src|lib|example)/
   },
   css: {

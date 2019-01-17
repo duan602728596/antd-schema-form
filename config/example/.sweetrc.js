@@ -29,7 +29,6 @@ export default {
     exclude: /(dll\.js|node_modules)/
   },
   sass: {
-    modules: false,
     include: /(src|lib|example)/
   },
   css: {
