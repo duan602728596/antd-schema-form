@@ -39,24 +39,21 @@ class OneOf extends Component{
     this.switchCallback(event.target.value, index);
   };
   // 切换的callback
-  switchCallback(newIndex: number, index: number): void{
+  switchCallback(newIndex: number, oldIndex: number): void{
     const { root }: { root: Object } = this.props;
     const { form }: { form: Object } = this.context;
     const { oneOf }: { oneOf: [] } = root;
 
-    //  如果type不同，还需要重置表单
-    if(!(
-      oneOf[newIndex].type
-      && oneOf[index].type
-      && (oneOf[newIndex].type === oneOf[index].type)
-      && oneOf[newIndex].$componentType !== 'date'
-    )){
+    // 这个情况是type="string"时，下一个控件是date，因为moment的关系，所以要清空组件的值，最好尽量避免这种情况
+    if(
+      oneOf[newIndex].type === 'string' && oneOf[oldIndex].type === 'string'                       // 新旧组件都为string
+      && ((oneOf[oldIndex].$componentType !== 'date' && oneOf[newIndex].$componentType === 'date') // 判断是否为date组件
+      || (oneOf[oldIndex].$componentType === 'date' && oneOf[newIndex].$componentType !== 'date'))
+    ){
       form.resetFields([root.id]);
     }
 
-    this.setState({
-      index: newIndex
-    });
+    this.setState({ index: newIndex });
   }
   // 渲染dot
   listBoxDotView(index: number, len: number): React.ChildrenArray<React.Element>{
