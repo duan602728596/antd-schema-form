@@ -58,8 +58,9 @@ class FormArray extends Component{
         break;
 
       case 'multiple':
+      case 'tags':
         element = getFieldDecorator(id, option)(
-          <Select className={ styleName('array-multiple') } mode="multiple">
+          <Select className={ styleName('array-multiple') } mode={ $componentType }>
             { this.selectOptionsView($options) }
           </Select>
         );

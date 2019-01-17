@@ -103,6 +103,29 @@
         }
       ]
     },
+    "tags": {
+      "id": "$root/properties/array/properties/tags",
+      "type": "array",
+      "title": "Select多选模式，随意输入内容",
+      "description": "Select多选模式，随意输入内容",
+      "items": {
+        "id": "$root/properties/array/properties/tags/items",
+        "type": "string",
+        "title": "Select多选模式，随意输入内容",
+        "description": "Select多选模式，随意输入内容"
+      },
+      "$componentType": "tags",
+      "$options": [
+        {
+          "label": "选项1",
+          "value": "选项1值"
+        },
+        {
+          "label": "选项2",
+          "value": "选项2值"
+        }
+      ]
+    },
     "checkbox": {
       "id": "$root/properties/array/properties/checkbox",
       "type": "array",
