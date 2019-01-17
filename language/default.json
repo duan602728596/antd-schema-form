@@ -13,8 +13,6 @@
   },
   "formObject": {
     "okText": "OK",
-    "cancelText": "Cancel",
-    "oneOfLeftTitle": "Previous",
-    "oneOfRightTitle": "Next"
+    "cancelText": "Cancel"
   }
 }

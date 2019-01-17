@@ -13,8 +13,6 @@
   },
   "formObject": {
     "okText": "确认",
-    "cancelText": "取消",
-    "oneOfLeftTitle": "上一个",
-    "oneOfRightTitle": "下一个"
+    "cancelText": "取消"
   }
 }

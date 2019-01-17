@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Radio } from 'antd';
+import { Radio } from 'antd';
 import Context from '../../context';
 import styleName from '../../utils/styleName';
 import { isNumber } from '../../utils/type';
@@ -95,7 +95,6 @@ class OneOf extends Component{
     );
   }
   render(): React.Element{
-    const { languagePack }: { languagePack: Object } = this.context;
     const { element, root }: {
       element: React.ChildrenArray<React.Element>,
       root: Object
@@ -104,7 +103,7 @@ class OneOf extends Component{
 
     return [
       this.radioGroupView(root, index),
-      <div key="oneOf-box" className={ styleName('oneOf-box') }>{ element[index] }</div>
+      element[index]
     ];
   }
 }
