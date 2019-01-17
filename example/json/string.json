@@ -156,17 +156,19 @@
     },
     "oneOf": {
       "id": "$root/properties/string/properties/oneOf",
-      "title": "oneOf",
       "description": "oneOf",
       "oneOf": [
         {
+          "title": "oneOf1",
           "type": "string",
           "$componentType": "date"
         },
         {
+          "title": "oneOf2",
           "type": "string"
         },
         {
+          "title": "oneOf3",
           "type": "string",
           "$required": true
         }

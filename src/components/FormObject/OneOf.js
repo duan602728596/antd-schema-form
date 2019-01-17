@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'antd';
+import { Button, Radio } from 'antd';
 import Context from '../../context';
 import styleName from '../../utils/styleName';
 import { isNumber } from '../../utils/type';
@@ -32,34 +32,12 @@ class OneOf extends Component{
     }
     return null;
   }
-  // 切换上一个
-  handlePrevIndexClick: Function = (event: Event): void=>{
-    const { element }: { element: React.ChildrenArray<React.Element> } = this.props;
-    const { index }: { index: number } = this.state;
-    let newIndex: ?number = null;
-
-    if(index === 0) newIndex = element.length - 1;
-    else newIndex = index - 1;
-
-    this.switchCallback(newIndex, index);
-  };
-  // 切换下一个
-  handleNextIndexClick: Function = (event: Event): void=>{
-    const { element }: { element: React.ChildrenArray<React.Element> } = this.props;
-    const { index }: { index: number } = this.state;
-    let newIndex: ?number = null;
-
-    if(index === element.length - 1) newIndex = 0;
-    else newIndex = index + 1;
-
-    this.switchCallback(newIndex, index);
-  };
   // 切换指定index
-  handleDesignationIndexClick(index: number, event: Event): void{
-    const index2: number = this.state.index;
+  handleDesignationIndexChange: Function = (event: Event): void=>{
+    const index: number = this.state.index;
 
-    this.switchCallback(index, index2);
-  }
+    this.switchCallback(event.target.value, index);
+  };
   // 切换的callback
   switchCallback(newIndex: number, index: number): void{
     const { root }: { root: Object } = this.props;
@@ -81,7 +59,7 @@ class OneOf extends Component{
     });
   }
   // 渲染dot
-  listBoxDot(index: number, len: number): React.ChildrenArray<React.Element>{
+  listBoxDotView(index: number, len: number): React.ChildrenArray<React.Element>{
     const element: React.ChildrenArray<React.Element> = [];
 
     for(let i: number = 0; i < len; i++){
@@ -97,22 +75,40 @@ class OneOf extends Component{
 
     return element;
   }
-  render(): React.Element{
-    const { languagePack }: { languagePack: Object } = this.context;
-    const { element }: { element: React.ChildrenArray<React.Element> } = this.props;
-    const { index }: { index: number } = this.state;
+  // 渲染radio
+  radioGroupView(root: Object, index: number): React.ChildrenArray<React.Element>{
+    const options: { label: string, value: index }[] = [];
+
+    for(let i: number = 0, j: number = root.oneOf.length; i < j; i++){
+      const item: Object = root.oneOf[i];
+
+      options.push({
+        label: item.title,
+        value: i
+      });
+    }
 
     return (
-      <div className={ styleName('oneOf-box') }>
-        { element[index] }
-        {/* 渲染box */}
-        <ul className={ styleName('oneOf-indexBox') }>{ this.listBoxDot(index, element.length) }</ul>
-        <Button.Group className={ styleName('oneOf-group') }>
-          <Button icon="left" title={ languagePack.formObject.oneOfLeftTitle } onClick={ this.handlePrevIndexClick } />
-          <Button icon="right" title={ languagePack.formObject.oneOfRightTitle } onClick={ this.handleNextIndexClick } />
-        </Button.Group>
-      </div>
+      <Radio.Group key="radio-group"
+        size="small"
+        options={ options }
+        value={ index }
+        onChange={ this.handleDesignationIndexChange }
+      />
     );
+  }
+  render(): React.Element{
+    const { languagePack }: { languagePack: Object } = this.context;
+    const { element, root }: {
+      element: React.ChildrenArray<React.Element>,
+      root: Object
+    } = this.props;
+    const { index }: { index: number } = this.state;
+
+    return [
+      this.radioGroupView(root, index),
+      <div key="oneOf-box" className={ styleName('oneOf-box') }>{ element[index] }</div>
+    ];
   }
 }
 
