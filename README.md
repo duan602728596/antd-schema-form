@@ -191,8 +191,9 @@ The component renders the table by default ([Table](https://ant.design/component
   | --- | --- |
   | checkbox | Multiple checkbox. |
   | multiple | Drop-down box multiple selection mode. |
+  | tags | Multi-select mode for drop-down box, and you can enter text. |
 
-* `$options: Array<{ label: string, value: string | number }>`: Optional when $componentType is checkbox, multiple.
+* `$options: Array<{ label: string, value: string | number }>`: Optional when $componentType is checkbox, multiple, tags.
 
 ## Custom rendering component
 

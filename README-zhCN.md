@@ -192,8 +192,9 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
   | --- | --- | 
   | checkbox | 多选框 |
   | multiple | 下拉框的多选模式 |
+  | tags | 下拉框的多选模式，并且可以输入文字 |
   
-* `$options: Array<{ label: string, value: string | number }>`：当$componentType为checkbox、multiple时，可选的选项。
+* `$options: Array<{ label: string, value: string | number }>`：当$componentType为checkbox、multiple、tags时，可选的选项。
 
 ## 自定义渲染组件
 
