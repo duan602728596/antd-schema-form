@@ -105,14 +105,14 @@ You can use [form generation](https://duan602728596.github.io/antd-schema-form/#
 
 ### `type="object"`:
 
-The component renders the collapsed panel by default ([Collapse](https://ant.design/components/collapse-cn/)). **Configuration properties: **
+The component renders the collapsed panel by default ([Collapse](https://ant.design/components/collapse-cn/)). **Configuration properties:**
 
 * `properties: object`: When **type** is **object**, the attributes below the object are listed.
 * `required: Array<string>`: The attributes that the object must contain. Unlike the `$required` attribute.
 
 ### `type="string"`:
 
-The component renders the input box by default ([Input](https://ant.design/components/input/)). **Configuration properties: **
+The component renders the input box by default ([Input](https://ant.design/components/input/)). **Configuration properties:**
 
 * `required: boolean`: The current object value must exist. Corresponding validation of the corresponding form.
 * `$requiredMessage: string`: Customize the required verification failure message.
@@ -145,7 +145,7 @@ The component renders the input box by default ([Input](https://ant.design/compo
 
 ### `type="number"` or `type="integer"`:
 
-The component renders the numeric input box by default ([InputNumber](https://ant.design/components/input-number/)). **Configuration properties: **
+The component renders the numeric input box by default ([InputNumber](https://ant.design/components/input-number/)). **Configuration properties:**
 
 * `required: boolean`: The current object value must exist. Corresponding validation of the corresponding form.
 * `$requiredMessage: string`: Customize the required verification failure message.
@@ -170,7 +170,7 @@ The component renders the numeric input box by default ([InputNumber](https://an
 
 ### `type="boolean"`:
 
-The component renders a checkbox by default ([Checkbox](https://ant.design/components/checkbox/)). **Configuration properties: **
+The component renders a checkbox by default ([Checkbox](https://ant.design/components/checkbox/)). **Configuration properties:**
 
 * `$defaultValue: boolean`: The default value of the form control.
 * `$componentType: string`: Rendered as other components.
@@ -181,7 +181,7 @@ The component renders a checkbox by default ([Checkbox](https://ant.design/compo
 
 ### `type="array"`:
 
-The component renders the table by default ([Table](https://ant.design/components/table/)). **Configuration properties: **
+The component renders the table by default ([Table](https://ant.design/components/table/)). **Configuration properties:**
  
 * `items: object`: the contents of the array.
 * `$defaultValue: Array<any>`: The default value of the form control.
