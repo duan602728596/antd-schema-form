@@ -56,7 +56,6 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
 | okText | 确认按钮文字 | string |
 | cancelText | 取消按钮文字 | string |
 | footer | 自定义底部内容，[参考](https://github.com/duan602728596/antd-schema-form/blob/master/src/components/FormObject/FormObject.js#L117) |  (form: object) => React.Node  |
-| onUpload | 文件上传事件 | (file: Array&lt;File&gt;) => Promise&lt;string&gt; |
 | customComponent | 自定义渲染组件，[参考](#自定义渲染组件) | object |
 | languagePack | 语言配置，[参考](language/zh-CN.json) | object |
 
@@ -139,7 +138,6 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
   | select | 下拉框 |
   | radio | 单选框 |
   | date | 日期选择器（**当组件为日期选择器时，值为Moment对象，需要自行对日期的值进行处理**） |
-  | upload | 文件上传 |
   | password | 密码框 |
   
 * `$options: Array<{ label: string, value: string }>`：当$componentType为select、radio时，可选的选项。

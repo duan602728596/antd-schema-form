@@ -55,7 +55,6 @@ Antd-schema-form based [Ant Design](https://ant.design/), quickly generate inter
 | okText | Confirm button text. | string |
 | cancelText | Cancel button text. | string |
 | footer | Custom bottom content, [reference](https://github.com/duan602728596/antd-schema-form/blob/master/src/components/FormObject/FormObject.js#L117) |  (form: object) => React.Node  |
-| onUpload | File upload event. | (file: Array&lt;File&gt;) => Promise&lt;string&gt; |
 | customComponent | Custom rendering component, [reference](#custom-rendering-component) | object |
 | languagePack | Language configuration, [reference](language/default.json) | object |
 
@@ -138,7 +137,6 @@ The component renders the input box by default ([Input](https://ant.design/compo
   | select | Drop-down box. |
   | radio | Radio box. |
   | date | Date picker. (**When the component is a date picker, the value is a Moment object, and you need to process the value of the date yourself.**) |
-  | upload | File Upload. |
   | password | Password box. |
 
 * `$options: Array<{ label: string, value: string }>`: Optional when $componentType is select, radio.
