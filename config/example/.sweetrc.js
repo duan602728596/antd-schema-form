@@ -33,7 +33,7 @@ export default {
   },
   css: {
     modules: false,
-    include: /node_modules[\\/]antd/
+    include: /node_modules[\\/]_?antd/
   },
   html: [{ template: path.join(__dirname, '../../example/index.pug') }]
 };
