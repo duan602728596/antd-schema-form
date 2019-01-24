@@ -136,10 +136,6 @@
           "value": "date"
         },
         {
-          "label": "File Upload",
-          "value": "upload"
-        },
-        {
           "label": "Password input",
           "value": "password"
         }
