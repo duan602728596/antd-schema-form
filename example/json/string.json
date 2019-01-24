@@ -131,13 +131,6 @@
       "$componentType": "date",
       "$defaultValue": "2010-12-15 08:12:14"
     },
-    "file": {
-      "id": "$root/properties/string/properties/file",
-      "type": "string",
-      "title": "文件上传",
-      "description": "文件上传",
-      "$componentType": "upload"
-    },
     "password": {
       "id": "$root/properties/string/properties/password",
       "type": "string",
