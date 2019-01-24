@@ -56,7 +56,7 @@ class FormString extends Component{
     } = root;
     const rules: Array = createStringRules(this.props.root, required);
     const option: Object = { rules };
-    let element: ?(React.Element | React.ChildrenArray<React.Element>) = null;
+    let element: ?React.Element = null;
 
     // 表单默认值
     if($defaultValue) option.initialValue = $defaultValue;
