@@ -3,7 +3,7 @@ import { HashRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { LocaleProvider } from 'antd';
 import zhCN from 'antd/lib/locale-provider/zh_CN';
-import { hot } from 'react-hot-loader';
+import { hot } from '@sweet/milktea/react-hot-loader';
 import { storeFactory } from './store/store';
 import Arrangement from './assembly/Arrangement/index';
 import { I18N } from './components/I18N/I18N';
