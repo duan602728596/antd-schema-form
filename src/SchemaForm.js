@@ -70,10 +70,9 @@ class SchemaForm extends Component{
     return null;
   }
   render(): React.Element{
-    const { form, json, onUpload, onOk, onCancel, okText, cancelText, footer, customComponent }: {
+    const { form, json, onOk, onCancel, okText, cancelText, footer, customComponent }: {
       form: Object,
       json: Object,
-      onUpload: ?Function,
       onOk: ?Function,
       onCancel: ?Function,
       okText: ?(string | number),
@@ -85,7 +84,6 @@ class SchemaForm extends Component{
     const { language }: { language: Object } = this.state;
     const contextValue: Object = {
       form,
-      onUpload,
       customComponent,
       language, // 系统语言
       languagePack: isObject(languagePack2)

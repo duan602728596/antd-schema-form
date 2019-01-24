@@ -81,19 +81,3 @@ export function renderDate(): void{
 
   expect(antCalendarPicker).to.have.lengthOf(1);
 }
-
-/* 渲染文件上传组件 */
-export function renderFileUpload(): void{
-  const json: Object = {
-    id: '$root',
-    type: 'string',
-    title: '渲染文件上传组件',
-    $componentType: 'upload'
-  };
-  const wrapper: Object = mount(<SchemaForm json={ json } />);
-  const antInput: Object = wrapper.find('.ant-input');
-  const antBtn: Object = wrapper.find('.ant-btn');
-
-  expect(antInput).to.have.lengthOf(1);
-  expect(antBtn).to.have.lengthOf(1);
-}

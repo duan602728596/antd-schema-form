@@ -1,6 +1,6 @@
 import describe from 'describe';
 import it from 'it';
-import { renderDefault, renderTextArea, renderSelect, renderRadio, renderDate, renderFileUpload } from './componentRendering';
+import { renderDefault, renderTextArea, renderSelect, renderRadio, renderDate } from './componentRendering';
 import {
   componentHasDefaultValue, componentHastValue, selectHasDefaultValue, selectHasValue, radioHasDefaultValue,
   radioHastValue, dateHasDefaultValue, dateHasValue, theValueOfTheComponentOverridesTheDefaultValue
@@ -20,7 +20,6 @@ describe('字符串组件', function(): void{
     it('渲染下拉框', renderSelect);
     it('渲染单选组件', renderRadio);
     it('渲染日期组件', renderDate);
-    it('渲染文件上传组件', renderFileUpload);
   });
 
   /* 交互测试 */

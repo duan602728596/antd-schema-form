@@ -29,22 +29,6 @@ class FormString extends Component{
   handleFileUpdateClick: Function = (event: Event): void=>{
     this.inputRef.current.click();
   };
-  // 文件input的change事件
-  async handleInputChange(id: string, event: Event): Promise<void>{
-    const { form, onUpload }: {
-      form: Object,
-      onUpload: ?Function
-    } = this.context;
-    const { files }: { files: Array<File> } = event.target;
-
-    if(onUpload && isFunction(onUpload)){
-      const value: string = await onUpload(files);
-
-      form.setFieldsValue({ [id]: value });
-    }else{
-      form.setFieldsValue({ [id]: files[0].name });
-    }
-  }
   // select的下拉框
   selectOptionsView(options: Array<{ label: string, value: string }>): React.ChildrenArray<React.Element>{
     return options.map((item: Object, index: number): React.Element=>{
@@ -52,11 +36,7 @@ class FormString extends Component{
     });
   }
   render(): React.Element{
-    const { form, customComponent, languagePack }: {
-      form: Object,
-      customComponent: Object,
-      languagePack: Object
-    } = this.context;
+    const { form, customComponent }: { form: Object, customComponent: Object } = this.context;
     const { getFieldDecorator }: { getFieldDecorator: Function } = form;
     // type=object时，会判断key是否存在于required数组中
     const { root, required }: {
@@ -117,26 +97,6 @@ class FormString extends Component{
         element = getFieldDecorator(id, option)(
           <DatePicker format="YYYY-MM-DD HH:mm:ss" showTime={ true } placeholder={ $placeholder } />
         );
-        break;
-
-      // 文件上传
-      case 'upload':
-        element = [
-          getFieldDecorator(id, option)(
-            <Input.Search key="input"
-              enterButton={ languagePack.formString.selectTheFile }
-              readOnly={ $readOnly }
-              placeholder={ $placeholder }
-              onSearch={ this.handleFileUpdateClick }
-            />
-          ),
-          <input key="file"
-            ref={ this.inputRef }
-            className={ styleName('string-file') }
-            type="file"
-            onChange={ this.handleInputChange.bind(this, id) }
-          />
-        ];
         break;
 
       // password

@@ -1,7 +1,4 @@
 {
-  "formString": {
-    "selectTheFile": "Select the file"
-  },
   "formArray": {
     "operating": "Operating",
     "operatingAdd": "Adding data",

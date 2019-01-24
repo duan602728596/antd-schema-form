@@ -1,7 +1,4 @@
 {
-  "formString": {
-    "selectTheFile": "选择文件"
-  },
   "formArray": {
     "operating": "操作",
     "operatingAdd": "添加数据",
