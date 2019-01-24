@@ -1,3 +1,7 @@
+### v1.2.0
+
+* 💀The file upload component **upload** has been removed, and the file upload is implemented using a custom component.
+
 ### v1.1.0
 
 * 🎉The array adds a new rendering component: **tags**.
