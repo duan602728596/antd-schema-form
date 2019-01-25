@@ -179,7 +179,7 @@ The component renders a checkbox by default ([Checkbox](https://ant.design/compo
 
 ### `type="array"`:
 
-The component renders the table by default ([Table](https://ant.design/components/table/)). **Configuration properties:**
+The component renders the table by default ([Table](https://ant.design/components/table/)).Click on the number of rows in the table to modify the location of the data. **Configuration properties:**
  
 * `items: object`: the contents of the array.
 * `$defaultValue: Array<any>`: The default value of the form control.

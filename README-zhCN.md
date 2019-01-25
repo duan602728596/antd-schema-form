@@ -180,7 +180,7 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
   
 ### `type="array"`：
 
-组件默认渲染表格（[Table](https://ant.design/components/table-cn/)）。**配置属性：**
+组件默认渲染表格（[Table](https://ant.design/components/table-cn/)）。点击表格的行数可以修改数据的位置。**配置属性：**
 
 * `items: object`：数组的内容。
 * `$defaultValue: Array<any>`：表单控件的默认值。
