@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { mount } from 'enzyme';
 import React from 'react';
-import SchemaForm from '../../../src/SchemaForm';
+import SchemaForm from '../../SchemaForm';
 
 /* 组件只读 */
 export function componentReadOnly(): void{

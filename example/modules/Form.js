@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Input, Icon } from 'antd';
-import SchemaForm from '../../src/SchemaForm';
-import '../../src/style/antd-schema-form-global.sass';
+import SchemaForm from '../SchemaForm';
 import stringJson from '../json/string.json';
 import numberJson from '../json/number.json';
 import booleanJson from '../json/boolean.json';

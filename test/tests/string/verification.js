@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { mount } from 'enzyme';
 import React from 'react';
-import SchemaForm from '../../../src/SchemaForm';
+import SchemaForm from '../../SchemaForm';
 
 function CreateHandleClickFn(result: Object): void{
   return function(form: Object, value: Object): void{

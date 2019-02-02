@@ -3,8 +3,7 @@ import it from 'it';
 import { expect } from 'chai';
 import { mount } from 'enzyme';
 import React from 'react';
-import SchemaForm from '../../../src/SchemaForm';
-import styleName from '../../../src/utils/styleName';
+import SchemaForm from '../../SchemaForm';
 
 describe('组件渲染', function(): void{
   /* 组件渲染 */

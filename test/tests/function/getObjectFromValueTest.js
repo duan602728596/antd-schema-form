@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import getObjectFromValue from '../../../src/utils/getObjectFromValue';
+import { getObjectFromValue } from '../../SchemaForm';
 
 export function getObjectFromValueTest0(): void{
   const value: Object = {
