@@ -1,0 +1,15 @@
+{
+  "formArray": {
+    "operating": "Operating",
+    "operatingAdd": "Adding data",
+    "operatingPopconfirmTitle": "Are you sure you want to delete the data?",
+    "operatingEdit": "Edit",
+    "operatingDelete": "Delete",
+    "deleteSelected": "Delete selected data",
+    "deleteSelectedText": "Are you sure you want to delete the selected data?"
+  },
+  "formObject": {
+    "okText": "OK",
+    "cancelText": "Cancel"
+  }
+}

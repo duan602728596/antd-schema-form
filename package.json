@@ -1,0 +1,76 @@
+{
+  "name": "antd-schema-form",
+  "version": "1.2.0",
+  "description": "基于antd，通过json schema配置表单。",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "author": {
+    "name": "段昊辰",
+    "email": "duanhaochen@126.com",
+    "url": "https://github.com/duan602728596"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:duan602728596/antd-schema-form.git"
+  },
+  "homepage": "https://duan602728596.github.io/antd-schema-form/#/",
+  "license": "MIT",
+  "keywords": [
+    "form",
+    "antd",
+    "react-component"
+  ],
+  "scripts": {
+    "dll": "milktea dll --config=\"./config/example/.sweetrc.js\"",
+    "dev": "milktea start --server --config=\"./config/example/.sweetrc.js\"",
+    "build": "npm run clearlib && npm run cleares && npm run clearstyle && cross-env NODE_ENV=production gulp",
+    "clearlib": "rimraf lib",
+    "cleares": "rimraf es",
+    "clearstyle": "rimraf style",
+    "testinit": "mocha init test",
+    "test": "milktea start --server --config=\"./config/test/.sweetrc.js\" --httpPort=6060",
+    "tslint": "tslint --project ./",
+    "update": "milktea update"
+  },
+  "dependencies": {
+    "moment": "^2.24.0",
+    "prop-types": "^15.6.2"
+  },
+  "devDependencies": {
+    "@sweet/milktea": "github:duan602728596/sweet#build-milktea",
+    "@sweet/milktea-cli": "github:duan602728596/sweet#build-milktea-cli",
+    "@sweet/server": "github:duan602728596/sweet#build-server",
+    "@sweet/util-tools": "github:duan602728596/sweet#build-util-tools",
+    "@types/react": "^16.8.1",
+    "antd": "^3.12.4",
+    "babel-eslint": "^10.0.1",
+    "babel-plugin-import": "^1.11.0",
+    "chai": "^4.2.0",
+    "cross-env": "^5.2.0",
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.7.1",
+    "eslint": "^5.12.1",
+    "eslint-plugin-flowtype": "^3.2.1",
+    "eslint-plugin-react": "^7.12.4",
+    "gulp": "^4.0.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-typescript": "^5.0.0",
+    "mocha": "^5.2.0",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "rimraf": "^2.6.3",
+    "tslint": "^5.12.1",
+    "typescript": "^3.3.1"
+  },
+  "peerDependencies": {
+    "antd": ">=3.12.0",
+    "react": ">=16.6.0",
+    "react-dom": ">=16.6.0"
+  },
+  "pre-commit": {
+    "run": [
+      "tslint"
+    ]
+  }
+}

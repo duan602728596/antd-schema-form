@@ -1,0 +1,11 @@
+node_modules
+config
+lib
+es
+build
+gulpfile.js
+.dll
+.sweetrc.js
+test/mocha/mocha.js
+*.ts
+*.tsx

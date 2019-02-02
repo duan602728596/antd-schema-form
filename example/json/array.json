@@ -1,0 +1,153 @@
+{
+  "id": "$root/properties/array",
+  "type": "object",
+  "title": "数组",
+  "description": "渲染数组类型的组件。",
+  "properties": {
+    "default": {
+      "id": "$root/properties/array/properties/default",
+      "type": "array",
+      "title": "默认组件",
+      "description": "默认组件",
+      "items": {
+        "id": "$root/properties/array/properties/default/items",
+        "type": "object",
+        "title": "数组内的对象",
+        "description": "数组内的对象",
+        "properties": {
+          "col1": {
+            "id": "$root/properties/array/properties/default/items/properties/col1",
+            "type": "string",
+            "title": "第一列",
+            "description": "第一列"
+          },
+          "col2": {
+            "id": "$root/properties/array/properties/default/items/properties/col2",
+            "type": "number",
+            "title": "第二列",
+            "description": "第二列"
+          },
+          "col3": {
+            "id": "$root/properties/array/properties/default/items/properties/col3",
+            "type": "boolean",
+            "title": "第三列",
+            "description": "第三列"
+          }
+        }
+      },
+      "$defaultValue": [
+        {
+          "col1": "数据1",
+          "col2": 1,
+          "col3": true
+        },
+        {
+          "col1": "数据2",
+          "col2": 2,
+          "col3": false
+        }
+      ]
+    },
+    "item": {
+      "id": "$root/properties/array/properties/item",
+      "type": "array",
+      "title": "数组内不是object",
+      "description": "数组内不是object",
+      "items": {
+        "id": "$root/properties/array/properties/item/items",
+        "type": "number",
+        "title": "数组内的对象",
+        "description": "数组内的对象",
+        "$required": true
+      },
+      "$defaultValue": [1, 2, 3]
+    },
+    "arrayInArray": {
+      "id": "$root/properties/array/properties/arrayInArray",
+      "type": "array",
+      "title": "数组复杂嵌套",
+      "description": "数组复杂嵌套",
+      "items": {
+        "id": "$root/properties/array/properties/arrayInArray/items",
+        "type": "array",
+        "title": "数组复杂嵌套",
+        "description": "数组复杂嵌套",
+        "items": {
+          "id": "$root/properties/array/properties/arrayInArray/items/items",
+          "type": "string",
+          "title": "输入",
+          "description": "输入"
+        }
+      }
+    },
+    "multiple": {
+      "id": "$root/properties/array/properties/multiple",
+      "type": "array",
+      "title": "Select多选模式",
+      "description": "Select多选模式",
+      "items": {
+        "id": "$root/properties/array/properties/multiple/items",
+        "type": "string",
+        "title": "Select多选模式",
+        "description": "Select多选模式"
+      },
+      "$componentType": "multiple",
+      "$options": [
+        {
+          "label": "选项1",
+          "value": "选项1值"
+        },
+        {
+          "label": "选项2",
+          "value": "选项2值"
+        }
+      ]
+    },
+    "tags": {
+      "id": "$root/properties/array/properties/tags",
+      "type": "array",
+      "title": "Select多选模式，随意输入内容",
+      "description": "Select多选模式，随意输入内容",
+      "items": {
+        "id": "$root/properties/array/properties/tags/items",
+        "type": "string",
+        "title": "Select多选模式，随意输入内容",
+        "description": "Select多选模式，随意输入内容"
+      },
+      "$componentType": "tags",
+      "$options": [
+        {
+          "label": "选项1",
+          "value": "选项1值"
+        },
+        {
+          "label": "选项2",
+          "value": "选项2值"
+        }
+      ]
+    },
+    "checkbox": {
+      "id": "$root/properties/array/properties/checkbox",
+      "type": "array",
+      "title": "多选框",
+      "description": "多选框",
+      "items": {
+        "id": "$root/properties/array/properties/checkbox/items",
+        "type": "string",
+        "title": "多选框",
+        "description": "多选框"
+      },
+      "$componentType": "checkbox",
+      "$options": [
+        {
+          "label": "选项1",
+          "value": "选项1值"
+        },
+        {
+          "label": "选项2",
+          "value": "选项2值"
+        }
+      ]
+    }
+  }
+}

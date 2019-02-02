@@ -1,0 +1,15 @@
+{
+  "formArray": {
+    "operating": "操作",
+    "operatingAdd": "添加数据",
+    "operatingPopconfirmTitle": "确认要删除数据吗？",
+    "operatingEdit": "修改",
+    "operatingDelete": "删除",
+    "deleteSelected": "删除选中的数据",
+    "deleteSelectedText": "确认要删除选中的数据吗？"
+  },
+  "formObject": {
+    "okText": "确认",
+    "cancelText": "取消"
+  }
+}

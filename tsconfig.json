@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "alwaysStrict": true,
+    "moduleResolution": "node",
+    "locale": "zh-CN",
+    "module": "ES6",
+    "target": "ES2018",
+    "newLine": "LF",
+    "resolveJsonModule": true,
+    "jsx": "react",
+    "declaration": true,
+    "experimentalDecorators": true
+  }
+}

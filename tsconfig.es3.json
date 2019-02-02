@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "alwaysStrict": true,
+    "moduleResolution": "node",
+    "locale": "zh-CN",
+    "module": "commonjs",
+    "target": "ES3",
+    "newLine": "LF",
+    "resolveJsonModule": true,
+    "jsx": "react",
+    "declaration": true,
+    "experimentalDecorators": true,
+    "lib": [
+      "ES5",
+      "ES2015",
+      "ES2016",
+      "ES2017",
+      "ES2018",
+      "DOM"
+    ]
+  }
+}

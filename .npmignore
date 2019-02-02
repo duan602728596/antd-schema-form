@@ -1,0 +1,24 @@
+# node
+node_modules
+npm-debug.log
+package-lock.json
+
+# yarn
+yarn.lock
+yarn-error.log
+
+# webstorm
+.idea
+
+.editorconfig
+.gitignore
+.eslintignore
+.eslintrc.yml
+
+.babelCache
+.dll
+config
+example
+test
+gulpfile.js
+src
