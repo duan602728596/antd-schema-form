@@ -1,3 +1,7 @@
+### v1.2.1
+
+* 🐛Removed the legacy method of the `OneOf` component.
+
 ### v1.2.0
 
 * 💀The file upload component **upload** has been removed, and the file upload is implemented using a custom component.
