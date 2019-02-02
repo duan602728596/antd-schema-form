@@ -12,6 +12,7 @@ yarn-error.log
 
 .editorconfig
 .gitignore
+.gitattributes
 .eslintignore
 .eslintrc.yml
 
@@ -22,3 +23,6 @@ example
 test
 gulpfile.js
 src
+tslint.json
+tsconfig.json
+tsconfig.es5.json
