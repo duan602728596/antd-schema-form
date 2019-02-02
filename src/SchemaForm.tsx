@@ -24,8 +24,8 @@ interface SchemaFormProps extends FormComponentProps{
 }
 
 interface SchemaFormState{
-  value: object,
-  language: string
+  value: object;
+  language: string;
 }
 
 // @ts-ignore
