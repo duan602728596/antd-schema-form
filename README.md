@@ -240,5 +240,6 @@ Function parameters:
 
 ## Development and testing
 
-* Run the command `npm run dll`, `npm run dev`, enter `http://127.0.0.1:5050` in the browser to view the demo and develop.
+* Run the command `npm run dll`, `npm start`, and enter `http://127.0.0.1:5050` in the browser to view the demo.
+* Run the command `npm run dev` for development.
 * Run the command `npm run dll`, `npm run test`, and run `http://127.0.0.1:6060` in the browser to run the test case.

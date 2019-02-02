@@ -1,3 +1,7 @@
+### v2.0.0-beta.1
+
+* 💀Refactor the code using **typescript**.
+
 ### v1.2.0
 
 * 💀The file upload component **upload** has been removed, and the file upload is implemented using a custom component.
