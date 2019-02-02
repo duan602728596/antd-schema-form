@@ -1,14 +1,13 @@
-const path = require('path');
 const gulp = require('gulp');
 const babel = require('gulp-babel');
 const sass = require('gulp-sass');
 
 // 文件目录地址
-const jsSrc = path.join(__dirname, 'src/**/*.js');
-const sassSrc = path.join(__dirname, 'src/style/**/*.sass');
-const libPath = path.join(__dirname, 'lib');
-const esPath = path.join(__dirname, 'es');
-const stylePath = path.join(__dirname, 'style');
+const jsSrc = 'src/**/*.js';
+const sassSrc = 'src/style/**/*.sass';
+const libPath = 'lib';
+const esPath = 'es';
+const stylePath = 'style';
 
 // bebel配置
 const babelConfig = {
@@ -98,4 +97,4 @@ function sassProject(){
     .pipe(gulp.dest(stylePath));
 }
 
-exports.default = gulp.series(gulp.parallel(babelProject, babelEsProject, sassProject));
+exports.default = gulp.parallel(babelProject, babelEsProject, sassProject);
