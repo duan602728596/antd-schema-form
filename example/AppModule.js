@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { LocaleProvider } from 'antd';
 import zhCN from 'antd/lib/locale-provider/zh_CN';
-import { hot } from 'react-hot-loader';
+import { hot } from '@sweet/milktea/react-hot-loader';
 import style from './style.sass';
 import Form from './modules/Form';
 

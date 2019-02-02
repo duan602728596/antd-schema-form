@@ -22,7 +22,8 @@
   ],
   "scripts": {
     "dll": "milktea dll --config=\"./config/example/.sweetrc.js\"",
-    "dev": "milktea start --server --config=\"./config/example/.sweetrc.js\"",
+    "start": "milktea start --server --config=\"./config/example/.sweetrc.js\"",
+    "dev": "npm run clearlib && npm run cleares && npm run clearstyle && cross-env NODE_ENV=development gulp",
     "build": "npm run clearlib && npm run cleares && npm run clearstyle && cross-env NODE_ENV=production gulp",
     "clearlib": "rimraf lib",
     "cleares": "rimraf es",
@@ -54,6 +55,8 @@
     "eslint-plugin-react": "^7.12.4",
     "gulp": "^4.0.0",
     "gulp-babel": "^8.0.0",
+    "gulp-changed": "^3.2.0",
+    "gulp-plumber": "^1.2.1",
     "gulp-sass": "^4.0.2",
     "gulp-typescript": "^5.0.0",
     "mocha": "^5.2.0",
