@@ -1,3 +1,7 @@
+### v2.0.0-beta.2
+
+* 🐛Add a style that was accidentally deleted.
+
 ### v2.0.0-beta.1
 
 * 💀Refactor the code using **typescript**.
