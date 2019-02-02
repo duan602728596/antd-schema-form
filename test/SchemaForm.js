@@ -1,5 +1,5 @@
 import SchemaForm, { getKeysFromObject, getObjectFromValue, getValueFromObject } from '../es/index';
-import '../style/antd-schema-form-global.css';
+import '../src/style/antd-schema-form-global.sass';
 
 export default SchemaForm;
 export {
