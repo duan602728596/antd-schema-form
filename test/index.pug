@@ -1,0 +1,13 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='renderer' content='webkit')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    link(rel='stylesheet' href=require('./mocha/mocha.css'))
+    title antd-schema-form测试用例
+  body
+    div.app#mocha
+    script(src=require('../.dll/dll'))
+    script(src=require('./mocha/mocha'))
+    script(src=require('chai/chai'))

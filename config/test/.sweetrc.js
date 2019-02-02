@@ -49,7 +49,7 @@ export default {
   },
   css: {
     modules: false,
-    include: /node_modules[\\/]_?antd/,
+    include: /(node_modules[\\/]_?antd|style)/,
     exclude: /mocha/
   },
   html: [{ template: path.join(__dirname, '../../test/index.pug') }]
