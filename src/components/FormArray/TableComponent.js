@@ -58,7 +58,7 @@ class TableComponent extends Component{
     tableValue = isSpace(tableValue) ? (root?.$defaultValue || []) : tableValue;
 
     const length: number = tableValue.length;
-    const { inputChangeIndex }: { inputChangeIndex: ?number } = this.state;
+    const { inputChangeIndex }: { inputChangeIndex: ?string } = this.state;
     let newIndex: number = Number(inputChangeIndex) - 1;
 
     if(newIndex !== index && /^[0-9]+$/.test(inputChangeIndex)){
@@ -166,7 +166,7 @@ class TableComponent extends Component{
     const { items }: { items: Object } = this.props.root;
     const { inputDisplayIndex, inputChangeIndex }: {
       inputDisplayIndex: ?number,
-      inputChangeIndex: ?number
+      inputChangeIndex: ?string
     } = this.state;
     const { type, properties, title }: {
       type: string,
