@@ -4,11 +4,11 @@ import { Component } from 'react';
 import { Input, Icon } from 'antd';
 import styleName from '../../utils/styleName';
 
+/* 兼容Input.Password组件，antd < 3.12.0 */
 type InputPasswordState = {
   type: string
 };
 
-/* 兼容Input.Password组件，antd < 3.12.0 */
 class InputPassword extends Component<{}, InputPasswordState>{
   state: Object = {
     type: 'password'

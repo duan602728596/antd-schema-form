@@ -10,11 +10,6 @@ import { isString, isFunction } from '../../utils/type';
 import createStringRules from './createStringRules';
 import InputPassword from './InputPassword';
 
-type FormStringProps = {
-  root: Object,
-  required: boolean
-};
-
 /**
  * 当类型为string时的组件渲染
  * json schema的属性包括：id, type, title, description, pattern, minLength, maxLength, enum
@@ -23,6 +18,11 @@ type FormStringProps = {
  * 扩展属性包括：required, componentType, readOnly, length, patternOption, enumMessage, lengthMessage, requiredMessage,
  *   patternMessage, minLengthMessage, maxLengthMessage, options, defaultValue, placeholder
  */
+type FormStringProps = {
+  root: Object,
+  required: boolean
+};
+
 class FormString extends Component<FormStringProps>{
   static contextType: React.Context<Object> = AntdSchemaFormContext;
   static propTypes: Object = {

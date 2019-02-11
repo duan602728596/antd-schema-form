@@ -1,11 +1,23 @@
-import React, { Component } from 'react';
+// @flow
+import * as React from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Radio } from 'antd';
 import AntdSchemaFormContext from '../../context';
 import { isNumber } from '../../utils/type';
 
-class OneOf extends Component{
-  static contextType: Object = AntdSchemaFormContext;
+type OneOfProps = {
+  root: Object,
+  element: Array<React.Node>
+};
+
+type OneOfState = {
+  root: Object,
+  index: number
+};
+
+class OneOf extends Component<OneOfProps, OneOfState>{
+  static contextType: React.Context<Object> = AntdSchemaFormContext;
   static propTypes: Object = {
     root: PropTypes.object,
     element: PropTypes.array
@@ -21,7 +33,7 @@ class OneOf extends Component{
       index: isNumber(root.$oneOfIndex) ? root.$oneOfIndex : 0 // oneOf选项卡的index
     };
   }
-  static getDerivedStateFromProps(nextProps: Object, prevState: Object): ?Object{
+  static getDerivedStateFromProps(nextProps: OneOfProps, prevState: OneOfState): ?{ index: number }{
     if(nextProps.root !== prevState.root){
       const { root }: { root: Object } = nextProps;
 
@@ -55,8 +67,8 @@ class OneOf extends Component{
     this.setState({ index: newIndex });
   }
   // 渲染radio
-  radioGroupView(root: Object, index: number): React.ChildrenArray<React.Element>{
-    const options: { label: string, value: index }[] = [];
+  radioGroupView(root: Object, index: number): React.Node{
+    const options: { label: string, value: number }[] = [];
 
     for(let i: number = 0, j: number = root.oneOf.length; i < j; i++){
       const item: Object = root.oneOf[i];
@@ -76,9 +88,9 @@ class OneOf extends Component{
       />
     );
   }
-  render(): React.Element{
+  render(): React.Node{
     const { element, root }: {
-      element: React.ChildrenArray<React.Element>,
+      element: Array<React.Node>,
       root: Object
     } = this.props;
     const { index }: { index: number } = this.state;

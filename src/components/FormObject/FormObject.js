@@ -1,4 +1,6 @@
-import React, { Component, Fragment } from 'react';
+// @flow
+import * as React from 'react';
+import { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Collapse, Button } from 'antd';
 import AntdSchemaFormContext from '../../context';
@@ -16,8 +18,17 @@ import { isArray } from '../../utils/type';
  * 当类型为object时的组件渲染
  * json schema的属性包括：id, type, title, description, properties, required
  */
-class FormObject extends Component{
-  static contextType: Object = AntdSchemaFormContext;
+type FormObjectProps = {
+  root: Object,
+  onOk?: Function,
+  onCancel?: Function,
+  okText?: string | number,
+  cancelText?: string | number,
+  footer?: Function
+};
+
+class FormObject extends Component<FormObjectProps>{
+  static contextType: React.Context<Object> = AntdSchemaFormContext;
   static propTypes: Object = {
     root: PropTypes.object,
     onOk: PropTypes.func,
@@ -34,7 +45,7 @@ class FormObject extends Component{
   };
 
   // 根据type渲染不同的组件
-  renderComponentByTypeView(root: Object, required: boolean): ?React.Element{
+  renderComponentByTypeView(root: Object, required?: boolean): React.Node{
     const { id, type }: {
       id: string,
       type: string
@@ -68,10 +79,10 @@ class FormObject extends Component{
     }
   }
   // oneOf组件
-  renderOneOfComponentView(root: Object, required: boolean): ?React.Element{
-    const element: React.ChildrenArray<React.Element> = [];
+  renderOneOfComponentView(root: Object, required?: boolean): React.Node{
+    const element: Array<React.Node> = [];
 
-    root.oneOf.forEach((value: Object, index: number, array: Array): void=>{
+    root.oneOf.forEach((value: Object, index: number, array: Array<Object>): void=>{
       const childrenRoot: Object = { ...value };
 
       for(const key: string in root){
@@ -86,15 +97,15 @@ class FormObject extends Component{
     return <OneOf key={ root.id } root={ root } element={ element } />;
   }
   // 渲染一个object组件
-  renderObjectComponentView(root: Object): React.Element{
+  renderObjectComponentView(root: Object): React.Node{
     const { id, title, description }: {
       id: string,
       title: string,
       description: string
     } = root;
     const required: Array<string> = root?.required || [];
-    const properties: ?Object = root?.properties || {};
-    const element: React.ChildrenArray<React.Element> = [];
+    const properties: Object = root?.properties || {};
+    const element: Array<React.Node> = [];
 
     // 判断object下组件的类型并渲染
     for(const key: string in properties){
@@ -139,13 +150,13 @@ class FormObject extends Component{
     onCancel(form);
   };
   // 确认和取消按钮
-  footerView(): ?React.Element{
+  footerView(): React.Node{
     const { languagePack }: { languagePack: Object } = this.context;
     const { onOk, onCancel, okText = languagePack.formObject.okText, cancelText = languagePack.formObject.cancelText }: {
-      onOk: ?Function,
-      onCancel: ?Function,
-      okText: string,
-      cancelText: string
+      onOk?: Function,
+      onCancel?: Function,
+      okText: any,
+      cancelText: any
     } = this.props;
 
     if(onOk || onCancel){
@@ -173,7 +184,7 @@ class FormObject extends Component{
       return null;
     }
   }
-  render(): React.Element{
+  render(): React.Node{
     const { form }: { form: Object } = this.context;
     const { root, footer }: {
       root: Object,
