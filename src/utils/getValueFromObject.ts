@@ -1,6 +1,5 @@
 import { isObject } from './type';
 
-
 /**
  * 格式化数据
  * @param { object } value: 表单值

@@ -45,7 +45,7 @@ class TableComponent extends Component<TableComponentProps>{
   handleInputDisplayClick(index: number, event: Event): void{
     this.setState({
       inputDisplayIndex: index,
-      inputChangeIndex: index + 1
+      inputChangeIndex: String(index + 1)
     }, (): void=>{
       this.changeIndexRef.current.focus();
     });
