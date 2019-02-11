@@ -1,3 +1,4 @@
+// @flow
 import defaultLang from '../language/default.json';
 import zhCNLang from '../language/zh-CN.json';
 

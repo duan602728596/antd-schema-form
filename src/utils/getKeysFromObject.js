@@ -1,6 +1,8 @@
 /**
  * 获取schema.json下所有的key
  * @param { Object } item: 对象
+ *
+ * @flow
  */
 function getKeysFromObject(item: Object): Array<string>{
   const idArr: string[] = [];

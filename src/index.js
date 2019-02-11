@@ -1,3 +1,4 @@
+// @flow
 import SchemaForm from './SchemaForm';
 import getKeysFromObject from './utils/getKeysFromObject';
 import getObjectFromValue from './utils/getObjectFromValue';

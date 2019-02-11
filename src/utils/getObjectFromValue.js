@@ -1,3 +1,4 @@
+// @flow
 import { isObject } from './type';
 
 /**
@@ -5,7 +6,7 @@ import { isObject } from './type';
  * @param { Object } obj: 对象
  * @param { ?string } basicId: 前置id
  */
-function getObjectFromValue(obj: Object, basicId: ?string): Object{
+function getObjectFromValue(obj: Object, basicId?: string): Object{
   let value: Object = {};
 
   for(const key: string in obj){

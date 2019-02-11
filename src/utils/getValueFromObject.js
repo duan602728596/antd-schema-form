@@ -1,3 +1,4 @@
+// @flow
 import { isObject } from './type';
 
 /**

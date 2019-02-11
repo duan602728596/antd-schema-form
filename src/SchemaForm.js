@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+// @flow
+import * as React from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Form } from 'antd';
 import AntdContext from './context';
@@ -7,8 +9,26 @@ import getObjectFromValue from './utils/getObjectFromValue';
 import { isObject } from './utils/type';
 import languagePack from './languagePack';
 
+type SchemaFormProps = {
+  form?: Object,
+  json: Object,
+  value?: Object,
+  onOk?: Function,
+  onCancel?: Function,
+  okText?: string | number,
+  cancelText?: string | number,
+  footer?: Function,
+  customComponent?: Object,
+  languagePack?: Object
+};
+
+type SchemaFormState = {
+  value: Object,
+  language: string
+};
+
 @Form.create()
-class SchemaForm extends Component{
+class SchemaForm extends Component<SchemaFormProps, SchemaFormState>{
   static propTypes: Object = {
     form: PropTypes.object,
     json: PropTypes.object,
@@ -41,9 +61,9 @@ class SchemaForm extends Component{
 
     const { value }: { value: ?Object } = this.props;
     // 获取系统语言
-    const language: string = typeof window === 'object' ? do{
-      (window.navigator.language || window.navigator.userLanguage).toLocaleLowerCase();
-    } : 'default';
+    const language: string = typeof window === 'object'
+      ? (window.navigator.language || window.navigator.userLanguage).toLocaleLowerCase()
+      : 'default';
 
     this.state = { value, language };
   }
@@ -69,16 +89,16 @@ class SchemaForm extends Component{
     }
     return null;
   }
-  render(): React.Element{
+  render(): React.Node{
     const { form, json, onOk, onCancel, okText, cancelText, footer, customComponent }: {
       form: Object,
       json: Object,
-      onOk: ?Function,
-      onCancel: ?Function,
-      okText: ?(string | number),
-      cancelText: ?(string | number),
-      footer: ?Function,
-      customComponent: Object
+      onOk?: Function,
+      onCancel?: Function,
+      okText?: string | number,
+      cancelText?: string | number,
+      footer?: Function,
+      customComponent?: Object
     } = this.props;
     const languagePack2: Object = this.props.languagePack; // 自定义语言包
     const { language }: { language: Object } = this.state;
