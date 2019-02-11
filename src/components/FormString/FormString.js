@@ -1,4 +1,6 @@
-import React, { Component, createRef } from 'react';
+// @flow
+import * as React from 'react';
+import { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Tooltip, Input, Select, Radio, DatePicker } from 'antd';
 import moment from 'moment';
@@ -8,6 +10,11 @@ import { isString, isFunction } from '../../utils/type';
 import createStringRules from './createStringRules';
 import InputPassword from './InputPassword';
 
+type FormStringProps = {
+  root: Object,
+  required: boolean
+};
+
 /**
  * 当类型为string时的组件渲染
  * json schema的属性包括：id, type, title, description, pattern, minLength, maxLength, enum
@@ -16,26 +23,26 @@ import InputPassword from './InputPassword';
  * 扩展属性包括：required, componentType, readOnly, length, patternOption, enumMessage, lengthMessage, requiredMessage,
  *   patternMessage, minLengthMessage, maxLengthMessage, options, defaultValue, placeholder
  */
-class FormString extends Component{
-  static contextType: Object = AntdSchemaFormContext;
+class FormString extends Component<FormStringProps>{
+  static contextType: React.Context<Object> = AntdSchemaFormContext;
   static propTypes: Object = {
     root: PropTypes.object,
     required: PropTypes.bool
   };
 
-  inputRef: Object = createRef();
+  inputRef: React.Ref<Object> = createRef();
 
   // 文件上传点击事件
   handleFileUpdateClick: Function = (event: Event): void=>{
     this.inputRef.current.click();
   };
   // select的下拉框
-  selectOptionsView(options: Array<{ label: string, value: string }>): React.ChildrenArray<React.Element>{
-    return options.map((item: Object, index: number): React.Element=>{
+  selectOptionsView(options: Array<{ label: string, value: string }>): Array<React.Node>{
+    return options.map((item: Object, index: number): React.Node=>{
       return <Select.Option key={ index } value={ item.value }>{ item.label }</Select.Option>;
     });
   }
-  render(): React.Element{
+  render(): React.Node{
     const { form, customComponent }: { form: Object, customComponent: Object } = this.context;
     const { getFieldDecorator }: { getFieldDecorator: Function } = form;
     // type=object时，会判断key是否存在于required数组中
@@ -48,15 +55,15 @@ class FormString extends Component{
       title: string,
       description: string,
       $required: boolean,
-      $componentType: ?string,
-      $readOnly: ?boolean,
-      $defaultValue: ?string,
-      $options: ?Array<{ label: string, value: string}>,
-      $placeholder: ?string
+      $componentType?: string,
+      $readOnly?: boolean,
+      $defaultValue?: string,
+      $options: Array<{ label: string, value: string}>,
+      $placeholder?: string
     } = root;
-    const rules: Array = createStringRules(this.props.root, required);
+    const rules: Array<Object> = createStringRules(this.props.root, required);
     const option: Object = { rules };
-    let element: ?React.Element = null;
+    let element: React.Node = null;
 
     // 表单默认值
     if($defaultValue) option.initialValue = $defaultValue;
@@ -111,7 +118,7 @@ class FormString extends Component{
 
       // 渲染默认组件
       default:
-        element = $componentType in customComponent
+        element = $componentType && ($componentType in customComponent)
           ? customComponent[$componentType](root, option, form, required)
           : getFieldDecorator(id, option)(<Input readOnly={ $readOnly } placeholder={ $placeholder } />);
         break;

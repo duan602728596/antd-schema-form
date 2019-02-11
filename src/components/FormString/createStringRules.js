@@ -1,25 +1,26 @@
+// @flow
 import { isSpace, isNumber, isString } from '../../utils/type';
 
-function createStringRules(root: Object, required: boolean): Array{
+function createStringRules(root: Object, required: boolean): Array<Object>{
   const {
     $required, $requiredMessage, pattern, $patternOption, $patternMessage, minLength, maxLength, $minLengthMessage,
     $maxLengthMessage, $length, $lengthMessage, $enumMessage
   }: {
-    $required: ?boolean,
-    $requiredMessage: ?string,
-    pattern: ?string,
-    $patternOption: ?string,
-    $patternMessage: ?string,
-    minLength: ?number,
-    maxLength: ?number,
-    $minLengthMessage: ?string,
-    $maxLengthMessage: ?string,
-    $length: ?number,
-    $lengthMessage: ?string,
-    $enumMessage: ?string
+    $required?: boolean,
+    $requiredMessage?: string,
+    pattern?: string,
+    $patternOption?: string,
+    $patternMessage?: string,
+    minLength?: number,
+    maxLength?: number,
+    $minLengthMessage?: string,
+    $maxLengthMessage?: string,
+    $length?: number,
+    $lengthMessage?: string,
+    $enumMessage?: string
   } = root;
   const enums: ?Array<string> = root?.enum;
-  const rules: [] = [];
+  const rules: Object[] = [];
 
   // 判断表单是否必填
   if($required === true || required === true){
@@ -43,7 +44,7 @@ function createStringRules(root: Object, required: boolean): Array{
   if(!isSpace(minLength) && isNumber(minLength)){
     rules.push({
       min: minLength,
-      message: $minLengthMessage || `字段的最小长度为${ minLength }`
+      message: $minLengthMessage || `字段的最小长度为${ String(minLength) }`
     });
   }
 
@@ -51,7 +52,7 @@ function createStringRules(root: Object, required: boolean): Array{
   if(!isSpace(maxLength)){
     rules.push({
       max: maxLength,
-      message: $maxLengthMessage || `字段的最大长度为${ maxLength }`
+      message: $maxLengthMessage || `字段的最大长度为${ String(maxLength) }`
     });
   }
 
@@ -59,7 +60,7 @@ function createStringRules(root: Object, required: boolean): Array{
   if(!isSpace($length) && isNumber($length)){
     rules.push({
       len: $length,
-      message: $lengthMessage || `字段的长度为${ $length }`
+      message: $lengthMessage || `字段的长度为${ String($length) }`
     });
   }
 
@@ -69,7 +70,7 @@ function createStringRules(root: Object, required: boolean): Array{
 
     rules.push({
       pattern: reg,
-      message: $patternMessage || `数据格式错误，格式必须为：/${ pattern }/${ isString($patternOption) ? $patternOption : '' }`
+      message: $patternMessage || `数据格式错误，格式必须为：/${ pattern }/${ ($patternOption && isString($patternOption)) ? $patternOption : '' }`
     });
   }
 
