@@ -31,6 +31,7 @@
     "test:init": "mocha init test",
     "test": "milktea start --server --config=\"./config/test/.sweetrc.js\" --httpPort=6060",
     "tslint": "tslint --project ./",
+    "flow:check": "flow check",
     "update": "milktea update"
   },
   "dependencies": {
@@ -53,6 +54,7 @@
     "eslint": "^5.13.0",
     "eslint-plugin-flowtype": "^3.2.1",
     "eslint-plugin-react": "^7.12.4",
+    "flow-bin": "^0.92.1",
     "gulp": "^4.0.0",
     "gulp-babel": "^8.0.0",
     "gulp-changed": "^3.2.0",

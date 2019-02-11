@@ -1,9 +1,10 @@
+// @flow
 import { expect } from 'chai';
 import { mount } from 'enzyme';
-import React from 'react';
+import * as React from 'react';
 import SchemaForm from '../../SchemaForm';
 
-function CreateHandleClickFn(result: Object): void{
+function CreateHandleClickFn(result: Object): Function{
   return function(form: Object, value: Object): void{
     result.value = value;
   };

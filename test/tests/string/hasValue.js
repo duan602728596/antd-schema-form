@@ -1,6 +1,7 @@
+// @flow
 import { expect } from 'chai';
 import { mount } from 'enzyme';
-import React from 'react';
+import * as React from 'react';
 import moment from 'moment';
 import SchemaForm from '../../SchemaForm';
 

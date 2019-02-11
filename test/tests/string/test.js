@@ -1,3 +1,4 @@
+// @flow
 import describe from 'describe';
 import it from 'it';
 import { renderDefault, renderTextArea, renderSelect, renderRadio, renderDate } from './componentRendering';

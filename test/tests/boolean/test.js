@@ -1,3 +1,4 @@
+// @flow
 import describe from 'describe';
 import it from 'it';
 import { renderDefault, renderSwitch } from './componentRender';

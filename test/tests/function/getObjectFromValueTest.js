@@ -1,3 +1,4 @@
+// @flow
 import { expect } from 'chai';
 import { getObjectFromValue } from '../../SchemaForm';
 
