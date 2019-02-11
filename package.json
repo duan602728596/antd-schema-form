@@ -36,7 +36,7 @@
     "@babel/polyfill": "^7.2.5",
     "@babel/runtime": "^7.3.1",
     "moment": "^2.24.0",
-    "prop-types": "^15.6.2"
+    "prop-types": "^15.7.0"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
@@ -54,13 +54,13 @@
     "@sweet/milktea-cli": "github:duan602728596/sweet#build-milktea-cli",
     "@sweet/server": "github:duan602728596/sweet#build-server",
     "@sweet/util-tools": "github:duan602728596/sweet#build-util-tools",
-    "antd": "^3.12.4",
+    "antd": "^3.13.2",
     "babel-eslint": "^10.0.1",
     "babel-plugin-import": "^1.11.0",
     "chai": "^4.2.0",
     "cross-env": "^5.2.0",
     "enzyme": "^3.8.0",
-    "enzyme-adapter-react-16": "^1.8.0",
+    "enzyme-adapter-react-16": "^1.9.1",
     "eslint": "^5.13.0",
     "eslint-plugin-flowtype": "^3.2.1",
     "eslint-plugin-react": "^7.12.4",
@@ -69,8 +69,8 @@
     "gulp-sass": "^4.0.2",
     "mocha": "^5.2.0",
     "pre-commit": "^1.2.2",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0",
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1",
     "rimraf": "^2.6.3"
   },
   "peerDependencies": {
