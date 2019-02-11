@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import { Component, createRef } from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Tooltip, Input, Select, Radio, DatePicker } from 'antd';
 import moment from 'moment';
@@ -30,12 +30,6 @@ class FormString extends Component<FormStringProps>{
     required: PropTypes.bool
   };
 
-  inputRef: React.Ref<Object> = createRef();
-
-  // 文件上传点击事件
-  handleFileUpdateClick: Function = (event: Event): void=>{
-    this.inputRef.current.click();
-  };
   // select的下拉框
   selectOptionsView(options: Array<{ label: string, value: string }>): Array<React.Node>{
     return options.map((item: Object, index: number): React.Node=>{

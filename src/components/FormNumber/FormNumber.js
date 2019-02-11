@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+// @flow
+import * as React from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Tooltip, InputNumber, Radio } from 'antd';
 import AntdSchemaFormContext from '../../context';
@@ -13,14 +15,19 @@ import createNumberRules from './createNumberRules';
  * 扩展属性包括：required, componentType, readOnly, enumMessage, requiredMessage, minimumMessage、
  *   maximumMessage, options, defaultValue
  */
-class FormNumber extends Component{
+type FormNumberProps = {
+  root: Object,
+  required: boolean
+};
+
+class FormNumber extends Component<FormNumberProps>{
   static contextType: Object = AntdSchemaFormContext;
-  static propTypes: Object = {
+  static propTypes: React.Context<Object> = {
     root: PropTypes.object,
     required: PropTypes.bool
   };
 
-  render(): React.Element{
+  render(): React.Node{
     const { form, customComponent }: {
       form: Object,
       customComponent: Object
@@ -36,15 +43,15 @@ class FormNumber extends Component{
       type: string,
       title: string,
       description: string,
-      $componentType: ?string,
-      $readOnly: ?boolean,
-      $defaultValue: ?string,
-      $options: ?Array<{ label: string, value: string}>,
-      $placeholder: ?string
+      $componentType?: string,
+      $readOnly?: boolean,
+      $defaultValue?: string,
+      $options?: Array<{ label: string, value: string}>,
+      $placeholder?: string
     } = root;
-    const rules: Array = createNumberRules(this.props.root, required, type === 'integer');
+    const rules: Array<Object> = createNumberRules(this.props.root, required, type === 'integer');
     const option: Object = { rules };
-    let element: ?React.Element = null;
+    let element: React.Node = null;
 
     // 表单默认值
     if($defaultValue) option.initialValue = $defaultValue;
@@ -56,7 +63,7 @@ class FormNumber extends Component{
         break;
 
       default:
-        element = $componentType in customComponent
+        element = ($componentType && $componentType in customComponent)
           ? customComponent[$componentType](root, option, form, required)
           : getFieldDecorator(id, option)(
             <InputNumber className={ styleName('number-input') } readOnly={ $readOnly } placeholder={ $placeholder } />

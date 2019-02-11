@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+// @flow
+import * as React from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Tooltip, Select, Checkbox } from 'antd';
 import AntdSchemaFormContext from '../../context';
@@ -12,20 +14,25 @@ import styleName from '../../utils/styleName';
  * 扩展属性前必须加上"$"
  * 扩展属性包括：componentType, options
  */
-class FormArray extends Component{
-  static contextType: Object = AntdSchemaFormContext;
+type FormArrayProps = {
+  root: Object,
+  required: boolean
+};
+
+class FormArray extends Component<FormArrayProps>{
+  static contextType: React.Context<Object> = AntdSchemaFormContext;
   static propTypes: Object = {
     root: PropTypes.object,
     required: PropTypes.bool
   };
 
   // select的下拉框
-  selectOptionsView(options: Array<{ label: string, value: string }>): React.ChildrenArray<React.Element>{
-    return options.map((item: Object, index: number): React.Element=>{
+  selectOptionsView(options: Array<{ label: string, value: string | number }>): Array<React.Node>{
+    return options.map((item: Object, index: number): React.Node=>{
       return <Select.Option key={ index } value={ item.value }>{ item.label }</Select.Option>;
     });
   }
-  render(): React.Element{
+  render(): React.Node{
     const { form, customComponent }: {
       form: Object,
       customComponent: Object
@@ -42,12 +49,12 @@ class FormArray extends Component{
       id: string,
       title: string,
       description: string,
-      $componentType: ?string,
-      $defaultValue: ?string,
-      $options: Array<{ babel: string, value: string | number }>
+      $componentType?: string,
+      $defaultValue?: string,
+      $options: Array<{ label: string, value: string | number }>
     } = root;
     const option: Object = {};
-    let element: ?React.Element = null;
+    let element: React.Node = null;
 
     // 表单默认值
     if($defaultValue) option.initialValue = $defaultValue;
@@ -67,7 +74,7 @@ class FormArray extends Component{
         break;
 
       default:
-        element = $componentType in customComponent
+        element = ($componentType && $componentType in customComponent)
           ? customComponent[$componentType](root, option, form, required)
           : <TableComponent root={ root } { ...getFieldProps(id, option) } />;
     }

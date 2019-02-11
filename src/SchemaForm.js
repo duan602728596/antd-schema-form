@@ -51,11 +51,6 @@ class SchemaForm extends Component<SchemaFormProps, SchemaFormState>{
     customComponent: {}
   };
 
-  state: {
-    value: Object,
-    language: string
-  };
-
   constructor(): void{
     super(...arguments);
 

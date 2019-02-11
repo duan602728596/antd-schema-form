@@ -1,9 +1,11 @@
+// @flow
+
 /**
  * 格式化数据，使值满足antd的props-type
  * @param { Array } rawArray: 原数据
  */
-export function formatTableValue(rawArray: Array): Array{
-  const result: [] = [];
+export function formatTableValue(rawArray: Array<any>): Array<any>{
+  const result: any[] = [];
 
   for(const item: any of rawArray){
     result.push({ value: item });

@@ -1,4 +1,6 @@
-import React, { Component, Fragment, createRef } from 'react';
+// @flow
+import * as React from 'react';
+import { Component, Fragment, createRef } from 'react';
 import PropTypes from 'prop-types';
 import { Table, Button, Popconfirm, Drawer, Input } from 'antd';
 import AntdSchemaFormContext from '../../context';
@@ -9,20 +11,25 @@ import { formatTableValue, sortIndex } from './tableFunction';
 import FormObject from '../FormObject/FormObject';
 import styleName from '../../utils/styleName';
 
-class TableComponent extends Component{
-  static contextType: Object = AntdSchemaFormContext;
+type TableComponentProps = {
+  root: Object
+};
+
+type TableComponentState = {
+  isDisplayDataDrawer: boolean,
+  inputDisplayIndex: ?number,
+  inputChangeIndex: ?string,
+  selectedRowKeys: number[]
+};
+
+class TableComponent extends Component<TableComponentProps, TableComponentState>{
+  static contextType: React.Context<Object> = AntdSchemaFormContext;
   static propTypes: Object = {
     root: PropTypes.object
   };
 
-  changeIndexRef: Object = createRef();
+  changeIndexRef: React.Ref<Input> = createRef();
   editIndex: ?number;
-  state: {
-    isDisplayDataDrawer: boolean,
-    inputDisplayIndex: ?number,
-    inputChangeIndex: ?string,
-    selectedRowKeys: number[]
-  };
 
   constructor(): void{
     super(...arguments);
@@ -39,8 +46,9 @@ class TableComponent extends Component{
   handleInputDisplayClick(index: number, event: Event): void{
     this.setState({
       inputDisplayIndex: index,
-      inputChangeIndex: index + 1
+      inputChangeIndex: String(index + 1)
     }, (): void=>{
+      // $FlowFixMe
       this.changeIndexRef.current.focus();
     });
   }
@@ -61,6 +69,7 @@ class TableComponent extends Component{
     const { inputChangeIndex }: { inputChangeIndex: ?string } = this.state;
     let newIndex: number = Number(inputChangeIndex) - 1;
 
+    // $FlowFixMe
     if(newIndex !== index && /^[0-9]+$/.test(inputChangeIndex)){
       if(newIndex < 0) newIndex = 0;
       if(newIndex > length) newIndex = length;
@@ -161,7 +170,7 @@ class TableComponent extends Component{
     this.setState({ selectedRowKeys: [] });
   };
   // columns
-  columns(): Array{
+  columns(): Array<Object>{
     const { languagePack }: { languagePack: Object } = this.context;
     const { items }: { items: Object } = this.props.root;
     const { inputDisplayIndex, inputChangeIndex }: {
@@ -173,7 +182,7 @@ class TableComponent extends Component{
       properties: ?Object,
       title: string
     } = items;
-    const columnArr: [] = [];
+    const columnArr: Object[] = [];
 
     // 渲染调整数组位置的编辑框
     columnArr.push({
@@ -181,7 +190,7 @@ class TableComponent extends Component{
       key: 'lineNumber',
       align: 'center',
       width: 65,
-      render: (value: any, item: Object, index: number): React.Element=>{
+      render: (value: any, item: Object, index: number): React.Node=>{
         if(inputDisplayIndex === null || inputDisplayIndex !== index){
           return <a onClick={ this.handleInputDisplayClick.bind(this, index) }>{ index + 1 }</a>;
         }else{
@@ -231,7 +240,7 @@ class TableComponent extends Component{
       title: languagePack.formArray.operating,
       key: 'handle',
       width: 160,
-      render: (value: any, item: Object, index: number): React.Element=>{
+      render: (value: any, item: Object, index: number): React.Node=>{
         return (
           <Button.Group size="middle">
             <Button onClick={ this.handleDrawEditDataDisplayClick.bind(this, index) }>{ languagePack.formArray.operatingEdit }</Button>
@@ -245,7 +254,7 @@ class TableComponent extends Component{
 
     return columnArr;
   }
-  render(): React.Element{
+  render(): React.Node{
     const { root }: { root: Object } = this.props;
     const { form, languagePack }: {
       form: Object,
@@ -270,7 +279,7 @@ class TableComponent extends Component{
           columns={ this.columns() }
           bordered={ true }
           title={
-            (): React.ChildrenArray<React.Element> => [
+            (): Array<React.Node> => [
               <Button key="add"
                 type="primary"
                 icon="plus-circle"

@@ -1,21 +1,23 @@
+// @flow
 import { isSpace, isNumber } from '../../utils/type';
 
-function createNumberRules(root: Object, required: boolean, isInteger: boolean): Array{
+function createNumberRules(root: Object, required: boolean, isInteger: boolean): Array<Object>{
   const {
     $required, $requiredMessage, minimum, maximum, $minimumMessage, $maximumMessage, $integer, $integerMessage,
     $enumMessage
   }: {
-    $required: ?boolean,
-    $requiredMessage: ?string,
-    minimum: ?number,
-    maximum: ?number,
-    $minimumMessage: ?string,
-    $maximumMessage: ?string,
-    $integerMessage: ?string,
-    $enumMessage: ?string
+    $required?: boolean,
+    $requiredMessage?: string,
+    minimum?: number,
+    maximum?: number,
+    $minimumMessage?: string,
+    $maximumMessage?: string,
+    $integer?: boolean,
+    $integerMessage?: string,
+    $enumMessage?: string
   } = root;
   const enums: ?Array<string> = root?.enum;
-  const rules: [] = [];
+  const rules: Object[] = [];
 
   // 判断表单是否必填
   if($required === true || required === true){
@@ -46,10 +48,11 @@ function createNumberRules(root: Object, required: boolean, isInteger: boolean):
   if(!isSpace(minimum) && isNumber(minimum)){
     rules.push({
       validator: (rule: Object, value: number, callback: Function): void=>{
+        // $FlowFixMe
         if(value < minimum) callback(rule.message);
         else callback();
       },
-      message: $minimumMessage || `值必须大于${ minimum }`
+      message: $minimumMessage || `值必须大于${ String(minimum) }`
     });
   }
 
@@ -57,10 +60,11 @@ function createNumberRules(root: Object, required: boolean, isInteger: boolean):
   if(!isSpace(maximum) && isNumber(maximum)){
     rules.push({
       validator: (rule: Object, value: number, callback: Function): void=>{
+        // $FlowFixMe
         if(value > maximum) callback(rule.message);
         else callback();
       },
-      message: $maximumMessage || `值必须小于${ maximum }`
+      message: $maximumMessage || `值必须小于${ String(maximum) }`
     });
   }
 
