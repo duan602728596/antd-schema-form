@@ -5,7 +5,7 @@ import { Requireable } from 'prop-types';
 import { Form, Tooltip, InputNumber, Radio } from 'antd';
 import { ValidationRule } from 'antd/lib/form';
 import { GetFieldDecoratorOptions } from 'antd/lib/form/Form';
-import AntdSchemaForm from '../../context';
+import AntdSchemaFormContext from '../../context';
 import styleName from '../../utils/styleName';
 import createNumberRules from './createNumberRules';
 import { NumberItem, ContextValue } from '../../types';
@@ -24,7 +24,7 @@ interface FormNumberProps{
 }
 
 class FormNumber extends Component<FormNumberProps>{
-  static contextType: Context<ContextValue> = AntdSchemaForm;
+  static contextType: Context<ContextValue> = AntdSchemaFormContext;
   static propTypes: {
     root: Requireable<object>,
     required: Requireable<boolean>

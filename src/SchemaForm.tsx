@@ -4,7 +4,7 @@ import * as PropTypes from 'prop-types';
 import { Requireable } from 'prop-types';
 import { Form } from 'antd';
 import { FormComponentProps } from 'antd/lib/form/Form';
-import AntdSchemaForm from './context';
+import AntdSchemaFormContext from './context';
 import FormObject from './components/FormObject/FormObject';
 import getObjectFromValue from './utils/getObjectFromValue';
 import { isObject } from './utils/type';
@@ -108,7 +108,7 @@ class SchemaForm extends Component<SchemaFormProps, SchemaFormState>{
     };
 
     return (
-      <AntdSchemaForm.Provider value={ contextValue }>
+      <AntdSchemaFormContext.Provider value={ contextValue }>
         <FormObject root={ json }
           onOk={ onOk }
           onCancel={ onCancel }
@@ -116,7 +116,7 @@ class SchemaForm extends Component<SchemaFormProps, SchemaFormState>{
           cancelText={ cancelText }
           footer={ footer }
         />
-      </AntdSchemaForm.Provider>
+      </AntdSchemaFormContext.Provider>
     );
   }
 }

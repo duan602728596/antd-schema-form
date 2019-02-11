@@ -3,7 +3,7 @@ import { Component, Fragment, Context } from 'react';
 import * as PropTypes from 'prop-types';
 import { Requireable } from 'prop-types';
 import { Collapse, Button } from 'antd';
-import AntdSchemaForm from '../../context';
+import AntdSchemaFormContext from '../../context';
 import styleName from '../../utils/styleName';
 import FormString from '../FormString/FormString';
 import FormNumber from '../FormNumber/FormNumber';
@@ -29,7 +29,7 @@ interface FormObjectProps{
 }
 
 class FormObject extends Component<FormObjectProps>{
-  static contextType: Context<ContextValue> = AntdSchemaForm;
+  static contextType: Context<ContextValue> = AntdSchemaFormContext;
   static propTypes: {
     root: Requireable<object>,
     onOk: Requireable<Function>,

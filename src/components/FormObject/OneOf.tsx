@@ -4,7 +4,7 @@ import * as PropTypes from 'prop-types';
 import { Requireable, ReactNodeLike } from 'prop-types';
 import { Radio } from 'antd';
 import { RadioChangeEvent } from 'antd/es/radio';
-import AntdSchemaForm from '../../context';
+import AntdSchemaFormContext from '../../context';
 import { isNumber } from '../../utils/type';
 import { SchemaItem, ContextValue } from '../../types';
 
@@ -19,7 +19,7 @@ interface OneOfState{
 }
 
 class OneOf extends Component<OneOfProps, OneOfState>{
-  static contextType: Context<ContextValue> = AntdSchemaForm;
+  static contextType: Context<ContextValue> = AntdSchemaFormContext;
   static propTypes: {
     root: Requireable<object>,
     element: Requireable<ReactNodeLike>

@@ -4,7 +4,7 @@ import * as PropTypes from 'prop-types';
 import { Requireable } from 'prop-types';
 import { Table, Button, Popconfirm, Drawer, Input } from 'antd';
 import { WrappedFormUtils } from 'antd/lib/form/Form';
-import AntdSchemaForm from '../../context';
+import AntdSchemaFormContext from '../../context';
 import { isSpace, isBoolean, isObjectOrArray } from '../../utils/type';
 import getValueFromObject, { formatValueBeforeGetValue } from '../../utils/getValueFromObject';
 import getObjectFromValue from '../../utils/getObjectFromValue';
@@ -25,7 +25,7 @@ interface TableComponentState {
 }
 
 class TableComponent extends Component<TableComponentProps>{
-  static contextType: Context<ContextValue> = AntdSchemaForm;
+  static contextType: Context<ContextValue> = AntdSchemaFormContext;
   static propTypes: {
     root: Requireable<object>
   } = {

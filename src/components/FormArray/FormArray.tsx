@@ -4,7 +4,7 @@ import * as PropTypes from 'prop-types';
 import { Requireable } from 'prop-types';
 import { Form, Tooltip, Select, Checkbox } from 'antd';
 import { GetFieldDecoratorOptions } from 'antd/lib/form/Form';
-import AntdSchemaForm from '../../context';
+import AntdSchemaFormContext from '../../context';
 import TableComponent from './TableComponent';
 import styleName from '../../utils/styleName';
 import { ArrayItem, ContextValue } from '../../types';
@@ -22,7 +22,7 @@ interface FormArrayProps{
 }
 
 class FormArray extends Component<FormArrayProps>{
-  static contextType: Context<ContextValue> = AntdSchemaForm;
+  static contextType: Context<ContextValue> = AntdSchemaFormContext;
   static propTypes: {
     root: Requireable<object>,
     required: Requireable<boolean>

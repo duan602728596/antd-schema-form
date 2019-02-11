@@ -6,7 +6,7 @@ import { Form, Tooltip, Input, Select, Radio, DatePicker } from 'antd';
 import { ValidationRule } from 'antd/lib/form';
 import { GetFieldDecoratorOptions } from 'antd/lib/form/Form';
 import * as moment from 'moment';
-import AntdSchemaForm from '../../context';
+import AntdSchemaFormContext from '../../context';
 import styleName from '../../utils/styleName';
 import { isString } from '../../utils/type';
 import createStringRules from './createStringRules';
@@ -27,7 +27,7 @@ interface FormStringProps{
 }
 
 class FormString extends Component<FormStringProps>{
-  static contextType: Context<ContextValue> = AntdSchemaForm;
+  static contextType: Context<ContextValue> = AntdSchemaFormContext;
   static propTypes: {
     root: Requireable<object>,
     required: Requireable<boolean>

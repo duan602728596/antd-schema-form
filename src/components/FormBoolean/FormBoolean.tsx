@@ -4,7 +4,7 @@ import * as PropTypes from 'prop-types';
 import { Requireable } from 'prop-types';
 import { Form, Tooltip, Checkbox, Switch } from 'antd';
 import { GetFieldDecoratorOptions, WrappedFormUtils } from 'antd/lib/form/Form';
-import AntdSchemaForm from '../../context';
+import AntdSchemaFormContext from '../../context';
 import { isSpace } from '../../utils/type';
 import { ContextValue, BooleanItem } from '../../types';
 
@@ -26,7 +26,7 @@ interface FormBooleanState{
 }
 
 class FormBoolean extends Component<FormBooleanProps, FormBooleanState>{
-  static contextType: Context<ContextValue> = AntdSchemaForm;
+  static contextType: Context<ContextValue> = AntdSchemaFormContext;
   static propTypes: {
     root: Requireable<object>
   } = {
