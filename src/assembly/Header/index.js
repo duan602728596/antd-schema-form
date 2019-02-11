@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+// @flow
+import * as React from 'react';
 import { Layout, Icon, Select } from 'antd';
 import style from './style.sass';
 import Nav from './Nav';
 import { I18NContext } from '../../components/I18N/I18N';
 
-function Header(props: Object): React.Element{
+function Header(props: Object): React.Node{
   return (
     <Layout.Header>
       <div className={ style.headerBox }>
@@ -12,7 +13,7 @@ function Header(props: Object): React.Element{
         <div>
           <I18NContext.Consumer>
             {
-              (context: Object): React.Element => (
+              (context: Object): React.Node => (
                 <Select className={ style.langSelect } size="small" value={ context.language } onSelect={ context.onSelect }>
                   <Select.Option key="default" value="default">EN</Select.Option>
                   <Select.Option key="zh-cn" value="zh-cn">中文</Select.Option>

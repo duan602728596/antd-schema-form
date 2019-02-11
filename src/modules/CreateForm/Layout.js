@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+// @flow
+import * as React from 'react';
+import { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Helmet from 'react-helmet';
 import loadReducer from '../../store/loadReducer';
@@ -7,10 +9,10 @@ import Index from './Index/index';
 import { I18NContext } from '../../components/I18N/I18N';
 
 @loadReducer(reducer)
-class ModuleLayout extends Component{
-  static contextType: Object = I18NContext;
+class ModuleLayout extends Component<{}>{
+  static contextType: React.Context<Object> = I18NContext;
 
-  render(): React.ChildrenArray<React.Element>{
+  render(): Array<React.Node>{
     const { createForm }: { createForm: Object } = this.context.languagePack;
 
     return [

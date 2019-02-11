@@ -1,8 +1,10 @@
+// @flow
 import { createAction, handleActions } from 'redux-actions';
+import * as Immutable from 'immutable';
 import { fromJS, Map } from 'immutable';
 
 const initData: {
-  schemaJson: Immutable.Map
+  schemaJson: Immutable.Map<string, Object>
 } = {
   schemaJson: Map({
     id: '$root',
@@ -17,7 +19,7 @@ export const setSchemaJson: Function = createAction('表单生成-schemaJson');
 
 /* reducer */
 const reducer: Function = handleActions({
-  [setSchemaJson]: ($$state: Immutable.Map, action: Object): Immutable.Map=>{
+  [setSchemaJson]: ($$state: Immutable.Map<string, Object>, action: Object): Immutable.Map<string, Object>=>{
     return $$state.set('schemaJson', Map(action.payload));
   }
 }, fromJS(initData));

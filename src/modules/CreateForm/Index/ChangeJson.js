@@ -1,8 +1,11 @@
-import React, { Component, Fragment } from 'react';
+// @flow
+import * as React from 'react';
+import { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
-import { createSelector, createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
+import { createSelector, createStructuredSelector } from 'reselect';
+import type { RecordInstance } from 'immutable/dist/immutable.js.flow';
 import { Tag, Button, Collapse } from 'antd';
 import { setSchemaJson } from '../store/reducer';
 import style from './style.sass';
@@ -14,8 +17,8 @@ import { I18NContext } from '../../../components/I18N/I18N';
 /* state */
 const state: Function = createStructuredSelector({
   schemaJson: createSelector(
-    ($$state: Immutable.Map): ?Immutable.Map => $$state.has('createForm') ? $$state.get('createForm') : null,
-    ($$data: ?Immutable.Map): Object => $$data !== null ? $$data.get('schemaJson').toJS() : {}
+    ($$state: RecordInstance<Object>): ?RecordInstance<Object> => $$state.has('createForm') ? $$state.get('createForm') : null,
+    ($$data: ?RecordInstance<Object>): Object => $$data ? $$data.get('schemaJson').toJS() : {}
   )
 });
 
@@ -26,21 +29,27 @@ const dispatch: Function = (dispatch: Function): Object=>({
   }, dispatch)
 });
 
-@connect(state, dispatch)
-class ChangeJson extends Component{
-  static contextType: Object = I18NContext;
+type ChangeJsonProps = {
+  schemaJson: Object,
+  action: Object
+};
+
+type ChangeJsonState = {
+  schemaJson: Object,
+  isAddDrawerDisplay: boolean,
+  isEditDrawerDisplay: boolean,
+  addItem: ?Object,
+  editItem: ?Object
+};
+
+class ChangeJson extends Component<ChangeJsonProps, ChangeJsonState>{
+  static contextType: React.Context<Object> = I18NContext;
   static propTypes: Object = {
     schemaJson: PropTypes.object,
     action: PropTypes.objectOf(PropTypes.func)
   };
 
-  state: {
-    schemaJson: Object,
-    isAddDrawerDisplay: boolean,
-    isEditDrawerDisplay: boolean,
-    addItem: ?Object,
-    editItem: ?Object
-  };
+  state: ChangeJsonState;
 
   constructor(): void{
     super(...arguments);
@@ -55,7 +64,7 @@ class ChangeJson extends Component{
       editItem: null
     };
   }
-  static getDerivedStateFromProps(nextProps: Object, prevState: Object): ?Object{
+  static getDerivedStateFromProps(nextProps: ChangeJsonProps, prevState: ChangeJsonState): ?{ schemaJson: Object }{
     if(nextProps.schemaJson !== prevState.schemaJson){
       const { schemaJson }: { schemaJson: Object } = nextProps;
 
@@ -148,7 +157,7 @@ class ChangeJson extends Component{
   };
   // 根据指定id查找并删除数据
   findAndDelete(id: string, item: Object, father: ?Object, key: ?string): void{
-    if(item.id === id){
+    if(item.id === id && father && key){
       delete father[key];
       return void 0;
     }
@@ -178,7 +187,7 @@ class ChangeJson extends Component{
     this.props.action.setSchemaJson(schemaJson);
   }
   // 根据不同的类型渲染不同的标签
-  typeTagView(type: string): ?React.Element{
+  typeTagView(type: string): React.Node{
     switch(type){
       case 'object':
         return <Tag color="magenta">object</Tag>;
@@ -200,8 +209,8 @@ class ChangeJson extends Component{
     }
   }
   // 渲染面板内的信息
-  infoTableView(item: Object): React.Element{
-    const element: [] = [];
+  infoTableView(item: Object): React.Node{
+    const element: React.Node[] = [];
     const { type }: { type: string } = item;
     const { language }: { language: string } = this.context;
     const json2: Object = language in json ? json[language] : json.default;
@@ -234,7 +243,7 @@ class ChangeJson extends Component{
     );
   }
   // 渲染面板
-  collapseListView(item: Object, disableDelete: boolean): React.Element{
+  collapseListView(item: Object, disableDelete?: boolean): React.Node{
     const { type, title }: {
       type: string,
       title: string,
@@ -242,7 +251,7 @@ class ChangeJson extends Component{
     } = item;
     const { createForm }: { createForm: Object } = this.context.languagePack;
 
-    const element: React.Element = [
+    const element: React.Node[] = [
       <Collapse key="collapse" bordered={ false }>
         <Collapse.Panel header={
           <div className="clearfix">
@@ -273,7 +282,7 @@ class ChangeJson extends Component{
       </Collapse>
     ];
 
-    const childrenList: React.ChildrenArray<React.Element> = [];
+    const childrenList: Array<React.Node> = [];
 
     if(type === 'object' && item.properties){
       for(const key: string in item.properties){
@@ -291,7 +300,7 @@ class ChangeJson extends Component{
 
     return element;
   }
-  render(): React.Element{
+  render(): React.Node{
     const { schemaJson, isAddDrawerDisplay, isEditDrawerDisplay, addItem, editItem }: {
       schemaJson: Object,
       isAddDrawerDisplay: boolean,
@@ -319,4 +328,4 @@ class ChangeJson extends Component{
   }
 }
 
-export default ChangeJson;
+export default connect(state, dispatch)(ChangeJson);

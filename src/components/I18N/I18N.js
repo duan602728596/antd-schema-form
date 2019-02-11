@@ -1,24 +1,32 @@
-import React, { Component, createContext } from 'react';
+// @flow
+import * as React from 'react';
+import { Component, createContext } from 'react';
 import PropTypes from 'prop-types';
 import languagePack from './languagePack';
 
-export const I18NContext: Object = createContext({ language: 'default' });
+export const I18NContext: React.Context<Object> = createContext({ language: 'default' });
 
-export class I18N extends Component{
+type I18NProps = {
+  children: React.ChildrenArray<React.Node>
+};
+
+type I18NState = {
+  language: string
+};
+
+export class I18N extends Component<I18NProps, I18NState>{
   static propTypes: Object = {
     children: PropTypes.node
   };
 
-  state: {
-    language: string
-  };
+  state: I18NState;
 
   constructor(): void{
     super(...arguments);
 
-    const language: string = typeof window === 'object' ? do{
-      (window.navigator.language || window.navigator.userLanguage).toLocaleLowerCase();
-    } : 'default';
+    const language: string = typeof window === 'object'
+      ? (window.navigator.language || window.navigator.userLanguage).toLocaleLowerCase()
+      : 'default';
 
     this.state = {
       language // 当前的语言环境
@@ -28,7 +36,7 @@ export class I18N extends Component{
   handleLanguageSelect: Function = (value: string, option: Object): void=>{
     this.setState({ language: value });
   };
-  render(): React.Element{
+  render(): React.Node{
     const { children }: { children: React.ChildrenArray<React.Node> } = this.props;
     const { language }: { language: string } = this.state;
     const contextValue: Object = {

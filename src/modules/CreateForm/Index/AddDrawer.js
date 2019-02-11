@@ -1,4 +1,6 @@
-import React, { Component, createRef } from 'react';
+// @flow
+import * as React from 'react';
+import { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
 import { Drawer, Select } from 'antd';
 import SchemaForm, { schemaFormDefaultLang, schemaFormZhCNLang } from '../../../components/SchemaForm/SchemaForm';
@@ -6,8 +8,21 @@ import json from './json/json';
 import style from './style.sass';
 import { I18NContext } from '../../../components/I18N/I18N';
 
-class AddDrawer extends Component{
-  static contextType: Object = I18NContext;
+type AddDrawerProps = {
+  item: Object,
+  visible: boolean,
+  onOk: Function,
+  onCancel: Function
+};
+
+type AddDrawerState = {
+  typeValue: ?string,
+  value: Object,
+  item: Object
+};
+
+class AddDrawer extends Component<AddDrawerProps, AddDrawerState>{
+  static contextType: React.Context<Object> = I18NContext;
   static propTypes: Object = {
     item: PropTypes.object,
     visible: PropTypes.bool,
@@ -16,13 +31,13 @@ class AddDrawer extends Component{
   };
 
   formRef: Object = createRef();
-  state: Object = {
+  state: AddDrawerState = {
     typeValue: null, // 选择数据类型
     value: null,     // 表单值
     item: null
   };
 
-  static getDerivedStateFromProps(nextProps: Object, prevState: Object): ?Object{
+  static getDerivedStateFromProps(nextProps: AddDrawerProps, prevState: AddDrawerState): ?{ typeValue?: null, value?: Object, item?: Object }{
     if(nextProps.visible === false){
       return { typeValue: null };
     }
@@ -50,7 +65,7 @@ class AddDrawer extends Component{
       });
     });
   };
-  render(): React.Element{
+  render(): React.Node{
     const { visible, onOk, onCancel, item }: {
       visible: boolean,
       onOk: Function,

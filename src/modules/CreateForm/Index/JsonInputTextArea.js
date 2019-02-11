@@ -1,8 +1,11 @@
-import React, { Component, Fragment } from 'react';
+// @flow
+import * as React from 'react';
+import { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { createSelector, createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
+import type { RecordInstance } from 'immutable/dist/immutable.js.flow';
 import classNames from 'classnames';
 import { Button, Input, message } from 'antd';
 import { setSchemaJson } from '../store/reducer';
@@ -13,8 +16,8 @@ import { I18NContext } from '../../../components/I18N/I18N';
 /* state */
 const state: Function = createStructuredSelector({
   schemaJson: createSelector(
-    ($$state: Immutable.Map): ?Immutable.Map => $$state.has('createForm') ? $$state.get('createForm') : null,
-    ($$data: ?Immutable.Map): Object => $$data !== null ? $$data.get('schemaJson').toJS() : {}
+    ($$state: RecordInstance<Object>): ?RecordInstance<Object> => $$state.has('createForm') ? $$state.get('createForm') : null,
+    ($$data: ?RecordInstance<Object>): Object => $$data ? $$data.get('schemaJson').toJS() : {}
   )
 });
 
@@ -25,18 +28,24 @@ const dispatch: Function = (dispatch: Function): Object=>({
   }, dispatch)
 });
 
-@connect(state, dispatch)
-class JsonInputTextArea extends Component{
-  static contextType: Object = I18NContext;
+type JsonInputTextAreaProps = {
+  schemaJson: Object,
+  action: Object
+};
+
+type JsonInputTextAreaState = {
+  schemaJson: Object,
+  textAreaValue: string
+};
+
+class JsonInputTextArea extends Component<JsonInputTextAreaProps, JsonInputTextAreaState>{
+  static contextType: React.Context<Object> = I18NContext;
   static propTypes: Object = {
     schemaJson: PropTypes.object,
     action: PropTypes.objectOf(PropTypes.func)
   };
 
-  state: {
-    schemaJson: Object,
-    textAreaValue: string
-  };
+  state: JsonInputTextAreaState;
 
   constructor(): void{
     super(...arguments);
@@ -48,7 +57,7 @@ class JsonInputTextArea extends Component{
       textAreaValue: JSON.stringify(schemaJson, null, 2)
     };
   }
-  static getDerivedStateFromProps(nextProps: Object, prevState: Object): ?Object{
+  static getDerivedStateFromProps(nextProps: JsonInputTextAreaProps, prevState: JsonInputTextAreaState): ?{ schemaJson: Object, textAreaValue: string }{
     if(nextProps.schemaJson !== prevState.schemaJson){
       const { schemaJson }: { schemaJson: Object } = nextProps;
 
@@ -78,11 +87,11 @@ class JsonInputTextArea extends Component{
       message.error(message2.jsonFormatError);
     }
   };
-  render(): React.Element{
+  render(): React.Node{
     const { textAreaValue }: { textAreaValue: string } = this.state;
     const { languagePack }: { languagePack: Object } = this.context;
     const { createForm }: { createForm: Object } = languagePack;
-    const message2: string = languagePack.message;
+    const message2: Object = languagePack.message;
 
     return (
       <Fragment>
@@ -107,4 +116,4 @@ class JsonInputTextArea extends Component{
   }
 }
 
-export default JsonInputTextArea;
+export default connect(state, dispatch)(JsonInputTextArea);

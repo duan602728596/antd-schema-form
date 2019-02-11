@@ -1,15 +1,16 @@
-import React, { Component } from 'react';
+// @flow
+import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { Icon } from 'antd';
 import style from './style.sass';
 import { I18NContext } from '../../components/I18N/I18N';
 
-function Nav(props: Object): React.Element{
+function Nav(props: Object): React.Node{
   return (
     <nav>
       <I18NContext.Consumer>
         {
-          (context: Object): React.Element=>{
+          (context: Object): React.Node=>{
             const { language, languagePack }: {
               language: string,
               languagePack: Object

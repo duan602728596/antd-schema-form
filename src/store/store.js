@@ -1,6 +1,11 @@
-/* 全局的store */
+/**
+ * 全局的store
+ *
+ * @flow
+ */
 import { createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
+import * as Immutable from 'immutable';
 import { fromJS, Map } from 'immutable';
 import { createReducer } from './reducers';
 
@@ -15,9 +20,10 @@ const store: Object = {
   asyncReducers: {}
 };
 
-export function storeFactory(initialState: ?Object): Object{
+export function storeFactory(initialState: Object = {}): Object{
   /* initialState */
-  const $$initialState: Immutable.Map = Map(fromJS(initialState));
+  const state: any = fromJS(initialState);
+  const $$initialState: Immutable.Map<string, any> = Map(state);
 
   /* store */
   Object.assign(store, createStore(reducer, $$initialState, compose(middlewares)));
@@ -29,11 +35,15 @@ export default store;
 
 /* 注入store */
 export function injectReducers(asyncReducer: Object): void{
-  // 获取reducer的key值，并将reducer保存起来
-  const name: string = Object.keys(asyncReducer);
-  // 异步注入reducer
-  if(!(name in store.asyncReducers)){
-    store.asyncReducers[name] = asyncReducer[name];
-    store.replaceReducer(createReducer(store.asyncReducers));
+  for(const key: string in asyncReducer){
+    const item: Object = asyncReducer[key];
+
+    // 获取reducer的key值，并将reducer保存起来
+    if(!(key in store.asyncReducers)){
+      store.asyncReducers[key] = item;
+    }
   }
+
+  // 异步注入reducer
+  store.replaceReducer(createReducer(store.asyncReducers));
 }

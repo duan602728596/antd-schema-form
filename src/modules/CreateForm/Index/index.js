@@ -1,15 +1,16 @@
-import React, { Component } from 'react';
+// @flow
+import * as React from 'react';
 import { Row, Col } from 'antd';
 import style from './style.sass';
 import JsonInputTextArea from './JsonInputTextArea';
 import ChangeJson from './ChangeJson';
 import { I18NContext } from '../../../components/I18N/I18N';
 
-function Index(): React.Element{
+function Index(): React.Node{
   return (
     <I18NContext.Consumer>
       {
-        (context: Object): React.ChildrenArray<React.Element>=>{
+        (context: Object): Array<React.Node>=>{
           const { createForm }: { createForm: Object } = context.languagePack;
 
           return [
