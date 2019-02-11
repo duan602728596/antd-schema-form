@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Collapse, Button } from 'antd';
-import Context from '../../context';
+import AntdSchemaFormContext from '../../context';
 import styleName from '../../utils/styleName';
 import FormString from '../FormString/FormString';
 import FormNumber from '../FormNumber/FormNumber';
@@ -17,7 +17,7 @@ import { isArray } from '../../utils/type';
  * json schema的属性包括：id, type, title, description, properties, required
  */
 class FormObject extends Component{
-  static contextType: Object = Context;
+  static contextType: Object = AntdSchemaFormContext;
   static propTypes: Object = {
     root: PropTypes.object,
     onOk: PropTypes.func,

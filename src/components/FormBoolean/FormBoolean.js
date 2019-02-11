@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Tooltip, Checkbox, Switch } from 'antd';
-import Context from '../../context';
+import AntdSchemaFormContext from '../../context';
 import { isSpace } from '../../utils/type';
 
 /**
@@ -12,7 +12,7 @@ import { isSpace } from '../../utils/type';
  * 扩展属性包括：componentType
  */
 class FormBoolean extends Component{
-  static contextType: Object = Context;
+  static contextType: Object = AntdSchemaFormContext;
   static propTypes: Object = {
     root: PropTypes.object,
     required: PropTypes.bool

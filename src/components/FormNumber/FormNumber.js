@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Tooltip, InputNumber, Radio } from 'antd';
-import Context from '../../context';
+import AntdSchemaFormContext from '../../context';
 import styleName from '../../utils/styleName';
 import createNumberRules from './createNumberRules';
 
@@ -14,7 +14,7 @@ import createNumberRules from './createNumberRules';
  *   maximumMessage, options, defaultValue
  */
 class FormNumber extends Component{
-  static contextType: Object = Context;
+  static contextType: Object = AntdSchemaFormContext;
   static propTypes: Object = {
     root: PropTypes.object,
     required: PropTypes.bool

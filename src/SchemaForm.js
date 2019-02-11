@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Form } from 'antd';
-import Context from './context';
+import AntdContext from './context';
 import FormObject from './components/FormObject/FormObject';
 import getObjectFromValue from './utils/getObjectFromValue';
 import { isObject } from './utils/type';
@@ -92,7 +92,7 @@ class SchemaForm extends Component{
     };
 
     return (
-      <Context.Provider value={ contextValue }>
+      <AntdContext.Provider value={ contextValue }>
         <FormObject root={ json }
           onOk={ onOk }
           onCancel={ onCancel }
@@ -100,7 +100,7 @@ class SchemaForm extends Component{
           cancelText={ cancelText }
           footer={ footer }
         />
-      </Context.Provider>
+      </AntdContext.Provider>
     );
   }
 }

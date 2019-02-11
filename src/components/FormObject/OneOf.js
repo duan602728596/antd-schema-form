@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Radio } from 'antd';
-import Context from '../../context';
-import styleName from '../../utils/styleName';
+import AntdSchemaFormContext from '../../context';
 import { isNumber } from '../../utils/type';
 
 class OneOf extends Component{
-  static contextType: Object = Context;
+  static contextType: Object = AntdSchemaFormContext;
   static propTypes: Object = {
     root: PropTypes.object,
     element: PropTypes.array

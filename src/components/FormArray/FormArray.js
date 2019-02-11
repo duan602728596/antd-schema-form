@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Tooltip, Select, Checkbox } from 'antd';
-import Context from '../../context';
+import AntdSchemaFormContext from '../../context';
 import TableComponent from './TableComponent';
 import styleName from '../../utils/styleName';
 
@@ -13,7 +13,7 @@ import styleName from '../../utils/styleName';
  * 扩展属性包括：componentType, options
  */
 class FormArray extends Component{
-  static contextType: Object = Context;
+  static contextType: Object = AntdSchemaFormContext;
   static propTypes: Object = {
     root: PropTypes.object,
     required: PropTypes.bool

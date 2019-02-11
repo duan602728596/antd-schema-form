@@ -1,7 +1,7 @@
 import React, { Component, Fragment, createRef } from 'react';
 import PropTypes from 'prop-types';
 import { Table, Button, Popconfirm, Drawer, Input } from 'antd';
-import Context from '../../context';
+import AntdSchemaFormContext from '../../context';
 import { isSpace, isBoolean, isObjectOrArray } from '../../utils/type';
 import getValueFromObject, { formatValueBeforeGetValue } from '../../utils/getValueFromObject';
 import getObjectFromValue from '../../utils/getObjectFromValue';
@@ -10,7 +10,7 @@ import FormObject from '../FormObject/FormObject';
 import styleName from '../../utils/styleName';
 
 class TableComponent extends Component{
-  static contextType: Object = Context;
+  static contextType: Object = AntdSchemaFormContext;
   static propTypes: Object = {
     root: PropTypes.object
   };

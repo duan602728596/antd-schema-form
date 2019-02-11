@@ -2,7 +2,7 @@ import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Tooltip, Input, Select, Radio, DatePicker } from 'antd';
 import moment from 'moment';
-import Context from '../../context';
+import AntdSchemaFormContext from '../../context';
 import styleName from '../../utils/styleName';
 import { isString, isFunction } from '../../utils/type';
 import createStringRules from './createStringRules';
@@ -17,7 +17,7 @@ import InputPassword from './InputPassword';
  *   patternMessage, minLengthMessage, maxLengthMessage, options, defaultValue, placeholder
  */
 class FormString extends Component{
-  static contextType: Object = Context;
+  static contextType: Object = AntdSchemaFormContext;
   static propTypes: Object = {
     root: PropTypes.object,
     required: PropTypes.bool
