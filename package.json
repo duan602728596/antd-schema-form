@@ -23,33 +23,33 @@
   "scripts": {
     "dll": "milktea dll --config=\"./config/example/.sweetrc.js\"",
     "start": "milktea start --server --config=\"./config/example/.sweetrc.js\"",
-    "dev": "npm run clearlib && npm run cleares && npm run clearstyle && cross-env NODE_ENV=development gulp",
-    "build": "npm run clearlib && npm run cleares && npm run clearstyle && cross-env NODE_ENV=production gulp",
-    "clearlib": "rimraf lib",
-    "cleares": "rimraf es",
-    "clearstyle": "rimraf style",
-    "testinit": "mocha init test",
+    "dev": "npm run clear:lib && npm run clear:es && npm run clear:style && cross-env NODE_ENV=development gulp",
+    "build": "npm run clear:lib && npm run clear:es && npm run clear:style && cross-env NODE_ENV=production gulp",
+    "clear:lib": "rimraf lib",
+    "clear:es": "rimraf es",
+    "clear:style": "rimraf style",
+    "test:init": "mocha init test",
     "test": "milktea start --server --config=\"./config/test/.sweetrc.js\" --httpPort=6060",
     "tslint": "tslint --project ./",
     "update": "milktea update"
   },
   "dependencies": {
     "moment": "^2.24.0",
-    "prop-types": "^15.6.2"
+    "prop-types": "^15.7.0"
   },
   "devDependencies": {
     "@sweet/milktea": "github:duan602728596/sweet#build-milktea",
     "@sweet/milktea-cli": "github:duan602728596/sweet#build-milktea-cli",
     "@sweet/server": "github:duan602728596/sweet#build-server",
     "@sweet/util-tools": "github:duan602728596/sweet#build-util-tools",
-    "@types/react": "^16.8.1",
-    "antd": "^3.13.0",
+    "@types/react": "^16.8.2",
+    "antd": "^3.13.2",
     "babel-eslint": "^10.0.1",
     "babel-plugin-import": "^1.11.0",
     "chai": "^4.2.0",
     "cross-env": "^5.2.0",
     "enzyme": "^3.8.0",
-    "enzyme-adapter-react-16": "^1.8.0",
+    "enzyme-adapter-react-16": "^1.9.1",
     "eslint": "^5.13.0",
     "eslint-plugin-flowtype": "^3.2.1",
     "eslint-plugin-react": "^7.12.4",
@@ -60,11 +60,11 @@
     "gulp-sass": "^4.0.2",
     "gulp-typescript": "^5.0.0",
     "mocha": "^5.2.0",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0",
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1",
     "rimraf": "^2.6.3",
     "tslint": "^5.12.1",
-    "typescript": "^3.3.1"
+    "typescript": "^3.3.3"
   },
   "peerDependencies": {
     "antd": ">=3.12.0",
