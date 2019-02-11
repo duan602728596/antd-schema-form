@@ -1,3 +1,4 @@
+// @flow
 import describe from 'describe';
 import it from 'it';
 import { getKeysFromObjectTest0, getKeysFromObjectTest1 } from './getKeysFromObjectTest';

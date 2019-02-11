@@ -1,3 +1,4 @@
+// @flow
 import mocha from 'mocha';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -9,7 +10,7 @@ Enzyme.configure({
   adapter: new Adapter()
 });
 
-(async function(): void{
+(async function(): Promise<void>{
   await Promise.all([
     // 通用函数测试
     import('./tests/function/test'),

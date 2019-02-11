@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+// @flow
+import * as React from 'react';
 import { Input, Icon } from 'antd';
 import SchemaForm from '../SchemaForm';
 import stringJson from '../json/string.json';
@@ -42,7 +43,7 @@ function handleClick(form: Object, value: Object, keys: string): void{
 
 // 自定义组件
 const customComponent: Object = {
-  custom(item: Object, option: Object, form: Object, required: boolean): React.Element{
+  custom(item: Object, option: Object, form: Object, required: boolean): React.Node{
     const { getFieldDecorator }: { getFieldDecorator: Function } = form;
 
     return getFieldDecorator(item.id, option)(
@@ -51,7 +52,7 @@ const customComponent: Object = {
   }
 };
 
-function Form(props: Object): React.Element{
+function Form(props: Object): React.Node{
   return (
     <SchemaForm json={ json }
       value={ value }

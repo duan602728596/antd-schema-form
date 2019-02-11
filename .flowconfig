@@ -2,6 +2,9 @@
 .*/build/.*
 .*/\.dll/.*
 
+[libs]
+test/test.type.js
+
 [options]
 esproposal.class_instance_fields=ignore
 esproposal.class_static_fields=ignore
