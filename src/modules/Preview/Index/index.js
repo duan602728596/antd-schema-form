@@ -1,8 +1,11 @@
-import React, { Component, Fragment } from 'react';
+// @flow
+import * as React from 'react';
+import { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
-import { createSelector, createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
+import type { RecordInstance } from 'immutable/dist/immutable.js.flow';
+import { createSelector, createStructuredSelector } from 'reselect';
 import { Row, Col, Input, Button, message, Modal } from 'antd';
 import { setSchemaJson } from '../store/reducer';
 import style from './style.sass';
@@ -13,8 +16,8 @@ import { I18NContext } from '../../../components/I18N/I18N';
 /* state */
 const state: Function = createStructuredSelector({
   schemaJson: createSelector(
-    ($$state: Immutable.Map): ?Immutable.Map => $$state.has('preview') ? $$state.get('preview') : null,
-    ($$data: ?Immutable.Map): Object => $$data !== null ? ($$data.get('schemaJson') ? $$data.get('schemaJson').toJS() : null) : null
+    ($$state: RecordInstance<Object>): ?RecordInstance<Object> => $$state.has('preview') ? $$state.get('preview') : null,
+    ($$data: ?RecordInstance<Object>): Object => $$data ? ($$data.get('schemaJson') ? $$data.get('schemaJson').toJS() : null) : null
   )
 });
 
@@ -25,22 +28,26 @@ const dispatch: Function = (dispatch: Function): Object=>({
   }, dispatch)
 });
 
-@connect(state, dispatch)
-class Index extends Component{
-  static contextType: Object = I18NContext;
+type IndexProps = {
+  schemaJson: ?Object,
+  action: Object
+};
+
+type IndexState = {
+  textAreaValue: string
+};
+
+class Index extends Component<IndexProps, IndexState>{
+  static contextType: React.Context<Object> = I18NContext;
   static propTypes: Object = {
     schemaJson: PropTypes.object,
     action: PropTypes.objectOf(PropTypes.func)
   };
 
-  state: {
-    textAreaValue: string
-  };
-
   constructor(): void{
     super(...arguments);
 
-    const { schemaJson }: { setSchemaJson: ?Object } = this.props;
+    const { schemaJson }: { schemaJson: ?Object } = this.props;
 
     this.state = {
       textAreaValue: schemaJson === null ? '' : JSON.stringify(schemaJson, null, 2)
@@ -78,7 +85,7 @@ class Index extends Component{
   handleInputTextAreaChange: Function = (event: Event): void=>{
     this.setState({ textAreaValue: event.target.value });
   };
-  render(): React.Element{
+  render(): React.Node{
     const { textAreaValue }: { textAreaValue: string } = this.state;
     const { schemaJson }: { schemaJson: ?Object } = this.props;
     const { language, languagePack }: {
@@ -121,4 +128,4 @@ class Index extends Component{
   }
 }
 
-export default Index;
+export default connect(state, dispatch)(Index);

@@ -3,9 +3,9 @@ import * as React from 'react';
 import { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
-import { createSelector, createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import type { RecordInstance } from 'immutable/dist/immutable.js.flow';
+import { createSelector, createStructuredSelector } from 'reselect';
 import classNames from 'classnames';
 import { Button, Input, message } from 'antd';
 import { setSchemaJson } from '../store/reducer';
@@ -44,8 +44,6 @@ class JsonInputTextArea extends Component<JsonInputTextAreaProps, JsonInputTextA
     schemaJson: PropTypes.object,
     action: PropTypes.objectOf(PropTypes.func)
   };
-
-  state: JsonInputTextAreaState;
 
   constructor(): void{
     super(...arguments);

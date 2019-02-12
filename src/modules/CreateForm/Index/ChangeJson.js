@@ -49,8 +49,6 @@ class ChangeJson extends Component<ChangeJsonProps, ChangeJsonState>{
     action: PropTypes.objectOf(PropTypes.func)
   };
 
-  state: ChangeJsonState;
-
   constructor(): void{
     super(...arguments);
 

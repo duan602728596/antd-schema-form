@@ -1,4 +1,6 @@
-import React, { Component, Fragment, createRef } from 'react';
+// @flow
+import * as React from 'react';
+import { Component, Fragment, createRef } from 'react';
 import classNames from 'classnames';
 import { Row, Col, Modal } from 'antd';
 import SchemaForm, { schemaFormDefaultLang, schemaFormZhCNLang } from '../../../components/SchemaForm/SchemaForm';
@@ -8,14 +10,15 @@ import demo from './demo.json';
 import demoZhCN from './demo-zhCN.json';
 import { I18NContext } from '../../../components/I18N/I18N';
 
-class Index extends Component{
-  static contextType: Object = I18NContext;
+type IndexState = {
+  language: string
+};
+
+class Index extends Component<{}, IndexState>{
+  static contextType: React.Context<Object> = I18NContext;
 
   codeRef: Object = createRef();
 
-  state: {
-    language: string
-  };
   constructor(): void{
     super(...arguments);
 
@@ -28,7 +31,7 @@ class Index extends Component{
   componentDidMount(): void{
     hljs.highlightBlock(this.codeRef.current);
   }
-  componentDidUpdate(prevProps: Object, prevState: Object): void{
+  componentDidUpdate(prevProps: {}, prevState: IndexState): void{
     const { language }: { language: string } = this.context;
 
     if(language !== prevState.language){
@@ -51,7 +54,7 @@ class Index extends Component{
       )
     });
   };
-  render(): React.Element{
+  render(): React.Node{
     const { language, languagePack }: {
       language: string,
       languagePack: Object
