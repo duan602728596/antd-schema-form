@@ -19,8 +19,6 @@ export class I18N extends Component<I18NProps, I18NState>{
     children: PropTypes.node
   };
 
-  state: I18NState;
-
   constructor(): void{
     super(...arguments);
 
