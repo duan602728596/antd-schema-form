@@ -167,7 +167,7 @@ class TableComponent extends Component<TableComponentProps>{
     this.setState({ selectedRowKeys: [] });
   }
   // columns
-  columns(): Array<any>{
+  columns(): Array<object>{
     const { languagePack } = this.context;
     const { items } = this.props.root;
     const { inputDisplayIndex, inputChangeIndex } = this.state;
