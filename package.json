@@ -60,9 +60,6 @@
     "eslint-plugin-react": "^7.12.4",
     "file-loader": "^3.0.1",
     "gulp": "^4.0.0",
-    "gulp-babel": "^8.0.0",
-    "gulp-changed": "^3.2.0",
-    "gulp-plumber": "^1.2.1",
     "gulp-sass": "^4.0.2",
     "gulp-typescript": "^5.0.0",
     "html-webpack-plugin": "^4.0.0-beta.5",
@@ -78,7 +75,6 @@
     "tslint": "^5.12.1",
     "typescript": "^3.3.3",
     "webpack": "^4.29.3",
-    "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.1.14"
   },
   "peerDependencies": {
