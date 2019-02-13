@@ -1,6 +1,6 @@
 # antd-schema-form
 
-antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Schema](http://json-schema.org/draft-07/json-schema-validation.html)配置快速生成可交互的表单。   
+antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Schema](http://json-schema.org/draft-07/json-schema-validation.html)配置快速生成可交互的表单。
 
 这个[Demo](https://duan602728596.github.io/antd-schema-form/#/)简单的展示了通过配置schema.json构建一个表单。
 
@@ -24,7 +24,7 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
   ```javascript
   import React, { Component } from 'react';
   import ReactDOM from 'react-dom';
-  import Schemaform, { 
+  import Schemaform, {
     getKeysFromObject,  // 获取schema.json下所有的key
     getObjectFromValue, // object对象，格式化成表单需要的值
     getValueFromObject  // 从form获取到的表单的值，格式化成object对象
@@ -61,7 +61,7 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
 
 ## json schema配置
 
-表单根据json schema配置，json schema属性参考[http://json-schema.org/draft-07/json-schema-validation.html](http://json-schema.org/draft-07/json-schema-validation.html)。      
+表单根据json schema配置，json schema属性参考[http://json-schema.org/draft-07/json-schema-validation.html](http://json-schema.org/draft-07/json-schema-validation.html)。
 
 您可以通过[表单生成](https://duan602728596.github.io/antd-schema-form/#/CreateForm)和[表单预览](https://duan602728596.github.io/antd-schema-form/#/Preview)功能来代替一部分的手写json schema的工作。
 
@@ -71,7 +71,7 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
 
 * `id: string`：当前属性的id。一般约定以`$root`开头，以`/`作为分隔，例如`$root/key1/key2`，id和json的键名要对应。
   当type为`object`时，需要加`/properties`，例如：
-  
+
   ```json
   {
     "id": "$root",
@@ -84,9 +84,9 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
     }
   }
   ```
-  
+
   当type为`array`时，items需要加`/items`，例如：
-  
+
   ```json
   {
     "id": "$root",
@@ -97,7 +97,7 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
     }
   }
   ```
-  
+
 * `type: string`：数据类型，包括string、number、integer、boolean、array、object。schema form根据该类型渲染不同的组件。
 * `title: string`：标题，用于描述关键字的作用。表单的标题。
 * `description: string`：说明，用于描述关键字的作用。表单的描述。
@@ -133,15 +133,15 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
 * `$componentType: string`：渲染为其他组件。
 
   | 值 | 组件名称 |
-  | --- | --- | 
+  | --- | --- |
   | textArea | 文本域 |
   | select | 下拉框 |
   | radio | 单选框 |
   | date | 日期选择器（**当组件为日期选择器时，值为Moment对象，需要自行对日期的值进行处理**） |
   | password | 密码框 |
-  
+
 * `$options: Array<{ label: string, value: string }>`：当$componentType为select、radio时，可选的选项。
-  
+
 ### `type="number"`或`type="integer"`：
 
 组件默认渲染数字输入框（[InputNumber](https://ant.design/components/input-number-cn/)）。**配置属性：**
@@ -162,9 +162,9 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
 * `$componentType: string`：渲染为其他组件。
 
   | 值 | 组件名称 |
-  | --- | --- | 
+  | --- | --- |
   | radio | 单选框 |
-  
+
 * `$options: Array<{ label: string, value: number }>`：当$componentType为radio时，可选的选项。
 
 ### `type="boolean"`：
@@ -175,9 +175,9 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
 * `$componentType: string`：渲染为其他组件。
 
   | 值 | 组件名称 |
-  | --- | --- | 
+  | --- | --- |
   | switch | 开关 |
-  
+
 ### `type="array"`：
 
 组件默认渲染表格（[Table](https://ant.design/components/table-cn/)）。点击表格的行数可以修改数据的位置。**配置属性：**
@@ -187,11 +187,11 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
 * `$componentType: string`：渲染为其他组件。
 
   | 值 | 组件名称 |
-  | --- | --- | 
+  | --- | --- |
   | checkbox | 多选框 |
   | multiple | 下拉框的多选模式 |
   | tags | 下拉框的多选模式，并且可以输入文字 |
-  
+
 * `$options: Array<{ label: string, value: string | number }>`：当$componentType为checkbox、multiple、tags时，可选的选项。
 
 ## 自定义渲染组件
@@ -229,7 +229,7 @@ ReactDOM.render(
 );
 ```
 
-SchemaForm的自定义组件属性`customComponent`类型为`object`，其中的每个值的类型都为`(item, option, form, required) => React.Node`。   
+SchemaForm的自定义组件属性`customComponent`类型为`object`，其中的每个值的类型都为`(item, option, form, required) => React.Node`。
 函数参数：
 
 | 参数 | 说明 | 类型 |
@@ -241,8 +241,5 @@ SchemaForm的自定义组件属性`customComponent`类型为`object`，其中的
 
 ## 开发和测试
 
-* 运行命令`npm run dll`、`npm start`，在浏览器中输入`http://127.0.0.1:5050`查看demo。
-* 运行命令`npm run dev`，进行开发。
-* 运行命令`npm run dll`、`npm run test`，在浏览器中输入`http://127.0.0.1:6060`运行测试用例。
-
-
+* 运行命令`npm run dev`，在浏览器中输入`http://127.0.0.1:5050`查看demo并开发。
+* 运行命令`npm run test`，在浏览器中输入`http://127.0.0.1:6060`运行测试用例。

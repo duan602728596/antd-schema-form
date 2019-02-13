@@ -11,6 +11,9 @@ exports.basicConfig = {
     publicPath: '/'
   },
   devtool: 'module-eval-source-map',
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.json']
+  }
 };
 
 /* rules */
@@ -19,6 +22,11 @@ exports.rules = [
     test: /.*\.jsx?$/,
     use: ['babel-loader'],
     exclude: /(node_modules|mocha|chai)/
+  },
+  {
+    test: /.*\.tsx?$/,
+    use: ['babel-loader', 'ts-loader'],
+    exclude: /node_modules/
   },
   {
     test: /.*\.s(a|c)ss$/,

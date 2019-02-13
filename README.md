@@ -15,15 +15,15 @@ Antd-schema-form based [Ant Design](https://ant.design/), quickly generate inter
     use: 'babel-loader',
     exclude: /node_modules[\\/](?!antd-schema-form)/
   }
-  ``` 
-  
+  ```
+
 3. React version `>=16.6.0`.
 4. Use of components:
 
   ```javascript
   import React, { Component } from 'react';
   import ReactDOM from 'react-dom';
-  import Schemaform, { 
+  import Schemaform, {
     getKeysFromObject,  // Get all the keys under schema.json
     getObjectFromValue, // Object formatted into the value required by the form
     getValueFromObject  // The value of the form obtained from the form, formatted into an object
@@ -43,7 +43,7 @@ Antd-schema-form based [Ant Design](https://ant.design/), quickly generate inter
     document.getElementById('app')
   );
  ```
- 
+
 ## API
 
 | Parameter | Description | Type |
@@ -70,7 +70,7 @@ You can use [form generation](https://duan602728596.github.io/antd-schema-form/#
 
 * `id: string`: The id of the current attribute. The general convention begins with `$root` and is separated by `/`. For example, `$root/key1/key2`, the id and json key names must correspond.
   When type is `object`, you need to add `/properties`, for example:
-  
+
   ```json
   {
     "id": "$root",
@@ -83,9 +83,9 @@ You can use [form generation](https://duan602728596.github.io/antd-schema-form/#
     }
   }
   ```
-  
+
   When type is `array`, items need to add `/items`, for example:
-  
+
   ```json
   {
     "id": "$root",
@@ -132,7 +132,7 @@ The component renders the input box by default ([Input](https://ant.design/compo
 * `$componentType: string`: Rendered as other components.
 
   | Value | Component Name |
-  | --- | --- | 
+  | --- | --- |
   | textArea | Text field. |
   | select | Drop-down box. |
   | radio | Radio box. |
@@ -161,7 +161,7 @@ The component renders the numeric input box by default ([InputNumber](https://an
 * `$componentType: string`: Rendered as other components.
 
   | Value | Component Name |
-  | --- | --- | 
+  | --- | --- |
   | radio | Radio box. |
 
 * `$options: Array<{ label: string, value: number }>`: Optional option when $componentType is radio.
@@ -174,13 +174,13 @@ The component renders a checkbox by default ([Checkbox](https://ant.design/compo
 * `$componentType: string`: Rendered as other components.
 
   | Value | Component Name |
-  | --- | --- | 
+  | --- | --- |
   | switch | Switch. |
 
 ### `type="array"`:
 
 The component renders the table by default ([Table](https://ant.design/components/table/)).Click on the number of rows in the table to modify the location of the data. **Configuration properties:**
- 
+
 * `items: object`: the contents of the array.
 * `$defaultValue: Array<any>`: The default value of the form control.
 * `$componentType: string`: Rendered as other components.
@@ -228,7 +228,7 @@ ReactDOM.render(
 );
 ```
 
-SchemaForm's custom component property `customComponent` is of type `object`, each of which has the type `(item, option, form, required) => React.Node`.   
+SchemaForm's custom component property `customComponent` is of type `object`, each of which has the type `(item, option, form, required) => React.Node`.
 Function parameters:
 
 | Parameter | Description | Type |
@@ -240,6 +240,5 @@ Function parameters:
 
 ## Development and testing
 
-* Run the command `npm run dll`, `npm start`, and enter `http://127.0.0.1:5050` in the browser to view the demo.
-* Run the command `npm run dev` for development.
-* Run the command `npm run dll`, `npm run test`, and run `http://127.0.0.1:6060` in the browser to run the test case.
+* Run the command `npm run dev`, enter `http://127.0.0.1:5050` in the browser to view the demo and develop.
+* Run the command `npm run test`, and run `http://127.0.0.1:6060` in the browser to run the test case.
