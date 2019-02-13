@@ -92,12 +92,12 @@ class FormObject extends Component<FormObjectProps>{
 
       for(const key in root){
         if(!(key in childrenRoot) && !['oneOf'].includes(key)){
-        childrenRoot[key] = root[key];
+          childrenRoot[key] = root[key];
+        }
       }
-    }
 
-    element.push(this.renderComponentByTypeView(childrenRoot, required));
-  });
+      element.push(this.renderComponentByTypeView(childrenRoot, required));
+    });
 
     return <OneOf key={ root.id } root={ root } element={ element } />;
   }
