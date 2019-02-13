@@ -19,6 +19,7 @@ yarn-error.log
 .babelCache
 .dll
 config
+bin
 example
 test
 gulpfile.js

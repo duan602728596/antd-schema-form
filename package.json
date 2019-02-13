@@ -29,11 +29,11 @@
     "test:init": "mocha init test",
     "test": "webpack-dev-server --config=\"./config/webpack.test.js\" --hot --color --port=6060",
     "tslint": "tslint --project ./",
-    "update": "milktea update"
+    "get-version": "node ./bin/get-version.js"
   },
   "dependencies": {
     "moment": "^2.24.0",
-    "prop-types": "^15.7.0"
+    "prop-types": "^15.7.1"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
