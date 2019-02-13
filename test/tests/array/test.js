@@ -1,4 +1,3 @@
-// @flow
 import describe from 'describe';
 import it from 'it';
 import { renderDefault, renderSelectMultiple, renderSelectTags, renderCheckboxGroup } from './componentRender';
@@ -7,9 +6,9 @@ import {
   CheckboxGroupHastValue
 } from './hasValue';
 
-describe('数组组件', function(): void{
+describe('数组组件', function(){
   /* 组件渲染 */
-  describe('组件渲染', function(): void{
+  describe('组件渲染', function(){
     it('渲染默认组件', renderDefault);
     it('渲染Select的multiple模式', renderSelectMultiple);
     it('渲染Select的tags模式', renderSelectTags);
@@ -17,8 +16,8 @@ describe('数组组件', function(): void{
   });
 
   /* 交互测试 */
-  describe('交互测试', function(): void{
-    describe('有值', function(): void{
+  describe('交互测试', function(){
+    describe('有值', function(){
       it('组件有默认值', componentHasDefaultValue);
       it('组件有值', componentHasValue);
       it('数组内为字符串或数字', componentItemsIsStringOrNumber);

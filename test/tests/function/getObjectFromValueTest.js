@@ -1,9 +1,8 @@
-// @flow
 import { expect } from 'chai';
 import { getObjectFromValue } from '../../SchemaForm';
 
-export function getObjectFromValueTest0(): void{
-  const value: Object = {
+export function getObjectFromValueTest0(){
+  const value = {
     $root: {
       col1: 12,
       col2: 'col2',
@@ -18,7 +17,7 @@ export function getObjectFromValueTest0(): void{
       }
     }
   };
-  const formFieldValue: Object = {
+  const formFieldValue = {
     '$root/properties/col1': 12,
     '$root/properties/col2': 'col2',
     '$root/properties/col3': [1, 2, 3],
@@ -33,8 +32,8 @@ export function getObjectFromValueTest0(): void{
   expect(getObjectFromValue(value)).to.be.eql(formFieldValue);
 }
 
-export function getObjectFromValueTest1(): void{
-  const value: Object = {
+export function getObjectFromValueTest1(){
+  const value = {
     $root: {
       col1: [14, 25, 577.4],
       col2: {
@@ -51,7 +50,7 @@ export function getObjectFromValueTest1(): void{
       }
     }
   };
-  const formFieldValue: Object = {
+  const formFieldValue = {
     '$root/properties/col1': [14, 25, 577.4],
     '$root/properties/col2/properties/col1': [1, 2, 3],
     '$root/properties/col2/properties/col2': false,

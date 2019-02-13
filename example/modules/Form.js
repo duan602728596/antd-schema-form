@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react';
 import { Input, Icon } from 'antd';
 import SchemaForm from '../SchemaForm';
@@ -7,7 +6,7 @@ import numberJson from '../json/number.json';
 import booleanJson from '../json/boolean.json';
 import arrayJson from '../json/array.json';
 
-const json: Object = {
+const json = {
   id: '$root',
   type: 'object',
   title: 'schema form',
@@ -20,7 +19,7 @@ const json: Object = {
   }
 };
 
-const value: Object = {
+const value = {
   $root: {
     string: {
       default: 'abcdefg'
@@ -32,19 +31,19 @@ const value: Object = {
 };
 
 // 文件上传
-async function handleFileUpload(file: Array<File>): Promise<string>{
+async function handleFileUpload(file){
   return `${ file[0].lastModified }`;
 }
 
 // 点击事件
-function handleClick(form: Object, value: Object, keys: string): void{
+function handleClick(form, value, keys){
   console.log(value, keys);
 }
 
 // 自定义组件
-const customComponent: Object = {
-  custom(item: Object, option: Object, form: Object, required: boolean): React.Node{
-    const { getFieldDecorator }: { getFieldDecorator: Function } = form;
+const customComponent = {
+  custom(item, option, form, required){
+    const { getFieldDecorator } = form;
 
     return getFieldDecorator(item.id, option)(
       <Input placeholder="自定义组件" required={ required } addonAfter={ <Icon type="setting" /> } />
@@ -52,7 +51,7 @@ const customComponent: Object = {
   }
 };
 
-function Form(props: Object): React.Node{
+function Form(props){
   return (
     <SchemaForm json={ json }
       value={ value }

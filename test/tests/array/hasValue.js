@@ -1,12 +1,11 @@
-// @flow
 import { expect } from 'chai';
 import { mount } from 'enzyme';
 import * as React from 'react';
 import SchemaForm from '../../SchemaForm';
 
 /* 组件有默认值 */
-export function componentHasDefaultValue(): void{
-  const json: Object = {
+export function componentHasDefaultValue(){
+  const json = {
     id: '$root',
     type: 'array',
     title: '组件有默认值',
@@ -33,12 +32,12 @@ export function componentHasDefaultValue(): void{
       { col1: 'tsl', col2: 32 }
     ]
   };
-  const wrapper: Object = mount(<SchemaForm json={ json } />);
-  const tBody: Object = wrapper.find('tbody');
-  const tr: Object = tBody.find('tr');
-  const tr0td: Object = tr.at(0).find('td');
-  const tr1td: Object = tr.at(1).find('td');
-  const tr2td: Object = tr.at(2).find('td');
+  const wrapper = mount(<SchemaForm json={ json } />);
+  const tBody = wrapper.find('tbody');
+  const tr = tBody.find('tr');
+  const tr0td = tr.at(0).find('td');
+  const tr1td = tr.at(1).find('td');
+  const tr2td = tr.at(2).find('td');
 
   expect(tr0td.at(2).text()).to.be.equal('ddd');
   expect(Number(tr0td.at(3).text())).to.be.equal(1);
@@ -49,8 +48,8 @@ export function componentHasDefaultValue(): void{
 }
 
 /* 组件有值 */
-export function componentHasValue(): void{
-  const json: Object = {
+export function componentHasValue(){
+  const json = {
     id: '$root',
     type: 'array',
     title: '组件有值',
@@ -77,19 +76,19 @@ export function componentHasValue(): void{
       }
     }
   };
-  const value: Object = {
+  const value = {
     $root: [
       { col1: 'lsn', col2: 42, col3: true },
       { col1: 'lx', col2: 167, col3: false },
       { col1: 'xsy', col2: 32.57, col3: true }
     ]
   };
-  const wrapper: Object = mount(<SchemaForm json={ json } value={ value } />);
-  const tBody: Object = wrapper.find('tbody');
-  const tr: Object = tBody.find('tr');
-  const tr0td: Object = tr.at(0).find('td');
-  const tr1td: Object = tr.at(1).find('td');
-  const tr2td: Object = tr.at(2).find('td');
+  const wrapper = mount(<SchemaForm json={ json } value={ value } />);
+  const tBody = wrapper.find('tbody');
+  const tr = tBody.find('tr');
+  const tr0td = tr.at(0).find('td');
+  const tr1td = tr.at(1).find('td');
+  const tr2td = tr.at(2).find('td');
 
   expect(tr0td.at(2).text()).to.be.equal('lsn');
   expect(Number(tr0td.at(3).text())).to.be.equal(42);
@@ -103,8 +102,8 @@ export function componentHasValue(): void{
 }
 
 /* 数组内为字符串或数字 */
-export function componentItemsIsStringOrNumber(): void{
-  const json: Object = {
+export function componentItemsIsStringOrNumber(){
+  const json = {
     id: '$root',
     type: 'array',
     title: '数组内为字符串或数字',
@@ -114,16 +113,16 @@ export function componentItemsIsStringOrNumber(): void{
       title: '数组内的字符串或数字'
     }
   };
-  const value: Object = {
+  const value = {
     $root: ['a', 'b', 'c', 'd']
   };
-  const wrapper: Object = mount(<SchemaForm json={ json } value={ value } />);
-  const tBody: Object = wrapper.find('tbody');
-  const tr: Object = tBody.find('tr');
-  const tr0td: Object = tr.at(0).find('td');
-  const tr1td: Object = tr.at(1).find('td');
-  const tr2td: Object = tr.at(2).find('td');
-  const tr3td: Object = tr.at(3).find('td');
+  const wrapper = mount(<SchemaForm json={ json } value={ value } />);
+  const tBody = wrapper.find('tbody');
+  const tr = tBody.find('tr');
+  const tr0td = tr.at(0).find('td');
+  const tr1td = tr.at(1).find('td');
+  const tr2td = tr.at(2).find('td');
+  const tr3td = tr.at(3).find('td');
 
   expect(tr0td.at(2).text()).to.be.equal('a');
   expect(tr1td.at(2).text()).to.be.equal('b');
@@ -132,8 +131,8 @@ export function componentItemsIsStringOrNumber(): void{
 }
 
 /* 多选框有默认值 */
-export function CheckboxGroupHastDefaultValue(): void{
-  const json: Object = {
+export function CheckboxGroupHastDefaultValue(){
+  const json = {
     id: '$root',
     type: 'array',
     title: '多选框有值',
@@ -150,8 +149,8 @@ export function CheckboxGroupHastDefaultValue(): void{
     ],
     $defaultValue: ['值1', '值3']
   };
-  const wrapper: Object = mount(<SchemaForm json={ json } />);
-  const antCheckboxChecked: Object = wrapper.find('.ant-checkbox-input');
+  const wrapper = mount(<SchemaForm json={ json } />);
+  const antCheckboxChecked = wrapper.find('.ant-checkbox-input');
 
   expect(antCheckboxChecked.at(0).getDOMNode().checked).to.be.true;
   expect(antCheckboxChecked.at(1).getDOMNode().checked).to.be.false;
@@ -159,8 +158,8 @@ export function CheckboxGroupHastDefaultValue(): void{
 }
 
 /* 多选框有值 */
-export function CheckboxGroupHastValue(): void{
-  const json: Object = {
+export function CheckboxGroupHastValue(){
+  const json = {
     id: '$root',
     type: 'array',
     title: '多选框有值',
@@ -176,11 +175,11 @@ export function CheckboxGroupHastValue(): void{
       { label: '选项3', value: '值3' }
     ]
   };
-  const value: Object = {
+  const value = {
     $root: ['值2']
   };
-  const wrapper: Object = mount(<SchemaForm json={ json } value={ value } />);
-  const antCheckboxChecked: Object = wrapper.find('.ant-checkbox-input');
+  const wrapper = mount(<SchemaForm json={ json } value={ value } />);
+  const antCheckboxChecked = wrapper.find('.ant-checkbox-input');
 
   expect(antCheckboxChecked.at(0).getDOMNode().checked).to.be.false;
   expect(antCheckboxChecked.at(1).getDOMNode().checked).to.be.true;

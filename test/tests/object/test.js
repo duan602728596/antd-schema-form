@@ -1,4 +1,3 @@
-// @flow
 import describe from 'describe';
 import it from 'it';
 import { expect } from 'chai';
@@ -6,11 +5,11 @@ import { mount } from 'enzyme';
 import * as React from 'react';
 import SchemaForm from '../../SchemaForm';
 
-describe('组件渲染', function(): void{
+describe('组件渲染', function(){
   /* 组件渲染 */
-  describe('组件渲染', function(): void{
-    it('组件渲染', function(): void{
-      const json: Object = {
+  describe('组件渲染', function(){
+    it('组件渲染', function(){
+      const json = {
         id: '$root',
         type: 'object',
         title: '渲染组件',
@@ -50,10 +49,10 @@ describe('组件渲染', function(): void{
         }
       };
 
-      const wrapper: Object = mount(<SchemaForm json={ json } />);
-      const antInput: Object = wrapper.find('.ant-input');
-      const antInputNumber: Object = wrapper.find('.ant-input-number');
-      const antCheckboxInput: Object = wrapper.find('.ant-checkbox-input');
+      const wrapper = mount(<SchemaForm json={ json } />);
+      const antInput = wrapper.find('.ant-input');
+      const antInputNumber = wrapper.find('.ant-input-number');
+      const antCheckboxInput = wrapper.find('.ant-checkbox-input');
 
       expect(antInput).to.have.lengthOf(3);
       expect(antInputNumber).to.have.lengthOf(1);
@@ -62,9 +61,9 @@ describe('组件渲染', function(): void{
   });
 
   /* oneOf渲染 */
-  describe('oneOf', function(): void{
-    it('oneOf', function(): void{
-      const json: Object = {
+  describe('oneOf', function(){
+    it('oneOf', function(){
+      const json = {
         id: '$root',
         title: 'oneOf',
         oneOf: [
@@ -80,8 +79,8 @@ describe('组件渲染', function(): void{
         ]
       };
 
-      const wrapper: Object = mount(<SchemaForm json={ json } />);
-      const antRadioInput: Object = wrapper.find('.ant-radio-input');
+      const wrapper = mount(<SchemaForm json={ json } />);
+      const antRadioInput = wrapper.find('.ant-radio-input');
 
       expect(antRadioInput).to.have.lengthOf(3);
     });
