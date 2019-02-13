@@ -10,9 +10,6 @@ exports.basicConfig = {
     chunkFilename: 'script/[name].js',
     publicPath: '/'
   },
-  devServer: {
-    contentBase: path.join(__dirname, '../build')
-  },
   devtool: 'module-eval-source-map',
 };
 
