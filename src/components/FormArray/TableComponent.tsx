@@ -196,6 +196,7 @@ class TableComponent extends Component<TableComponentProps>{
       }
     });
 
+    // 渲染函数
     const renderCb: Function = (value: any, item: Object, index: number): string | number=>{
       if(isBoolean(value)){
         return String(value);
@@ -278,7 +279,7 @@ class TableComponent extends Component<TableComponentProps>{
               </Popconfirm>
             ]
           }
-          rowKey={ (item: object, index: number): any => index }
+          rowKey={ (item: object, index: number): string => `${ index }` }
           rowSelection={{
             type: 'checkbox',
             selectedRowKeys,
