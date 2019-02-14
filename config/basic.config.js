@@ -25,7 +25,25 @@ exports.rules = [
   },
   {
     test: /.*\.tsx?$/,
-    use: ['babel-loader', 'ts-loader'],
+    use: [
+      {
+        loader: 'babel-loader',
+        options: {
+          plugins: [
+            'react-hot-loader/babel',
+            [
+              'import',
+              {
+                libraryName: 'antd',
+                libraryDirectory: 'es',
+                style: 'css'
+              }
+            ]
+          ]
+        }
+      },
+      'ts-loader'
+    ],
     exclude: /node_modules/
   },
   {
