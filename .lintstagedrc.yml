@@ -1,0 +1,8 @@
+linters:
+  src/**/*.{ts,tsx}: tslint
+  "*.{js,jsx}": eslint
+ignore:
+  - node_modules
+  - es
+  - lib
+  - style
