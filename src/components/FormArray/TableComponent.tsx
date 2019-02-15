@@ -4,10 +4,15 @@ import * as PropTypes from 'prop-types';
 import { Requireable } from 'prop-types';
 import { Table, Button, Popconfirm, Drawer, Input } from 'antd';
 import { WrappedFormUtils } from 'antd/lib/form/Form';
+import { TableComponents } from 'antd/lib/table';
+import { DragDropContext } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
+import update from 'immutability-helper';
 import AntdSchemaFormContext from '../../context';
 import { isSpace, isBoolean, isObjectOrArray } from '../../utils/type';
 import getValueFromObject, { formatValueBeforeGetValue } from '../../utils/getValueFromObject';
 import getObjectFromValue from '../../utils/getObjectFromValue';
+import DragableBodyRow from './DragableBodyRow';
 import { formatTableValue, sortIndex } from './tableFunction';
 import FormObject from '../FormObject/FormObject';
 import styleName from '../../utils/styleName';
@@ -34,6 +39,11 @@ class TableComponent extends Component<TableComponentProps>{
 
   changeIndexRef: RefObject<Input> = createRef();
   editIndex: number = null;
+  components: TableComponents = {
+    body: {
+      row: DragableBodyRow
+    }
+  };
   state: TableComponentState = {
     isDisplayDataDrawer: false, // 添加和修改数据的抽屉的显示和隐藏
     inputDisplayIndex: null,    // 编辑框修改位置的状态
@@ -82,6 +92,24 @@ class TableComponent extends Component<TableComponentProps>{
       inputDisplayIndex: null,
       inputChangeIndex: null
     });
+  }
+  // 拖拽
+  moveRow(dragIndex: number, hoverIndex: number): void{
+    const { form } = this.context;
+    const { root } = this.props;
+    const id: string = root.id;
+    let tableValue: Array<any> = form.getFieldValue(id);
+
+    tableValue = isSpace(tableValue) ? (root.$defaultValue || []) : tableValue;
+
+    const dragRowItem: object = tableValue[dragIndex];
+    const newData: { tableValue?: Array<object> } = update({ tableValue }, {
+      tableValue: {
+        $splice: [[dragIndex, 1], [hoverIndex, 0, dragRowItem]]
+      }
+    });
+
+    form.setFieldsValue({ [id]: newData.tableValue });
   }
   // 添加和修改数据
   handleAddOrEditDataClick: Function = (value: object, form2: WrappedFormUtils, keys: string[]): void=>{
@@ -285,6 +313,8 @@ class TableComponent extends Component<TableComponentProps>{
             selectedRowKeys,
             onChange: this.handleColumnCheckboxChange.bind(this)
           }}
+          components={ this.components }
+          onRow={ (item: object, index: number): { index: number, moverow: Function } => ({ index, moverow: this.moveRow.bind(this) }) }
           pagination={ false }
         />
         {/* 添加和修改数据的抽屉组件 */}
@@ -300,4 +330,4 @@ class TableComponent extends Component<TableComponentProps>{
   }
 }
 
-export default TableComponent;
+export default DragDropContext(HTML5Backend)(TableComponent);

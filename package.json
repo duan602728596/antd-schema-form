@@ -33,8 +33,12 @@
     "get-version": "node ./bin/get-version.js"
   },
   "dependencies": {
+    "classnames": "^2.2.6",
+    "immutability-helper": "^3.0.0",
     "moment": "^2.24.0",
-    "prop-types": "^15.7.1"
+    "prop-types": "^15.7.1",
+    "react-dnd": "^7.0.2",
+    "react-dnd-html5-backend": "^7.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",

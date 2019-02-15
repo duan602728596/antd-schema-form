@@ -2,32 +2,42 @@
 
 @mixin antdSchemaForm()
   /* object */
-  .#{ $basic-name }object-description
-    margin-left: 10px
-    font-size: 12px
-    color: #929292
-  .#{ $basic-name }object-collapse
-    margin-bottom: 10px
-    &:last-child
-      margin-bottom: 0
-  .#{ $basic-name }object-click-button-box
-    margin-top: 10px
-  .#{ $basic-name }object-cancel
-    margin-left: 10px
+  .#{ $basic-name }object
+    &-description
+      margin-left: 10px
+      font-size: 12px
+      color: #929292
+    &-collapse
+      margin-bottom: 10px
+      &:last-child
+        margin-bottom: 0
+    &-click-button-box
+      margin-top: 10px
+    &-cancel
+      margin-left: 10px
 
   /* string */
-  .#{ $basic-name }string-select
-    width: 100%
-  .#{ $basic-name }string-password-suffix
-    cursor: pointer
+  .#{ $basic-name }string
+    &-select
+      width: 100%
+    &-password-suffix
+      cursor: pointer
 
   /* number */
-  .#{ $basic-name }number-input
-    width: 100%
-    max-width: 300px
+  .#{ $basic-name }number
+    &-input
+      width: 100%
+      max-width: 300px
 
   /* array */
-  .#{ $basic-name }array-multiple
-    width: 100%
-  .#{ $basic-name }array-deleteAll
-    margin-left: 10px
+  .#{ $basic-name }array
+    &-multiple
+      width: 100%
+    &-deleteAll
+      margin-left: 10px
+  tr.#{ $basic-name }array
+    &-drop-over
+      &-downward td
+        border-bottom: 2px dashed $array-table-drop-over-border-color
+      &-upward td
+        border-top: 2px dashed $array-table-drop-over-border-color
