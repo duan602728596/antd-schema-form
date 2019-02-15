@@ -81,11 +81,14 @@ class TableComponent extends Component<TableComponentProps>{
       if(newIndex < 0) newIndex = 0;
       if(newIndex > length) newIndex = length;
 
-      // 修改位置
-      tableValue.splice(newIndex > index ? (newIndex + 1) : newIndex, 0, tableValue[index]);
-      // 删除旧数据
-      tableValue.splice(newIndex > index ? index : (index + 1), 1);
-      form.setFieldsValue({ [id]: tableValue });
+      const item: object = tableValue[index];
+      const newData: { tableValue?: Array<object> } = update({ tableValue }, {
+        tableValue: {
+          $splice: [[index, 1], [newIndex, 0, item]]
+        }
+      });
+
+      form.setFieldsValue({ [id]: newData.tableValue });
     }
 
     this.setState({
