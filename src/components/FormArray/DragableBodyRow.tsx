@@ -12,6 +12,7 @@ import styleName from '../../utils/styleName';
  */
 const dropOverDownward: string = styleName('array-drop-over-downward');
 const dropOverUpward: string = styleName('array-drop-over-upward');
+const trDrag: string = styleName('array-tr-drag');
 let dragingIndex: number = -1;
 
 interface BodyRowProps{
@@ -19,7 +20,6 @@ interface BodyRowProps{
   connectDragSource: Function;
   connectDropTarget: Function;
   index: number;
-  style: object;
   className: string;
   moverow: Function;
 }
@@ -30,7 +30,6 @@ class BodyRow extends Component<BodyRowProps>{
     connectDragSourc: Requireable<Function>,
     connectDropTarget: Requireable<Function>,
     index: Requireable<number>,
-    style: Requireable<object>,
     className: Requireable<string>,
     moverow: Requireable<Function>
   } = {
@@ -38,22 +37,20 @@ class BodyRow extends Component<BodyRowProps>{
     connectDragSourc: PropTypes.func,
     connectDropTarget: PropTypes.func,
     index: PropTypes.number,
-    style: PropTypes.object,
     className: PropTypes.string,
     moverow: PropTypes.func
   };
 
   render(): React.ReactNode{
-    const { isOver, connectDragSource, connectDropTarget, index, style, className, moverow, ...restProps } = this.props;
-    const fStyle: object = { ...style, cursor: 'move' };
-    const fClassName: string = classNames(className, {
+    const { isOver, connectDragSource, connectDropTarget, index, className, moverow, ...restProps } = this.props;
+    const fClassName: string = classNames(className, trDrag, {
       [dropOverDownward]: isOver && index > dragingIndex
     }, {
       [dropOverUpward]: isOver && index < dragingIndex
     });
 
     return connectDragSource(
-      connectDropTarget(<tr className={ fClassName } style={ fStyle } { ...restProps } />)
+      connectDropTarget(<tr className={ fClassName } { ...restProps } />)
     );
   }
 }
@@ -81,14 +78,18 @@ const rowTarget: { drop: (props: {}, monitor: DropTargetMonitor, component: any)
 };
 
 const DragableBodyRow: ReactType<any> = DropTarget('row', rowTarget,
-  (connect: { dropTarget: Function }, monitor: DropTargetMonitor): object => ({
-    connectDropTarget: connect.dropTarget(),
-    isOver: monitor.isOver()
-  }),
+  (connect: { dropTarget: Function }, monitor: DropTargetMonitor): object=>{
+    return {
+      connectDropTarget: connect.dropTarget(),
+      isOver: monitor.isOver()
+    };
+  }
 )(DragSource('row', rowSource,
-  (connect) => ({
-    connectDragSource: connect.dragSource()
-  })
+  (connect: { dragSource: Function }): object=>{
+    return {
+      connectDragSource: connect.dragSource()
+    };
+  }
 )(BodyRow));
 
 export default DragableBodyRow;

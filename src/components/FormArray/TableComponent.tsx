@@ -280,7 +280,7 @@ class TableComponent extends Component<TableComponentProps>{
     const { root } = this.props;
     const { form, languagePack } = this.context;
     const { id, items } = root;
-    const { isDisplayDataDrawer, selectedRowKeys } = this.state;
+    const { isDisplayDataDrawer, selectedRowKeys, inputDisplayIndex } = this.state;
     let value: Array<any> = form.getFieldValue(id);
 
     value = isSpace(value) ? (root.$defaultValue || []) : value;
@@ -316,7 +316,7 @@ class TableComponent extends Component<TableComponentProps>{
             selectedRowKeys,
             onChange: this.handleColumnCheckboxChange.bind(this)
           }}
-          components={ this.components }
+          components={ inputDisplayIndex === null ? this.components : undefined }
           onRow={ (item: object, index: number): { index: number, moverow: Function } => ({ index, moverow: this.moveRow.bind(this) }) }
           pagination={ false }
         />
@@ -329,7 +329,6 @@ class TableComponent extends Component<TableComponentProps>{
         </Drawer>
       </Fragment>
     );
-
   }
 }
 
