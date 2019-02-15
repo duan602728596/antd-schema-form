@@ -1,6 +1,6 @@
 linters:
   src/**/*.{ts,tsx}: tslint
-  "*.{js,jsx}": eslint
+  "*.{js,jsx,ts,tsx}": eslint
 ignore:
   - node_modules
   - es
