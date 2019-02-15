@@ -52,8 +52,6 @@ class BodyRow extends Component<BodyRowProps>{
       [dropOverUpward]: isOver && index < dragingIndex
     });
 
-    console.log(fClassName);
-
     return connectDragSource(
       connectDropTarget(<tr className={ fClassName } style={ fStyle } { ...restProps } />)
     );
