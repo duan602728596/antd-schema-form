@@ -3,5 +3,3 @@ lib
 es
 build
 test/mocha/mocha.js
-*.ts
-*.tsx

@@ -11,6 +11,9 @@ parserOptions:
   sourceType: module
 plugins:
   - react
+settings:
+  react:
+    version: '16.8'
 rules:
   # Possible Errors
   no-cond-assign:                                     # 禁止条件表达式中出现赋值操作符
