@@ -281,6 +281,7 @@ class TableComponent extends Component<TableComponentProps>{
     const { form, languagePack } = this.context;
     const { id, items } = root;
     const { isDisplayDataDrawer, selectedRowKeys, inputDisplayIndex } = this.state;
+    const inputNotDisplay: boolean = inputDisplayIndex === null;
     let value: Array<any> = form.getFieldValue(id);
 
     value = isSpace(value) ? (root.$defaultValue || []) : value;
@@ -316,8 +317,12 @@ class TableComponent extends Component<TableComponentProps>{
             selectedRowKeys,
             onChange: this.handleColumnCheckboxChange.bind(this)
           }}
-          components={ inputDisplayIndex === null ? this.components : undefined }
-          onRow={ (item: object, index: number): { index: number, moverow: Function } => ({ index, moverow: this.moveRow.bind(this) }) }
+          components={ inputNotDisplay ? this.components : undefined }
+          onRow={
+            inputNotDisplay
+              ? (item: object, index: number): { index: number, moverow: Function } => ({ index, moverow: this.moveRow.bind(this) })
+              : undefined
+          }
           pagination={ false }
         />
         {/* 添加和修改数据的抽屉组件 */}
