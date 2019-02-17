@@ -16,12 +16,12 @@ const trDrag: string = styleName('array-tr-drag');
 let dragingIndex: number = -1;
 
 interface BodyRowProps {
-  isOver: boolean;
-  connectDragSource: Function;
-  connectDropTarget: Function;
-  index: number;
-  className: string;
-  moverow: Function;
+  isOver?: boolean;
+  connectDragSource?: Function;
+  connectDropTarget?: Function;
+  index?: number;
+  className?: string;
+  moverow?: Function;
 }
 
 class BodyRow extends Component<BodyRowProps> {
@@ -52,13 +52,15 @@ class BodyRow extends Component<BodyRowProps> {
       ...restProps
     }: BodyRowProps = this.props;
     const fClassName: string = classNames(className, trDrag, {
-      [dropOverDownward]: isOver && index > dragingIndex,
-      [dropOverUpward]: isOver && index < dragingIndex
+      [dropOverDownward]: isOver && index !== undefined && index > dragingIndex,
+      [dropOverUpward]: isOver && index !== undefined && index < dragingIndex
     });
 
-    return connectDragSource(
-      connectDropTarget(<tr className={ fClassName } { ...restProps } />)
-    );
+    return (connectDragSource && connectDropTarget)
+      ? connectDragSource(
+        connectDropTarget(<tr className={ fClassName } { ...restProps } />)
+      )
+      : null;
   }
 }
 
@@ -97,7 +99,6 @@ const DragableBodyRow: ReactType<any> = DropTarget('row', rowTarget,
       connectDragSource: connect.dragSource()
     };
   }
-  // @ts-ignore
 )(BodyRow));
 
 export default DragableBodyRow;
