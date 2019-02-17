@@ -42,7 +42,15 @@ class BodyRow extends Component<BodyRowProps> {
   };
 
   render(): React.ReactNode {
-    const { isOver, connectDragSource, connectDropTarget, index, className, moverow, ...restProps }: BodyRowProps = this.props;
+    const {
+      isOver,
+      connectDragSource,
+      connectDropTarget,
+      index,
+      className,
+      moverow, // function类型，直接作为props会报警告
+      ...restProps
+    }: BodyRowProps = this.props;
     const fClassName: string = classNames(className, trDrag, {
       [dropOverDownward]: isOver && index > dragingIndex
     }, {
@@ -90,7 +98,6 @@ const DragableBodyRow: ReactType<any> = DropTarget('row', rowTarget,
       connectDragSource: connect.dragSource()
     };
   }
-  // @ts-ignore
 )(BodyRow));
 
 export default DragableBodyRow;
