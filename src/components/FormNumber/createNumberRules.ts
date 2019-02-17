@@ -39,8 +39,7 @@ function createNumberRules(root: NumberItem, required: boolean, isInteger: boole
   if (!isSpace(minimum) && isNumber(minimum)) {
     rules.push({
       validator: (rule: ValidationRule, value: number, callback: Function): void => {
-        // @ts-ignore
-        if (value < minimum) callback(rule.message);
+        if (minimum !== undefined && value < minimum) callback(rule.message);
         else callback();
       },
       message: $minimumMessage || `值必须大于${ minimum }`
@@ -51,8 +50,7 @@ function createNumberRules(root: NumberItem, required: boolean, isInteger: boole
   if (!isSpace(maximum) && isNumber(maximum)) {
     rules.push({
       validator: (rule: ValidationRule, value: number, callback: Function): void => {
-        // @ts-ignore
-        if (value > maximum) callback(rule.message);
+        if (maximum !== undefined && value > maximum) callback(rule.message);
         else callback();
       },
       message: $maximumMessage || `值必须小于${ maximum }`
