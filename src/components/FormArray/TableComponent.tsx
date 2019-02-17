@@ -99,8 +99,8 @@ class TableComponent extends Component<TableComponentProps> {
     }
 
     this.setState({
-      inputDisplayIndex: null,
-      inputChangeIndex: null
+      inputDisplayIndex: undefined,
+      inputChangeIndex: undefined
     });
   }
 
