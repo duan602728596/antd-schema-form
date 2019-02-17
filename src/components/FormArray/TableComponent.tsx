@@ -284,8 +284,12 @@ class TableComponent extends Component<TableComponentProps> {
       render: (value: any, item: Object, index: number): React.ReactNode => {
         return (
           <Button.Group>
-            <Button onClick={ this.handleDrawEditDataDisplayClick.bind(this, index) }>{ languagePack.formArray.operatingEdit }</Button>
-            <Popconfirm title={ languagePack.formArray.operatingPopconfirmTitle } onConfirm={ this.handleDeleteDataClick.bind(this, index) }>
+            <Button onClick={ this.handleDrawEditDataDisplayClick.bind(this, index) }>
+              { languagePack.formArray.operatingEdit }
+            </Button>
+            <Popconfirm title={ languagePack.formArray.operatingPopconfirmTitle }
+              onConfirm={ this.handleDeleteDataClick.bind(this, index) }
+            >
               <Button type="danger">{ languagePack.formArray.operatingDelete }</Button>
             </Popconfirm>
           </Button.Group>

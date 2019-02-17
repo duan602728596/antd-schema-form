@@ -38,7 +38,17 @@ class FormNumber extends Component<FormNumberProps> {
     const { getFieldDecorator }: WrappedFormUtils = form;
     // type=object时，会判断key是否存在于required数组中
     const { root, required }: FormNumberProps = this.props;
-    const { id, type, title, description, $componentType, $readOnly, $defaultValue, $options = [], $placeholder }: NumberItem = root;
+    const {
+      id,
+      type,
+      title,
+      description,
+      $componentType,
+      $readOnly,
+      $defaultValue,
+      $options = [],
+      $placeholder
+    }: NumberItem = root;
     const rules: Array<ValidationRule> = createNumberRules(this.props.root, required, type === 'integer');
     const option: GetFieldDecoratorOptions = { rules };
     let element: React.ReactNode = null;
