@@ -1,48 +1,72 @@
 {
   "defaultSeverity": "error",
   "rules": {
-    "no-parameter-reassignment": true,
-    "ban-comma-operator": true,
-    "no-construct": true,
+    "no-empty-interface": true,
+    "no-parameter-reassignment":true,
+    "no-var-requires": true,
+    "curly": [
+      true,
+      "ignore-same-line"
+    ],
     "no-duplicate-super": true,
-    "no-duplicate-switch-case": true,
-    "no-duplicate-variable": true,
     "no-empty": true,
     "no-eval": true,
-    "no-shadowed-variable": false,
-    "no-use-before-declare": true,
+    "no-for-in-array": true,
     "no-var-keyword": true,
+    "triple-equals": true,
+    "use-isnan": true,
     "indent": [
       true,
       "spaces",
       2
     ],
-    "no-duplicate-imports": false,
-    "prefer-const": true,
-    "arrow-parens": true,
+    "class-name": true,
     "import-spacing": true,
     "new-parens": true,
-    "no-consecutive-blank-lines": true,
-    "no-irregular-whitespace": true,
-    "no-trailing-whitespace": true,
-    "object-literal-key-quotes": [
-      true,
-      "consistent-as-needed"
-    ],
-    "prefer-template": true,
-    "quotemark": [
-      true,
-      "single",
-      "jsx-double",
-      "avoid-template"
-    ],
-    "semicolon": [
-      true,
-      "strict-bound-class-methods"
-    ],
     "space-before-function-paren": [
       true,
-      "never"
+      {
+        "anonymous": "never",
+        "named": "never",
+        "asyncArrow": "always"
+      }
+    ],
+    "typedef": [
+      true,
+      "call-signature",
+      "arrow-call-signature",
+      "parameter",
+      "arrow-parameter",
+      "property-declaration",
+      "variable-declaration",
+      "member-variable-declaration",
+      "object-destructuring",
+      "array-destructuring"
+    ],
+    "typedef-whitespace": [
+      true,
+      {
+        "call-signature": "nospace",
+        "index-signature": "nospace",
+        "parameter": "nospace",
+        "property-declaration": "nospace",
+        "variable-declaration": "nospace"
+      }
+    ],
+    "strict-type-predicates": true,
+    "type-literal-delimiter": true,
+    "whitespace": [
+      true,
+      "check-branch",
+      "check-decl",
+      "check-operator",
+      "check-module",
+      "check-separator",
+      "check-rest-spread",
+      "check-type",
+      "check-typecast",
+      "check-type-operator",
+      "check-preblock"
     ]
   },
   "linterOptions": {

@@ -10,6 +10,7 @@
     "jsx": "react",
     "declaration": true,
     "experimentalDecorators": true,
+    "strictNullChecks": true,
     "lib": [
       "ES2015",
       "ES2016",
