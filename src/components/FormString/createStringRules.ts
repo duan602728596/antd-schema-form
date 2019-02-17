@@ -2,16 +2,16 @@ import { ValidationRule } from 'antd/lib/form';
 import { isSpace, isNumber, isString } from '../../utils/type';
 import { StringItem } from '../../types';
 
-function createStringRules(root: StringItem, required: boolean): Array<ValidationRule>{
+function createStringRules(root: StringItem, required: boolean): Array<ValidationRule> {
   const {
     $required, $requiredMessage, pattern, $patternOption, $patternMessage, minLength, maxLength, $minLengthMessage,
     $maxLengthMessage, $length, $lengthMessage, $enumMessage
-  } = root;
-  const enums: string[] = root.enum;
+  }: StringItem = root;
+  const enums: string[] | undefined = root.enum;
   const rules: ValidationRule[] = [];
 
   // 判断表单是否必填
-  if($required === true || required === true){
+  if ($required === true || required === true) {
     rules.push({
       required: true,
       message: $requiredMessage || '该选项为必填项',
@@ -20,7 +20,7 @@ function createStringRules(root: StringItem, required: boolean): Array<Validatio
   }
 
   // 枚举
-  if(enums){
+  if (enums) {
     rules.push({
       type: 'enum',
       enum: enums,
@@ -29,7 +29,7 @@ function createStringRules(root: StringItem, required: boolean): Array<Validatio
   }
 
   // 字段的最小长度
-  if(!isSpace(minLength) && isNumber(minLength)){
+  if (!isSpace(minLength) && isNumber(minLength)) {
     rules.push({
       min: minLength,
       message: $minLengthMessage || `字段的最小长度为${ minLength }`
@@ -37,7 +37,7 @@ function createStringRules(root: StringItem, required: boolean): Array<Validatio
   }
 
   // 字段的最大长度
-  if(!isSpace(maxLength)){
+  if (!isSpace(maxLength)) {
     rules.push({
       max: maxLength,
       message: $maxLengthMessage || `字段的最大长度为${ maxLength }`
@@ -45,7 +45,7 @@ function createStringRules(root: StringItem, required: boolean): Array<Validatio
   }
 
   // 字段的长度
-  if(!isSpace($length) && isNumber($length)){
+  if (!isSpace($length) && isNumber($length)) {
     rules.push({
       len: $length,
       message: $lengthMessage || `字段的长度为${ $length }`
@@ -53,7 +53,7 @@ function createStringRules(root: StringItem, required: boolean): Array<Validatio
   }
 
   // 正则表达式
-  if(pattern){
+  if (pattern) {
     const reg: RegExp = new RegExp(pattern, isString($patternOption) ? $patternOption : undefined);
 
     rules.push({

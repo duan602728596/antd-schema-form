@@ -11,8 +11,8 @@ import { isObject } from './utils/type';
 import languagePack from './languagePack';
 import { SchemaItem } from './types';
 
-interface SchemaFormProps extends FormComponentProps{
-  json?: SchemaItem;
+interface SchemaFormProps extends FormComponentProps {
+  json: SchemaItem;
   value?: any;
   onOk?: Function;
   onCancel?: Function;
@@ -23,24 +23,24 @@ interface SchemaFormProps extends FormComponentProps{
   languagePack?: object;
 }
 
-interface SchemaFormState{
+interface SchemaFormState {
   value: object;
   language: string;
 }
 
 // @ts-ignore
 @Form.create()
-class SchemaForm extends Component<SchemaFormProps, SchemaFormState>{
+class SchemaForm extends Component<SchemaFormProps, SchemaFormState> {
   static propTypes: {
-    json?: Requireable<object>,
-    value?: Requireable<object>,
-    onOk?: Requireable<Function>,
-    onCancel?: Requireable<Function>,
-    okText?: Requireable<string | number>,
-    cancelText?: Requireable<string | number>,
-    footer?: Requireable<Function>,
-    customComponent?: Requireable<object>,
-    languagePack?: Requireable<object>
+    json?: Requireable<object>;
+    value?: Requireable<object>;
+    onOk?: Requireable<Function>;
+    onCancel?: Requireable<Function>;
+    okText?: Requireable<string | number>;
+    cancelText?: Requireable<string | number>;
+    footer?: Requireable<Function>;
+    customComponent?: Requireable<object>;
+    languagePack?: Requireable<object>;
   } = {
     json: PropTypes.object,
     value: PropTypes.object,
@@ -59,32 +59,34 @@ class SchemaForm extends Component<SchemaFormProps, SchemaFormState>{
     languagePack: PropTypes.object
   };
   static defaultProps: {
-    customComponent: object
+    customComponent: object;
   } = {
     customComponent: {}
   };
 
-  constructor(props: SchemaFormProps, ...argu: Array<any>){
+  constructor(props: SchemaFormProps, ...argu: Array<any>) {
     super(props, ...argu);
 
-    const { value } = this.props;
+    const { value }: SchemaFormProps = this.props;
     // 获取系统语言
-    const language: string = typeof window === 'object'
+    const language: string = /* tslint:disable */ typeof window === 'object' /* tslint:enable */ // 服务器端渲染判断
       ? (window.navigator.language || window.navigator['userLanguage']).toLocaleLowerCase()
       : 'default';
 
     this.state = { value, language };
   }
-  componentDidMount(): void{
-    const { value } = this.state;
-    const { form } = this.props;
+
+  componentDidMount(): void {
+    const { value }: SchemaFormState = this.state;
+    const { form }: SchemaFormProps = this.props;
     const obj: object = getObjectFromValue(value);
 
     form.setFieldsValue(obj);
   }
-  static getDerivedStateFromProps(nextProps: SchemaFormProps, prevState: SchemaFormState): { value: object }{
-    if(nextProps.value !== prevState.value){
-      const { form, value } = nextProps;
+
+  static getDerivedStateFromProps(nextProps: SchemaFormProps, prevState: SchemaFormState): { value: object } | null {
+    if (nextProps.value !== prevState.value) {
+      const { form, value }: SchemaFormProps = nextProps;
       const obj: Object = getObjectFromValue(value);
 
       form.resetFields();
@@ -92,12 +94,14 @@ class SchemaForm extends Component<SchemaFormProps, SchemaFormState>{
 
       return { value: nextProps.value };
     }
+
     return null;
   }
-  render(): React.ReactNode{
-    const { form, json, onOk, onCancel, okText, cancelText, footer, customComponent } = this.props;
-    const languagePack2: Object = this.props.languagePack; // 自定义语言包
-    const { language } = this.state;
+
+  render(): React.ReactNode {
+    const { form, json, onOk, onCancel, okText, cancelText, footer, customComponent }: SchemaFormProps = this.props;
+    const languagePack2: object | undefined = this.props.languagePack; // 自定义语言包
+    const { language }: SchemaFormState = this.state;
     const contextValue: object = {
       form,
       customComponent,

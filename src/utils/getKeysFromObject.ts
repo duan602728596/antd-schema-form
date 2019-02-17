@@ -5,16 +5,16 @@ import { SchemaItem } from '../types';
  * @param { SchemaItem } item: 对象
  */
 
-function getKeysFromObject(item: SchemaItem): Array<string>{
+function getKeysFromObject(item: SchemaItem): Array<string> {
   const idArr: string[] = [];
 
-  if(item.type === 'object'){
-    for(const key in item.properties){
+  if (item.type === 'object') {
+    for (const key in item.properties) {
       const objIdArr: string[] = getKeysFromObject(item.properties[key]);
 
       idArr.push(...objIdArr);
     }
-  }else{
+  } else {
     const id: string = item.id;
 
     idArr.push(id);

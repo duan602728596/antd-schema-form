@@ -19,7 +19,7 @@ import { SchemaItem, ContextValue } from '../../types';
  * 当类型为object时的组件渲染
  * json schema的属性包括：id, type, title, description, properties, required
  */
-interface FormObjectProps{
+interface FormObjectProps {
   root: SchemaItem;
   onOk?: Function;
   onCancel?: Function;
@@ -28,15 +28,15 @@ interface FormObjectProps{
   footer?: Function;
 }
 
-class FormObject extends Component<FormObjectProps>{
-  static contextType: Context<ContextValue> = AntdSchemaFormContext;
+class FormObject extends Component<FormObjectProps> {
+  static contextType: Context<ContextValue | {}> = AntdSchemaFormContext;
   static propTypes: {
-    root: Requireable<object>,
-    onOk: Requireable<Function>,
-    onCancel: Requireable<Function>,
-    okText: Requireable<string | number>,
-    cancelText: Requireable<string | number>,
-    footer: Requireable<Function>
+    root: Requireable<object>;
+    onOk: Requireable<Function>;
+    onCancel: Requireable<Function>;
+    okText: Requireable<string | number>;
+    cancelText: Requireable<string | number>;
+    footer: Requireable<Function>;
   } = {
     root: PropTypes.object,
     onOk: PropTypes.func,
@@ -53,16 +53,21 @@ class FormObject extends Component<FormObjectProps>{
   };
 
   // 根据type渲染不同的组件
-  renderComponentByTypeView(root: SchemaItem, required?: boolean): React.ReactNode{
-    const { id, type } = root;
-    const props: object = { key: id, root, required };
+  renderComponentByTypeView(root: SchemaItem, required?: boolean): React.ReactNode {
+    const { id, type }: SchemaItem = root;
+    const required2: boolean = !!required;
+    const props: {
+      key: string;
+      root: any;
+      required: boolean;
+    } = { key: id, root, required: required2 };
 
     // 渲染oneOf
-    if('oneOf' in root && isArray(root.oneOf) && root.oneOf.length > 0){
-      return this.renderOneOfComponentView(root, required);
+    if ('oneOf' in root && root.oneOf && isArray(root.oneOf) && root.oneOf.length > 0) {
+      return this.renderOneOfComponentView(root, required2);
     }
 
-    switch(type){
+    switch (type) {
       case 'string':
         return <FormString { ...props } />;
 
@@ -83,15 +88,16 @@ class FormObject extends Component<FormObjectProps>{
         return null;
     }
   }
+
   // oneOf组件
-  renderOneOfComponentView(root: SchemaItem, required: boolean): React.ReactNode{
+  renderOneOfComponentView(root: SchemaItem, required: boolean): React.ReactNode {
     const element: React.ReactNodeArray = [];
 
-    root.oneOf.forEach((value: SchemaItem, index: number, array: Array<SchemaItem>): void=>{
+    (root.oneOf || []).forEach((value: SchemaItem, index: number, array: Array<SchemaItem>): void => {
       const childrenRoot: SchemaItem = { ...value };
 
-      for(const key in root){
-        if(!(key in childrenRoot) && !['oneOf'].includes(key)){
+      for (const key in root) {
+        if (!(key in childrenRoot) && !['oneOf'].includes(key)) {
           childrenRoot[key] = root[key];
         }
       }
@@ -101,15 +107,16 @@ class FormObject extends Component<FormObjectProps>{
 
     return <OneOf key={ root.id } root={ root } element={ element } />;
   }
+
   // 渲染一个object组件
-  renderObjectComponentView(root: SchemaItem): React.ReactNode{
-    const { id, title, description } = root;
+  renderObjectComponentView(root: SchemaItem): React.ReactNode {
+    const { id, title, description }: SchemaItem = root;
     const required: Array<string> = root.required || [];
     const properties: object = root.properties || {};
     const element: React.ReactNodeArray = [];
 
     // 判断object下组件的类型并渲染
-    for(const key in properties){
+    for (const key in properties) {
       element.push(this.renderComponentByTypeView(properties[key], required.includes(key)));
     }
 
@@ -126,33 +133,41 @@ class FormObject extends Component<FormObjectProps>{
       </Collapse>
     );
   }
+
   // ok事件
-  handleOkClick(event: Event): void{
-    const { form } = this.context;
-    const { root, onOk } = this.props;
+  handleOkClick(event: Event): void {
+    const { form }: ContextValue = this.context;
+    const { root, onOk }: FormObjectProps = this.props;
     const keys: string[] = getKeysFromObject(root);
 
-    form.validateFieldsAndScroll(keys, (err: any, value: object): void=>{
-      if(err) return void 0;
+    form.validateFieldsAndScroll(keys, (err: any, value: object): void => {
+      if (err) return void 0;
 
       const value2: object = getValueFromObject(value);
 
-      onOk(form, value2, keys);
+      onOk && onOk(form, value2, keys);
     });
   }
+
   // cancel事件
-  handleCancelClick(event: Event): void{
-    const { form } = this.context;
-    const { onCancel } = this.props;
+  handleCancelClick(event: Event): void {
+    const { form }: ContextValue = this.context;
+    const { onCancel }: FormObjectProps = this.props;
 
-    onCancel(form);
+    onCancel && onCancel(form);
   }
-  // 确认和取消按钮
-  footerView(): React.ReactNode{
-    const { languagePack } = this.context;
-    const { onOk, onCancel, okText = languagePack.formObject.okText, cancelText = languagePack.formObject.cancelText } = this.props;
 
-    if(onOk || onCancel){
+  // 确认和取消按钮
+  footerView(): React.ReactNode {
+    const { languagePack }: ContextValue = this.context;
+    const {
+      onOk,
+      onCancel,
+      okText = languagePack.formObject.okText,
+      cancelText = languagePack.formObject.cancelText
+    }: FormObjectProps = this.props;
+
+    if (onOk || onCancel) {
       return (
         <div className={ styleName('object-click-button-box') }>
           {
@@ -163,7 +178,9 @@ class FormObject extends Component<FormObjectProps>{
           {
             onCancel
               ? (
-                <Button className={ onOk ? styleName('object-cancel') : null } onClick={ this.handleCancelClick.bind(this) }>
+                <Button className={ onOk ? styleName('object-cancel') : undefined }
+                  onClick={ this.handleCancelClick.bind(this) }
+                >
                   { cancelText }
                 </Button>
               )
@@ -171,13 +188,14 @@ class FormObject extends Component<FormObjectProps>{
           }
         </div>
       );
-    }else{
+    } else {
       return null;
     }
   }
-  render(): React.ReactNode{
-    const { form } = this.context;
-    const { root, footer } = this.props;
+
+  render(): React.ReactNode {
+    const { form }: ContextValue = this.context;
+    const { root, footer }: FormObjectProps = this.props;
 
     return (
       <Fragment>

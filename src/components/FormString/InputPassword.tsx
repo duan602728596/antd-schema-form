@@ -5,33 +5,35 @@ import { Requireable } from 'prop-types';
 import { Input, Icon } from 'antd';
 import styleName from '../../utils/styleName';
 
-interface InputPasswordProps{
-  readOnly: boolean;
-  placeholder: string;
+interface InputPasswordProps {
+  readOnly: boolean | undefined;
+  placeholder: string | undefined;
 }
 
-interface InputPasswordState{
+interface InputPasswordState {
   type: string;
 }
 
 /* 兼容Input.Password组件，antd < 3.12.0 */
-class InputPassword extends Component<InputPasswordProps, InputPasswordState>{
+class InputPassword extends Component<InputPasswordProps, InputPasswordState> {
   static propTypes: {
-    readOnly: Requireable<boolean>,
-    placeholder: Requireable<string>
+    readOnly: Requireable<boolean>;
+    placeholder: Requireable<string>;
   } = {
     readOnly: PropTypes.bool,
     placeholder: PropTypes.string
   };
+
   // 切换事件
-  handleVisibilityToggleClick(isPassword: boolean, event: Event): void{
+  handleVisibilityToggleClick(isPassword: boolean, event: Event): void {
     this.setState({
       type: isPassword ? 'text' : 'password'
     });
   }
-  render(): React.ReactNode{
-    const { props } = this;
-    const { type } = this.state;
+
+  render(): React.ReactNode {
+    const { props }: { props: InputPasswordProps } = this;
+    const { type }: InputPasswordState = this.state;
     const isPassword: boolean = type === 'password';
 
     return (

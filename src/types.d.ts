@@ -1,16 +1,16 @@
 import { WrappedFormUtils } from 'antd/lib/form/Form';
 
-export interface ContextValue{
-  form?: WrappedFormUtils;
+export interface ContextValue {
+  form: WrappedFormUtils;
   customComponent?: object;
   language?: string;
-  languagePack?: object;
+  languagePack?: any;
 }
 
-export interface SchemaItem{
+export interface SchemaItem {
   id: string;
   type: string;
-  title?: string;
+  title: string;
   description?: string;
   properties?: object;
   required?: Array<string>;
@@ -18,7 +18,7 @@ export interface SchemaItem{
   $oneOfIndex: number;
 }
 
-export interface StringItem extends SchemaItem{
+export interface StringItem extends SchemaItem {
   $readOnly?: boolean;
   $placeholder?: string;
   $required?: boolean;
@@ -35,11 +35,11 @@ export interface StringItem extends SchemaItem{
   enum?: Array<string>;
   $enumMessage?: string;
   $defaultValue?: string;
-  $options?: Array<{ label: string, value: string }>;
+  $options?: Array<{ label: string; value: string }>;
   $componentType?: string;
 }
 
-export interface NumberItem extends SchemaItem{
+export interface NumberItem extends SchemaItem {
   $readOnly?: boolean;
   $placeholder?: string;
   $required?: boolean;
@@ -53,18 +53,18 @@ export interface NumberItem extends SchemaItem{
   enum?: Array<string>;
   $enumMessage?: string;
   $defaultValue?: number;
-  $options?: Array<{ label: string, value: number }>;
+  $options?: Array<{ label: string; value: number }>;
   $componentType?: string;
 }
 
-export interface BooleanItem extends SchemaItem{
+export interface BooleanItem extends SchemaItem {
   $defaultValue?: boolean;
   $componentType?: string;
 }
 
-export interface ArrayItem extends SchemaItem{
+export interface ArrayItem extends SchemaItem {
   items: StringItem | NumberItem | BooleanItem | ArrayItem;
   $defaultValue?: Array<any>;
-  $options?: Array<{ label: string, value: any }>;
+  $options?: Array<{ label: string; value: any }>;
   $componentType?: string;
 }

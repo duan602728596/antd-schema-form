@@ -5,20 +5,20 @@ import { isObject } from './type';
  * @param { object } obj: 对象
  * @param { string } basicId: 前置id
  */
-function getObjectFromValue(obj: object, basicId?: string): object{
+function getObjectFromValue(obj: object, basicId?: string): object {
   let value: object = {};
 
-  for(const key in obj){
+  for (const key in obj) {
     const item: any = obj[key];
 
-    if(isObject(item) && !item._isAMomentObject){
+    if (isObject(item) && !item._isAMomentObject) {
       const result: object = getObjectFromValue(
         item,
         basicId ? `${ basicId }/${ key }/properties` : `${ key }/properties`
       );
 
       value = { ...value, ...result };
-    }else{
+    } else {
       value[basicId ? `${ basicId }/${ key }` : key] = item;
     }
   }
