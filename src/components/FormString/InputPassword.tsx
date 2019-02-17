@@ -6,8 +6,8 @@ import { Input, Icon } from 'antd';
 import styleName from '../../utils/styleName';
 
 interface InputPasswordProps {
-  readOnly: boolean | undefined;
-  placeholder: string | undefined;
+  readOnly?: boolean;
+  placeholder?: string;
 }
 
 interface InputPasswordState {
