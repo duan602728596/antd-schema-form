@@ -52,8 +52,7 @@ class BodyRow extends Component<BodyRowProps> {
       ...restProps
     }: BodyRowProps = this.props;
     const fClassName: string = classNames(className, trDrag, {
-      [dropOverDownward]: isOver && index > dragingIndex
-    }, {
+      [dropOverDownward]: isOver && index > dragingIndex,
       [dropOverUpward]: isOver && index < dragingIndex
     });
 
@@ -98,6 +97,7 @@ const DragableBodyRow: ReactType<any> = DropTarget('row', rowTarget,
       connectDragSource: connect.dragSource()
     };
   }
+  // @ts-ignore
 )(BodyRow));
 
 export default DragableBodyRow;
