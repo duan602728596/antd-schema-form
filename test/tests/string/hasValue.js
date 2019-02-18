@@ -5,7 +5,7 @@ import moment from 'moment';
 import SchemaForm from '../../SchemaForm';
 
 /* 组件有默认值 */
-export function componentHasDefaultValue(){
+export function componentHasDefaultValue() {
   const json = {
     id: '$root',
     type: 'string',
@@ -19,7 +19,7 @@ export function componentHasDefaultValue(){
 }
 
 /* 组件有值 */
-export function componentHastValue(){
+export function componentHastValue() {
   const json = {
     id: '$root',
     type: 'string',
@@ -33,7 +33,7 @@ export function componentHastValue(){
 }
 
 /* 下拉框有默认值 */
-export function selectHasDefaultValue(){
+export function selectHasDefaultValue() {
   const json = {
     id: '$root',
     type: 'string',
@@ -52,7 +52,7 @@ export function selectHasDefaultValue(){
 }
 
 /* 下拉框有值 */
-export function selectHasValue(){
+export function selectHasValue() {
   const json = {
     id: '$root',
     type: 'string',
@@ -71,7 +71,7 @@ export function selectHasValue(){
 }
 
 /* 单选框有默认值 */
-export function radioHasDefaultValue(){
+export function radioHasDefaultValue() {
   const json = {
     id: '$root',
     type: 'string',
@@ -92,7 +92,7 @@ export function radioHasDefaultValue(){
 }
 
 /* 单选框有值 */
-export function radioHastValue(){
+export function radioHastValue() {
   const json = {
     id: '$root',
     type: 'string',
@@ -113,7 +113,7 @@ export function radioHastValue(){
 }
 
 /* 日期选择有默认值 */
-export function dateHasDefaultValue(){
+export function dateHasDefaultValue() {
   const json = {
     id: '$root',
     type: 'string',
@@ -128,7 +128,7 @@ export function dateHasDefaultValue(){
 }
 
 /* 日期选择有值 */
-export function dateHasValue(){
+export function dateHasValue() {
   const json = {
     id: '$root',
     type: 'string',
@@ -143,7 +143,7 @@ export function dateHasValue(){
 }
 
 /* 组件的值会覆盖默认值 */
-export function theValueOfTheComponentOverridesTheDefaultValue(){
+export function theValueOfTheComponentOverridesTheDefaultValue() {
   const json = {
     id: '$root',
     type: 'string',

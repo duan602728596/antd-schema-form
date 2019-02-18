@@ -13,7 +13,7 @@ const stylePath = 'style';
 
 /* ----- 生产环境编译 ----- */
 /* lib */
-function proLibProject(){
+function proLibProject() {
   const result = gulp.src(tsSrc)
     .pipe(typescript(tsconfigES5.compilerOptions));
 
@@ -21,7 +21,7 @@ function proLibProject(){
 }
 
 /* es */
-function proEsProject(){
+function proEsProject() {
   const result = gulp.src(tsSrc)
     .pipe(typescript(tsconfig.compilerOptions));
 
@@ -29,7 +29,7 @@ function proEsProject(){
 }
 
 /* sass */
-function proSassProject(){
+function proSassProject() {
   return gulp.src(sassSrc)
     .pipe(sass({
       outputStyle: 'compressed'

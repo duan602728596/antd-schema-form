@@ -4,7 +4,7 @@ import * as React from 'react';
 import SchemaForm from '../../SchemaForm';
 
 /* 渲染默认组件 */
-export function renderDefault(){
+export function renderDefault() {
   const json = {
     id: '$root',
     type: 'array',
@@ -36,7 +36,7 @@ export function renderDefault(){
 }
 
 /* 渲染Select的multiple模式 */
-export function renderSelectMultiple(){
+export function renderSelectMultiple() {
   const json = {
     id: '$root',
     type: 'array',
@@ -60,7 +60,7 @@ export function renderSelectMultiple(){
 }
 
 /* 渲染Select的tags模式 */
-export function renderSelectTags(){
+export function renderSelectTags() {
   const json = {
     id: '$root',
     type: 'array',
@@ -84,7 +84,7 @@ export function renderSelectTags(){
 }
 
 /* 渲染多选组件 */
-export function renderCheckboxGroup(){
+export function renderCheckboxGroup() {
   const json = {
     id: '$root',
     type: 'array',

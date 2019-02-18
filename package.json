@@ -28,7 +28,7 @@
     "clear:style": "rimraf style",
     "test:init": "mocha init test",
     "test": "webpack-dev-server --config=\"./config/webpack.test.js\" --hot --color --port=6060",
-    "eslint": "eslint ./src --ext .js,.jsx,.ts,.tsx --fix",
+    "eslint": "eslint ./ --ext .js,.jsx,.ts,.tsx --fix",
     "tslint": "tslint --project ./ --fix",
     "get-version": "node ./bin/get-version.js"
   },

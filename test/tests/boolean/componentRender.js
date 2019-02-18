@@ -4,7 +4,7 @@ import * as React from 'react';
 import SchemaForm from '../../SchemaForm';
 
 /* 渲染默认组件 */
-export function renderDefault(){
+export function renderDefault() {
   const json = {
     id: '$root',
     type: 'boolean',
@@ -17,7 +17,7 @@ export function renderDefault(){
 }
 
 /* 渲染开关组件 */
-export function renderSwitch(){
+export function renderSwitch() {
   const json = {
     id: '$root',
     type: 'boolean',

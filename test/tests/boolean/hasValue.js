@@ -4,7 +4,7 @@ import * as React from 'react';
 import SchemaForm from '../../SchemaForm';
 
 /* 组件有默认值 */
-export function componentHasDefaultValue(){
+export function componentHasDefaultValue() {
   const json = {
     id: '$root',
     type: 'boolean',
@@ -18,7 +18,7 @@ export function componentHasDefaultValue(){
 }
 
 /* 组件有值 */
-export function componentHastValue(){
+export function componentHastValue() {
   const json = {
     id: '$root',
     type: 'boolean',
@@ -32,7 +32,7 @@ export function componentHastValue(){
 }
 
 /* 开关有默认值 */
-export function switchHasDefaultValue(){
+export function switchHasDefaultValue() {
   const json = {
     id: '$root',
     type: 'boolean',
@@ -47,7 +47,7 @@ export function switchHasDefaultValue(){
 }
 
 /* 开关有值 */
-export function switchHasValue(){
+export function switchHasValue() {
   const json = {
     id: '$root',
     type: 'boolean',

@@ -4,7 +4,7 @@ import * as React from 'react';
 import SchemaForm from '../../SchemaForm';
 
 /* 组件只读 */
-export function componentReadOnly(){
+export function componentReadOnly() {
   const json = {
     id: '$root',
     type: 'string',
@@ -18,7 +18,7 @@ export function componentReadOnly(){
 }
 
 /* 组件的placeholder属性 */
-export function componentPlaceholder(){
+export function componentPlaceholder() {
   const json = {
     id: '$root',
     type: 'string',
@@ -32,7 +32,7 @@ export function componentPlaceholder(){
 }
 
 /* select组件的placeholder属性 */
-export function selectComponentPlaceholder(){
+export function selectComponentPlaceholder() {
   const json = {
     id: '$root',
     type: 'string',
@@ -47,7 +47,7 @@ export function selectComponentPlaceholder(){
 }
 
 /* password组件的type属性 */
-export function passwordComponentType(){
+export function passwordComponentType() {
   const json = {
     id: '$root',
     type: 'string',

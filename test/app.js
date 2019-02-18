@@ -9,7 +9,7 @@ Enzyme.configure({
   adapter: new Adapter()
 });
 
-(async function(){
+(async function() {
   await Promise.all([
     // 通用函数测试
     import('./tests/function/test'),

@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { getKeysFromObject } from '../../SchemaForm';
 
-export function getKeysFromObjectTest0(){
+export function getKeysFromObjectTest0() {
   const json = {
     id: '$root',
     type: 'object',
@@ -51,7 +51,7 @@ export function getKeysFromObjectTest0(){
   ]);
 }
 
-export function getKeysFromObjectTest1(){
+export function getKeysFromObjectTest1() {
   const json = {
     id: '$root',
     type: 'object',

@@ -8,4 +8,4 @@ ReactDOM.render(
   document.getElementById('app')
 );
 
-if(module.hot) module.hot.accept();
+if (module.hot) module.hot.accept();

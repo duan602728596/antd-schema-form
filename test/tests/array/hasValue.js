@@ -4,7 +4,7 @@ import * as React from 'react';
 import SchemaForm from '../../SchemaForm';
 
 /* 组件有默认值 */
-export function componentHasDefaultValue(){
+export function componentHasDefaultValue() {
   const json = {
     id: '$root',
     type: 'array',
@@ -48,7 +48,7 @@ export function componentHasDefaultValue(){
 }
 
 /* 组件有值 */
-export function componentHasValue(){
+export function componentHasValue() {
   const json = {
     id: '$root',
     type: 'array',
@@ -102,7 +102,7 @@ export function componentHasValue(){
 }
 
 /* 数组内为字符串或数字 */
-export function componentItemsIsStringOrNumber(){
+export function componentItemsIsStringOrNumber() {
   const json = {
     id: '$root',
     type: 'array',
@@ -131,7 +131,7 @@ export function componentItemsIsStringOrNumber(){
 }
 
 /* 多选框有默认值 */
-export function CheckboxGroupHastDefaultValue(){
+export function CheckboxGroupHastDefaultValue() {
   const json = {
     id: '$root',
     type: 'array',
@@ -158,7 +158,7 @@ export function CheckboxGroupHastDefaultValue(){
 }
 
 /* 多选框有值 */
-export function CheckboxGroupHastValue(){
+export function CheckboxGroupHastValue() {
   const json = {
     id: '$root',
     type: 'array',

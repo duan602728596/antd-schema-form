@@ -4,7 +4,7 @@ import * as React from 'react';
 import SchemaForm from '../../SchemaForm';
 
 /* 渲染默认组件 */
-export function renderDefault(){
+export function renderDefault() {
   const json = {
     id: '$root',
     type: 'string',
@@ -18,7 +18,7 @@ export function renderDefault(){
 }
 
 /* 渲染文本域 */
-export function renderTextArea(){
+export function renderTextArea() {
   const json = {
     id: '$root',
     type: 'string',
@@ -33,7 +33,7 @@ export function renderTextArea(){
 }
 
 /* 渲染下拉框 */
-export function renderSelect(){
+export function renderSelect() {
   const json = {
     id: '$root',
     type: 'string',
@@ -51,7 +51,7 @@ export function renderSelect(){
 }
 
 /* 渲染单选组件 */
-export function renderRadio(){
+export function renderRadio() {
   const json = {
     id: '$root',
     type: 'string',
@@ -69,7 +69,7 @@ export function renderRadio(){
 }
 
 /* 渲染日期组件 */
-export function renderDate(){
+export function renderDate() {
   const json = {
     id: '$root',
     type: 'string',

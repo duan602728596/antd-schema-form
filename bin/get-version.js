@@ -16,14 +16,16 @@ const { argv } = yargs.options({
  * 对象转数组
  * @param { Object } obj: 对象
  */
-function objectToArray(obj){
+function objectToArray(obj) {
   const resultArr = [];
-  for(const key in obj){
+
+  for (const key in obj) {
     resultArr.push({
-      name: key,         // 包的名称
-      version: obj[key]  // 包的当前版本号
+      name: key, // 包的名称
+      version: obj[key] // 包的当前版本号
     });
   }
+
   return resultArr;
 }
 
@@ -31,13 +33,13 @@ function objectToArray(obj){
  * 查找包
  * @param { string } packageName: npm包名
  */
-function requestPackageInformation(packageName){
-  return new Promise((resolve, reject)=>{
+function requestPackageInformation(packageName) {
+  return new Promise((resolve, reject) => {
     // 用来判断当前的npm包信息地址
     const packageHost = [
-      'registry.npmjs.org',   // npm
+      'registry.npmjs.org', // npm
       'registry.yarnpkg.com', // yarn
-      'r.cnpmjs.org'          // cnpm
+      'r.cnpmjs.org' // cnpm
     ];
     const req = https.request({
       hostname: packageHost[argv.registry],
@@ -47,27 +49,28 @@ function requestPackageInformation(packageName){
       headers: {
         Accept: 'application/vnd.npm.install-v1+json; q=1.0, application/json; q=0.8, */*'
       }
-    }, (res)=>{
+    }, (res) => {
       let data = null;
+
       res.setEncoding('utf8');
-      res.on('data', (chunk)=>{
-        if(data === null){
+      res.on('data', (chunk) => {
+        if (data === null) {
           data = chunk;
-        }else{
+        } else {
           data += chunk;
         }
       });
-      res.on('end', ()=>{
+      res.on('end', () => {
         resolve(JSON.parse(data));
       });
     });
 
-    req.on('error', (err)=>{
+    req.on('error', (err) => {
       reject(err);
     });
     req.write('');
     req.end();
-  }).catch((err)=>{
+  }).catch((err) => {
     console.error(err);
   });
 }
@@ -77,13 +80,13 @@ function requestPackageInformation(packageName){
  * @param { string } oldVersion: 旧版本
  * @param { string } newVersion: 新版本
  */
-function isVersionEqual(oldVersion, newVersion){
-  if(newVersion === null || newVersion === undefined){
+function isVersionEqual(oldVersion, newVersion) {
+  if (newVersion === null || newVersion === undefined) {
     return false;
-  }else if(/^(>=?|<=?|~|\^).*$/.test(oldVersion)){
+  } else if (/^(>=?|<=?|~|\^).*$/.test(oldVersion)) {
     // 判断前面是否有特殊符号，比如>、>=、<、<=、~、^
     return oldVersion.replace(/(>=?|<=?|~|\^)/g, '') === newVersion;
-  }else{
+  } else {
     return oldVersion === newVersion;
   }
 }
@@ -93,8 +96,9 @@ function isVersionEqual(oldVersion, newVersion){
  * @param { string } oldVersion: 旧版本
  * @param { string } newVersion: 新版本
  */
-function formatVersion(oldVersion, newVersion){
+function formatVersion(oldVersion, newVersion) {
   const iText = oldVersion.match(/^(>=?|<=?|~|\^)/);
+
   return ' '.repeat(iText ? iText[0].length : 0) + newVersion;
 }
 
@@ -102,28 +106,30 @@ function formatVersion(oldVersion, newVersion){
  * 获取版本号
  * @param { Array } packageArray
  */
-async function getVersionFromNpm(packageArray){
-  try{
+async function getVersionFromNpm(packageArray) {
+  try {
     const depQueue = [];
-    for(let i = 0, j = packageArray.length; i < j; i++){
+
+    for (let i = 0, j = packageArray.length; i < j; i++) {
       depQueue.push(requestPackageInformation(packageArray[i].name));
     }
     const version = await Promise.all(depQueue);
-    for(let i = 0, j = packageArray.length; i < j; i++){
-      if('dist-tags' in version[i] && 'latest' in version[i]['dist-tags']){
+
+    for (let i = 0, j = packageArray.length; i < j; i++) {
+      if ('dist-tags' in version[i] && 'latest' in version[i]['dist-tags']) {
         packageArray[i].latest = version[i]['dist-tags'].latest;
       }
-      if('dist-tags' in version[i] && 'next' in version[i]['dist-tags']){
+      if ('dist-tags' in version[i] && 'next' in version[i]['dist-tags']) {
         packageArray[i].next = version[i]['dist-tags'].next;
       }
-      if('dist-tags' in version[i] && 'rc' in version[i]['dist-tags']){
+      if ('dist-tags' in version[i] && 'rc' in version[i]['dist-tags']) {
         packageArray[i].rc = version[i]['dist-tags'].rc;
       }
-      if('dist-tags' in version[i] && 'canary' in version[i]['dist-tags']){
+      if ('dist-tags' in version[i] && 'canary' in version[i]['dist-tags']) {
         packageArray[i].canary = version[i]['dist-tags'].canary;
       }
     }
-  }catch(err){
+  } catch (err) {
     console.error(err);
   }
 }
@@ -132,62 +138,65 @@ async function getVersionFromNpm(packageArray){
  * 输出console.log文本
  * @param { Array } packageArray
  */
-function consoleLogText(packageArray){
+function consoleLogText(packageArray) {
   let consoleText = '';
-  for(let i = 0, j = packageArray.length; i < j; i++){
+
+  for (let i = 0, j = packageArray.length; i < j; i++) {
     const item = packageArray[i];
     const isLatestNew = isVersionEqual(item.version, item.latest);
     const isNextNew = isVersionEqual(item.version, item.next);
     const isRcNew = isVersionEqual(item.version, item.rc);
     const isCanaryNew = isVersionEqual(item.version, item.canary);
+
     consoleText += `${ isLatestNew || isNextNew || isRcNew || isCanaryNew ? '  ' : '* ' }${ item.name }:\n`;
     consoleText += `    version: ${ item.version }\n`;
-    if(item.latest){
+    if (item.latest) {
       consoleText += `    latest : ${ formatVersion(item.version, item.latest) }\n`;
     }
-    if(item.next){
+    if (item.next) {
       consoleText += `    next   : ${ formatVersion(item.version, item.next) }\n`;
     }
-    if(item.rc){
+    if (item.rc) {
       consoleText += `    rc     : ${ formatVersion(item.version, item.rc) }\n`;
     }
-    if(item.canary){
+    if (item.canary) {
       consoleText += `    canary : ${ formatVersion(item.version, item.canary) }\n`;
     }
   }
+
   return consoleText;
 }
 
-(async function start(){
-  try{
+(async function start() {
+  try {
     // 依赖
     const dependencies = 'dependencies' in packageJson ? objectToArray(packageJson.dependencies) : null;
     const devDependencies = 'devDependencies' in packageJson ? objectToArray(packageJson.devDependencies) : null;
 
     // 获取dep和dev的最新版本号
-    if(dependencies){
+    if (dependencies) {
       await getVersionFromNpm(dependencies);
     }
 
-    if(devDependencies){
+    if (devDependencies) {
       await getVersionFromNpm(devDependencies);
     }
 
     // 输出
     let consoleText = '';
 
-    if(dependencies){
+    if (dependencies) {
       consoleText += 'dependencies:\n';
       consoleText += consoleLogText(dependencies);
     }
 
-    if(devDependencies){
+    if (devDependencies) {
       consoleText += 'devDependencies:\n';
       consoleText += consoleLogText(devDependencies);
     }
 
     console.log(consoleText);
-  }catch(err){
+  } catch (err) {
     console.error(err);
   }
 })();

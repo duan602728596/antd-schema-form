@@ -7,8 +7,8 @@ import Form from './modules/Form';
 
 /* 热替换 */
 @hot(module)
-class App extends Component{
-  render(){
+class App extends Component {
+  render() {
     return (
       <LocaleProvider locale={ zhCN }>
         <div className={ style.box }>

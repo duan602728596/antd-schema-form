@@ -4,7 +4,7 @@ import * as React from 'react';
 import SchemaForm from '../../SchemaForm';
 
 /* 组件有默认值 */
-export function componentHasDefaultValue(){
+export function componentHasDefaultValue() {
   const json = {
     id: '$root',
     type: 'number',
@@ -18,7 +18,7 @@ export function componentHasDefaultValue(){
 }
 
 /* 组件有值 */
-export function componentHastValue(){
+export function componentHastValue() {
   const json = {
     id: '$root',
     type: 'number',
@@ -32,7 +32,7 @@ export function componentHastValue(){
 }
 
 /* 单选框有默认值 */
-export function radioHasDefaultValue(){
+export function radioHasDefaultValue() {
   const json = {
     id: '$root',
     type: 'number',
@@ -53,7 +53,7 @@ export function radioHasDefaultValue(){
 }
 
 /* 单选框有值 */
-export function radioHastValue(){
+export function radioHastValue() {
   const json = {
     id: '$root',
     type: 'string',
@@ -74,7 +74,7 @@ export function radioHastValue(){
 }
 
 /* 组件的值会覆盖默认值 */
-export function theValueOfTheComponentOverridesTheDefaultValue(){
+export function theValueOfTheComponentOverridesTheDefaultValue() {
   const json = {
     id: '$root',
     type: 'number',

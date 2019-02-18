@@ -31,18 +31,18 @@ const value = {
 };
 
 // 文件上传
-async function handleFileUpload(file){
+function handleFileUpload(file) {
   return `${ file[0].lastModified }`;
 }
 
 // 点击事件
-function handleClick(form, value, keys){
+function handleClick(form, value, keys) {
   console.log(value, keys);
 }
 
 // 自定义组件
 const customComponent = {
-  custom(item, option, form, required){
+  custom(item, option, form, required) {
     const { getFieldDecorator } = form;
 
     return getFieldDecorator(item.id, option)(
@@ -51,7 +51,7 @@ const customComponent = {
   }
 };
 
-function Form(props){
+function Form(props) {
   return (
     <SchemaForm json={ json }
       value={ value }

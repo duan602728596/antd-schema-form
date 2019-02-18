@@ -4,7 +4,7 @@ import * as React from 'react';
 import SchemaForm from '../../SchemaForm';
 
 /* 组件只读 */
-export function componentReadOnly(){
+export function componentReadOnly() {
   const json = {
     id: '$root',
     type: 'number',
@@ -18,7 +18,7 @@ export function componentReadOnly(){
 }
 
 /* 组件的placeholder属性 */
-export function componentPlaceholder(){
+export function componentPlaceholder() {
   const json = {
     id: '$root',
     type: 'number',

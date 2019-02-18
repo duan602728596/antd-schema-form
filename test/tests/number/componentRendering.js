@@ -4,7 +4,7 @@ import * as React from 'react';
 import SchemaForm from '../../SchemaForm';
 
 /* 渲染默认组件 */
-export function renderDefault(){
+export function renderDefault() {
   const json = {
     id: '$root',
     type: 'number',
@@ -18,7 +18,7 @@ export function renderDefault(){
 }
 
 /* 渲染单选组件 */
-export function renderRadio(){
+export function renderRadio() {
   const json = {
     id: '$root',
     type: 'number',

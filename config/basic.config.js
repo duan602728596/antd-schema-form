@@ -54,7 +54,7 @@ exports.rules = [
         loader: 'css-loader',
         options: {
           modules: true,
-          localIdentName: '[path][name]__[local]___[hash:base64:5]',
+          localIdentName: '[path][name]__[local]___[hash:base64:5]'
         }
       },
       'sass-loader'

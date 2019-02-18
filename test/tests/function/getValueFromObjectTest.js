@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { getValueFromObject } from '../../SchemaForm';
 
-export function getValueFromObjectTest0(){
+export function getValueFromObjectTest0() {
   const formFieldValue = {
     '$root/properties/col1': 132.9877,
     '$root/properties/col2/properties/col1': 'giosparovkd',
@@ -40,7 +40,7 @@ export function getValueFromObjectTest0(){
   expect(getValueFromObject(formFieldValue)).to.be.eql(value);
 }
 
-export function getValueFromObjectTest1(){
+export function getValueFromObjectTest1() {
   const formFieldValue = {
     '$root/properties/col1': true,
     '$root/properties/col2/properties/col1/properties/col3/properties/col1': 32,
