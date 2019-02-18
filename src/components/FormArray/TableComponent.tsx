@@ -24,8 +24,8 @@ interface TableComponentProps {
 
 interface TableComponentState {
   isDisplayDataDrawer: boolean;
-  inputDisplayIndex: number | undefined;
-  inputChangeIndex: string | undefined;
+  inputDisplayIndex?: number;
+  inputChangeIndex?: string;
   selectedRowKeys: Array<number>;
 }
 
