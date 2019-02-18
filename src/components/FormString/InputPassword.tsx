@@ -25,7 +25,7 @@ class InputPassword extends Component<InputPasswordProps, InputPasswordState> {
   };
 
   // 切换事件
-  handleVisibilityToggleClick(isPassword: boolean, event: Event): void {
+  handleVisibilityToggleClick(isPassword: boolean, event: React.MouseEvent<HTMLElement>): void {
     this.setState({
       type: isPassword ? 'text' : 'password'
     });

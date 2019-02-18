@@ -135,7 +135,7 @@ class FormObject extends Component<FormObjectProps> {
   }
 
   // ok事件
-  handleOkClick(event: Event): void {
+  handleOkClick(event: React.MouseEvent<Button>): void {
     const { form }: ContextValue = this.context;
     const { root, onOk }: FormObjectProps = this.props;
     const keys: string[] = getKeysFromObject(root);
@@ -150,7 +150,7 @@ class FormObject extends Component<FormObjectProps> {
   }
 
   // cancel事件
-  handleCancelClick(event: Event): void {
+  handleCancelClick(event: React.MouseEvent<Button>): void {
     const { form }: ContextValue = this.context;
     const { onCancel }: FormObjectProps = this.props;
 

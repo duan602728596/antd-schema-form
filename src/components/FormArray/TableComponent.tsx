@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Component, Fragment, createRef, Context, RefObject, ChangeEvent } from 'react';
+import { Component, Fragment, createRef, Context, RefObject } from 'react';
 import * as PropTypes from 'prop-types';
 import { Requireable } from 'prop-types';
 import { Table, Button, Popconfirm, Drawer, Input } from 'antd';
@@ -53,7 +53,7 @@ class TableComponent extends Component<TableComponentProps> {
   };
 
   // 编辑位置框修改位置
-  handleInputDisplayClick(index: number, event: Event): void {
+  handleInputDisplayClick(index: number, event: React.MouseEvent<HTMLElement>): void {
     this.setState({
       inputDisplayIndex: index,
       inputChangeIndex: String(index + 1)
@@ -65,14 +65,14 @@ class TableComponent extends Component<TableComponentProps> {
   }
 
   // 编辑位置框数据修改
-  handleIndexInputChange(event: ChangeEvent<HTMLInputElement>): void {
+  handleIndexInputChange(event: React.ChangeEvent<HTMLInputElement>): void {
     this.setState({
       inputChangeIndex: event.target.value
     });
   }
 
   // 编辑位置框失去焦点
-  handleIndexInputBlur(index: number, event: Event): void {
+  handleIndexInputBlur(index: number, event: React.MouseEvent<HTMLInputElement>): void {
     const { form }: ContextValue = this.context;
     const { root }: TableComponentProps = this.props;
     const id: string = root.id;
@@ -155,7 +155,7 @@ class TableComponent extends Component<TableComponentProps> {
   };
 
   // 删除数据
-  handleDeleteDataClick(index: number, event: Event): void {
+  handleDeleteDataClick(index: number, event: React.MouseEvent<Button>): void {
     const { form }: ContextValue = this.context;
     const { root }: TableComponentProps = this.props;
     const id: string = root.id;
@@ -167,7 +167,7 @@ class TableComponent extends Component<TableComponentProps> {
   }
 
   // 修改数据抽屉的显示
-  handleDrawEditDataDisplayClick(index: number, event: Event): void {
+  handleDrawEditDataDisplayClick(index: number, event: React.MouseEvent<Button>): void {
     const { form }: ContextValue = this.context;
     const { root }: TableComponentProps = this.props;
     const id: string = root.id;
@@ -186,7 +186,7 @@ class TableComponent extends Component<TableComponentProps> {
   }
 
   // 抽屉的显示和隐藏
-  handleDrawerDisplayClick(key: string, value: string, eventOrObject: Event | object): void {
+  handleDrawerDisplayClick(key: string, value: string, eventOrObject: React.MouseEvent<Button> | object): void {
     this.setState({
       [key]: value
     });
@@ -200,7 +200,7 @@ class TableComponent extends Component<TableComponentProps> {
   }
 
   // 删除选中的数据
-  handleDeleteSelectDataClick(event: MouseEvent): void {
+  handleDeleteSelectDataClick(event: React.MouseEvent<Button>): void {
     const { form }: ContextValue = this.context;
     const { root }: TableComponentProps = this.props;
     const { selectedRowKeys }: { selectedRowKeys: number[] } = this.state;
