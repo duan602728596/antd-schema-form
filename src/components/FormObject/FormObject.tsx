@@ -123,10 +123,12 @@ class FormObject extends Component<FormObjectProps> {
     return (
       <Collapse key={ id } className={ styleName('object-collapse') } defaultActiveKey={ [id] }>
         <Collapse.Panel key={ id }
-          header={[
-            <b key="title">{ title || id }</b>,
-            <span className={ styleName('object-description') } key="description">{ description }</span>
-          ]}
+          header={
+            [
+              <b key="title">{ title || id }</b>,
+              <span className={ styleName('object-description') } key="description">{ description }</span>
+            ]
+          }
         >
           { element }
         </Collapse.Panel>
