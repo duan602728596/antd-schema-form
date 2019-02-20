@@ -1,3 +1,7 @@
+### v2.0.0-beta.3
+
+* 🎉The Tablecomponent component adds a drag-and-drop sort feature.
+
 ### v2.0.0-beta.2
 
 * 🐛Add a style that was accidentally deleted.
