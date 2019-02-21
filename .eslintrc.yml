@@ -3,10 +3,11 @@ env:
   commonjs: true
   es6: true
   node: true
-parser: babel-eslint
+  worker: true
+  jquery: true
 parserOptions:
+  ecmaVersion: 9
   ecmaFeatures:
-    experimentalObjectRestSpread: true
     jsx: true
   sourceType: module
 plugins:
@@ -203,3 +204,12 @@ rules:
       beforeSelfClosing: always
       afterOpening: never
       beforeClosing: never
+overrides:
+  - files:
+      - '*.ts'
+      - '*.tsx'
+    parser: @typescript-eslint/parser
+  - files:
+      - '*.js'
+      - '*.jsx'
+    parser: babel-eslint
