@@ -86,7 +86,8 @@
     "typescript": "^3.3.3",
     "webpack": "^4.29.3",
     "webpack-cli": "^3.2.3",
-    "webpack-dev-server": "^3.1.14"
+    "webpack-dev-server": "^3.1.14",
+    "yargs": "^13.2.1"
   },
   "peerDependencies": {
     "antd": ">=3.12.0",

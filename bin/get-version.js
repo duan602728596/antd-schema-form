@@ -119,14 +119,13 @@ async function getVersionFromNpm(packageArray) {
       if ('dist-tags' in version[i] && 'latest' in version[i]['dist-tags']) {
         packageArray[i].latest = version[i]['dist-tags'].latest;
       }
+
       if ('dist-tags' in version[i] && 'next' in version[i]['dist-tags']) {
         packageArray[i].next = version[i]['dist-tags'].next;
       }
+
       if ('dist-tags' in version[i] && 'rc' in version[i]['dist-tags']) {
         packageArray[i].rc = version[i]['dist-tags'].rc;
-      }
-      if ('dist-tags' in version[i] && 'canary' in version[i]['dist-tags']) {
-        packageArray[i].canary = version[i]['dist-tags'].canary;
       }
     }
   } catch (err) {
@@ -146,21 +145,23 @@ function consoleLogText(packageArray) {
     const isLatestNew = isVersionEqual(item.version, item.latest);
     const isNextNew = isVersionEqual(item.version, item.next);
     const isRcNew = isVersionEqual(item.version, item.rc);
-    const isCanaryNew = isVersionEqual(item.version, item.canary);
 
-    consoleText += `${ isLatestNew || isNextNew || isRcNew || isCanaryNew ? '  ' : '* ' }${ item.name }:\n`;
+    // 包需要升级，使用“*”；包在npm上不存在（私有包），使用“#”
+    const symbol = (item.latest || item.next || item.rc) ? '*' : '#';
+
+    consoleText += `  ${ isLatestNew || isNextNew || isRcNew ? ' ' : symbol } ${ item.name }:\n`;
     consoleText += `    version: ${ item.version }\n`;
+
     if (item.latest) {
       consoleText += `    latest : ${ formatVersion(item.version, item.latest) }\n`;
     }
+
     if (item.next) {
       consoleText += `    next   : ${ formatVersion(item.version, item.next) }\n`;
     }
+
     if (item.rc) {
       consoleText += `    rc     : ${ formatVersion(item.version, item.rc) }\n`;
-    }
-    if (item.canary) {
-      consoleText += `    canary : ${ formatVersion(item.version, item.canary) }\n`;
     }
   }
 
