@@ -10,7 +10,7 @@ function createArrayRules(root: ArrayItem, required: boolean): Array<ValidationR
   if (!isSpace(minItems) && isNumber(minItems)) {
     rules.push({
       validator: (rule: ValidationRule, value: Array<any>, callback: Function): void => {
-        if (minItems !== undefined && value.length < minItems) callback(rule.message);
+        if (minItems !== undefined && value && value.length < minItems) callback(rule.message);
         else callback();
       },
       message: $minItemsMessage || `数组内实例的数量必须大于等于${ minItems }`
@@ -21,7 +21,7 @@ function createArrayRules(root: ArrayItem, required: boolean): Array<ValidationR
   if (!isSpace(maxItems) && isNumber(maxItems)) {
     rules.push({
       validator: (rule: ValidationRule, value: Array<any>, callback: Function): void => {
-        if (maxItems !== undefined && value.length > maxItems) callback(rule.message);
+        if (maxItems !== undefined && value && value.length > maxItems) callback(rule.message);
         else callback();
       },
       message: $maxItemsMessage || `数组内实例的数量必须小于等于${ maxItems }`

@@ -35,6 +35,8 @@
           }
         }
       },
+      "minItems": 1,
+      "maxItems": 3,
       "$defaultValue": [
         {
           "col1": "数据1",

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Component, Fragment, createRef, Context, RefObject } from 'react';
 import * as PropTypes from 'prop-types';
 import { Requireable } from 'prop-types';
+import classNames from 'classNames';
 import { Table, Button, Popconfirm, Drawer, Input } from 'antd';
 import { WrappedFormUtils } from 'antd/lib/form/Form';
 import { TableComponents } from 'antd/lib/table';
@@ -303,52 +304,74 @@ class TableComponent extends Component<TableComponentProps> {
   render(): React.ReactNode {
     const { root }: TableComponentProps = this.props;
     const { form, languagePack }: ContextValue = this.context;
-    const { id, items }: ArrayItem = root;
+    const { id, items, minItems, maxItems, $minItemsMessage, $maxItemsMessage }: ArrayItem = root;
     const { isDisplayDataDrawer, selectedRowKeys, inputDisplayIndex }: TableComponentState = this.state;
     const inputNotDisplay: boolean = isSpace(inputDisplayIndex);
     let value: Array<any> = form.getFieldValue(id);
 
     value = isSpace(value) ? (root.$defaultValue || []) : value;
 
+    // 对数组内的实例数量进行验证
+    let arrayRulesVerificationResult: string | null = null;
+
+    if (minItems !== undefined && value.length < minItems) {
+      arrayRulesVerificationResult = $minItemsMessage || `数组内实例的数量必须大于等于${ minItems }`;
+    }
+
+    if (maxItems !== undefined && value.length > maxItems) {
+      arrayRulesVerificationResult = $maxItemsMessage || `数组内实例的数量必须小于等于${ maxItems }`;
+    }
+
+    const tableClassNames: string = classNames(styleName('array-table-component'), {
+      [styleName('array-table-component-has-error')]: arrayRulesVerificationResult !== null
+    });
+
+
     return (
       <Fragment>
-        <Table size="middle"
-          dataSource={ items.type === 'object' ? value : formatTableValue(value) }
-          columns={ this.columns() }
-          bordered={ true }
-          title={
-            (): React.ReactNodeArray => [
-              <Button key="add"
-                type="primary"
-                icon="plus-circle"
-                onClick={ this.handleDrawerDisplayClick.bind(this, 'isDisplayDataDrawer', true) }
-              >
-                { languagePack.formArray.operatingAdd }
-              </Button>,
-              <Popconfirm key="delete"
-                title={ languagePack.formArray.deleteSelectedText }
-                onConfirm={ this.handleDeleteSelectDataClick.bind(this) }
-              >
-                <Button className={ styleName('array-deleteAll') } type="danger" icon="delete">
-                  { languagePack.formArray.deleteSelected }
-                </Button>
-              </Popconfirm>
-            ]
-          }
-          rowKey={ (item: object, index: number): string => `${ index }` }
-          rowSelection={{
-            type: 'checkbox',
-            selectedRowKeys,
-            onChange: this.handleColumnCheckboxChange.bind(this)
-          }}
-          components={ inputNotDisplay ? this.components : undefined }
-          onRow={
-            inputNotDisplay
-              ? (item: object, index: number): { index: number; moverow: Function } => ({ index, moverow: this.moveRow.bind(this) })
-              : undefined
-          }
-          pagination={ false }
-        />
+        <div className={ styleName('array-table-box') }>
+          <Table className={ tableClassNames }
+            size="middle"
+            dataSource={ items.type === 'object' ? value : formatTableValue(value) }
+            columns={ this.columns() }
+            bordered={ true }
+            title={
+              (): React.ReactNodeArray => [
+                <Button key="add"
+                  type="primary"
+                  icon="plus-circle"
+                  onClick={ this.handleDrawerDisplayClick.bind(this, 'isDisplayDataDrawer', true) }
+                >
+                  { languagePack.formArray.operatingAdd }
+                </Button>,
+                <Popconfirm key="delete"
+                  title={ languagePack.formArray.deleteSelectedText }
+                  onConfirm={ this.handleDeleteSelectDataClick.bind(this) }
+                >
+                  <Button className={ styleName('array-deleteAll') } type="danger" icon="delete">
+                    { languagePack.formArray.deleteSelected }
+                  </Button>
+                </Popconfirm>,
+                <span key="arrayRulesVerificationResult" className={ styleName('array-table-rules-verification-str') }>
+                  { arrayRulesVerificationResult }
+                </span>
+              ]
+            }
+            rowKey={ (item: object, index: number): string => `${ index }` }
+            rowSelection={{
+              type: 'checkbox',
+              selectedRowKeys,
+              onChange: this.handleColumnCheckboxChange.bind(this)
+            }}
+            components={ inputNotDisplay ? this.components : undefined }
+            onRow={
+              inputNotDisplay
+                ? (item: object, index: number): { index: number; moverow: Function } => ({ index, moverow: this.moveRow.bind(this) })
+                : undefined
+            }
+            pagination={ false }
+          />
+        </div>
         {/* 添加和修改数据的抽屉组件 */}
         <Drawer width="100%" visible={ isDisplayDataDrawer } destroyOnClose={ true } closable={ false }>
           <FormObject root={ items }

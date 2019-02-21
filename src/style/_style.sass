@@ -31,6 +31,20 @@
 
   /* array */
   .#{ $basic-name }array
+    &-table-box
+      margin-bottom: 10px
+    &-table-component
+      border-width: 1px
+      border-style: solid
+      border-color: transparent
+      border-radius: 4px
+      -webkit-transition: border-color .3s
+      transition: border-color .3s
+    &-table-component-has-error
+      border-color: $error-color
+    &-table-rules-verification-str
+      margin-left: 10px
+      color: $error-color
     &-multiple
       width: 100%
     &-deleteAll
