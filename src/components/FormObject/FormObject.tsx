@@ -120,16 +120,15 @@ class FormObject extends Component<FormObjectProps> {
       element.push(this.renderComponentByTypeView(properties[key], required.includes(key)));
     }
 
+    // header
+    const header: React.ReactNodeArray = [
+      <b key="title">{ title || id }</b>,
+      <span className={ styleName('object-description') } key="description">{ description }</span>
+    ];
+
     return (
       <Collapse key={ id } className={ styleName('object-collapse') } defaultActiveKey={ [id] }>
-        <Collapse.Panel key={ id }
-          header={
-            [
-              <b key="title">{ title || id }</b>,
-              <span className={ styleName('object-description') } key="description">{ description }</span>
-            ]
-          }
-        >
+        <Collapse.Panel key={ id } header={ header }>
           { element }
         </Collapse.Panel>
       </Collapse>
