@@ -5,6 +5,7 @@ env:
   node: true
   worker: true
   jquery: true
+parser: babel-eslint
 parserOptions:
   ecmaVersion: 9
   ecmaFeatures:
@@ -204,12 +205,3 @@ rules:
       beforeSelfClosing: always
       afterOpening: never
       beforeClosing: never
-overrides:
-  - files:
-      - '*.ts'
-      - '*.tsx'
-    parser: '@typescript-eslint/parser'
-  - files:
-      - '*.js'
-      - '*.jsx'
-    parser: babel-eslint
