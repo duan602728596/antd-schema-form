@@ -3,15 +3,16 @@ import { Component, Context } from 'react';
 import * as PropTypes from 'prop-types';
 import { Requireable } from 'prop-types';
 import { Form, Tooltip, Select, Checkbox } from 'antd';
-import { GetFieldDecoratorOptions, WrappedFormUtils } from 'antd/lib/form/Form';
+import { GetFieldDecoratorOptions, ValidationRule, WrappedFormUtils } from 'antd/lib/form/Form';
 import AntdSchemaFormContext from '../../context';
 import TableComponent from './TableComponent';
 import styleName from '../../utils/styleName';
+import createArrayRules from './createArrayRules';
 import { ArrayItem, ContextValue } from '../../types';
 
 /**
  * 当类型为array时的组件渲染
- * json schema的属性包括：id, type, title, description, items
+ * json schema的属性包括：id, type, title, description, items, minItems, maxItems
  *
  * 扩展属性前必须加上"$"
  * 扩展属性包括：componentType, options
@@ -47,7 +48,8 @@ class FormArray extends Component<FormArrayProps> {
     }: WrappedFormUtils = form;
     const { root, required }: FormArrayProps = this.props;
     const { id, title, description, $componentType, $defaultValue, $options = [] }: ArrayItem = root;
-    const option: GetFieldDecoratorOptions = {};
+    const rules: Array<ValidationRule> = createArrayRules(root, required);
+    const option: GetFieldDecoratorOptions = { rules };
     let element: React.ReactNode = null;
 
     // 表单默认值

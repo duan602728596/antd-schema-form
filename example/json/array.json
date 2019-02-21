@@ -114,6 +114,8 @@
         "title": "Select多选模式，随意输入内容",
         "description": "Select多选模式，随意输入内容"
       },
+      "minItems": 1,
+      "maxItems": 5,
       "$componentType": "tags",
       "$options": [
         {
