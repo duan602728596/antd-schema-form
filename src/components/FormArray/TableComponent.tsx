@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Component, Fragment, createRef, Context, RefObject } from 'react';
 import * as PropTypes from 'prop-types';
 import { Requireable } from 'prop-types';
-import classNames from 'classNames';
+import classNames from 'classnames';
 import { Table, Button, Popconfirm, Drawer, Input } from 'antd';
 import { WrappedFormUtils } from 'antd/lib/form/Form';
 import { TableComponents } from 'antd/lib/table';
@@ -18,6 +18,13 @@ import { formatTableValue, sortIndex } from './tableFunction';
 import FormObject from '../FormObject/FormObject';
 import styleName from '../../utils/styleName';
 import { StringItem, NumberItem, BooleanItem, ArrayItem, ContextValue } from '../../types';
+
+/* 表格的className */
+function tableClassName(hasErr: boolean): string {
+  return classNames(styleName('array-table-component'), {
+    [styleName('array-table-component-has-error')]: hasErr
+  });
+}
 
 interface TableComponentProps {
   root: ArrayItem;
@@ -322,15 +329,10 @@ class TableComponent extends Component<TableComponentProps> {
       arrayRulesVerificationResult = $maxItemsMessage || `数组内实例的数量必须小于等于${ maxItems }`;
     }
 
-    const tableClassNames: string = classNames(styleName('array-table-component'), {
-      [styleName('array-table-component-has-error')]: arrayRulesVerificationResult !== null
-    });
-
-
     return (
       <Fragment>
         <div className={ styleName('array-table-box') }>
-          <Table className={ tableClassNames }
+          <Table className={ tableClassName(arrayRulesVerificationResult !== null) }
             size="middle"
             dataSource={ items.type === 'object' ? value : formatTableValue(value) }
             columns={ this.columns() }
