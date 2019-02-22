@@ -16,6 +16,7 @@ yarn-error.log
 .eslintignore
 .eslintrc.yml
 .lintstagedrc.yml
+.babelrc
 
 .babelCache
 .dll
