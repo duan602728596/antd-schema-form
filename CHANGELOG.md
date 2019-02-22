@@ -1,8 +1,8 @@
 ###  v2.0.0-beta.4
 
-- 🌟array type adds validation of the number of elements in the array.
-- 🌟Add error validation to the `TableComponent` component.
-- Fine-tuned the style of `FormObject`.
+* 🌟array type adds validation of the number of elements in the array.
+* 🌟Add error validation to the `TableComponent` component.
+* Fine-tuned the style of `FormObject`.
 
 ### v2.0.0-beta.3
 
