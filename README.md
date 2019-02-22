@@ -42,7 +42,7 @@ Antd-schema-form based [Ant Design](https://ant.design/), quickly generate inter
     <SchemaForm json={ json } />,
     document.getElementById('app')
   );
- ```
+  ```
 
 ## API
 
@@ -182,7 +182,15 @@ The component renders a checkbox by default ([Checkbox](https://ant.design/compo
 The component renders the table by default ([Table](https://ant.design/components/table/)).Click on the number of rows in the table to modify the location of the data. **Configuration properties:**
 
 * `items: object`: the contents of the array.
+
 * `$defaultValue: Array<any>`: The default value of the form control.
+
+* `minimum：number`：the minimum value of the form.
+
+ * `$minimumMessage：string`：Customize the verification failure message for the minimum.
+ * `maximum：number`：the maximum value of the form.
+ * `$maximumMessage：string`：Customize the verification failure message for maximum.
+
 * `$componentType: string`: Rendered as other components.
 
   | Value | Component Name |

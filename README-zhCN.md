@@ -43,7 +43,7 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
     <SchemaForm json={ json } />,
     document.getElementById('app')
   );
- ```
+  ```
 
 ## API
 
@@ -184,6 +184,10 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
 
 * `items: object`：数组的内容。
 * `$defaultValue: Array<any>`：表单控件的默认值。
+* `minItems: number`：数组内元素的最小数量。
+* `$minItemsMessage: string`：自定义minItems的验证失败提示信息。
+* `maxItems: number`：数组内元素的最大数量。
+* `$maxItemsMessage: string`：自定义maxItems的验证失败提示信息。
 * `$componentType: string`：渲染为其他组件。
 
   | 值 | 组件名称 |
