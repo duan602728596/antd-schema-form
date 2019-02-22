@@ -1,6 +1,12 @@
+###  v2.0.0-beta.4
+
+- 🌟array type adds validation of the number of elements in the array.
+- 🌟Add error validation to the `TableComponent` component.
+- Fine-tuned the style of `FormObject`.
+
 ### v2.0.0-beta.3
 
-* 🎉The Tablecomponent component adds a drag-and-drop sort feature.
+* 🌟The `TableComponent` component adds a drag-and-drop sort feature.
 
 ### v2.0.0-beta.2
 
@@ -16,8 +22,8 @@
 
 ### v1.1.0
 
-* 🎉The array adds a new rendering component: **tags**.
-* 🎉Modified the effect of OneOf, now OneOf uses `Radio.Group` to switch between different states.
+* 🌟The array adds a new rendering component: **tags**.
+* 🌟Modified the effect of OneOf, now OneOf uses `Radio.Group` to switch between different states.
 
 ### v1.0.2
 

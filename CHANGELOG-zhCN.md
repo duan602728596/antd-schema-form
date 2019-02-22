@@ -1,6 +1,12 @@
+###  v2.0.0-beta.4
+
+* 🌟array类型添加数组内元素数量的验证。
+* 🌟`TableComponent`组件添加错误验证。
+* 微调了`FormObject`的样式。
+
 ### v2.0.0-beta.3
 
-* 🎉TableComponent组件添加拖拽排序功能。
+* 🌟`TableComponent`组件添加拖拽排序功能。
 
 ### v2.0.0-beta.2
 
@@ -16,8 +22,8 @@
 
 ### v1.1.0
 
-* 🎉数组添加了新的渲染组件：**tags**。
-* 🎉修改了OneOf的效果，现在OneOf使用`Radio.Group`来切换不同的状态。
+* 🌟数组添加了新的渲染组件：**tags**。
+* 🌟修改了OneOf的效果，现在OneOf使用`Radio.Group`来切换不同的状态。
 
 ### v1.0.2
 
