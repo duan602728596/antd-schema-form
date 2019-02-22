@@ -71,10 +71,12 @@ class FormArray extends Component<FormArrayProps> {
         break;
 
       default:
-        isTableComponent = true;
-        element = (customComponent && $componentType && $componentType in customComponent)
-          ? customComponent[$componentType](root, option, form, required)
-          : <TableComponent root={ root } { ...getFieldProps(id, option) } />;
+        if (customComponent && $componentType && $componentType in customComponent) {
+          element = customComponent[$componentType](root, option, form, required);
+        } else {
+          element = <TableComponent root={ root } { ...getFieldProps(id, option) } />;
+          isTableComponent = true;
+        }
     }
 
     return (
