@@ -198,7 +198,7 @@ module.exports = global;
 
 // just stub out growl
 
-module.exports = require('../utils').noop;
+module.exports = require('../tests/utils').noop;
 
 },{"../utils":36}],3:[function(require,module,exports){
 'use strict';
@@ -1778,7 +1778,7 @@ function Pending(message) {
 var tty = require('tty');
 var diff = require('diff');
 var ms = require('../ms');
-var utils = require('../utils');
+var utils = require('../tests/utils');
 var supportsColor = process.browser ? null : require('supports-color');
 
 /**
@@ -2319,7 +2319,7 @@ function sameType(a, b) {
  */
 
 var Base = require('./base');
-var utils = require('../utils');
+var utils = require('../tests/utils');
 
 /**
  * Expose `Doc`.
@@ -2400,7 +2400,7 @@ function Doc(runner) {
  */
 
 var Base = require('./base');
-var inherits = require('../utils').inherits;
+var inherits = require('../tests/utils').inherits;
 var color = Base.color;
 
 /**
@@ -2480,7 +2480,7 @@ inherits(Dot, Base);
  */
 
 var Base = require('./base');
-var utils = require('../utils');
+var utils = require('../tests/utils');
 var Progress = require('../browser/progress');
 var escapeRe = require('escape-string-regexp');
 var escape = utils.escape;
@@ -3095,7 +3095,7 @@ function errorJSON(err) {
  */
 
 var Base = require('./base');
-var inherits = require('../utils').inherits;
+var inherits = require('../tests/utils').inherits;
 var cursor = Base.cursor;
 var color = Base.color;
 
@@ -3199,7 +3199,7 @@ inherits(Landing, Base);
  */
 
 var Base = require('./base');
-var inherits = require('../utils').inherits;
+var inherits = require('../tests/utils').inherits;
 var color = Base.color;
 var cursor = Base.cursor;
 
@@ -3272,7 +3272,7 @@ inherits(List, Base);
  */
 
 var Base = require('./base');
-var utils = require('../utils');
+var utils = require('../tests/utils');
 
 /**
  * Constants
@@ -3381,7 +3381,7 @@ function Markdown(runner) {
  */
 
 var Base = require('./base');
-var inherits = require('../utils').inherits;
+var inherits = require('../tests/utils').inherits;
 
 /**
  * Expose `Min`.
@@ -3429,7 +3429,7 @@ inherits(Min, Base);
  */
 
 var Base = require('./base');
-var inherits = require('../utils').inherits;
+var inherits = require('../tests/utils').inherits;
 
 /**
  * Expose `Dot`.
@@ -3702,7 +3702,7 @@ function write(string) {
  */
 
 var Base = require('./base');
-var inherits = require('../utils').inherits;
+var inherits = require('../tests/utils').inherits;
 var color = Base.color;
 var cursor = Base.cursor;
 
@@ -3804,7 +3804,7 @@ inherits(Progress, Base);
  */
 
 var Base = require('./base');
-var inherits = require('../utils').inherits;
+var inherits = require('../tests/utils').inherits;
 var color = Base.color;
 
 /**
@@ -3974,7 +3974,7 @@ function title(test) {
  */
 
 var Base = require('./base');
-var utils = require('../utils');
+var utils = require('../tests/utils');
 var inherits = utils.inherits;
 var fs = require('fs');
 var escape = utils.escape;
@@ -12123,18 +12123,18 @@ function mkdirP (p, opts, f, made) {
     else if (!opts || typeof opts !== 'object') {
         opts = { mode: opts };
     }
-    
+
     var mode = opts.mode;
     var xfs = opts.fs || fs;
-    
+
     if (mode === undefined) {
         mode = _0777 & (~process.umask());
     }
     if (!made) made = null;
-    
+
     var cb = f || function () {};
     p = path.resolve(p);
-    
+
     xfs.mkdir(p, mode, function (er) {
         if (!er) {
             made = made || p;
@@ -12167,10 +12167,10 @@ mkdirP.sync = function sync (p, opts, made) {
     if (!opts || typeof opts !== 'object') {
         opts = { mode: opts };
     }
-    
+
     var mode = opts.mode;
     var xfs = opts.fs || fs;
-    
+
     if (mode === undefined) {
         mode = _0777 & (~process.umask());
     }

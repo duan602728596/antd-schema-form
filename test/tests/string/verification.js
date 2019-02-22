@@ -2,12 +2,7 @@ import { expect } from 'chai';
 import { mount } from 'enzyme';
 import * as React from 'react';
 import SchemaForm from '../../SchemaForm';
-
-function CreateHandleClickFn(result) {
-  return function(form, value) {
-    result.value = value;
-  };
-}
+import { createHandleClickFn } from '../utils';
 
 /* 组件值没有验证 */
 export function componentNoverification() {
@@ -17,7 +12,7 @@ export function componentNoverification() {
     title: '组件值没有验证'
   };
   const result = { value: null };
-  const wrapper = mount(<SchemaForm json={ json } onOk={ CreateHandleClickFn(result) } />);
+  const wrapper = mount(<SchemaForm json={ json } onOk={ createHandleClickFn(result) } />);
 
   wrapper.find('button').simulate('click');
   expect(wrapper.find('.ant-form-explain')).to.be.lengthOf(0);
@@ -34,7 +29,7 @@ export function componentRequired() {
     $requiredMessage: '表单必填验证信息'
   };
   const result = { value: null };
-  const wrapper = mount(<SchemaForm json={ json } onOk={ CreateHandleClickFn(result) } />);
+  const wrapper = mount(<SchemaForm json={ json } onOk={ createHandleClickFn(result) } />);
 
   wrapper.find('button').simulate('click');
 
@@ -56,7 +51,7 @@ export function componentEnum() {
   };
   const value = { $root: '枚举3' };
   const result = { value: null };
-  const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ CreateHandleClickFn(result) } />);
+  const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
 
   wrapper.find('button').simulate('click');
 
@@ -78,7 +73,7 @@ export function componentMinLength() {
   };
   const value = { $root: '组件的最大值' };
   const result = { value: null };
-  const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ CreateHandleClickFn(result) } />);
+  const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
 
   wrapper.find('button').simulate('click');
 
@@ -100,7 +95,7 @@ export function componentMaxLength() {
   };
   const value = { $root: '组件的最大值' };
   const result = { value: null };
-  const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ CreateHandleClickFn(result) } />);
+  const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
 
   wrapper.find('button').simulate('click');
 
@@ -122,7 +117,7 @@ export function componentLength() {
   };
   const value = { $root: '组件的固定长度' };
   const result = { value: null };
-  const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ CreateHandleClickFn(result) } />);
+  const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
 
   wrapper.find('button').simulate('click');
 
@@ -144,7 +139,7 @@ export function componentPattern() {
   };
   const value = { $root: '组件值的正则验证' };
   const result = { value: null };
-  const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ CreateHandleClickFn(result) } />);
+  const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
 
   wrapper.find('button').simulate('click');
 

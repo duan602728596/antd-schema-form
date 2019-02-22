@@ -2,12 +2,7 @@ import { expect } from 'chai';
 import { mount } from 'enzyme';
 import * as React from 'react';
 import SchemaForm from '../../SchemaForm';
-
-function CreateHandleClickFn(result) {
-  return function(form, value) {
-    result.value = value;
-  };
-}
+import { createHandleClickFn } from '../utils';
 
 /* 组件值没有验证 */
 export function componentNoverification() {
@@ -17,7 +12,7 @@ export function componentNoverification() {
     title: '组件值没有验证'
   };
   const result = { value: null };
-  const wrapper = mount(<SchemaForm json={ json } onOk={ CreateHandleClickFn(result) } />);
+  const wrapper = mount(<SchemaForm json={ json } onOk={ createHandleClickFn(result) } />);
 
   wrapper.find('button').simulate('click');
   expect(wrapper.find('.ant-form-explain')).to.be.lengthOf(0);
@@ -34,7 +29,7 @@ export function componentRequired() {
     $requiredMessage: '表单必填验证信息'
   };
   const result = { value: null };
-  const wrapper = mount(<SchemaForm json={ json } onOk={ CreateHandleClickFn(result) } />);
+  const wrapper = mount(<SchemaForm json={ json } onOk={ createHandleClickFn(result) } />);
 
   wrapper.find('button').simulate('click');
 
@@ -56,7 +51,7 @@ export function componentEnum() {
   };
   const value = { $root: 52 };
   const result = { value: null };
-  const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ CreateHandleClickFn(result) } />);
+  const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
 
   wrapper.find('button').simulate('click');
 
@@ -77,7 +72,7 @@ export function componentInteger() {
   };
   const value = { $root: 13.42 };
   const result = { value: null };
-  const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ CreateHandleClickFn(result) } />);
+  const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
 
   wrapper.find('button').simulate('click');
 
@@ -99,7 +94,7 @@ export function componentIntegerTrue() {
   };
   const value = { $root: 13.42 };
   const result = { value: null };
-  const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ CreateHandleClickFn(result) } />);
+  const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
 
   wrapper.find('button').simulate('click');
 
@@ -121,7 +116,7 @@ export function componentMinimum() {
   };
   const value = { $root: 2 };
   const result = { value: null };
-  const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ CreateHandleClickFn(result) } />);
+  const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
 
   wrapper.find('button').simulate('click');
 
@@ -143,7 +138,7 @@ export function componentMaximum() {
   };
   const value = { $root: 200 };
   const result = { value: null };
-  const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ CreateHandleClickFn(result) } />);
+  const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
 
   wrapper.find('button').simulate('click');
 
