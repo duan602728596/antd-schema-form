@@ -16,6 +16,7 @@ import getObjectFromValue from '../../utils/getObjectFromValue';
 import DragableBodyRow from './DragableBodyRow';
 import { formatTableValue, sortIndex } from './tableFunction';
 import FormObject from '../FormObject/FormObject';
+import { minErrStr, maxErrStr } from './createArrayRules';
 import styleName from '../../utils/styleName';
 import { StringItem, NumberItem, BooleanItem, ArrayItem, ContextValue } from '../../types';
 
@@ -318,15 +319,15 @@ class TableComponent extends Component<TableComponentProps> {
 
     value = isSpace(value) ? (root.$defaultValue || []) : value;
 
-    // 对数组内的实例数量进行验证
+    // 对数组内的元素数量进行验证
     let arrayRulesVerificationResult: string | null = null;
 
     if (minItems !== undefined && value.length < minItems) {
-      arrayRulesVerificationResult = $minItemsMessage || `数组内实例的数量必须大于等于${ minItems }`;
+      arrayRulesVerificationResult = $minItemsMessage || `${ minErrStr }${ minItems }`;
     }
 
     if (maxItems !== undefined && value.length > maxItems) {
-      arrayRulesVerificationResult = $maxItemsMessage || `数组内实例的数量必须小于等于${ maxItems }`;
+      arrayRulesVerificationResult = $maxItemsMessage || `${ maxErrStr }${ maxItems }`;
     }
 
     return (
