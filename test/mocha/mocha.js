@@ -198,7 +198,7 @@ module.exports = global;
 
 // just stub out growl
 
-module.exports = require('../tests/utils').noop;
+module.exports = require('../utils').noop;
 
 },{"../utils":36}],3:[function(require,module,exports){
 'use strict';
@@ -1778,7 +1778,7 @@ function Pending(message) {
 var tty = require('tty');
 var diff = require('diff');
 var ms = require('../ms');
-var utils = require('../tests/utils');
+var utils = require('../utils');
 var supportsColor = process.browser ? null : require('supports-color');
 
 /**
@@ -2319,7 +2319,7 @@ function sameType(a, b) {
  */
 
 var Base = require('./base');
-var utils = require('../tests/utils');
+var utils = require('../utils');
 
 /**
  * Expose `Doc`.
@@ -2400,7 +2400,7 @@ function Doc(runner) {
  */
 
 var Base = require('./base');
-var inherits = require('../tests/utils').inherits;
+var inherits = require('../utils').inherits;
 var color = Base.color;
 
 /**
@@ -2480,7 +2480,7 @@ inherits(Dot, Base);
  */
 
 var Base = require('./base');
-var utils = require('../tests/utils');
+var utils = require('../utils');
 var Progress = require('../browser/progress');
 var escapeRe = require('escape-string-regexp');
 var escape = utils.escape;
@@ -3095,7 +3095,7 @@ function errorJSON(err) {
  */
 
 var Base = require('./base');
-var inherits = require('../tests/utils').inherits;
+var inherits = require('../utils').inherits;
 var cursor = Base.cursor;
 var color = Base.color;
 
@@ -3199,7 +3199,7 @@ inherits(Landing, Base);
  */
 
 var Base = require('./base');
-var inherits = require('../tests/utils').inherits;
+var inherits = require('../utils').inherits;
 var color = Base.color;
 var cursor = Base.cursor;
 
@@ -3272,7 +3272,7 @@ inherits(List, Base);
  */
 
 var Base = require('./base');
-var utils = require('../tests/utils');
+var utils = require('../utils');
 
 /**
  * Constants
@@ -3381,7 +3381,7 @@ function Markdown(runner) {
  */
 
 var Base = require('./base');
-var inherits = require('../tests/utils').inherits;
+var inherits = require('../utils').inherits;
 
 /**
  * Expose `Min`.
@@ -3429,7 +3429,7 @@ inherits(Min, Base);
  */
 
 var Base = require('./base');
-var inherits = require('../tests/utils').inherits;
+var inherits = require('../utils').inherits;
 
 /**
  * Expose `Dot`.
@@ -3702,7 +3702,7 @@ function write(string) {
  */
 
 var Base = require('./base');
-var inherits = require('../tests/utils').inherits;
+var inherits = require('../utils').inherits;
 var color = Base.color;
 var cursor = Base.cursor;
 
@@ -3804,7 +3804,7 @@ inherits(Progress, Base);
  */
 
 var Base = require('./base');
-var inherits = require('../tests/utils').inherits;
+var inherits = require('../utils').inherits;
 var color = Base.color;
 
 /**
@@ -3974,7 +3974,7 @@ function title(test) {
  */
 
 var Base = require('./base');
-var utils = require('../tests/utils');
+var utils = require('../utils');
 var inherits = utils.inherits;
 var fs = require('fs');
 var escape = utils.escape;
@@ -12953,7 +12953,7 @@ function ReadableState(options, stream) {
   this.decoder = null;
   this.encoding = null;
   if (options.encoding) {
-    if (!StringDecoder) StringDecoder = require('string_decoder/').StringDecoder;
+    if (!StringDecoder) StringDecoder = require('mocha/mocha').StringDecoder;
     this.decoder = new StringDecoder(options.encoding);
     this.encoding = options.encoding;
   }
@@ -13109,7 +13109,7 @@ Readable.prototype.isPaused = function () {
 
 // backwards compatibility.
 Readable.prototype.setEncoding = function (enc) {
-  if (!StringDecoder) StringDecoder = require('string_decoder/').StringDecoder;
+  if (!StringDecoder) StringDecoder = require('mocha/mocha').StringDecoder;
   this._readableState.decoder = new StringDecoder(enc);
   this._readableState.encoding = enc;
   return this;

@@ -5,6 +5,7 @@ import {
   componentHasDefaultValue, componentHasValue, componentItemsIsStringOrNumber, CheckboxGroupHastDefaultValue,
   CheckboxGroupHastValue
 } from './hasValue';
+import { tableComponentMinItems, tableComponentMaxItems } from './verification';
 
 describe('数组组件', function() {
   /* 组件渲染 */
@@ -24,5 +25,11 @@ describe('数组组件', function() {
       it('多选框有默认值', CheckboxGroupHastDefaultValue);
       it('多选框有值', CheckboxGroupHastValue);
     });
+  });
+
+  /* 表单验证 */
+  describe('表单验证', function() {
+    it('数组元素最小数量验证', tableComponentMinItems);
+    it('数组元素最大数量验证', tableComponentMaxItems);
   });
 });
