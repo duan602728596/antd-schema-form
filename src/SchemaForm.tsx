@@ -9,7 +9,7 @@ import FormObject from './components/FormObject/FormObject';
 import getObjectFromValue from './utils/getObjectFromValue';
 import { isObject } from './utils/type';
 import languagePack from './languagePack';
-import { SchemaItem } from './types';
+import { SchemaItem, ContextValue } from './types';
 
 interface SchemaFormProps extends FormComponentProps {
   json: SchemaItem;
@@ -26,6 +26,7 @@ interface SchemaFormProps extends FormComponentProps {
 interface SchemaFormState {
   value: object;
   language: string;
+  languagePack: object;
 }
 
 // @ts-ignore
@@ -72,8 +73,16 @@ class SchemaForm extends Component<SchemaFormProps, SchemaFormState> {
     const language: string = typeof window === 'object' // 服务器端渲染判断
       ? (window.navigator.language || window.navigator['userLanguage']).toLocaleLowerCase()
       : 'default';
+    const customLangPack: object | undefined = this.props.languagePack; // 自定义语言包
+    const langP: object = isObject(customLangPack)
+      ? customLangPack
+      : (language in languagePack ? languagePack[language] : languagePack['default']); // 语言包
 
-    this.state = { value, language };
+    this.state = {
+      value,
+      language,
+      languagePack: langP
+    };
   }
 
   componentDidMount(): void {
@@ -100,15 +109,12 @@ class SchemaForm extends Component<SchemaFormProps, SchemaFormState> {
 
   render(): React.ReactNode {
     const { form, json, onOk, onCancel, okText, cancelText, footer, customComponent }: SchemaFormProps = this.props;
-    const languagePack2: object | undefined = this.props.languagePack; // 自定义语言包
-    const { language }: SchemaFormState = this.state;
-    const contextValue: object = {
+    const { language, languagePack }: SchemaFormState = this.state;
+    const contextValue: ContextValue = {
       form,
       customComponent,
       language, // 系统语言
-      languagePack: isObject(languagePack2)
-        ? languagePack2
-        : (language in languagePack ? languagePack[language] : languagePack['default']) // 语言包
+      languagePack // 语言包
     };
 
     return (
