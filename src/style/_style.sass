@@ -33,8 +33,10 @@
 
   /* array */
   .#{ $basic-name }array
-    &-table-box
-      margin-bottom: 10px
+    // 隐藏table的错误校验提示
+    &-table-form-item .has-error .ant-form-explain
+      display: none
+    // table错误校验
     &-table-component
       border-width: 1px
       border-style: solid
@@ -45,7 +47,7 @@
     &-table-component-has-error
       border-color: $error-color
     &-table-rules-verification-str
-      margin-left: 10px
+      margin: 0
       color: $error-color
     &-multiple
       width: 100%
@@ -53,6 +55,7 @@
       margin-left: 10px
     &-tr-drag
       cursor: move
+  // table拖拽
   tr.#{ $basic-name }array
     &-drop-over
       &-downward td

@@ -332,49 +332,47 @@ class TableComponent extends Component<TableComponentProps> {
 
     return (
       <Fragment>
-        <div className={ styleName('array-table-box') }>
-          <Table className={ tableClassName(arrayRulesVerificationResult !== null) }
-            size="middle"
-            dataSource={ items.type === 'object' ? value : formatTableValue(value) }
-            columns={ this.columns() }
-            bordered={ true }
-            title={
-              (): React.ReactNodeArray => [
-                <Button key="add"
-                  type="primary"
-                  icon="plus-circle"
-                  onClick={ this.handleDrawerDisplayClick.bind(this, 'isDisplayDataDrawer', true) }
-                >
-                  { languagePack.formArray.operatingAdd }
-                </Button>,
-                <Popconfirm key="delete"
-                  title={ languagePack.formArray.deleteSelectedText }
-                  onConfirm={ this.handleDeleteSelectDataClick.bind(this) }
-                >
-                  <Button className={ styleName('array-deleteAll') } type="danger" icon="delete">
-                    { languagePack.formArray.deleteSelected }
-                  </Button>
-                </Popconfirm>,
-                <span key="arrayRulesVerificationResult" className={ styleName('array-table-rules-verification-str') }>
-                  { arrayRulesVerificationResult }
-                </span>
-              ]
-            }
-            rowKey={ (item: object, index: number): string => `${ index }` }
-            rowSelection={{
-              type: 'checkbox',
-              selectedRowKeys,
-              onChange: this.handleColumnCheckboxChange.bind(this)
-            }}
-            components={ inputNotDisplay ? this.components : undefined }
-            onRow={
-              inputNotDisplay
-                ? (item: object, index: number): { index: number; moverow: Function } => ({ index, moverow: this.moveRow.bind(this) })
-                : undefined
-            }
-            pagination={ false }
-          />
-        </div>
+        <Table className={ tableClassName(arrayRulesVerificationResult !== null) }
+          size="middle"
+          dataSource={ items.type === 'object' ? value : formatTableValue(value) }
+          columns={ this.columns() }
+          bordered={ true }
+          title={
+            (): React.ReactNodeArray => [
+              <Button key="add"
+                type="primary"
+                icon="plus-circle"
+                onClick={ this.handleDrawerDisplayClick.bind(this, 'isDisplayDataDrawer', true) }
+              >
+                { languagePack.formArray.operatingAdd }
+              </Button>,
+              <Popconfirm key="delete"
+                title={ languagePack.formArray.deleteSelectedText }
+                onConfirm={ this.handleDeleteSelectDataClick.bind(this) }
+              >
+                <Button className={ styleName('array-deleteAll') } type="danger" icon="delete">
+                  { languagePack.formArray.deleteSelected }
+                </Button>
+              </Popconfirm>
+            ]
+          }
+          rowKey={ (item: object, index: number): string => `${ index }` }
+          rowSelection={{
+            type: 'checkbox',
+            selectedRowKeys,
+            onChange: this.handleColumnCheckboxChange.bind(this)
+          }}
+          components={ inputNotDisplay ? this.components : undefined }
+          onRow={
+            inputNotDisplay
+              ? (item: object, index: number): { index: number; moverow: Function } => ({ index, moverow: this.moveRow.bind(this) })
+              : undefined
+          }
+          pagination={ false }
+        />
+        <p className={ styleName('array-table-rules-verification-str') }>
+          { arrayRulesVerificationResult }
+        </p>
         {/* 添加和修改数据的抽屉组件 */}
         <Drawer width="100%" visible={ isDisplayDataDrawer } destroyOnClose={ true } closable={ false }>
           <FormObject root={ items }

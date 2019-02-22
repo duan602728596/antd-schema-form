@@ -50,6 +50,7 @@ class FormArray extends Component<FormArrayProps> {
     const { id, title, description, $componentType, $defaultValue, $options = [] }: ArrayItem = root;
     const rules: Array<ValidationRule> = createArrayRules(root, required);
     const option: GetFieldDecoratorOptions = { rules };
+    let isTableComponent: boolean = false; // 判断是否为table组件
     let element: React.ReactNode = null;
 
     // 表单默认值
@@ -70,13 +71,14 @@ class FormArray extends Component<FormArrayProps> {
         break;
 
       default:
+        isTableComponent = true;
         element = (customComponent && $componentType && $componentType in customComponent)
           ? customComponent[$componentType](root, option, form, required)
           : <TableComponent root={ root } { ...getFieldProps(id, option) } />;
     }
 
     return (
-      <Form.Item label={ title }>
+      <Form.Item className={ isTableComponent ? styleName('array-table-form-item') : undefined } label={ title }>
         <Tooltip title={ description } placement="topRight">
           { element }
         </Tooltip>
