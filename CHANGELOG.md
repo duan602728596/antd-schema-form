@@ -1,3 +1,7 @@
+### v2.0.0-beta.6
+
+* 🐛Fix the error caused by the different handling of the introduction of json files by ts and js
+
 ### v2.0.0-beta.5
 
 * 🐛Add `.babelrc` to the `.npmignore` list to resolve compilation errors caused by incorrectly uploading `.babelrc` files.
