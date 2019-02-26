@@ -1,4 +1,8 @@
-###  v2.0.0-beta.4
+### v2.0.0-beta.5
+
+* 🐛Add `.babelrc` to the `.npmignore` list to resolve compilation errors caused by incorrectly uploading `.babelrc` files.
+
+### v2.0.0-beta.4
 
 * 🌟array type adds validation of the number of elements in the array.
 * 🌟Add error validation to the `TableComponent` component.
