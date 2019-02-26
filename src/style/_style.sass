@@ -2,7 +2,7 @@
 
 @mixin antdSchemaForm()
   /* object */
-  .#{ $basic-name }object
+  .#{ $prefix }object
     &-description
       margin-left: 10px
       font-size: 12px
@@ -19,20 +19,20 @@
       margin-left: 10px
 
   /* string */
-  .#{ $basic-name }string
+  .#{ $prefix }string
     &-select
       width: 100%
     &-password-suffix
       cursor: pointer
 
   /* number */
-  .#{ $basic-name }number
+  .#{ $prefix }number
     &-input
       width: 100%
       max-width: 300px
 
   /* array */
-  .#{ $basic-name }array
+  .#{ $prefix }array
     // 隐藏table的错误校验提示
     &-table-form-item .has-error .ant-form-explain
       display: none
@@ -56,7 +56,7 @@
     &-tr-drag
       cursor: move
   // table拖拽
-  tr.#{ $basic-name }array
+  tr.#{ $prefix }array
     &-drop-over
       &-downward td
         border-bottom: 2px dashed $array-table-drop-over-border-color
