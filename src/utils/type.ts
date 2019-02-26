@@ -23,6 +23,10 @@ export function isArray<T>(value: T): boolean {
   return isObjectOrArray(value) && Object.prototype.toString.call(value) === '[object Array]';
 }
 
+export function isModule<T>(value: T): boolean {
+  return isObjectOrArray(value) && Object.prototype.toString.call(value) === '[object Module]';
+}
+
 export function isFunction<T>(value: T): boolean {
   return typeof value === 'function';
 }
