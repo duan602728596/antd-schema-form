@@ -2,7 +2,7 @@
   "defaultSeverity": "error",
   "rules": {
     "no-empty-interface": true,
-    "no-parameter-reassignment":true,
+    "no-parameter-reassignment": true,
     "no-var-requires": true,
     "curly": [
       true,
