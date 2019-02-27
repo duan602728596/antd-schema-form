@@ -1,41 +1,49 @@
 @import './variable'
 
-@mixin antdSchemaForm()
-  /* object */
+/* object */
+@mixin object()
   .#{ $prefix }object
     &-description
       margin-left: 10px
       font-size: 12px
       color: #929292
+
     &-collapse
       margin-bottom: 10px
       &:last-child
         margin-bottom: 0
       .ant-collapse-content-box
         padding: 10px
+
     &-click-button-box
       margin-top: 10px
+
     &-cancel
       margin-left: 10px
 
-  /* string */
+/* string */
+@mixin string()
   .#{ $prefix }string
     &-select
       width: 100%
+
     &-password-suffix
       cursor: pointer
 
-  /* number */
+/* number */
+@mixin number()
   .#{ $prefix }number
     &-input
       width: 100%
       max-width: 300px
 
-  /* array */
+/* array */
+@mixin array()
   .#{ $prefix }array
     // 隐藏table的错误校验提示
     &-table-form-item .has-error .ant-form-explain
       display: none
+
     // table错误校验
     &-table-component
       border-width: 1px
@@ -44,21 +52,28 @@
       border-radius: 4px
       -webkit-transition: border-color .3s
       transition: border-color .3s
+
     &-table-component-has-error
       border-color: $error-color
+
     &-table-rules-verification-str
       margin: 0
       color: $error-color
+
     &-multiple
       width: 100%
+
     &-deleteAll
       margin-left: 10px
+
     &-tr-drag
       cursor: move
+
   // table拖拽
   tr.#{ $prefix }array
     &-drop-over
       &-downward td
         border-bottom: 2px dashed $array-table-drop-over-border-color
+
       &-upward td
         border-top: 2px dashed $array-table-drop-over-border-color
