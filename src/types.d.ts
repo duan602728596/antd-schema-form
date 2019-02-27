@@ -71,4 +71,5 @@ export interface ArrayItem extends SchemaItem {
   maxItems?: number;
   $minItemsMessage?: string;
   $maxItemsMessage?: string;
+  $addDataInReverseOrder?: boolean;
 }

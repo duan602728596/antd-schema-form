@@ -35,6 +35,7 @@
           }
         }
       },
+      "$addDataInReverseOrder": true,
       "minItems": 1,
       "maxItems": 3,
       "$defaultValue": [

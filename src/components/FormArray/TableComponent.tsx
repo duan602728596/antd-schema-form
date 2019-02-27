@@ -147,7 +147,7 @@ class TableComponent extends Component<TableComponentProps> {
 
     // 判断是修改还是添加
     if (this.editIndex === null) {
-      tableValue.push(result['items']);
+      tableValue[root.$addDataInReverseOrder ? 'unshift' : 'push'](result['items']);
     } else {
       tableValue[this.editIndex] = result['items'];
     }
