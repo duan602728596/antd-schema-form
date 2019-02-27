@@ -13,11 +13,7 @@ yarn-error.log
 # cache
 .babelCache
 
-# https
-*.crt
-*.key
-
 # build
-./lib
-./es
-./style/*.css
+lib
+es
+style/*.css
