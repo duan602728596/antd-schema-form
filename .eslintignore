@@ -7,4 +7,4 @@ es
 build
 
 # test
-test/mocha/mocha.js
+tests/mocha/mocha.js
