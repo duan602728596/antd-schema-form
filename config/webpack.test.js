@@ -6,7 +6,7 @@ const { basicConfig, rules, plugins } = require('./basic.config');
 module.exports = {
   ...basicConfig,
   entry: {
-    app: path.join(__dirname, '../test/app.js')
+    app: path.join(__dirname, '../tests/app.js')
   },
   externals: {
     mocha: 'window.mocha',
@@ -47,7 +47,7 @@ module.exports = {
     ...plugins,
     new HtmlWebpackPlugin({
       inject: true,
-      template: path.join(__dirname, '../test/index.ejs'),
+      template: path.join(__dirname, '../tests/index.ejs'),
       filename: 'index.html'
     })
   ]
