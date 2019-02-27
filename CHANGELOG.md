@@ -1,6 +1,10 @@
+### v2.0.0-beta.7
+
+* 🌟The array type adds the `$addDataInReverseOrder` field, which allows data to be inserted into the header when the table component adds data.
+
 ### v2.0.0-beta.6
 
-* 🐛Fix the error caused by the different handling of the introduction of json files by ts and js
+* 🐛Fix the error caused by the different handling of the introduction of json files by ts and js.
 
 ### v2.0.0-beta.5
 
