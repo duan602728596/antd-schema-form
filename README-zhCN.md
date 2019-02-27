@@ -8,7 +8,7 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
 ## 开始使用
 
 1. 在使用之前，你需要在babel配置antd的[按需加载](https://ant.design/docs/react/introduce-cn#按需加载)。
-2. 需要为babel-loader的exclude做如下配置：
+2. 需要为babel-loader的exclude做如下配置: 
 
   ```javascript
   {
@@ -19,7 +19,7 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
   ```
 
 3. React的版本`>=16.6.0`。
-4. 组件的使用：
+4. 组件的使用: 
 
   ```javascript
   import React, { Component } from 'react';
@@ -69,8 +69,8 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
 
 > 由于json schema的属性并不能完全满足表单的生成，所以也添加了一些自定义的属性，自定义的属性名称约定以`$`开头。
 
-* `id: string`：当前属性的id。一般约定以`$root`开头，以`/`作为分隔，例如`$root/key1/key2`，id和json的键名要对应。
-  当type为`object`时，需要加`/properties`，例如：
+* `id: string`: 当前属性的id。一般约定以`$root`开头，以`/`作为分隔，例如`$root/key1/key2`，id和json的键名要对应。
+  当type为`object`时，需要加`/properties`，例如: 
 
   ```json
   {
@@ -85,7 +85,7 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
   }
   ```
 
-  当type为`array`时，items需要加`/items`，例如：
+  当type为`array`时，items需要加`/items`，例如: 
 
   ```json
   {
@@ -98,39 +98,39 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
   }
   ```
 
-* `type: string`：数据类型，包括string、number、integer、boolean、array、object。schema form根据该类型渲染不同的组件。
-* `title: string`：标题，用于描述关键字的作用。表单的标题。
-* `description: string`：说明，用于描述关键字的作用。表单的描述。
-* `oneOf: Array<object>`：关键字可能的多个类型。
+* `type: string`: 数据类型，包括string、number、integer、boolean、array、object。schema form根据该类型渲染不同的组件。
+* `title: string`: 标题，用于描述关键字的作用。表单的标题。
+* `description: string`: 说明，用于描述关键字的作用。表单的描述。
+* `oneOf: Array<object>`: 关键字可能的多个类型。
 
-### `type="object"`：
+### `type="object"`: 
 
-组件默认渲染折叠面板（[Collapse](https://ant.design/components/collapse-cn/)）。**配置属性：**
+组件默认渲染折叠面板（[Collapse](https://ant.design/components/collapse-cn/)）。**配置属性: **
 
-* `properties: object`：当**type**为**object**时，列出对象下面的属性。
-* `required: Array<string>`：对象必须包含的属性。不同于`$required`属性。
+* `properties: object`: 当**type**为**object**时，列出对象下面的属性。
+* `required: Array<string>`: 对象必须包含的属性。不同于`$required`属性。
 
-### `type="string"`：
+### `type="string"`: 
 
-组件默认渲染输入框（[Input](https://ant.design/components/input-cn/)）。**配置属性：**
+组件默认渲染输入框（[Input](https://ant.design/components/input-cn/)）。**配置属性: **
 
-* `$required: boolean`：当前的对象值必须存在。对应表单的required验证。
-* `$requiredMessage: string`：自定义required的验证失败提示信息。
-* `pattern: string`：正则表达式验证。
-* `$patternOption: string`：用于指定全局匹配、区分大小写的匹配和多行匹配。
-* `$patternMessage: string`：自定义pattern的验证失败提示信息。
-* `minLength: number`：字符串的最小长度验证。
-* `$minLengthMessage: string`：自定义minLength的验证失败提示信息。
-* `maxLength: number`：字符串的最大长度验证。
-* `$maxLengthMessage: string`：自定义maxLength的验证失败提示信息。
-* `$length: number`：字符串的指定长度验证。
-* `$lengthMessage: string`：自定义$length的验证失败提示信息。
-* `enum: Array<string>`：验证表单控件的值必须在此关键字的数组值中。
-* `$enumMessage: string`：自定义enum的验证失败信息。
-* `$readOnly: boolean`：表单控件只读。
-* `$placeholder: string`：表单控件的placeholder属性。
-* `$defaultValue: string`：表单控件的默认值。
-* `$componentType: string`：渲染为其他组件。
+* `$required: boolean`: 当前的对象值必须存在。对应表单的required验证。
+* `$requiredMessage: string`: 自定义required的验证失败提示信息。
+* `pattern: string`: 正则表达式验证。
+* `$patternOption: string`: 用于指定全局匹配、区分大小写的匹配和多行匹配。
+* `$patternMessage: string`: 自定义pattern的验证失败提示信息。
+* `minLength: number`: 字符串的最小长度验证。
+* `$minLengthMessage: string`: 自定义minLength的验证失败提示信息。
+* `maxLength: number`: 字符串的最大长度验证。
+* `$maxLengthMessage: string`: 自定义maxLength的验证失败提示信息。
+* `$length: number`: 字符串的指定长度验证。
+* `$lengthMessage: string`: 自定义$length的验证失败提示信息。
+* `enum: Array<string>`: 验证表单控件的值必须在此关键字的数组值中。
+* `$enumMessage: string`: 自定义enum的验证失败信息。
+* `$readOnly: boolean`: 表单控件只读。
+* `$placeholder: string`: 表单控件的placeholder属性。
+* `$defaultValue: string`: 表单控件的默认值。
+* `$componentType: string`: 渲染为其他组件。
 
   | 值 | 组件名称 |
   | --- | --- |
@@ -140,55 +140,56 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
   | date | 日期选择器（**当组件为日期选择器时，值为Moment对象，需要自行对日期的值进行处理**） |
   | password | 密码框 |
 
-* `$options: Array<{ label: string, value: string }>`：当$componentType为select、radio时，可选的选项。
+* `$options: Array<{ label: string, value: string }>`: 当$componentType为select、radio时，可选的选项。
 
-### `type="number"`或`type="integer"`：
+### `type="number"`或`type="integer"`: 
 
-组件默认渲染数字输入框（[InputNumber](https://ant.design/components/input-number-cn/)）。**配置属性：**
+组件默认渲染数字输入框（[InputNumber](https://ant.design/components/input-number-cn/)）。**配置属性: **
 
-* `$required: boolean`：当前的对象值必须存在。对应表单的required验证。
-* `$requiredMessage: string`：自定义required的验证失败提示信息。
-* `minimum: number`：表单的最小值。
-* `$minimumMessage: string`：自定义minimum的验证失败提示信息。
-* `maximum: number`：表单的最大值。
-* `$maximumMessage: string`：自定义maximum的验证失败提示信息。
-* `$integer: boolean`：必须是整数。当type为integer时，默认验证此项。
-* `$integerMessage: string`：自定义$integer的验证失败提示信息。
-* `enum: Array<number>`：验证表单控件的值必须在此关键字的数组值中。
-* `$enumMessage: string`：自定义enum的验证失败信息。
-* `$readOnly: boolean`：表单控件只读。
-* `$placeholder: string`：表单控件的placeholder属性。
-* `$defaultValue: number`：表单控件的默认值。
-* `$componentType: string`：渲染为其他组件。
+* `$required: boolean`: 当前的对象值必须存在。对应表单的required验证。
+* `$requiredMessage: string`: 自定义required的验证失败提示信息。
+* `minimum: number`: 表单的最小值。
+* `$minimumMessage: string`: 自定义minimum的验证失败提示信息。
+* `maximum: number`: 表单的最大值。
+* `$maximumMessage: string`: 自定义maximum的验证失败提示信息。
+* `$integer: boolean`: 必须是整数。当type为integer时，默认验证此项。
+* `$integerMessage: string`: 自定义$integer的验证失败提示信息。
+* `enum: Array<number>`: 验证表单控件的值必须在此关键字的数组值中。
+* `$enumMessage: string`: 自定义enum的验证失败信息。
+* `$readOnly: boolean`: 表单控件只读。
+* `$placeholder: string`: 表单控件的placeholder属性。
+* `$defaultValue: number`: 表单控件的默认值。
+* `$componentType: string`: 渲染为其他组件。
 
   | 值 | 组件名称 |
   | --- | --- |
   | radio | 单选框 |
 
-* `$options: Array<{ label: string, value: number }>`：当$componentType为radio时，可选的选项。
+* `$options: Array<{ label: string, value: number }>`: 当$componentType为radio时，可选的选项。
 
-### `type="boolean"`：
+### `type="boolean"`: 
 
-组件默认渲染多选框（[Checkbox](https://ant.design/components/checkbox-cn/)）。**配置属性：**
+组件默认渲染多选框（[Checkbox](https://ant.design/components/checkbox-cn/)）。**配置属性: **
 
-* `$defaultValue: boolean`：表单控件的默认值。
-* `$componentType: string`：渲染为其他组件。
+* `$defaultValue: boolean`: 表单控件的默认值。
+* `$componentType: string`: 渲染为其他组件。
 
   | 值 | 组件名称 |
   | --- | --- |
   | switch | 开关 |
 
-### `type="array"`：
+### `type="array"`: 
 
-组件默认渲染表格（[Table](https://ant.design/components/table-cn/)）。点击表格的行数可以修改数据的位置。**配置属性：**
+组件默认渲染表格（[Table](https://ant.design/components/table-cn/)）。点击表格的行数可以修改数据的位置。**配置属性: **
 
-* `items: object`：数组的内容。
-* `$defaultValue: Array<any>`：表单控件的默认值。
-* `minItems: number`：数组内元素的最小数量。
-* `$minItemsMessage: string`：自定义minItems的验证失败提示信息。
-* `maxItems: number`：数组内元素的最大数量。
-* `$maxItemsMessage: string`：自定义maxItems的验证失败提示信息。
-* `$componentType: string`：渲染为其他组件。
+* `items: object`: 数组的内容。
+* `$defaultValue: Array<any>`: 表单控件的默认值。
+* `minItems: number`: 数组内元素的最小数量。
+* `$minItemsMessage: string`: 自定义minItems的验证失败提示信息。
+* `maxItems: number`: 数组内元素的最大数量。
+* `$maxItemsMessage: string`: 自定义maxItems的验证失败提示信息。
+* `$addDataInReverseOrder: boolean`: 设置为`true`时，表格组件添加数据时数据插入到头部。
+* `$componentType: string`: 渲染为其他组件。
 
   | 值 | 组件名称 |
   | --- | --- |
@@ -196,7 +197,7 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
   | multiple | 下拉框的多选模式 |
   | tags | 下拉框的多选模式，并且可以输入文字 |
 
-* `$options: Array<{ label: string, value: string | number }>`：当$componentType为checkbox、multiple、tags时，可选的选项。
+* `$options: Array<{ label: string, value: string | number }>`: 当$componentType为checkbox、multiple、tags时，可选的选项。
 
 ## 自定义渲染组件
 
@@ -233,8 +234,8 @@ ReactDOM.render(
 );
 ```
 
-SchemaForm的自定义组件属性`customComponent`类型为`object`，其中的每个值的类型都为`(item, option, form, required) => React.Node`。
-函数参数：
+SchemaForm的自定义组件属性`customComponent`类型为`object`，其中的每个值的类型都为`(item, option, form, required) => React.Node`。   
+函数参数: 
 
 | 参数 | 说明 | 类型 |
 | --- | --- | --- |
