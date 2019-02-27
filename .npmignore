@@ -10,22 +10,29 @@ yarn-error.log
 # webstorm
 .idea
 
-.editorconfig
+# project
+config
+bin
+example
+tests
+src
+gulpfile.js
+tslint.json
+tsconfig.json
+tsconfig.es5.json
+
+# ignore
 .gitignore
 .gitattributes
 .eslintignore
+.npmignore
+
+# config
+.editorconfig
+.gitattributes
 .eslintrc.yml
 .lintstagedrc.yml
 .babelrc
 
+# cache
 .babelCache
-.dll
-config
-bin
-example
-test
-gulpfile.js
-src
-tslint.json
-tsconfig.json
-tsconfig.es5.json

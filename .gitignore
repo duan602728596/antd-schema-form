@@ -10,21 +10,14 @@ yarn-error.log
 # webstorm
 .idea
 
-# webpack
-.happypack
-.dll
-build
-
-# babel
+# cache
 .babelCache
-
-# terser
-.terserCache
 
 # https
 *.crt
 *.key
 
-lib
-es
-style/*.css
+# build
+./lib
+./es
+./style/*.css
