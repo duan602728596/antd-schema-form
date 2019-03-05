@@ -1,6 +1,6 @@
 /**
  * 格式化数据，使值满足antd的props-type
- * @param { Array } rawArray: 原数据
+ * @param { Array<string | number> } rawArray: 原数据
  */
 export function formatTableValue(rawArray: Array<string | number>): Array<{ value: string | number }> {
   const result: { value: string | number }[] = [];
