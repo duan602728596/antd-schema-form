@@ -1,3 +1,8 @@
+### v2.0.0-beta.9
+
+* 🐛解决可能获取不到oneOf内id的情况。
+* 调整样式：折叠面板和RadioGroup之间的距离。
+
 ### v2.0.0-beta.7
 
 * 🌟数组类型添加`$addDataInReverseOrder`字段，允许表格组件添加数据时数据插入到头部。

@@ -1,3 +1,8 @@
+### v2.0.0-beta.9
+
+* 🐛Solve the situation where the id of oneOf may not be obtained.
+* Adjust the style: the distance between the fold panel and the RadioGroup.
+
 ### v2.0.0-beta.7
 
 * 🌟The array type adds the `$addDataInReverseOrder` field, which allows data to be inserted into the header when the table component adds data.
