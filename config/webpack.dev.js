@@ -6,7 +6,7 @@ const { basicConfig, rules, plugins } = require('./basic.config');
 module.exports = {
   ...basicConfig,
   entry: {
-    app: path.join(__dirname, '../example/app.js')
+    app: path.join(__dirname, '../example/index.js')
   },
   module: {
     rules

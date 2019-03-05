@@ -6,7 +6,7 @@ const { basicConfig, rules, plugins } = require('./basic.config');
 module.exports = {
   ...basicConfig,
   entry: {
-    app: path.join(__dirname, '../tests/app.js')
+    app: path.join(__dirname, '../tests/index.js')
   },
   externals: {
     mocha: 'window.mocha',
