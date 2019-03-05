@@ -93,3 +93,54 @@ export function getKeysFromObjectTest1() {
     '$root/properties/col1/item1/properties/col3'
   ]);
 }
+
+// 测试oneOf
+export function getKeysFromObjectTestOneOf() {
+  const json = {
+    id: '$root',
+    type: 'object',
+    title: '$root',
+    oneOf: [
+      {
+        properties: {
+          col1: {
+            id: '$root/properties/col1',
+            type: 'string',
+            title: 'col1'
+          }
+        }
+      },
+      {
+        properties: {
+          col2: {
+            id: '$root/properties/col2',
+            type: 'string',
+            title: 'col2'
+          }
+        }
+      },
+      {
+        properties: {
+          col1: {
+            id: '$root/properties/col1',
+            type: 'string',
+            title: 'col1'
+          },
+          col3: {
+            id: '$root/properties/col3',
+            type: 'number',
+            title: 'col3'
+          }
+        }
+      }
+    ]
+  };
+
+  console.log(getKeysFromObject(json));
+
+  expect(getKeysFromObject(json)).to.be.eql([
+    '$root/properties/col1',
+    '$root/properties/col2',
+    '$root/properties/col3'
+  ]);
+}

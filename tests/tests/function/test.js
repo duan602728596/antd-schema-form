@@ -1,6 +1,6 @@
 import describe from 'describe';
 import it from 'it';
-import { getKeysFromObjectTest0, getKeysFromObjectTest1 } from './getKeysFromObjectTest';
+import { getKeysFromObjectTest0, getKeysFromObjectTest1, getKeysFromObjectTestOneOf } from './getKeysFromObjectTest';
 import { getObjectFromValueTest0, getObjectFromValueTest1 } from './getObjectFromValueTest';
 import { getValueFromObjectTest0, getValueFromObjectTest1 } from './getValueFromObjectTest';
 
@@ -8,6 +8,7 @@ describe('通用函数测试', function() {
   describe('getKeysFromObject：根据schema.json获取一个keys的数组', function() {
     it('测试0', getKeysFromObjectTest0);
     it('测试1', getKeysFromObjectTest1);
+    it('测试 oneOf', getKeysFromObjectTestOneOf);
   });
 
   describe('getObjectFromValue：根据一个值，转换成表单所需要的object', function() {
