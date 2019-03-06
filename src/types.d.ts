@@ -16,7 +16,7 @@ export interface SchemaItem {
   required?: Array<string>;
   oneOf?: Array<any>;
   $oneOfIndex: number;
-  $readOnly?: boolean;
+  $oneOfDisabled?: boolean;
 }
 
 export interface StringItem extends SchemaItem {
