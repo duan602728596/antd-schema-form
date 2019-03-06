@@ -1,3 +1,7 @@
+### v2.0.0-beta.10
+
+* 🌟OneOf adds the `$oneOfDisabled` field to disable the switch to the value of Radio.Group.
+
 ### v2.0.0-beta.9
 
 * 🐛Solve the situation where the id of oneOf may not be obtained.
