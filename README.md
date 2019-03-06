@@ -1,6 +1,6 @@
 # antd-schema-form
 
-[中文文档](README-zhCN.md)   
+[中文文档](README-zhCN.md)
 
 Antd-schema-form based [Ant Design](https://ant.design/), quickly generate interactive forms with [JSON Schema](http://json-schema.org/draft-07/json-schema-validation.html) configuration.
 
@@ -101,6 +101,8 @@ You can use [form generation](https://duan602728596.github.io/antd-schema-form/#
 * `title: string`: Title, used to describe the role of the keyword. The title of the form.
 * `description: string`: Description, used to describe the role of the keyword. A description of the form.
 * `oneOf: Array<object>`: Multiple types of keywords possible.
+* `$oneOfIndex: number`: The index of the selected Radio.Group under *oneOf*.
+* `$oneOfDisabled: boolean`: *OneOf* is disabled under Radio.Group.
 
 ### `type="object"`:
 
@@ -233,7 +235,7 @@ ReactDOM.render(
 );
 ```
 
-SchemaForm's custom component property `customComponent` is of type `object`, each of which has the type `(item, option, form, required) => React.Node`.   
+SchemaForm's custom component property `customComponent` is of type `object`, each of which has the type `(item, option, form, required) => React.Node`.
 Function parameters:
 
 | Parameter | Description | Type |
