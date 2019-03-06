@@ -96,7 +96,7 @@ class OneOf extends Component<OneOfProps, OneOfState> {
         size="small"
         options={ options }
         value={ index }
-        onChange={ this.handleDesignationIndexChange.bind(this) }
+        onChange={ root.$readOnly ? undefined : this.handleDesignationIndexChange.bind(this) }
       />
     );
   }
