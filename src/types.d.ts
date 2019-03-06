@@ -15,7 +15,7 @@ export interface SchemaItem {
   properties?: object;
   required?: Array<string>;
   oneOf?: Array<any>;
-  $oneOfIndex: number;
+  $oneOfIndex?: number;
   $oneOfDisabled?: boolean;
 }
 

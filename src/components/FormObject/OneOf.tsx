@@ -35,7 +35,7 @@ class OneOf extends Component<OneOfProps, OneOfState> {
 
     this.state = {
       root,
-      index: isNumber(root.$oneOfIndex) ? root.$oneOfIndex : 0 // oneOf选项卡的index
+      index: (root.$oneOfIndex !== undefined && isNumber(root.$oneOfIndex)) ? root.$oneOfIndex : 0 // oneOf选项卡的index
     };
   }
 
@@ -44,7 +44,7 @@ class OneOf extends Component<OneOfProps, OneOfState> {
       const { root }: OneOfProps = nextProps;
 
       return {
-        index: isNumber(root.$oneOfIndex) ? root.$oneOfIndex : 0
+        index: (root.$oneOfIndex !== undefined && isNumber(root.$oneOfIndex)) ? root.$oneOfIndex : 0
       };
     }
 
