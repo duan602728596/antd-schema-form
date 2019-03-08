@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Component, ReactType } from 'react';
+import { Component, ElementType } from 'react';
 import * as PropTypes from 'prop-types';
 import { Requireable } from 'prop-types';
 import classNames from 'classnames';
@@ -86,7 +86,7 @@ const rowTarget: { drop: (props: {}, monitor: DropTargetMonitor, component: any)
   }
 };
 
-const DragableBodyRow: ReactType<any> = DropTarget('row', rowTarget,
+const DragableBodyRow: ElementType<any> = DropTarget('row', rowTarget,
   (connect: { dropTarget: Function }, monitor: DropTargetMonitor): object => {
     return {
       connectDropTarget: connect.dropTarget(),
