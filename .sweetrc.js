@@ -48,7 +48,25 @@ module.exports = {
     }
   ],
   js: {
-    plugins: [['import', { libraryName: 'antd', libraryDirectory: 'es', style: true }]],
+    plugins: [
+      [
+        'import',
+        {
+          libraryName: 'antd',
+          libraryDirectory: 'es',
+          style: true
+        }
+      ],
+      [
+        'import-components-style',
+        {
+          components: {
+            highlightjs: 'styles/github-gist.css',
+            'antd-schema-form': 'style/antd-schema-form.css'
+          }
+        }
+      ]
+    ],
     exclude: /(dll\.js|node_modules[\\/](?!antd-schema-form))/
   },
   sass: { include: /src/ },

@@ -20,6 +20,7 @@
     "antd-schema-form": "^2.0.0-beta.12",
     "babel-eslint": "^10.0.1",
     "babel-plugin-import": "^1.11.0",
+    "babel-plugin-import-components-style": "^0.0.1",
     "classnames": "^2.2.6",
     "commitizen": "^3.0.7",
     "cross-env": "^5.2.0",

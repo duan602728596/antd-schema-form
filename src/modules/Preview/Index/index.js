@@ -8,7 +8,9 @@ import { Row, Col, Input, Button, message, Modal } from 'antd';
 import { setSchemaJson } from '../store/reducer';
 import style from './style.sass';
 import { handleCopyTextClick } from '../../../utils';
-import SchemaForm, { schemaFormDefaultLang, schemaFormZhCNLang } from '../../../components/SchemaForm/SchemaForm';
+import SchemaForm from 'antd-schema-form';
+import schemaFormDefaultLang from 'antd-schema-form/language/default.json';
+import schemaFormZhCNLang from 'antd-schema-form/language/zh-CN.json';
 import { I18NContext } from '../../../components/I18N/I18N';
 
 /* state */
