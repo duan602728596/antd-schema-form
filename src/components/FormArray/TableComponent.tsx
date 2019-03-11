@@ -22,9 +22,6 @@ const tableDragClassName: [string, string] = [
   styleName('array-drop-over-downward'),
   styleName('array-drop-over-upward')
 ];
-let targetDom: HTMLElement | undefined = undefined; // 缓存拖拽的目标元素
-let dragTargetId: string | undefined = undefined; // 被拖拽的id
-let dragTargetIndex: number | undefined = undefined; // 被拖拽的index
 
 /* 表格的className */
 function tableClassName(hasErr: boolean): string {
@@ -52,8 +49,13 @@ class TableComponent extends Component<TableComponentProps> {
     root: PropTypes.object
   };
 
+
   changeIndexRef: RefObject<Input> = createRef();
   editIndex: number | null = null;
+
+  // 拖拽
+  dragTargetId: string | undefined = undefined; // 被拖拽的id
+  dragTargetIndex: number | undefined = undefined; // 被拖拽的index
   components: TableComponents = {
     body: {
       row: (item: any): React.ReactElement<'tr'> => {
@@ -71,6 +73,8 @@ class TableComponent extends Component<TableComponentProps> {
             data-id={ id }
             data-index={ index }
             onDragStart={ this.handleTableDragStart.bind(this) }
+            onDragEnter={ this.handleTableDragEnter.bind(this) }
+            onDragLeave={ this.handleTableDragLeave.bind(this) }
             onDragOver={ this.handleTableDragOver.bind(this) }
             onDrop={ this.handleTableDrop.bind(this) }
           >
@@ -146,12 +150,12 @@ class TableComponent extends Component<TableComponentProps> {
     const id: string = target['dataset'].id;
     const index: number = Number(target['dataset'].index);
 
-    dragTargetId = id;
-    dragTargetIndex = index;
+    this.dragTargetId = id;
+    this.dragTargetIndex = index;
   }
 
-  // 拖拽中
-  handleTableDragOver(event: React.DragEvent<any>): void {
+  // 拖拽进入
+  handleTableDragEnter(event: React.DragEvent<any>): void {
     event.preventDefault();
 
     // 获取目标的信息
@@ -165,27 +169,50 @@ class TableComponent extends Component<TableComponentProps> {
       fatherTarget = target['parentNode']['parentNode'];
     }
 
-    // 移除className
-    if (targetDom) {
-      targetDom.classList.remove(tableDragClassName[0]);
-      targetDom.classList.remove(tableDragClassName[1]);
-    }
-
-    targetDom = fatherTarget;
-
     if (fatherTarget !== undefined) {
       const overId: string | undefined = fatherTarget['dataset'].id;
       const overIndex: number | undefined = Number(fatherTarget['dataset'].index);
 
       // 添加样式
-      if (dragTargetId !== undefined && dragTargetIndex !== undefined && dragTargetId === overId) {
-        if (overIndex > dragTargetIndex) {
+      if (this.dragTargetId !== undefined && this.dragTargetIndex !== undefined && this.dragTargetId === overId) {
+        if (overIndex > this.dragTargetIndex) {
           fatherTarget.classList.add(tableDragClassName[0]);
-        } else if (overIndex < dragTargetIndex) {
+        } else if (overIndex < this.dragTargetIndex) {
           fatherTarget.classList.add(tableDragClassName[1]);
         }
       }
     }
+  }
+
+  // 拖拽退出
+  handleTableDragLeave(event: React.DragEvent<any>): void {
+    event.preventDefault();
+
+    // 获取目标的信息
+    const target: EventTarget = event['target'];
+    let fatherTarget: HTMLElement | undefined = undefined;
+
+    // 获取父级节点
+    if (target['nodeName'] === 'TD') {
+      fatherTarget = target['parentNode'];
+    } else if (target['nodeName'] === 'BUTTON') {
+      fatherTarget = target['parentNode']['parentNode'];
+    }
+
+    if (fatherTarget !== undefined) {
+      const overId: string | undefined = fatherTarget['dataset'].id;
+
+      // 添加样式
+      if (this.dragTargetId !== undefined && this.dragTargetIndex !== undefined && this.dragTargetId === overId) {
+        fatherTarget.classList.remove(tableDragClassName[0]);
+        fatherTarget.classList.remove(tableDragClassName[1]);
+      }
+    }
+  }
+
+  // 拖拽中
+  handleTableDragOver(event: React.DragEvent<any>): void {
+    event.preventDefault();
   }
 
   // 放置
@@ -208,14 +235,14 @@ class TableComponent extends Component<TableComponentProps> {
       const overIndex: number | undefined = Number(fatherTarget['dataset'].index);
 
       // 修改数据
-      if (dragTargetId !== undefined && dragTargetIndex !== undefined && dragTargetId === overId) {
-        this.moveRow(dragTargetIndex, overIndex);
+      if (this.dragTargetId !== undefined && this.dragTargetIndex !== undefined && this.dragTargetId === overId) {
+        this.moveRow(this.dragTargetIndex, overIndex);
       }
     }
 
     // 重置拖拽状态
-    dragTargetId = undefined;
-    dragTargetIndex = undefined;
+    this.dragTargetId = undefined;
+    this.dragTargetIndex = undefined;
 
     // 清除样式
     const c0: HTMLElement | null = document.querySelector(`.${ tableDragClassName[0] }`);
