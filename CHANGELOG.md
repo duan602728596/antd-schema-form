@@ -1,7 +1,7 @@
 ### v2.0.0-beta.12
 
 * 🐛Use the native drag and drop to replace the drag of the dnd component to avoid the `Cannot have two HTML5 backends at the same time` error caused by other components using the dnd component.
-* 
+
 ### v2.0.0-beta.10
 
 * 🌟OneOf adds the `$oneOfDisabled` field to disable the switch to the value of Radio.Group.
