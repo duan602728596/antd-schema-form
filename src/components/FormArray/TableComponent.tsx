@@ -6,19 +6,25 @@ import classNames from 'classnames';
 import { Table, Button, Popconfirm, Drawer, Input } from 'antd';
 import { WrappedFormUtils } from 'antd/lib/form/Form';
 import { TableComponents } from 'antd/lib/table';
-import { DragDropContext } from 'react-dnd';
-import HTML5Backend from 'react-dnd-html5-backend';
 import update from 'immutability-helper';
 import AntdSchemaFormContext from '../../context';
 import { isSpace, isBoolean, isObjectOrArray } from '../../utils/type';
 import getValueFromObject, { formatValueBeforeGetValue } from '../../utils/getValueFromObject';
 import getObjectFromValue from '../../utils/getObjectFromValue';
-import DragableBodyRow from './DragableBodyRow';
 import { formatTableValue, sortIndex } from './tableFunction';
 import FormObject from '../FormObject/FormObject';
 import { minErrStr, maxErrStr } from './createArrayRules';
 import styleName from '../../utils/styleName';
 import { StringItem, NumberItem, BooleanItem, ArrayItem, ContextValue } from '../../types';
+
+// 拖拽相关变量
+const tableDragClassName: [string, string] = [
+  styleName('array-drop-over-downward'),
+  styleName('array-drop-over-upward')
+];
+let targetDom: HTMLElement | undefined = undefined; // 缓存拖拽的目标元素
+let dragTargetId: string | undefined = undefined; // 被拖拽的id
+let dragTargetIndex: number | undefined = undefined; // 被拖拽的index
 
 /* 表格的className */
 function tableClassName(hasErr: boolean): string {
@@ -50,7 +56,28 @@ class TableComponent extends Component<TableComponentProps> {
   editIndex: number | null = null;
   components: TableComponents = {
     body: {
-      row: DragableBodyRow
+      row: (item: any): React.ReactElement<'tr'> => {
+        const { root }: TableComponentProps = this.props;
+        const { id }: ArrayItem = root;
+        const { children, index, className }: {
+          children: React.ReactNodeArray;
+          index: number;
+          className: string;
+        } = item;
+
+        return (
+          <tr className={ className }
+            draggable={ true }
+            data-id={ id }
+            data-index={ index }
+            onDragStart={ this.handleTableDragStart.bind(this) }
+            onDragOver={ this.handleTableDragOver.bind(this) }
+            onDrop={ this.handleTableDrop.bind(this) }
+          >
+            { children }
+          </tr>
+        );
+      }
     }
   };
 
@@ -111,6 +138,91 @@ class TableComponent extends Component<TableComponentProps> {
       inputDisplayIndex: undefined,
       inputChangeIndex: undefined
     });
+  }
+
+  // 开始拖拽
+  handleTableDragStart(event: React.DragEvent<'tr'>): void {
+    const target: EventTarget = event['target'];
+    const id: string = target['dataset'].id;
+    const index: number = Number(target['dataset'].index);
+
+    dragTargetId = id;
+    dragTargetIndex = index;
+  }
+
+  // 拖拽中
+  handleTableDragOver(event: React.DragEvent<any>): void {
+    event.preventDefault();
+
+    // 获取目标的信息
+    const target: EventTarget = event['target'];
+    let fatherTarget: HTMLElement | undefined = undefined;
+
+    // 获取父级节点
+    if (target['nodeName'] === 'TD') {
+      fatherTarget = target['parentNode'];
+    } else if (target['nodeName'] === 'BUTTON') {
+      fatherTarget = target['parentNode']['parentNode'];
+    }
+
+    // 移除className
+    if (targetDom) {
+      targetDom.classList.remove(tableDragClassName[0]);
+      targetDom.classList.remove(tableDragClassName[1]);
+    }
+
+    targetDom = fatherTarget;
+
+    if (fatherTarget !== undefined) {
+      const overId: string | undefined = fatherTarget['dataset'].id;
+      const overIndex: number | undefined = Number(fatherTarget['dataset'].index);
+
+      // 添加样式
+      if (dragTargetId !== undefined && dragTargetIndex !== undefined && dragTargetId === overId) {
+        if (overIndex > dragTargetIndex) {
+          fatherTarget.classList.add(tableDragClassName[0]);
+        } else if (overIndex < dragTargetIndex) {
+          fatherTarget.classList.add(tableDragClassName[1]);
+        }
+      }
+    }
+  }
+
+  // 放置
+  handleTableDrop(event: React.DragEvent<any>): void {
+    event.preventDefault();
+
+    // 获取目标的信息
+    const target: EventTarget = event['target'];
+    let fatherTarget: HTMLElement | undefined = undefined;
+
+    // 获取父级节点
+    if (target['nodeName'] === 'TD') {
+      fatherTarget = target['parentNode'];
+    } else if (target['nodeName'] === 'BUTTON') {
+      fatherTarget = target['parentNode']['parentNode'];
+    }
+
+    if (fatherTarget !== undefined) {
+      const overId: string | undefined = fatherTarget['dataset'].id;
+      const overIndex: number | undefined = Number(fatherTarget['dataset'].index);
+
+      // 修改数据
+      if (dragTargetId !== undefined && dragTargetIndex !== undefined && dragTargetId === overId) {
+        this.moveRow(dragTargetIndex, overIndex);
+      }
+    }
+
+    // 重置拖拽状态
+    dragTargetId = undefined;
+    dragTargetIndex = undefined;
+
+    // 清除样式
+    const c0: HTMLElement | null = document.querySelector(`.${ tableDragClassName[0] }`);
+    const c1: HTMLElement | null = document.querySelector(`.${ tableDragClassName[1] }`);
+
+    c0 && c0.classList.remove(tableDragClassName[0]);
+    c1 && c1.classList.remove(tableDragClassName[1]);
   }
 
   // 拖拽
@@ -385,4 +497,4 @@ class TableComponent extends Component<TableComponentProps> {
   }
 }
 
-export default DragDropContext(HTML5Backend)(TableComponent);
+export default TableComponent;
