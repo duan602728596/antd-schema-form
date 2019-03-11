@@ -1,3 +1,7 @@
+### v2.0.0-beta.12
+
+* 🐛使用原生的拖拽替换dnd组件的拖拽，避免出现其他组件使用dnd组件导致的`Cannot have two HTML5 backends at the same time`错误。
+
 ### v2.0.0-beta.10
 
 * 🌟OneOf添加`$oneOfDisabled`字段，可以禁止切换Radio.Group的值。
