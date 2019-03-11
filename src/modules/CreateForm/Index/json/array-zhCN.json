@@ -27,6 +27,26 @@
       "type": "string",
       "title": "说明，用于描述关键字的作用"
     },
+    "minItems": {
+      "id": "$root/properties/minItems",
+      "type": "number",
+      "title": "数组内元素的最小数量"
+    },
+    "$minimumMessage": {
+      "id": "$root/properties/$minimumMessage",
+      "type": "string",
+      "title": "自定义minItems的验证失败提示信息"
+    },
+    "maximum": {
+      "id": "$root/properties/maximum",
+      "type": "number",
+      "title": "数组内元素的最大数量"
+    },
+    "$maximumMessage": {
+      "id": "$root/properties/$maximumMessage",
+      "type": "string",
+      "title": "自定义maxItems的验证失败提示信息"
+    },
     "$componentType": {
       "id": "$root/properties/$componentType",
       "type": "string",
@@ -40,6 +60,10 @@
         {
           "label": "下拉框的多选模式",
           "value": "multiple"
+        },
+        {
+          "label": "下拉框的多选模式，并且可以输入文字",
+          "value": "tags"
         }
       ]
     },
@@ -66,6 +90,11 @@
           }
         }
       }
+    },
+    "$addDataInReverseOrder": {
+      "id": "$root/properties/$addDataInReverseOrder",
+      "type": "boolean",
+      "title": "数据添加到数组的头部"
     }
   }
 }
