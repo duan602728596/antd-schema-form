@@ -128,14 +128,7 @@ class TableComponent extends Component<TableComponentProps> {
       if (newIndex < 0) newIndex = 0;
       if (newIndex > length) newIndex = length;
 
-      const item: object = tableValue[index];
-      const newData: { tableValue?: Array<object> } = update({ tableValue }, {
-        tableValue: {
-          $splice: [[index, 1], [newIndex, 0, item]]
-        }
-      });
-
-      form.setFieldsValue({ [id]: newData.tableValue });
+      this.moveRow(index, newIndex);
     }
 
     this.setState({
@@ -502,11 +495,6 @@ class TableComponent extends Component<TableComponentProps> {
             onChange: this.handleColumnCheckboxChange.bind(this)
           }}
           components={ inputNotDisplay ? this.components : undefined }
-          onRow={
-            inputNotDisplay
-              ? (item: object, index: number): { index: number; moverow: Function } => ({ index, moverow: this.moveRow.bind(this) })
-              : undefined
-          }
           pagination={ false }
         />
         <p className={ styleName('array-table-rules-verification-str') }>
