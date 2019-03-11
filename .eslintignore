@@ -1,7 +1,12 @@
-server
+# node
 node_modules
-config
-bin
-.dll
+
+# project
+runServer.js
+
+# build
 build
-.sweetrc.js
+buildServer
+
+# cache
+.dll
