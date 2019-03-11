@@ -54,7 +54,7 @@ Antd-schema-form based [Ant Design](https://ant.design/), quickly generate inter
 | onCancel | Form cancellation event. | (form: object) => void |
 | okText | Confirm button text. | string |
 | cancelText | Cancel button text. | string |
-| footer | Custom bottom content, onOk event [reference](https://github.com/duan602728596/antd-schema-form/blob/master/src/components/FormObject/FormObject.tsx#L130) |  (form: object) => React.Node  |
+| footer | Custom bottom content, onOk event [reference](https://github.com/duan602728596/antd-schema-form/blob/master/src/components/FormObject/FormObject.tsx#L138) |  (form: object) => React.Node  |
 | customComponent | Custom rendering component, [reference](#custom-rendering-component) | object |
 | languagePack | Language configuration, [reference](language/default.json) | object |
 
