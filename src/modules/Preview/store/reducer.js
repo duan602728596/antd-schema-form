@@ -1,20 +1,16 @@
-// @flow
 import { createAction, handleActions } from 'redux-actions';
-import * as Immutable from 'immutable';
 import { fromJS, Map } from 'immutable';
 
-const initData: {
-  schemaJson: ?Immutable.Map<string, Object>
-} = {
+const initData = {
   schemaJson: null
 };
 
 /* Action */
-export const setSchemaJson: Function = createAction('表单预览-schemaJson');
+export const setSchemaJson = createAction('表单预览-schemaJson');
 
 /* reducer */
-const reducer: Function = handleActions({
-  [setSchemaJson]: ($$state: Immutable.Map<string, Object>, action: Object): Immutable.Map<string, Object>=>{
+const reducer = handleActions({
+  [setSchemaJson]: ($$state, action) => {
     return $$state.set('schemaJson', Map(action.payload));
   }
 }, fromJS(initData));

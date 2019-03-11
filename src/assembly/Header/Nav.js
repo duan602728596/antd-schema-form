@@ -1,22 +1,18 @@
-// @flow
-import * as React from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Icon } from 'antd';
 import style from './style.sass';
 import { I18NContext } from '../../components/I18N/I18N';
 
-function Nav(props: Object): React.Node{
+function Nav(props) {
   return (
     <nav>
       <I18NContext.Consumer>
         {
-          (context: Object): React.Node=>{
-            const { language, languagePack }: {
-              language: string,
-              languagePack: Object
-            } = context;
-            const nav: string[] = languagePack.nav;
-            const docUrl: string = language === 'zh-cn'
+          (context) => {
+            const { language, languagePack } = context;
+            const nav = languagePack.nav;
+            const docUrl = language === 'zh-cn'
               ? 'https://github.com/duan602728596/antd-schema-form/blob/master/README-zhCN.md#antd-schema-form'
               : 'https://github.com/duan602728596/antd-schema-form#antd-schema-form';
 

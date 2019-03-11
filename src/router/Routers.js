@@ -1,15 +1,14 @@
-// @flow
-import * as React from 'react';
+import React from 'react';
 import { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import asyncModule from './asyncModule';
 import Index from '../modules/Index/Layout';
 
-const CreateForm: Function = asyncModule((): Promise<Function> => import('../modules/CreateForm/Layout'));
-const Preview: Function = asyncModule((): Promise<Function> => import('../modules/Preview/Layout'));
+const CreateForm = asyncModule(() => import('../modules/CreateForm/Layout'));
+const Preview = asyncModule(() => import('../modules/Preview/Layout'));
 
-class Routers extends Component<{}>{
-  render(): React.Node{
+class Routers extends Component {
+  render() {
     return (
       <Switch>
         <Route path="/" component={ Index } exact={ true } />

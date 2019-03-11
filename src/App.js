@@ -1,5 +1,4 @@
-// @flow
-import * as React from 'react';
+import React from 'react';
 import { Component } from 'react';
 import { HashRouter, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -12,8 +11,8 @@ import { I18N } from './components/I18N/I18N';
 
 /* 热替换 */
 @hot(module)
-class App extends Component<{}>{
-  render(): React.Node{
+class App extends Component {
+  render() {
     return (
       <Provider store={ storeFactory(window.__INITIAL_STATE__ || {}) }>
         <LocaleProvider locale={ zhCN }>

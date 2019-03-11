@@ -1,5 +1,4 @@
-// @flow
-import * as React from 'react';
+import React from 'react';
 import { Component, Fragment, createRef } from 'react';
 import classNames from 'classnames';
 import { Row, Col, Modal } from 'antd';
@@ -10,40 +9,39 @@ import demo from './demo.json';
 import demoZhCN from './demo-zhCN.json';
 import { I18NContext } from '../../../components/I18N/I18N';
 
-type IndexState = {
-  language: string
-};
+class Index extends Component {
+  static contextType = I18NContext;
 
-class Index extends Component<{}, IndexState>{
-  static contextType: React.Context<Object> = I18NContext;
+  codeRef = createRef();
 
-  codeRef: Object = createRef();
-
-  constructor(): void{
+  constructor() {
     super(...arguments);
 
-    const { language }: { language: string } = this.context;
+    const { language } = this.context;
 
     this.state = {
       language // 语言
     };
   }
-  componentDidMount(): void{
+
+  componentDidMount() {
     hljs.highlightBlock(this.codeRef.current);
   }
-  componentDidUpdate(prevProps: {}, prevState: IndexState): void{
-    const { language }: { language: string } = this.context;
 
-    if(language !== prevState.language){
+  componentDidUpdate(prevProps, prevState) {
+    const { language } = this.context;
+
+    if (language !== prevState.language) {
       hljs.highlightBlock(this.codeRef.current);
 
       this.setState({ language });
     }
   }
+
   // 表单确认事件
-  handleOnFormOkClick: Function = (form: Object, value: Object, keys: string[]): void=>{
-    const { languagePack }: { languagePack: Object } = this.context;
-    const { message }: { message: Object } = languagePack;
+  handleOnFormOkClick = (form, value, keys) => {
+    const { languagePack } = this.context;
+    const { message } = languagePack;
 
     Modal.info({
       content: (
@@ -54,13 +52,11 @@ class Index extends Component<{}, IndexState>{
       )
     });
   };
-  render(): React.Node{
-    const { language, languagePack }: {
-      language: string,
-      languagePack: Object
-    } = this.context;
-    const { index }: { index: Object } = languagePack;
-    const demo2: Object = language === 'zh-cn' ? demoZhCN : demo;
+
+  render() {
+    const { language, languagePack } = this.context;
+    const { index } = languagePack;
+    const demo2 = language === 'zh-cn' ? demoZhCN : demo;
 
     return (
       <Fragment>

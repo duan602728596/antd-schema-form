@@ -1,10 +1,8 @@
-// @flow
-import * as React from 'react';
+import React from 'react';
 import { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import type { RecordInstance } from 'immutable/dist/immutable.js.flow';
 import { createSelector, createStructuredSelector } from 'reselect';
 import { Row, Col, Input, Button, message, Modal } from 'antd';
 import { setSchemaJson } from '../store/reducer';
@@ -14,86 +12,78 @@ import SchemaForm, { schemaFormDefaultLang, schemaFormZhCNLang } from '../../../
 import { I18NContext } from '../../../components/I18N/I18N';
 
 /* state */
-const state: Function = createStructuredSelector({
+const state = createStructuredSelector({
   schemaJson: createSelector(
-    ($$state: RecordInstance<Object>): ?RecordInstance<Object> => $$state.has('preview') ? $$state.get('preview') : null,
-    ($$data: ?RecordInstance<Object>): Object => $$data ? ($$data.get('schemaJson') ? $$data.get('schemaJson').toJS() : null) : null
+    ($$state) => $$state.has('preview') ? $$state.get('preview') : null,
+    ($$data) => $$data ? ($$data.get('schemaJson') ? $$data.get('schemaJson').toJS() : null) : null
   )
 });
 
 /* dispatch */
-const dispatch: Function = (dispatch: Function): Object=>({
+const dispatch = (dispatch) => ({
   action: bindActionCreators({
     setSchemaJson
   }, dispatch)
 });
 
-type IndexProps = {
-  schemaJson: ?Object,
-  action: Object
-};
-
-type IndexState = {
-  textAreaValue: string
-};
-
-class Index extends Component<IndexProps, IndexState>{
-  static contextType: React.Context<Object> = I18NContext;
-  static propTypes: Object = {
+class Index extends Component {
+  static contextType = I18NContext;
+  static propTypes = {
     schemaJson: PropTypes.object,
     action: PropTypes.objectOf(PropTypes.func)
   };
 
-  constructor(): void{
+  constructor() {
     super(...arguments);
 
-    const { schemaJson }: { schemaJson: ?Object } = this.props;
+    const { schemaJson } = this.props;
 
     this.state = {
       textAreaValue: schemaJson === null ? '' : JSON.stringify(schemaJson, null, 2)
     };
   }
+
   // 表单确认事件
-  handleOnFormOkClick: Function = (form: Object, value: Object, keys: string[]): void=>{
-    const { languagePack }: { languagePack: Object } = this.context;
-    const message2: Object = languagePack.message;
+  handleOnFormOkClick = (form, value, keys) => {
+    const { languagePack } = this.context;
+    const langMessage = languagePack.message;
 
     Modal.info({
       content: (
         <div>
-          <h4>{ message2.modalTitle }</h4>
+          <h4>{ langMessage.modalTitle }</h4>
           <pre>{ JSON.stringify(value, null, 2) }</pre>
         </div>
       )
     });
   };
-  // 表单预览
-  handleRedoJsonSchema: Function = (event: Event): void=>{
-    const { textAreaValue }: { textAreaValue: string } = this.state;
-    const { action }: { action: Object } = this.props;
-    const message2: Object = this.context.languagePack.message;
-    let value: ?Object = null;
 
-    try{
+  // 表单预览
+  handleRedoJsonSchema = (event) => {
+    const { textAreaValue } = this.state;
+    const { action } = this.props;
+    const langMessage = this.context.languagePack.message;
+    let value = null;
+
+    try {
       value = JSON.parse(textAreaValue);
       action.setSchemaJson(value);
-    }catch(err){
-      message.error(message2.jsonFormatError);
+    } catch (err) {
+      message.error(langMessage.jsonFormatError);
     }
   };
+
   // 表单的change事件
-  handleInputTextAreaChange: Function = (event: Event): void=>{
+  handleInputTextAreaChange = (event) => {
     this.setState({ textAreaValue: event.target.value });
   };
-  render(): React.Node{
-    const { textAreaValue }: { textAreaValue: string } = this.state;
-    const { schemaJson }: { schemaJson: ?Object } = this.props;
-    const { language, languagePack }: {
-      language: string,
-      languagePack: Object
-    } = this.context;
-    const { preview }: { preview: Object } = languagePack;
-    const message2: Object = languagePack.message;
+
+  render() {
+    const { textAreaValue } = this.state;
+    const { schemaJson } = this.props;
+    const { language, languagePack } = this.context;
+    const { preview } = languagePack;
+    const langMessage = languagePack.message;
 
     return (
       <Fragment>
@@ -101,7 +91,10 @@ class Index extends Component<IndexProps, IndexState>{
         <Row className={ style.mb10 } type="flex" gutter={ 10 }>
           <Col xs={ 24 } sm={ 24 } md={ 8 }>
             <div className={ style.tools }>
-              <Button className={ style.mr10 } icon="copy" onClick={ handleCopyTextClick.bind(this, 'jsonSchemaTextArea2', message2.copyMessage) }>
+              <Button className={ style.mr10 }
+                icon="copy"
+                onClick={ handleCopyTextClick.bind(this, 'jsonSchemaTextArea2', langMessage.copyMessage) }
+              >
                 { preview.copy }
               </Button>
               <Button type="primary" icon="tablet" onClick={ this.handleRedoJsonSchema }>{ preview.generateForm }</Button>

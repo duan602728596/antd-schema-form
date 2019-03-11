@@ -20,7 +20,7 @@ module.exports = {
     'react-helmet'
   ],
   entry: {
-    app: [path.join(__dirname, 'src/app.js')]
+    app: [path.join(__dirname, 'src/index.js')]
   },
   output: { publicPath: isDevelopment ? '/' : 'https://duan602728596.github.io/antd-schema-form/' },
   loaders: {

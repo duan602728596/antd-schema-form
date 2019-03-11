@@ -1,5 +1,4 @@
-// @flow
-import * as React from 'react';
+import React from 'react';
 import { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Helmet from 'react-helmet';
@@ -9,11 +8,11 @@ import Index from './Index/index';
 import { I18NContext } from '../../components/I18N/I18N';
 
 @loadReducer(reducer)
-class ModuleLayout extends Component<{}>{
-  static contextType: React.Context<Object> = I18NContext;
+class ModuleLayout extends Component {
+  static contextType= I18NContext;
 
-  render(): Array<React.Node>{
-    const { preview }: { preview: Object } = this.context.languagePack;
+  render() {
+    const { preview } = this.context.languagePack;
 
     return [
       <Helmet key="helmet">

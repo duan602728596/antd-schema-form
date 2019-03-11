@@ -1,11 +1,9 @@
-// @flow
-import * as React from 'react';
+import React from 'react';
 import { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { createSelector, createStructuredSelector } from 'reselect';
-import type { RecordInstance } from 'immutable/dist/immutable.js.flow';
 import { Tag, Button, Collapse } from 'antd';
 import { setSchemaJson } from '../store/reducer';
 import style from './style.sass';
@@ -15,105 +13,92 @@ import EditDrawer from './EditDrawer';
 import { I18NContext } from '../../../components/I18N/I18N';
 
 /* state */
-const state: Function = createStructuredSelector({
+const state = createStructuredSelector({
   schemaJson: createSelector(
-    ($$state: RecordInstance<Object>): ?RecordInstance<Object> => $$state.has('createForm') ? $$state.get('createForm') : null,
-    ($$data: ?RecordInstance<Object>): Object => $$data ? $$data.get('schemaJson').toJS() : {}
+    ($$state) => $$state.has('createForm') ? $$state.get('createForm') : null,
+    ($$data) => $$data ? $$data.get('schemaJson').toJS() : {}
   )
 });
 
 /* dispatch */
-const dispatch: Function = (dispatch: Function): Object=>({
+const dispatch = (dispatch) => ({
   action: bindActionCreators({
     setSchemaJson
   }, dispatch)
 });
 
-type ChangeJsonProps = {
-  schemaJson: Object,
-  action: Object
-};
-
-type ChangeJsonState = {
-  schemaJson: Object,
-  isAddDrawerDisplay: boolean,
-  isEditDrawerDisplay: boolean,
-  addItem: ?Object,
-  editItem: ?Object
-};
-
-class ChangeJson extends Component<ChangeJsonProps, ChangeJsonState>{
-  static contextType: React.Context<Object> = I18NContext;
-  static propTypes: Object = {
+class ChangeJson extends Component {
+  static contextType = I18NContext;
+  static propTypes = {
     schemaJson: PropTypes.object,
     action: PropTypes.objectOf(PropTypes.func)
   };
 
-  constructor(): void{
+  constructor() {
     super(...arguments);
 
-    const { schemaJson }: { schemaJson: Object } = this.props;
+    const { schemaJson } = this.props;
 
     this.state = {
       schemaJson,
-      isAddDrawerDisplay: false,  // 添加面板的显示和隐藏
+      isAddDrawerDisplay: false, // 添加面板的显示和隐藏
       isEditDrawerDisplay: false, // 编辑面板的显示和隐藏
       addItem: null,
       editItem: null
     };
   }
-  static getDerivedStateFromProps(nextProps: ChangeJsonProps, prevState: ChangeJsonState): ?{ schemaJson: Object }{
-    if(nextProps.schemaJson !== prevState.schemaJson){
-      const { schemaJson }: { schemaJson: Object } = nextProps;
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.schemaJson !== prevState.schemaJson) {
+      const { schemaJson } = nextProps;
 
       return { schemaJson };
     }
 
     return null;
   }
+
   // 关闭面板
-  handleCloseDrawerClick(itemName: string, visibleName: string, form: Object): void{
+  handleCloseDrawerClick(itemName, visibleName, form) {
     this.setState({
       [itemName]: null,
       [visibleName]: false
     });
   }
+
   // 打开添加面板
-  handleOpenAddDrawerClick(item: Object, event: Event): void{
+  handleOpenAddDrawerClick(item, event) {
     event.stopPropagation();
+
     this.setState({
       isAddDrawerDisplay: true,
       addItem: item
     });
   }
+
   // 打开编辑面板
-  handleOpenEditDrawerClick(item: Object, event: Event): void{
+  handleOpenEditDrawerClick(item, event) {
     event.stopPropagation();
+
     this.setState({
       isEditDrawerDisplay: true,
       editItem: item
     });
   }
   // 添加确认事件
-  handleOkAddDrawerClick: Function = (form: Object, value: Object, keys: string[]): void=>{
-    const { schemaJson, addItem }: {
-      schemaJson: Object,
-      addItem: Object
-    } = this.state;
-    const { $root }: { $root: Object } = value;
-    const { id, ...etcValue }: {
-      id: string,
-      etcValue: Object
-    } = $root;
+  handleOkAddDrawerClick = (form, value, keys) => {
+    const { schemaJson, addItem } = this.state;
+    const { $root } = value;
+    const { id, ...etcValue } = $root;
 
-    if(addItem.type === 'object'){
-      if(!('properties' in addItem)) addItem.properties = {};
+    if (addItem.type === 'object') {
+      if (!('properties' in addItem)) addItem.properties = {};
 
       addItem.properties[id] = {
         id: `${ addItem.id }/properties/${ id }`,
         ...etcValue
       };
-    }else if(addItem.type === 'array'){
+    } else if (addItem.type === 'array') {
       addItem.items = {
         id: `${ addItem.id }/items`,
         ...etcValue
@@ -126,21 +111,16 @@ class ChangeJson extends Component<ChangeJsonProps, ChangeJsonState>{
       addItem: null
     });
   };
-  // 编辑确认事件
-  handleOkEditDrawerClick: Function = (form: Object, value: Object, keys: string[]): void=>{
-    const { schemaJson, editItem }: {
-      schemaJson: Object,
-      editItem: Object
-    } = this.state;
-    const { $root }: { $root: Object } = value;
-    const { id, ...etcValue }: {
-      id: string,
-      etcValue: Object
-    } = $root;
 
-    if(editItem.type === 'object'){
+  // 编辑确认事件
+  handleOkEditDrawerClick = (form, value, keys) => {
+    const { schemaJson, editItem } = this.state;
+    const { $root } = value;
+    const { id, ...etcValue } = $root;
+
+    if (editItem.type === 'object') {
       delete editItem.items;
-    }else if(editItem.type === 'array'){
+    } else if (editItem.type === 'array') {
       delete editItem.properties;
     }
 
@@ -153,40 +133,44 @@ class ChangeJson extends Component<ChangeJsonProps, ChangeJsonState>{
       editItem: null
     });
   };
+
   // 根据指定id查找并删除数据
-  findAndDelete(id: string, item: Object, father: ?Object, key: ?string): void{
-    if(item.id === id && father && key){
+  findAndDelete(id, item, father, key) {
+    if (item.id === id && father && key) {
       delete father[key];
+
       return void 0;
     }
 
-    if(item.type === 'object'){
-      for(const key: string in item.properties){
+    if (item.type === 'object') {
+      for (const key in item.properties) {
         this.findAndDelete(id, item.properties[key], item.properties, key);
       }
 
       return void 0;
     }
 
-    if(item.type === 'array'){
+    if (item.type === 'array') {
       this.findAndDelete(id, item.items, item, 'items');
 
       return void 0;
     }
   }
+
   // 删除事件
-  handleDeleteItemClick(item: Object, event: Event): void{
+  handleDeleteItemClick(item, event) {
     event.stopPropagation();
 
-    const { id }: { id: string } = item;
-    const { schemaJson }: { schemaJson: Object } = this.state;
+    const { id } = item;
+    const { schemaJson } = this.state;
 
     this.findAndDelete(id, schemaJson);
     this.props.action.setSchemaJson(schemaJson);
   }
+
   // 根据不同的类型渲染不同的标签
-  typeTagView(type: string): React.Node{
-    switch(type){
+  typeTagView(type) {
+    switch (type) {
       case 'object':
         return <Tag color="magenta">object</Tag>;
 
@@ -206,22 +190,23 @@ class ChangeJson extends Component<ChangeJsonProps, ChangeJsonState>{
         return null;
     }
   }
+
   // 渲染面板内的信息
-  infoTableView(item: Object): React.Node{
-    const element: React.Node[] = [];
-    const { type }: { type: string } = item;
-    const { language }: { language: string } = this.context;
-    const json2: Object = language in json ? json[language] : json.default;
+  infoTableView(item) {
+    const element = [];
+    const { type } = item;
+    const { language } = this.context;
+    const json2 = language in json ? json[language] : json.default;
 
-    for(const key: string in json2[type].properties){
-      if(key in item){
-        let value: any = item[key];
+    for (const key in json2[type].properties) {
+      if (key in item) {
+        let value = item[key];
 
-        if(value === undefined || value === null) continue;
+        if (value === undefined || value === null) continue;
 
-        if(typeof value === 'boolean'){
+        if (typeof value === 'boolean') {
           value = String(value);
-        }else if(typeof value === 'object'){
+        } else if (typeof value === 'object') {
           value = Object.prototype.toString.call(value);
         }
 
@@ -240,16 +225,13 @@ class ChangeJson extends Component<ChangeJsonProps, ChangeJsonState>{
       </table>
     );
   }
-  // 渲染面板
-  collapseListView(item: Object, disableDelete?: boolean): React.Node{
-    const { type, title }: {
-      type: string,
-      title: string,
-      Description: string
-    } = item;
-    const { createForm }: { createForm: Object } = this.context.languagePack;
 
-    const element: React.Node[] = [
+  // 渲染面板
+  collapseListView(item, disableDelete) {
+    const { type, title } = item;
+    const { createForm } = this.context.languagePack;
+
+    const element = [
       <Collapse key="collapse" bordered={ false }>
         <Collapse.Panel header={
           <div className="clearfix">
@@ -280,17 +262,17 @@ class ChangeJson extends Component<ChangeJsonProps, ChangeJsonState>{
       </Collapse>
     ];
 
-    const childrenList: Array<React.Node> = [];
+    const childrenList = [];
 
-    if(type === 'object' && item.properties){
-      for(const key: string in item.properties){
+    if (type === 'object' && item.properties) {
+      for (const key in item.properties) {
         childrenList.push(this.collapseListView(item.properties[key]));
       }
-    }else if(type === 'array' && item.items){
+    } else if (type === 'array' && item.items) {
       childrenList.push(this.collapseListView(item.items));
     }
 
-    if(childrenList.length > 0){
+    if (childrenList.length > 0) {
       element.push(
         <div key="children" className={ style.children }>{ childrenList }</div>
       );
@@ -298,15 +280,10 @@ class ChangeJson extends Component<ChangeJsonProps, ChangeJsonState>{
 
     return element;
   }
-  render(): React.Node{
-    const { schemaJson, isAddDrawerDisplay, isEditDrawerDisplay, addItem, editItem }: {
-      schemaJson: Object,
-      isAddDrawerDisplay: boolean,
-      isEditDrawerDisplay: boolean,
-      addItem: ?Object,
-      editItem: ?Object
-    } = this.state;
-    const len: Object = Object.values(schemaJson).length;
+
+  render() {
+    const { schemaJson, isAddDrawerDisplay, isEditDrawerDisplay, addItem, editItem } = this.state;
+    const len = Object.values(schemaJson).length;
 
     return (
       <Fragment>
