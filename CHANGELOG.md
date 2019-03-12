@@ -1,3 +1,7 @@
+### v2.0.0-beta.13
+
+* 🐛Fixed an issue where the select component of string would still have a clear button in the case of required (not $required).
+
 ### v2.0.0-beta.12
 
 * 🐛Use the native drag and drop to replace the drag of the dnd component to avoid the `Cannot have two HTML5 backends at the same time` error caused by other components using the dnd component.
