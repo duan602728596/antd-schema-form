@@ -84,7 +84,7 @@ class FormString extends Component<FormStringProps> {
         element = getFieldDecorator(id, option)(
           <Select className={ styleName('string-select') }
             placeholder={ $placeholder }
-            allowClear={ !$required }
+            allowClear={ !($required || required) }
           >
             { this.selectOptionsView($options) }
           </Select>
