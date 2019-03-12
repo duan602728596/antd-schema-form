@@ -149,9 +149,9 @@ The component renders the numeric input box by default ([InputNumber](https://an
 
 * `required: boolean`: The current object value must exist. Corresponding validation of the corresponding form.
 * `$requiredMessage: string`: Customize the required verification failure message.
-* `minimum: number`: the minimum value of the form.
+* `minimum: number`: The minimum value of the form.
 * `$minimumMessage: string`: Customize the verification failure message for the minimum.
-* `maximum: number`: the maximum value of the form.
+* `maximum: number`: The maximum value of the form.
 * `$maximumMessage: string`: Customize the verification failure message for maximum.
 * `$integer: boolean`: Must be an integer. When type is integer, this item is verified by default.
 * `$integerMessage: string`: Customize the authentication failure message for $integer.
