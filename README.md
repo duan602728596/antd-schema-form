@@ -115,7 +115,7 @@ The component renders the collapsed panel by default ([Collapse](https://ant.des
 
 The component renders the input box by default ([Input](https://ant.design/components/input/)). **Configuration properties:**
 
-* `required: boolean`: The current object value must exist. Corresponding validation of the corresponding form.
+* `$required: boolean`: The current object value must exist. Corresponding validation of the corresponding form.
 * `$requiredMessage: string`: Customize the required verification failure message.
 * `pattern: string`: regular expression validation.
 * `$patternOption: string`: Used to specify global matches, case-sensitive matches, and multi-line matches.
@@ -147,7 +147,7 @@ The component renders the input box by default ([Input](https://ant.design/compo
 
 The component renders the numeric input box by default ([InputNumber](https://ant.design/components/input-number/)). **Configuration properties:**
 
-* `required: boolean`: The current object value must exist. Corresponding validation of the corresponding form.
+* `$required: boolean`: The current object value must exist. Corresponding validation of the corresponding form.
 * `$requiredMessage: string`: Customize the required verification failure message.
 * `minimum: number`: The minimum value of the form.
 * `$minimumMessage: string`: Customize the verification failure message for the minimum.
