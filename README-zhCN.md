@@ -24,7 +24,7 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
   ```javascript
   import React, { Component } from 'react';
   import ReactDOM from 'react-dom';
-  import Schemaform, {
+  import SchemaForm, {
     getKeysFromObject,  // 获取schema.json下所有的key
     getObjectFromValue, // object对象，格式化成表单需要的值
     getValueFromObject  // 从form获取到的表单的值，格式化成object对象
