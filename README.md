@@ -23,7 +23,7 @@ Antd-schema-form based [Ant Design](https://ant.design/), quickly generate inter
   ```javascript
   import React, { Component } from 'react';
   import ReactDOM from 'react-dom';
-  import Schemaform, {
+  import SchemaForm, {
     getKeysFromObject,  // Get all the keys under schema.json
     getObjectFromValue, // Object formatted into the value required by the form
     getValueFromObject  // The value of the form obtained from the form, formatted into an object
