@@ -1,6 +1,6 @@
 ### v2.0.0
 
-* 🎉Component release version 2.0.0。
+* 🎉Component release version 2.0.0.
 * 🐛Fixed drag and drop of table component.
 * 🌟Allow form fields to be hidden (form values still exist).
 * 🌟Allow columns of table components to be hidden (form values still exist).
