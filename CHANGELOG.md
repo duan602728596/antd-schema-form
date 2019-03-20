@@ -1,3 +1,7 @@
+### v2.0.1
+
+* 🐛Fix the problem that the maximum and minimum values of the number component are still valid when the component has no value.
+
 ### v2.0.0
 
 * 🎉Component release version 2.0.0.
