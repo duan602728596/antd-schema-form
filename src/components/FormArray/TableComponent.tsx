@@ -15,7 +15,7 @@ import { formatTableValue, sortIndex } from './tableFunction';
 import FormObject from '../FormObject/FormObject';
 import { minErrStr, maxErrStr } from './createArrayRules';
 import styleName from '../../utils/styleName';
-import { StringItem, NumberItem, BooleanItem, ArrayItem, ContextValue } from '../../types';
+import { SchemaItem, StringItem, NumberItem, BooleanItem, ArrayItem, ContextValue } from '../../types';
 
 // 拖拽相关变量
 const tableDragClassName: [string, string] = [
@@ -402,14 +402,17 @@ class TableComponent extends Component<TableComponentProps> {
 
     if (type === 'object') {
       for (const key in properties) {
-        const item: object = properties[key];
+        const item: SchemaItem = properties[key];
 
-        columnArr.push({
-          title: item['title'],
-          key,
-          dataIndex: key,
-          render: renderCb
-        });
+        // 隐藏列
+        if (!item.$tableColumnHidden) {
+          columnArr.push({
+            title: item.title,
+            key,
+            dataIndex: key,
+            render: renderCb
+          });
+        }
       }
     } else {
       columnArr.push({

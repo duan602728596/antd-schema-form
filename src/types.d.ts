@@ -18,6 +18,7 @@ export interface SchemaItem {
   $oneOfIndex?: number;
   $oneOfDisabled?: boolean;
   $hidden?: boolean;
+  $tableColumnHidden?: boolean;
 }
 
 export interface StringItem extends SchemaItem {
