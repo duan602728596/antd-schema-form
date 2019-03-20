@@ -103,6 +103,8 @@ You can use [form generation](https://duan602728596.github.io/antd-schema-form/#
 * `oneOf: Array<object>`: Multiple types of keywords possible.
 * `$oneOfIndex: number`: The index of the selected Radio.Group under *oneOf*.
 * `$oneOfDisabled: boolean`: *OneOf* is disabled under Radio.Group.
+* `$hidden: boolean`: Hide form fields (form values still exist).
+* `$tableColumnHidden: boolean`: When the object is an object in the array and the component is a table, the column is hidden (the form value still exists).
 
 ### `type="object"`:
 

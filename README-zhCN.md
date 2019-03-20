@@ -104,6 +104,8 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
 * `oneOf: Array<object>`: 关键字可能的多个类型。
 * `$oneOfIndex: number`: *oneOf*下选中的Radio.Group的索引。
 * `$oneOfDisabled: boolean`: *oneOf*下Radio.Group禁止切换。
+* `$hidden: boolean`: 隐藏表单域（表单值仍然存在）。
+* `$tableColumnHidden: boolean`: 为数组内的对象且组件为表格时，隐藏列（表单值仍然存在）。
 
 ### `type="object"`:
 
