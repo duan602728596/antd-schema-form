@@ -329,10 +329,17 @@ class TableComponent extends Component<TableComponentProps> {
   }
 
   // 抽屉的显示和隐藏
-  handleDrawerDisplayClick(key: string, value: string, eventOrObject: React.MouseEvent<Button> | object): void {
-    this.setState({
+  handleDrawerDisplayClick(key: string, value: boolean, eventOrObject: React.MouseEvent<Button> | object): void {
+    const state: {
+      editIndex?: number | null;
+      [key: string]: any;
+    } = {
       [key]: value
-    });
+    };
+
+    if (!value) state.editIndex = null;
+
+    this.setState(state);
   }
 
   // 表格的单选和多选
@@ -508,8 +515,8 @@ class TableComponent extends Component<TableComponentProps> {
         {/* 添加和修改数据的抽屉组件 */}
         <Drawer width="100%" visible={ isDisplayDataDrawer } destroyOnClose={ true } closable={ false }>
           <FormObject root={ items }
-            okText={ editIndex ? undefined : languagePack.formObject.addOkText }
-            cancelText={ editIndex ? undefined : languagePack.formObject.addCancelText }
+            okText={ editIndex !== null ? undefined : languagePack.formObject.addOkText }
+            cancelText={ editIndex !== null ? undefined : languagePack.formObject.addCancelText }
             onOk={ this.handleAddOrEditDataClick }
             onCancel={ this.handleDrawerDisplayClick.bind(this, 'isDisplayDataDrawer', false) }
           />
