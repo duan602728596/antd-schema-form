@@ -10,6 +10,8 @@
   },
   "formObject": {
     "okText": "确认",
-    "cancelText": "取消"
+    "cancelText": "取消",
+    "addOkText": "添加",
+    "addCancelText": "关闭"
   }
 }

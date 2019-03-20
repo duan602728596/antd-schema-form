@@ -39,6 +39,7 @@ interface TableComponentState {
   inputDisplayIndex?: number;
   inputChangeIndex?: string;
   selectedRowKeys: Array<number>;
+  editIndex: number | null;
 }
 
 class TableComponent extends Component<TableComponentProps> {
@@ -49,13 +50,12 @@ class TableComponent extends Component<TableComponentProps> {
     root: PropTypes.object
   };
 
-
   changeIndexRef: RefObject<Input> = createRef();
-  editIndex: number | null = null;
 
   // 拖拽
   dragTargetId: string | undefined = undefined; // 被拖拽的id
   dragTargetIndex: number | undefined = undefined; // 被拖拽的index
+
   components: TableComponents = {
     body: {
       row: (item: any): React.ReactElement<'tr'> => {
@@ -89,7 +89,8 @@ class TableComponent extends Component<TableComponentProps> {
     isDisplayDataDrawer: false, // 添加和修改数据的抽屉的显示和隐藏
     inputDisplayIndex: undefined, // 编辑框修改位置的状态
     inputChangeIndex: undefined, // 编辑框的值
-    selectedRowKeys: [] // 多选框
+    selectedRowKeys: [], // 多选框
+    editIndex: null // 当前表格编辑的对象
   };
 
   // 编辑位置框修改位置
@@ -278,20 +279,22 @@ class TableComponent extends Component<TableComponentProps> {
     tableValue = isSpace(tableValue) ? (root.$defaultValue || []) : tableValue;
 
     // 判断是修改还是添加
-    if (this.editIndex === null) {
+    if (this.state.editIndex === null) {
       tableValue[root.$addDataInReverseOrder ? 'unshift' : 'push'](result['items']);
     } else {
-      tableValue[this.editIndex] = result['items'];
+      tableValue[this.state.editIndex] = result['items'];
     }
 
     form.setFieldsValue({ [id]: tableValue });
 
     // 重置状态
-    if (this.editIndex === null) {
+    if (this.state.editIndex === null) {
       form.resetFields(keys);
     } else {
-      this.editIndex = null;
-      this.setState({ isDisplayDataDrawer: false });
+      this.setState({
+        isDisplayDataDrawer: false,
+        editIndex: null
+      });
     }
   };
 
@@ -319,10 +322,9 @@ class TableComponent extends Component<TableComponentProps> {
     const itemValue: any = tableValue[index];
     const result: Object = getObjectFromValue({ items: itemValue }, id);
 
-    this.editIndex = index;
-
     this.setState({
-      isDisplayDataDrawer: true
+      isDisplayDataDrawer: true,
+      editIndex: index
     }, (): void => form.setFieldsValue(result));
   }
 
@@ -445,7 +447,7 @@ class TableComponent extends Component<TableComponentProps> {
     const { root }: TableComponentProps = this.props;
     const { form, languagePack }: ContextValue = this.context;
     const { id, items, minItems, maxItems, $minItemsMessage, $maxItemsMessage }: ArrayItem = root;
-    const { isDisplayDataDrawer, selectedRowKeys, inputDisplayIndex }: TableComponentState = this.state;
+    const { isDisplayDataDrawer, selectedRowKeys, inputDisplayIndex, editIndex }: TableComponentState = this.state;
     const inputNotDisplay: boolean = isSpace(inputDisplayIndex);
     let value: Array<any> = form.getFieldValue(id);
 
@@ -503,6 +505,8 @@ class TableComponent extends Component<TableComponentProps> {
         {/* 添加和修改数据的抽屉组件 */}
         <Drawer width="100%" visible={ isDisplayDataDrawer } destroyOnClose={ true } closable={ false }>
           <FormObject root={ items }
+            okText={ editIndex ? undefined : languagePack.formObject.addOkText }
+            cancelText={ editIndex ? undefined : languagePack.formObject.addCancelText }
             onOk={ this.handleAddOrEditDataClick }
             onCancel={ this.handleDrawerDisplayClick.bind(this, 'isDisplayDataDrawer', false) }
           />

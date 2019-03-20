@@ -10,6 +10,8 @@
   },
   "formObject": {
     "okText": "OK",
-    "cancelText": "Cancel"
+    "cancelText": "Cancel",
+    "addOkText": "Add",
+    "addCancelText": "Close"
   }
 }
