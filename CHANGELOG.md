@@ -1,3 +1,11 @@
+### v2.0.0
+
+* 🎉Component release version 2.0.0。
+* 🐛Fixed drag and drop of table component.
+* 🌟Allow form fields to be hidden (form values still exist).
+* 🌟Allow columns of table components to be hidden (form values still exist).
+* 🌟The panel button text when the table component adds data is changed to "Add" and "Close".
+
 ### v2.0.0-beta.13
 
 * 🐛Fixed an issue where the select component of string would still have a clear button in the case of required (not $required).
@@ -45,6 +53,8 @@
 
 * 💀Refactor the code using **typescript**.
 
+---
+
 ### v1.2.0
 
 * 💀The file upload component **upload** has been removed, and the file upload is implemented using a custom component.
@@ -66,6 +76,8 @@
 
 * 🎉The component is released in the official version.
 * 🌟The component has added international support.
+
+---
 
 ### v0.4.0-beta.1
 
