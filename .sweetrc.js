@@ -23,30 +23,6 @@ module.exports = {
     app: [path.join(__dirname, 'src/index.js')]
   },
   output: { publicPath: isDevelopment ? '/' : 'https://duan602728596.github.io/antd-schema-form/' },
-  loaders: {
-    svg: {
-      test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-      use: [
-        { loader: 'babel-loader' },
-        {
-          loader: '@svgr/webpack',
-          options: { babel: false, icon: true }
-        }
-      ]
-    }
-  },
-  rules: [
-    {
-      test: /dll\.js/,
-      use: [{
-        loader: 'file-loader',
-        options: {
-          name: isDevelopment ? '[name].[ext]' : '[hash:5].[ext]',
-          outputPath: 'script/'
-        }
-      }]
-    }
-  ],
   js: {
     plugins: [
       [
@@ -67,9 +43,11 @@ module.exports = {
         }
       ]
     ],
-    exclude: /(dll\.js|node_modules[\\/](?!antd-schema-form))/
+    exclude: /node_modules[\\/](?!antd-schema-form)/
   },
-  sass: { include: /src/ },
+  sass: {
+    include: /src/
+  },
   css: {
     modules: false,
     include: /(node_modules[\\/]antd(-schema-form)?|highlightjs)/
