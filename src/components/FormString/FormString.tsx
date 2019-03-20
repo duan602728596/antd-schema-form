@@ -57,7 +57,8 @@ class FormString extends Component<FormStringProps> {
       $readOnly,
       $defaultValue,
       $options = [],
-      $placeholder
+      $placeholder,
+      $hidden
     }: StringItem = root;
     const rules: Array<ValidationRule> = createStringRules(this.props.root, required);
     const option: GetFieldDecoratorOptions = { rules };
@@ -122,7 +123,7 @@ class FormString extends Component<FormStringProps> {
     }
 
     return (
-      <Form.Item label={ title }>
+      <Form.Item className={ $hidden ? styleName('hidden') : undefined } label={ title }>
         <Tooltip title={ description } placement="topRight">
           { element }
         </Tooltip>

@@ -47,7 +47,8 @@ class FormNumber extends Component<FormNumberProps> {
       $readOnly,
       $defaultValue,
       $options = [],
-      $placeholder
+      $placeholder,
+      $hidden
     }: NumberItem = root;
     const rules: Array<ValidationRule> = createNumberRules(this.props.root, required, type === 'integer');
     const option: GetFieldDecoratorOptions = { rules };
@@ -71,7 +72,7 @@ class FormNumber extends Component<FormNumberProps> {
     }
 
     return (
-      <Form.Item label={ title }>
+      <Form.Item className={ $hidden ? styleName('hidden') : undefined } label={ title }>
         <Tooltip title={ description } placement="topRight">
           { element }
         </Tooltip>

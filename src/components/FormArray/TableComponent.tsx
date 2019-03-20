@@ -196,7 +196,7 @@ class TableComponent extends Component<TableComponentProps> {
     if (fatherTarget !== undefined) {
       const overId: string | undefined = fatherTarget['dataset'].id;
 
-      // 添加样式
+      // 移除样式
       if (this.dragTargetId !== undefined && this.dragTargetIndex !== undefined && this.dragTargetId === overId) {
         fatherTarget.classList.remove(tableDragClassName[0]);
         fatherTarget.classList.remove(tableDragClassName[1]);

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Component, Context } from 'react';
 import * as PropTypes from 'prop-types';
 import { Requireable } from 'prop-types';
+import classNames from 'classnames';
 import { Form, Tooltip, Select, Checkbox } from 'antd';
 import { GetFieldDecoratorOptions, ValidationRule, WrappedFormUtils } from 'antd/lib/form/Form';
 import AntdSchemaFormContext from '../../context';
@@ -47,7 +48,7 @@ class FormArray extends Component<FormArrayProps> {
       getFieldProps
     }: WrappedFormUtils = form;
     const { root, required }: FormArrayProps = this.props;
-    const { id, title, description, $componentType, $defaultValue, $options = [] }: ArrayItem = root;
+    const { id, title, description, $componentType, $defaultValue, $options = [], $hidden }: ArrayItem = root;
     const rules: Array<ValidationRule> = createArrayRules(root, required);
     const option: GetFieldDecoratorOptions = { rules };
     let isTableComponent: boolean = false; // 判断是否为table组件
@@ -79,8 +80,13 @@ class FormArray extends Component<FormArrayProps> {
         }
     }
 
+    const classname: string = classNames({
+      [styleName('array-table-form-item')]: isTableComponent,
+      [styleName('hidden')]: $hidden
+    });
+
     return (
-      <Form.Item className={ isTableComponent ? styleName('array-table-form-item') : undefined } label={ title }>
+      <Form.Item className={ classname } label={ title }>
         <Tooltip title={ description } placement="topRight">
           { element }
         </Tooltip>

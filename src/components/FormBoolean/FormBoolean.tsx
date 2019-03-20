@@ -7,6 +7,7 @@ import { GetFieldDecoratorOptions, WrappedFormUtils } from 'antd/lib/form/Form';
 import AntdSchemaFormContext from '../../context';
 import { isSpace } from '../../utils/type';
 import { ContextValue, BooleanItem } from '../../types';
+import styleName from '../../utils/styleName';
 
 /**
  * 当类型为boolean时的组件渲染
@@ -60,7 +61,7 @@ class FormBoolean extends Component<FormBooleanProps, FormBooleanState> {
     const { form, customComponent }: ContextValue = this.context;
     const { getFieldDecorator }: WrappedFormUtils = form;
     const { root, required }: FormBooleanProps = this.props;
-    const { id, title, description, $componentType, $defaultValue }: BooleanItem = root;
+    const { id, title, description, $componentType, $defaultValue, $hidden }: BooleanItem = root;
     const option: GetFieldDecoratorOptions = {};
     const { isChecked }: FormBooleanState = this.state;
     let element: React.ReactNode = null;
@@ -80,7 +81,7 @@ class FormBoolean extends Component<FormBooleanProps, FormBooleanState> {
     }
 
     return (
-      <Form.Item label={ title }>
+      <Form.Item className={ $hidden ? styleName('hidden') : undefined } label={ title }>
         <Tooltip title={ description } placement="topRight">
           { element }
         </Tooltip>

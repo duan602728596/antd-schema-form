@@ -1,8 +1,14 @@
 @import './variable'
 
+/* common */
+@mixin common()
+  // 隐藏表单域
+  .#{ $prefix }-hidden
+    display: none
+
 /* object */
 @mixin object()
-  .#{ $prefix }object
+  .#{ $prefix }-object
     &-description
       margin-left: 10px
       font-size: 12px
@@ -21,7 +27,7 @@
     &-cancel
       margin-left: 10px
 
-  .ant-radio-group + .#{ $prefix }object-collapse
+  .ant-radio-group + .#{ $prefix }-object-collapse
     margin-top: 10px
 
 /* string */
@@ -35,14 +41,14 @@
 
 /* number */
 @mixin number()
-  .#{ $prefix }number
+  .#{ $prefix }-number
     &-input
       width: 100%
       max-width: 300px
 
 /* array */
 @mixin array()
-  .#{ $prefix }array
+  .#{ $prefix }-array
     // 隐藏table的错误校验提示
     &-table-form-item .has-error .ant-form-explain
       display: none
@@ -73,7 +79,7 @@
       cursor: move
 
   // table拖拽
-  tr.#{ $prefix }array
+  tr.#{ $prefix }-array
     &-drop-over
       &-downward td
         border-bottom: 2px dashed $array-table-drop-over-border-color

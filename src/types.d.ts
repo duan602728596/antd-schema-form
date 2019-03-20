@@ -17,6 +17,7 @@ export interface SchemaItem {
   oneOf?: Array<any>;
   $oneOfIndex?: number;
   $oneOfDisabled?: boolean;
+  $hidden?: boolean;
 }
 
 export interface StringItem extends SchemaItem {
