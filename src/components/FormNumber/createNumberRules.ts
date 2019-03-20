@@ -11,7 +11,7 @@ function createNumberRules(root: NumberItem, required: boolean, isInteger: boole
   const rules: ValidationRule[] = [];
 
   // 判断表单是否必填
-  if ($required === true || required === true) {
+  if ($required || required) {
     rules.push({
       required: true,
       message: $requiredMessage || '该选项为必填项'
@@ -38,22 +38,38 @@ function createNumberRules(root: NumberItem, required: boolean, isInteger: boole
   // 最小值
   if (!isSpace(minimum) && isNumber(minimum)) {
     rules.push({
-      validator: (rule: ValidationRule, value: number, callback: Function): void => {
-        if (minimum !== undefined && value < minimum) callback(rule.message);
-        else callback();
+      validator: (rule: ValidationRule, value: number | string, callback: Function): void => {
+        if (minimum !== undefined) {
+          // 当表单没有值时，value的type为string
+          if (typeof value === 'number' && value < minimum) {
+            callback(rule.message);
+          } else {
+            callback();
+          }
+        } else {
+          callback();
+        }
       },
-      message: $minimumMessage || `值必须大于${ minimum }`
+      message: $minimumMessage || `值必须大于等于${ minimum }`
     });
   }
 
   // 最大值
   if (!isSpace(maximum) && isNumber(maximum)) {
     rules.push({
-      validator: (rule: ValidationRule, value: number, callback: Function): void => {
-        if (maximum !== undefined && value > maximum) callback(rule.message);
-        else callback();
+      validator: (rule: ValidationRule, value: number | string, callback: Function): void => {
+        if (maximum !== undefined) {
+          // 当表单没有值时，value的type为string
+          if (typeof value === 'number' && value > maximum) {
+            callback(rule.message);
+          } else {
+            callback();
+          }
+        } else {
+          callback();
+        }
       },
-      message: $maximumMessage || `值必须小于${ maximum }`
+      message: $maximumMessage || `值必须小于等于${ maximum }`
     });
   }
 
