@@ -61,11 +61,11 @@ class TableComponent extends Component<TableComponentProps> {
       row: (item: any): React.ReactElement<'tr'> => {
         const { root }: TableComponentProps = this.props;
         const { id }: ArrayItem = root;
-        const { children, index, className }: {
+        const { children, className }: {
           children: React.ReactNodeArray;
-          index: number;
           className: string;
         } = item;
+        const index: number = Number(item['data-row-key']);
 
         return (
           <tr className={ className }
