@@ -103,6 +103,16 @@
       "type": "boolean",
       "title": "Form control read only"
     },
+    "$hidden": {
+      "id": "$root/properties/$hidden",
+      "type": "boolean",
+      "title": "Hide form fields (form values still exist)"
+    },
+    "$tableColumnHidden": {
+      "id": "$root/properties/$tableColumnHidden",
+      "type": "boolean",
+      "title": "Hidden columns when the object is in an array and the component is a table (the form value still exists)"
+    },
     "$placeholder": {
       "id": "$root/properties/$placeholder",
       "type": "string",

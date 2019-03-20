@@ -91,6 +91,16 @@
         }
       }
     },
+    "$hidden": {
+      "id": "$root/properties/$hidden",
+      "type": "boolean",
+      "title": "隐藏表单域（表单值仍然存在）"
+    },
+    "$tableColumnHidden": {
+      "id": "$root/properties/$tableColumnHidden",
+      "type": "boolean",
+      "title": "为数组内的对象且组件为表格时，隐藏列（表单值仍然存在）"
+    },
     "$addDataInReverseOrder": {
       "id": "$root/properties/$addDataInReverseOrder",
       "type": "boolean",

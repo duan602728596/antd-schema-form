@@ -27,6 +27,16 @@
       "type": "string",
       "title": "Description, used to describe the role of the keyword"
     },
+    "$hidden": {
+      "id": "$root/properties/$hidden",
+      "type": "boolean",
+      "title": "Hide form fields (form values still exist)"
+    },
+    "$tableColumnHidden": {
+      "id": "$root/properties/$tableColumnHidden",
+      "type": "boolean",
+      "title": "Hidden columns when the object is in an array and the component is a table (the form value still exists)"
+    },
     "$defaultValue": {
       "id": "$root/properties/$defaultValue",
       "type": "boolean",
