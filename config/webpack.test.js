@@ -1,10 +1,17 @@
 /* 测试用例的webpack配置 */
 const path = require('path');
+const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { basicConfig, rules, plugins } = require('./basic.config');
 
-module.exports = {
-  ...basicConfig,
+const config = {
+  module: {
+    rules
+  },
+  plugins
+};
+
+module.exports = merge(basicConfig, config, {
   entry: {
     app: path.join(__dirname, '../tests/index.js')
   },
@@ -16,7 +23,6 @@ module.exports = {
   },
   module: {
     rules: [
-      ...rules,
       {
         test: /(mocha\.(js|css)|chai)/,
         use: [
@@ -31,11 +37,10 @@ module.exports = {
     ]
   },
   plugins: [
-    ...plugins,
     new HtmlWebpackPlugin({
       inject: true,
       template: path.join(__dirname, '../tests/index.ejs'),
       filename: 'index.html'
     })
   ]
-};
+});
