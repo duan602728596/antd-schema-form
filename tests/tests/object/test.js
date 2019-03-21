@@ -5,10 +5,12 @@ import { mount } from 'enzyme';
 import * as React from 'react';
 import SchemaForm from '../../SchemaForm';
 
-describe('组件渲染', function() {
-  /* 组件渲染 */
-  describe('组件渲染', function() {
-    it('组件渲染', function() {
+/* 组件渲染 */
+describe('component rendering', function() {
+  // 组件渲染
+  describe('component rendering', function() {
+    // 组件渲染
+    it('should render component', function() {
       const json = {
         id: '$root',
         type: 'object',
@@ -61,8 +63,9 @@ describe('组件渲染', function() {
   });
 
   /* oneOf渲染 */
-  describe('oneOf', function() {
-    it('oneOf', function() {
+  describe('oneOf component rendering', function() {
+    // oneOf
+    it('should oneOf component rendering', function() {
       const json = {
         id: '$root',
         title: 'oneOf',
