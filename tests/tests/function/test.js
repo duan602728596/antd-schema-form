@@ -4,20 +4,24 @@ import { getKeysFromObjectTest0, getKeysFromObjectTest1, getKeysFromObjectTestOn
 import { getObjectFromValueTest0, getObjectFromValueTest1 } from './getObjectFromValueTest';
 import { getValueFromObjectTest0, getValueFromObjectTest1 } from './getValueFromObjectTest';
 
-describe('通用函数测试', function() {
-  describe('getKeysFromObject：根据schema.json获取一个keys的数组', function() {
-    it('测试0', getKeysFromObjectTest0);
-    it('测试1', getKeysFromObjectTest1);
-    it('测试 oneOf', getKeysFromObjectTestOneOf);
+// 通用函数测试
+describe('General function test', function() {
+  // 根据schema.json获取一个keys的数组
+  describe('getKeysFromObject: Get an array of keys according to schema.json', function() {
+    it('should return an array of keys', getKeysFromObjectTest0);
+    it('should return an array of keys', getKeysFromObjectTest1);
+    it('should return an array of keys oneOfWhen there is oneOf in the schema', getKeysFromObjectTestOneOf);
   });
 
-  describe('getObjectFromValue：根据一个值，转换成表单所需要的object', function() {
-    it('测试0', getObjectFromValueTest0);
-    it('测试1', getObjectFromValueTest1);
+  // 根据一个值，转换成表单所需要的object
+  describe('getObjectFromValue: The object required to convert to a form based on a value', function() {
+    it('should return the object required for a form', getObjectFromValueTest0);
+    it('should return the object required for a form', getObjectFromValueTest1);
   });
 
-  describe('getValueFromObjectTest：根据表单值，转换成格式化后的值', function() {
-    it('测试0', getValueFromObjectTest0);
-    it('测试1', getValueFromObjectTest1);
+  // 根据表单值，转换成格式化后的值
+  describe('getValueFromObjectTest: Convert to formatted values based on form values', function() {
+    it('should return a formatted value', getValueFromObjectTest0);
+    it('should return a formatted value', getValueFromObjectTest1);
   });
 });

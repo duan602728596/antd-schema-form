@@ -136,8 +136,6 @@ export function getKeysFromObjectTestOneOf() {
     ]
   };
 
-  console.log(getKeysFromObject(json));
-
   expect(getKeysFromObject(json)).to.be.eql([
     '$root/properties/col1',
     '$root/properties/col2',
