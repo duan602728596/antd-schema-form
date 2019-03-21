@@ -18,25 +18,12 @@ module.exports = {
     rules: [
       ...rules,
       {
-        test: /(mocha\.js|chai)/,
+        test: /(mocha\.(js|css)|chai)/,
         use: [
           {
             loader: 'file-loader',
             options: {
-              name: '[name].[ext]',
-              outputPath: 'script/'
-            }
-          }
-        ]
-      },
-      {
-        test: /mocha\.css/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              outputPath: 'style/'
+              name: '[name].[hash]:[ext]'
             }
           }
         ]

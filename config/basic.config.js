@@ -6,8 +6,8 @@ exports.basicConfig = {
   mode: 'development',
   output: {
     path: path.join(__dirname, '../build'),
-    filename: 'script/[name].js',
-    chunkFilename: 'script/[name].js',
+    filename: '[name].js',
+    chunkFilename: '[name].js',
     publicPath: '/'
   },
   devtool: 'module-eval-source-map',
@@ -67,6 +67,7 @@ exports.rules = [
     include: /node_modules/
   }
 ];
+
 /* plugins */
 exports.plugins = [
   new webpack.IgnorePlugin({
