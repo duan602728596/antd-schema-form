@@ -5,7 +5,7 @@ import { mount } from 'enzyme';
 import * as React from 'react';
 import SchemaForm from '../../SchemaForm';
 
-/* 组件渲染 */
+/* 对象组件的测试用例 */
 describe('component rendering', function() {
   // 组件渲染
   describe('component rendering', function() {

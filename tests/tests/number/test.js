@@ -11,34 +11,38 @@ import {
   componentMaximum
 } from './verification';
 
-describe('数字类型组件', function() {
+/* 数字类型组件的测试用例 */
+describe('number component', function() {
   /* 组件渲染 */
-  describe('组件渲染', function() {
-    it('渲染默认组件', renderDefault);
-    it('渲染单选组件', renderRadio);
+  describe('component rendering', function() {
+    it('should render default component', renderDefault); // 渲染默认组件
+    it('should render radio', renderRadio); // 渲染单选组件
   });
 
   /* 交互测试 */
-  describe('交互测试', function() {
-    it('组件有默认值', componentHasDefaultValue);
-    it('组件有值', componentHastValue);
-    it('单选框有默认值', radioHasDefaultValue);
-    it('单选框有值', radioHastValue);
-    it('组件的值会覆盖默认值', theValueOfTheComponentOverridesTheDefaultValue);
+  describe('interactive test', function() {
+    it('should component has default value', componentHasDefaultValue); // 组件有默认值
+    it('should component has value', componentHastValue); // 组件有值
+    it('should select has default value', radioHasDefaultValue); // 单选框有默认值
+    it('should select has value', radioHastValue); // 单选框有值
+    // 组件的值会覆盖默认值
+    it('should the value of the component overrides the default value', theValueOfTheComponentOverridesTheDefaultValue);
   });
 
-  describe('组件的属性', function() {
-    it('组件只读', componentReadOnly);
-    it('组件的placeholder属性', componentPlaceholder);
+  /* 组件的属性 */
+  describe('component properties', function() {
+    it('should component read only', componentReadOnly); // 组件只读
+    it('should component has placeholder', componentPlaceholder); // 组件的placeholder属性
   });
 
-  describe('表单验证', function() {
-    it('组件值没有验证', componentNoverification);
-    it('表单必填', componentRequired);
-    it('组件的枚举', componentEnum);
-    it('组件值是整数', componentInteger);
-    it('组件值是整数', componentIntegerTrue);
-    it('组件的最小值', componentMinimum);
-    it('组件的最大值', componentMaximum);
+  /* 表单验证 */
+  describe('form validation', function() {
+    it('should form value not verified', componentNoverification); // 组件值没有验证
+    it('should form value must be required', componentRequired); // 表单必填
+    it('should form value must be enumerated', componentEnum); // 组件的枚举
+    it('should form value must be integer', componentInteger); // 组件值是整数
+    it('should form value must be integer', componentIntegerTrue); // 组件值是整数
+    it('should form value must has minimum value', componentMinimum); // 组件的最小值
+    it('should form value must has maximum value', componentMaximum); // 组件的最大值
   });
 });

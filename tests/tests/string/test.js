@@ -11,7 +11,7 @@ import {
   componentPattern
 } from './verification';
 
-/* 字符串组件测试用例 */
+/* 字符串组件的测试用例 */
 // 字符串组件
 describe('string component', function() {
   /* 组件渲染 */
@@ -50,12 +50,12 @@ describe('string component', function() {
     // 表单验证
     describe('form validation', function() {
       it('should form value not verified and has value', componentNoverification); // 表单没有验证
-      it('should form value required and no value', componentRequired); // 表单必填
-      it('should form value are enumerated and no value', componentEnum); // 组件的枚举
-      it('should form value has a minimum length and no value', componentMinLength); // 组件值的最小长度
-      it('should form value has a maximum length and no value', componentMaxLength); // 组件值的最大长度
-      it('should form value has a fixed length and no value', componentLength); // 组件的固定长度
-      it('should form value is verified with a regular form and no value', componentPattern); // 组件的正则表达式验证
+      it('should form value must be required', componentRequired); // 表单必填
+      it('should form value must be enumerated', componentEnum); // 组件的枚举
+      it('should form value must has a minimum length', componentMinLength); // 组件值的最小长度
+      it('should form value must has a maximum length ', componentMaxLength); // 组件值的最大长度
+      it('should form value must has a fixed length', componentLength); // 组件的固定长度
+      it('should form value must be verified with a regular', componentPattern); // 组件的正则表达式验证
     });
   });
 });
