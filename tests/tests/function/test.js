@@ -5,7 +5,7 @@ import { getObjectFromValueTest0, getObjectFromValueTest1 } from './getObjectFro
 import { getValueFromObjectTest0, getValueFromObjectTest1 } from './getValueFromObjectTest';
 
 // 通用函数测试
-describe('General function test', function() {
+describe('general function test', function() {
   // 根据schema.json获取一个keys的数组
   describe('getKeysFromObject: Get an array of keys according to schema.json', function() {
     it('should return an array of keys', getKeysFromObjectTest0);

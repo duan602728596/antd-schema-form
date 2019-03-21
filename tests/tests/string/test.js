@@ -12,45 +12,50 @@ import {
 } from './verification';
 
 /* 字符串组件测试用例 */
-describe('字符串组件', function() {
+// 字符串组件
+describe('string component', function() {
   /* 组件渲染 */
-  describe('组件渲染', function() {
-    it('渲染默认组件', renderDefault);
-    it('渲染文本域', renderTextArea);
-    it('渲染下拉框', renderSelect);
-    it('渲染单选组件', renderRadio);
-    it('渲染日期组件', renderDate);
+  describe('component rendering', function() {
+    it('should render default component', renderDefault); // 渲染默认组件
+    it('should render textarea', renderTextArea); // 渲染文本域
+    it('should render select', renderSelect); // 渲染下拉框
+    it('should render radio', renderRadio); // 渲染单选组件
+    it('should render date', renderDate); // 渲染日期组件
   });
 
   /* 交互测试 */
-  describe('交互测试', function() {
-    describe('有值', function() {
-      it('组件有默认值', componentHasDefaultValue);
-      it('组件有值', componentHastValue);
-      it('下拉框有默认值', selectHasDefaultValue);
-      it('下拉框有值', selectHasValue);
-      it('单选框有默认值', radioHasDefaultValue);
-      it('单选框有值', radioHastValue);
-      it('日期选择器有默认值', dateHasDefaultValue);
-      it('日期选择器有值', dateHasValue);
-      it('组件的值会覆盖默认值', theValueOfTheComponentOverridesTheDefaultValue);
+  describe('interactive test', function() {
+    // 有值
+    describe('has value', function() {
+      it('should component has default value', componentHasDefaultValue); // 组件有默认值
+      it('should component has value', componentHastValue); // 组件有值
+      it('should select has default value', selectHasDefaultValue); // 下拉框有默认值
+      it('should select has value', selectHasValue); // 下拉框有值
+      it('should radio has default value', radioHasDefaultValue); // 单选框有默认值
+      it('should radio has value', radioHastValue); // 单选框有值
+      it('should date has default value', dateHasDefaultValue); // 日期选择器有默认值
+      it('should date has value', dateHasValue); // 日期选择器有值
+      // 组件的值会覆盖默认值
+      it('should the value of the component overrides the default value', theValueOfTheComponentOverridesTheDefaultValue);
     });
 
-    describe('组件的属性', function() {
-      it('组件只读', componentReadOnly);
-      it('组件的placeholder属性', componentPlaceholder);
-      it('select组件的placeholder属性', selectComponentPlaceholder);
-      it('password组件的type属性', passwordComponentType);
+    // 组件的属性
+    describe('component properties', function() {
+      it('should component read only', componentReadOnly); // 组件只读
+      it('should component has placeholder', componentPlaceholder); // 组件的placeholder属性
+      it('should select has placeholder', selectComponentPlaceholder); // select组件的placeholder属性
+      it('should password has type', passwordComponentType); // password组件的type属性
     });
 
-    describe('表单验证', function() {
-      it('表单没有验证', componentNoverification);
-      it('表单必填', componentRequired);
-      it('组件的枚举', componentEnum);
-      it('组件值的最小长度', componentMinLength);
-      it('组件值的最大长度', componentMaxLength);
-      it('组件的固定长度', componentLength);
-      it('组件的正则表达式验证', componentPattern);
+    // 表单验证
+    describe('form validation', function() {
+      it('should form not verified and has value', componentNoverification); // 表单没有验证
+      it('should form required and no value', componentRequired); // 表单必填
+      it('should components are enumerated and no value', componentEnum); // 组件的枚举
+      it('should component value has a minimum length and no value', componentMinLength); // 组件值的最小长度
+      it('should component value has a maximum length and no value', componentMaxLength); // 组件值的最大长度
+      it('should component value has a fixed length and no value', componentLength); // 组件的固定长度
+      it('should component is verified with a regular form and no value', componentPattern); // 组件的正则表达式验证
     });
   });
 });
