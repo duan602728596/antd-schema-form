@@ -7,29 +7,31 @@ import {
 } from './hasValue';
 import { tableComponentMinItems, tableComponentMaxItems } from './verification';
 
-describe('数组组件', function() {
+/* 数组组件的测试用例 */
+describe('array component', function() {
   /* 组件渲染 */
-  describe('组件渲染', function() {
-    it('渲染默认组件', renderDefault);
-    it('渲染Select的multiple模式', renderSelectMultiple);
-    it('渲染Select的tags模式', renderSelectTags);
-    it('渲染多选组件', renderCheckboxGroup);
+  describe('component rendering', function() {
+    it('should render default component', renderDefault); // 渲染默认组件
+    it('should render Select multiple mode', renderSelectMultiple); // 渲染Select的multiple模式
+    it('should render Select tags mode', renderSelectTags); // 渲染Select的tags模式
+    it('should render checkbox group', renderCheckboxGroup); // 渲染多选组件
   });
 
   /* 交互测试 */
-  describe('交互测试', function() {
-    describe('有值', function() {
-      it('组件有默认值', componentHasDefaultValue);
-      it('组件有值', componentHasValue);
-      it('数组内为字符串或数字', componentItemsIsStringOrNumber);
-      it('多选框有默认值', CheckboxGroupHastDefaultValue);
-      it('多选框有值', CheckboxGroupHastValue);
+  describe('interactive test', function() {
+    // 有值
+    describe('has value', function() {
+      it('should component has default value', componentHasDefaultValue); // 组件有默认值
+      it('should component has value', componentHasValue); // 组件有值
+      it('should inside the array is a string or number', componentItemsIsStringOrNumber); // 数组内为字符串或数字
+      it('should checkbox group has default value', CheckboxGroupHastDefaultValue); // 多选框有默认值
+      it('should checkbox group has value', CheckboxGroupHastValue); // 多选框有值
     });
   });
 
   /* 表单验证 */
-  describe('表单验证', function() {
-    it('数组元素最小数量验证', tableComponentMinItems);
-    it('数组元素最大数量验证', tableComponentMaxItems);
+  describe('form validation', function() {
+    it('should the minimum number of array items', tableComponentMinItems); // 数组元素最小数量验证
+    it('should the maximum number of array items', tableComponentMaxItems); // 数组元素最大数量验证
   });
 });

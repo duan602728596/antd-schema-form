@@ -3,18 +3,19 @@ import it from 'it';
 import { renderDefault, renderSwitch } from './componentRender';
 import { componentHasDefaultValue, componentHastValue, switchHasDefaultValue, switchHasValue } from './hasValue';
 
-describe('布尔类型组件', function() {
+/* 布尔类型组件的测试用例 */
+describe('boolean component', function() {
   /* 组件渲染 */
-  describe('组件渲染', function() {
-    it('渲染默认组件', renderDefault);
-    it('渲染开关组件', renderSwitch);
+  describe('component rendering', function() {
+    it('should render default component', renderDefault); // 渲染默认组件
+    it('should render switch', renderSwitch); // 渲染开关组件
   });
 
   /* 交互测试 */
-  describe('交互测试', function() {
-    it('组件有默认值', componentHasDefaultValue);
-    it('组件有值', componentHastValue);
-    it('开关有默认值', switchHasDefaultValue);
-    it('开关有值', switchHasValue);
+  describe('interactive test', function() {
+    it('should component has default value ', componentHasDefaultValue); // 组件有默认值
+    it('should component has value', componentHastValue); // 组件有值
+    it('should switch has default value', switchHasDefaultValue); // 开关有默认值
+    it('should switch has value', switchHasValue); // 开关有值
   });
 });
