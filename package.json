@@ -30,6 +30,7 @@
     "test": "webpack-dev-server --config=\"./config/webpack.test.js\" --hot --color --port=6060",
     "eslint": "cross-env NODE_ENV=eslint eslint ./ --ext .js,.jsx,.ts,.tsx --fix",
     "tslint": "tslint --project ./ --fix",
+    "case-check": "case-check --dir=\"./\" --ext=\"sass\"",
     "get-version": "node ./bin/get-version.js"
   },
   "dependencies": {
@@ -61,6 +62,7 @@
     "cz-conventional-changelog": "^2.1.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.11.2",
+    "es-module-path-case-check": "^1.1.0",
     "eslint": "^5.15.3",
     "eslint-plugin-react": "^7.12.4",
     "file-loader": "^3.0.1",
