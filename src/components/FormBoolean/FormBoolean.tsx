@@ -34,6 +34,8 @@ class FormBoolean extends Component<FormBooleanProps, FormBooleanState> {
     root: PropTypes.object
   };
 
+  context: ContextValue;
+
   constructor(props: FormBooleanProps, ...argu: any[]) {
     super(props, ...argu);
 

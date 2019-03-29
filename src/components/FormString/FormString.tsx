@@ -36,6 +36,8 @@ class FormString extends Component<FormStringProps> {
     required: PropTypes.bool
   };
 
+  context: ContextValue;
+
   // select的下拉框
   selectOptionsView(options: Array<{ label: string; value: string }>): React.ReactNodeArray {
     return options.map((item: { label: string; value: string }, index: number): React.ReactNode => {

@@ -50,6 +50,7 @@ class TableComponent extends Component<TableComponentProps> {
     root: PropTypes.object
   };
 
+  context: ContextValue;
   changeIndexRef: RefObject<Input> = createRef();
 
   // 拖拽

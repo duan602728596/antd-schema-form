@@ -28,6 +28,8 @@ class OneOf extends Component<OneOfProps, OneOfState> {
     element: PropTypes.arrayOf(PropTypes.node)
   };
 
+  context: ContextValue;
+
   constructor(props: OneOfProps, ...argu: Array<any>) {
     super(props, ...argu);
 

@@ -52,6 +52,8 @@ class FormObject extends Component<FormObjectProps> {
     footer: PropTypes.func
   };
 
+  context: ContextValue;
+
   // 根据type渲染不同的组件
   renderComponentByTypeView(root: SchemaItem, required?: boolean): React.ReactNode {
     const { id, type }: SchemaItem = root;

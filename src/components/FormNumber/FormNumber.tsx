@@ -33,6 +33,8 @@ class FormNumber extends Component<FormNumberProps> {
     required: PropTypes.bool
   };
 
+  context: ContextValue;
+
   render(): React.ReactNode {
     const { form, customComponent }: ContextValue = this.context;
     const { getFieldDecorator }: WrappedFormUtils = form;
