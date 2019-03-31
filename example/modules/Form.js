@@ -43,11 +43,11 @@ const customComponent = {
 
 // 自定义表格渲染
 const customTableRender = {
-  red(item, { value, record, index }) {
-    return <span style={{ color: '#f00' }}>{ value }</span>;
+  red(text, record, index, item, form) {
+    return <span style={{ color: '#f00' }}>{ text }</span>;
   },
-  green(item, { value, record, index }) {
-    return <span style={{ color: '#0f0' }}>{ value }</span>;
+  green(text, record, index, item, form) {
+    return <span style={{ color: '#0f0' }}>{ text }</span>;
   }
 };
 

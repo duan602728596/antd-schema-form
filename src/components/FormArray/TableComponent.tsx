@@ -369,7 +369,7 @@ class TableComponent extends Component<TableComponentProps> {
 
   // columns
   columns(): Array<object> {
-    const { languagePack, customTableRender }: ContextValue = this.context;
+    const { languagePack, customTableRender, form }: ContextValue = this.context;
     const { items }: ArrayItem = this.props.root;
     const { inputDisplayIndex, inputChangeIndex }: TableComponentState = this.state;
     const { type, properties, title, $tableRender }: StringItem | NumberItem | BooleanItem | ArrayItem = items;
@@ -398,20 +398,20 @@ class TableComponent extends Component<TableComponentProps> {
     });
 
     // 渲染函数
-    const renderCallback: Function = (value: any, record: object, index: number): string | number => {
-      if (isBoolean(value)) {
-        return String(value);
-      } else if (isObjectOrArray(value)) {
-        return Object.prototype.toString.call(value);
+    const renderCallback: Function = (text: any, record: object, index: number): string | number => {
+      if (isBoolean(text)) {
+        return String(text);
+      } else if (isObjectOrArray(text)) {
+        return Object.prototype.toString.call(text);
       } else {
-        return value;
+        return text;
       }
     };
 
     // 渲染自定义render
     const createRenderCallback: Function = (renderItem: SchemaItem, customFunc: Function): Function => {
-      return (value: any, item: Object, index: number): any => {
-        return customFunc(renderItem, { value, item, index });
+      return (text: any, record: object, index: number): any => {
+        return customFunc(text, record, index, renderItem, form);
       };
     };
 
