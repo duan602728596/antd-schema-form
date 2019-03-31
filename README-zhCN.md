@@ -57,6 +57,7 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
 | cancelText | 取消按钮文字 | string |
 | footer | 自定义底部内容，onOk事件[参考](https://github.com/duan602728596/antd-schema-form/blob/master/src/components/FormObject/FormObject.tsx#L138) |  (form: object) => React.Node  |
 | customComponent | 自定义渲染组件，[参考](#自定义渲染组件) | object |
+| customTableRender | 自定义表格列渲染组件，[参考](#自定义表格列渲染组件) | object |
 | languagePack | 语言配置，[参考](language/zh-CN.json) | object |
 
 ## json schema配置
@@ -106,6 +107,7 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
 * `$oneOfDisabled: boolean`: *oneOf*下Radio.Group禁止切换。
 * `$hidden: boolean`: 隐藏表单域（表单值仍然存在）。
 * `$tableColumnHidden: boolean`: 为数组内的对象且组件为表格时，隐藏列（表单值仍然存在）。
+* `$tableRender: string`: 渲染为其他组件。
 
 ### `type="object"`:
 
@@ -193,7 +195,7 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
 * `maxItems: number`: 数组内元素的最大数量。
 * `$maxItemsMessage: string`: 自定义maxItems的验证失败提示信息。
 * `$addDataInReverseOrder: boolean`: 设置为`true`时，表格组件添加数据时数据插入到头部。
-* `$componentType: string`: 渲染为其他组件。
+* `$componentType: string`: 渲染为其他的表格列渲染组件。
 
   | 值 | 组件名称 |
   | --- | --- |
@@ -215,7 +217,7 @@ import 'antd-schema-form/style/antd-schema-form.css';
 
 const customComponent = {
   // 自定义组件
-  custom(item, option, form, required){
+  custom(item, option, form, required) {
     const { getFieldDecorator } = form;
 
     return getFieldDecorator(item.id, option)(
@@ -247,6 +249,50 @@ SchemaForm的自定义组件属性`customComponent`类型为`object`，其中的
 | option | form.getFieldDecorator的表单配置 | object |
 | form | antd的form对象 | object |
 | required | 字段是否必填 | boolean |
+
+## 自定义表格列渲染组件
+
+自定义表格列渲染组件允许开发者在表格的渲染函数中渲染个人定制的组件。
+
+```javascript
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import Schemaform from 'antd-schema-form';
+import 'antd-schema-form/style/antd-schema-form.css';
+
+const customTableRender = {
+  // 自定义组件
+  custom(text, record, index, item, form) {
+    return <span>{ text }</span>;
+  },
+  // ...其他自定义组件
+};
+
+const schemaJson = {
+  id: '$root',
+  type: 'array',
+  title: '表格列渲染组件',
+  items: {
+    id: '$root/items',
+    type: 'object',
+    title: '表格数据',
+    properties: {
+      data: {
+        id: '$root/items/properties/data',
+        type: 'string',
+        title: '数据',
+        $tableRender: 'custom' // 自定义表格列渲染组件的key
+      }
+      
+    }
+  }
+};
+
+ReactDOM.render(
+  <SchemaForm json={ schemaJson } customTableRender={ customTableRender } />,
+  document.getElementById('app')
+);
+```
 
 ## 开发和测试
 
