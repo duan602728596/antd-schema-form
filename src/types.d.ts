@@ -3,6 +3,7 @@ import { WrappedFormUtils } from 'antd/lib/form/Form';
 export interface ContextValue {
   form: WrappedFormUtils;
   customComponent?: object;
+  customTableRender?: object;
   language?: string;
   languagePack?: any;
 }
@@ -19,6 +20,7 @@ export interface SchemaItem {
   $oneOfDisabled?: boolean;
   $hidden?: boolean;
   $tableColumnHidden?: boolean;
+  $tableRender?: string;
 }
 
 export interface StringItem extends SchemaItem {

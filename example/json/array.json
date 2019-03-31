@@ -25,7 +25,8 @@
             "id": "$root/properties/array/properties/default/items/properties/col2",
             "type": "number",
             "title": "第二列",
-            "description": "第二列"
+            "description": "第二列",
+            "$tableRender": "red"
           },
           "col3": {
             "id": "$root/properties/array/properties/default/items/properties/col3",
@@ -60,7 +61,8 @@
         "type": "number",
         "title": "数组内的对象",
         "description": "数组内的对象",
-        "$required": true
+        "$required": true,
+        "$tableRender": "green"
       },
       "$defaultValue": [1, 2, 3]
     },

@@ -369,10 +369,10 @@ class TableComponent extends Component<TableComponentProps> {
 
   // columns
   columns(): Array<object> {
-    const { languagePack }: ContextValue = this.context;
+    const { languagePack, customTableRender }: ContextValue = this.context;
     const { items }: ArrayItem = this.props.root;
     const { inputDisplayIndex, inputChangeIndex }: TableComponentState = this.state;
-    const { type, properties, title }: StringItem | NumberItem | BooleanItem | ArrayItem = items;
+    const { type, properties, title, $tableRender }: StringItem | NumberItem | BooleanItem | ArrayItem = items;
     const columnArr: object[] = [];
 
     // 渲染调整数组位置的编辑框
@@ -398,7 +398,7 @@ class TableComponent extends Component<TableComponentProps> {
     });
 
     // 渲染函数
-    const renderCb: Function = (value: any, item: Object, index: number): string | number => {
+    const renderCallback: Function = (value: any, item: Object, index: number): string | number => {
       if (isBoolean(value)) {
         return String(value);
       } else if (isObjectOrArray(value)) {
@@ -408,17 +408,26 @@ class TableComponent extends Component<TableComponentProps> {
       }
     };
 
+    // 渲染自定义render
+    const createRenderCallback: Function = (renderItem: SchemaItem, customFunc: Function): Function => {
+      return (value: any, item: Object, index: number): any => {
+        return customFunc(renderItem, { value, item, index });
+      };
+    };
+
     if (type === 'object') {
       for (const key in properties) {
-        const item: SchemaItem = properties[key];
+        const propItem: SchemaItem = properties[key];
 
         // 隐藏列
-        if (!item.$tableColumnHidden) {
+        if (!propItem.$tableColumnHidden) {
           columnArr.push({
-            title: item.title,
+            title: propItem.title,
             key,
             dataIndex: key,
-            render: renderCb
+            render: (propItem.$tableRender && customTableRender && (propItem.$tableRender in customTableRender))
+              ? createRenderCallback(propItem, customTableRender[propItem.$tableRender])
+              : renderCallback
           });
         }
       }
@@ -427,7 +436,9 @@ class TableComponent extends Component<TableComponentProps> {
         title,
         key: 'value',
         dataIndex: 'value',
-        render: renderCb
+        render: ($tableRender && customTableRender && ($tableRender in customTableRender))
+          ? createRenderCallback(items, customTableRender[$tableRender])
+          : renderCallback
       });
     }
 

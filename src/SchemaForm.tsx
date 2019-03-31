@@ -20,6 +20,7 @@ interface SchemaFormProps extends FormComponentProps {
   cancelText?: string | number;
   footer?: Function;
   customComponent?: object;
+  customTableRender?: object;
   languagePack?: object;
 }
 
@@ -33,15 +34,16 @@ interface SchemaFormState {
 @Form.create()
 class SchemaForm extends Component<SchemaFormProps, SchemaFormState> {
   static propTypes: {
-    json?: Requireable<object>;
-    value?: Requireable<object>;
-    onOk?: Requireable<Function>;
-    onCancel?: Requireable<Function>;
-    okText?: Requireable<string | number>;
-    cancelText?: Requireable<string | number>;
-    footer?: Requireable<Function>;
-    customComponent?: Requireable<object>;
-    languagePack?: Requireable<object>;
+    json: Requireable<object>;
+    value: Requireable<object>;
+    onOk: Requireable<Function>;
+    onCancel: Requireable<Function>;
+    okText: Requireable<string | number>;
+    cancelText: Requireable<string | number>;
+    footer: Requireable<Function>;
+    customComponent: Requireable<object>;
+    customTableRender: Requireable<object>;
+    languagePack: Requireable<object>;
   } = {
     json: PropTypes.object,
     value: PropTypes.object,
@@ -57,12 +59,15 @@ class SchemaForm extends Component<SchemaFormProps, SchemaFormState> {
     ]),
     footer: PropTypes.func,
     customComponent: PropTypes.objectOf(PropTypes.func),
+    customTableRender: PropTypes.objectOf(PropTypes.func),
     languagePack: PropTypes.object
   };
   static defaultProps: {
     customComponent: object;
+    customTableRender: object;
   } = {
-    customComponent: {}
+    customComponent: {},
+    customTableRender: {}
   };
 
   constructor(props: SchemaFormProps, ...argu: Array<any>) {
@@ -108,11 +113,22 @@ class SchemaForm extends Component<SchemaFormProps, SchemaFormState> {
   }
 
   render(): React.ReactNode {
-    const { form, json, onOk, onCancel, okText, cancelText, footer, customComponent }: SchemaFormProps = this.props;
+    const {
+      form,
+      json,
+      onOk,
+      onCancel,
+      okText,
+      cancelText,
+      footer,
+      customComponent,
+      customTableRender
+    }: SchemaFormProps = this.props;
     const { language, languagePack }: SchemaFormState = this.state;
     const contextValue: ContextValue = {
       form,
       customComponent,
+      customTableRender,
       language, // 系统语言
       languagePack // 语言包
     };

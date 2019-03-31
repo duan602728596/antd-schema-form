@@ -30,16 +30,6 @@ const value = {
   }
 };
 
-// 文件上传
-function handleFileUpload(file) {
-  return `${ file[0].lastModified }`;
-}
-
-// 点击事件
-function handleClick(form, value, keys) {
-  console.log(value, keys);
-}
-
 // 自定义组件
 const customComponent = {
   custom(item, option, form, required) {
@@ -51,14 +41,24 @@ const customComponent = {
   }
 };
 
+// 自定义表格渲染
+const customTableRender = {
+  red(item, { value, record, index }) {
+    return <span style={{ color: '#f00' }}>{ value }</span>;
+  },
+  green(item, { value, record, index }) {
+    return <span style={{ color: '#0f0' }}>{ value }</span>;
+  }
+};
+
 function Form(props) {
   return (
     <SchemaForm json={ json }
       value={ value }
       customComponent={ customComponent }
-      onOk={ handleClick }
+      customTableRender={ customTableRender }
+      onOk={ (form, value, keys) => console.log(value, keys) }
       okText="提交"
-      onUpload={ handleFileUpload }
     />
   );
 }
