@@ -56,6 +56,7 @@ Antd-schema-form based [Ant Design](https://ant.design/), quickly generate inter
 | cancelText | Cancel button text. | string |
 | footer | Custom bottom content, onOk event [reference](https://github.com/duan602728596/antd-schema-form/blob/master/src/components/FormObject/FormObject.tsx#L138) |  (form: object) => React.Node  |
 | customComponent | Custom rendering component, [reference](#custom-rendering-component) | object |
+| customTableRender | Custom table column rendering component, [reference](#Custom table column rendering component) | object |
 | languagePack | Language configuration, [reference](language/default.json) | object |
 
 ## Json schema configuration
@@ -105,6 +106,7 @@ You can use [form generation](https://duan602728596.github.io/antd-schema-form/#
 * `$oneOfDisabled: boolean`: *OneOf* is disabled under Radio.Group.
 * `$hidden: boolean`: Hide form fields (form values still exist).
 * `$tableColumnHidden: boolean`: When the object is an object in the array and the component is a table, the column is hidden (the form value still exists).
+* `$tableRender: string`: Rendering to other custom table column rendering components.
 
 ### `type="object"`:
 
@@ -217,7 +219,7 @@ const customComponent = {
   custom(item, option, form, required){
     const { getFieldDecorator } = form;
 
-    return getFieldDecorator(item.id, option)(
+    return getFieldDecorator(item.id, option) (
       <Input placeholder="Custom rendering component." required={ required } />
     );
   },
@@ -246,6 +248,60 @@ Function parameters:
 | option | Form configuration for form.getFieldDecorator. | object |
 | form | Antd's form object. | object |
 | required | Field required | boolean |
+
+## Custom table column rendering component
+
+The custom table column rendering component allows developers to render custom components in the table's render function.
+
+```javascript
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import Schemaform from 'antd-schema-form';
+import 'antd-schema-form/style/antd-schema-form.css';
+
+const customTableRender = {
+  // Custom component
+  custom(text, record, index, item, form) {
+    return <span>{ text }</span>;
+  },
+  // ...Other custom components
+};
+
+const schemaJson = {
+  id: '$root',
+  type: 'array',
+  title: 'Table column rendering component',
+  items: {
+    id: '$root/items',
+    type: 'object',
+    title: 'Table data',
+    properties: {
+      data: {
+        id: '$root/items/properties/data',
+        type: 'string',
+        title: 'Data',
+        $tableRender: 'custom' // Custom table column render component key
+      } 
+    }
+  }
+};
+
+ReactDOM.render(
+  <SchemaForm json={ schemaJson } customTableRender={ customTableRender } />,
+  document.getElementById('app')
+);
+```
+
+SchemaForm's custom table column rendering component property `customTableRender` type is `object`, Each of these values is of the type `(text, record, index, item, form) => React.Node`.
+Function parameters:
+
+| Parameter | Description | Type |
+| --- | --- | --- |
+| value | Currently rendered value. | any |
+| record | Current column of data information. | object |
+| index | Column index. | number |
+| item | Information about json schema such as id and title. | object |
+| form | Antd's form object. | object |
 
 ## Development and testing
 

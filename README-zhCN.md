@@ -107,7 +107,7 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
 * `$oneOfDisabled: boolean`: *oneOf*下Radio.Group禁止切换。
 * `$hidden: boolean`: 隐藏表单域（表单值仍然存在）。
 * `$tableColumnHidden: boolean`: 为数组内的对象且组件为表格时，隐藏列（表单值仍然存在）。
-* `$tableRender: string`: 渲染为其他组件。
+* `$tableRender: string`: 渲染为其他的自定义表格列渲染组件。
 
 ### `type="object"`:
 
@@ -283,7 +283,6 @@ const schemaJson = {
         title: '数据',
         $tableRender: 'custom' // 自定义表格列渲染组件的key
       }
-      
     }
   }
 };
@@ -293,6 +292,17 @@ ReactDOM.render(
   document.getElementById('app')
 );
 ```
+
+SchemaForm的自定义表格列渲染组件属性`customTableRender`类型为`object`，其中的每个值的类型都为`(text, record, index, item, form) => React.Node`。
+函数参数:
+
+| 参数 | 说明 | 类型 |
+| --- | --- | --- |
+| value | 当前渲染的值 | any |
+| record | 当前列的数据信息 | object |
+| index | 列的索引 | number |
+| item | id、title等json schema的信息 | object |
+| form | antd的form对象 | object |
 
 ## 开发和测试
 
