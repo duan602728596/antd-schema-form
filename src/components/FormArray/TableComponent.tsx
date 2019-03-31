@@ -381,7 +381,7 @@ class TableComponent extends Component<TableComponentProps> {
       key: 'lineNumber',
       align: 'center',
       width: 65,
-      render: (value: any, item: Object, index: number): React.ReactNode => {
+      render: (value: any, record: object, index: number): React.ReactNode => {
         if (inputDisplayIndex === undefined || inputDisplayIndex !== index) {
           return <a onClick={ this.handleInputDisplayClick.bind(this, index) }>{ index + 1 }</a>;
         } else {
@@ -398,7 +398,7 @@ class TableComponent extends Component<TableComponentProps> {
     });
 
     // 渲染函数
-    const renderCallback: Function = (value: any, item: Object, index: number): string | number => {
+    const renderCallback: Function = (value: any, record: object, index: number): string | number => {
       if (isBoolean(value)) {
         return String(value);
       } else if (isObjectOrArray(value)) {
