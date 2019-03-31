@@ -1,3 +1,7 @@
+### v2.1.0
+
+* 🌟添加自定义表格列渲染组件，[参考](https://github.com/duan602728596/antd-schema-form/blob/master/README-zhCN.md#自定义表格列渲染组件)。
+
 ### v2.0.2
 
 * 🐛修复table组件添加和修改时文案不对应的问题。

@@ -1,3 +1,7 @@
+### v2.1.0
+
+* 🌟Add a custom table column render component, [reference](https://github.com/duan602728596/antd-schema-form/blob/master/README.md#custom-table-column-rendering-component).
+
 ### v2.0.2
 
 * 🐛Fix the problem that the copy of the table component does not correspond when adding and modifying.
