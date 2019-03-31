@@ -158,9 +158,9 @@ class TableComponent extends Component<TableComponentProps> {
     let fatherTarget: HTMLElement | undefined = undefined;
 
     // 获取父级节点
-    if (target['nodeName'] === 'TD') {
+    if (target['nodeName'] === 'TD' && target['parentNode']['nodeName'] === 'TR') {
       fatherTarget = target['parentNode'];
-    } else if (target['nodeName'] === 'BUTTON') {
+    } else if (target['nodeName'] === 'BUTTON' && target['parentNode']['parentNode']['nodeName'] === 'TR') {
       fatherTarget = target['parentNode']['parentNode'];
     }
 
@@ -188,9 +188,9 @@ class TableComponent extends Component<TableComponentProps> {
     let fatherTarget: HTMLElement | undefined = undefined;
 
     // 获取父级节点
-    if (target['nodeName'] === 'TD') {
+    if (target['nodeName'] === 'TD' && target['parentNode']['nodeName'] === 'TR') {
       fatherTarget = target['parentNode'];
-    } else if (target['nodeName'] === 'BUTTON') {
+    } else if (target['nodeName'] === 'BUTTON' && target['parentNode']['parentNode']['nodeName'] === 'TR') {
       fatherTarget = target['parentNode']['parentNode'];
     }
 
@@ -219,9 +219,9 @@ class TableComponent extends Component<TableComponentProps> {
     let fatherTarget: HTMLElement | undefined = undefined;
 
     // 获取父级节点
-    if (target['nodeName'] === 'TD') {
+    if (target['nodeName'] === 'TD' && target['parentNode']['nodeName'] === 'TR') {
       fatherTarget = target['parentNode'];
-    } else if (target['nodeName'] === 'BUTTON') {
+    } else if (target['nodeName'] === 'BUTTON' && target['parentNode']['parentNode']['nodeName'] === 'TR') {
       fatherTarget = target['parentNode']['parentNode'];
     }
 
