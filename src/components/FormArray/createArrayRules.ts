@@ -1,5 +1,5 @@
 import { ValidationRule } from 'antd/lib/form';
-import { isSpace, isNumber } from '../../utils/type';
+import { isNil, isNumber } from '../../utils/type';
 import { ArrayItem } from '../../types';
 
 export const minErrStr: string = '数量必须大于等于';
@@ -10,7 +10,7 @@ function createArrayRules(root: ArrayItem, required: boolean): Array<ValidationR
   const rules: ValidationRule[] = [];
 
   // 数组内元素的数量最少值
-  if (!isSpace(minItems) && isNumber(minItems)) {
+  if (!isNil(minItems) && isNumber(minItems)) {
     rules.push({
       validator: (rule: ValidationRule, value: Array<any>, callback: Function): void => {
         if (minItems !== undefined && value && value.length < minItems) callback(rule.message);
@@ -21,7 +21,7 @@ function createArrayRules(root: ArrayItem, required: boolean): Array<ValidationR
   }
 
   // 数组内元素的数量最大值
-  if (!isSpace(maxItems) && isNumber(maxItems)) {
+  if (!isNil(maxItems) && isNumber(maxItems)) {
     rules.push({
       validator: (rule: ValidationRule, value: Array<any>, callback: Function): void => {
         if (maxItems !== undefined && value && value.length > maxItems) callback(rule.message);

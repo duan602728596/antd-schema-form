@@ -5,7 +5,7 @@ import { Requireable } from 'prop-types';
 import { Form, Tooltip, Checkbox, Switch } from 'antd';
 import { GetFieldDecoratorOptions, WrappedFormUtils } from 'antd/lib/form/Form';
 import AntdSchemaFormContext from '../../context';
-import { isSpace } from '../../utils/type';
+import { isNil } from '../../utils/type';
 import { ContextValue, BooleanItem } from '../../types';
 import styleName from '../../utils/styleName';
 
@@ -46,7 +46,7 @@ class FormBoolean extends Component<FormBooleanProps, FormBooleanState> {
 
     this.state = {
       form,
-      isChecked: isSpace(value) ? !!root.$defaultValue : value
+      isChecked: isNil(value) ? !!root.$defaultValue : value
     };
   }
 
@@ -56,7 +56,7 @@ class FormBoolean extends Component<FormBooleanProps, FormBooleanState> {
     const id: string = root.id;
     const value: boolean = form.getFieldValue(id);
 
-    return { isChecked: isSpace(value) ? !!root.$defaultValue : value };
+    return { isChecked: isNil(value) ? !!root.$defaultValue : value };
   }
 
   render(): React.ReactNode {

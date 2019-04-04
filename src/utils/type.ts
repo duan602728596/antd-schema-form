@@ -31,6 +31,6 @@ export function isFunction<T>(value: T): boolean {
   return typeof value === 'function';
 }
 
-export function isSpace<T>(value: T): boolean {
+export function isNil<T>(value: T): boolean {
   return value === null || value === undefined;
 }

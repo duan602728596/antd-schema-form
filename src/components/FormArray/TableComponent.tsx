@@ -8,7 +8,7 @@ import { WrappedFormUtils } from 'antd/lib/form/Form';
 import { TableComponents } from 'antd/lib/table';
 import update from 'immutability-helper';
 import AntdSchemaFormContext from '../../context';
-import { isSpace, isBoolean, isObjectOrArray } from '../../utils/type';
+import { isNil, isBoolean, isObjectOrArray } from '../../utils/type';
 import getValueFromObject, { formatValueBeforeGetValue } from '../../utils/getValueFromObject';
 import getObjectFromValue from '../../utils/getObjectFromValue';
 import { formatTableValue, sortIndex } from './tableFunction';
@@ -120,7 +120,7 @@ class TableComponent extends Component<TableComponentProps> {
     const id: string = root.id;
     let tableValue: Array<any> = form.getFieldValue(id);
 
-    tableValue = isSpace(tableValue) ? (root.$defaultValue || []) : tableValue;
+    tableValue = isNil(tableValue) ? (root.$defaultValue || []) : tableValue;
 
     const length: number = tableValue.length;
     const { inputChangeIndex }: TableComponentState = this.state;
@@ -254,7 +254,7 @@ class TableComponent extends Component<TableComponentProps> {
     const id: string = root.id;
     let tableValue: Array<any> = form.getFieldValue(id);
 
-    tableValue = isSpace(tableValue) ? (root.$defaultValue || []) : tableValue;
+    tableValue = isNil(tableValue) ? (root.$defaultValue || []) : tableValue;
 
     const dragRowItem: object = tableValue[dragIndex];
     const newData: { tableValue?: Array<object> } = update({ tableValue }, {
@@ -277,7 +277,7 @@ class TableComponent extends Component<TableComponentProps> {
     const result: object = getValueFromObject(formatValue);
     let tableValue: Array<any> = form.getFieldValue(id);
 
-    tableValue = isSpace(tableValue) ? (root.$defaultValue || []) : tableValue;
+    tableValue = isNil(tableValue) ? (root.$defaultValue || []) : tableValue;
 
     // 判断是修改还是添加
     if (this.state.editIndex === null) {
@@ -306,7 +306,7 @@ class TableComponent extends Component<TableComponentProps> {
     const id: string = root.id;
     let tableValue: Array<any> = form.getFieldValue(id);
 
-    tableValue = isSpace(tableValue) ? (root.$defaultValue || []) : tableValue;
+    tableValue = isNil(tableValue) ? (root.$defaultValue || []) : tableValue;
     tableValue.splice(index, 1);
     form.setFieldsValue({ [id]: tableValue });
   }
@@ -318,7 +318,7 @@ class TableComponent extends Component<TableComponentProps> {
     const id: string = root.id;
     let tableValue: Array<any> = form.getFieldValue(id);
 
-    tableValue = isSpace(tableValue) ? (root.$defaultValue || []) : tableValue;
+    tableValue = isNil(tableValue) ? (root.$defaultValue || []) : tableValue;
 
     const itemValue: any = tableValue[index];
     const result: Object = getObjectFromValue({ items: itemValue }, id);
@@ -358,7 +358,7 @@ class TableComponent extends Component<TableComponentProps> {
     const id: string = root.id;
     let tableValue: Array<any> = form.getFieldValue(id);
 
-    tableValue = isSpace(tableValue) ? (root.$defaultValue || []) : tableValue;
+    tableValue = isNil(tableValue) ? (root.$defaultValue || []) : tableValue;
     // 删除选中的数据
     const sortSelectedRowKeys: number[] = sortIndex(selectedRowKeys);
 
@@ -470,10 +470,10 @@ class TableComponent extends Component<TableComponentProps> {
     const { form, languagePack }: ContextValue = this.context;
     const { id, items, minItems, maxItems, $minItemsMessage, $maxItemsMessage }: ArrayItem = root;
     const { isDisplayDataDrawer, selectedRowKeys, inputDisplayIndex, editIndex }: TableComponentState = this.state;
-    const inputNotDisplay: boolean = isSpace(inputDisplayIndex);
+    const inputNotDisplay: boolean = isNil(inputDisplayIndex);
     let value: Array<any> = form.getFieldValue(id);
 
-    value = isSpace(value) ? (root.$defaultValue || []) : value;
+    value = isNil(value) ? (root.$defaultValue || []) : value;
 
     // 对数组内的元素数量进行验证
     let arrayRulesVerificationResult: string | null = null;

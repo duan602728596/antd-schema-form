@@ -1,5 +1,5 @@
 import { ValidationRule } from 'antd/lib/form';
-import { isSpace, isNumber } from '../../utils/type';
+import { isNil, isNumber } from '../../utils/type';
 import { NumberItem } from '../../types';
 
 function createNumberRules(root: NumberItem, required: boolean, isInteger: boolean): Array<ValidationRule> {
@@ -36,7 +36,7 @@ function createNumberRules(root: NumberItem, required: boolean, isInteger: boole
   }
 
   // 最小值
-  if (!isSpace(minimum) && isNumber(minimum)) {
+  if (!isNil(minimum) && isNumber(minimum)) {
     rules.push({
       validator: (rule: ValidationRule, value: number | string, callback: Function): void => {
         if (minimum !== undefined) {
@@ -55,7 +55,7 @@ function createNumberRules(root: NumberItem, required: boolean, isInteger: boole
   }
 
   // 最大值
-  if (!isSpace(maximum) && isNumber(maximum)) {
+  if (!isNil(maximum) && isNumber(maximum)) {
     rules.push({
       validator: (rule: ValidationRule, value: number | string, callback: Function): void => {
         if (maximum !== undefined) {

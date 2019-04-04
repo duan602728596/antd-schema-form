@@ -1,5 +1,5 @@
 import { ValidationRule } from 'antd/lib/form';
-import { isSpace, isNumber, isString } from '../../utils/type';
+import { isNil, isNumber, isString } from '../../utils/type';
 import { StringItem } from '../../types';
 
 function createStringRules(root: StringItem, required: boolean): Array<ValidationRule> {
@@ -29,7 +29,7 @@ function createStringRules(root: StringItem, required: boolean): Array<Validatio
   }
 
   // 字段的最小长度
-  if (!isSpace(minLength) && isNumber(minLength)) {
+  if (!isNil(minLength) && isNumber(minLength)) {
     rules.push({
       min: minLength,
       message: $minLengthMessage || `字段的最小长度为${ minLength }`
@@ -37,7 +37,7 @@ function createStringRules(root: StringItem, required: boolean): Array<Validatio
   }
 
   // 字段的最大长度
-  if (!isSpace(maxLength)) {
+  if (!isNil(maxLength)) {
     rules.push({
       max: maxLength,
       message: $maxLengthMessage || `字段的最大长度为${ maxLength }`
@@ -45,7 +45,7 @@ function createStringRules(root: StringItem, required: boolean): Array<Validatio
   }
 
   // 字段的长度
-  if (!isSpace($length) && isNumber($length)) {
+  if (!isNil($length) && isNumber($length)) {
     rules.push({
       len: $length,
       message: $lengthMessage || `字段的长度为${ $length }`
