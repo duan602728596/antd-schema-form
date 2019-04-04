@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Component } from 'react';
 import * as PropTypes from 'prop-types';
-import { Requireable } from 'prop-types';
+import { Validator, Requireable } from 'prop-types';
 import { Form } from 'antd';
 import { FormComponentProps } from 'antd/lib/form/Form';
 import AntdSchemaFormContext from './context';
@@ -34,7 +34,7 @@ interface SchemaFormState {
 @Form.create()
 class SchemaForm extends Component<SchemaFormProps, SchemaFormState> {
   static propTypes: {
-    json: Requireable<object>;
+    json: Validator<object>;
     value: Requireable<object>;
     onOk: Requireable<Function>;
     onCancel: Requireable<Function>;
@@ -45,7 +45,7 @@ class SchemaForm extends Component<SchemaFormProps, SchemaFormState> {
     customTableRender: Requireable<object>;
     languagePack: Requireable<object>;
   } = {
-    json: PropTypes.object,
+    json: PropTypes.object.isRequired,
     value: PropTypes.object,
     onOk: PropTypes.func,
     onCancel: PropTypes.func,
