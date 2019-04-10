@@ -12,10 +12,8 @@ function getObjectFromValue(obj: object, basicId?: string): object {
     const item: any = obj[key];
 
     if (isPlainObject(item) && !item._isAMomentObject) {
-      const result: object = getObjectFromValue(
-        item,
-        basicId ? `${ basicId }/${ key }/properties` : `${ key }/properties`
-      );
+      const bid: string = basicId ? `${ basicId }/${ key }/properties` : `${ key }/properties`;
+      const result: object = getObjectFromValue(item, bid);
 
       value = { ...value, ...result };
     } else {
