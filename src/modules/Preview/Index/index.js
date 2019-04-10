@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { createSelector, createStructuredSelector } from 'reselect';
-import { Row, Col, Input, Button, message, Modal } from 'antd';
+import { Row, Col, Input, Button, message, Modal, Empty } from 'antd';
 import { setSchemaJson } from '../store/reducer';
 import style from './style.sass';
 import { handleCopyTextClick } from '../../../utils';
-import SchemaForm from 'antd-schema-form';
 import schemaFormDefaultLang from 'antd-schema-form/language/default.json';
 import schemaFormZhCNLang from 'antd-schema-form/language/zh-CN.json';
 import { I18NContext } from '../../../components/I18N/I18N';
@@ -114,7 +113,11 @@ class Index extends Component {
                   languagePack={ language === 'zh-cn' ? schemaFormZhCNLang : schemaFormDefaultLang }
                   onOk={ this.handleOnFormOkClick }
                 />
-              ) : null
+              ) : (
+                <div className={ style.noData }>
+                  <Empty description=" " image={ Empty.PRESENTED_IMAGE_SIMPLE } />
+                </div>
+              )
             }
           </Col>
         </Row>

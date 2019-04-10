@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { message } from 'antd';
+import { message, Empty, Icon } from 'antd';
 import SchemaForm from 'antd-schema-form';
+import style from './style.sass';
 
 class SchemaFormPreview extends Component {
   static propTypes = {
@@ -10,15 +11,48 @@ class SchemaFormPreview extends Component {
     onOk: PropTypes.func
   };
 
-  componentDidCatch(error, info) {
+  constructor() {
+    super(...arguments);
+
+    this.state = {
+      hasError: false,
+      json: this.props.json
+    };
+  }
+
+  static getDerivedStateFromError(err) {
+    return { hasError: true };
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.json !== prevState.json) {
+      return {
+        json: nextProps.json,
+        hasError: false
+      };
+    }
+
+    return null;
+  }
+
+  componentDidCatch(err, info) {
     message.error('Schema has error!');
   }
 
   render() {
-    const { json, languagePack, onOk } = this.props;
+    const { hasError, json } = this.state;
+    const { languagePack, onOk } = this.props;
     const props = { json, languagePack, onOk };
 
-    return <SchemaForm { ...props } />;
+    if (hasError) {
+      return (
+        <div className={ style.errData }>
+          <Empty description=" " image={ <Icon className={ style.frown } type="frown" /> } />
+        </div>
+      );
+    } else {
+      return <SchemaForm { ...props } />;
+    }
   }
 }
 
