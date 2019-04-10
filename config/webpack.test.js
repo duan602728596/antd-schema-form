@@ -29,7 +29,7 @@ module.exports = merge(basicConfig, config, {
           {
             loader: 'file-loader',
             options: {
-              name: '[name].[hash:5]:[ext]'
+              name: '[name].[hash:5].[ext]'
             }
           }
         ]
