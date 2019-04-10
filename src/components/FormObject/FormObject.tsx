@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Component, Fragment, Context } from 'react';
 import * as PropTypes from 'prop-types';
 import { Requireable } from 'prop-types';
+import { isArray } from 'lodash-es';
 import { Collapse, Button } from 'antd';
 import AntdSchemaFormContext from '../../context';
 import styleName from '../../utils/styleName';
@@ -12,7 +13,6 @@ import FormArray from '../FormArray/FormArray';
 import OneOf from './OneOf';
 import getValueFromObject from '../../utils/getValueFromObject';
 import getKeysFromObject from '../../utils/getKeysFromObject';
-import { isArray } from '../../utils/type';
 import { SchemaItem, ContextValue } from '../../types';
 
 /**

@@ -2,10 +2,10 @@ import * as React from 'react';
 import { Component, Context } from 'react';
 import * as PropTypes from 'prop-types';
 import { Requireable, ReactNodeLike } from 'prop-types';
+import { isNumber } from 'lodash-es';
 import { Radio } from 'antd';
 import { RadioChangeEvent } from 'antd/es/radio';
 import AntdSchemaFormContext from '../../context';
-import { isNumber } from '../../utils/type';
 import { SchemaItem, ContextValue } from '../../types';
 
 interface OneOfProps {

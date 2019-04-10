@@ -1,5 +1,5 @@
+import { isNil, isNumber, isString } from 'lodash-es';
 import { ValidationRule } from 'antd/lib/form';
-import { isNil, isNumber, isString } from '../../utils/type';
 import { StringItem } from '../../types';
 
 function createStringRules(root: StringItem, required: boolean): Array<ValidationRule> {

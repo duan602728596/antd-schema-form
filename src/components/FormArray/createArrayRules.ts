@@ -1,5 +1,5 @@
+import { isNil, isNumber } from 'lodash-es';
 import { ValidationRule } from 'antd/lib/form';
-import { isNil, isNumber } from '../../utils/type';
 import { ArrayItem } from '../../types';
 
 export const minErrStr: string = '数量必须大于等于';

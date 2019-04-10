@@ -1,4 +1,4 @@
-import { isObject } from './type';
+import { isPlainObject } from 'lodash-es';
 
 /**
  * object对象，格式化成表单需要的值
@@ -11,7 +11,7 @@ function getObjectFromValue(obj: object, basicId?: string): object {
   for (const key in obj) {
     const item: any = obj[key];
 
-    if (isObject(item) && !item._isAMomentObject) {
+    if (isPlainObject(item) && !item._isAMomentObject) {
       const result: object = getObjectFromValue(
         item,
         basicId ? `${ basicId }/${ key }/properties` : `${ key }/properties`

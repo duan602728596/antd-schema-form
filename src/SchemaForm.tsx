@@ -2,12 +2,12 @@ import * as React from 'react';
 import { Component } from 'react';
 import * as PropTypes from 'prop-types';
 import { Validator, Requireable } from 'prop-types';
+import { isPlainObject } from 'lodash-es';
 import { Form } from 'antd';
 import { FormComponentProps } from 'antd/lib/form/Form';
 import AntdSchemaFormContext from './context';
 import FormObject from './components/FormObject/FormObject';
 import getObjectFromValue from './utils/getObjectFromValue';
-import { isObject } from './utils/type';
 import languagePack from './languagePack';
 import { SchemaItem, ContextValue } from './types';
 
@@ -79,7 +79,7 @@ class SchemaForm extends Component<SchemaFormProps, SchemaFormState> {
       ? (window.navigator.language || window.navigator['userLanguage']).toLocaleLowerCase()
       : 'default';
     const customLangPack: object | undefined = this.props.languagePack; // 自定义语言包
-    const langP: object = isObject(customLangPack)
+    const langP: object = isPlainObject(customLangPack)
       ? customLangPack
       : (language in languagePack ? languagePack[language] : languagePack['default']); // 语言包
 

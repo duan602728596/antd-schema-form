@@ -1,4 +1,4 @@
-import { isObject } from './type';
+import { isPlainObject } from 'lodash-es';
 
 /**
  * 格式化数据
@@ -37,7 +37,7 @@ function getValueFromObject(value: object): object {
       const nextKey: string = keyArr[index + 1];
 
       if (nextKey && nextKey === 'properties') {
-        if (!isObject(point[nowKey])) point[nowKey] = {};
+        if (!isPlainObject(point[nowKey])) point[nowKey] = {};
 
         point = point[nowKey];
         index += 2;

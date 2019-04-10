@@ -1,5 +1,5 @@
+import { isNil, isNumber } from 'lodash-es';
 import { ValidationRule } from 'antd/lib/form';
-import { isNil, isNumber } from '../../utils/type';
 import { NumberItem } from '../../types';
 
 function createNumberRules(root: NumberItem, required: boolean, isInteger: boolean): Array<ValidationRule> {

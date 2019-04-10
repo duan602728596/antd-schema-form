@@ -2,13 +2,13 @@ import * as React from 'react';
 import { Component, Fragment, createRef, Context, RefObject } from 'react';
 import * as PropTypes from 'prop-types';
 import { Requireable } from 'prop-types';
+import { isNil, isBoolean, isObjectLike } from 'lodash-es';
 import classNames from 'classnames';
 import { Table, Button, Popconfirm, Drawer, Input } from 'antd';
 import { WrappedFormUtils } from 'antd/lib/form/Form';
 import { TableComponents } from 'antd/lib/table';
 import update from 'immutability-helper';
 import AntdSchemaFormContext from '../../context';
-import { isNil, isBoolean, isObjectOrArray } from '../../utils/type';
 import getValueFromObject, { formatValueBeforeGetValue } from '../../utils/getValueFromObject';
 import getObjectFromValue from '../../utils/getObjectFromValue';
 import { formatTableValue, sortIndex } from './tableFunction';
@@ -401,7 +401,7 @@ class TableComponent extends Component<TableComponentProps> {
     const renderCallback: Function = (text: any, record: object, index: number): string | number => {
       if (isBoolean(text)) {
         return String(text);
-      } else if (isObjectOrArray(text)) {
+      } else if (isObjectLike(text)) {
         return Object.prototype.toString.call(text);
       } else {
         return text;

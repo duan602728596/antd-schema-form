@@ -2,10 +2,10 @@ import * as React from 'react';
 import { Component, Context } from 'react';
 import * as PropTypes from 'prop-types';
 import { Requireable } from 'prop-types';
+import { isNil } from 'lodash-es';
 import { Form, Tooltip, Checkbox, Switch } from 'antd';
 import { GetFieldDecoratorOptions, WrappedFormUtils } from 'antd/lib/form/Form';
 import AntdSchemaFormContext from '../../context';
-import { isNil } from '../../utils/type';
 import { ContextValue, BooleanItem } from '../../types';
 import styleName from '../../utils/styleName';
 

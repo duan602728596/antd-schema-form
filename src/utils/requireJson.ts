@@ -1,4 +1,8 @@
-import { isModule } from './type';
+import { isObject } from 'lodash-es';
+
+function isModule<T>(value: T): boolean {
+  return isObject(value) && Object.prototype.toString.call(value) === '[object Module]';
+}
 
 /**
  * 加载json文件
