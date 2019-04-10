@@ -1,4 +1,4 @@
-import { isPlainObject } from 'lodash-es';
+import { transform, isPlainObject } from 'lodash-es';
 
 /**
  * object对象，格式化成表单需要的值
@@ -6,24 +6,16 @@ import { isPlainObject } from 'lodash-es';
  * @param { string } basicId: 前置id
  */
 function getObjectFromValue(obj: object, basicId?: string): object {
-  let value: object = {};
+  return transform(obj, function(result: object, value: any, key: string): void {
+    if (isPlainObject(value) && !value._isAMomentObject) {
+      const bid: string = basicId ? `${ basicId }/${ key }/properties` : `${ key }/properties`;
+      const res: object = getObjectFromValue(value, bid);
 
-  for (const key in obj) {
-    const item: any = obj[key];
-
-    if (isPlainObject(item) && !item._isAMomentObject) {
-      const result: object = getObjectFromValue(
-        item,
-        basicId ? `${ basicId }/${ key }/properties` : `${ key }/properties`
-      );
-
-      value = { ...value, ...result };
+      Object.assign(result, { ...value, ...res });
     } else {
-      value[basicId ? `${ basicId }/${ key }` : key] = item;
+      result[basicId ? `${ basicId }/${ key }` : key] = value;
     }
-  }
-
-  return value;
+  }, {});
 }
 
 export default getObjectFromValue;
