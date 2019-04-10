@@ -179,15 +179,13 @@ class FormObject extends Component<FormObjectProps> {
               : null
           }
           {
-            onCancel
-              ? (
-                <Button className={ onOk ? styleName('object-cancel') : undefined }
-                  onClick={ this.handleCancelClick.bind(this) }
-                >
-                  { cancelText }
-                </Button>
-              )
-              : null
+            onCancel ? (
+              <Button className={ onOk ? styleName('object-cancel') : undefined }
+                onClick={ this.handleCancelClick.bind(this) }
+              >
+                { cancelText }
+              </Button>
+            ) : null
           }
         </div>
       );
