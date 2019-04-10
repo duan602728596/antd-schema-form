@@ -16,7 +16,7 @@ import { ArrayItem, ContextValue } from '../../types';
  * json schema的属性包括：id, type, title, description, items, minItems, maxItems
  *
  * 扩展属性前必须加上"$"
- * 扩展属性包括：componentType, options
+ * 扩展属性包括：componentType, options, addDataInReverseOrder
  */
 interface FormArrayProps {
   root: ArrayItem;
