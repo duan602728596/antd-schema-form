@@ -1,21 +1,18 @@
-import { isPlainObject } from 'lodash-es';
+import { transform, isPlainObject } from 'lodash-es';
 
 /**
  * 格式化数据
- * @param { object } value: 表单值
+ * @param { object } formValue: 表单值
  * @param { string } basicId: 格式化数据的id
  */
-export function formatValueBeforeGetValue(value: object, basicId: string): object {
+export function formatValueBeforeGetValue(formValue: object, basicId: string): object {
   const reg: RegExp = new RegExp(`^${ basicId.replace('$', '\\$') }/`);
-  const formatValue: object = {};
 
-  for (const key in value) {
+  return transform(formValue, function(result: object, value: any, key: string): void {
     const formatKey: string = key.replace(reg, '');
 
-    formatValue[formatKey] = value[key];
-  }
-
-  return formatValue;
+    result[formatKey] = value;
+  }, {});
 }
 
 /**
