@@ -1,5 +1,4 @@
-import React from 'react';
-import { Component, Fragment } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -12,6 +11,7 @@ import SchemaForm from 'antd-schema-form';
 import schemaFormDefaultLang from 'antd-schema-form/language/default.json';
 import schemaFormZhCNLang from 'antd-schema-form/language/zh-CN.json';
 import { I18NContext } from '../../../components/I18N/I18N';
+import SchemaFormPreview from './SchemaFormPreview';
 
 /* state */
 const state = createStructuredSelector({
@@ -110,7 +110,7 @@ class Index extends Component {
           <Col xs={ 24 } sm={ 24 } md={ 16 }>
             {
               schemaJson ? (
-                <SchemaForm json={ schemaJson }
+                <SchemaFormPreview json={ schemaJson }
                   languagePack={ language === 'zh-cn' ? schemaFormZhCNLang : schemaFormDefaultLang }
                   onOk={ this.handleOnFormOkClick }
                 />
