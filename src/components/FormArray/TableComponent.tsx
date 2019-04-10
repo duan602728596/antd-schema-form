@@ -321,7 +321,7 @@ class TableComponent extends Component<TableComponentProps> {
     tableValue = isNil(tableValue) ? (root.$defaultValue || []) : tableValue;
 
     const itemValue: any = tableValue[index];
-    const result: Object = getObjectFromValue({ items: itemValue }, id);
+    const result: object = getObjectFromValue({ items: itemValue }, id);
 
     this.setState({
       isDisplayDataDrawer: true,
@@ -446,7 +446,7 @@ class TableComponent extends Component<TableComponentProps> {
       title: languagePack && languagePack.formArray.operating,
       key: 'handle',
       width: 160,
-      render: (value: any, item: Object, index: number): React.ReactNode => {
+      render: (value: any, item: object, index: number): React.ReactNode => {
         return (
           <Button.Group>
             <Button onClick={ this.handleDrawEditDataDisplayClick.bind(this, index) }>

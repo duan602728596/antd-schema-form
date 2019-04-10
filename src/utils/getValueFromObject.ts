@@ -26,7 +26,7 @@ function getValueFromObject(value: object): object {
     const keyArr: string[] = key.split('/');
     const len: number = keyArr.length;
     let index: number = 0;
-    let point: Object = obj;
+    let point: object = obj;
 
     while (index < len) {
       // 判断是否为对象

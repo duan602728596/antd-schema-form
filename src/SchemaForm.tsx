@@ -101,7 +101,7 @@ class SchemaForm extends Component<SchemaFormProps, SchemaFormState> {
   static getDerivedStateFromProps(nextProps: SchemaFormProps, prevState: SchemaFormState): { value: object } | null {
     if (nextProps.value !== prevState.value) {
       const { form, value }: SchemaFormProps = nextProps;
-      const obj: Object = getObjectFromValue(value);
+      const obj: object = getObjectFromValue(value);
 
       form.resetFields();
       form.setFieldsValue(obj);
