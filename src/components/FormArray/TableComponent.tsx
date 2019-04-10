@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Component, Fragment, createRef, Context, RefObject } from 'react';
 import * as PropTypes from 'prop-types';
 import { Requireable } from 'prop-types';
-import { isNil, isBoolean, isObjectLike } from 'lodash-es';
+import { isNil, isBoolean, isObject } from 'lodash-es';
 import classNames from 'classnames';
 import { Table, Button, Popconfirm, Drawer, Input } from 'antd';
 import { WrappedFormUtils } from 'antd/lib/form/Form';
@@ -401,7 +401,7 @@ class TableComponent extends Component<TableComponentProps> {
     const renderCallback: Function = (text: any, record: object, index: number): string | number => {
       if (isBoolean(text)) {
         return String(text);
-      } else if (isObjectLike(text)) {
+      } else if (isObject(text)) {
         return Object.prototype.toString.call(text);
       } else {
         return text;
