@@ -1,5 +1,4 @@
-import React from 'react';
-import { Component, Fragment, createRef } from 'react';
+import React, { Component, Fragment, createRef } from 'react';
 import classNames from 'classnames';
 import { Row, Col, Modal } from 'antd';
 import SchemaForm from 'antd-schema-form';

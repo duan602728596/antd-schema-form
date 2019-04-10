@@ -1,5 +1,4 @@
-import React from 'react';
-import { Component, createRef } from 'react';
+import React, { Component, createRef } from 'react';
 import PropTypes from 'prop-types';
 import { Drawer, Select } from 'antd';
 import SchemaForm from 'antd-schema-form';
