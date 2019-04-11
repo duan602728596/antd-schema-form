@@ -1,4 +1,5 @@
-import { transform, isPlainObject } from 'lodash-es';
+import transform from 'lodash-es/transform';
+import isPlainObject from 'lodash-es/isPlainObject';
 
 /**
  * 格式化数据

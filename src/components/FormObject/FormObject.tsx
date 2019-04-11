@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Component, Fragment, Context } from 'react';
 import * as PropTypes from 'prop-types';
 import { Requireable } from 'prop-types';
-import { isArray } from 'lodash-es';
+import isArray from 'lodash-es/isArray';
 import { Collapse, Button } from 'antd';
 import AntdSchemaFormContext from '../../context';
 import styleName from '../../utils/styleName';

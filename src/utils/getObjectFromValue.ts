@@ -1,4 +1,4 @@
-import { isPlainObject } from 'lodash-es';
+import isPlainObject from 'lodash-es/isPlainObject';
 
 /**
  * object对象，格式化成表单需要的值

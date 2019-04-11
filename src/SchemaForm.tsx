@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Component } from 'react';
 import * as PropTypes from 'prop-types';
 import { Validator, Requireable } from 'prop-types';
-import { isPlainObject } from 'lodash-es';
+import isPlainObject from 'lodash-es/isPlainObject';
 import { Form } from 'antd';
 import { FormComponentProps } from 'antd/lib/form/Form';
 import AntdSchemaFormContext from './context';

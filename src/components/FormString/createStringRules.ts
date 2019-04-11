@@ -1,4 +1,6 @@
-import { isNil, isNumber, isString } from 'lodash-es';
+import isNil from 'lodash-es/isNil';
+import isNumber from 'lodash-es/isNumber';
+import isString from 'lodash-es/isString';
 import { ValidationRule } from 'antd/lib/form';
 import { StringItem } from '../../types';
 

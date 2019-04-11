@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Component, Context } from 'react';
 import * as PropTypes from 'prop-types';
 import { Requireable } from 'prop-types';
-import { isNil } from 'lodash-es';
+import isNil from 'lodash-es/isNil';
 import { Form, Tooltip, Checkbox, Switch } from 'antd';
 import { GetFieldDecoratorOptions, WrappedFormUtils } from 'antd/lib/form/Form';
 import AntdSchemaFormContext from '../../context';
