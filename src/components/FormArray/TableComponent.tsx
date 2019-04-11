@@ -400,20 +400,20 @@ class TableComponent extends Component<TableComponentProps> {
     });
 
     // 渲染函数
-    const renderCallback: Function = (text: any, record: object, index: number): string | number => {
-      if (isBoolean(text)) {
-        return String(text);
-      } else if (isObject(text)) {
-        return Object.prototype.toString.call(text);
+    const renderCallback: Function = (value: any, record: object, index: number): string | number => {
+      if (isBoolean(value)) {
+        return String(value);
+      } else if (isObject(value)) {
+        return Object.prototype.toString.call(value);
       } else {
-        return text;
+        return value;
       }
     };
 
     // 渲染自定义render
     const createRenderCallback: Function = (renderItem: SchemaItem, customFunc: Function): Function => {
-      return (text: any, record: object, index: number): any => {
-        return customFunc(text, record, index, renderItem, form);
+      return (value: any, record: object, index: number): any => {
+        return customFunc(value, record, index, renderItem, form);
       };
     };
 
@@ -448,7 +448,7 @@ class TableComponent extends Component<TableComponentProps> {
       title: languagePack && languagePack.formArray.operating,
       key: 'handle',
       width: 160,
-      render: (value: any, item: object, index: number): React.ReactNode => {
+      render: (value: any, record: object, index: number): React.ReactNode => {
         return (
           <Button.Group>
             <Button onClick={ this.handleDrawEditDataDisplayClick.bind(this, index) }>
