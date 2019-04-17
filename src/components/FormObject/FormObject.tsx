@@ -74,6 +74,7 @@ class FormObject extends Component<FormObjectProps> {
       return this.renderOneOfComponentView(root, _required);
     }
 
+    // 判断是否渲染dependencies
     if (isBoolean(dependenciesDisplay) && !dependenciesDisplay) {
       return null;
     }
