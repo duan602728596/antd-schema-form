@@ -3,6 +3,11 @@ import { Component, Fragment, Context } from 'react';
 import * as PropTypes from 'prop-types';
 import { Requireable } from 'prop-types';
 import isArray from 'lodash-es/isArray';
+import isPlainObject from 'lodash-es/isPlainObject';
+import isNil from 'lodash-es/isNil';
+import isBoolean from 'lodash-es/isBoolean';
+import isString from 'lodash-es/isString';
+import transform from 'lodash-es/transform';
 import { Collapse, Button } from 'antd';
 import AntdSchemaFormContext from '../../context';
 import styleName from '../../utils/styleName';
@@ -55,18 +60,22 @@ class FormObject extends Component<FormObjectProps> {
   context: ContextValue;
 
   // 根据type渲染不同的组件
-  renderComponentByTypeView(root: SchemaItem, required?: boolean): React.ReactNode {
+  renderComponentByTypeView(root: SchemaItem, required?: boolean, dependenciesDisplay?: boolean): React.ReactNode {
     const { id, type }: SchemaItem = root;
-    const required2: boolean = !!required;
+    const _required: boolean = !!required;
     const props: {
       key: string;
       root: any;
       required: boolean;
-    } = { key: id, root, required: required2 };
+    } = { key: id, root, required: _required };
 
     // 渲染oneOf
     if ('oneOf' in root && root.oneOf && isArray(root.oneOf) && root.oneOf.length > 0) {
-      return this.renderOneOfComponentView(root, required2);
+      return this.renderOneOfComponentView(root, _required);
+    }
+
+    if (isBoolean(dependenciesDisplay) && !dependenciesDisplay) {
+      return null;
     }
 
     switch (type) {
@@ -110,16 +119,51 @@ class FormObject extends Component<FormObjectProps> {
     return <OneOf key={ root.id } root={ root } element={ element } />;
   }
 
+  // 判断是否显示
+  dependenciesDisplay(id: string, key: string, keyDepMap: { [key: string]: string[] }): boolean {
+    const { form }: ContextValue = this.context;
+    let isDependenciesDisplay: boolean = false;
+
+    for (const item of keyDepMap[key]) {
+      const value: any = form.getFieldValue(`${ id }/properties/${ item }`);
+
+      if (!(isNil(value) || (isString(value) && value === ''))) {
+        isDependenciesDisplay = true;
+        break;
+      }
+    }
+
+    return isDependenciesDisplay;
+  }
+
   // 渲染一个object组件
   renderObjectComponentView(root: SchemaItem): React.ReactNode {
     const { id, title, description }: SchemaItem = root;
     const required: Array<string> = root.required || [];
     const properties: object = root.properties || {};
     const element: React.ReactNodeArray = [];
+    let keyDepMap: { [key: string]: string[] } | undefined = undefined;
 
-    // 判断object下组件的类型并渲染
+    // 获取dependencies的值
+    if (('dependencies' in root) && root.dependencies && isPlainObject(root.dependencies)) {
+      keyDepMap = transform(root.dependencies, function(result: string[], value: string[], key: string): void {
+        for (const item of value) {
+          (result[item] || (result[item] = [])).push(key);
+        }
+      }, {});
+    }
+
+    // 判断object下组件的类型并渲染，只要有一个有值就要显示
     for (const key in properties) {
-      element.push(this.renderComponentByTypeView(properties[key], required.includes(key)));
+      let isDependenciesDisplay: boolean | undefined = false;
+
+      if (keyDepMap && (key in keyDepMap)) {
+        isDependenciesDisplay = this.dependenciesDisplay(id, key, keyDepMap);
+      } else {
+        isDependenciesDisplay = undefined;
+      }
+
+      element.push(this.renderComponentByTypeView(properties[key], required.includes(key), isDependenciesDisplay));
     }
 
     // header
