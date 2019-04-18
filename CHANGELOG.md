@@ -1,3 +1,7 @@
+### v2.2.0
+
+* 🌟Add dependencies to the form rendering effect, [reference](https://github.com/duan602728596/antd-schema-form#typeobject). [#3](https://github.com/duan602728596/antd-schema-form/issues/3)
+
 ### v2.1.0
 
 * 🌟Add a custom table column render component, [reference](https://github.com/duan602728596/antd-schema-form/blob/master/README.md#custom-table-column-rendering-component).
