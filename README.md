@@ -114,6 +114,7 @@ The component renders the collapsed panel by default ([Collapse](https://ant.des
 
 * `properties: object`: When **type** is **object**, the attributes below the object are listed.
 * `required: Array<string>`: The attributes that the object must contain. Unlike the `$required` attribute.
+* `dependencies: { [key: string]: Array<string> }`: The dependency specified by the object's property. When the property has no value, the component of the dependency is not rendered; when the property has a value, the component of the dependency is rendered and the form of the dependency is required. This property does not control the rendering order of the form.
 
 ### `type="string"`:
 
