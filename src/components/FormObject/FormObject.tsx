@@ -164,7 +164,11 @@ class FormObject extends Component<FormObjectProps> {
         isDependenciesDisplay = undefined;
       }
 
-      element.push(this.renderComponentByTypeView(properties[key], required.includes(key), isDependenciesDisplay));
+      element.push(this.renderComponentByTypeView(
+        properties[key],
+        isDependenciesDisplay || required.includes(key), // 当被依赖时，表单必须填写
+        isDependenciesDisplay
+      ));
     }
 
     // header
