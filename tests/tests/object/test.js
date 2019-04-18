@@ -123,11 +123,7 @@ describe('component rendering', function() {
       expect(wrapper.find('.ant-input-number-input')).to.have.lengthOf(0);
 
       // 模拟输入
-      wrapper.find('.ant-input').at(0).simulate('change', {
-        target: {
-          value: 'hahaha'
-        }
-      });
+      wrapper.find('.ant-input').at(0).simulate('change', { target: { value: 'hahaha' } });
 
       expect(wrapper.find('.ant-input')).to.have.lengthOf(2);
       expect(wrapper.find('.ant-input-number-input')).to.have.lengthOf(1);

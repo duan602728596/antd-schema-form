@@ -32,12 +32,13 @@ export function componentRequired() {
   const wrapper = mount(<SchemaForm json={ json } onOk={ createHandleClickFn(result) } />);
 
   wrapper.find('button').simulate('click');
-
-  const antFormExplain = wrapper.find('.ant-form-explain');
-
   expect(wrapper.find('.ant-form-explain')).to.be.lengthOf(1);
-  expect(antFormExplain.text()).to.be.equal('表单必填验证信息');
+  expect(wrapper.find('.ant-form-explain').text()).to.be.equal('表单必填验证信息');
   expect(result.value).to.be.null;
+
+  wrapper.find('.ant-input').simulate('change', { target: { value: 'hahaha' } });
+  wrapper.find('button').simulate('click');
+  expect(result.value).to.be.eql({ $root: 'hahaha' });
 }
 
 /* 组件值的枚举 */
@@ -54,12 +55,13 @@ export function componentEnum() {
   const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
 
   wrapper.find('button').simulate('click');
-
-  const antFormExplain = wrapper.find('.ant-form-explain');
-
-  expect(antFormExplain).to.be.lengthOf(1);
-  expect(antFormExplain.text()).to.be.equal('枚举验证信息');
+  expect(wrapper.find('.ant-form-explain')).to.be.lengthOf(1);
+  expect(wrapper.find('.ant-form-explain').text()).to.be.equal('枚举验证信息');
   expect(result.value).to.be.null;
+
+  wrapper.find('.ant-input').simulate('change', { target: { value: '枚举1' } });
+  wrapper.find('button').simulate('click');
+  expect(result.value).to.be.eql({ $root: '枚举1' });
 }
 
 /* 组件值的最小长度 */
@@ -76,12 +78,13 @@ export function componentMinLength() {
   const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
 
   wrapper.find('button').simulate('click');
-
-  const antFormExplain = wrapper.find('.ant-form-explain');
-
-  expect(antFormExplain).to.be.lengthOf(1);
-  expect(antFormExplain.text()).to.be.equal('最小长度验证信息');
+  expect(wrapper.find('.ant-form-explain')).to.be.lengthOf(1);
+  expect(wrapper.find('.ant-form-explain').text()).to.be.equal('最小长度验证信息');
   expect(result.value).to.be.null;
+
+  wrapper.find('.ant-input').simulate('change', { target: { value: 'abcdefghijklmn' } });
+  wrapper.find('button').simulate('click');
+  expect(result.value).to.be.eql({ $root: 'abcdefghijklmn' });
 }
 
 /* 组件值的最大长度 */
@@ -98,12 +101,13 @@ export function componentMaxLength() {
   const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
 
   wrapper.find('button').simulate('click');
-
-  const antFormExplain = wrapper.find('.ant-form-explain');
-
-  expect(antFormExplain).to.be.lengthOf(1);
-  expect(antFormExplain.text()).to.be.equal('最大长度验证信息');
+  expect(wrapper.find('.ant-form-explain')).to.be.lengthOf(1);
+  expect(wrapper.find('.ant-form-explain').text()).to.be.equal('最大长度验证信息');
   expect(result.value).to.be.null;
+
+  wrapper.find('.ant-input').simulate('change', { target: { value: 'a' } });
+  wrapper.find('button').simulate('click');
+  expect(result.value).to.be.eql({ $root: 'a' });
 }
 
 /* 组件值的固定长度 */
@@ -120,12 +124,13 @@ export function componentLength() {
   const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
 
   wrapper.find('button').simulate('click');
-
-  const antFormExplain = wrapper.find('.ant-form-explain');
-
-  expect(antFormExplain).to.be.lengthOf(1);
-  expect(antFormExplain.text()).to.be.equal('固定长度验证信息');
+  expect(wrapper.find('.ant-form-explain')).to.be.lengthOf(1);
+  expect(wrapper.find('.ant-form-explain').text()).to.be.equal('固定长度验证信息');
   expect(result.value).to.be.null;
+
+  wrapper.find('.ant-input').simulate('change', { target: { value: 'abcde' } });
+  wrapper.find('button').simulate('click');
+  expect(result.value).to.be.eql({ $root: 'abcde' });
 }
 
 /* 组件的正则表达式验证 */
@@ -142,10 +147,11 @@ export function componentPattern() {
   const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
 
   wrapper.find('button').simulate('click');
-
-  const antFormExplain = wrapper.find('.ant-form-explain');
-
-  expect(antFormExplain).to.be.lengthOf(1);
-  expect(antFormExplain.text()).to.be.equal('组件值的正则验证信息');
+  expect(wrapper.find('.ant-form-explain')).to.be.lengthOf(1);
+  expect(wrapper.find('.ant-form-explain').text()).to.be.equal('组件值的正则验证信息');
   expect(result.value).to.be.null;
+
+  wrapper.find('.ant-input').simulate('change', { target: { value: 'abcde' } });
+  wrapper.find('button').simulate('click');
+  expect(result.value).to.be.eql({ $root: 'abcde' });
 }
