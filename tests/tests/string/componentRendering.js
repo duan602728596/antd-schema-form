@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { mount } from 'enzyme';
-import * as React from 'react';
+import React from 'react';
 import SchemaForm from '../../SchemaForm';
 
 /* 渲染默认组件 */

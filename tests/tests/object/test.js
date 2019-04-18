@@ -2,7 +2,7 @@ import describe from 'describe';
 import it from 'it';
 import { expect } from 'chai';
 import { mount } from 'enzyme';
-import * as React from 'react';
+import React from 'react';
 import SchemaForm from '../../SchemaForm';
 import { sleep } from '../utils';
 
