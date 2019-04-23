@@ -56,7 +56,7 @@ Antd-schema-form based [Ant Design](https://ant.design/), quickly generate inter
 | cancelText | Cancel button text. | string |
 | footer | Custom bottom content, onOk event [reference](https://github.com/duan602728596/antd-schema-form/blob/master/src/components/FormObject/FormObject.tsx#L138) |  (form: object) => React.Node  |
 | customComponent | Custom rendering component, [reference](#custom-rendering-component) | object |
-| customTableRender | Custom table column rendering component, [reference](#Custom table column rendering component) | object |
+| customTableRender | Custom table column rendering component, [reference](#custom-table-column-rendering-component) | object |
 | languagePack | Language configuration, [reference](language/default.json) | object |
 
 ## Json schema configuration
