@@ -1,5 +1,5 @@
 import transform from 'lodash-es/transform';
-import sortBy from 'lodash-es/sortBy';
+import orderBy from 'lodash-es/orderBy';
 
 /**
  * 格式化数据，使值满足antd的props-type
@@ -17,5 +17,5 @@ export function formatTableValue(rawArray: Array<string | number>): Array<{ valu
 export function sortIndex(rawArray: Array<number>): Array<number> {
   if (rawArray.length <= 1) return rawArray;
 
-  return sortBy(rawArray).reverse();
+  return orderBy(rawArray, [], ['desc']);
 }
