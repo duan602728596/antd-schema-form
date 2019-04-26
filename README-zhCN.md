@@ -111,14 +111,15 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
 
 ### `type="object"`:
 
-组件默认渲染折叠面板（[Collapse](https://ant.design/components/collapse-cn/)）。**配置属性: **
+组件默认渲染折叠面板（[Collapse](https://ant.design/components/collapse-cn/)）。**配置属性：**
 
 * `properties: object`: 当**type**为**object**时，列出对象下面的属性。
 * `required: Array<string>`: 对象必须包含的属性。不同于`$required`属性。
+* `dependencies: { [key: string]: Array<string> }`: 对象的属性指定的依赖项。当该属性没有值时，依赖项的组件不会被渲染；当该属性有值时，依赖项的组件会渲染，且依赖项的表单必填。该属性不会控制表单的渲染顺序。
 
 ### `type="string"`:
 
-组件默认渲染输入框（[Input](https://ant.design/components/input-cn/)）。**配置属性: **
+组件默认渲染输入框（[Input](https://ant.design/components/input-cn/)）。**配置属性：**
 
 * `$required: boolean`: 当前的对象值必须存在。对应表单的required验证。
 * `$requiredMessage: string`: 自定义required的验证失败提示信息。
@@ -150,7 +151,7 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
 
 ### `type="number"`或`type="integer"`:
 
-组件默认渲染数字输入框（[InputNumber](https://ant.design/components/input-number-cn/)）。**配置属性: **
+组件默认渲染数字输入框（[InputNumber](https://ant.design/components/input-number-cn/)）。**配置属性：**
 
 * `$required: boolean`: 当前的对象值必须存在。对应表单的required验证。
 * `$requiredMessage: string`: 自定义required的验证失败提示信息。
@@ -175,7 +176,7 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
 
 ### `type="boolean"`:
 
-组件默认渲染多选框（[Checkbox](https://ant.design/components/checkbox-cn/)）。**配置属性: **
+组件默认渲染多选框（[Checkbox](https://ant.design/components/checkbox-cn/)）。**配置属性：**
 
 * `$defaultValue: boolean`: 表单控件的默认值。
 * `$componentType: string`: 渲染为其他组件。
@@ -186,7 +187,7 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
 
 ### `type="array"`:
 
-组件默认渲染表格（[Table](https://ant.design/components/table-cn/)）。点击表格的行数可以修改数据的位置。**配置属性: **
+组件默认渲染表格（[Table](https://ant.design/components/table-cn/)）。点击表格的行数可以修改数据的位置。**配置属性：**
 
 * `items: object`: 数组的内容。
 * `$defaultValue: Array<any>`: 表单控件的默认值。

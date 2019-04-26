@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { mount } from 'enzyme';
-import * as React from 'react';
+import React from 'react';
 import SchemaForm from '../../SchemaForm';
 import { createHandleClickFn } from '../utils';
 
@@ -13,10 +13,6 @@ export function componentNoverification() {
   };
   const result = { value: null };
   const wrapper = mount(<SchemaForm json={ json } onOk={ createHandleClickFn(result) } />);
-
-  wrapper.find('button').simulate('click');
-  expect(wrapper.find('.ant-form-explain')).to.be.lengthOf(0);
-  expect(result.value.$root).to.be.undefined;
 }
 
 /* 表单必填 */
@@ -32,11 +28,8 @@ export function componentRequired() {
   const wrapper = mount(<SchemaForm json={ json } onOk={ createHandleClickFn(result) } />);
 
   wrapper.find('button').simulate('click');
-
-  const antFormExplain = wrapper.find('.ant-form-explain');
-
   expect(wrapper.find('.ant-form-explain')).to.be.lengthOf(1);
-  expect(antFormExplain.text()).to.be.equal('表单必填验证信息');
+  expect(wrapper.find('.ant-form-explain').text()).to.be.equal('表单必填验证信息');
   expect(result.value).to.be.null;
 }
 
@@ -54,11 +47,8 @@ export function componentEnum() {
   const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
 
   wrapper.find('button').simulate('click');
-
-  const antFormExplain = wrapper.find('.ant-form-explain');
-
-  expect(antFormExplain).to.be.lengthOf(1);
-  expect(antFormExplain.text()).to.be.equal('枚举验证信息');
+  expect(wrapper.find('.ant-form-explain')).to.be.lengthOf(1);
+  expect(wrapper.find('.ant-form-explain').text()).to.be.equal('枚举验证信息');
   expect(result.value).to.be.null;
 }
 
@@ -75,11 +65,8 @@ export function componentInteger() {
   const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
 
   wrapper.find('button').simulate('click');
-
-  const antFormExplain = wrapper.find('.ant-form-explain');
-
-  expect(antFormExplain).to.be.lengthOf(1);
-  expect(antFormExplain.text()).to.be.equal('必须是整数');
+  expect(wrapper.find('.ant-form-explain')).to.be.lengthOf(1);
+  expect(wrapper.find('.ant-form-explain').text()).to.be.equal('必须是整数');
   expect(result.value).to.be.null;
 }
 
@@ -97,11 +84,8 @@ export function componentIntegerTrue() {
   const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
 
   wrapper.find('button').simulate('click');
-
-  const antFormExplain = wrapper.find('.ant-form-explain');
-
-  expect(antFormExplain).to.be.lengthOf(1);
-  expect(antFormExplain.text()).to.be.equal('必须是整数');
+  expect(wrapper.find('.ant-form-explain')).to.be.lengthOf(1);
+  expect(wrapper.find('.ant-form-explain').text()).to.be.equal('必须是整数');
   expect(result.value).to.be.null;
 }
 
@@ -119,11 +103,8 @@ export function componentMinimum() {
   const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
 
   wrapper.find('button').simulate('click');
-
-  const antFormExplain = wrapper.find('.ant-form-explain');
-
-  expect(antFormExplain).to.be.lengthOf(1);
-  expect(antFormExplain.text()).to.be.equal('最小值验证信息');
+  expect(wrapper.find('.ant-form-explain')).to.be.lengthOf(1);
+  expect(wrapper.find('.ant-form-explain').text()).to.be.equal('最小值验证信息');
   expect(result.value).to.be.null;
 }
 
@@ -141,10 +122,7 @@ export function componentMaximum() {
   const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
 
   wrapper.find('button').simulate('click');
-
-  const antFormExplain = wrapper.find('.ant-form-explain');
-
-  expect(antFormExplain).to.be.lengthOf(1);
-  expect(antFormExplain.text()).to.be.equal('最大值验证信息');
+  expect(wrapper.find('.ant-form-explain')).to.be.lengthOf(1);
+  expect(wrapper.find('.ant-form-explain').text()).to.be.equal('最大值验证信息');
   expect(result.value).to.be.null;
 }

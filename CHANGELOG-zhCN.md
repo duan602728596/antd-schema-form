@@ -1,3 +1,7 @@
+### v2.2.0
+
+* 🌟添加dependencies的表单渲染效果，[参考](https://github.com/duan602728596/antd-schema-form/blob/master/README-zhCN.md#typeobject)。[#3](https://github.com/duan602728596/antd-schema-form/issues/3)
+
 ### v2.1.0
 
 * 🌟添加自定义表格列渲染组件，[参考](https://github.com/duan602728596/antd-schema-form/blob/master/README-zhCN.md#自定义表格列渲染组件)。
