@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { createSelector, createStructuredSelector } from 'reselect';
 import { Tag, Button, Collapse } from 'antd';
-import { setSchemaJson } from '../store/reducer';
+import { setSchemaJson } from '../reducer/reducer';
 import style from './style.sass';
 import json from './json/json';
 import AddDrawer from './AddDrawer';
@@ -19,18 +19,19 @@ const state = createStructuredSelector({
   )
 });
 
-/* dispatch */
-const dispatch = (dispatch) => ({
-  action: bindActionCreators({
+/* actions */
+const actions = (dispatch) => ({
+  actions: bindActionCreators({
     setSchemaJson
   }, dispatch)
 });
 
+@connect(state, actions)
 class ChangeJson extends Component {
   static contextType = I18NContext;
   static propTypes = {
     schemaJson: PropTypes.object,
-    action: PropTypes.objectOf(PropTypes.func)
+    actions: PropTypes.objectOf(PropTypes.func)
   };
 
   constructor() {
@@ -104,7 +105,7 @@ class ChangeJson extends Component {
       };
     }
 
-    this.props.action.setSchemaJson(schemaJson);
+    this.props.actions.setSchemaJson(schemaJson);
     this.setState({
       isAddDrawerDisplay: false,
       addItem: null
@@ -126,7 +127,7 @@ class ChangeJson extends Component {
     // 合并数据
     Object.assign(editItem, etcValue);
 
-    this.props.action.setSchemaJson(schemaJson);
+    this.props.actions.setSchemaJson(schemaJson);
     this.setState({
       isEditDrawerDisplay: false,
       editItem: null
@@ -164,7 +165,7 @@ class ChangeJson extends Component {
     const { schemaJson } = this.state;
 
     this.findAndDelete(id, schemaJson);
-    this.props.action.setSchemaJson(schemaJson);
+    this.props.actions.setSchemaJson(schemaJson);
   }
 
   // 根据不同的类型渲染不同的标签
@@ -302,4 +303,4 @@ class ChangeJson extends Component {
   }
 }
 
-export default connect(state, dispatch)(ChangeJson);
+export default ChangeJson;

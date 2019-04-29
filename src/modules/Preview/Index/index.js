@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { createSelector, createStructuredSelector } from 'reselect';
 import { Row, Col, Input, Button, message, Modal, Empty } from 'antd';
-import { setSchemaJson } from '../store/reducer';
+import { setSchemaJson } from '../reducer/reducer';
 import style from './style.sass';
 import { handleCopyTextClick } from '../../../utils';
 import schemaFormDefaultLang from 'antd-schema-form/language/default.json';
@@ -20,18 +20,19 @@ const state = createStructuredSelector({
   )
 });
 
-/* dispatch */
-const dispatch = (dispatch) => ({
-  action: bindActionCreators({
+/* actions */
+const actions = (dispatch) => ({
+  actions: bindActionCreators({
     setSchemaJson
   }, dispatch)
 });
 
+@connect(state, actions)
 class Index extends Component {
   static contextType = I18NContext;
   static propTypes = {
     schemaJson: PropTypes.object,
-    action: PropTypes.objectOf(PropTypes.func)
+    actions: PropTypes.objectOf(PropTypes.func)
   };
 
   constructor() {
@@ -62,13 +63,13 @@ class Index extends Component {
   // 表单预览
   handleRedoJsonSchema = (event) => {
     const { textAreaValue } = this.state;
-    const { action } = this.props;
+    const { actions } = this.props;
     const langMessage = this.context.languagePack.message;
     let value = null;
 
     try {
       value = JSON.parse(textAreaValue);
-      action.setSchemaJson(value);
+      actions.setSchemaJson(value);
     } catch (err) {
       message.error(langMessage.jsonFormatError);
     }
@@ -126,4 +127,4 @@ class Index extends Component {
   }
 }
 
-export default connect(state, dispatch)(Index);
+export default Index;

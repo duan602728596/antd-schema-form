@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Helmet from 'react-helmet';
 import loadReducer from '../../store/loadReducer';
-import reducer from './store/reducer';
+import reducer from './reducer/reducer';
 import Index from './Index/index';
 import { I18NContext } from '../../components/I18N/I18N';
 

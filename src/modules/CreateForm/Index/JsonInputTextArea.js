@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { createSelector, createStructuredSelector } from 'reselect';
 import classNames from 'classnames';
 import { Button, Input, message } from 'antd';
-import { setSchemaJson } from '../store/reducer';
+import { setSchemaJson } from '../reducer/reducer';
 import style from './style.sass';
 import { handleCopyTextClick } from '../../../utils';
 import { I18NContext } from '../../../components/I18N/I18N';
@@ -18,18 +18,19 @@ const state = createStructuredSelector({
   )
 });
 
-/* dispatch */
-const dispatch = (dispatch) => ({
-  action: bindActionCreators({
+/* actions */
+const actions = (dispatch) => ({
+  actions: bindActionCreators({
     setSchemaJson
   }, dispatch)
 });
 
+@connect(state, actions)
 class JsonInputTextArea extends Component {
   static contextType = I18NContext;
   static propTypes = {
     schemaJson: PropTypes.object,
-    action: PropTypes.objectOf(PropTypes.func)
+    actions: PropTypes.objectOf(PropTypes.func)
   };
 
   constructor() {
@@ -64,13 +65,13 @@ class JsonInputTextArea extends Component {
   // 刷新表单并同步到store
   handleRedoJsonSchema = (event) => {
     const { textAreaValue } = this.state;
-    const { action } = this.props;
+    const { actions } = this.props;
     const message2 = this.context.languagePack.message;
     let value = null;
 
     try {
       value = JSON.parse(textAreaValue);
-      action.setSchemaJson(value);
+      actions.setSchemaJson(value);
     } catch (err) {
       message.error(message2.jsonFormatError);
     }
@@ -105,4 +106,4 @@ class JsonInputTextArea extends Component {
   }
 }
 
-export default connect(state, dispatch)(JsonInputTextArea);
+export default JsonInputTextArea;
