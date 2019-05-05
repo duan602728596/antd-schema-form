@@ -101,9 +101,9 @@ You can use [form generation](https://duan602728596.github.io/antd-schema-form/#
 * `type: string`: data type, including string, number, integer, boolean, array, object. The schema form renders different components based on that type.
 * `title: string`: Title, used to describe the role of the keyword. The title of the form.
 * `description: string`: Description, used to describe the role of the keyword. A description of the form.
-* `$componentType: string`: Rendered as other components.
+* `$componentType: string`: Rendered as other components (When there is no *oneOf* attribute).
 * `oneOf: Array<object>`: Multiple types of keywords possible.
-* `$oneOfComponentType: string`: Rendered as other component when there has an *oneOf* attribute. OneOf custom component [reference](https://github.com/duan602728596/antd-schema-form/blob/master/src/components/FormObject/OneOf.tsx)。
+* `$oneOfComponentType: string`: Rendered as other component when there has an *oneOf* attribute, at this point, the `$componentType` attribute only takes effect for the schema configuration in `oneOf`. The component returned by the function [reference](https://github.com/duan602728596/antd-schema-form/blob/master/src/components/FormObject/OneOf.tsx)。
 * `$oneOfIndex: number`: The index of the selected Radio.Group under *oneOf*.
 * `$oneOfDisabled: boolean`: *OneOf* is disabled under Radio.Group.
 * `$hidden: boolean`: Hide form fields (form values still exist).
