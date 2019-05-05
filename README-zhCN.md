@@ -103,6 +103,8 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
 * `title: string`: 标题，用于描述关键字的作用。表单的标题。
 * `description: string`: 说明，用于描述关键字的作用。表单的描述。
 * `oneOf: Array<object>`: 关键字可能的多个类型。
+* `$componentType: string`: 渲染为其他组件。
+* `$oneOfComponentType: string`: 当有*oneOf*属性时，渲染为其他组件。oneOf的自定义组件[参考](https://github.com/duan602728596/antd-schema-form/blob/master/src/components/FormObject/OneOf.tsx)。
 * `$oneOfIndex: number`: *oneOf*下选中的Radio.Group的索引。
 * `$oneOfDisabled: boolean`: *oneOf*下Radio.Group禁止切换。
 * `$hidden: boolean`: 隐藏表单域（表单值仍然存在）。
@@ -137,7 +139,6 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
 * `$readOnly: boolean`: 表单控件只读。
 * `$placeholder: string`: 表单控件的placeholder属性。
 * `$defaultValue: string`: 表单控件的默认值。
-* `$componentType: string`: 渲染为其他组件。
 
   | 值 | 组件名称 |
   | --- | --- |
@@ -166,7 +167,6 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
 * `$readOnly: boolean`: 表单控件只读。
 * `$placeholder: string`: 表单控件的placeholder属性。
 * `$defaultValue: number`: 表单控件的默认值。
-* `$componentType: string`: 渲染为其他组件。
 
   | 值 | 组件名称 |
   | --- | --- |
@@ -179,7 +179,6 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
 组件默认渲染多选框（[Checkbox](https://ant.design/components/checkbox-cn/)）。**配置属性：**
 
 * `$defaultValue: boolean`: 表单控件的默认值。
-* `$componentType: string`: 渲染为其他组件。
 
   | 值 | 组件名称 |
   | --- | --- |
@@ -196,7 +195,6 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
 * `maxItems: number`: 数组内元素的最大数量。
 * `$maxItemsMessage: string`: 自定义maxItems的验证失败提示信息。
 * `$addDataInReverseOrder: boolean`: 设置为`true`时，表格组件添加数据时数据插入到头部。
-* `$componentType: string`: 渲染为其他的表格列渲染组件。
 
   | 值 | 组件名称 |
   | --- | --- |
@@ -217,7 +215,13 @@ import Schemaform from 'antd-schema-form';
 import 'antd-schema-form/style/antd-schema-form.css';
 
 const customComponent = {
-  // 自定义组件
+  /**
+   * 自定义组件
+   * @param { object } item: schema对象
+   * @param { GetFieldDecoratorOptions } option: form.getFieldDecorator的option参数
+   * @param { object } form: antd的form对象
+   * @param { boolean } required: 表单值是否必须存在
+   */
   custom(item, option, form, required) {
     const { getFieldDecorator } = form;
 
@@ -225,6 +229,17 @@ const customComponent = {
       <Input placeholder="自定义组件" required={ required } />
     );
   },
+  
+  /**
+   * 当type类型为"object"时，或者含有"oneOf"属性时，自定义组件
+   * @param { object } item: schema对象
+   * @param { object } form: antd的form对象
+   * @param { React.ReactNodeArray } element: 渲染的React组件
+   */
+  objectCustom(item, form, element) {
+    return <div>{ element }</div>;
+  },
+  
   // ...其他自定义组件
 };
 

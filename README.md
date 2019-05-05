@@ -102,6 +102,8 @@ You can use [form generation](https://duan602728596.github.io/antd-schema-form/#
 * `title: string`: Title, used to describe the role of the keyword. The title of the form.
 * `description: string`: Description, used to describe the role of the keyword. A description of the form.
 * `oneOf: Array<object>`: Multiple types of keywords possible.
+* `$componentType: string`: Rendered as other components.
+* `$oneOfComponentType: string`: Rendered as other component when there has an *oneOf* attribute. OneOf custom component [reference](https://github.com/duan602728596/antd-schema-form/blob/master/src/components/FormObject/OneOf.tsx)。
 * `$oneOfIndex: number`: The index of the selected Radio.Group under *oneOf*.
 * `$oneOfDisabled: boolean`: *OneOf* is disabled under Radio.Group.
 * `$hidden: boolean`: Hide form fields (form values still exist).
@@ -136,7 +138,6 @@ The component renders the input box by default ([Input](https://ant.design/compo
 * `$readOnly: boolean`: The form control is read-only.
 * `$placeholder: string`: The placeholder property of the form control.
 * `$defaultValue: string`: The default value of the form control.
-* `$componentType: string`: Rendered as other components.
 
   | Value | Component Name |
   | --- | --- |
@@ -165,7 +166,6 @@ The component renders the numeric input box by default ([InputNumber](https://an
 * `$readOnly: boolean`: The form control is read-only.
 * `$placeholder: string`: The placeholder property of the form control.
 * `$defaultValue: number`: The default value of the form control.
-* `$componentType: string`: Rendered as other components.
 
   | Value | Component Name |
   | --- | --- |
@@ -178,7 +178,6 @@ The component renders the numeric input box by default ([InputNumber](https://an
 The component renders a checkbox by default ([Checkbox](https://ant.design/components/checkbox/)). **Configuration properties:**
 
 * `$defaultValue: boolean`: The default value of the form control.
-* `$componentType: string`: Rendered as other components.
 
   | Value | Component Name |
   | --- | --- |
@@ -195,7 +194,6 @@ The component renders the table by default ([Table](https://ant.design/component
 * `maximum: number`: the maximum value of the form.
 * `$maximumMessage: string`: Customize the verification failure message for maximum.
 * `$addDataInReverseOrder: boolean`: When set to `true`, data is inserted into the header when the table component adds data.
-* `$componentType: string`: Rendered as other components.
 
   | Value | Component Name |
   | --- | --- |
@@ -216,7 +214,13 @@ import Schemaform from 'antd-schema-form';
 import 'antd-schema-form/style/antd-schema-form.css';
 
 const customComponent = {
-  // Custom component
+  /**
+   * Custom component
+   * @param { object } item: schema object
+   * @param { GetFieldDecoratorOptions } option: getFieldDecorator option parameter
+   * @param { object } form: antd form object
+   * @param { boolean } required: whether the form value must exist
+   */
   custom(item, option, form, required){
     const { getFieldDecorator } = form;
 
@@ -224,7 +228,18 @@ const customComponent = {
       <Input placeholder="Custom rendering component." required={ required } />
     );
   },
-  // ...Other custom components
+  
+  /**
+   * Custom component when type type is "object" or contains "oneOf" attribute
+   * @param { object } item: schema object
+   * @param { object } form: antd form object
+   * @param { React.ReactNodeArray } element: Rendered React component
+   */
+   objectCustom(item, form, element) {
+     return <div>{ element }</div>;
+   },
+   
+   // ...Other custom components
 };
 
 const schemaJson = {
