@@ -24,6 +24,7 @@ export interface SchemaItem {
   $hidden?: boolean;
   $tableColumnHidden?: boolean;
   $tableRender?: string;
+  $componentType?: string;
 }
 
 export interface StringItem extends SchemaItem {
@@ -44,7 +45,6 @@ export interface StringItem extends SchemaItem {
   $enumMessage?: string;
   $defaultValue?: string;
   $options?: Array<{ label: string; value: string }>;
-  $componentType?: string;
 }
 
 export interface NumberItem extends SchemaItem {
@@ -62,19 +62,16 @@ export interface NumberItem extends SchemaItem {
   $enumMessage?: string;
   $defaultValue?: number;
   $options?: Array<{ label: string; value: number }>;
-  $componentType?: string;
 }
 
 export interface BooleanItem extends SchemaItem {
   $defaultValue?: boolean;
-  $componentType?: string;
 }
 
 export interface ArrayItem extends SchemaItem {
   items: StringItem | NumberItem | BooleanItem | ArrayItem;
   $defaultValue?: Array<any>;
   $options?: Array<{ label: string; value: any }>;
-  $componentType?: string;
   minItems?: number;
   maxItems?: number;
   $minItemsMessage?: string;

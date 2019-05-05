@@ -139,7 +139,8 @@ class FormObject extends Component<FormObjectProps> {
 
   // 渲染一个object组件
   renderObjectComponentView(root: SchemaItem): React.ReactNode {
-    const { id, title, description }: SchemaItem = root;
+    const { form, customComponent }: ContextValue = this.context;
+    const { id, title, description, $componentType }: SchemaItem = root;
     const required: Array<string> = root.required || [];
     const properties: object = root.properties || {};
     const element: React.ReactNodeArray = [];
@@ -177,13 +178,15 @@ class FormObject extends Component<FormObjectProps> {
       <span className={ styleName('object-description') } key="description">{ description }</span>
     ];
 
-    return (
-      <Collapse key={ id } className={ styleName('object-collapse') } defaultActiveKey={ [id] }>
-        <Collapse.Panel key={ id } header={ header }>
-          { element }
-        </Collapse.Panel>
-      </Collapse>
-    );
+    return (customComponent && $componentType && $componentType in customComponent)
+      ? customComponent[$componentType](root, form, element)
+      : (
+        <Collapse key={ id } className={ styleName('object-collapse') } defaultActiveKey={ [id] }>
+          <Collapse.Panel key={ id } header={ header }>
+            { element }
+          </Collapse.Panel>
+        </Collapse>
+      );
   }
 
   // ok事件
