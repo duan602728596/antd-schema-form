@@ -103,13 +103,15 @@ class FormObject extends Component<FormObjectProps> {
 
   // oneOf组件
   renderOneOfComponentView(root: SchemaItem, required: boolean): React.ReactNode {
+    const { form, customComponent }: ContextValue = this.context;
+    const { id, oneOf, $oneOfComponentType }: SchemaItem = root;
     const element: React.ReactNodeArray = [];
 
-    (root.oneOf || []).forEach((value: SchemaItem, index: number, array: Array<SchemaItem>): void => {
+    (oneOf || []).forEach((value: SchemaItem, index: number, array: Array<SchemaItem>): void => {
       const childrenRoot: SchemaItem = { ...value };
 
       for (const key in root) {
-        if (!(key in childrenRoot) && !['oneOf'].includes(key)) {
+        if (!(key in childrenRoot) && !['oneOf', '$oneOfComponentType'].includes(key)) {
           childrenRoot[key] = root[key];
         }
       }
@@ -117,7 +119,9 @@ class FormObject extends Component<FormObjectProps> {
       element.push(this.renderComponentByTypeView(childrenRoot, required));
     });
 
-    return <OneOf key={ root.id } root={ root } element={ element } />;
+    return (customComponent && $oneOfComponentType && $oneOfComponentType in customComponent)
+      ? customComponent[$oneOfComponentType](root, form, element)
+      : <OneOf key={ id } root={ root } element={ element } />;
   }
 
   // 判断是否显示
