@@ -67,6 +67,8 @@ class OneOf extends Component<OneOfProps, OneOfState> {
     const { oneOf }: SchemaItem = root;
 
     // 这个情况是type="string"时，下一个控件是date，因为moment的关系，所以要清空组件的值，最好尽量避免这种情况
+    // This case is type="string", the next control is date, because of the relationship of the moment,
+    // so to clear the value of the component, it is best to avoid this situation
     if (
       oneOf
       && oneOf[newIndex].type === 'string' && oneOf[oldIndex].type === 'string' // 新旧组件都为string

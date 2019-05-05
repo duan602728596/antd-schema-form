@@ -111,7 +111,8 @@ class FormObject extends Component<FormObjectProps> {
       const childrenRoot: SchemaItem = { ...value };
 
       for (const key in root) {
-        if (!(key in childrenRoot) && !['oneOf', '$oneOfComponentType'].includes(key)) {
+        // children不继承oneOf相关的属性
+        if (!(key in childrenRoot) && !['oneOf', '$oneOfDisabled', '$oneOfIndex', '$oneOfComponentType'].includes(key)) {
           childrenRoot[key] = root[key];
         }
       }
