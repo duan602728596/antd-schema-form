@@ -1,3 +1,8 @@
+### v2.3.0
+
+* 🌟Add a custom component rendering of the object type.
+* 🌟Add oneOf's custom component rendering.
+
 ### v2.2.0
 
 * 🌟Add dependencies to the form rendering effect, [reference](https://github.com/duan602728596/antd-schema-form#typeobject). [#3](https://github.com/duan602728596/antd-schema-form/issues/3)
