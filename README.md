@@ -233,7 +233,7 @@ const customComponent = {
    * Custom component when type type is "object" or contains "oneOf" attribute
    * @param { object } item: schema object
    * @param { object } form: antd form object
-   * @param { React.ReactNodeArray } element: Rendered React component
+   * @param { React.ReactNodeArray || React.ReactNode } element: Rendered React component
    */
    objectCustom(item, form, element) {
      return <div>{ element }</div>;
@@ -255,7 +255,7 @@ ReactDOM.render(
 );
 ```
 
-SchemaForm's custom component property `customComponent` is of type `object`, each of which has the type `(item, option, form, required) => React.Node`.
+SchemaForm's custom component property `customComponent` is of type `object`, when the `type` attribute is not `object`, the type of the value is `(item, option, form, required) => React.Node`.
 Function parameters:
 
 | Parameter | Description | Type |
@@ -264,6 +264,14 @@ Function parameters:
 | option | Form configuration for form.getFieldDecorator. | object |
 | form | Antd's form object. | object |
 | required | Field required | boolean |
+
+When the `type` attribute is `object`, the value type is `(item, form, element) => React.Node`.
+
+| Parameter | Description | Type |
+| --- | --- | --- |
+| item | Information about the id, title, etc. Json schema required by the current. | component | object |
+| form | Antd's form object. | object |
+| element | Rendered React component | React.ReactNodeArray &#124;&#124; React.ReactNode |
 
 ## Custom table column rendering component
 

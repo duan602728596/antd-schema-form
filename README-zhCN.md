@@ -234,7 +234,7 @@ const customComponent = {
    * 当type类型为"object"时，或者含有"oneOf"属性时，自定义组件
    * @param { object } item: schema对象
    * @param { object } form: antd的form对象
-   * @param { React.ReactNodeArray } element: 渲染的React组件
+   * @param { React.ReactNodeArray || React.ReactNode } element: 渲染的React组件
    */
   objectCustom(item, form, element) {
     return <div>{ element }</div>;
@@ -256,7 +256,7 @@ ReactDOM.render(
 );
 ```
 
-SchemaForm的自定义组件属性`customComponent`类型为`object`，其中的每个值的类型都为`(item, option, form, required) => React.Node`。
+SchemaForm的自定义组件属性`customComponent`类型为`object`，当`type`属性不为`object`时，值的类型为`(item, option, form, required) => React.Node`。
 函数参数:
 
 | 参数 | 说明 | 类型 |
@@ -265,6 +265,14 @@ SchemaForm的自定义组件属性`customComponent`类型为`object`，其中的
 | option | form.getFieldDecorator的表单配置 | object |
 | form | antd的form对象 | object |
 | required | 字段是否必填 | boolean |
+
+当`type`属性为`object`时，值的类型为`(item, form, element) => React.Node`。
+
+| 参数 | 说明 | 类型 |
+| --- | --- | --- |
+| item | 当前的组件需要的id、title等json schema的信息 | object |
+| form | antd的form对象 | object |
+| element | 渲染的React组件 | React.ReactNodeArray &#124;&#124; React.ReactNode |
 
 ## 自定义表格列渲染组件
 
