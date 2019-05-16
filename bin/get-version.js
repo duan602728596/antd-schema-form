@@ -150,18 +150,18 @@ function consoleLogText(packageArray) {
     const symbol = (item.latest || item.next || item.rc) ? '*' : '#';
 
     consoleText += `  ${ isLatestNew || isNextNew || isRcNew ? ' ' : symbol } ${ item.name }:\n`;
-    consoleText += `    version: ${ item.version }\n`;
+    consoleText += `      version: ${ item.version }\n`;
 
     if (item.latest) {
-      consoleText += `    latest : ${ formatVersion(item.version, item.latest) }\n`;
+      consoleText += `      latest : ${ formatVersion(item.version, item.latest) }\n`;
     }
 
     if (item.next) {
-      consoleText += `    next   : ${ formatVersion(item.version, item.next) }\n`;
+      consoleText += `      next   : ${ formatVersion(item.version, item.next) }\n`;
     }
 
     if (item.rc) {
-      consoleText += `    rc     : ${ formatVersion(item.version, item.rc) }\n`;
+      consoleText += `      rc     : ${ formatVersion(item.version, item.rc) }\n`;
     }
   }
 
