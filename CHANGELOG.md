@@ -1,3 +1,7 @@
+### v2.3.1
+
+* Compile the ' d.ts ' file.
+
 ### v2.3.0
 
 * 🌟Add a custom component rendering of the object type.
