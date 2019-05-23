@@ -129,7 +129,7 @@ class SchemaForm extends Component<SchemaFormProps, SchemaFormState> {
       form,
       customComponent,
       customTableRender,
-      language, // 系统语言
+      language,    // 系统语言
       languagePack // 语言包
     };
 
