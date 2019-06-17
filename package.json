@@ -5,7 +5,7 @@
     "dll": "milktea dll",
     "start": "cross-env NODE_ENV=development milktea start --server",
     "build": "npm run clean && cross-env NODE_ENV=production milktea build",
-    "clean": "rimraf ./build",
+    "clean": "rimraf ./dist",
     "server": "milktea server",
     "eslint": "eslint ./src --fix",
     "case-check": "case-check --dir=\"./\" --css",
