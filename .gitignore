@@ -13,11 +13,11 @@ yarn-error.log
 # build
 build
 buildServer
+dist
+dist-server
 
 # cache
-.dll
-.babelCache
-.terserCache
+.sweet/*
 
 # https
 *.crt
