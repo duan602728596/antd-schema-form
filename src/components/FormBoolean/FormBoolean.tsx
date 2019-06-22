@@ -42,7 +42,7 @@ class FormBoolean extends Component<FormBooleanProps, FormBooleanState> {
     const { form }: ContextValue = this.context;
     const { root }: FormBooleanProps = this.props;
     const id: string = root.id;
-    const value: boolean = form.getFieldValue(id);
+    const value: boolean = !!form.getFieldValue(id);
 
     this.state = {
       form,
@@ -54,7 +54,7 @@ class FormBoolean extends Component<FormBooleanProps, FormBooleanState> {
     const { form }: FormBooleanState = prevState;
     const { root }: FormBooleanProps = nextProps;
     const id: string = root.id;
-    const value: boolean = form.getFieldValue(id);
+    const value: boolean = !!form.getFieldValue(id);
 
     return { isChecked: isNil(value) ? !!root.$defaultValue : value };
   }

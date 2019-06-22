@@ -120,7 +120,7 @@ class TableComponent extends Component<TableComponentProps> {
     const { form }: ContextValue = this.context;
     const { root }: TableComponentProps = this.props;
     const id: string = root.id;
-    let tableValue: Array<any> = form.getFieldValue(id);
+    let tableValue: Array<any> | any = form.getFieldValue(id);
 
     tableValue = isNil(tableValue) ? (root.$defaultValue || []) : tableValue;
 
@@ -254,7 +254,7 @@ class TableComponent extends Component<TableComponentProps> {
     const { form }: ContextValue = this.context;
     const { root }: TableComponentProps = this.props;
     const id: string = root.id;
-    let tableValue: Array<any> = form.getFieldValue(id);
+    let tableValue: Array<any> | any = form.getFieldValue(id);
 
     tableValue = isNil(tableValue) ? (root.$defaultValue || []) : tableValue;
 
@@ -277,7 +277,7 @@ class TableComponent extends Component<TableComponentProps> {
     const value2: object = form.getFieldsValue(keys);
     const formatValue: object = formatValueBeforeGetValue(value2, id);
     const result: object = getValueFromObject(formatValue);
-    let tableValue: Array<any> = form.getFieldValue(id);
+    let tableValue: Array<any> | any = form.getFieldValue(id);
 
     tableValue = isNil(tableValue) ? (root.$defaultValue || []) : tableValue;
 
@@ -306,7 +306,7 @@ class TableComponent extends Component<TableComponentProps> {
     const { form }: ContextValue = this.context;
     const { root }: TableComponentProps = this.props;
     const id: string = root.id;
-    let tableValue: Array<any> = form.getFieldValue(id);
+    let tableValue: Array<any> | any = form.getFieldValue(id);
 
     tableValue = isNil(tableValue) ? (root.$defaultValue || []) : tableValue;
     tableValue.splice(index, 1);
@@ -318,7 +318,7 @@ class TableComponent extends Component<TableComponentProps> {
     const { form }: ContextValue = this.context;
     const { root }: TableComponentProps = this.props;
     const id: string = root.id;
-    let tableValue: Array<any> = form.getFieldValue(id);
+    let tableValue: Array<any> | any = form.getFieldValue(id);
 
     tableValue = isNil(tableValue) ? (root.$defaultValue || []) : tableValue;
 
@@ -358,7 +358,7 @@ class TableComponent extends Component<TableComponentProps> {
     const { root }: TableComponentProps = this.props;
     const { selectedRowKeys }: { selectedRowKeys: number[] } = this.state;
     const id: string = root.id;
-    let tableValue: Array<any> = form.getFieldValue(id);
+    let tableValue: Array<any> | any = form.getFieldValue(id);
 
     tableValue = isNil(tableValue) ? (root.$defaultValue || []) : tableValue;
     // 删除选中的数据
@@ -473,7 +473,7 @@ class TableComponent extends Component<TableComponentProps> {
     const { id, items, minItems, maxItems, $minItemsMessage, $maxItemsMessage }: ArrayItem = root;
     const { isDisplayDataDrawer, selectedRowKeys, inputDisplayIndex, editIndex }: TableComponentState = this.state;
     const inputNotDisplay: boolean = isNil(inputDisplayIndex);
-    let value: Array<any> = form.getFieldValue(id);
+    let value: Array<any> | any = form.getFieldValue(id);
 
     value = isNil(value) ? (root.$defaultValue || []) : value;
 
