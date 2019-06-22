@@ -13,7 +13,7 @@ const config = {
 
 module.exports = merge(basicConfig, config, {
   entry: {
-    app: path.join(__dirname, '../example/index.js')
+    index: path.join(__dirname, '../example/index.js')
   },
   plugins: [
     new HtmlWebpackPlugin({
