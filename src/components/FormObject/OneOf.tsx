@@ -56,8 +56,11 @@ class OneOf extends Component<OneOfProps, OneOfState> {
   // 切换指定index
   handleDesignationIndexChange(event: RadioChangeEvent): void {
     const index: number = this.state.index;
+    const value: unknown = event.target.value;
 
-    this.switchCallback(event.target.value, index);
+    if (typeof value === 'number') {
+      this.switchCallback(value, index);
+    }
   }
 
   // 切换的callback
