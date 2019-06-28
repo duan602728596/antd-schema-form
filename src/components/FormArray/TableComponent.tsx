@@ -329,7 +329,11 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): React.Re
       width: 65,
       render: (value: any, record: object, index: number): React.ReactNode => {
         if (inputDisplayIndex === undefined || inputDisplayIndex !== index) {
-          return <a onClick={ (event: React.MouseEvent<HTMLElement, MouseEvent>): void => handleInputDisplayClick(index, event) }>{ index + 1 }</a>;
+          return (
+            <a onClick={ (event: React.MouseEvent<HTMLElement, MouseEvent>): void => handleInputDisplayClick(index, event) }>
+              { index + 1 }
+            </a>
+          );
         } else {
           return (
             <Input ref={ changeIndexRef }
