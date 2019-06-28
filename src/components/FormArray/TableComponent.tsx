@@ -89,15 +89,15 @@ class TableComponent extends Component<TableComponentProps> {
   };
 
   state: TableComponentState = {
-    isDisplayDataDrawer: false, // 添加和修改数据的抽屉的显示和隐藏
+    isDisplayDataDrawer: false,   // 添加和修改数据的抽屉的显示和隐藏
     inputDisplayIndex: undefined, // 编辑框修改位置的状态
-    inputChangeIndex: undefined, // 编辑框的值
-    selectedRowKeys: [], // 多选框
-    editIndex: null // 当前表格编辑的对象
+    inputChangeIndex: undefined,  // 编辑框的值
+    selectedRowKeys: [],          // 多选框
+    editIndex: null               // 当前表格编辑的对象
   };
 
   // 编辑位置框修改位置
-  handleInputDisplayClick(index: number, event: React.MouseEvent<HTMLElement>): void {
+  handleInputDisplayClick(index: number, event: React.MouseEvent<HTMLElement, MouseEvent>): void {
     this.setState({
       inputDisplayIndex: index,
       inputChangeIndex: String(index + 1)
@@ -116,7 +116,7 @@ class TableComponent extends Component<TableComponentProps> {
   }
 
   // 编辑位置框失去焦点
-  handleIndexInputBlur(index: number, event: React.MouseEvent<HTMLInputElement>): void {
+  handleIndexInputBlur(index: number, event: React.FocusEvent<HTMLInputElement> | React.KeyboardEvent<HTMLInputElement>): void {
     const { form }: ContextValue = this.context;
     const { root }: TableComponentProps = this.props;
     const id: string = root.id;
@@ -142,7 +142,7 @@ class TableComponent extends Component<TableComponentProps> {
   }
 
   // 开始拖拽
-  handleTableDragStart(event: React.DragEvent<'tr'>): void {
+  handleTableDragStart(event: React.DragEvent<HTMLTableRowElement>): void {
     const target: EventTarget = event['target'];
     const id: string = target['dataset'].id;
     const index: number = Number(target['dataset'].index);
@@ -152,7 +152,7 @@ class TableComponent extends Component<TableComponentProps> {
   }
 
   // 拖拽进入
-  handleTableDragEnter(event: React.DragEvent<any>): void {
+  handleTableDragEnter(event: React.DragEvent<HTMLTableRowElement>): void {
     event.preventDefault();
 
     // 获取目标的信息
@@ -182,7 +182,7 @@ class TableComponent extends Component<TableComponentProps> {
   }
 
   // 拖拽退出
-  handleTableDragLeave(event: React.DragEvent<any>): void {
+  handleTableDragLeave(event: React.DragEvent<HTMLTableRowElement>): void {
     event.preventDefault();
 
     // 获取目标的信息
@@ -208,12 +208,12 @@ class TableComponent extends Component<TableComponentProps> {
   }
 
   // 拖拽中
-  handleTableDragOver(event: React.DragEvent<any>): void {
+  handleTableDragOver(event: React.DragEvent<HTMLTableRowElement>): void {
     event.preventDefault();
   }
 
   // 放置
-  handleTableDrop(event: React.DragEvent<any>): void {
+  handleTableDrop(event: React.DragEvent<HTMLTableRowElement>): void {
     event.preventDefault();
 
     // 获取目标的信息
@@ -302,7 +302,7 @@ class TableComponent extends Component<TableComponentProps> {
   };
 
   // 删除数据
-  handleDeleteDataClick(index: number, event: React.MouseEvent<Button>): void {
+  handleDeleteDataClick(index: number, event: React.MouseEvent<HTMLElement, MouseEvent>): void {
     const { form }: ContextValue = this.context;
     const { root }: TableComponentProps = this.props;
     const id: string = root.id;
@@ -314,7 +314,7 @@ class TableComponent extends Component<TableComponentProps> {
   }
 
   // 修改数据抽屉的显示
-  handleDrawEditDataDisplayClick(index: number, event: React.MouseEvent<Button>): void {
+  handleDrawEditDataDisplayClick(index: number, event: React.MouseEvent<HTMLElement, MouseEvent>): void {
     const { form }: ContextValue = this.context;
     const { root }: TableComponentProps = this.props;
     const id: string = root.id;
@@ -332,7 +332,7 @@ class TableComponent extends Component<TableComponentProps> {
   }
 
   // 抽屉的显示和隐藏
-  handleDrawerDisplayClick(key: string, value: boolean, eventOrObject: React.MouseEvent<Button> | object): void {
+  handleDrawerDisplayClick(key: string, value: boolean, eventOrObject: React.MouseEvent<HTMLElement, MouseEvent> | object): void {
     const state: {
       editIndex?: number | null;
       [key: string]: any;
@@ -353,7 +353,7 @@ class TableComponent extends Component<TableComponentProps> {
   }
 
   // 删除选中的数据
-  handleDeleteSelectDataClick(event: React.MouseEvent<Button>): void {
+  handleDeleteSelectDataClick(event: React.MouseEvent<HTMLElement, MouseEvent>): void {
     const { form }: ContextValue = this.context;
     const { root }: TableComponentProps = this.props;
     const { selectedRowKeys }: { selectedRowKeys: number[] } = this.state;
