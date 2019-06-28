@@ -11,6 +11,13 @@ import styleName from '../../utils/styleName';
 import createStringRules from './createStringRules';
 import { StringItem, ContextValue } from '../../types';
 
+// select的下拉框
+function selectOptionsView(options: Array<{ label: string; value: string }>): React.ReactNodeArray {
+  return options.map((item: { label: string; value: string }, index: number): React.ReactNode => {
+    return <Select.Option key={ `${ index }` } value={ item.value }>{ item.label }</Select.Option>;
+  });
+}
+
 /**
  * 当类型为string时的组件渲染
  * json schema的属性包括：id, type, title, description, pattern, minLength, maxLength, enum
@@ -26,13 +33,6 @@ interface FormStringProps {
 
 function FormString(props: PropsWithChildren<FormStringProps>): React.ReactElement | null {
   const context: ContextValue | {} = useContext(AntdSchemaFormContext);
-
-  // select的下拉框
-  function selectOptionsView(options: Array<{ label: string; value: string }>): React.ReactNodeArray {
-    return options.map((item: { label: string; value: string }, index: number): React.ReactNode => {
-      return <Select.Option key={ `${ index }` } value={ item.value }>{ item.label }</Select.Option>;
-    });
-  }
 
   if (!('form' in context)) return null; // 类型判断
 
