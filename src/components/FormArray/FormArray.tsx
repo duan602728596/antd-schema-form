@@ -4,7 +4,7 @@ import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Form, Tooltip, Select, Checkbox } from 'antd';
 import { GetFieldDecoratorOptions, ValidationRule, WrappedFormUtils } from 'antd/lib/form/Form';
-import omit from 'lodash/omit';
+import omit from 'lodash-es/omit';
 import AntdSchemaFormContext from '../../context';
 import TableComponent from './TableComponent';
 import styleName from '../../utils/styleName';
