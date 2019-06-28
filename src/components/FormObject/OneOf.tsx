@@ -19,11 +19,11 @@ function OneOf(props: PropsWithChildren<OneOfProps>): React.ReactElement | null 
 
   const { form }: ContextValue = context;
   const { element, root }: OneOfProps = props;
-  const { oneOf, $oneOfDisabled }: SchemaItem = root;
+  const { id, oneOf, $oneOfDisabled, $oneOfIndex }: SchemaItem = root;
 
   // oneOf选项卡的index
   const [index, setIndex]: [number, Dispatch<SetStateAction<number>>]
-    = useState((root.$oneOfIndex !== undefined && isNumber(root.$oneOfIndex)) ? root.$oneOfIndex : 0);
+    = useState(($oneOfIndex !== undefined && isNumber($oneOfIndex)) ? $oneOfIndex : 0);
 
   // 切换的callback
   function switchCallback(newIndex: number, oldIndex: number): void {
@@ -36,7 +36,7 @@ function OneOf(props: PropsWithChildren<OneOfProps>): React.ReactElement | null 
       && ((oneOf[oldIndex].$componentType !== 'date' && oneOf[newIndex].$componentType === 'date') // 判断是否为date组件
       || (oneOf[oldIndex].$componentType === 'date' && oneOf[newIndex].$componentType !== 'date'))
     ) {
-      form.resetFields([root.id]);
+      form.resetFields([id]);
     }
 
     setIndex(newIndex);
@@ -52,7 +52,7 @@ function OneOf(props: PropsWithChildren<OneOfProps>): React.ReactElement | null 
   }
 
   useEffect(function(): void {
-    setIndex((root.$oneOfIndex !== undefined && isNumber(root.$oneOfIndex)) ? root.$oneOfIndex : 0);
+    setIndex(($oneOfIndex !== undefined && isNumber($oneOfIndex)) ? $oneOfIndex : 0);
   }, [root]);
 
   // 渲染radio
