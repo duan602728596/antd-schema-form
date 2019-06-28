@@ -20,7 +20,7 @@ interface FormBooleanProps {
   required: boolean;
 }
 
-function FormBoolean2(props: PropsWithChildren<FormBooleanProps>): React.ReactElement | null {
+function FormBoolean(props: PropsWithChildren<FormBooleanProps>): React.ReactElement | null {
   const context: ContextValue | {} = useContext(AntdSchemaFormContext);
 
   if (!('form' in context)) return null; // 类型判断
@@ -64,8 +64,8 @@ function FormBoolean2(props: PropsWithChildren<FormBooleanProps>): React.ReactEl
   );
 }
 
-FormBoolean2.propTypes = {
+FormBoolean.propTypes = {
   root: PropTypes.object
 };
 
-export default FormBoolean2;
+export default FormBoolean;
