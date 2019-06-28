@@ -4,6 +4,7 @@ import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Form, Tooltip, Select, Checkbox } from 'antd';
 import { GetFieldDecoratorOptions, ValidationRule, WrappedFormUtils } from 'antd/lib/form/Form';
+import omit from 'lodash/omit';
 import AntdSchemaFormContext from '../../context';
 import TableComponent from './TableComponent';
 import styleName from '../../utils/styleName';
@@ -65,7 +66,9 @@ function FormArray(props: PropsWithChildren<FormArrayProps>): React.ReactElement
       if (customComponent && $componentType && $componentType in customComponent) {
         element = customComponent[$componentType](root, option, form, required);
       } else {
-        element = <TableComponent root={ root } { ...getFieldProps(id, option) } />;
+        const props: any = omit(getFieldProps(id, option), ['ref']);
+
+        element = <TableComponent root={ root } { ...props } />;
         isTableComponent = true;
       }
   }
