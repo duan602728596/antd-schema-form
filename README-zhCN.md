@@ -12,9 +12,8 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
 
   ```javascript
   {
-    test: /^.*\.js$/,
-    use: 'babel-loader',
-    exclude: /node_modules[\\/](?!antd-schema-form)/
+    test: /node_modules[\\/]antd-schema-form$/,
+    use: 'babel-loader'
   }
   ```
 
