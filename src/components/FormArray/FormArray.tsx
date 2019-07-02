@@ -9,14 +9,8 @@ import AntdSchemaFormContext from '../../context';
 import TableComponent from './TableComponent';
 import styleName from '../../utils/styleName';
 import createArrayRules from './createArrayRules';
+import selectOptionsRender from '../../utils/selectOptionsRender';
 import { ArrayItem, ContextValue } from '../../types';
-
-// select的下拉框
-function selectOptionsView(options: Array<{ label: string; value: string }>): React.ReactNodeArray {
-  return options.map((item: { label: string; value: string }, index: number): React.ReactNode => {
-    return <Select.Option key={ `${ index }` } value={ item.value }>{ item.label }</Select.Option>;
-  });
-}
 
 /**
  * 当类型为array时的组件渲染
@@ -57,7 +51,7 @@ function FormArray(props: PropsWithChildren<FormArrayProps>): React.ReactElement
     case 'tags':
       element = getFieldDecorator(id, option)(
         <Select className={ styleName('array-multiple') } mode={ $componentType }>
-          { selectOptionsView($options) }
+          { selectOptionsRender($options) }
         </Select>
       );
       break;

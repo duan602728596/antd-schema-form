@@ -9,14 +9,8 @@ import * as moment from 'moment';
 import AntdSchemaFormContext from '../../context';
 import styleName from '../../utils/styleName';
 import createStringRules from './createStringRules';
+import selectOptionsRender from '../../utils/selectOptionsRender';
 import { StringItem, ContextValue } from '../../types';
-
-// select的下拉框
-function selectOptionsView(options: Array<{ label: string; value: string }>): React.ReactNodeArray {
-  return options.map((item: { label: string; value: string }, index: number): React.ReactNode => {
-    return <Select.Option key={ `${ index }` } value={ item.value }>{ item.label }</Select.Option>;
-  });
-}
 
 /**
  * 当类型为string时的组件渲染
@@ -78,7 +72,7 @@ function FormString(props: PropsWithChildren<FormStringProps>): React.ReactEleme
           placeholder={ $placeholder }
           allowClear={ !($required || required) }
         >
-          { selectOptionsView($options) }
+          { selectOptionsRender($options) }
         </Select>
       );
       break;
