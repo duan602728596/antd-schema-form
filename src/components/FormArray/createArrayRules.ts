@@ -3,9 +3,6 @@ import isNumber from 'lodash-es/isNumber';
 import { ValidationRule } from 'antd/lib/form';
 import { ArrayItem } from '../../types';
 
-export const minErrStr: string = '数量必须大于等于';
-export const maxErrStr: string = '数量必须小于等于';
-
 function createArrayRules(languagePack: any, root: ArrayItem, required: boolean): Array<ValidationRule> {
   const { minItems, maxItems, $minItemsMessage, $maxItemsMessage }: ArrayItem = root;
   const rules: ValidationRule[] = [];
