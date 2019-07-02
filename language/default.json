@@ -13,5 +13,24 @@
     "cancelText": "Cancel",
     "addOkText": "Add",
     "addCancelText": "Close"
+  },
+  "rules": {
+    "required": "This option is required",
+    "enum": " does not contain this value",
+    "string": {
+      "min": "The minimum length of the field is ",
+      "max": "The maximum length of the field is ",
+      "length": "The length of the field is ",
+      "pattern": "The data format is incorrect and the format must be: "
+    },
+    "number": {
+      "integer": "Value must be an integer",
+      "minimum": "Value must be greater than or equal to ",
+      "maximum": "Value must be less than or equal to "
+    },
+    "array": {
+      "minItems": "Quantity must be greater than or equal to ",
+      "maxItems": "Quantity must be less than or equal to "
+    }
   }
 }

@@ -6,7 +6,7 @@ import { ArrayItem } from '../../types';
 export const minErrStr: string = '数量必须大于等于';
 export const maxErrStr: string = '数量必须小于等于';
 
-function createArrayRules(root: ArrayItem, required: boolean): Array<ValidationRule> {
+function createArrayRules(languagePack: any, root: ArrayItem, required: boolean): Array<ValidationRule> {
   const { minItems, maxItems, $minItemsMessage, $maxItemsMessage }: ArrayItem = root;
   const rules: ValidationRule[] = [];
 
@@ -17,7 +17,7 @@ function createArrayRules(root: ArrayItem, required: boolean): Array<ValidationR
         if (minItems !== undefined && value && value.length < minItems) callback(rule.message);
         else callback();
       },
-      message: $minItemsMessage || `${ minErrStr }${ minItems }`
+      message: $minItemsMessage || `${ languagePack.rules.array.minItems }${ minItems }`
     });
   }
 
@@ -28,7 +28,7 @@ function createArrayRules(root: ArrayItem, required: boolean): Array<ValidationR
         if (maxItems !== undefined && value && value.length > maxItems) callback(rule.message);
         else callback();
       },
-      message: $maxItemsMessage || `${ maxErrStr }${ maxItems }`
+      message: $maxItemsMessage || `${ languagePack.rules.array.maxItems }${ maxItems }`
     });
   }
 

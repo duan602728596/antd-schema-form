@@ -4,7 +4,7 @@ import isString from 'lodash-es/isString';
 import { ValidationRule } from 'antd/lib/form';
 import { StringItem } from '../../types';
 
-function createStringRules(root: StringItem, required: boolean): Array<ValidationRule> {
+function createStringRules(languagePack: any, root: StringItem, required: boolean): Array<ValidationRule> {
   const {
     $required, $requiredMessage, pattern, $patternOption, $patternMessage, minLength, maxLength, $minLengthMessage,
     $maxLengthMessage, $length, $lengthMessage, $enumMessage
@@ -16,7 +16,7 @@ function createStringRules(root: StringItem, required: boolean): Array<Validatio
   if ($required === true || required === true) {
     rules.push({
       required: true,
-      message: $requiredMessage || '该选项为必填项',
+      message: $requiredMessage || languagePack.rules.required,
       whitespace: true
     });
   }
@@ -26,7 +26,7 @@ function createStringRules(root: StringItem, required: boolean): Array<Validatio
     rules.push({
       type: 'enum',
       enum: enums,
-      message: $enumMessage || `值不在集合 [${ enums.join(', ') }] 里`
+      message: $enumMessage || `[${ enums.join(', ') }]${ languagePack.rules.enum }`
     });
   }
 
@@ -34,7 +34,7 @@ function createStringRules(root: StringItem, required: boolean): Array<Validatio
   if (!isNil(minLength) && isNumber(minLength)) {
     rules.push({
       min: minLength,
-      message: $minLengthMessage || `字段的最小长度为${ minLength }`
+      message: $minLengthMessage || `${ languagePack.rules.string.min }${ minLength }`
     });
   }
 
@@ -42,7 +42,7 @@ function createStringRules(root: StringItem, required: boolean): Array<Validatio
   if (!isNil(maxLength)) {
     rules.push({
       max: maxLength,
-      message: $maxLengthMessage || `字段的最大长度为${ maxLength }`
+      message: $maxLengthMessage || `${ languagePack.rules.string.max }${ maxLength }`
     });
   }
 
@@ -50,7 +50,7 @@ function createStringRules(root: StringItem, required: boolean): Array<Validatio
   if (!isNil($length) && isNumber($length)) {
     rules.push({
       len: $length,
-      message: $lengthMessage || `字段的长度为${ $length }`
+      message: $lengthMessage || `${ languagePack.rules.string.length }${ $length }`
     });
   }
 
@@ -60,7 +60,7 @@ function createStringRules(root: StringItem, required: boolean): Array<Validatio
 
     rules.push({
       pattern: reg,
-      message: $patternMessage || `数据格式错误，格式必须为：/${ pattern }/${ isString($patternOption) ? $patternOption : '' }`
+      message: $patternMessage || `${ languagePack.rules.string.pattern }/${ pattern }/${ isString($patternOption) ? $patternOption : '' }`
     });
   }
 

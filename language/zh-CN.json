@@ -13,5 +13,24 @@
     "cancelText": "取消",
     "addOkText": "添加",
     "addCancelText": "关闭"
+  },
+  "rules": {
+    "required": "该选项为必填项",
+    "enum": " 不包含该值",
+    "string": {
+      "min": "字段的最小长度为",
+      "max": "字段的最大长度为",
+      "length": "字段的长度为",
+      "pattern": "数据格式错误，格式必须为："
+    },
+    "number": {
+      "integer": "值必须是整数",
+      "minimum": "值必须大于等于",
+      "maximum": "值必须小于等于"
+    },
+    "array": {
+      "minItems": "数量必须大于等于",
+      "maxItems": "数量必须小于等于"
+    }
   }
 }

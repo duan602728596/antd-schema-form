@@ -3,7 +3,7 @@ import isNumber from 'lodash-es/isNumber';
 import { ValidationRule } from 'antd/lib/form';
 import { NumberItem } from '../../types';
 
-function createNumberRules(root: NumberItem, required: boolean, isInteger: boolean): Array<ValidationRule> {
+function createNumberRules(languagePack: any, root: NumberItem, required: boolean, isInteger: boolean): Array<ValidationRule> {
   const {
     $required, $requiredMessage, minimum, maximum, $minimumMessage, $maximumMessage, $integer, $integerMessage,
     $enumMessage
@@ -15,7 +15,7 @@ function createNumberRules(root: NumberItem, required: boolean, isInteger: boole
   if ($required || required) {
     rules.push({
       required: true,
-      message: $requiredMessage || '该选项为必填项'
+      message: $requiredMessage || languagePack.rules.required
     });
   }
 
@@ -24,7 +24,7 @@ function createNumberRules(root: NumberItem, required: boolean, isInteger: boole
     rules.push({
       type: 'enum',
       enum: enums,
-      message: $enumMessage || `值不在集合 [${ enums.join(', ') }] 里`
+      message: $enumMessage || `[${ enums.join(', ') }]${ languagePack.rules.enum }`
     });
   }
 
@@ -32,7 +32,7 @@ function createNumberRules(root: NumberItem, required: boolean, isInteger: boole
   if (isInteger || $integer) {
     rules.push({
       type: 'integer',
-      message: $integerMessage || '值必须是整数'
+      message: $integerMessage || languagePack.rules.number.integer
     });
   }
 
@@ -51,7 +51,7 @@ function createNumberRules(root: NumberItem, required: boolean, isInteger: boole
           callback();
         }
       },
-      message: $minimumMessage || `值必须大于等于${ minimum }`
+      message: $minimumMessage || `${ languagePack.rules.number.minimum }${ minimum }`
     });
   }
 
@@ -70,7 +70,7 @@ function createNumberRules(root: NumberItem, required: boolean, isInteger: boole
           callback();
         }
       },
-      message: $maximumMessage || `值必须小于等于${ maximum }`
+      message: $maximumMessage || `${ languagePack.rules.number.maximum }${ maximum }`
     });
   }
 

@@ -35,12 +35,12 @@ function FormArray(props: PropsWithChildren<FormArrayProps>): React.ReactElement
 
   if (!('form' in context)) return null; // 类型判断
 
-  const { form, customComponent }: ContextValue = context;
+  const { form, customComponent, languagePack }: ContextValue = context;
   // @ts-ignore: getFieldProps in rc-form
   const { getFieldDecorator, getFieldProps }: WrappedFormUtils = form;
   const { root, required }: FormArrayProps = props;
   const { id, title, description, $componentType, $defaultValue, $options = [], $hidden }: ArrayItem = root;
-  const rules: Array<ValidationRule> = createArrayRules(root, required);
+  const rules: Array<ValidationRule> = createArrayRules(languagePack, root, required);
   const option: GetFieldDecoratorOptions = { rules };
   let isTableComponent: boolean = false; // 判断是否为table组件
   let element: React.ReactNode = null;

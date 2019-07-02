@@ -36,7 +36,7 @@ function FormString(props: PropsWithChildren<FormStringProps>): React.ReactEleme
 
   if (!('form' in context)) return null; // 类型判断
 
-  const { form, customComponent }: ContextValue = context;
+  const { form, customComponent, languagePack }: ContextValue = context;
   const { getFieldDecorator }: WrappedFormUtils = form;
   const { root, required }: FormStringProps = props; // type=object时，会判断key是否存在于required数组中
   const {
@@ -51,7 +51,7 @@ function FormString(props: PropsWithChildren<FormStringProps>): React.ReactEleme
     $placeholder,
     $hidden
   }: StringItem = root;
-  const rules: Array<ValidationRule> = createStringRules(props.root, required);
+  const rules: Array<ValidationRule> = createStringRules(languagePack, root, required);
   const option: GetFieldDecoratorOptions = { rules };
   let element: React.ReactNode = null;
 
