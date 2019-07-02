@@ -1,5 +1,22 @@
 # antd-schema-form
 
+[![NPM version][antd-schema-form-image]][antd-schema-form-url]
+[![NPM version][react-image]][react-url]
+[![NPM version][react-dom-image]][react-dom-url]
+[![NPM version][ant-design-image]][ant-design-url]
+
+[antd-schema-form-image]: https://img.shields.io/badge/antd--schema--form-2.3.1-blue.svg
+[antd-schema-form-url]: https://www.npmjs.com/package/antd-schema-form
+
+[react-image]: https://img.shields.io/badge/react-%3E=16.6.0-red.svg
+[react-url]: https://github.com/facebook/react
+
+[react-dom-image]: https://img.shields.io/badge/react--dom-%3E=16.6.0-red.svg
+[react-dom-url]: https://github.com/facebook/react
+
+[ant-design-image]: https://img.shields.io/badge/ant--design-%3E=3.12.0-red.svg
+[ant-design-url]: https://github.com/ant-design/ant-design
+
 antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Schema](http://json-schema.org/draft-07/json-schema-validation.html)配置快速生成可交互的表单。
 
 这个[Demo](https://duan602728596.github.io/antd-schema-form/#/)简单的展示了通过配置schema.json构建一个表单。
@@ -228,7 +245,7 @@ const customComponent = {
       <Input placeholder="自定义组件" required={ required } />
     );
   },
-  
+
   /**
    * 当type类型为"object"时，或者含有"oneOf"属性时，自定义组件
    * @param { object } item: schema对象
@@ -238,7 +255,7 @@ const customComponent = {
   objectCustom(item, form, element) {
     return <div>{ element }</div>;
   },
-  
+
   // ...其他自定义组件
 };
 
