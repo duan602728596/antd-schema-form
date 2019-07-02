@@ -33,7 +33,7 @@ Antd-schema-form based [Ant Design](https://ant.design/), quickly generate inter
   }
   ```
 
-3. React version `>=16.6.0`.
+3. React version `>=16.7.0`.
 4. Use of components:
 
   ```javascript
