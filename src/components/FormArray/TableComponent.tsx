@@ -15,7 +15,6 @@ import getValueFromObject, { formatValueBeforeGetValue } from '../../utils/getVa
 import getObjectFromValue from '../../utils/getObjectFromValue';
 import { formatTableValue, sortIndex } from './tableFunction';
 import FormObject from '../FormObject/FormObject';
-import { minErrStr, maxErrStr } from './createArrayRules';
 import styleName from '../../utils/styleName';
 import { SchemaItem, StringItem, NumberItem, BooleanItem, ArrayItem, ContextValue } from '../../types';
 
@@ -481,11 +480,11 @@ class TableComponent extends Component<TableComponentProps> {
     let arrayRulesVerificationResult: string | null = null;
 
     if (minItems !== undefined && value.length < minItems) {
-      arrayRulesVerificationResult = $minItemsMessage || `${ minErrStr }${ minItems }`;
+      arrayRulesVerificationResult = $minItemsMessage || `${ languagePack.rules.array.minItems }${ minItems }`;
     }
 
     if (maxItems !== undefined && value.length > maxItems) {
-      arrayRulesVerificationResult = $maxItemsMessage || `${ maxErrStr }${ maxItems }`;
+      arrayRulesVerificationResult = $maxItemsMessage || `${ languagePack.rules.array.maxItems }${ maxItems }`;
     }
 
     return (
