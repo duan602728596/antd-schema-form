@@ -41,7 +41,7 @@ interface TableComponentState {
   inputDisplayIndex?: number;
   inputChangeIndex?: string;
   selectedRowKeys: Array<number>;
-  editIndex: number | null;
+  editIndex: number | undefined;
 }
 
 class TableComponent extends Component<TableComponentProps> {
@@ -93,7 +93,7 @@ class TableComponent extends Component<TableComponentProps> {
     inputDisplayIndex: undefined, // 编辑框修改位置的状态
     inputChangeIndex: undefined,  // 编辑框的值
     selectedRowKeys: [],          // 多选框
-    editIndex: null               // 当前表格编辑的对象
+    editIndex: undefined          // 当前表格编辑的对象
   };
 
   // 编辑位置框修改位置
@@ -282,7 +282,7 @@ class TableComponent extends Component<TableComponentProps> {
     tableValue = isNil(tableValue) ? (root.$defaultValue || []) : tableValue;
 
     // 判断是修改还是添加
-    if (this.state.editIndex === null) {
+    if (this.state.editIndex === undefined) {
       tableValue[root.$addDataInReverseOrder ? 'unshift' : 'push'](result['items']);
     } else {
       tableValue[this.state.editIndex] = result['items'];
@@ -291,12 +291,12 @@ class TableComponent extends Component<TableComponentProps> {
     form.setFieldsValue({ [id]: tableValue });
 
     // 重置状态
-    if (this.state.editIndex === null) {
+    if (this.state.editIndex === undefined) {
       form.resetFields(keys);
     } else {
       this.setState({
         isDisplayDataDrawer: false,
-        editIndex: null
+        editIndex: undefined
       });
     }
   };
@@ -334,13 +334,13 @@ class TableComponent extends Component<TableComponentProps> {
   // 抽屉的显示和隐藏
   handleDrawerDisplayClick(key: string, value: boolean, eventOrObject: React.MouseEvent<HTMLElement, MouseEvent> | object): void {
     const state: {
-      editIndex?: number | null;
+      editIndex?: number | undefined;
       [key: string]: any;
     } = {
       [key]: value
     };
 
-    if (!value) state.editIndex = null;
+    if (!value) state.editIndex = undefined;
 
     this.setState(state);
   }
@@ -529,8 +529,8 @@ class TableComponent extends Component<TableComponentProps> {
         {/* 添加和修改数据的抽屉组件 */}
         <Drawer width="100%" visible={ isDisplayDataDrawer } destroyOnClose={ true } closable={ false }>
           <FormObject root={ items }
-            okText={ editIndex !== null ? undefined : languagePack.formObject.addOkText }
-            cancelText={ editIndex !== null ? undefined : languagePack.formObject.addCancelText }
+            okText={ editIndex !== undefined ? undefined : languagePack.formObject.addOkText }
+            cancelText={ editIndex !== undefined ? undefined : languagePack.formObject.addCancelText }
             onOk={ this.handleAddOrEditDataClick }
             onCancel={ this.handleDrawerDisplayClick.bind(this, 'isDisplayDataDrawer', false) }
           />
