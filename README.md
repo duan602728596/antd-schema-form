@@ -24,7 +24,7 @@ Antd-schema-form based [Ant Design](https://ant.design/), quickly generate inter
 ## Start using
 
 1. Before using, you need to configure antd in the babel [on-demand loading](https://ant.design/docs/react/introduce#Use-modularized-antd).
-2. You need to configure the exclude of babel-loader as follows:
+2. You need to configure the babel-loader as follows:
 
   ```javascript
   {
