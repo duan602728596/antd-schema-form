@@ -1,6 +1,7 @@
 import isNil from 'lodash-es/isNil';
 import isNumber from 'lodash-es/isNumber';
 import { ValidationRule } from 'antd/lib/form';
+import template from '../../utils/template';
 import { ArrayItem } from '../../types';
 
 function createArrayRules(languagePack: any, root: ArrayItem, required: boolean): Array<ValidationRule> {
@@ -14,7 +15,9 @@ function createArrayRules(languagePack: any, root: ArrayItem, required: boolean)
         if (minItems !== undefined && value && value.length < minItems) callback(rule.message);
         else callback();
       },
-      message: $minItemsMessage || `${ languagePack.rules.array.minItems }${ minItems }`
+      message: template($minItemsMessage || languagePack.rules.array.minItems, {
+        '0': minItems
+      })
     });
   }
 
@@ -25,7 +28,9 @@ function createArrayRules(languagePack: any, root: ArrayItem, required: boolean)
         if (maxItems !== undefined && value && value.length > maxItems) callback(rule.message);
         else callback();
       },
-      message: $maxItemsMessage || `${ languagePack.rules.array.maxItems }${ maxItems }`
+      message: template($maxItemsMessage || languagePack.rules.array.maxItems, {
+        '0': maxItems
+      })
     });
   }
 

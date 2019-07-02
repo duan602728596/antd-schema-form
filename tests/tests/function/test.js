@@ -1,8 +1,10 @@
 import describe from 'describe';
 import it from 'it';
+import { expect } from 'chai';
 import { getKeysFromObjectTest0, getKeysFromObjectTest1, getKeysFromObjectTestOneOf } from './getKeysFromObjectTest';
 import { getObjectFromValueTest0, getObjectFromValueTest1 } from './getObjectFromValueTest';
 import { getValueFromObjectTest0, getValueFromObjectTest1 } from './getValueFromObjectTest';
+import { template } from '../../SchemaForm';
 
 // 通用函数测试
 describe('general function test', function() {
@@ -23,5 +25,23 @@ describe('general function test', function() {
   describe('getValueFromObjectTest: Convert to formatted values based on form values', function() {
     it('should return a formatted value', getValueFromObjectTest0);
     it('should return a formatted value', getValueFromObjectTest1);
+  });
+
+  // 测试模板函数
+  describe('template: Return the correct string', function() {
+    it('should return string', function() {
+      expect(template('{0} { result }.', {
+        '0': 12,
+        result: 'next'
+      })).to.be.eql('12 next.');
+    });
+
+    it('should return string', function() {
+      expect(template('{0} + {1} = {2}', {
+        '0': 22,
+        '1': 11,
+        '2': 33
+      })).to.be.eql('22 + 11 = 33');
+    });
   });
 });

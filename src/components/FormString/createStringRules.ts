@@ -2,6 +2,7 @@ import isNil from 'lodash-es/isNil';
 import isNumber from 'lodash-es/isNumber';
 import isString from 'lodash-es/isString';
 import { ValidationRule } from 'antd/lib/form';
+import template from '../../utils/template';
 import { StringItem } from '../../types';
 
 function createStringRules(languagePack: any, root: StringItem, required: boolean): Array<ValidationRule> {
@@ -26,7 +27,9 @@ function createStringRules(languagePack: any, root: StringItem, required: boolea
     rules.push({
       type: 'enum',
       enum: enums,
-      message: $enumMessage || `[${ enums.join(', ') }]${ languagePack.rules.enum }`
+      message: template($enumMessage || languagePack.rules.enum, {
+        '0': `[${ enums.join(', ') }]`
+      })
     });
   }
 
@@ -34,7 +37,9 @@ function createStringRules(languagePack: any, root: StringItem, required: boolea
   if (!isNil(minLength) && isNumber(minLength)) {
     rules.push({
       min: minLength,
-      message: $minLengthMessage || `${ languagePack.rules.string.min }${ minLength }`
+      message: template($minLengthMessage || languagePack.rules.string.min, {
+        '0': minLength
+      })
     });
   }
 
@@ -42,7 +47,9 @@ function createStringRules(languagePack: any, root: StringItem, required: boolea
   if (!isNil(maxLength)) {
     rules.push({
       max: maxLength,
-      message: $maxLengthMessage || `${ languagePack.rules.string.max }${ maxLength }`
+      message: template($maxLengthMessage || languagePack.rules.string.max, {
+        '0': maxLength
+      })
     });
   }
 
@@ -50,7 +57,9 @@ function createStringRules(languagePack: any, root: StringItem, required: boolea
   if (!isNil($length) && isNumber($length)) {
     rules.push({
       len: $length,
-      message: $lengthMessage || `${ languagePack.rules.string.length }${ $length }`
+      message: template($lengthMessage || languagePack.rules.string.length, {
+        '0': $length
+      })
     });
   }
 
@@ -60,7 +69,9 @@ function createStringRules(languagePack: any, root: StringItem, required: boolea
 
     rules.push({
       pattern: reg,
-      message: $patternMessage || `${ languagePack.rules.string.pattern }/${ pattern }/${ isString($patternOption) ? $patternOption : '' }`
+      message: template($patternMessage || languagePack.rules.string.pattern, {
+        '0': `/${ pattern }/${ isString($patternOption) ? $patternOption : '' }`
+      })
     });
   }
 

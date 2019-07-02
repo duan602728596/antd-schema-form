@@ -1,9 +1,10 @@
 import SchemaForm, { getKeysFromObject, getObjectFromValue, getValueFromObject } from '../lib/index';
-import '../src/style/antd-schema-form-global.sass';
+import template from '../lib/utils/template';
 
 export default SchemaForm;
 export {
   getKeysFromObject,
   getObjectFromValue,
-  getValueFromObject
+  getValueFromObject,
+  template
 };
