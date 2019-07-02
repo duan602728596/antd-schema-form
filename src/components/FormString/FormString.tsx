@@ -46,7 +46,7 @@ class FormString extends Component<FormStringProps> {
   }
 
   render(): React.ReactNode {
-    const { form, customComponent }: ContextValue = this.context;
+    const { form, customComponent, languagePack }: ContextValue = this.context;
     const { getFieldDecorator }: WrappedFormUtils = form;
     // type=object时，会判断key是否存在于required数组中
     const { root, required }: FormStringProps = this.props;
@@ -62,7 +62,7 @@ class FormString extends Component<FormStringProps> {
       $placeholder,
       $hidden
     }: StringItem = root;
-    const rules: Array<ValidationRule> = createStringRules(this.props.root, required);
+    const rules: Array<ValidationRule> = createStringRules(languagePack, root, required);
     const option: GetFieldDecoratorOptions = { rules };
     let element: React.ReactNode = null;
 

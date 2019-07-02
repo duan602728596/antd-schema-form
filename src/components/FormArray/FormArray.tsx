@@ -43,7 +43,7 @@ class FormArray extends Component<FormArrayProps> {
   }
 
   render(): React.ReactNode {
-    const { form, customComponent }: ContextValue = this.context;
+    const { form, customComponent, languagePack }: ContextValue = this.context;
     const {
       getFieldDecorator,
       // @ts-ignore: rc-form
@@ -51,7 +51,7 @@ class FormArray extends Component<FormArrayProps> {
     }: WrappedFormUtils = form;
     const { root, required }: FormArrayProps = this.props;
     const { id, title, description, $componentType, $defaultValue, $options = [], $hidden }: ArrayItem = root;
-    const rules: Array<ValidationRule> = createArrayRules(root, required);
+    const rules: Array<ValidationRule> = createArrayRules(languagePack, root, required);
     const option: GetFieldDecoratorOptions = { rules };
     let isTableComponent: boolean = false; // 判断是否为table组件
     let element: React.ReactNode = null;

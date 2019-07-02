@@ -36,7 +36,7 @@ class FormNumber extends Component<FormNumberProps> {
   context: ContextValue;
 
   render(): React.ReactNode {
-    const { form, customComponent }: ContextValue = this.context;
+    const { form, customComponent, languagePack }: ContextValue = this.context;
     const { getFieldDecorator }: WrappedFormUtils = form;
     // type=object时，会判断key是否存在于required数组中
     const { root, required }: FormNumberProps = this.props;
@@ -52,7 +52,7 @@ class FormNumber extends Component<FormNumberProps> {
       $placeholder,
       $hidden
     }: NumberItem = root;
-    const rules: Array<ValidationRule> = createNumberRules(this.props.root, required, type === 'integer');
+    const rules: Array<ValidationRule> = createNumberRules(languagePack, root, required, type === 'integer');
     const option: GetFieldDecoratorOptions = { rules };
     let element: React.ReactNode = null;
 
