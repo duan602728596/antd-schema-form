@@ -1,3 +1,8 @@
+### v2.4.0
+
+* 💀Form validation information added to internationalization support.
+* 🐛Fixed some types of errors.
+
 ### v2.3.1
 
 * Compile the `d.ts` file.
