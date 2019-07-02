@@ -1,14 +1,15 @@
 import * as React from 'react';
-import { Component, Context } from 'react';
+import { useContext, PropsWithChildren } from 'react';
 import * as PropTypes from 'prop-types';
-import { Requireable } from 'prop-types';
 import classNames from 'classnames';
 import { Form, Tooltip, Select, Checkbox } from 'antd';
 import { GetFieldDecoratorOptions, ValidationRule, WrappedFormUtils } from 'antd/lib/form/Form';
+import omit from 'lodash-es/omit';
 import AntdSchemaFormContext from '../../context';
 import TableComponent from './TableComponent';
 import styleName from '../../utils/styleName';
 import createArrayRules from './createArrayRules';
+import selectOptionsRender from '../../utils/selectOptionsRender';
 import { ArrayItem, ContextValue } from '../../types';
 
 /**
@@ -23,78 +24,66 @@ interface FormArrayProps {
   required: boolean;
 }
 
-class FormArray extends Component<FormArrayProps> {
-  static contextType: Context<ContextValue | {}> = AntdSchemaFormContext;
-  static propTypes: {
-    root: Requireable<object>;
-    required: Requireable<boolean>;
-  } = {
-    root: PropTypes.object,
-    required: PropTypes.bool
-  };
+function FormArray(props: PropsWithChildren<FormArrayProps>): React.ReactElement | null {
+  const context: ContextValue | {} = useContext(AntdSchemaFormContext);
 
-  context: ContextValue;
+  if (!('form' in context)) return null; // 类型判断
 
-  // select的下拉框
-  selectOptionsView(options: Array<{ label: string; value: string }>): React.ReactNodeArray {
-    return options.map((item: { label: string; value: string }, index: number): React.ReactNode => {
-      return <Select.Option key={ `${ index }` } value={ item.value }>{ item.label }</Select.Option>;
-    });
+  const { form, customComponent, languagePack }: ContextValue = context;
+  // @ts-ignore: getFieldProps in rc-form
+  const { getFieldDecorator, getFieldProps }: WrappedFormUtils = form;
+  const { root, required }: FormArrayProps = props;
+  const { id, title, description, $componentType, $defaultValue, $options = [], $hidden }: ArrayItem = root;
+  const rules: Array<ValidationRule> = createArrayRules(languagePack, root, required);
+  const option: GetFieldDecoratorOptions = { rules };
+  let isTableComponent: boolean = false; // 判断是否为table组件
+  let element: React.ReactNode = null;
+
+  // 表单默认值
+  if ($defaultValue) option.initialValue = $defaultValue;
+
+  switch ($componentType) {
+    case 'checkbox':
+      element = getFieldDecorator(id, option)(<Checkbox.Group options={ $options } />);
+      break;
+
+    case 'multiple':
+    case 'tags':
+      element = getFieldDecorator(id, option)(
+        <Select className={ styleName('array-multiple') } mode={ $componentType }>
+          { selectOptionsRender($options) }
+        </Select>
+      );
+      break;
+
+    default:
+      if (customComponent && $componentType && $componentType in customComponent) {
+        element = customComponent[$componentType](root, option, form, required);
+      } else {
+        const props: any = omit(getFieldProps(id, option), ['ref']);
+
+        element = <TableComponent root={ root } { ...props } />;
+        isTableComponent = true;
+      }
   }
 
-  render(): React.ReactNode {
-    const { form, customComponent, languagePack }: ContextValue = this.context;
-    const {
-      getFieldDecorator,
-      // @ts-ignore: rc-form
-      getFieldProps
-    }: WrappedFormUtils = form;
-    const { root, required }: FormArrayProps = this.props;
-    const { id, title, description, $componentType, $defaultValue, $options = [], $hidden }: ArrayItem = root;
-    const rules: Array<ValidationRule> = createArrayRules(languagePack, root, required);
-    const option: GetFieldDecoratorOptions = { rules };
-    let isTableComponent: boolean = false; // 判断是否为table组件
-    let element: React.ReactNode = null;
+  const classname: string = classNames({
+    [styleName('array-table-form-item')]: isTableComponent,
+    [styleName('hidden')]: $hidden
+  });
 
-    // 表单默认值
-    if ($defaultValue) option.initialValue = $defaultValue;
-
-    switch ($componentType) {
-      case 'checkbox':
-        element = getFieldDecorator(id, option)(<Checkbox.Group options={ $options } />);
-        break;
-
-      case 'multiple':
-      case 'tags':
-        element = getFieldDecorator(id, option)(
-          <Select className={ styleName('array-multiple') } mode={ $componentType }>
-            { this.selectOptionsView($options) }
-          </Select>
-        );
-        break;
-
-      default:
-        if (customComponent && $componentType && $componentType in customComponent) {
-          element = customComponent[$componentType](root, option, form, required);
-        } else {
-          element = <TableComponent root={ root } { ...getFieldProps(id, option) } />;
-          isTableComponent = true;
-        }
-    }
-
-    const classname: string = classNames({
-      [styleName('array-table-form-item')]: isTableComponent,
-      [styleName('hidden')]: $hidden
-    });
-
-    return (
-      <Form.Item className={ classname } label={ title }>
-        <Tooltip title={ description } placement="topRight">
-          { element }
-        </Tooltip>
-      </Form.Item>
-    );
-  }
+  return (
+    <Form.Item className={ classname } label={ title }>
+      <Tooltip title={ description } placement="topRight">
+        { element }
+      </Tooltip>
+    </Form.Item>
+  );
 }
+
+FormArray.propTypes = {
+  root: PropTypes.object,
+  required: PropTypes.bool
+};
 
 export default FormArray;
