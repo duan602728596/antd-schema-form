@@ -21,11 +21,10 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
 
 这个[Demo](https://duan602728596.github.io/antd-schema-form/#/)简单的展示了通过配置schema.json构建一个表单。
 
-
 ## 开始使用
 
 1. 在使用之前，你需要在babel配置antd的[按需加载](https://ant.design/docs/react/introduce-cn#按需加载)。
-2. 需要为babel-loader的exclude做如下配置:
+2. 需要为babel-loader做如下配置:
 
   ```javascript
   {
