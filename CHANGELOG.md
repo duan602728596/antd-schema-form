@@ -1,6 +1,6 @@
 ### v2.4.0
 
-* 💀Form validation information added to internationalization support.
+* 💀Form validation information added to internationalization support, and support template placeholders.
 * 🐛Fixed some types of errors.
 
 ### v2.3.1
