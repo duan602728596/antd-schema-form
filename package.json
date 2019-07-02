@@ -1,6 +1,6 @@
 {
   "name": "antd-schema-form",
-  "version": "2.4.0",
+  "version": "2.5.0-rc.0",
   "description": "基于antd，通过json schema配置表单。",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -96,8 +96,8 @@
   },
   "peerDependencies": {
     "antd": ">=3.12.0",
-    "react": ">=16.6.0",
-    "react-dom": ">=16.6.0"
+    "react": ">=16.7.0",
+    "react-dom": ">=16.7.0"
   },
   "husky": {
     "hooks": {

@@ -5,13 +5,13 @@
 [![NPM version][react-dom-image]][react-dom-url]
 [![NPM version][ant-design-image]][ant-design-url]
 
-[antd-schema-form-image]: https://img.shields.io/badge/antd--schema--form-2.4.0-blue.svg
+[antd-schema-form-image]: https://img.shields.io/badge/antd--schema--form-2.5.0--rc.0-blue.svg
 [antd-schema-form-url]: https://www.npmjs.com/package/antd-schema-form
 
-[react-image]: https://img.shields.io/badge/react-%3E=16.6.0-red.svg
+[react-image]: https://img.shields.io/badge/react-%3E=16.7.0-red.svg
 [react-url]: https://github.com/facebook/react
 
-[react-dom-image]: https://img.shields.io/badge/react--dom-%3E=16.6.0-red.svg
+[react-dom-image]: https://img.shields.io/badge/react--dom-%3E=16.7.0-red.svg
 [react-dom-url]: https://github.com/facebook/react
 
 [ant-design-image]: https://img.shields.io/badge/ant--design-%3E=3.12.0-red.svg
