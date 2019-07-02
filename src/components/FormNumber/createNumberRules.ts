@@ -1,6 +1,7 @@
 import isNil from 'lodash-es/isNil';
 import isNumber from 'lodash-es/isNumber';
 import { ValidationRule } from 'antd/lib/form';
+import template from '../../utils/template';
 import { NumberItem } from '../../types';
 
 function createNumberRules(languagePack: any, root: NumberItem, required: boolean, isInteger: boolean): Array<ValidationRule> {
@@ -24,7 +25,9 @@ function createNumberRules(languagePack: any, root: NumberItem, required: boolea
     rules.push({
       type: 'enum',
       enum: enums,
-      message: $enumMessage || `[${ enums.join(', ') }]${ languagePack.rules.enum }`
+      message: template($enumMessage || languagePack.rules.enum, {
+        '0': `[${ enums.join(', ') }]`
+      })
     });
   }
 
@@ -51,7 +54,9 @@ function createNumberRules(languagePack: any, root: NumberItem, required: boolea
           callback();
         }
       },
-      message: $minimumMessage || `${ languagePack.rules.number.minimum }${ minimum }`
+      message: template($minimumMessage || languagePack.rules.number.minimum, {
+        '0': minimum
+      })
     });
   }
 
@@ -70,7 +75,9 @@ function createNumberRules(languagePack: any, root: NumberItem, required: boolea
           callback();
         }
       },
-      message: $maximumMessage || `${ languagePack.rules.number.maximum }${ maximum }`
+      message: template($maximumMessage || languagePack.rules.number.maximum, {
+        maximum
+      })
     });
   }
 

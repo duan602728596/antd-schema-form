@@ -16,6 +16,7 @@ import getObjectFromValue from '../../utils/getObjectFromValue';
 import { formatTableValue, sortIndex } from './tableFunction';
 import FormObject from '../FormObject/FormObject';
 import styleName from '../../utils/styleName';
+import template from '../../utils/template';
 import { SchemaItem, StringItem, NumberItem, BooleanItem, ArrayItem, ContextValue } from '../../types';
 
 // 拖拽相关变量
@@ -480,11 +481,15 @@ class TableComponent extends Component<TableComponentProps> {
     let arrayRulesVerificationResult: string | null = null;
 
     if (minItems !== undefined && value.length < minItems) {
-      arrayRulesVerificationResult = $minItemsMessage || `${ languagePack.rules.array.minItems }${ minItems }`;
+      arrayRulesVerificationResult = template($minItemsMessage || languagePack.rules.array.minItems, {
+        '0': minItems
+      });
     }
 
     if (maxItems !== undefined && value.length > maxItems) {
-      arrayRulesVerificationResult = $maxItemsMessage || `${ languagePack.rules.array.maxItems }${ maxItems }`;
+      arrayRulesVerificationResult = template($maxItemsMessage || languagePack.rules.array.maxItems, {
+        '0': maxItems
+      });
     }
 
     return (
