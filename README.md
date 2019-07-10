@@ -29,7 +29,23 @@ Antd-schema-form based [Ant Design](https://ant.design/), quickly generate inter
   ```javascript
   {
     test: /node_modules[\\/]antd-schema-form$/,
-    use: 'babel-loader'
+    use: [
+      {
+        loader: 'babel-loader',
+        options: {
+          plugins: [
+            [
+              'import',
+              {
+                libraryName: 'antd',
+                libraryDirectory: 'es',
+                style: 'css'
+              }
+            ]
+          ]
+        }
+      }
+    ]
   }
   ```
 
