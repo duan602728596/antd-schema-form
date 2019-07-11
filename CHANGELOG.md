@@ -1,3 +1,7 @@
+### v2.4.1
+
+* 🐛Boolean type components should use `valuePropName: 'checked'` instead of `state` control display.
+
 ### v2.4.0
 
 * 💀🌟Form validation information added to internationalization support, and support template placeholders.
