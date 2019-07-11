@@ -1,6 +1,6 @@
 ### v2.4.1
 
-* boolean类型组件应该使用`valuePropName: 'checked'`代替`state`控制显示。
+* 🐛boolean类型组件应该使用`valuePropName: 'checked'`代替`state`控制显示。
 
 ### v2.4.0
 
