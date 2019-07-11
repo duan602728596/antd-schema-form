@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Component, Context } from 'react';
 import * as PropTypes from 'prop-types';
 import { Requireable } from 'prop-types';
-import isNil from 'lodash-es/isNil';
 import { Form, Tooltip, Checkbox, Switch } from 'antd';
 import { GetFieldDecoratorOptions, WrappedFormUtils } from 'antd/lib/form/Form';
 import AntdSchemaFormContext from '../../context';
@@ -21,12 +20,7 @@ interface FormBooleanProps {
   required: boolean;
 }
 
-interface FormBooleanState{
-  form: WrappedFormUtils;
-  isChecked: boolean;
-}
-
-class FormBoolean extends Component<FormBooleanProps, FormBooleanState> {
+class FormBoolean extends Component<FormBooleanProps, {}> {
   static contextType: Context<ContextValue | {}> = AntdSchemaFormContext;
   static propTypes: {
     root: Requireable<object>;
@@ -36,36 +30,14 @@ class FormBoolean extends Component<FormBooleanProps, FormBooleanState> {
 
   context: ContextValue;
 
-  constructor(props: FormBooleanProps, ...argu: any[]) {
-    super(props, ...argu);
-
-    const { form }: ContextValue = this.context;
-    const { root }: FormBooleanProps = this.props;
-    const id: string = root.id;
-    const value: boolean = !!form.getFieldValue(id);
-
-    this.state = {
-      form,
-      isChecked: isNil(value) ? !!root.$defaultValue : value
-    };
-  }
-
-  static getDerivedStateFromProps(nextProps: FormBooleanProps, prevState: FormBooleanState): { isChecked: boolean } {
-    const { form }: FormBooleanState = prevState;
-    const { root }: FormBooleanProps = nextProps;
-    const id: string = root.id;
-    const value: boolean = !!form.getFieldValue(id);
-
-    return { isChecked: isNil(value) ? !!root.$defaultValue : value };
-  }
-
   render(): React.ReactNode {
     const { form, customComponent }: ContextValue = this.context;
     const { getFieldDecorator }: WrappedFormUtils = form;
     const { root, required }: FormBooleanProps = this.props;
     const { id, title, description, $componentType, $defaultValue, $hidden }: BooleanItem = root;
-    const option: GetFieldDecoratorOptions = {};
-    const { isChecked }: FormBooleanState = this.state;
+    const option: GetFieldDecoratorOptions = {
+      valuePropName: 'checked'
+    };
     let element: React.ReactNode = null;
 
     // 表单默认值
@@ -73,13 +45,13 @@ class FormBoolean extends Component<FormBooleanProps, FormBooleanState> {
 
     switch ($componentType) {
       case 'switch':
-        element = getFieldDecorator(id, option)(<Switch checked={ isChecked } />);
+        element = getFieldDecorator(id, option)(<Switch />);
         break;
 
       default:
         element = (customComponent && $componentType && $componentType in customComponent)
           ? customComponent[$componentType](root, option, form, required)
-          : getFieldDecorator(id, option)(<Checkbox checked={ isChecked } />);
+          : getFieldDecorator(id, option)(<Checkbox />);
     }
 
     return (
