@@ -1,7 +1,15 @@
+### v2.5.0-rc.1
+
+* 🐛Boolean type components should use `valuePropName: 'checked'` instead of `state` control display.
+
 ### v2.5.0-rc.0
 
 * 🌟Refactoring code with *React Hooks*.
 * 🐛Remove the `Input.Password` compatible component.
+
+### v2.4.1
+
+* 🐛Boolean type components should use `valuePropName: 'checked'` instead of `state` control display.
 
 ### v2.4.0
 

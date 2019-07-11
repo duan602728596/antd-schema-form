@@ -1,7 +1,15 @@
+### v2.5.0-rc.1
+
+* 🐛boolean类型组件应该使用`valuePropName: 'checked'`代替`state`控制显示。
+
 ### v2.5.0-rc.0
 
 * 🌟使用*React Hooks*重构代码。
 * 🐛移除`Input.Password`兼容组件。
+
+### v2.4.1
+
+* 🐛boolean类型组件应该使用`valuePropName: 'checked'`代替`state`控制显示。
 
 ### v2.4.0
 
