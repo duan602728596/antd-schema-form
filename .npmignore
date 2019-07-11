@@ -36,3 +36,5 @@ tsconfig.es5.json
 
 # cache
 .babelCache
+
+.DS_Store

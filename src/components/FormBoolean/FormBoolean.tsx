@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { useState, useEffect, useContext, PropsWithChildren, Dispatch, SetStateAction } from 'react';
+import { useContext, PropsWithChildren } from 'react';
 import * as PropTypes from 'prop-types';
-import isNil from 'lodash-es/isNil';
 import { Form, Tooltip, Checkbox, Switch } from 'antd';
 import { GetFieldDecoratorOptions, WrappedFormUtils } from 'antd/lib/form/Form';
 import AntdSchemaFormContext from '../../context';
@@ -29,30 +28,23 @@ function FormBoolean(props: PropsWithChildren<FormBooleanProps>): React.ReactEle
   const { getFieldDecorator }: WrappedFormUtils = form;
   const { root, required }: FormBooleanProps = props;
   const { id, title, description, $componentType, $defaultValue, $hidden }: BooleanItem = root;
-  const value: boolean = !!form.getFieldValue(id);
-  const option: GetFieldDecoratorOptions = {};
-  const [isChecked, setIsChecked]: [boolean, Dispatch<SetStateAction<boolean>>]
-    = useState(isNil(value) ? !!root.$defaultValue : value);
+  const option: GetFieldDecoratorOptions = {
+    valuePropName: 'checked'
+  };
   let element: React.ReactNode = null;
-
-  useEffect(function(): void {
-    const formValue: boolean = !!form.getFieldValue(id);
-
-    setIsChecked(formValue);
-  });
 
   // 表单默认值
   if ($defaultValue) option.initialValue = $defaultValue;
 
   switch ($componentType) {
     case 'switch':
-      element = getFieldDecorator(id, option)(<Switch checked={ isChecked } />);
+      element = getFieldDecorator(id, option)(<Switch />);
       break;
 
     default:
       element = (customComponent && $componentType && $componentType in customComponent)
         ? customComponent[$componentType](root, option, form, required)
-        : getFieldDecorator(id, option)(<Checkbox checked={ isChecked } />);
+        : getFieldDecorator(id, option)(<Checkbox />);
   }
 
   return (
