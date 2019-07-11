@@ -17,3 +17,5 @@ yarn-error.log
 lib
 es
 style/*.css
+
+.DS_Store
