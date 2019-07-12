@@ -39,7 +39,7 @@ function FormArray(props: PropsWithChildren<FormArrayProps>): React.ReactElement
   let element: React.ReactNode = null;
 
   if (customComponent) {
-    // TODO: 此处渲染的诗CheckBox.Group，但是组件名称是"checkbox"
+    // TODO: 此处渲染的是CheckBox.Group，但是组件名称是"checkbox"
     const cType: string | undefined = $componentType === 'checkbox' ? 'checkboxGroup' : $componentType;
 
     if (cType && cType in customComponent) {
