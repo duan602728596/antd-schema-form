@@ -5,7 +5,8 @@ import omit from 'lodash-es/omit';
 import selectOptionsRender from '../utils/selectOptionsRender';
 import styleName from '../utils/styleName';
 import TableComponent from '../components/FormArray/TableComponent';
-import { StringItem, NumberItem, BooleanItem, ArrayItem } from '../types';
+import OneOf from '../components/FormObject/OneOf';
+import { SchemaItem, StringItem, NumberItem, BooleanItem, ArrayItem } from '../types';
 
 /* string类型组件 */
 // 默认组件
@@ -184,4 +185,15 @@ export function multipleOrTags(
       { selectOptionsRender($options) }
     </Select>
   );
+}
+
+/* object类型组件 */
+export function oneOfDefault(
+  root: SchemaItem,
+  form: WrappedFormUtils,
+  element: React.ReactNodeArray
+): React.ReactNode {
+  const { id }: SchemaItem = root;
+
+  return <OneOf key={ id } root={ root } element={ element } />;
 }
