@@ -10,7 +10,8 @@ import {
   switchComponent,
   arrayDefault,
   checkboxGroup,
-  multipleOrTags
+  multipleOrTags,
+  oneOfDefault
 } from './widget/widget';
 
 const customComponent: object = {
@@ -25,7 +26,8 @@ const customComponent: object = {
   switchComponent,
   arrayDefault,
   checkboxGroup,
-  multipleOrTags
+  multipleOrTags,
+  oneOfDefault
 };
 
 export default customComponent;
