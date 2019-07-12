@@ -44,13 +44,11 @@ export function renderSelectMultiple() {
     items: {
       id: '$root/items',
       type: 'string',
-      title: '数组内的对象'
+      title: '数组内的对象',
+      emum: ['值1', '值2'],
+      emumNames: ['选项1', '选项2']
     },
-    $componentType: 'multiple',
-    $options: [
-      { label: '选项1', value: '值1' },
-      { label: '选项2', value: '值2' }
-    ]
+    $componentType: 'multiple'
   };
 
   const wrapper = mount(<SchemaForm json={ json } />);
@@ -68,13 +66,11 @@ export function renderSelectTags() {
     items: {
       id: '$root/items',
       type: 'string',
-      title: '数组内的对象'
+      title: '数组内的对象',
+      emum: ['值1', '值2'],
+      emumNames: ['选项1', '选项2']
     },
-    $componentType: 'tags',
-    $options: [
-      { label: '选项1', value: '值1' },
-      { label: '选项2', value: '值2' }
-    ]
+    $componentType: 'tags'
   };
 
   const wrapper = mount(<SchemaForm json={ json } />);
@@ -92,13 +88,12 @@ export function renderCheckboxGroup() {
     items: {
       id: '$root/items',
       type: 'string',
-      title: '数组内的对象'
+      title: '数组内的对象',
+      emum: ['值1', '值2'],
+      emumNames: ['选项1', '选项2']
     },
-    $componentType: 'checkbox',
-    $options: [
-      { label: '选项1', value: '值1' },
-      { label: '选项2', value: '值2' }
-    ]
+    $componentType: 'checkbox'
+
   };
   const wrapper = mount(<SchemaForm json={ json } />);
   const antCheckbox = wrapper.find('.ant-checkbox');

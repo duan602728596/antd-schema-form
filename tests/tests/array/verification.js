@@ -16,14 +16,8 @@ export function tableComponentMinItems() {
       title: '数组元素最小数量验证'
     },
     minItems: 4,
-    $options: [
-      { label: '选项1', value: '值1' },
-      { label: '选项2', value: '值2' },
-      { label: '选项3', value: '值3' },
-      { label: '选项4', value: '值4' },
-      { label: '选项5', value: '值5' },
-      { label: '选项6', value: '值6' }
-    ]
+    emum: ['值1', '值2', '值3', '值4', '值5', '值6'],
+    emumNames: ['选项1', '选项2', '选项3', '选项4', '选项5', '选项6']
   };
   const value = {
     $root: ['值1', '值2']

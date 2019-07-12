@@ -9,7 +9,7 @@ function createNumberRules(languagePack: any, root: NumberItem, required: boolea
     $required, $requiredMessage, minimum, maximum, $minimumMessage, $maximumMessage, $integer, $integerMessage,
     $enumMessage
   }: NumberItem = root;
-  const enums: string[] | undefined = root.enum;
+  const enums: string[] | number[] = root.enum;
   const rules: ValidationRule[] = [];
 
   // 判断表单是否必填

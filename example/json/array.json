@@ -96,15 +96,13 @@
         "description": "Select多选模式"
       },
       "$componentType": "multiple",
-      "$options": [
-        {
-          "label": "选项1",
-          "value": "选项1值"
-        },
-        {
-          "label": "选项2",
-          "value": "选项2值"
-        }
+      "emum": [
+        "选项1值",
+        "选项2值"
+      ],
+      "enumNames": [
+        "选项1",
+        "选项2"
       ]
     },
     "tags": {
@@ -121,15 +119,13 @@
       "minItems": 1,
       "maxItems": 5,
       "$componentType": "tags",
-      "$options": [
-        {
-          "label": "选项1",
-          "value": "选项1值"
-        },
-        {
-          "label": "选项2",
-          "value": "选项2值"
-        }
+      "emum": [
+        "选项1值",
+        "选项2值"
+      ],
+      "enumNames": [
+        "选项1",
+        "选项2"
       ]
     },
     "checkbox": {
@@ -144,15 +140,13 @@
         "description": "多选框"
       },
       "$componentType": "checkbox",
-      "$options": [
-        {
-          "label": "选项1",
-          "value": "选项1值"
-        },
-        {
-          "label": "选项2",
-          "value": "选项2值"
-        }
+      "emum": [
+        "选项1值",
+        "选项2值"
+      ],
+      "enumNames": [
+        "选项1",
+        "选项2"
       ]
     }
   }

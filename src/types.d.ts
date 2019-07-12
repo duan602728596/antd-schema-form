@@ -42,10 +42,10 @@ export interface StringItem extends SchemaItem {
   $maxLengthMessage?: string;
   $length?: number;
   $lengthMessage?: string;
-  enum?: Array<string>;
+  enum?: Array<string | number>;
+  enumNames?: Array<string>;
   $enumMessage?: string;
   $defaultValue?: string;
-  $options?: Array<{ label: string; value: string }>;
 }
 
 export interface NumberItem extends SchemaItem {
@@ -59,10 +59,10 @@ export interface NumberItem extends SchemaItem {
   $maximumMessage?: string;
   $integer: boolean;
   $integerMessage?: string;
-  enum?: Array<string>;
+  enum?: Array<string | number>;
+  enumNames?: Array<string>;
   $enumMessage?: string;
   $defaultValue?: number;
-  $options?: Array<{ label: string; value: number }>;
 }
 
 export interface BooleanItem extends SchemaItem {
@@ -72,7 +72,8 @@ export interface BooleanItem extends SchemaItem {
 export interface ArrayItem extends SchemaItem {
   items: StringItem | NumberItem | BooleanItem | ArrayItem;
   $defaultValue?: Array<any>;
-  $options?: Array<{ label: string; value: any }>;
+  enum?: Array<string | number>;
+  enumNames?: Array<string>;
   minItems?: number;
   maxItems?: number;
   $minItemsMessage?: string;

@@ -8,6 +8,7 @@ import AntdSchemaFormContext from '../../context';
 import styleName from '../../utils/styleName';
 import createNumberRules from './createNumberRules';
 import { NumberItem, ContextValue } from '../../types';
+import { getOptionsList } from '../../utils/selectOptionsRender';
 
 /**
  * 当类型为number和integer时的组件渲染
@@ -38,7 +39,6 @@ function FormNumber(props: PropsWithChildren<FormNumberProps>): React.ReactEleme
     $componentType,
     $readOnly,
     $defaultValue,
-    $options = [],
     $placeholder,
     $hidden
   }: NumberItem = root;
@@ -52,7 +52,7 @@ function FormNumber(props: PropsWithChildren<FormNumberProps>): React.ReactEleme
   switch ($componentType) {
     // 渲染radio
     case 'radio':
-      element = getFieldDecorator(id, option)(<Radio.Group options={ $options } />);
+      element = getFieldDecorator(id, option)(<Radio.Group options={ getOptionsList(root) } />);
       break;
 
     default:

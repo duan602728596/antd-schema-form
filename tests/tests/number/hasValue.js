@@ -38,10 +38,8 @@ export function radioHasDefaultValue() {
     type: 'number',
     title: '单选框有默认值',
     $componentType: 'radio',
-    $options: [
-      { label: '选项1', value: 1 },
-      { label: '选项2', value: 2 }
-    ],
+    emum: [1, 2],
+    emumNames: ['选项1', '选项2'],
     $defaultValue: 2
   };
   const wrapper = mount(<SchemaForm json={ json } />);
@@ -59,10 +57,8 @@ export function radioHastValue() {
     type: 'string',
     title: '单选框有值',
     $componentType: 'radio',
-    $options: [
-      { label: '选项1', value: 1 },
-      { label: '选项2', value: 2 }
-    ]
+    emum: [1, 2],
+    emumNames: ['选项1', '选项2']
   };
   const value = { $root: 1 };
   const wrapper = mount(<SchemaForm json={ json } value={ value } />);

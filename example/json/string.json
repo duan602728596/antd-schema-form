@@ -95,15 +95,13 @@
       "title": "下拉框组件",
       "description": "下拉框组件",
       "$componentType": "select",
-      "$options": [
-        {
-          "label": "选项1",
-          "value": "值1"
-        },
-        {
-          "label": "选项2",
-          "value": "值2"
-        }
+      "emum": [
+        "值1",
+        "值1"
+      ],
+      "enumNames": [
+        "选项1",
+        "选项2"
       ]
     },
     "radio": {
@@ -112,15 +110,13 @@
       "title": "单选框组件",
       "description": "单选框组件",
       "$componentType": "radio",
-      "$options": [
-        {
-          "label": "选项1",
-          "value": "值1"
-        },
-        {
-          "label": "选项2",
-          "value": "值2"
-        }
+      "emum": [
+        "值1",
+        "值1"
+      ],
+      "enumNames": [
+        "选项1",
+        "选项2"
       ]
     },
     "date": {

@@ -9,7 +9,7 @@ import AntdSchemaFormContext from '../../context';
 import TableComponent from './TableComponent';
 import styleName from '../../utils/styleName';
 import createArrayRules from './createArrayRules';
-import selectOptionsRender from '../../utils/selectOptionsRender';
+import selectOptionsRender, { getOptionsList } from '../../utils/selectOptionsRender';
 import { ArrayItem, ContextValue } from '../../types';
 
 /**
@@ -33,7 +33,7 @@ function FormArray(props: PropsWithChildren<FormArrayProps>): React.ReactElement
   // @ts-ignore: getFieldProps in rc-form
   const { getFieldDecorator, getFieldProps }: WrappedFormUtils = form;
   const { root, required }: FormArrayProps = props;
-  const { id, title, description, $componentType, $defaultValue, $options = [], $hidden }: ArrayItem = root;
+  const { id, title, description, $componentType, $defaultValue, $hidden }: ArrayItem = root;
   const rules: Array<ValidationRule> = createArrayRules(languagePack, root, required);
   const option: GetFieldDecoratorOptions = { rules };
   let isTableComponent: boolean = false; // 判断是否为table组件
@@ -44,14 +44,14 @@ function FormArray(props: PropsWithChildren<FormArrayProps>): React.ReactElement
 
   switch ($componentType) {
     case 'checkbox':
-      element = getFieldDecorator(id, option)(<Checkbox.Group options={ $options } />);
+      element = getFieldDecorator(id, option)(<Checkbox.Group options={ getOptionsList(root.items) } />);
       break;
 
     case 'multiple':
     case 'tags':
       element = getFieldDecorator(id, option)(
         <Select className={ styleName('array-multiple') } mode={ $componentType }>
-          { selectOptionsRender($options) }
+          { selectOptionsRender(root.items) }
         </Select>
       );
       break;

@@ -10,7 +10,7 @@ function createStringRules(languagePack: any, root: StringItem, required: boolea
     $required, $requiredMessage, pattern, $patternOption, $patternMessage, minLength, maxLength, $minLengthMessage,
     $maxLengthMessage, $length, $lengthMessage, $enumMessage
   }: StringItem = root;
-  const enums: string[] | undefined = root.enum;
+  const enums: string[] | number[] = root.enum;
   const rules: ValidationRule[] = [];
 
   // 判断表单是否必填

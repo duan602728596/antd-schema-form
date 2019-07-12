@@ -9,7 +9,7 @@ import * as moment from 'moment';
 import AntdSchemaFormContext from '../../context';
 import styleName from '../../utils/styleName';
 import createStringRules from './createStringRules';
-import selectOptionsRender from '../../utils/selectOptionsRender';
+import selectOptionsRender, { getOptionsList } from '../../utils/selectOptionsRender';
 import { StringItem, ContextValue } from '../../types';
 
 /**
@@ -41,7 +41,6 @@ function FormString(props: PropsWithChildren<FormStringProps>): React.ReactEleme
     $componentType,
     $readOnly,
     $defaultValue,
-    $options = [],
     $placeholder,
     $hidden
   }: StringItem = root;
@@ -72,14 +71,14 @@ function FormString(props: PropsWithChildren<FormStringProps>): React.ReactEleme
           placeholder={ $placeholder }
           allowClear={ !($required || required) }
         >
-          { selectOptionsRender($options) }
+          { selectOptionsRender(root) }
         </Select>
       );
       break;
 
     // 渲染radio
     case 'radio':
-      element = getFieldDecorator(id, option)(<Radio.Group options={ $options } />);
+      element = getFieldDecorator(id, option)(<Radio.Group options={ getOptionsList(root) } />);
       break;
 
     // 渲染日期组件

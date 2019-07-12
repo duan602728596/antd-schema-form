@@ -24,10 +24,8 @@ export function renderRadio() {
     type: 'number',
     title: '渲染单选组件',
     $componentType: 'radio',
-    $options: [
-      { label: '选项1', value: 1 },
-      { label: '选项2', value: 2 }
-    ]
+    emum: [1, 2],
+    emumNames: ['选项1', '选项2']
   };
   const wrapper = mount(<SchemaForm json={ json } />);
   const input = wrapper.find('input');

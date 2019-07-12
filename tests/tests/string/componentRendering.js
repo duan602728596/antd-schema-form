@@ -39,10 +39,8 @@ export function renderSelect() {
     type: 'string',
     title: '渲染下拉框',
     $componentType: 'select',
-    $options: [
-      { label: '选项1', value: '值1' },
-      { label: '选项2', value: '值2' }
-    ]
+    emum: ['值1', '值2'],
+    emumNames: ['选项1', '选项2']
   };
   const wrapper = mount(<SchemaForm json={ json } />);
   const antSelect = wrapper.find('.ant-select');
@@ -57,10 +55,8 @@ export function renderRadio() {
     type: 'string',
     title: '渲染单选组件',
     $componentType: 'radio',
-    $options: [
-      { label: '选项1', value: '值1' },
-      { label: '选项2', value: '值2' }
-    ]
+    emum: ['值1', '值2'],
+    emumNames: ['选项1', '选项2']
   };
   const wrapper = mount(<SchemaForm json={ json } />);
   const input = wrapper.find('input');

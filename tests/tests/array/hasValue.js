@@ -142,11 +142,8 @@ export function CheckboxGroupHastDefaultValue() {
       title: '值'
     },
     $componentType: 'checkbox',
-    $options: [
-      { label: '选项1', value: '值1' },
-      { label: '选项2', value: '值2' },
-      { label: '选项3', value: '值3' }
-    ],
+    emum: ['值1', '值2', '值3'],
+    emumNames: ['选项1', '选项2', '选项3'],
     $defaultValue: ['值1', '值3']
   };
   const wrapper = mount(<SchemaForm json={ json } />);
@@ -169,11 +166,8 @@ export function CheckboxGroupHastValue() {
       title: '值'
     },
     $componentType: 'checkbox',
-    $options: [
-      { label: '选项1', value: '值1' },
-      { label: '选项2', value: '值2' },
-      { label: '选项3', value: '值3' }
-    ]
+    emum: ['值1', '值2', '值3'],
+    emumNames: ['选项1', '选项2', '选项3']
   };
   const value = {
     $root: ['值2']
