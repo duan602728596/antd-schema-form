@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useContext, PropsWithChildren } from 'react';
 import * as PropTypes from 'prop-types';
-import { Form, Tooltip, Checkbox, Switch } from 'antd';
-import { GetFieldDecoratorOptions, WrappedFormUtils } from 'antd/lib/form/Form';
+import { Form, Tooltip } from 'antd';
+import { GetFieldDecoratorOptions } from 'antd/lib/form/Form';
 import AntdSchemaFormContext from '../../context';
 import { ContextValue, BooleanItem } from '../../types';
 import styleName from '../../utils/styleName';
@@ -25,26 +25,21 @@ function FormBoolean(props: PropsWithChildren<FormBooleanProps>): React.ReactEle
   if (!('form' in context)) return null; // 类型判断
 
   const { form, customComponent }: ContextValue = context;
-  const { getFieldDecorator }: WrappedFormUtils = form;
   const { root, required }: FormBooleanProps = props;
-  const { id, title, description, $componentType, $defaultValue, $hidden }: BooleanItem = root;
+  const { title, description, $componentType, $defaultValue, $hidden }: BooleanItem = root;
   const option: GetFieldDecoratorOptions = {
     valuePropName: 'checked'
   };
-  let element: React.ReactNode = null;
 
   // 表单默认值
   if ($defaultValue) option.initialValue = $defaultValue;
 
-  switch ($componentType) {
-    case 'switch':
-      element = getFieldDecorator(id, option)(<Switch />);
-      break;
+  let element: React.ReactNode = null;
 
-    default:
-      element = (customComponent && $componentType && $componentType in customComponent)
-        ? customComponent[$componentType](root, option, form, required)
-        : getFieldDecorator(id, option)(<Checkbox />);
+  if (customComponent) {
+    element = ($componentType && $componentType in customComponent)
+      ? customComponent[$componentType](root, option, form, required)
+      : customComponent.defaultBoolean(root, option, form, required);
   }
 
   return (

@@ -18,7 +18,9 @@ export interface SchemaFormProps extends FormComponentProps {
   okText?: string | number;
   cancelText?: string | number;
   footer?: Function;
-  customComponent?: object;
+  customComponent?: {
+    [key: string]: Function;
+  };
   customTableRender?: object;
   languagePack?: object;
 }

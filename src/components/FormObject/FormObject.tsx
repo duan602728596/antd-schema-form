@@ -109,9 +109,15 @@ function FormObject(props: PropsWithChildren<FormObjectProps>): React.ReactEleme
       element.push(renderComponentByTypeView(childrenRoot, required));
     });
 
-    return (customComponent && $oneOfComponentType && $oneOfComponentType in customComponent)
-      ? customComponent[$oneOfComponentType](root, form, element)
-      : <OneOf key={ id } root={ root } element={ element } />;
+    let oneOfElement: React.ReactNode = null;
+
+    if (customComponent) {
+      oneOfElement = $oneOfComponentType && $oneOfComponentType in customComponent
+        ? customComponent[$oneOfComponentType](root, form, element)
+        : customComponent.defaultOneOf(root, form, element);
+    }
+
+    return oneOfElement;
   }
 
   // 判断是否显示

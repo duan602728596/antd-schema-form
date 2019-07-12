@@ -2,14 +2,11 @@ import * as React from 'react';
 import { useContext, PropsWithChildren } from 'react';
 import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Form, Tooltip, Select, Checkbox } from 'antd';
-import { GetFieldDecoratorOptions, ValidationRule, WrappedFormUtils } from 'antd/lib/form/Form';
-import omit from 'lodash-es/omit';
+import { Form, Tooltip } from 'antd';
+import { GetFieldDecoratorOptions, ValidationRule } from 'antd/lib/form/Form';
 import AntdSchemaFormContext from '../../context';
-import TableComponent from './TableComponent';
 import styleName from '../../utils/styleName';
 import createArrayRules from './createArrayRules';
-import selectOptionsRender from '../../utils/selectOptionsRender';
 import { ArrayItem, ContextValue } from '../../types';
 
 /**
@@ -30,41 +27,26 @@ function FormArray(props: PropsWithChildren<FormArrayProps>): React.ReactElement
   if (!('form' in context)) return null; // 类型判断
 
   const { form, customComponent, languagePack }: ContextValue = context;
-  // @ts-ignore: getFieldProps in rc-form
-  const { getFieldDecorator, getFieldProps }: WrappedFormUtils = form;
   const { root, required }: FormArrayProps = props;
-  const { id, title, description, $componentType, $defaultValue, $options = [], $hidden }: ArrayItem = root;
+  const { title, description, $componentType, $defaultValue, $hidden }: ArrayItem = root;
   const rules: Array<ValidationRule> = createArrayRules(languagePack, root, required);
   const option: GetFieldDecoratorOptions = { rules };
   let isTableComponent: boolean = false; // 判断是否为table组件
-  let element: React.ReactNode = null;
 
   // 表单默认值
   if ($defaultValue) option.initialValue = $defaultValue;
 
-  switch ($componentType) {
-    case 'checkbox':
-      element = getFieldDecorator(id, option)(<Checkbox.Group options={ $options } />);
-      break;
+  let element: React.ReactNode = null;
 
-    case 'multiple':
-    case 'tags':
-      element = getFieldDecorator(id, option)(
-        <Select className={ styleName('array-multiple') } mode={ $componentType }>
-          { selectOptionsRender($options) }
-        </Select>
-      );
-      break;
+  if (customComponent) {
+    const cType: string | undefined = $componentType === 'checkbox' ? 'checkboxGroup' : $componentType;
 
-    default:
-      if (customComponent && $componentType && $componentType in customComponent) {
-        element = customComponent[$componentType](root, option, form, required);
-      } else {
-        const props: any = omit(getFieldProps(id, option), ['ref']);
-
-        element = <TableComponent root={ root } { ...props } />;
-        isTableComponent = true;
-      }
+    if (cType && cType in customComponent) {
+      element = customComponent[cType](root, option, form, required);
+    } else {
+      element = customComponent.defaultArray(root, option, form, required);
+      isTableComponent = true;
+    }
   }
 
   const classname: string = classNames({

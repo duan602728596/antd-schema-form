@@ -2,7 +2,9 @@ import { WrappedFormUtils } from 'antd/lib/form/Form';
 
 export interface ContextValue {
   form: WrappedFormUtils;
-  customComponent?: object;
+  customComponent?: {
+    [key: string]: Function;
+  };
   customTableRender?: object;
   language?: string;
   languagePack?: any;

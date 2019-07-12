@@ -6,12 +6,12 @@ import {
   date,
   password,
   defaultNumber,
-  booleanDefault,
+  defaultBoolean,
   switchComponent,
-  arrayDefault,
+  defaultArray,
   checkboxGroup,
   multipleOrTags,
-  oneOfDefault
+  defaultOneOf
 } from './widget/widget';
 
 const customComponent: object = {
@@ -22,12 +22,13 @@ const customComponent: object = {
   date,
   password,
   defaultNumber,
-  booleanDefault,
-  switchComponent,
-  arrayDefault,
+  defaultBoolean,
+  switch: switchComponent,
+  defaultArray,
   checkboxGroup,
-  multipleOrTags,
-  oneOfDefault
+  multiple: multipleOrTags,
+  tags: multipleOrTags,
+  defaultOneOf
 };
 
 export default customComponent;

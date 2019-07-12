@@ -116,7 +116,7 @@ export function defaultNumber(
 
 /* boolean类型组件 */
 // 默认组件
-export function booleanDefault(
+export function defaultBoolean(
   root: BooleanItem,
   option: GetFieldDecoratorOptions,
   form: WrappedFormUtils,
@@ -143,7 +143,7 @@ export function switchComponent(
 
 /* Array类型组件 */
 // 默认组件
-export function arrayDefault(
+export function defaultArray(
   root: ArrayItem,
   option: GetFieldDecoratorOptions,
   form: WrappedFormUtils,
@@ -188,7 +188,7 @@ export function multipleOrTags(
 }
 
 /* object类型组件 */
-export function oneOfDefault(
+export function defaultOneOf(
   root: SchemaItem,
   form: WrappedFormUtils,
   element: React.ReactNodeArray
