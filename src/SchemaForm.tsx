@@ -10,7 +10,7 @@ import getObjectFromValue from './utils/getObjectFromValue';
 import languagePack from './languagePack';
 import { SchemaItem, ContextValue } from './types';
 
-interface SchemaFormProps extends FormComponentProps {
+export interface SchemaFormProps extends FormComponentProps {
   json: SchemaItem;
   value?: any;
   onOk?: Function;
