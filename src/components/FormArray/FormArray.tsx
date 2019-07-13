@@ -7,6 +7,7 @@ import { GetFieldDecoratorOptions, ValidationRule } from 'antd/lib/form/Form';
 import AntdSchemaFormContext from '../../context';
 import styleName from '../../utils/styleName';
 import createArrayRules from './createArrayRules';
+import createElement from '../../utils/createElement';
 import { ArrayItem, ContextValue } from '../../types';
 
 /**
@@ -45,7 +46,7 @@ function FormArray(props: PropsWithChildren<FormArrayProps>): React.ReactElement
     if (cType && cType in customComponent) {
       element = customComponent[cType](root, option, form, required);
     } else {
-      element = customComponent.defaultArray(root, option, form, required);
+      element = createElement(customComponent.defaultArray, [root, option, form, required]);
       isTableComponent = true;
     }
   }

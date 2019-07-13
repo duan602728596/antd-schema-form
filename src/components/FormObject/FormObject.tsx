@@ -14,9 +14,9 @@ import FormString from '../FormString/FormString';
 import FormNumber from '../FormNumber/FormNumber';
 import FormBoolean from '../FormBoolean/FormBoolean';
 import FormArray from '../FormArray/FormArray';
-import OneOf from './OneOf';
 import getValueFromObject from '../../utils/getValueFromObject';
 import getKeysFromObject from '../../utils/getKeysFromObject';
+import createElement from '../../utils/createElement';
 import { SchemaItem, ContextValue } from '../../types';
 
 /**
@@ -114,7 +114,7 @@ function FormObject(props: PropsWithChildren<FormObjectProps>): React.ReactEleme
     if (customComponent) {
       oneOfElement = $oneOfComponentType && $oneOfComponentType in customComponent
         ? customComponent[$oneOfComponentType](root, form, element)
-        : customComponent.defaultOneOf(root, form, element);
+        : createElement(customComponent.defaultOneOf, [root, form, element]);
     }
 
     return oneOfElement;

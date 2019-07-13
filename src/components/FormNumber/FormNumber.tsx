@@ -7,6 +7,7 @@ import { GetFieldDecoratorOptions } from 'antd/lib/form/Form';
 import AntdSchemaFormContext from '../../context';
 import styleName from '../../utils/styleName';
 import createNumberRules from './createNumberRules';
+import createElement from '../../utils/createElement';
 import { NumberItem, ContextValue } from '../../types';
 
 /**
@@ -48,7 +49,7 @@ function FormNumber(props: PropsWithChildren<FormNumberProps>): React.ReactEleme
   if (customComponent) {
     element = ($componentType && $componentType in customComponent)
       ? customComponent[$componentType](root, option, form, required)
-      : customComponent.defaultNumber(root, option, form, required);
+      : createElement(customComponent.defaultNumber, [root, option, form, required]);
   }
 
   return (

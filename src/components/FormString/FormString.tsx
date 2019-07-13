@@ -9,6 +9,7 @@ import * as moment from 'moment';
 import AntdSchemaFormContext from '../../context';
 import styleName from '../../utils/styleName';
 import createStringRules from './createStringRules';
+import createElement from '../../utils/createElement';
 import { StringItem, ContextValue } from '../../types';
 
 /**
@@ -54,7 +55,7 @@ function FormString(props: PropsWithChildren<FormStringProps>): React.ReactEleme
   if (customComponent) {
     element = ($componentType && $componentType in customComponent)
       ? customComponent[$componentType](root, option, form, required)
-      : customComponent.defaultString(root, option, form, required);
+      : createElement(customComponent.defaultString, [root, option, form, required]);
   }
 
   return (

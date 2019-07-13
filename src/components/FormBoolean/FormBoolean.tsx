@@ -4,8 +4,9 @@ import * as PropTypes from 'prop-types';
 import { Form, Tooltip } from 'antd';
 import { GetFieldDecoratorOptions } from 'antd/lib/form/Form';
 import AntdSchemaFormContext from '../../context';
-import { ContextValue, BooleanItem } from '../../types';
 import styleName from '../../utils/styleName';
+import createElement from '../../utils/createElement';
+import { ContextValue, BooleanItem } from '../../types';
 
 /**
  * 当类型为boolean时的组件渲染
@@ -39,7 +40,7 @@ function FormBoolean(props: PropsWithChildren<FormBooleanProps>): React.ReactEle
   if (customComponent) {
     element = ($componentType && $componentType in customComponent)
       ? customComponent[$componentType](root, option, form, required)
-      : customComponent.defaultBoolean(root, option, form, required);
+      : createElement(customComponent.defaultBoolean, [root, option, form, required]);
   }
 
   return (
