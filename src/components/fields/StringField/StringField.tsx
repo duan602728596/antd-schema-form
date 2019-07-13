@@ -6,10 +6,10 @@ import { Form, Tooltip } from 'antd';
 import { ValidationRule } from 'antd/lib/form';
 import { GetFieldDecoratorOptions } from 'antd/lib/form/Form';
 import * as moment from 'moment';
-import AntdSchemaFormContext from '../../context';
-import styleName from '../../utils/styleName';
+import AntdSchemaFormContext from '../../../context';
+import styleName from '../../../utils/styleName';
 import createStringRules from './createStringRules';
-import { StringItem, ContextValue } from '../../types';
+import { StringItem, ContextValue } from '../../../types';
 
 /**
  * 当类型为string时的组件渲染
@@ -19,18 +19,18 @@ import { StringItem, ContextValue } from '../../types';
  * 扩展属性包括：required, componentType, readOnly, length, patternOption, enumMessage, lengthMessage, requiredMessage,
  *   patternMessage, minLengthMessage, maxLengthMessage, options, defaultValue, placeholder
  */
-interface FormStringProps {
+interface StringFieldProps {
   root: StringItem;
   required: boolean;
 }
 
-function FormString(props: PropsWithChildren<FormStringProps>): React.ReactElement | null {
+function StringField(props: PropsWithChildren<StringFieldProps>): React.ReactElement | null {
   const context: ContextValue | {} = useContext(AntdSchemaFormContext);
 
   if (!('form' in context)) return null; // 类型判断
 
   const { form, customComponent, languagePack }: ContextValue = context;
-  const { root, required }: FormStringProps = props; // type=object时，会判断key是否存在于required数组中
+  const { root, required }: StringFieldProps = props; // type=object时，会判断key是否存在于required数组中
   const {
     title,
     description,
@@ -66,9 +66,9 @@ function FormString(props: PropsWithChildren<FormStringProps>): React.ReactEleme
   );
 }
 
-FormString.propTypes = {
+StringField.propTypes = {
   root: PropTypes.object,
   required: PropTypes.bool
 };
 
-export default FormString;
+export default StringField;

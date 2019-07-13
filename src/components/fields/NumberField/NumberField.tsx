@@ -4,10 +4,10 @@ import * as PropTypes from 'prop-types';
 import { Form, Tooltip } from 'antd';
 import { ValidationRule } from 'antd/lib/form';
 import { GetFieldDecoratorOptions } from 'antd/lib/form/Form';
-import AntdSchemaFormContext from '../../context';
-import styleName from '../../utils/styleName';
+import AntdSchemaFormContext from '../../../context';
+import styleName from '../../../utils/styleName';
 import createNumberRules from './createNumberRules';
-import { NumberItem, ContextValue } from '../../types';
+import { NumberItem, ContextValue } from '../../../types';
 
 /**
  * 当类型为number和integer时的组件渲染
@@ -22,7 +22,7 @@ interface FormNumberProps {
   required: boolean;
 }
 
-function FormNumber(props: PropsWithChildren<FormNumberProps>): React.ReactElement | null {
+function NumberField(props: PropsWithChildren<FormNumberProps>): React.ReactElement | null {
   const context: ContextValue | {} = useContext(AntdSchemaFormContext);
 
   if (!('form' in context)) return null; // 类型判断
@@ -60,9 +60,9 @@ function FormNumber(props: PropsWithChildren<FormNumberProps>): React.ReactEleme
   );
 }
 
-FormNumber.propTypes = {
+NumberField.propTypes = {
   root: PropTypes.object,
   required: PropTypes.bool
 };
 
-export default FormNumber;
+export default NumberField;

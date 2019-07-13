@@ -4,8 +4,8 @@ import { GetFieldDecoratorOptions, WrappedFormUtils } from 'antd/lib/form/Form';
 import omit from 'lodash-es/omit';
 import selectOptionsRender from '../utils/selectOptionsRender';
 import styleName from '../utils/styleName';
-import TableComponent from '../components/FormArray/TableComponent';
-import OneOf from '../components/FormObject/OneOf';
+import TableComponent from '../components/fields/ArrayField/TableComponent';
+import OneOf from '../components/fields/ObjectField/OneOf';
 import { SchemaItem, StringItem, NumberItem, BooleanItem, ArrayItem } from '../types';
 
 /* string类型组件 */

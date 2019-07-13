@@ -1,8 +1,8 @@
 import isNil from 'lodash-es/isNil';
 import isNumber from 'lodash-es/isNumber';
 import { ValidationRule } from 'antd/lib/form';
-import template from '../../utils/template';
-import { ArrayItem } from '../../types';
+import template from '../../../utils/template';
+import { ArrayItem } from '../../../types';
 
 function createArrayRules(languagePack: any, root: ArrayItem, required: boolean): Array<ValidationRule> {
   const { minItems, maxItems, $minItemsMessage, $maxItemsMessage }: ArrayItem = root;

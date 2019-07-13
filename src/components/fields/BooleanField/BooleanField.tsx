@@ -3,9 +3,9 @@ import { useContext, PropsWithChildren } from 'react';
 import * as PropTypes from 'prop-types';
 import { Form, Tooltip } from 'antd';
 import { GetFieldDecoratorOptions } from 'antd/lib/form/Form';
-import AntdSchemaFormContext from '../../context';
-import { ContextValue, BooleanItem } from '../../types';
-import styleName from '../../utils/styleName';
+import AntdSchemaFormContext from '../../../context';
+import { ContextValue, BooleanItem } from '../../../types';
+import styleName from '../../../utils/styleName';
 
 /**
  * 当类型为boolean时的组件渲染
@@ -19,7 +19,7 @@ interface FormBooleanProps {
   required: boolean;
 }
 
-function FormBoolean(props: PropsWithChildren<FormBooleanProps>): React.ReactElement | null {
+function BooleanField(props: PropsWithChildren<FormBooleanProps>): React.ReactElement | null {
   const context: ContextValue | {} = useContext(AntdSchemaFormContext);
 
   if (!('form' in context)) return null; // 类型判断
@@ -51,8 +51,8 @@ function FormBoolean(props: PropsWithChildren<FormBooleanProps>): React.ReactEle
   );
 }
 
-FormBoolean.propTypes = {
+BooleanField.propTypes = {
   root: PropTypes.object
 };
 
-export default FormBoolean;
+export default BooleanField;

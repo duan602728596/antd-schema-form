@@ -5,7 +5,7 @@ import isPlainObject from 'lodash-es/isPlainObject';
 import { Form } from 'antd';
 import { FormComponentProps } from 'antd/lib/form/Form';
 import AntdSchemaFormContext from './context';
-import FormObject from './components/FormObject/FormObject';
+import ObjectField from './components/fields/ObjectField/ObjectField';
 import getObjectFromValue from './utils/getObjectFromValue';
 import languagePack from './languagePack';
 import { SchemaItem, ContextValue } from './types';
@@ -64,7 +64,7 @@ function SchemaForm(props: PropsWithChildren<SchemaFormProps>): React.ReactEleme
 
   return (
     <AntdSchemaFormContext.Provider value={ contextValue }>
-      <FormObject root={ json }
+      <ObjectField root={ json }
         onOk={ onOk }
         onCancel={ onCancel }
         okText={ okText }

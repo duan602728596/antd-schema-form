@@ -1,8 +1,8 @@
 import isNil from 'lodash-es/isNil';
 import isNumber from 'lodash-es/isNumber';
 import { ValidationRule } from 'antd/lib/form';
-import template from '../../utils/template';
-import { NumberItem } from '../../types';
+import template from '../../../utils/template';
+import { NumberItem } from '../../../types';
 
 function createNumberRules(languagePack: any, root: NumberItem, required: boolean, isInteger: boolean): Array<ValidationRule> {
   const {
