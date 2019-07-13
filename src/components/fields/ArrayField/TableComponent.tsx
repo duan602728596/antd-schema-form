@@ -9,14 +9,14 @@ import { Table, Button, Popconfirm, Drawer, Input } from 'antd';
 import { WrappedFormUtils } from 'antd/lib/form/Form';
 import { TableComponents } from 'antd/lib/table';
 import update from 'immutability-helper';
-import AntdSchemaFormContext from '../../context';
-import getValueFromObject, { formatValueBeforeGetValue } from '../../utils/getValueFromObject';
-import getObjectFromValue from '../../utils/getObjectFromValue';
+import AntdSchemaFormContext from '../../../context';
+import getValueFromObject, { formatValueBeforeGetValue } from '../../../utils/getValueFromObject';
+import getObjectFromValue from '../../../utils/getObjectFromValue';
 import { formatTableValue, sortIndex } from './tableFunction';
-import FormObject from '../FormObject/FormObject';
-import styleName from '../../utils/styleName';
-import template from '../../utils/template';
-import { SchemaItem, StringItem, NumberItem, BooleanItem, ArrayItem, ContextValue } from '../../types';
+import ObjectField from '../ObjectField/ObjectField';
+import styleName from '../../../utils/styleName';
+import template from '../../../utils/template';
+import { SchemaItem, StringItem, NumberItem, BooleanItem, ArrayItem, ContextValue } from '../../../types';
 
 // 拖拽相关变量
 const tableDragClassName: [string, string] = [
@@ -496,7 +496,7 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): React.Re
       </p>
       {/* 添加和修改数据的抽屉组件 */}
       <Drawer width="100%" visible={ isDisplayDataDrawer } destroyOnClose={ true } closable={ false }>
-        <FormObject root={ items }
+        <ObjectField root={ items }
           okText={ editIndex !== undefined ? undefined : languagePack.formObject.addOkText }
           cancelText={ editIndex !== undefined ? undefined : languagePack.formObject.addCancelText }
           onOk={ handleAddOrEditDataClick }

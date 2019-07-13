@@ -2,8 +2,8 @@ import isNil from 'lodash-es/isNil';
 import isNumber from 'lodash-es/isNumber';
 import isString from 'lodash-es/isString';
 import { ValidationRule } from 'antd/lib/form';
-import template from '../../utils/template';
-import { StringItem } from '../../types';
+import template from '../../../utils/template';
+import { StringItem } from '../../../types';
 
 function createStringRules(languagePack: any, root: StringItem, required: boolean): Array<ValidationRule> {
   const {

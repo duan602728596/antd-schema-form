@@ -8,16 +8,16 @@ import isBoolean from 'lodash-es/isBoolean';
 import isString from 'lodash-es/isString';
 import transform from 'lodash-es/transform';
 import { Collapse, Button } from 'antd';
-import AntdSchemaFormContext from '../../context';
-import styleName from '../../utils/styleName';
-import FormString from '../FormString/FormString';
-import FormNumber from '../FormNumber/FormNumber';
-import FormBoolean from '../FormBoolean/FormBoolean';
-import FormArray from '../FormArray/FormArray';
-import getValueFromObject from '../../utils/getValueFromObject';
-import getKeysFromObject from '../../utils/getKeysFromObject';
-import createElement from '../../utils/createElement';
-import { SchemaItem, ContextValue } from '../../types';
+import AntdSchemaFormContext from '../../../context';
+import styleName from '../../../utils/styleName';
+import StringField from '../StringField/StringField';
+import NumberField from '../NumberField/NumberField';
+import BooleanField from '../BooleanField/BooleanField';
+import ArrayField from '../ArrayField/ArrayField';
+import getValueFromObject from '../../../utils/getValueFromObject';
+import getKeysFromObject from '../../../utils/getKeysFromObject';
+import createElement from '../../../utils/createElement';
+import { SchemaItem, ContextValue } from '../../../types';
 
 /**
  * 当类型为object时的组件渲染
@@ -32,7 +32,7 @@ interface FormObjectProps {
   footer?: Function;
 }
 
-function FormObject(props: PropsWithChildren<FormObjectProps>): React.ReactElement | null {
+function ObjectField(props: PropsWithChildren<FormObjectProps>): React.ReactElement | null {
   const context: ContextValue | {} = useContext(AntdSchemaFormContext);
 
   if (!('form' in context)) return null; // 类型判断
@@ -70,17 +70,17 @@ function FormObject(props: PropsWithChildren<FormObjectProps>): React.ReactEleme
 
     switch (type) {
       case 'string':
-        return <FormString { ...props } />;
+        return <StringField { ...props } />;
 
       case 'integer':
       case 'number':
-        return <FormNumber { ...props } />;
+        return <NumberField { ...props } />;
 
       case 'boolean':
-        return <FormBoolean { ...props } />;
+        return <BooleanField { ...props } />;
 
       case 'array':
-        return <FormArray { ...props } />;
+        return <ArrayField { ...props } />;
 
       case 'object':
         // eslint-disable-next-line no-use-before-define
@@ -237,7 +237,7 @@ function FormObject(props: PropsWithChildren<FormObjectProps>): React.ReactEleme
   );
 }
 
-FormObject.propTypes = {
+ObjectField.propTypes = {
   root: PropTypes.object,
   onOk: PropTypes.func,
   onCancel: PropTypes.func,
@@ -252,4 +252,4 @@ FormObject.propTypes = {
   footer: PropTypes.func
 };
 
-export default FormObject;
+export default ObjectField;

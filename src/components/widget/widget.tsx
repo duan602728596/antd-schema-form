@@ -2,11 +2,11 @@ import * as React from 'react';
 import { Input, Select, Radio, DatePicker, InputNumber, Checkbox, Switch } from 'antd';
 import { GetFieldDecoratorOptions, WrappedFormUtils } from 'antd/lib/form/Form';
 import omit from 'lodash-es/omit';
-import selectOptionsRender from '../utils/selectOptionsRender';
-import styleName from '../utils/styleName';
-import TableComponent from '../components/FormArray/TableComponent';
-import OneOf from '../components/FormObject/OneOf';
-import { SchemaItem, StringItem, NumberItem, BooleanItem, ArrayItem } from '../types';
+import selectOptionsRender from '../../utils/selectOptionsRender';
+import styleName from '../../utils/styleName';
+import TableComponent from '../fields/ArrayField/TableComponent';
+import OneOf from '../fields/ObjectField/OneOf';
+import { SchemaItem, StringItem, NumberItem, BooleanItem, ArrayItem } from '../../types';
 
 /* string类型组件 */
 // 默认组件
