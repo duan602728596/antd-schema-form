@@ -93,7 +93,7 @@ function FormObject(props: PropsWithChildren<FormObjectProps>): React.ReactEleme
 
   // oneOf组件
   function renderOneOfComponentView(root: SchemaItem, required: boolean): React.ReactNode {
-    const { id, oneOf, $oneOfComponentType }: SchemaItem = root;
+    const { oneOf, $oneOfComponentType }: SchemaItem = root;
     const element: React.ReactNodeArray = [];
 
     (oneOf || []).forEach((value: SchemaItem, index: number, array: Array<SchemaItem>): void => {
