@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Input, Select, Radio, DatePicker, InputNumber, Checkbox, Switch, Collapse } from 'antd';
 import { GetFieldDecoratorOptions, WrappedFormUtils } from 'antd/lib/form/Form';
 import omit from 'lodash-es/omit';
-import selectOptionsRender from '../../utils/selectOptionsRender';
+import selectOptionsRender from './selectOptionsRender';
 import styleName from '../../utils/styleName';
 import TableComponent from '../FormArray/TableComponent';
 import OneOf from '../FormObject/OneOf';
