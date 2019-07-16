@@ -1,8 +1,2 @@
-linters:
-  src/**/*.{ts,tsx}: tslint
-  "*.{js,jsx,ts,tsx}": eslint
-ignore:
-  - node_modules
-  - es
-  - lib
-  - style
+src/**/*.{ts,tsx}: tslint
+"*.{js,jsx,ts,tsx}": eslint
