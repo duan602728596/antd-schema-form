@@ -11,6 +11,7 @@ import {
   defaultArray,
   checkboxGroup,
   multipleOrTags,
+  defaultObject,
   defaultOneOf
 } from './components/custom/custom';
 
@@ -28,6 +29,7 @@ const customComponent: object = {
   checkboxGroup,
   multiple: multipleOrTags,
   tags: multipleOrTags,
+  defaultObject,
   defaultOneOf
 };
 

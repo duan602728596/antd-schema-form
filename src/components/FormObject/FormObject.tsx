@@ -170,21 +170,15 @@ function FormObject(props: PropsWithChildren<FormObjectProps>): React.ReactEleme
       ));
     }
 
-    // header
-    const header: React.ReactNodeArray = [
-      <b key="title">{ title || id }</b>,
-      <span className={ styleName('object-description') } key="description">{ description }</span>
-    ];
+    let objectElement: React.ReactNode = null;
 
-    return (customComponent && $componentType && $componentType in customComponent)
-      ? customComponent[$componentType](root, form, element)
-      : (
-        <Collapse key={ id } className={ styleName('object-collapse') } defaultActiveKey={ [id] }>
-          <Collapse.Panel key={ id } header={ header }>
-            { element }
-          </Collapse.Panel>
-        </Collapse>
-      );
+    if (customComponent) {
+      objectElement = ($componentType && $componentType in customComponent)
+        ? customComponent[$componentType](root, form, element)
+        : createElement(customComponent.defaultObject, [root, form, element]);
+    }
+
+    return objectElement;
   }
 
   // ok事件

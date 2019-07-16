@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Input, Select, Radio, DatePicker, InputNumber, Checkbox, Switch } from 'antd';
+import { Input, Select, Radio, DatePicker, InputNumber, Checkbox, Switch, Collapse } from 'antd';
 import { GetFieldDecoratorOptions, WrappedFormUtils } from 'antd/lib/form/Form';
 import omit from 'lodash-es/omit';
 import selectOptionsRender from '../../utils/selectOptionsRender';
@@ -188,6 +188,28 @@ export function multipleOrTags(
 }
 
 /* object类型组件 */
+export function defaultObject(
+  root: SchemaItem,
+  form: WrappedFormUtils,
+  element: React.ReactNodeArray
+): React.ReactNode {
+  const { title, id, description }: SchemaItem = root;
+
+  // header
+  const header: React.ReactNodeArray = [
+    <b key="title">{ title || id }</b>,
+    <span className={ styleName('object-description') } key="description">{ description }</span>
+  ];
+
+  return (
+    <Collapse key={ id } className={ styleName('object-collapse') } defaultActiveKey={ [id] }>
+      <Collapse.Panel key={ id } header={ header }>
+        { element }
+      </Collapse.Panel>
+    </Collapse>
+  );
+}
+
 export function defaultOneOf(
   root: SchemaItem,
   form: WrappedFormUtils,
