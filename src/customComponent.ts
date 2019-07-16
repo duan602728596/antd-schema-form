@@ -12,7 +12,7 @@ import {
   checkboxGroup,
   multipleOrTags,
   defaultOneOf
-} from './widget/widget';
+} from './components/custom/custom';
 
 const customComponent: object = {
   defaultString,
