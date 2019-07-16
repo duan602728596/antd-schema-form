@@ -198,7 +198,7 @@ export function defaultObject(
   // header
   const header: React.ReactNodeArray = [
     <b key="title">{ title || id }</b>,
-    <span className={ styleName('object-description') } key="description">{ description }</span>
+    <span key="description" className={ styleName('object-description') }>{ description }</span>
   ];
 
   return (
