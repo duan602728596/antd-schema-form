@@ -20,6 +20,7 @@ gulpfile.js
 tslint.json
 tsconfig.json
 tsconfig.es5.json
+docs
 
 # ignore
 .gitignore
