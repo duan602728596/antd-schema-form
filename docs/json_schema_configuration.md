@@ -78,13 +78,13 @@ The component renders the input box by default ([Input](https://ant.design/compo
 * `$placeholder: string`: The placeholder property of the form control.
 * `$defaultValue: string`: The default value of the form control.
 
-  | Value | Component Name |
-  | --- | --- |
-  | textArea | Text field. |
-  | select | Drop-down box. |
-  | radio | Radio box. |
-  | date | Date picker. (**When the component is a date picker, the value is a Moment object, and you need to process the value of the date yourself.**) |
-  | password | Password box. |
+  | Value    | Component Name                                                                                                                                |
+  | ---      | ---                                                                                                                                           |
+  | textArea | Text field.                                                                                                                                   |
+  | select   | Drop-down box.                                                                                                                                |
+  | radio    | Radio box.                                                                                                                                    |
+  | date     | Date picker. (**When the component is a date picker, the value is a Moment object, and you need to process the value of the date yourself.**) |
+  | password | Password box.                                                                                                                                 |
 
 * `$options: Array<{ label: string, value: string }>`: Optional when $componentType is select, radio.
 
@@ -107,8 +107,8 @@ The component renders the numeric input box by default ([InputNumber](https://an
 * `$defaultValue: number`: The default value of the form control.
 
   | Value | Component Name |
-  | --- | --- |
-  | radio | Radio box. |
+  | ---   | ---            |
+  | radio | Radio box.     |
 
 * `$options: Array<{ label: string, value: number }>`: Optional option when $componentType is radio.
 
@@ -118,9 +118,9 @@ The component renders a checkbox by default ([Checkbox](https://ant.design/compo
 
 * `$defaultValue: boolean`: The default value of the form control.
 
-  | Value | Component Name |
-  | --- | --- |
-  | switch | Switch. |
+  | Value  | Component Name |
+  | ---    | ---            |
+  | switch | Switch.        |
 
 ### `type="array"`:
 
@@ -134,10 +134,10 @@ The component renders the table by default ([Table](https://ant.design/component
 * `$maximumMessage: string`: Customize the verification failure message for maximum.
 * `$addDataInReverseOrder: boolean`: When set to `true`, data is inserted into the header when the table component adds data.
 
-  | Value | Component Name |
-  | --- | --- |
-  | checkbox | Multiple checkbox. |
-  | multiple | Drop-down box multiple selection mode. |
-  | tags | Multi-select mode for drop-down box, and you can enter text. |
+  | Value    | Component Name                                                                                   |
+  | ---      | ---                                                                                              |
+  | checkbox | Multiple checkbox. For compatibility, the "checkbox" can also be rendered as a multi-select box. |
+  | multiple | Drop-down box multiple selection mode.                                                           |
+  | tags     | Multi-select mode for drop-down box, and you can enter text.                                     |
 
 * `$options: Array<{ label: string, value: string | number }>`: Optional when $componentType is checkbox, multiple, tags.

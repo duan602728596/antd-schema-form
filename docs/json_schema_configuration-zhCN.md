@@ -78,13 +78,13 @@
 * `$placeholder: string`: 表单控件的placeholder属性。
 * `$defaultValue: string`: 表单控件的默认值。
 
-  | 值 | 组件名称 |
-  | --- | --- |
-  | textArea | 文本域 |
-  | select | 下拉框 |
-  | radio | 单选框 |
-  | date | 日期选择器（**当组件为日期选择器时，值为Moment对象，需要自行对日期的值进行处理**） |
-  | password | 密码框 |
+  | 值       | 组件名称 |
+  | ---      | ---      |
+  | textArea | 文本域                                                                                |
+  | select   | 下拉框                                                                                |
+  | radio    | 单选框                                                                                |
+  | date     | 日期选择器（**当组件为日期选择器时，值为Moment对象，需要自行对日期的值进行处理**） |
+  | password | 密码框                                                                                |
 
 * `$options: Array<{ label: string, value: string }>`: 当$componentType为select、radio时，可选的选项。
 
@@ -106,9 +106,9 @@
 * `$placeholder: string`: 表单控件的placeholder属性。
 * `$defaultValue: number`: 表单控件的默认值。
 
-  | 值 | 组件名称 |
-  | --- | --- |
-  | radio | 单选框 |
+  | 值    | 组件名称 |
+  | ---   | ---      |
+  | radio | 单选框   |
 
 * `$options: Array<{ label: string, value: number }>`: 当$componentType为radio时，可选的选项。
 
@@ -118,9 +118,9 @@
 
 * `$defaultValue: boolean`: 表单控件的默认值。
 
-  | 值 | 组件名称 |
-  | --- | --- |
-  | switch | 开关 |
+  | 值     | 组件名称 |
+  | ---    | ---      |
+  | switch | 开关     |
 
 ### `type="array"`:
 
@@ -134,10 +134,10 @@
 * `$maxItemsMessage: string`: 自定义maxItems的验证失败提示信息。
 * `$addDataInReverseOrder: boolean`: 设置为`true`时，表格组件添加数据时数据插入到头部。
 
-  | 值 | 组件名称 |
-  | --- | --- |
-  | checkbox | 多选框 |
-  | multiple | 下拉框的多选模式 |
-  | tags | 下拉框的多选模式，并且可以输入文字 |
+  | 值            | 组件名称                                         |
+  | ---           | ---                                              |
+  | checkboxGroup | 多选框。为了兼容，“checkbox”也可以渲染成多选框。 |
+  | multiple      | 下拉框的多选模式                                 |
+  | tags          | 下拉框的多选模式，并且可以输入文字               |
 
 * `$options: Array<{ label: string, value: string | number }>`: 当$componentType为checkbox、multiple、tags时，可选的选项。
