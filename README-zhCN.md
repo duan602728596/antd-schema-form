@@ -86,7 +86,7 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
 | onCancel | 表单的取消事件 | (form: object) => void |
 | okText | 确认按钮文字 | string |
 | cancelText | 取消按钮文字 | string |
-| footer | 自定义底部内容，onOk事件[参考](https://github.com/duan602728596/antd-schema-form/blob/master/src/components/FormObject/FormObject.tsx#L138) |  (form: object) => React.Node  |
+| footer | 自定义底部内容，onOk事件[参考](https://github.com/duan602728596/antd-schema-form/blob/master/src/components/FormObject/FormObject.tsx#L185) |  (form: object) => React.Node  |
 | customComponent | 自定义渲染组件，[参考](#自定义渲染组件) | object |
 | customTableRender | 自定义表格列渲染组件，[参考](#自定义表格列渲染组件) | object |
 | languagePack | 语言配置，[参考](language/zh-CN.json) | object |
