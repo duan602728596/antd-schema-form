@@ -95,6 +95,8 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
 
 ## [自定义渲染组件](docs/custom_rendering_component-zhCN.md)
 
+## [按需加载组件](docs/load_components_as_needed-zhCN.md)
+
 ## 开发和测试
 
 * 运行命令`npm run dev`，在浏览器中输入`http://127.0.0.1:5050`查看demo并开发。

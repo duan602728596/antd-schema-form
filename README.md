@@ -95,6 +95,8 @@ Antd-schema-form based [Ant Design](https://ant.design/), quickly generate inter
 
 ## [Custom rendering component](docs/custom_rendering_component.md)
 
+## [Load components as needed](docs/load_components_as_needed.md)
+
 ## Development and testing
 
 * Run the command `npm run dev`, enter `http://127.0.0.1:5050` in the browser to view the demo and develop.
