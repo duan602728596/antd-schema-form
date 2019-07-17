@@ -22,11 +22,12 @@
   ],
   "scripts": {
     "dev": "webpack-dev-server --config=\"./config/webpack.dev.js\" --hot --color --port=5050",
-    "build": "npm run clean:lib && npm run clean:es && npm run clean:style && cross-env NODE_ENV=production gulp",
+    "build": "npm run delete:react-slick && npm run clean:lib && npm run clean:es && npm run clean:style && cross-env NODE_ENV=production gulp",
     "clean:lib": "rimraf lib",
     "clean:es": "rimraf es",
     "clean:style": "rimraf style",
     "test:init": "mocha init tests",
+    "delete:react-slick": "rimraf node_modules/@types/react-slick/node_modules",
     "test": "webpack-dev-server --config=\"./config/webpack.test.js\" --hot --color --port=6060",
     "eslint": "cross-env NODE_ENV=eslint eslint ./ --ext .js,.jsx,.ts,.tsx --fix",
     "tslint": "tslint --project ./ --fix",
