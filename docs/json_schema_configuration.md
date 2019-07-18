@@ -134,10 +134,10 @@ The component renders the table by default ([Table](https://ant.design/component
 * `$maximumMessage: string`: Customize the verification failure message for maximum.
 * `$addDataInReverseOrder: boolean`: When set to `true`, data is inserted into the header when the table component adds data.
 
-  | Value    | Component Name                                                                                   |
-  | ---      | ---                                                                                              |
-  | checkbox | Multiple checkbox. For compatibility, the "checkbox" can also be rendered as a multi-select box. |
-  | multiple | Drop-down box multiple selection mode.                                                           |
-  | tags     | Multi-select mode for drop-down box, and you can enter text.                                     |
+  | Value    | Component Name                                                                                                       |
+  | ---      | ---                                                                                                                  |
+  | checkbox | Multiple checkbox. For compatibility with older versions, the "checkbox" can also be rendered as a multi-select box. |
+  | multiple | Drop-down box multiple selection mode.                                                                               |
+  | tags     | Multi-select mode for drop-down box, and you can enter text.                                                         |
 
 * `$options: Array<{ label: string, value: string | number }>`: Optional when $componentType is checkbox, multiple, tags.

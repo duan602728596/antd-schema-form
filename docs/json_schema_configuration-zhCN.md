@@ -134,10 +134,10 @@
 * `$maxItemsMessage: string`: 自定义maxItems的验证失败提示信息。
 * `$addDataInReverseOrder: boolean`: 设置为`true`时，表格组件添加数据时数据插入到头部。
 
-  | 值            | 组件名称                                         |
-  | ---           | ---                                              |
-  | checkboxGroup | 多选框。为了兼容，“checkbox”也可以渲染成多选框。 |
-  | multiple      | 下拉框的多选模式                                 |
-  | tags          | 下拉框的多选模式，并且可以输入文字               |
+  | 值            | 组件名称                                               |
+  | ---           | ---                                                    |
+  | checkboxGroup | 多选框。为了兼容旧版本，“checkbox”也可以渲染成多选框。 |
+  | multiple      | 下拉框的多选模式                                       |
+  | tags          | 下拉框的多选模式，并且可以输入文字                     |
 
 * `$options: Array<{ label: string, value: string | number }>`: 当$componentType为checkbox、multiple、tags时，可选的选项。
