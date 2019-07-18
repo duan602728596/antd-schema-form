@@ -1,3 +1,9 @@
+### v2.5.0-rc.2
+
+* 🌟允许根据需要加载想要的组件，[参考](docs/load_components_as_needed-zhCN.md)。
+* 💀type为array类型时的**checkbox**组件更名为**checkboxGroup**（避免按需加载时的命名冲突），不过目前还是会兼容旧的组件名称。
+* 重新梳理了文档。
+
 ### v2.5.0-rc.1
 
 * 🐛boolean类型组件应该使用`valuePropName: 'checked'`代替`state`控制显示。

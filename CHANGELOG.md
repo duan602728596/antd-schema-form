@@ -1,3 +1,9 @@
+### v2.5.0-rc.2
+
+* 🌟Allow loading of desired components as needed, [reference](docs/load_components_as_needed.md)。
+* 💀The **checkbox** component is renamed to **checkboxGroup** when the type is array type (avoid naming conflicts when loading on demand). However, it is still compatible with the old component name.
+* Reorganized the document.
+
 ### v2.5.0-rc.1
 
 * 🐛Boolean type components should use `valuePropName: 'checked'` instead of `state` control display.
