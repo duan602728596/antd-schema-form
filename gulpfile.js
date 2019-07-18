@@ -1,6 +1,7 @@
 const gulp = require('gulp');
 const typescript = require('gulp-typescript');
 const sass = require('gulp-sass');
+const filter = require('gulp-filter');
 const merge = require('merge2');
 const tsconfig = require('./tsconfig.json');
 const tsconfigES5 = require('./tsconfig.es5.json');
@@ -21,7 +22,12 @@ function proLibProject() {
 
   return merge([
     result.js.pipe(gulp.dest(libPath)),
-    result.dts.pipe(gulp.dest(libPath))
+    result.dts
+      // 不输出warning.d.ts，因为是空文件
+      .pipe(filter((file) => !/warning\.d\.ts/.test(file.path), {
+        restore: false
+      }))
+      .pipe(gulp.dest(libPath))
   ]);
 }
 
@@ -32,7 +38,12 @@ function proEsProject() {
 
   return merge([
     result.js.pipe(gulp.dest(esPath)),
-    result.dts.pipe(gulp.dest(esPath))
+    result.dts
+      // 不输出warning.d.ts，因为是空文件
+      .pipe(filter((file) => !/warning\.d\.ts/.test(file.path), {
+        restore: false
+      }))
+      .pipe(gulp.dest(esPath))
   ]);
 }
 

@@ -72,6 +72,7 @@
     "eslint-plugin-react": "^7.14.2",
     "file-loader": "^4.0.0",
     "gulp": "^4.0.2",
+    "gulp-filter": "^6.0.0",
     "gulp-sass": "^4.0.2",
     "gulp-typescript": "^5.0.1",
     "html-webpack-plugin": "^4.0.0-beta.5",
