@@ -7,7 +7,7 @@ import isPlainObject from 'lodash-es/isPlainObject';
  * @param { string } basicId: 格式化数据的id
  */
 export function formatValueBeforeGetValue(formValue: object, basicId: string): object {
-  const reg: RegExp = new RegExp(`^${ basicId.replace('$', '\\$') }/`);
+  const reg: RegExp = new RegExp(`^${ basicId.replace(/\$/g, '\\$') }/`);
 
   return transform(formValue, function(result: object, value: any, key: string): void {
     const formatKey: string = key.replace(reg, '');
