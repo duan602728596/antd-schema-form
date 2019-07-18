@@ -269,13 +269,13 @@ class TableComponent extends Component<TableComponentProps> {
   }
 
   // 添加和修改数据
-  handleAddOrEditDataClick: Function = (value: object, form2: WrappedFormUtils, keys: string[]): void => {
+  handleAddOrEditDataClick: Function = (objectForm: WrappedFormUtils, objectValue: object, keys: string[]): void => {
     const { form }: ContextValue = this.context;
     const { root }: TableComponentProps = this.props;
     const id: string = root.id;
     // 获取需要验证和获取值的key
-    const value2: object = form.getFieldsValue(keys);
-    const formatValue: object = formatValueBeforeGetValue(value2, id);
+    const value: object = form.getFieldsValue(keys);
+    const formatValue: object = formatValueBeforeGetValue(value, id);
     const result: object = getValueFromObject(formatValue);
     let tableValue: Array<any> | any = form.getFieldValue(id);
 
