@@ -5,7 +5,7 @@
 [![NPM version][react-dom-image]][react-dom-url]
 [![NPM version][ant-design-image]][ant-design-url]
 
-[antd-schema-form-image]: https://img.shields.io/badge/antd--schema--form-2.4.0-blue.svg
+[antd-schema-form-image]: https://img.shields.io/badge/antd--schema--form-2.4.2-blue.svg
 [antd-schema-form-url]: https://www.npmjs.com/package/antd-schema-form
 
 [react-image]: https://img.shields.io/badge/react-%3E=16.6.0-red.svg
@@ -276,7 +276,7 @@ Function parameters:
 
 | Parameter | Description | Type |
 | --- | --- | --- |
-| item | Information about the id, title, etc. Json schema required by the current. | component | object |
+| item | Information about the id, title, etc. Json schema required by the current component. | object |
 | option | Form configuration for form.getFieldDecorator. | object |
 | form | Antd's form object. | object |
 | required | Field required | boolean |
@@ -285,7 +285,7 @@ When the `type` attribute is `object`, the value type is `(item, form, element) 
 
 | Parameter | Description | Type |
 | --- | --- | --- |
-| item | Information about the id, title, etc. Json schema required by the current. | component | object |
+| item | Information about the id, title, etc. Json schema required by the current component. | object |
 | form | Antd's form object. | object |
 | element | Rendered React component | React.ReactNodeArray &#124;&#124; React.ReactNode |
 
