@@ -15,7 +15,7 @@ export const setSchemaJson = createAction('表单生成-schemaJson');
 
 /* reducer */
 const reducer = handleActions({
-  [setSchemaJson]: ($$state, action) => {
+  [setSchemaJson]($$state, action) {
     return $$state.set('schemaJson', Map(action.payload));
   }
 }, fromJS(initData));
