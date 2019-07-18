@@ -37,7 +37,7 @@ module.exports = {
         'import-components-style',
         {
           components: {
-            highlightjs: 'styles/github-gist.css',
+            'highlight.js/lib/highlight': '~highlight.js/styles/github-gist.css',
             'antd-schema-form': 'style/antd-schema-form.css'
           }
         }
@@ -50,7 +50,7 @@ module.exports = {
   },
   css: {
     modules: false,
-    include: /(node_modules[\\/]antd(-schema-form)?|highlightjs)/
+    include: /(node_modules[\\/]antd(-schema-form)?|highlight\.js)/
   },
   html: [{ template: path.join(__dirname, 'src/index.pug') }]
 };

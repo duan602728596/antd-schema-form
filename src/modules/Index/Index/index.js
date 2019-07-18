@@ -4,11 +4,11 @@ import { Row, Col, Modal } from 'antd';
 import SchemaForm from 'antd-schema-form';
 import schemaFormDefaultLang from 'antd-schema-form/language/default.json';
 import schemaFormZhCNLang from 'antd-schema-form/language/zh-CN.json';
-import hljs from 'highlightjs';
 import style from './style.sass';
 import demo from './demo.json';
 import demoZhCN from './demo-zhCN.json';
 import { I18NContext } from '../../../components/I18N/I18N';
+import hljs from '../../../components/highlight/highlight';
 
 class Index extends Component {
   static contextType = I18NContext;
