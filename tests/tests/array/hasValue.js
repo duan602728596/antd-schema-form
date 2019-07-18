@@ -168,7 +168,7 @@ export function CheckboxGroupHastValue() {
       type: 'string',
       title: '值'
     },
-    $componentType: 'checkbox',
+    $componentType: 'checkboxGroup',
     $options: [
       { label: '选项1', value: '值1' },
       { label: '选项2', value: '值2' },
