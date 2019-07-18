@@ -1,9 +1,1 @@
-linters:
-  src/**/*.{js,jsx}: eslint
-ignore:
-  - node_modules
-  - .sweet
-  - build
-  - buildServer
-  - dist
-  - dist-server
+src/**/*.{js,jsx}: eslint
