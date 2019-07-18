@@ -11,7 +11,7 @@
 ### v2.5.0-rc.0
 
 * 🌟Refactoring code with *React Hooks*.
-* 🐛Remove the `Input.Password` compatible component.
+* 💀Remove the `Input.Password` compatible component.
 
 ### v2.4.1
 
