@@ -13,8 +13,8 @@ function Nav(props) {
             const { language, languagePack } = context;
             const nav = languagePack.nav;
             const docUrl = language === 'zh-cn'
-              ? 'https://github.com/duan602728596/antd-schema-form/blob/master/README-zhCN.md#antd-schema-form'
-              : 'https://github.com/duan602728596/antd-schema-form#antd-schema-form';
+              ? 'https://github.com/duan602728596/antd-schema-form/blob/v2/README-zhCN.md#antd-schema-form'
+              : 'https://github.com/duan602728596/antd-schema-form/tree/v2#antd-schema-form';
 
             return (
               <ul className={ style.navList }>
