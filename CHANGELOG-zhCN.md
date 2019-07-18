@@ -1,3 +1,8 @@
+### v2.4.2
+
+* 🐛修复`TableComponent`组件确认事件的传参错误。
+* 🐛修复多个**$**符号可能导致的格式化表格数据错误。
+
 ### v2.4.1
 
 * 🐛boolean类型组件应该使用`valuePropName: 'checked'`代替`state`控制显示。

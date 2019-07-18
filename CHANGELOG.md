@@ -1,3 +1,8 @@
+### v2.4.2
+
+* 🐛Fix the `TableComponent` component to confirm the error of the event.
+* 🐛Fixing multiple **$** symbols may result in formatting table data errors.
+
 ### v2.4.1
 
 * 🐛Boolean type components should use `valuePropName: 'checked'` instead of `state` control display.
