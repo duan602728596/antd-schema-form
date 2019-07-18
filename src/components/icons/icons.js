@@ -20,6 +20,8 @@ export RedoOutline from '@ant-design/icons/lib/outline/RedoOutline';
 export GithubOutline from '@ant-design/icons/lib/outline/GithubOutline';
 
 // 网站通用图表
+export EyeOutline from '@ant-design/icons/lib/outline/EyeOutline';
+export EyeInvisibleOutline from '@ant-design/icons/lib/outline/EyeInvisibleOutline';
 export TabletOutline from '@ant-design/icons/lib/outline/TabletOutline';
 
 /* 实底风格 */
