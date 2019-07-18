@@ -7,6 +7,8 @@ import styleName from '../../utils/styleName';
 import TableComponent from '../FormArray/TableComponent';
 import OneOf from '../FormObject/OneOf';
 import { SchemaItem, StringItem, NumberItem, BooleanItem, ArrayItem } from '../../types';
+// @ts-ignore
+import * as warning from '../../utils/warning';
 
 /* string类型组件 */
 // 默认组件
@@ -165,7 +167,9 @@ export function checkboxGroup(
   required: boolean
 ): React.ReactNode {
   const { getFieldDecorator }: WrappedFormUtils = form;
-  const { id, $options = [] }: ArrayItem = root;
+  const { id, $options = [], $componentType }: ArrayItem = root;
+
+  $componentType === 'checkbox' && warning('Use "checkboxGroup" instead of "checkbox" when type is array.');
 
   return getFieldDecorator(id, option)(<Checkbox.Group options={ $options } />);
 }
