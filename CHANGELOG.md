@@ -1,3 +1,8 @@
+### v3.0.1
+
+* 🐛Fix the `TableComponent` component to confirm the error of the event.
+* 🐛Fixing multiple **$** symbols may result in formatting table data errors.
+
 ### v3.0.0
 
 * 🌟Allow loading of desired components as needed, [reference](docs/load_components_as_needed.md)。

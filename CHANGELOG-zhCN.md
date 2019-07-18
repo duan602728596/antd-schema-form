@@ -1,3 +1,8 @@
+### v3.0.1
+
+* 🐛修复`TableComponent`组件确认事件的传参错误。
+* 🐛修复多个**$**符号可能导致的格式化表格数据错误。
+
 ### v3.0.0
 
 * 🌟允许根据需要加载想要的组件，[参考](docs/load_components_as_needed-zhCN.md)。
