@@ -14,7 +14,8 @@
       "type": "string",
       "title": "数据类型",
       "$required": true,
-      "$readOnly": true
+      "$readOnly": true,
+      "$defaultValue": "object"
     },
     "title": {
       "id": "$root/properties/title",

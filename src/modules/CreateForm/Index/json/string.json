@@ -14,7 +14,8 @@
       "type": "string",
       "title": "Type of data",
       "$required": true,
-      "$readOnly": true
+      "$readOnly": true,
+      "$defaultValue": "string"
     },
     "title": {
       "id": "$root/properties/title",

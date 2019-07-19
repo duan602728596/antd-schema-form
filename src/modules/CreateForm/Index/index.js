@@ -5,7 +5,7 @@ import JsonInputTextArea from './JsonInputTextArea';
 import ChangeJson from './ChangeJson';
 import { I18NContext } from '../../../components/I18N/I18N';
 
-function Index() {
+function Index(props) {
   return (
     <I18NContext.Consumer>
       {
