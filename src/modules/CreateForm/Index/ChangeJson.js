@@ -1,9 +1,10 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment, useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { createSelector, createStructuredSelector } from 'reselect';
 import { Tag, Button, Collapse } from 'antd';
+import useActions from '../../../store/useActions';
 import { setSchemaJson } from '../reducer/reducer';
 import style from './style.sass';
 import json from './json/json';
@@ -21,73 +22,51 @@ const state = createStructuredSelector({
 
 /* actions */
 const actions = (dispatch) => ({
-  actions: bindActionCreators({
+  action: bindActionCreators({
     setSchemaJson
   }, dispatch)
 });
 
-@connect(state, actions)
-class ChangeJson extends Component {
-  static contextType = I18NContext;
-  static propTypes = {
-    schemaJson: PropTypes.object,
-    actions: PropTypes.objectOf(PropTypes.func)
-  };
-
-  constructor() {
-    super(...arguments);
-
-    const { schemaJson } = this.props;
-
-    this.state = {
-      schemaJson,
-      isAddDrawerDisplay: false, // 添加面板的显示和隐藏
-      isEditDrawerDisplay: false, // 编辑面板的显示和隐藏
-      addItem: null,
-      editItem: null
-    };
-  }
-
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.schemaJson !== prevState.schemaJson) {
-      const { schemaJson } = nextProps;
-
-      return { schemaJson };
-    }
-
-    return null;
-  }
-
-  // 关闭面板
-  handleCloseDrawerClick(itemName, visibleName, form) {
-    this.setState({
-      [itemName]: null,
-      [visibleName]: false
-    });
-  }
+function ChangeJson(props) {
+  const { schemaJson: storeSchemaJson } = useSelector(state);
+  const { action } = useActions(actions);
+  const context = useContext(I18NContext);
+  const [schemaJson, setSchemaJson] = useState(storeSchemaJson);
+  const [isAddDrawerDisplay, setIsAddDrawerDisplay] = useState(false);   // 添加面板的显示和隐藏
+  const [isEditDrawerDisplay, setIsEditDrawerDisplay] = useState(false); // 编辑面板的显示和隐藏
+  const [addItem, setAddItem] = useState(null);
+  const [editItem, setEditItem] = useState(null);
+  const len = Object.values(schemaJson).length;
 
   // 打开添加面板
-  handleOpenAddDrawerClick(item, event) {
+  function handleOpenAddDrawerClick(item, event) {
     event.stopPropagation();
 
-    this.setState({
-      isAddDrawerDisplay: true,
-      addItem: item
-    });
+    setIsAddDrawerDisplay(true);
+    setAddItem(item);
   }
 
   // 打开编辑面板
-  handleOpenEditDrawerClick(item, event) {
+  function handleOpenEditDrawerClick(item, event) {
     event.stopPropagation();
 
-    this.setState({
-      isEditDrawerDisplay: true,
-      editItem: item
-    });
+    setIsEditDrawerDisplay(true);
+    setEditItem(item);
   }
+
+  // 关闭面板
+  function handleCloseDrawerClick(itemName) {
+    if (itemName === 'add') {
+      setAddItem(null);
+      setIsAddDrawerDisplay(false);
+    } else {
+      setEditItem(null);
+      setIsEditDrawerDisplay(false);
+    }
+  }
+
   // 添加确认事件
-  handleOkAddDrawerClick = (form, value, keys) => {
-    const { schemaJson, addItem } = this.state;
+  function handleOkAddDrawerClick(form, value, keys) {
     const { $root } = value;
     const { id, ...etcValue } = $root;
 
@@ -105,16 +84,13 @@ class ChangeJson extends Component {
       };
     }
 
-    this.props.actions.setSchemaJson(schemaJson);
-    this.setState({
-      isAddDrawerDisplay: false,
-      addItem: null
-    });
-  };
+    action.setSchemaJson(schemaJson);
+    setIsAddDrawerDisplay(false);
+    setAddItem(null);
+  }
 
   // 编辑确认事件
-  handleOkEditDrawerClick = (form, value, keys) => {
-    const { schemaJson, editItem } = this.state;
+  function handleOkEditDrawerClick(form, value, keys) {
     const { $root } = value;
     const { id, ...etcValue } = $root;
 
@@ -127,15 +103,13 @@ class ChangeJson extends Component {
     // 合并数据
     Object.assign(editItem, etcValue);
 
-    this.props.actions.setSchemaJson(schemaJson);
-    this.setState({
-      isEditDrawerDisplay: false,
-      editItem: null
-    });
-  };
+    action.setSchemaJson(schemaJson);
+    setIsEditDrawerDisplay(false);
+    setEditItem(null);
+  }
 
   // 根据指定id查找并删除数据
-  findAndDelete(id, item, father, key) {
+  function findAndDelete(id, item, father, key) {
     if (item.id === id && father && key) {
       delete father[key];
 
@@ -144,32 +118,31 @@ class ChangeJson extends Component {
 
     if (item.type === 'object') {
       for (const key in item.properties) {
-        this.findAndDelete(id, item.properties[key], item.properties, key);
+        findAndDelete(id, item.properties[key], item.properties, key);
       }
 
       return void 0;
     }
 
     if (item.type === 'array') {
-      this.findAndDelete(id, item.items, item, 'items');
+      findAndDelete(id, item.items, item, 'items');
 
       return void 0;
     }
   }
 
   // 删除事件
-  handleDeleteItemClick(item, event) {
+  function handleDeleteItemClick(item, event) {
     event.stopPropagation();
 
     const { id } = item;
-    const { schemaJson } = this.state;
 
-    this.findAndDelete(id, schemaJson);
-    this.props.actions.setSchemaJson(schemaJson);
+    findAndDelete(id, schemaJson);
+    action.setSchemaJson(schemaJson);
   }
 
   // 根据不同的类型渲染不同的标签
-  typeTagView(type) {
+  function typeTagView(type) {
     switch (type) {
       case 'object':
         return <Tag color="magenta">object</Tag>;
@@ -192,10 +165,10 @@ class ChangeJson extends Component {
   }
 
   // 渲染面板内的信息
-  infoTableView(item) {
+  function infoTableView(item) {
     const element = [];
     const { type } = item;
-    const { language } = this.context;
+    const { language } = context;
     const json2 = language in json ? json[language] : json.default;
 
     for (const key in json2[type].properties) {
@@ -227,9 +200,9 @@ class ChangeJson extends Component {
   }
 
   // 渲染面板
-  collapseListView(item, disableDelete) {
+  function collapseListView(item, disableDelete) {
     const { type, title } = item;
-    const { createForm } = this.context.languagePack;
+    const { createForm } = context.languagePack;
 
     const element = [
       <Collapse key="collapse" bordered={ false }>
@@ -237,27 +210,27 @@ class ChangeJson extends Component {
           <div className="clearfix">
             <div className={ style.fl }>
               <b className={ style.title }>{ title }</b>
-              { this.typeTagView(type) }
+              { typeTagView(type) }
             </div>
             <div className={ style.fr }>
               <Button.Group size="small">
                 <Button icon="plus"
                   title={ createForm.add }
                   disabled={ !(type === 'object' || type === 'array') }
-                  onClick={ this.handleOpenAddDrawerClick.bind(this, item) }
+                  onClick={ (event) => handleOpenAddDrawerClick(item, event) }
                 />
-                <Button icon="edit" title={ createForm.edit } onClick={ this.handleOpenEditDrawerClick.bind(this, item) } />
+                <Button icon="edit" title={ createForm.edit } onClick={ (event) => handleOpenEditDrawerClick(item, event) } />
                 <Button type="danger"
                   icon="delete"
                   title={ createForm.delete }
                   disabled={ disableDelete }
-                  onClick={ this.handleDeleteItemClick.bind(this, item) }
+                  onClick={ (event) => handleDeleteItemClick(item, event) }
                 />
               </Button.Group>
             </div>
           </div>
         }>
-          { this.infoTableView(item) }
+          { infoTableView(item) }
         </Collapse.Panel>
       </Collapse>
     ];
@@ -266,10 +239,10 @@ class ChangeJson extends Component {
 
     if (type === 'object' && item.properties) {
       for (const key in item.properties) {
-        childrenList.push(this.collapseListView(item.properties[key]));
+        childrenList.push(collapseListView(item.properties[key]));
       }
     } else if (type === 'array' && item.items) {
-      childrenList.push(this.collapseListView(item.items));
+      childrenList.push(collapseListView(item.items));
     }
 
     if (childrenList.length > 0) {
@@ -281,26 +254,25 @@ class ChangeJson extends Component {
     return element;
   }
 
-  render() {
-    const { schemaJson, isAddDrawerDisplay, isEditDrawerDisplay, addItem, editItem } = this.state;
-    const len = Object.values(schemaJson).length;
+  useEffect(function() {
+    setSchemaJson(storeSchemaJson);
+  }, [storeSchemaJson]);
 
-    return (
-      <Fragment>
-        <div className={ style.collapse }>{ len === 0 ? null : this.collapseListView(schemaJson, true) }</div>
-        <AddDrawer item={ addItem }
-          visible={ isAddDrawerDisplay }
-          onOk={ this.handleOkAddDrawerClick }
-          onCancel={ this.handleCloseDrawerClick.bind(this, 'addItem', 'isAddDrawerDisplay') }
-        />
-        <EditDrawer item={ editItem }
-          visible={ isEditDrawerDisplay }
-          onOk={ this.handleOkEditDrawerClick }
-          onCancel={ this.handleCloseDrawerClick.bind(this, 'editItem', 'isEditDrawerDisplay') }
-        />
-      </Fragment>
-    );
-  }
+  return (
+    <Fragment>
+      <div className={ style.collapse }>{ len === 0 ? null : collapseListView(schemaJson, true) }</div>
+      <AddDrawer item={ addItem }
+        visible={ isAddDrawerDisplay }
+        onOk={ handleOkAddDrawerClick }
+        onCancel={ () => handleCloseDrawerClick('add') }
+      />
+      <EditDrawer item={ editItem }
+        visible={ isEditDrawerDisplay }
+        onOk={ handleOkEditDrawerClick }
+        onCancel={ () => handleCloseDrawerClick('edit') }
+      />
+    </Fragment>
+  );
 }
 
 export default ChangeJson;

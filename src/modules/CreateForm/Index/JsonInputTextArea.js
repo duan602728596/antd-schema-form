@@ -1,7 +1,6 @@
-import React, { Component, Fragment, useState, useEffect, useContext } from 'react';
-import PropTypes from 'prop-types';
+import React, { Fragment, useState, useEffect, useContext } from 'react';
 import { bindActionCreators } from 'redux';
-import { connect, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { createSelector, createStructuredSelector } from 'reselect';
 import classNames from 'classnames';
 import { Button, Input, message } from 'antd';
