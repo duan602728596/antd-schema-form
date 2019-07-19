@@ -1,9 +1,22 @@
 import React from 'react';
-import { Layout, Icon, Select } from 'antd';
+import { Layout, Icon, Select, Dropdown, Menu } from 'antd';
 import { version } from 'antd-schema-form/package.json';
 import style from './style.sass';
 import Nav from './Nav';
 import { I18NContext } from '../../components/I18N/I18N';
+
+function versionMenuOverlay() {
+  return (
+    <Menu>
+      <Menu.Item>
+        <a href="https://duan602728596.github.io/antd-schema-form/#/" target="_blank" rel="noopener noreferrer">{ version }</a>
+      </Menu.Item>
+      <Menu.Item>
+        <a href="https://duan602728596.github.io/antd-schema-form/_/v2/index.html" target="_blank" rel="noopener noreferrer">v2</a>
+      </Menu.Item>
+    </Menu>
+  );
+}
 
 function Header(props) {
   return (
@@ -21,7 +34,9 @@ function Header(props) {
               )
             }
           </I18NContext.Consumer>
-          <span className={ style.version }>v{ version }</span>
+          <Dropdown placement="bottomLeft" overlay={ versionMenuOverlay() }>
+            <a className={ style.version }>v{ version }</a>
+          </Dropdown>
           <a className={ style.github }
             href="https://github.com/duan602728596/antd-schema-form"
             target="_blank"
