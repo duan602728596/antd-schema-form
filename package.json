@@ -1,5 +1,5 @@
 {
-  "name": "antd-schema-form-website-v2",
+  "name": "antd-schema-form-website-v3",
   "description": "antd-schema-form的在线演示地址的源代码。",
   "scripts": {
     "dll": "milktea dll",
