@@ -1,4 +1,4 @@
-import React, { Component, Fragment, createRef } from 'react';
+import React, { Component, Fragment, createRef, useState, useEffect, useRef, useContext } from 'react';
 import classNames from 'classnames';
 import { Row, Col, Modal } from 'antd';
 import SchemaForm from 'antd-schema-form';
@@ -10,38 +10,16 @@ import demoZhCN from './demo-zhCN.json';
 import { I18NContext } from '../../../components/I18N/I18N';
 import hljs from '../../../components/highlight/highlight';
 
-class Index extends Component {
-  static contextType = I18NContext;
-
-  codeRef = createRef();
-
-  constructor() {
-    super(...arguments);
-
-    const { language } = this.context;
-
-    this.state = {
-      language // 语言
-    };
-  }
-
-  componentDidMount() {
-    hljs.highlightBlock(this.codeRef.current);
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    const { language } = this.context;
-
-    if (language !== prevState.language) {
-      hljs.highlightBlock(this.codeRef.current);
-
-      this.setState({ language });
-    }
-  }
+function Index(props) {
+  const context = useContext(I18NContext);
+  const codeRef = useRef();
+  const [language, setLanguage] = useState(context.language);
+  const { index } = context.languagePack;
+  const demo2 = language === 'zh-cn' ? demoZhCN : demo;
 
   // 表单确认事件
-  handleOnFormOkClick = (form, value, keys) => {
-    const { languagePack } = this.context;
+  function handleOnFormOkClick(form, value, keys) {
+    const { languagePack } = context;
     const { message } = languagePack;
 
     Modal.info({
@@ -52,48 +30,52 @@ class Index extends Component {
         </div>
       )
     });
-  };
-
-  render() {
-    const { language, languagePack } = this.context;
-    const { index } = languagePack;
-    const demo2 = language === 'zh-cn' ? demoZhCN : demo;
-
-    return (
-      <Fragment>
-        <p className={ style.desc }>
-          { index.introduction[0] }
-          <a href="https://ant.design/index-cn" target="_blank" rel="noopener noreferrer">Ant Design</a>
-          { index.introduction[1] }
-          <a href="http://json-schema.org/draft-07/json-schema-validation.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            JSON Schema
-          </a>
-          { index.introduction[2] }
-        </p>
-        <p className={ style.desc }>{ index.introduction[3] }</p>
-        <Row type="flex" gutter={ 10 }>
-          <Col className={ style.mb10 } xs={ 24 } sm={ 24 } md={ 12 }>
-            <h4>{ index.demoTitle }</h4>
-            <SchemaForm json={ demo2 }
-              languagePack={ language === 'zh-cn' ? schemaFormZhCNLang : schemaFormDefaultLang }
-              onOk={ this.handleOnFormOkClick }
-            />
-          </Col>
-          <Col xs={ 24 } sm={ 24 } md={ 12 }>
-            <h4>schema.json：</h4>
-            <pre className={ style.codePre }>
-              <code ref={ this.codeRef } className={ classNames('json', style.code) }>
-                { JSON.stringify(demo2, null, 2) }
-              </code>
-            </pre>
-          </Col>
-        </Row>
-      </Fragment>
-    );
   }
+
+  // 渲染你高亮代码
+  function codeRender() {
+    setLanguage(context.language);
+    hljs.highlightBlock(codeRef.current);
+  }
+
+  useEffect(function() {
+    codeRender();
+  });
+
+  return (
+    <Fragment>
+      <p className={ style.desc }>
+        { index.introduction[0] }
+        <a href="https://ant.design/index-cn" target="_blank" rel="noopener noreferrer">Ant Design</a>
+        { index.introduction[1] }
+        <a href="http://json-schema.org/draft-07/json-schema-validation.html"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          JSON Schema
+        </a>
+        { index.introduction[2] }
+      </p>
+      <p className={ style.desc }>{ index.introduction[3] }</p>
+      <Row type="flex" gutter={ 10 }>
+        <Col className={ style.mb10 } xs={ 24 } sm={ 24 } md={ 12 }>
+          <h4>{ index.demoTitle }</h4>
+          <SchemaForm json={ demo2 }
+            languagePack={ language === 'zh-cn' ? schemaFormZhCNLang : schemaFormDefaultLang }
+            onOk={ handleOnFormOkClick }
+          />
+        </Col>
+        <Col xs={ 24 } sm={ 24 } md={ 12 }>
+          <h4>schema.json：</h4>
+          <pre className={ style.codePre }>
+            <code ref={ codeRef } className={ classNames('json', style.code) }>
+              { JSON.stringify(demo2, null, 2) }
+            </code>
+          </pre>
+        </Col>
+      </Row>
+    </Fragment>
+  );
 }
 
 export default Index;
