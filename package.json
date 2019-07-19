@@ -14,7 +14,7 @@
   "dependencies": {
     "@ant-design/icons": "^2.1.1",
     "antd": "^3.20.3",
-    "antd-schema-form": "^2.4.2",
+    "antd-schema-form": "^3.0.1",
     "classnames": "^2.2.6",
     "highlight.js": "^9.15.8",
     "immutable": "^4.0.0-rc.12",
