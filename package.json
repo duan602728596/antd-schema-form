@@ -31,20 +31,20 @@
     "reselect": "^4.0.0"
   },
   "devDependencies": {
-    "@sweet-milktea/milktea": "^0.3.4",
+    "@sweet-milktea/milktea": "^0.3.6",
     "@sweet-milktea/milktea-cli": "^0.3.5",
     "@sweet-milktea/server": "^0.3.6",
     "@sweet-milktea/util-tools": "^0.3.6",
     "babel-eslint": "^10.0.2",
     "babel-plugin-import": "^1.12.0",
     "babel-plugin-import-components-style": "^0.1.0",
-    "commitizen": "^3.1.2",
+    "commitizen": "^4.0.1",
     "cross-env": "^5.2.0",
     "cz-conventional-changelog": "^2.1.0",
     "es-module-path-case-check": "^1.4.0",
     "eslint": "^6.0.1",
     "eslint-plugin-react": "^7.14.2",
-    "husky": "^3.0.0",
+    "husky": "^3.0.1",
     "lint-staged": "^9.2.0",
     "pre-commit": "^1.2.2",
     "rimraf": "^2.6.3"
