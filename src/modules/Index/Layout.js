@@ -7,7 +7,7 @@ class ModuleLayout extends Component {
   render() {
     return [
       <Helmet key="helmet">
-        <title>antd-schema-form</title>
+        <title>antd-schema-form(v2)</title>
       </Helmet>,
       <Switch key="main">
         <Route path="/" component={ Index } exact={ true } />
