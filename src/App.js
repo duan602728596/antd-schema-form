@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { HashRouter, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { LocaleProvider } from 'antd';
@@ -9,23 +9,20 @@ import Arrangement from './assembly/Arrangement/index';
 import { I18N } from './components/I18N/I18N';
 
 /* 热替换 */
-@hot(module)
-class App extends Component {
-  render() {
-    return (
-      <Provider store={ storeFactory(window.__INITIAL_STATE__ || {}) }>
-        <LocaleProvider locale={ zhCN }>
-          <I18N>
-            <HashRouter>
-              <Switch>
-                <Route component={ Arrangement } exact={ true } />
-              </Switch>
-            </HashRouter>
-          </I18N>
-        </LocaleProvider>
-      </Provider>
-    );
-  }
+function App(props) {
+  return (
+    <Provider store={ storeFactory(window.__INITIAL_STATE__ || {}) }>
+      <LocaleProvider locale={ zhCN }>
+        <I18N>
+          <HashRouter>
+            <Switch>
+              <Route component={ Arrangement } exact={ true } />
+            </Switch>
+          </HashRouter>
+        </I18N>
+      </LocaleProvider>
+    </Provider>
+  );
 }
 
-export default App;
+export default hot(module)(App);
