@@ -12,7 +12,7 @@ function versionMenuOverlay() {
         <a className={ style.nowVersion } href="https://duan602728596.github.io/antd-schema-form/#/" target="_blank" rel="noopener noreferrer">{ version }</a>
       </Menu.Item>
       <Menu.Item>
-        <a href="https://duan602728596.github.io/antd-schema-form/_/v2/index.html" target="_blank" rel="noopener noreferrer">v2</a>
+        <a href="https://duan602728596.github.io/antd-schema-form/v2/index.html" target="_blank" rel="noopener noreferrer">v2</a>
       </Menu.Item>
     </Menu>
   );
