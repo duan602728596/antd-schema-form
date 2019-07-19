@@ -55,8 +55,8 @@
       "$componentType": "select",
       "$options": [
         {
-          "label": "Checkbox",
-          "value": "checkbox"
+          "label": "CheckboxGroup",
+          "value": "CheckboxGroup"
         },
         {
           "label": "Multi-select mode of drop-down box",
