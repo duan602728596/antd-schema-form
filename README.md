@@ -48,7 +48,7 @@ Antd-schema-form based [Ant Design](https://ant.design/), quickly generate inter
 
   // json schema
   const json = {
-    $id: '$root',
+    id: '$root',
     type: 'object',
     title: '$root',
     properties: {}
