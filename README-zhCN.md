@@ -64,7 +64,7 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
 
   // json schema
   const json = {
-    $id: '$root',
+    id: '$root',
     type: 'object',
     title: '$root',
     properties: {}
