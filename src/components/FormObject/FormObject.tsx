@@ -192,6 +192,7 @@ function FormObject(props: PropsWithChildren<FormObjectProps>): React.ReactEleme
       onOk && onOk(form, value, keys);
     } catch (err) {
       console.error(err);
+      form.scrollToField(err.errorFields[0].name);
     }
   }
 
