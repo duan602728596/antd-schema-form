@@ -450,10 +450,22 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): React.Re
     }
   }, [isDisplayDataDrawer, editIndex]);
 
+  useEffect(function(): void {
+    // 设置defaultValue
+    const val: Array<any> | any = form.getFieldValue(id);
+
+    if (isNil(val)) {
+      // @ts-ignore
+      form.setFieldsValue({
+        [root.id]: root.$defaultValue
+      });
+    }
+  }, []);
+
   const inputNotDisplay: boolean = isNil(inputDisplayIndex);
   let value: Array<any> | any = form.getFieldValue(id);
 
-  value = isNil(value) ? (root.$defaultValue || []) : value;
+  value = isNil(value) ? [] : value;
 
   // 对数组内的元素数量进行验证
   let arrayRulesVerificationResult: string | undefined = undefined;
