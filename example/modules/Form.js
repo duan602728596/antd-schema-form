@@ -26,6 +26,20 @@ const value = {
     },
     number: {
       default: 12345
+    },
+    array: {
+      default: [
+        {
+          col1: '数据1',
+          col2: 1,
+          col3: true
+        },
+        {
+          col1: '数据2',
+          col2: 2,
+          col3: false
+        }
+      ]
     }
   }
 };

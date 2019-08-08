@@ -37,19 +37,7 @@
         }
       },
       "minItems": 1,
-      "maxItems": 3,
-      "$defaultValue": [
-        {
-          "col1": "数据1",
-          "col2": 1,
-          "col3": true
-        },
-        {
-          "col1": "数据2",
-          "col2": 2,
-          "col3": false
-        }
-      ]
+      "maxItems": 3
     },
     "item": {
       "id": "$root/properties/array/properties/item",

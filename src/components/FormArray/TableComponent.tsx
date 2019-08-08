@@ -34,6 +34,10 @@ function tableClassName(hasErr: boolean): string {
 
 interface TableComponentProps {
   root: ArrayItem;
+  // 表单属性
+  id?: string;
+  value?: any;
+  onChange?: Function;
 }
 
 function TableComponent(props: PropsWithChildren<TableComponentProps>): React.ReactElement | null {
@@ -66,6 +70,13 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): React.Re
   const [editIndex, setEditIndex]: [number | undefined, Dispatch<SetStateAction<number | undefined>>]
     = useState(undefined);
 
+  // 表单
+  function triggerChange(changedValue: Store): void {
+    if (props.onChange) {
+      props.onChange(changedValue);
+    }
+  }
+
   // 调换位置
   function moveRow(dragIndex: number, hoverIndex: number): void {
     let tableValue: Array<any> | any = form.getFieldValue(id);
@@ -73,13 +84,13 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): React.Re
     tableValue = isNil(tableValue) ? (root.$defaultValue || []) : tableValue;
 
     const dragRowItem: object = tableValue[dragIndex];
-    const newData: StoreValue = update({ tableValue }, {
+    const newData: { tableValue: Store } = update({ tableValue }, {
       tableValue: {
         $splice: [[dragIndex, 1], [hoverIndex, 0, dragRowItem]]
       }
     });
 
-    form.setFieldsValue({ [id]: newData.tableValue });
+    triggerChange(newData.tableValue);
   }
 
   // 开始拖拽
@@ -266,7 +277,7 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): React.Re
       tableValue[editIndex] = result['items'];
     }
 
-    form.setFieldsValue({ [id]: tableValue });
+    triggerChange(tableValue);
 
     // 重置状态
     if (editIndex === undefined) {
@@ -283,7 +294,8 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): React.Re
 
     tableValue = isNil(tableValue) ? (root.$defaultValue || []) : tableValue;
     tableValue.splice(index, 1);
-    form.setFieldsValue({ [id]: tableValue });
+
+    triggerChange(tableValue);
   }
 
   // 修改数据抽屉的显示
@@ -314,7 +326,8 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): React.Re
     const sortSelectedRowKeys: number[] = sortIndex(selectedRowKeys);
 
     for (const item of sortSelectedRowKeys) tableValue.splice(item, 1);
-    form.setFieldsValue({ [id]: tableValue });
+
+    triggerChange(tableValue);
     setSelectedRowKeys([]);
   }
 
@@ -433,7 +446,7 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): React.Re
       const itemValue: any = tableValue[editIndex];
       const result: Store = getObjectFromValue({ items: itemValue }, id);
 
-      form.setFieldsValue(result);
+      triggerChange(result);
     }
   }, [isDisplayDataDrawer, editIndex]);
 
