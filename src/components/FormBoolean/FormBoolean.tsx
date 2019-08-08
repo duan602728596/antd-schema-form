@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useContext, PropsWithChildren } from 'react';
 import * as PropTypes from 'prop-types';
-import { Form, Tooltip } from 'antd';
+import { Form } from 'antd';
 import AntdSchemaFormContext from '../../context';
 import styleName from '../../utils/styleName';
 import createElement from '../../utils/createElement';
@@ -27,7 +27,7 @@ function FormBoolean(props: PropsWithChildren<FormBooleanProps>): React.ReactEle
   const { form, customComponent }: ContextValue = context;
   const { root, required }: FormBooleanProps = props;
   const { id, title, description, $componentType, $hidden }: BooleanItem = root;
-  let element: React.ReactNode = null;
+  let element: React.ReactElement | null = null;
 
   if (customComponent) {
     element = ($componentType && $componentType in customComponent)
@@ -35,17 +35,15 @@ function FormBoolean(props: PropsWithChildren<FormBooleanProps>): React.ReactEle
       : createElement(customComponent.defaultBoolean, [root, form, required]);
   }
 
-  return (
+  return element ? (
     <Form.Item className={ $hidden ? styleName('hidden') : undefined }
       valuePropName="checked"
       name={ id }
       label={ title }
     >
-      <Tooltip title={ description } placement="topRight">
-        { element }
-      </Tooltip>
+      { element }
     </Form.Item>
-  );
+  ) : null;
 }
 
 FormBoolean.propTypes = {

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useContext, PropsWithChildren } from 'react';
 import * as PropTypes from 'prop-types';
-import { Form, Tooltip } from 'antd';
+import { Form } from 'antd';
 import { Rule } from 'rc-field-form/es/interface';
 import AntdSchemaFormContext from '../../context';
 import styleName from '../../utils/styleName';
@@ -31,7 +31,7 @@ function FormString(props: PropsWithChildren<FormStringProps>): React.ReactEleme
   const { root, required }: FormStringProps = props; // type=object时，会判断key是否存在于required数组中
   const { id, title, description, $componentType, $hidden }: StringItem = root;
   const rules: Array<Rule> = createStringRules(languagePack, root, required);
-  let element: React.ReactNode = null;
+  let element: React.ReactElement | null = null;
 
   if (customComponent) {
     element = ($componentType && $componentType in customComponent)
@@ -39,17 +39,15 @@ function FormString(props: PropsWithChildren<FormStringProps>): React.ReactEleme
       : createElement(customComponent.defaultString, [root, form, required]);
   }
 
-  return (
+  return element ? (
     <Form.Item className={ $hidden ? styleName('hidden') : undefined }
       name={ id }
       rules={ rules }
       label={ title }
     >
-      <Tooltip title={ description } placement="topRight">
-        { element }
-      </Tooltip>
+      { element }
     </Form.Item>
-  );
+  ) : null;
 }
 
 FormString.propTypes = {

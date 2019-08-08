@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useContext, PropsWithChildren } from 'react';
 import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Form, Tooltip } from 'antd';
+import { Form } from 'antd';
 import { Rule } from 'rc-field-form/es/interface';
 import AntdSchemaFormContext from '../../context';
 import styleName from '../../utils/styleName';
@@ -32,7 +32,7 @@ function FormArray(props: PropsWithChildren<FormArrayProps>): React.ReactElement
   const { id, title, description, $componentType, $defaultValue, $hidden }: ArrayItem = root;
   const rules: Array<Rule> = createArrayRules(languagePack, root, required);
   let isTableComponent: boolean = false; // 判断是否为table组件
-  let element: React.ReactNode = null;
+  let element: React.ReactElement | null = null;
 
   if (customComponent) {
     if ($componentType && $componentType in customComponent) {
@@ -48,17 +48,15 @@ function FormArray(props: PropsWithChildren<FormArrayProps>): React.ReactElement
     [styleName('hidden')]: $hidden
   });
 
-  return (
+  return element ? (
     <Form.Item className={ classname }
       name={ id }
       rules={ rules }
       label={ title }
     >
-      <Tooltip title={ description } placement="topRight">
-        { element }
-      </Tooltip>
+      { element }
     </Form.Item>
-  );
+  ) : null;
 }
 
 FormArray.propTypes = {
