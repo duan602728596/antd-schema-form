@@ -80,17 +80,12 @@ export function switchComponent(root: BooleanItem, form: FormInstance, required:
 /* Array类型组件 */
 // 默认组件
 export function defaultArray(root: ArrayItem, form: FormInstance, required: boolean): React.ReactNode {
-  // @ts-ignore
-  const { getFieldProps }: FormInstance = form;
-  const { id }: ArrayItem = root;
-  const props: any = getFieldProps(id);
-
-  return <TableComponent root={ root } { ...props } />;
+  return <TableComponent root={ root } />;
 }
 
 // checkbox group
 export function checkboxGroup(root: ArrayItem, form: FormInstance, required: boolean): React.ReactNode {
-  const { $options = [], $componentType }: ArrayItem = root;
+  const { $options = [] }: ArrayItem = root;
 
   return <Checkbox.Group options={ $options } />;
 }

@@ -9,7 +9,7 @@ import getValueFromObject from './utils/getValueFromObject';
 export default function(props: PropsWithChildren<SchemaFormProps>): React.ReactNode | null {
   const { customComponent, ...otherProps }: SchemaFormProps = props;
   const [custom, setCustom]: [
-    object | undefined,
+    { [key: string]: Function } | undefined,
     Dispatch<SetStateAction<object>>
   ] = useState(Object.assign(components, customComponent || {}));
 

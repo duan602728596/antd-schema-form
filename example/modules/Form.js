@@ -32,12 +32,8 @@ const value = {
 
 // 自定义组件
 const customComponent = {
-  custom(item, option, form, required) {
-    const { getFieldDecorator } = form;
-
-    return getFieldDecorator(item.id, option)(
-      <Input placeholder="自定义组件" required={ required } addonAfter={ <Icon type="setting" /> } />
-    );
+  custom(item, form, required) {
+    return <Input placeholder="自定义组件" required={ required } addonAfter={ <Icon type="setting" /> } />;
   }
 };
 

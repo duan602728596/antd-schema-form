@@ -67,13 +67,15 @@ function SchemaForm(props: PropsWithChildren<SchemaFormProps>): React.ReactEleme
 
   return (
     <AntdSchemaFormContext.Provider value={ contextValue }>
-      <FormObject root={ json }
-        onOk={ onOk }
-        onCancel={ onCancel }
-        okText={ okText }
-        cancelText={ cancelText }
-        footer={ footer }
-      />
+      <Form form={ form } component={ false }>
+        <FormObject root={ json }
+          onOk={ onOk }
+          onCancel={ onCancel }
+          okText={ okText }
+          cancelText={ cancelText }
+          footer={ footer }
+        />
+      </Form>
     </AntdSchemaFormContext.Provider>
   );
 }
@@ -102,5 +104,4 @@ SchemaForm.defaultProps = {
   customTableRender: {}
 };
 
-// @ts-ignore
-export default Form.create()(SchemaForm);
+export default SchemaForm;

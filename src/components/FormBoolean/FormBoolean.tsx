@@ -26,24 +26,21 @@ function FormBoolean(props: PropsWithChildren<FormBooleanProps>): React.ReactEle
 
   const { form, customComponent }: ContextValue = context;
   const { root, required }: FormBooleanProps = props;
-  const { title, description, $componentType, $defaultValue, $hidden }: BooleanItem = root;
-  const option: any /* TODO */ = {
-    valuePropName: 'checked'
-  };
-
-  // 表单默认值
-  if ($defaultValue) option.initialValue = $defaultValue;
-
+  const { id, title, description, $componentType, $hidden }: BooleanItem = root;
   let element: React.ReactNode = null;
 
   if (customComponent) {
     element = ($componentType && $componentType in customComponent)
-      ? customComponent[$componentType](root, option, form, required)
-      : createElement(customComponent.defaultBoolean, [root, option, form, required]);
+      ? customComponent[$componentType](root, form, required)
+      : createElement(customComponent.defaultBoolean, [root, form, required]);
   }
 
   return (
-    <Form.Item className={ $hidden ? styleName('hidden') : undefined } label={ title }>
+    <Form.Item className={ $hidden ? styleName('hidden') : undefined }
+      valuePropName="checked"
+      name={ id }
+      label={ title }
+    >
       <Tooltip title={ description } placement="topRight">
         { element }
       </Tooltip>

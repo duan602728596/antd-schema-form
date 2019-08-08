@@ -29,14 +29,9 @@ function FormArray(props: PropsWithChildren<FormArrayProps>): React.ReactElement
 
   const { form, customComponent, languagePack }: ContextValue = context;
   const { root, required }: FormArrayProps = props;
-  const { title, description, $componentType, $defaultValue, $hidden }: ArrayItem = root;
+  const { id, title, description, $componentType, $defaultValue, $hidden }: ArrayItem = root;
   const rules: Array<Rule> = createArrayRules(languagePack, root, required);
-  const option: any /* TODO */ = { rules };
   let isTableComponent: boolean = false; // 判断是否为table组件
-
-  // 表单默认值
-  if ($defaultValue) option.initialValue = $defaultValue;
-
   let element: React.ReactNode = null;
 
   if (customComponent) {
@@ -54,7 +49,11 @@ function FormArray(props: PropsWithChildren<FormArrayProps>): React.ReactElement
   });
 
   return (
-    <Form.Item className={ classname } label={ title }>
+    <Form.Item className={ classname }
+      name={ id }
+      rules={ rules }
+      label={ title }
+    >
       <Tooltip title={ description } placement="topRight">
         { element }
       </Tooltip>

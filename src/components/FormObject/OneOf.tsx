@@ -6,6 +6,7 @@ import { Radio } from 'antd';
 import { RadioChangeEvent } from 'antd/lib/radio';
 import AntdSchemaFormContext from '../../context';
 import { SchemaItem, ContextValue } from '../../types';
+import styleName from '../../utils/styleName';
 
 interface OneOfProps {
   root: SchemaItem;
@@ -78,7 +79,9 @@ function OneOf(props: PropsWithChildren<OneOfProps>): React.ReactElement | null 
 
   return (
     <Fragment>
-      { radioGroupView() }
+      <div className={ styleName('object-radio-group') }>
+        { radioGroupView() }
+      </div>
       { element[index] }
     </Fragment>
   );

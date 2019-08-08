@@ -1,10 +1,8 @@
 import * as React from 'react';
 import { useContext, PropsWithChildren } from 'react';
 import * as PropTypes from 'prop-types';
-import { isString } from 'lodash-es';
 import { Form, Tooltip } from 'antd';
 import { Rule } from 'rc-field-form/es/interface';
-import * as moment from 'moment';
 import AntdSchemaFormContext from '../../context';
 import styleName from '../../utils/styleName';
 import createStringRules from './createStringRules';
@@ -31,34 +29,22 @@ function FormString(props: PropsWithChildren<FormStringProps>): React.ReactEleme
 
   const { form, customComponent, languagePack }: ContextValue = context;
   const { root, required }: FormStringProps = props; // type=object时，会判断key是否存在于required数组中
-  const {
-    title,
-    description,
-    $componentType,
-    $defaultValue,
-    $hidden
-  }: StringItem = root;
+  const { id, title, description, $componentType, $hidden }: StringItem = root;
   const rules: Array<Rule> = createStringRules(languagePack, root, required);
-  const option: any /* TODO */ = { rules };
-
-  // 表单默认值
-  if ($defaultValue) option.initialValue = $defaultValue;
-
-  // 格式化日历的日期
-  if ($componentType === 'date' && isString($defaultValue)) {
-    option.initialValue = moment($defaultValue);
-  }
-
   let element: React.ReactNode = null;
 
   if (customComponent) {
     element = ($componentType && $componentType in customComponent)
-      ? customComponent[$componentType](root, option, form, required)
-      : createElement(customComponent.defaultString, [root, option, form, required]);
+      ? customComponent[$componentType](root, form, required)
+      : createElement(customComponent.defaultString, [root, form, required]);
   }
 
   return (
-    <Form.Item className={ $hidden ? styleName('hidden') : undefined } label={ title }>
+    <Form.Item className={ $hidden ? styleName('hidden') : undefined }
+      name={ id }
+      rules={ rules }
+      label={ title }
+    >
       <Tooltip title={ description } placement="topRight">
         { element }
       </Tooltip>

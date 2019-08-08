@@ -29,30 +29,22 @@ function FormNumber(props: PropsWithChildren<FormNumberProps>): React.ReactEleme
 
   const { form, customComponent, languagePack }: ContextValue = context;
   const { root, required }: FormNumberProps = props; // type=object时，会判断key是否存在于required数组中
-  const {
-    type,
-    title,
-    description,
-    $componentType,
-    $defaultValue,
-    $hidden
-  }: NumberItem = root;
+  const { id, type, title, description, $componentType, $hidden }: NumberItem = root;
   const rules: Array<Rule> = createNumberRules(languagePack, root, required, type === 'integer');
-  const option: any /* TODO */ = { rules };
-
-  // 表单默认值
-  if ($defaultValue) option.initialValue = $defaultValue;
-
   let element: React.ReactNode = null;
 
   if (customComponent) {
     element = ($componentType && $componentType in customComponent)
-      ? customComponent[$componentType](root, option, form, required)
-      : createElement(customComponent.defaultNumber, [root, option, form, required]);
+      ? customComponent[$componentType](root, form, required)
+      : createElement(customComponent.defaultNumber, [root, form, required]);
   }
 
   return (
-    <Form.Item className={ $hidden ? styleName('hidden') : undefined } label={ title }>
+    <Form.Item className={ $hidden ? styleName('hidden') : undefined }
+      name={ id }
+      rules={ rules }
+      label={ title }
+    >
       <Tooltip title={ description } placement="topRight">
         { element }
       </Tooltip>
