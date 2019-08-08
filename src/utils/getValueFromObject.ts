@@ -1,12 +1,13 @@
 import transform from 'lodash-es/transform';
 import isPlainObject from 'lodash-es/isPlainObject';
+import { Store } from 'rc-field-form/es/interface';
 
 /**
  * 格式化数据
- * @param { object } formValue: 表单值
+ * @param { Store } formValue: 表单值
  * @param { string } basicId: 格式化数据的id
  */
-export function formatValueBeforeGetValue(formValue: object, basicId: string): object {
+export function formatValueBeforeGetValue(formValue: Store, basicId: string): Store {
   const reg: RegExp = new RegExp(`^${ basicId.replace(/\$/g, '\\$') }/`);
 
   return transform(formValue, function(result: object, value: any, key: string): void {
@@ -20,7 +21,7 @@ export function formatValueBeforeGetValue(formValue: object, basicId: string): o
  * 从form获取到的表单的值，格式化成object对象
  * @param { object } value: 表单值
  */
-function getValueFromObject(value: object): object {
+function getValueFromObject(value: Store): object {
   const obj: object = {};
 
   for (const key in value) {

@@ -1,16 +1,16 @@
 import isNil from 'lodash-es/isNil';
 import isNumber from 'lodash-es/isNumber';
-import { ValidationRule } from 'antd/lib/form';
+import { Rule, RuleObject } from 'rc-field-form/es/interface';
 import template from '../../utils/template';
 import { NumberItem } from '../../types';
 
-function createNumberRules(languagePack: any, root: NumberItem, required: boolean, isInteger: boolean): Array<ValidationRule> {
+function createNumberRules(languagePack: any, root: NumberItem, required: boolean, isInteger: boolean): Array<Rule> {
   const {
     $required, $requiredMessage, minimum, maximum, $minimumMessage, $maximumMessage, $integer, $integerMessage,
     $enumMessage
   }: NumberItem = root;
   const enums: string[] | undefined = root.enum;
-  const rules: ValidationRule[] = [];
+  const rules: Rule[] = [];
 
   // 判断表单是否必填
   if ($required || required) {
@@ -42,7 +42,7 @@ function createNumberRules(languagePack: any, root: NumberItem, required: boolea
   // 最小值
   if (!isNil(minimum) && isNumber(minimum)) {
     rules.push({
-      validator: (rule: ValidationRule, value: number | string, callback: Function): void => {
+      validator: (rule: RuleObject, value: number | string, callback: Function): void => {
         if (minimum !== undefined) {
           // 当表单没有值时，value的type为string
           if (typeof value === 'number' && value < minimum) {
@@ -63,7 +63,7 @@ function createNumberRules(languagePack: any, root: NumberItem, required: boolea
   // 最大值
   if (!isNil(maximum) && isNumber(maximum)) {
     rules.push({
-      validator: (rule: ValidationRule, value: number | string, callback: Function): void => {
+      validator: (rule: RuleObject, value: number | string, callback: Function): void => {
         if (maximum !== undefined) {
           // 当表单没有值时，value的type为string
           if (typeof value === 'number' && value > maximum) {

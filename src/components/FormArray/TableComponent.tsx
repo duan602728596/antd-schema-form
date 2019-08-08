@@ -6,8 +6,9 @@ import isBoolean from 'lodash-es/isBoolean';
 import isObject from 'lodash-es/isObject';
 import classNames from 'classnames';
 import { Table, Button, Popconfirm, Drawer, Input } from 'antd';
-import { WrappedFormUtils } from 'antd/lib/form/Form';
-import { TableComponents } from 'antd/lib/table';
+import { FormInstance } from 'antd/es/form/Form';
+import { TableComponents } from 'antd/es/table';
+import { Store, StoreValue } from 'rc-field-form/es/interface';
 import update from 'immutability-helper';
 import AntdSchemaFormContext from '../../context';
 import getValueFromObject, { formatValueBeforeGetValue } from '../../utils/getValueFromObject';
@@ -72,7 +73,7 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): React.Re
     tableValue = isNil(tableValue) ? (root.$defaultValue || []) : tableValue;
 
     const dragRowItem: object = tableValue[dragIndex];
-    const newData: { tableValue?: Array<object> } = update({ tableValue }, {
+    const newData: StoreValue = update({ tableValue }, {
       tableValue: {
         $splice: [[dragIndex, 1], [hoverIndex, 0, dragRowItem]]
       }
@@ -249,10 +250,10 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): React.Re
   }
 
   // 添加和修改数据
-  function handleAddOrEditDataClick(objectForm: WrappedFormUtils, objectValue: object, keys: string[]): void {
+  function handleAddOrEditDataClick(objectForm: FormInstance, objectValue: object, keys: string[]): void {
     // 获取需要验证和获取值的key
-    const value: object = form.getFieldsValue(keys);
-    const formatValue: object = formatValueBeforeGetValue(value, id);
+    const value: Store = form.getFieldsValue(keys);
+    const formatValue: Store = formatValueBeforeGetValue(value, id);
     const result: object = getValueFromObject(formatValue);
     let tableValue: Array<any> | any = form.getFieldValue(id);
 
@@ -430,7 +431,7 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): React.Re
       tableValue = isNil(tableValue) ? (root.$defaultValue || []) : tableValue;
 
       const itemValue: any = tableValue[editIndex];
-      const result: object = getObjectFromValue({ items: itemValue }, id);
+      const result: Store = getObjectFromValue({ items: itemValue }, id);
 
       form.setFieldsValue(result);
     }

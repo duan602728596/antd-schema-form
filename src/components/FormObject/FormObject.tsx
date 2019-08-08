@@ -7,7 +7,8 @@ import isNil from 'lodash-es/isNil';
 import isBoolean from 'lodash-es/isBoolean';
 import isString from 'lodash-es/isString';
 import transform from 'lodash-es/transform';
-import { Collapse, Button } from 'antd';
+import { Button } from 'antd';
+import { Store } from 'rc-field-form/es/interface';
 import AntdSchemaFormContext from '../../context';
 import styleName from '../../utils/styleName';
 import FormString from '../FormString/FormString';
@@ -182,16 +183,16 @@ function FormObject(props: PropsWithChildren<FormObjectProps>): React.ReactEleme
   }
 
   // ok事件
-  function handleOkClick(event: React.MouseEvent<HTMLElement, MouseEvent>): void {
-    const keys: string[] = getKeysFromObject(formObjectRoot);
+  async function handleOkClick(event: React.MouseEvent<HTMLElement, MouseEvent>): Promise<void> {
+    try {
+      const keys: string[] = getKeysFromObject(formObjectRoot);
+      const formValue: Store = await form.validateFields(keys);
+      const value: object = getValueFromObject(formValue);
 
-    form.validateFieldsAndScroll(keys, (err: any, value: object): void => {
-      if (err) return void 0;
-
-      const value2: object = getValueFromObject(value);
-
-      onOk && onOk(form, value2, keys);
-    });
+      onOk && onOk(form, value, keys);
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   // cancel事件

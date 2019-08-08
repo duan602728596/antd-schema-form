@@ -1,17 +1,17 @@
 import isNil from 'lodash-es/isNil';
 import isNumber from 'lodash-es/isNumber';
 import isString from 'lodash-es/isString';
-import { ValidationRule } from 'antd/lib/form';
+import { Rule } from 'rc-field-form/es/interface';
 import template from '../../utils/template';
 import { StringItem } from '../../types';
 
-function createStringRules(languagePack: any, root: StringItem, required: boolean): Array<ValidationRule> {
+function createStringRules(languagePack: any, root: StringItem, required: boolean): Array<Rule> {
   const {
     $required, $requiredMessage, pattern, $patternOption, $patternMessage, minLength, maxLength, $minLengthMessage,
     $maxLengthMessage, $length, $lengthMessage, $enumMessage
   }: StringItem = root;
   const enums: string[] | undefined = root.enum;
-  const rules: ValidationRule[] = [];
+  const rules: Rule[] = [];
 
   // 判断表单是否必填
   if ($required === true || required === true) {

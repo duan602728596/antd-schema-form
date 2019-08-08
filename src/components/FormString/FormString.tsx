@@ -3,8 +3,7 @@ import { useContext, PropsWithChildren } from 'react';
 import * as PropTypes from 'prop-types';
 import { isString } from 'lodash-es';
 import { Form, Tooltip } from 'antd';
-import { ValidationRule } from 'antd/lib/form';
-import { GetFieldDecoratorOptions } from 'antd/lib/form/Form';
+import { Rule } from 'rc-field-form/es/interface';
 import * as moment from 'moment';
 import AntdSchemaFormContext from '../../context';
 import styleName from '../../utils/styleName';
@@ -39,8 +38,8 @@ function FormString(props: PropsWithChildren<FormStringProps>): React.ReactEleme
     $defaultValue,
     $hidden
   }: StringItem = root;
-  const rules: Array<ValidationRule> = createStringRules(languagePack, root, required);
-  const option: GetFieldDecoratorOptions = { rules };
+  const rules: Array<Rule> = createStringRules(languagePack, root, required);
+  const option: any /* TODO */ = { rules };
 
   // 表单默认值
   if ($defaultValue) option.initialValue = $defaultValue;

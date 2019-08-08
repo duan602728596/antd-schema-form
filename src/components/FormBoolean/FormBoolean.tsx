@@ -2,7 +2,6 @@ import * as React from 'react';
 import { useContext, PropsWithChildren } from 'react';
 import * as PropTypes from 'prop-types';
 import { Form, Tooltip } from 'antd';
-import { GetFieldDecoratorOptions } from 'antd/lib/form/Form';
 import AntdSchemaFormContext from '../../context';
 import styleName from '../../utils/styleName';
 import createElement from '../../utils/createElement';
@@ -28,7 +27,7 @@ function FormBoolean(props: PropsWithChildren<FormBooleanProps>): React.ReactEle
   const { form, customComponent }: ContextValue = context;
   const { root, required }: FormBooleanProps = props;
   const { title, description, $componentType, $defaultValue, $hidden }: BooleanItem = root;
-  const option: GetFieldDecoratorOptions = {
+  const option: any /* TODO */ = {
     valuePropName: 'checked'
   };
 

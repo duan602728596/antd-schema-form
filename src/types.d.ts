@@ -1,7 +1,7 @@
-import { WrappedFormUtils } from 'antd/lib/form/Form';
+import { FormInstance } from 'antd/es/form';
 
 export interface ContextValue {
-  form: WrappedFormUtils;
+  form: FormInstance;
   customComponent?: {
     [key: string]: Function;
   };

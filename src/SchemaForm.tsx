@@ -3,15 +3,17 @@ import { useEffect, PropsWithChildren } from 'react';
 import * as PropTypes from 'prop-types';
 import isPlainObject from 'lodash-es/isPlainObject';
 import { Form } from 'antd';
-import { FormComponentProps } from 'antd/lib/form/Form';
+import { FormInstance } from 'antd/es/form';
+import { Store } from 'rc-field-form/es/interface';
 import AntdSchemaFormContext from './context';
 import FormObject from './components/FormObject/FormObject';
 import getObjectFromValue from './utils/getObjectFromValue';
 import languagePack from './languagePack';
 import { SchemaItem, ContextValue } from './types';
 
-export interface SchemaFormProps extends FormComponentProps {
+export interface SchemaFormProps {
   json: SchemaItem;
+  form: FormInstance;
   value?: any;
   onOk?: Function;
   onCancel?: Function;
@@ -28,7 +30,7 @@ export interface SchemaFormProps extends FormComponentProps {
 function SchemaForm(props: PropsWithChildren<SchemaFormProps>): React.ReactElement | null {
   const {
     value: schemaFormValue,
-    form,
+    form = Form.useForm()[0],
     json,
     onOk,
     onCancel,
@@ -38,12 +40,13 @@ function SchemaForm(props: PropsWithChildren<SchemaFormProps>): React.ReactEleme
     customComponent,
     customTableRender
   }: SchemaFormProps = props;
+
   // 获取系统语言
   const language: string = typeof window === 'object' // 服务器端渲染判断
     ? (window.navigator.language || window.navigator['userLanguage']).toLocaleLowerCase()
     : 'default';
   const customLangPack: object | undefined = props.languagePack; // 自定义语言包
-  const langP: object = isPlainObject(customLangPack)
+  const langP: object = (typeof customLangPack === 'object' && isPlainObject(customLangPack))
     ? customLangPack
     : (language in languagePack ? languagePack[language] : languagePack['default']); // 语言包
 
@@ -56,7 +59,7 @@ function SchemaForm(props: PropsWithChildren<SchemaFormProps>): React.ReactEleme
   };
 
   useEffect(function(): void {
-    const obj: object = getObjectFromValue(schemaFormValue);
+    const obj: Store = getObjectFromValue(schemaFormValue);
 
     form.resetFields();
     form.setFieldsValue(obj);

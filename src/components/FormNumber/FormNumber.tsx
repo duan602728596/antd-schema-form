@@ -2,8 +2,7 @@ import * as React from 'react';
 import { useContext, PropsWithChildren } from 'react';
 import * as PropTypes from 'prop-types';
 import { Form, Tooltip } from 'antd';
-import { ValidationRule } from 'antd/lib/form';
-import { GetFieldDecoratorOptions } from 'antd/lib/form/Form';
+import { Rule } from 'rc-field-form/es/interface';
 import AntdSchemaFormContext from '../../context';
 import styleName from '../../utils/styleName';
 import createNumberRules from './createNumberRules';
@@ -38,8 +37,8 @@ function FormNumber(props: PropsWithChildren<FormNumberProps>): React.ReactEleme
     $defaultValue,
     $hidden
   }: NumberItem = root;
-  const rules: Array<ValidationRule> = createNumberRules(languagePack, root, required, type === 'integer');
-  const option: GetFieldDecoratorOptions = { rules };
+  const rules: Array<Rule> = createNumberRules(languagePack, root, required, type === 'integer');
+  const option: any /* TODO */ = { rules };
 
   // 表单默认值
   if ($defaultValue) option.initialValue = $defaultValue;

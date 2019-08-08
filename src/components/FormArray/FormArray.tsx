@@ -3,7 +3,7 @@ import { useContext, PropsWithChildren } from 'react';
 import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Form, Tooltip } from 'antd';
-import { GetFieldDecoratorOptions, ValidationRule } from 'antd/lib/form/Form';
+import { Rule } from 'rc-field-form/es/interface';
 import AntdSchemaFormContext from '../../context';
 import styleName from '../../utils/styleName';
 import createArrayRules from './createArrayRules';
@@ -30,8 +30,8 @@ function FormArray(props: PropsWithChildren<FormArrayProps>): React.ReactElement
   const { form, customComponent, languagePack }: ContextValue = context;
   const { root, required }: FormArrayProps = props;
   const { title, description, $componentType, $defaultValue, $hidden }: ArrayItem = root;
-  const rules: Array<ValidationRule> = createArrayRules(languagePack, root, required);
-  const option: GetFieldDecoratorOptions = { rules };
+  const rules: Array<Rule> = createArrayRules(languagePack, root, required);
+  const option: any /* TODO */ = { rules };
   let isTableComponent: boolean = false; // 判断是否为table组件
 
   // 表单默认值
@@ -40,13 +40,10 @@ function FormArray(props: PropsWithChildren<FormArrayProps>): React.ReactElement
   let element: React.ReactNode = null;
 
   if (customComponent) {
-    // TODO: 此处渲染的是CheckBox.Group，但是组件名称是"checkbox"
-    const cType: string | undefined = $componentType === 'checkbox' ? 'checkboxGroup' : $componentType;
-
-    if (cType && cType in customComponent) {
-      element = customComponent[cType](root, option, form, required);
+    if ($componentType && $componentType in customComponent) {
+      element = customComponent[$componentType](root, form, required);
     } else {
-      element = createElement(customComponent.defaultArray, [root, option, form, required]);
+      element = createElement(customComponent.defaultArray, [root, form, required]);
       isTableComponent = true;
     }
   }
