@@ -11,11 +11,11 @@ function createArrayRules(languagePack: any, root: ArrayItem, required: boolean)
   // 数组内元素的数量最少值
   if (!isNil(minItems) && isNumber(minItems)) {
     rules.push({
-      validator: (rule: RuleObject, value: Array<any>, callback: Function): void => {
+      validator: async (rule: RuleObject, value: Array<any>): Promise<void> => {
         if (minItems !== undefined && value && value.length < minItems) {
-          callback(rule.message);
+          throw new Error(typeof rule.message === 'string' ? rule.message : undefined);
         } else {
-          callback();
+          return await Promise.resolve();
         }
       },
       message: template($minItemsMessage || languagePack.rules.array.minItems, {
@@ -27,11 +27,11 @@ function createArrayRules(languagePack: any, root: ArrayItem, required: boolean)
   // 数组内元素的数量最大值
   if (!isNil(maxItems) && isNumber(maxItems)) {
     rules.push({
-      validator: (rule: RuleObject, value: Array<any>, callback: Function): void => {
+      validator: async (rule: RuleObject, value: Array<any>, callback: Function): Promise<void> => {
         if (maxItems !== undefined && value && value.length > maxItems) {
-          callback(rule.message);
+          throw new Error(typeof rule.message === 'string' ? rule.message : undefined);
         } else {
-          callback();
+          return await Promise.resolve();
         }
       },
       message: template($maxItemsMessage || languagePack.rules.array.maxItems, {

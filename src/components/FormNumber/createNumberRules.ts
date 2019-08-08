@@ -42,16 +42,16 @@ function createNumberRules(languagePack: any, root: NumberItem, required: boolea
   // 最小值
   if (!isNil(minimum) && isNumber(minimum)) {
     rules.push({
-      validator: (rule: RuleObject, value: number | string, callback: Function): void => {
+      validator: async (rule: RuleObject, value: number | string): Promise<void> => {
         if (minimum !== undefined) {
           // 当表单没有值时，value的type为string
           if (typeof value === 'number' && value < minimum) {
-            callback(rule.message);
+            throw new Error(typeof rule.message === 'string' ? rule.message : undefined);
           } else {
-            callback();
+            return await Promise.resolve();
           }
         } else {
-          callback();
+          return await Promise.resolve();
         }
       },
       message: template($minimumMessage || languagePack.rules.number.minimum, {
@@ -63,16 +63,16 @@ function createNumberRules(languagePack: any, root: NumberItem, required: boolea
   // 最大值
   if (!isNil(maximum) && isNumber(maximum)) {
     rules.push({
-      validator: (rule: RuleObject, value: number | string, callback: Function): void => {
+      validator: async (rule: RuleObject, value: number | string): Promise<void> => {
         if (maximum !== undefined) {
           // 当表单没有值时，value的type为string
           if (typeof value === 'number' && value > maximum) {
-            callback(rule.message);
+            throw new Error(typeof rule.message === 'string' ? rule.message : undefined);
           } else {
-            callback();
+            return await Promise.resolve();
           }
         } else {
-          callback();
+          return await Promise.resolve();
         }
       },
       message: template($maximumMessage || languagePack.rules.number.maximum, {
