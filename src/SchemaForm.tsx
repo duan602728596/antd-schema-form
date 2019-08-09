@@ -67,7 +67,7 @@ function SchemaForm(props: PropsWithChildren<SchemaFormProps>): React.ReactEleme
 
   return (
     <AntdSchemaFormContext.Provider value={ contextValue }>
-      <Form form={ form } component={ false }>
+      <Form layout="vertical" form={ form }>
         <FormObject root={ json }
           onOk={ onOk }
           onCancel={ onCancel }
