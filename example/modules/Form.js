@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useRef } from 'react';
 import { Input, Icon } from 'antd';
 import SchemaForm from '../SchemaForm';
 import stringJson from '../json/string.json';
@@ -62,13 +62,22 @@ const customTableRender = {
 };
 
 function Form(props) {
+  const formRef = useRef();
+
+  // 提交
+  function handleOkSubmit(form, value, keys) {
+    console.log(value, keys);
+    console.log(formRef);
+  }
+
   return (
-    <SchemaForm json={ json }
+    <SchemaForm ref={ formRef }
+      json={ json }
       value={ value }
       customComponent={ customComponent }
       customTableRender={ customTableRender }
-      onOk={ (form, value, keys) => console.log(value, keys) }
       okText="提交"
+      onOk={ handleOkSubmit }
     />
   );
 }

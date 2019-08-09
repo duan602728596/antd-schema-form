@@ -8,7 +8,7 @@ import classNames from 'classnames';
 import { Table, Button, Popconfirm, Drawer, Input } from 'antd';
 import { FormInstance } from 'antd/es/form/Form';
 import { TableComponents } from 'antd/es/table';
-import { Store, StoreValue } from 'rc-field-form/es/interface';
+import { Store } from 'rc-field-form/es/interface';
 import update from 'immutability-helper';
 import AntdSchemaFormContext from '../../context';
 import getValueFromObject, { formatValueBeforeGetValue } from '../../utils/getValueFromObject';

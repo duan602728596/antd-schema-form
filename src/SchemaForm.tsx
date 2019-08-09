@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useEffect, PropsWithChildren } from 'react';
+import { useEffect, forwardRef, PropsWithChildren, Ref } from 'react';
 import * as PropTypes from 'prop-types';
 import isPlainObject from 'lodash-es/isPlainObject';
 import { Form } from 'antd';
@@ -13,7 +13,6 @@ import { SchemaItem, ContextValue } from './types';
 
 export interface SchemaFormProps {
   json: SchemaItem;
-  form: FormInstance;
   value?: any;
   onOk?: Function;
   onCancel?: Function;
@@ -27,10 +26,10 @@ export interface SchemaFormProps {
   languagePack?: object;
 }
 
-function SchemaForm(props: PropsWithChildren<SchemaFormProps>): React.ReactElement | null {
+function SchemaForm(props: PropsWithChildren<SchemaFormProps>, ref: Ref<any>): React.ReactElement | null {
+  const [form]: [FormInstance] = Form.useForm();
   const {
     value: schemaFormValue,
-    form = Form.useForm()[0],
     json,
     onOk,
     onCancel,
@@ -65,6 +64,19 @@ function SchemaForm(props: PropsWithChildren<SchemaFormProps>): React.ReactEleme
     form.setFieldsValue(obj);
   }, [schemaFormValue]);
 
+  useEffect(function(): void {
+    if (ref) {
+      if (typeof ref === 'object' && ('current' in ref)) {
+        // @ts-ignore
+        ref.current = form;
+      }
+
+      if (typeof ref === 'function') {
+        ref(form);
+      }
+    }
+  }, [ref]);
+
   return (
     <AntdSchemaFormContext.Provider value={ contextValue }>
       <Form layout="vertical" form={ form }>
@@ -81,6 +93,7 @@ function SchemaForm(props: PropsWithChildren<SchemaFormProps>): React.ReactEleme
 }
 
 SchemaForm.propTypes = {
+  ref: PropTypes.any,
   json: PropTypes.object.isRequired,
   value: PropTypes.object,
   onOk: PropTypes.func,
@@ -104,4 +117,5 @@ SchemaForm.defaultProps = {
   customTableRender: {}
 };
 
-export default SchemaForm;
+// @ts-ignore
+export default forwardRef(SchemaForm);

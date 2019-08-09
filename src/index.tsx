@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { useState, useEffect, PropsWithChildren, Dispatch, SetStateAction } from 'react';
+import { useState, useEffect, forwardRef, PropsWithChildren, Dispatch, SetStateAction, Ref } from 'react';
 import SchemaForm, { SchemaFormProps } from './SchemaForm';
 import components from './customComponent';
 import getKeysFromObject from './utils/getKeysFromObject';
 import getObjectFromValue from './utils/getObjectFromValue';
 import getValueFromObject from './utils/getValueFromObject';
 
-export default function(props: PropsWithChildren<SchemaFormProps>): React.ReactNode | null {
+export default forwardRef(function(props: PropsWithChildren<SchemaFormProps>, ref: Ref<any>): React.ReactElement | null {
   const { customComponent, ...otherProps }: SchemaFormProps = props;
   const [custom, setCustom]: [
     { [key: string]: Function } | undefined,
@@ -17,8 +17,8 @@ export default function(props: PropsWithChildren<SchemaFormProps>): React.ReactN
     setCustom(Object.assign(components, customComponent || {}));
   }, [customComponent]);
 
-  return <SchemaForm customComponent={ custom } { ...otherProps } />;
-}
+  return <SchemaForm ref={ ref } customComponent={ custom } { ...otherProps } />;
+});
 
 export {
   getKeysFromObject,
