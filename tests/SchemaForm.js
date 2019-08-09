@@ -1,5 +1,5 @@
-import SchemaForm, { getKeysFromObject, getObjectFromValue, getValueFromObject } from '../lib/index';
-import template from '../lib/utils/template';
+import SchemaForm, { getKeysFromObject, getObjectFromValue, getValueFromObject } from '../es/index';
+import template from '../es/utils/template';
 
 export default SchemaForm;
 export {
