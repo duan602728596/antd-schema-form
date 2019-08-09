@@ -4,3 +4,10 @@ export function createHandleClickFn(result) {
     result.value = value;
   };
 }
+
+/* 延迟函数 */
+export function sleep(time = 300) {
+  return new Promise((resolve, reject) => {
+    setTimeout(resolve, time);
+  });
+}

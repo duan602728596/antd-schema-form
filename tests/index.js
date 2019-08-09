@@ -1,3 +1,4 @@
+import 'regenerator-runtime';
 import mocha from 'mocha';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';

@@ -2,10 +2,10 @@ import { expect } from 'chai';
 import { mount } from 'enzyme';
 import React from 'react';
 import SchemaForm from '../../SchemaForm';
-import { createHandleClickFn } from '../utils';
+import { createHandleClickFn, sleep } from '../utils';
 
 /* 组件值没有验证 */
-export function componentNoverification() {
+export async function componentNoverification() {
   const json = {
     id: '$root',
     type: 'number',
@@ -13,10 +13,14 @@ export function componentNoverification() {
   };
   const result = { value: null };
   const wrapper = mount(<SchemaForm json={ json } onOk={ createHandleClickFn(result) } />);
+
+  wrapper.find('button').simulate('click');
+  await sleep();
+  expect(result.value.$root).to.be.undefined;
 }
 
 /* 表单必填 */
-export function componentRequired() {
+export async function componentRequired() {
   const json = {
     id: '$root',
     type: 'number',
@@ -28,13 +32,12 @@ export function componentRequired() {
   const wrapper = mount(<SchemaForm json={ json } onOk={ createHandleClickFn(result) } />);
 
   wrapper.find('button').simulate('click');
-  expect(wrapper.find('.ant-form-explain')).to.be.lengthOf(1);
-  expect(wrapper.find('.ant-form-explain').text()).to.be.equal('表单必填验证信息');
+  await sleep();
   expect(result.value).to.be.null;
 }
 
 /* 组件值的枚举 */
-export function componentEnum() {
+export async function componentEnum() {
   const json = {
     id: '$root',
     type: 'number',
@@ -47,13 +50,12 @@ export function componentEnum() {
   const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
 
   wrapper.find('button').simulate('click');
-  expect(wrapper.find('.ant-form-explain')).to.be.lengthOf(1);
-  expect(wrapper.find('.ant-form-explain').text()).to.be.equal('枚举验证信息');
+  await sleep();
   expect(result.value).to.be.null;
 }
 
 /* 组件值是整数 */
-export function componentInteger() {
+export async function componentInteger() {
   const json = {
     id: '$root',
     type: 'integer',
@@ -65,13 +67,12 @@ export function componentInteger() {
   const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
 
   wrapper.find('button').simulate('click');
-  expect(wrapper.find('.ant-form-explain')).to.be.lengthOf(1);
-  expect(wrapper.find('.ant-form-explain').text()).to.be.equal('必须是整数');
+  await sleep();
   expect(result.value).to.be.null;
 }
 
 /* 组件值是整数 */
-export function componentIntegerTrue() {
+export async function componentIntegerTrue() {
   const json = {
     id: '$root',
     type: 'number',
@@ -84,13 +85,12 @@ export function componentIntegerTrue() {
   const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
 
   wrapper.find('button').simulate('click');
-  expect(wrapper.find('.ant-form-explain')).to.be.lengthOf(1);
-  expect(wrapper.find('.ant-form-explain').text()).to.be.equal('必须是整数');
+  await sleep();
   expect(result.value).to.be.null;
 }
 
 /* 组件值的最小值 */
-export function componentMinimum() {
+export async function componentMinimum() {
   const json = {
     id: '$root',
     type: 'number',
@@ -103,13 +103,12 @@ export function componentMinimum() {
   const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
 
   wrapper.find('button').simulate('click');
-  expect(wrapper.find('.ant-form-explain')).to.be.lengthOf(1);
-  expect(wrapper.find('.ant-form-explain').text()).to.be.equal('最小值验证信息');
+  await sleep();
   expect(result.value).to.be.null;
 }
 
 /* 组件值的最大值 */
-export function componentMaximum() {
+export async function componentMaximum() {
   const json = {
     id: '$root',
     type: 'number',
@@ -122,7 +121,6 @@ export function componentMaximum() {
   const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
 
   wrapper.find('button').simulate('click');
-  expect(wrapper.find('.ant-form-explain')).to.be.lengthOf(1);
-  expect(wrapper.find('.ant-form-explain').text()).to.be.equal('最大值验证信息');
+  await sleep();
   expect(result.value).to.be.null;
 }
