@@ -8,6 +8,7 @@ import { Store } from 'rc-field-form/es/interface';
 import AntdSchemaFormContext from './context';
 import FormObject from './components/FormObject/FormObject';
 import getObjectFromValue from './utils/getObjectFromValue';
+import getObjectFromSchema from './utils/getObjectFromSchema';
 import languagePack from './languagePack';
 import { SchemaItem, ContextValue } from './types';
 
@@ -60,10 +61,11 @@ const SchemaForm: SchemaFormComponent = forwardRef(function(props: PropsWithChil
   };
 
   useEffect(function(): void {
+    const defaultValue: Store = getObjectFromSchema(json);
     const obj: Store = getObjectFromValue(schemaFormValue);
 
     form.resetFields();
-    form.setFieldsValue(obj);
+    form.setFieldsValue({ ...defaultValue, ...obj });
   }, [schemaFormValue]);
 
   useEffect(function(): void {

@@ -1,4 +1,5 @@
 import { FormInstance } from 'antd/es/form';
+import { StoreValue } from 'rc-field-form/es/interface';
 
 export interface ContextValue {
   form: FormInstance;
@@ -72,7 +73,7 @@ export interface BooleanItem extends SchemaItem {
 }
 
 export interface ArrayItem extends SchemaItem {
-  items: StringItem | NumberItem | BooleanItem | ArrayItem;
+  items: SchemaItem | StringItem | NumberItem | BooleanItem | ArrayItem;
   $defaultValue?: Array<any>;
   $options?: Array<{ label: string; value: any }>;
   minItems?: number;
