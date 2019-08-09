@@ -446,7 +446,7 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): React.Re
       const itemValue: any = tableValue[editIndex];
       const result: Store = getObjectFromValue({ items: itemValue }, id);
 
-      triggerChange(result);
+      form.setFieldsValue(result);
     }
   }, [isDisplayDataDrawer, editIndex]);
 
