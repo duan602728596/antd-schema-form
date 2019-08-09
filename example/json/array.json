@@ -131,7 +131,7 @@
         "title": "多选框",
         "description": "多选框"
       },
-      "$componentType": "checkbox",
+      "$componentType": "checkboxGroup",
       "$options": [
         {
           "label": "选项1",
