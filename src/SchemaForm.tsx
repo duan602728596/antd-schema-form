@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useEffect, forwardRef, PropsWithChildren, Ref } from 'react';
+import { useEffect, forwardRef, PropsWithChildren, Ref, ForwardRefExoticComponent, PropsWithoutRef, RefAttributes } from 'react';
 import * as PropTypes from 'prop-types';
 import isPlainObject from 'lodash-es/isPlainObject';
 import { Form } from 'antd';
@@ -26,7 +26,9 @@ export interface SchemaFormProps {
   languagePack?: object;
 }
 
-function SchemaForm(props: PropsWithChildren<SchemaFormProps>, ref: Ref<any>): React.ReactElement | null {
+type SchemaFormComponent = ForwardRefExoticComponent<PropsWithoutRef<SchemaFormProps> & RefAttributes<any>>;
+
+const SchemaForm: SchemaFormComponent = forwardRef(function(props: PropsWithChildren<SchemaFormProps>, ref: Ref<any>): React.ReactElement | null {
   const [form]: [FormInstance] = Form.useForm();
   const {
     value: schemaFormValue,
@@ -90,10 +92,10 @@ function SchemaForm(props: PropsWithChildren<SchemaFormProps>, ref: Ref<any>): R
       </Form>
     </AntdSchemaFormContext.Provider>
   );
-}
+});
 
+// @ts-ignore
 SchemaForm.propTypes = {
-  ref: PropTypes.any,
   json: PropTypes.object.isRequired,
   value: PropTypes.object,
   onOk: PropTypes.func,
@@ -117,5 +119,4 @@ SchemaForm.defaultProps = {
   customTableRender: {}
 };
 
-// @ts-ignore
-export default forwardRef(SchemaForm);
+export default SchemaForm;
