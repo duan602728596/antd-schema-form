@@ -49,24 +49,20 @@ function FormObject(props: PropsWithChildren<FormObjectProps>): React.ReactEleme
   }: FormObjectProps = props;
 
   // 根据type渲染不同的组件
-  function renderComponentByTypeView(root: SchemaItem, required?: boolean, dependenciesDisplay?: boolean): React.ReactNode {
+  function renderComponentByTypeView(root: SchemaItem, required?: boolean, keyDepMap?: { [key: string]: string[] }): React.ReactNode {
     const { id, type }: SchemaItem = root;
     const _required: boolean = !!required;
     const props: {
       key: string;
       root: any;
       required: boolean;
-    } = { key: id, root, required: _required };
+      keyDepMap?: { [key: string]: string[] }; // 表单联动
+    } = { key: id, root, required: _required, keyDepMap };
 
     // 渲染oneOf
     if ('oneOf' in root && root.oneOf && isArray(root.oneOf) && root.oneOf.length > 0) {
       // eslint-disable-next-line no-use-before-define
       return renderOneOfComponentView(root, _required);
-    }
-
-    // 判断是否渲染dependencies
-    if (isBoolean(dependenciesDisplay) && !dependenciesDisplay) {
-      return null;
     }
 
     switch (type) {
@@ -167,7 +163,7 @@ function FormObject(props: PropsWithChildren<FormObjectProps>): React.ReactEleme
       element.push(renderComponentByTypeView(
         properties[key],
         isDependenciesDisplay || required.includes(key), // 当被依赖时，表单必须填写
-        isDependenciesDisplay
+        keyDepMap
       ));
     }
 
