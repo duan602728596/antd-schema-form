@@ -49,15 +49,15 @@ function FormObject(props: PropsWithChildren<FormObjectProps>): React.ReactEleme
   }: FormObjectProps = props;
 
   // 根据type渲染不同的组件
-  function renderComponentByTypeView(root: SchemaItem, required?: boolean, keyDepMap?: { [key: string]: string[] }): React.ReactNode {
+  function renderComponentByTypeView(root: SchemaItem, required?: boolean, dependencies?: { [key: string]: Array<string> }): React.ReactNode {
     const { id, type }: SchemaItem = root;
     const _required: boolean = !!required;
     const props: {
       key: string;
       root: any;
       required: boolean;
-      keyDepMap?: { [key: string]: string[] }; // 表单联动
-    } = { key: id, root, required: _required, keyDepMap };
+      dependencies?: { [key: string]: Array<string> };
+    } = { key: id, root, required: _required, dependencies };
 
     // 渲染oneOf
     if ('oneOf' in root && root.oneOf && isArray(root.oneOf) && root.oneOf.length > 0) {
@@ -135,35 +135,17 @@ function FormObject(props: PropsWithChildren<FormObjectProps>): React.ReactEleme
 
   // 渲染一个object组件
   function renderObjectComponentView(root: SchemaItem): React.ReactNode {
-    const { id, title, description, $componentType }: SchemaItem = root;
+    const { id, title, description, $componentType, dependencies }: SchemaItem = root;
     const required: Array<string> = root.required || [];
     const properties: object = root.properties || {};
     const element: React.ReactNodeArray = [];
-    let keyDepMap: { [key: string]: string[] } | undefined = undefined;
-
-    // 获取dependencies的值
-    if (('dependencies' in root) && root.dependencies && isPlainObject(root.dependencies)) {
-      keyDepMap = transform(root.dependencies, function(result: string[], value: string[], key: string): void {
-        for (const item of value) {
-          (result[item] || (result[item] = [])).push(key);
-        }
-      }, {});
-    }
 
     // 判断object下组件的类型并渲染，只要有一个有值就要显示
     for (const key in properties) {
-      let isDependenciesDisplay: boolean | undefined = false;
-
-      if (keyDepMap && (key in keyDepMap)) {
-        isDependenciesDisplay = dependenciesDisplay(id, key, keyDepMap);
-      } else {
-        isDependenciesDisplay = undefined;
-      }
-
       element.push(renderComponentByTypeView(
         properties[key],
-        isDependenciesDisplay || required.includes(key), // 当被依赖时，表单必须填写
-        keyDepMap
+        required.includes(key),
+        dependencies
       ));
     }
 

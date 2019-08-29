@@ -7,7 +7,7 @@ import AntdSchemaFormContext from '../../context';
 import styleName from '../../utils/styleName';
 import createStringRules from './createStringRules';
 import createElement from '../../utils/createElement';
-import { getName, createShouldUpdateFunc } from '../../utils/depShouldUpdate';
+import getDependenciesArr from '../../utils/dependencies';
 import { StringItem, ContextValue } from '../../types';
 
 /**
@@ -21,7 +21,7 @@ import { StringItem, ContextValue } from '../../types';
 interface FormStringProps {
   root: StringItem;
   required: boolean;
-  keyDepMap?: { [key: string]: string[] };
+  dependencies?: { [key: string]: Array<string> };
 }
 
 function FormString(props: PropsWithChildren<FormStringProps>): React.ReactElement | null {
@@ -30,14 +30,11 @@ function FormString(props: PropsWithChildren<FormStringProps>): React.ReactEleme
   if (!('form' in context)) return null; // 类型判断
 
   const { form, customComponent, languagePack }: ContextValue = context;
-  const { root, required, keyDepMap }: FormStringProps = props; // type=object时，会判断key是否存在于required数组中
+  const { root, required, dependencies }: FormStringProps = props; // type=object时，会判断key是否存在于required数组中
   const { id, title, description, $componentType, $hidden }: StringItem = root;
   const rules: Array<Rule> = createStringRules(languagePack, root, required);
+  const dep: Array<string> | undefined = dependencies ? getDependenciesArr(id, dependencies) : undefined;
   let element: React.ReactElement | null = null;
-
-  // 判断dep
-  const name: string | undefined = getName(id);
-  const update: boolean = !!(name && keyDepMap && keyDepMap[name] && keyDepMap[name].length > 0);
 
   if (customComponent) {
     element = ($componentType && $componentType in customComponent)
@@ -50,7 +47,7 @@ function FormString(props: PropsWithChildren<FormStringProps>): React.ReactEleme
       name={ id }
       rules={ rules }
       label={ title }
-      shouldUpdate={ (update && name && keyDepMap) ? createShouldUpdateFunc(form, id, keyDepMap[name]) : undefined }
+      dependencies={ dep }
     >
       { element }
     </Form.Item>
