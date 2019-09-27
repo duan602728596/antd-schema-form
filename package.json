@@ -30,7 +30,6 @@
     "test:init": "mocha init tests",
     "test": "webpack-dev-server --config=\"./config/webpack.test.js\" --hot --color --port=6060",
     "eslint": "cross-env NODE_ENV=eslint eslint ./ --ext .js,.jsx,.ts,.tsx --fix",
-    "tslint": "tslint --project ./ --fix",
     "case-check": "case-check --dir=\"./\" --ext=\"sass\"",
     "update": "milktea update"
   },
@@ -56,6 +55,8 @@
     "@sweet-milktea/milktea-cli": "^0.4.0",
     "@sweet-milktea/util-tools": "^0.4.1",
     "@types/react": "^16.9.2",
+    "@typescript-eslint/eslint-plugin-tslint": "^2.3.1",
+    "@typescript-eslint/parser": "^2.3.1",
     "antd": "^4.0.0-alpha.2",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
@@ -106,6 +107,9 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": "eslint"
   },
   "config": {
     "commitizen": {

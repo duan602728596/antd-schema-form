@@ -1,2 +1,0 @@
-src/**/*.{ts,tsx}: tslint
-"*.{js,jsx,ts,tsx}": eslint

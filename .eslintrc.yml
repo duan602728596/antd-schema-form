@@ -16,6 +16,59 @@ plugins:
 settings:
   react:
     version: '16.8'
+overrides:
+  - files:
+      - '*.ts'
+      - '*.tsx'
+    parser: '@typescript-eslint/parser'
+    parserOptions:
+      project: tsconfig.json
+    plugins:
+      - '@typescript-eslint/eslint-plugin-tslint'
+    rules:
+      '@typescript-eslint/tslint/config':
+        - error
+        - rules:
+            # TypeScript-specific
+            no-empty-interface: true                # 禁止空接口
+            no-var-requires: true                   # 除import语句外，不允许使用require语句
+            # Functionality
+            no-duplicate-super: true                # 如果'super（）'在构造函数中出现两次，则发出警告
+            no-for-in-array: true                   # 禁止使用for-in循环遍历数组
+            # Maintainability
+            class-name: true                        # 强制类和接口名称大写
+            import-spacing: true                    # 确保import语句关键字之间的适当间距
+            new-parens: true                        # 通过new关键字调用构造函数时需要括号
+            typedef:                                # 需要存在类型定义
+              - true
+              - call-signature
+              - arrow-call-signature
+              - parameter
+              - arrow-parameter
+              - property-declaration
+              - variable-declaration
+              - member-variable-declaration
+              - object-destructuring
+              - array-destructuring
+            strict-type-predicates: true            # 警告类型谓词始终为true或始终为false
+            type-literal-delimiter: true            # 检查类型文字成员是否以分号分隔。 为多行类型文字强制使用尾随分号
+            # Format
+            whitespace:                             # 实施空白样式约定
+              - true
+              - check-branch
+              - check-decl
+              - check-operator
+              - check-module
+              - check-separator
+              - check-rest-spread
+              - check-type
+              - check-typecast
+              - check-type-operator
+              - check-preblock
+  - files:
+      - '*.js'
+      - '*.jsx'
+    parser: babel-eslint
 rules:
   # Possible Errors
   no-cond-assign:                                     # 禁止条件表达式中出现赋值操作符
