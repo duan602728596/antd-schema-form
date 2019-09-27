@@ -2,11 +2,8 @@ import * as React from 'react';
 import { Fragment, useContext, PropsWithChildren } from 'react';
 import * as PropTypes from 'prop-types';
 import isArray from 'lodash-es/isArray';
-import isPlainObject from 'lodash-es/isPlainObject';
 import isNil from 'lodash-es/isNil';
-import isBoolean from 'lodash-es/isBoolean';
 import isString from 'lodash-es/isString';
-import transform from 'lodash-es/transform';
 import { Button } from 'antd';
 import { Store } from 'rc-field-form/es/interface';
 import AntdSchemaFormContext from '../../context';
@@ -49,15 +46,14 @@ function FormObject(props: PropsWithChildren<FormObjectProps>): React.ReactEleme
   }: FormObjectProps = props;
 
   // 根据type渲染不同的组件
-  function renderComponentByTypeView(root: SchemaItem, required?: boolean, dependencies?: { [key: string]: Array<string> }): React.ReactNode {
+  function renderComponentByTypeView(root: SchemaItem, required?: boolean): React.ReactNode {
     const { id, type }: SchemaItem = root;
     const _required: boolean = !!required;
     const props: {
       key: string;
       root: any;
       required: boolean;
-      dependencies?: { [key: string]: Array<string> };
-    } = { key: id, root, required: _required, dependencies };
+    } = { key: id, root, required: _required };
 
     // 渲染oneOf
     if ('oneOf' in root && root.oneOf && isArray(root.oneOf) && root.oneOf.length > 0) {
@@ -135,18 +131,14 @@ function FormObject(props: PropsWithChildren<FormObjectProps>): React.ReactEleme
 
   // 渲染一个object组件
   function renderObjectComponentView(root: SchemaItem): React.ReactNode {
-    const { id, title, description, $componentType, dependencies }: SchemaItem = root;
+    const { $componentType }: SchemaItem = root;
     const required: Array<string> = root.required || [];
     const properties: object = root.properties || {};
     const element: React.ReactNodeArray = [];
 
     // 判断object下组件的类型并渲染，只要有一个有值就要显示
     for (const key in properties) {
-      element.push(renderComponentByTypeView(
-        properties[key],
-        required.includes(key),
-        dependencies
-      ));
+      element.push(renderComponentByTypeView(properties[key], required.includes(key)));
     }
 
     let objectElement: React.ReactNode = null;

@@ -21,7 +21,6 @@ import { StringItem, ContextValue } from '../../types';
 interface FormStringProps {
   root: StringItem;
   required: boolean;
-  dependencies?: { [key: string]: Array<string> };
 }
 
 function FormString(props: PropsWithChildren<FormStringProps>): React.ReactElement | null {
@@ -30,10 +29,9 @@ function FormString(props: PropsWithChildren<FormStringProps>): React.ReactEleme
   if (!('form' in context)) return null; // 类型判断
 
   const { form, customComponent, languagePack }: ContextValue = context;
-  const { root, required, dependencies }: FormStringProps = props; // type=object时，会判断key是否存在于required数组中
+  const { root, required }: FormStringProps = props; // type=object时，会判断key是否存在于required数组中
   const { id, title, description, $componentType, $hidden }: StringItem = root;
   const rules: Array<Rule> = createStringRules(languagePack, root, required);
-  const dep: Array<string> | undefined = dependencies ? getDependenciesArr(id, dependencies) : undefined;
   let element: React.ReactElement | null = null;
 
   if (customComponent) {
@@ -47,7 +45,6 @@ function FormString(props: PropsWithChildren<FormStringProps>): React.ReactEleme
       name={ id }
       rules={ rules }
       label={ title }
-      dependencies={ dep }
     >
       { element }
     </Form.Item>

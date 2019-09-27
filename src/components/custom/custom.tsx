@@ -93,9 +93,10 @@ export function checkboxGroup(root: ArrayItem, form: FormInstance, required: boo
 // multiple and tags
 export function multipleOrTags(root: ArrayItem, form: FormInstance, required: boolean): React.ReactNode {
   const { $options = [], $componentType }: ArrayItem = root;
+  const mode: 'multiple' | 'tags' | undefined = ($componentType === 'multiple' || $componentType === 'tags') ? $componentType : undefined;
 
   return (
-    <Select className={ styleName('array-multiple') } mode={ $componentType }>
+    <Select className={ styleName('array-multiple') } mode={ mode }>
       { selectOptionsRender($options) }
     </Select>
   );
