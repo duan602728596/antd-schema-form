@@ -170,8 +170,5 @@
   },
   "required": [
     "objectRequired"
-  ],
-  "dependencies": {
-    "required": ["objectRequired"]
-  }
+  ]
 }

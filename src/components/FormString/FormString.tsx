@@ -7,7 +7,6 @@ import AntdSchemaFormContext from '../../context';
 import styleName from '../../utils/styleName';
 import createStringRules from './createStringRules';
 import createElement from '../../utils/createElement';
-import getDependenciesArr from '../../utils/dependencies';
 import { StringItem, ContextValue } from '../../types';
 
 /**
