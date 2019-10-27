@@ -183,9 +183,10 @@ export function multipleOrTags(
 ): React.ReactNode {
   const { getFieldDecorator }: WrappedFormUtils = form;
   const { id, $options = [], $componentType }: ArrayItem = root;
+  const mode: any = $componentType; // select ModeOption
 
   return getFieldDecorator(id, option)(
-    <Select className={ styleName('array-multiple') } mode={ $componentType }>
+    <Select className={ styleName('array-multiple') } mode={ mode }>
       { selectOptionsRender($options) }
     </Select>
   );
