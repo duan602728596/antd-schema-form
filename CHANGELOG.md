@@ -1,3 +1,8 @@
+### v3.1.0
+
+* 🌟Add the `$order` field to allow you to define the order in which components are arranged.
+* Upgrade all depend on the latest version.
+
 ### v3.0.1
 
 * 🐛Fix the `TableComponent` component to confirm the error of the event.
