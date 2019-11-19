@@ -17,6 +17,7 @@ import FormArray from '../FormArray/FormArray';
 import getValueFromObject from '../../utils/getValueFromObject';
 import getKeysFromObject from '../../utils/getKeysFromObject';
 import createElement from '../../utils/createElement';
+import sortProperties from '../../utils/sortProperties';
 import { SchemaItem, ContextValue } from '../../types';
 
 /**
@@ -140,7 +141,7 @@ function FormObject(props: PropsWithChildren<FormObjectProps>): React.ReactEleme
   function renderObjectComponentView(root: SchemaItem): React.ReactNode {
     const { id, title, description, $componentType }: SchemaItem = root;
     const required: Array<string> = root.required || [];
-    const properties: object = root.properties || {};
+    const properties: object = sortProperties(root.properties || {});
     const element: React.ReactNodeArray = [];
     let keyDepMap: { [key: string]: string[] } | undefined = undefined;
 
