@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { LocaleProvider } from 'antd';
+import { ConfigProvider } from 'antd';
 import zhCN from 'antd/lib/locale-provider/zh_CN';
 import { hot } from 'react-hot-loader';
 import style from './style.sass';
@@ -10,11 +10,11 @@ import Form from './modules/Form';
 class App extends Component {
   render() {
     return (
-      <LocaleProvider locale={ zhCN }>
+      <ConfigProvider locale={ zhCN }>
         <div className={ style.box }>
           <Form />
         </div>
-      </LocaleProvider>
+      </ConfigProvider>
     );
   }
 }
