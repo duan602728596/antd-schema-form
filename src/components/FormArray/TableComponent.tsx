@@ -18,7 +18,7 @@ import classNames from 'classnames';
 import { Table, Button, Popconfirm, Drawer, Input } from 'antd';
 import { PlusCircle as IconPlusCircle, Delete as IconDelete } from '@ant-design/icons';
 import { FormInstance } from 'antd/es/form/Form';
-import { TableComponents } from 'antd/es/table';
+import { TableComponents } from 'rc-table/es/interface';
 import { Store } from 'rc-field-form/es/interface';
 import update from 'immutability-helper';
 import AntdSchemaFormContext from '../../context';
@@ -213,7 +213,7 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): React.Re
   }
 
   // table components
-  const components: TableComponents = {
+  const components: TableComponents<any> = {
     body: {
       row: (item: any): React.ReactElement<'tr'> => {
         const { children, className }: {

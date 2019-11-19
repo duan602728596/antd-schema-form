@@ -84,6 +84,7 @@
     "mocha": "^6.2.2",
     "node-sass": "^4.13.0",
     "rc-field-form": "^0.0.0-alpha.23",
+    "rc-table": "^7.0.0-alpha.20",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-hot-loader": "^4.12.18",
