@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
-import { Input, Icon } from 'antd';
+import { Input } from 'antd';
+import { SettingFilled as IconSettingFilled } from '@ant-design/icons';
 import SchemaForm from '../SchemaForm';
 import stringJson from '../json/string.json';
 import numberJson from '../json/number.json';
@@ -47,7 +48,7 @@ const value = {
 // 自定义组件
 const customComponent = {
   custom(item, form, required) {
-    return <Input placeholder="自定义组件" required={ required } addonAfter={ <Icon type="setting" /> } />;
+    return <Input placeholder="自定义组件" required={ required } addonAfter={ <IconSettingFilled /> } />;
   }
 };
 
