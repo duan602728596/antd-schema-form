@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Input, Select, Radio, DatePicker, InputNumber, Checkbox, Switch, Collapse } from 'antd';
 import { FormInstance } from 'antd/es/form';
-import {} from 'rc-field-form/es/Form';
 import selectOptionsRender from './selectOptionsRender';
 import styleName from '../../utils/styleName';
 import TableComponent from '../FormArray/TableComponent';

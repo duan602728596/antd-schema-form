@@ -1,5 +1,15 @@
 import * as React from 'react';
-import { Fragment, useState, useEffect, useContext, useRef, PropsWithChildren, Dispatch, SetStateAction, RefObject } from 'react';
+import {
+  Fragment,
+  useState,
+  useEffect,
+  useContext,
+  useRef,
+  PropsWithChildren,
+  Dispatch,
+  SetStateAction,
+  RefObject
+} from 'react';
 import * as PropTypes from 'prop-types';
 import isNil from 'lodash-es/isNil';
 import isBoolean from 'lodash-es/isBoolean';
@@ -439,6 +449,7 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): React.Re
 
   useEffect(function(): void {
     // 打开抽屉时需要赋值
+    // eslint-disable-next-line @typescript-eslint/tslint/config
     if (editIndex !== undefined) {
       let tableValue: Array<any> | any = form.getFieldValue(id);
 
@@ -512,7 +523,9 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): React.Re
       {/* 添加和修改数据的抽屉组件 */}
       <Drawer width="100%" visible={ isDisplayDataDrawer } destroyOnClose={ true } closable={ false }>
         <FormObject root={ items }
+          // eslint-disable-next-line @typescript-eslint/tslint/config
           okText={ editIndex !== undefined ? undefined : languagePack.formObject.addOkText }
+          // eslint-disable-next-line @typescript-eslint/tslint/config
           cancelText={ editIndex !== undefined ? undefined : languagePack.formObject.addCancelText }
           onOk={ handleAddOrEditDataClick }
           onCancel={ (): void => handleDrawerDisplayClick(false) }
