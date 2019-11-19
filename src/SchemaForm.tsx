@@ -1,5 +1,14 @@
 import * as React from 'react';
-import { useEffect, forwardRef, PropsWithChildren, Ref, ForwardRefExoticComponent, PropsWithoutRef, RefAttributes } from 'react';
+import {
+  useEffect,
+  forwardRef,
+  PropsWithChildren as PWC,
+  Ref,
+  ForwardRefExoticComponent,
+  PropsWithoutRef,
+  RefAttributes,
+  ReactElement
+} from 'react';
 import * as PropTypes from 'prop-types';
 import isPlainObject from 'lodash-es/isPlainObject';
 import { Form } from 'antd';
@@ -29,7 +38,7 @@ export interface SchemaFormProps {
 
 type SchemaFormComponent = ForwardRefExoticComponent<PropsWithoutRef<SchemaFormProps> & RefAttributes<any>>;
 
-const SchemaForm: SchemaFormComponent = forwardRef(function(props: PropsWithChildren<SchemaFormProps>, ref: Ref<any>): React.ReactElement | null {
+const SchemaForm: SchemaFormComponent = forwardRef(function(props: PWC<SchemaFormProps>, ref: Ref<any>): ReactElement | null {
   const [form]: [FormInstance] = Form.useForm();
   const {
     value: schemaFormValue,
@@ -44,6 +53,7 @@ const SchemaForm: SchemaFormComponent = forwardRef(function(props: PropsWithChil
   }: SchemaFormProps = props;
 
   // 获取系统语言
+  // eslint-disable-next-line @typescript-eslint/tslint/config
   const language: string = typeof window === 'object' // 服务器端渲染判断
     ? (window.navigator.language || window.navigator['userLanguage']).toLocaleLowerCase()
     : 'default';

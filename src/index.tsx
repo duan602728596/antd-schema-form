@@ -1,16 +1,24 @@
 import * as React from 'react';
-import { useState, useEffect, forwardRef, PropsWithChildren, Dispatch, SetStateAction, Ref } from 'react';
+import {
+  useState,
+  useEffect,
+  forwardRef,
+  PropsWithChildren as PWC,
+  Dispatch as D,
+  SetStateAction as S,
+  Ref
+} from 'react';
 import SchemaForm, { SchemaFormProps } from './SchemaForm';
 import components from './customComponent';
 import getKeysFromObject from './utils/getKeysFromObject';
 import getObjectFromValue from './utils/getObjectFromValue';
 import getValueFromObject from './utils/getValueFromObject';
 
-export default forwardRef(function(props: PropsWithChildren<SchemaFormProps>, ref: Ref<any>): React.ReactElement | null {
+export default forwardRef(function(props: PWC<SchemaFormProps>, ref: Ref<any>): React.ReactElement | null {
   const { customComponent, ...otherProps }: SchemaFormProps = props;
   const [custom, setCustom]: [
     { [key: string]: Function } | undefined,
-    Dispatch<SetStateAction<object>>
+    D<S<object>>
   ] = useState(Object.assign(components, customComponent || {}));
 
   useEffect(function(): void {

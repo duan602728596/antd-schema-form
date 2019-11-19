@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useContext, PropsWithChildren } from 'react';
+import { useContext, PropsWithChildren, ReactElement } from 'react';
 import * as PropTypes from 'prop-types';
 import { Form } from 'antd';
 import AntdSchemaFormContext from '../../context';
@@ -19,7 +19,7 @@ interface FormBooleanProps {
   required: boolean;
 }
 
-function FormBoolean(props: PropsWithChildren<FormBooleanProps>): React.ReactElement | null {
+function FormBoolean(props: PropsWithChildren<FormBooleanProps>): ReactElement | null {
   const context: ContextValue | {} = useContext(AntdSchemaFormContext);
 
   if (!('form' in context)) return null; // 类型判断
@@ -27,7 +27,7 @@ function FormBoolean(props: PropsWithChildren<FormBooleanProps>): React.ReactEle
   const { form, customComponent }: ContextValue = context;
   const { root, required }: FormBooleanProps = props;
   const { id, title, description, $componentType, $hidden }: BooleanItem = root;
-  let element: React.ReactElement | null = null;
+  let element: ReactElement | null = null;
 
   if (customComponent) {
     element = ($componentType && $componentType in customComponent)

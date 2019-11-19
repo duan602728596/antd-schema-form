@@ -6,9 +6,17 @@ import {
   useContext,
   useRef,
   PropsWithChildren,
-  Dispatch,
-  SetStateAction,
-  RefObject
+  Dispatch as D,
+  SetStateAction as S,
+  RefObject,
+  DragEvent,
+  MouseEvent as RMouseEvent,
+  ChangeEvent,
+  FocusEvent,
+  KeyboardEvent,
+  ReactElement,
+  ReactNode,
+  ReactNodeArray
 } from 'react';
 import * as PropTypes from 'prop-types';
 import isNil from 'lodash-es/isNil';
@@ -51,7 +59,7 @@ interface TableComponentProps {
   onChange?: Function;
 }
 
-function TableComponent(props: PropsWithChildren<TableComponentProps>): React.ReactElement | null {
+function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactElement | null {
   const context: ContextValue | {} = useContext(AntdSchemaFormContext);
 
   if (!('form' in context)) return null; // 类型判断
@@ -60,25 +68,24 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): React.Re
   const { root }: TableComponentProps = props;
   const { id, items, minItems, maxItems, $minItemsMessage, $maxItemsMessage }: ArrayItem = root;
   const { type, properties, title, $tableRender }: StringItem | NumberItem | BooleanItem | ArrayItem = items;
-  // @ts-ignore
-  const changeIndexRef: RefObject<Input> = useRef();
+  const changeIndexRef: RefObject<Input> = useRef(null);
   let dragTargetId: string | undefined = undefined;    // 被拖拽的id
   let dragTargetIndex: number | undefined = undefined; // 被拖拽的index
 
   // 添加和修改数据的抽屉的显示和隐藏
-  const [isDisplayDataDrawer, setIsDisplayDataDrawer]: [boolean, Dispatch<SetStateAction<boolean>>]
+  const [isDisplayDataDrawer, setIsDisplayDataDrawer]: [boolean, D<S<boolean>>]
     = useState(false);
   // 编辑框修改位置的状态
-  const [inputDisplayIndex, setInputDisplayIndex]: [number | undefined, Dispatch<SetStateAction<number | undefined>>]
+  const [inputDisplayIndex, setInputDisplayIndex]: [number | undefined, D<S<number | undefined>>]
     = useState(undefined);
   // 编辑框的值
-  const [inputChangeIndex, setInputChangeIndex]: [string | undefined, Dispatch<SetStateAction<string | undefined>>]
+  const [inputChangeIndex, setInputChangeIndex]: [string | undefined, D<S<string | undefined>>]
     = useState(undefined);
   // 多选框
-  const [selectedRowKeys, setSelectedRowKeys]: [Array<number>, Dispatch<SetStateAction<Array<number>>>]
+  const [selectedRowKeys, setSelectedRowKeys]: [Array<number>, D<S<Array<number>>>]
     = useState([]);
   // 当前表格编辑的对象
-  const [editIndex, setEditIndex]: [number | undefined, Dispatch<SetStateAction<number | undefined>>]
+  const [editIndex, setEditIndex]: [number | undefined, D<S<number | undefined>>]
     = useState(undefined);
 
   // 表单
@@ -105,7 +112,7 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): React.Re
   }
 
   // 开始拖拽
-  function handleTableDragStart(event: React.DragEvent<HTMLTableRowElement>): void {
+  function handleTableDragStart(event: DragEvent<HTMLTableRowElement>): void {
     const target: EventTarget = event.target;
     const id: string = target['dataset'].id;
     const index: number = Number(target['dataset'].index);
@@ -115,7 +122,7 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): React.Re
   }
 
   // 拖拽进入
-  function handleTableDragEnter(event: React.DragEvent<HTMLTableRowElement>): void {
+  function handleTableDragEnter(event: DragEvent<HTMLTableRowElement>): void {
     event.preventDefault();
 
     // 获取目标的信息
@@ -145,7 +152,7 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): React.Re
   }
 
   // 拖拽退出
-  function handleTableDragLeave(event: React.DragEvent<HTMLTableRowElement>): void {
+  function handleTableDragLeave(event: DragEvent<HTMLTableRowElement>): void {
     event.preventDefault();
 
     // 获取目标的信息
@@ -171,12 +178,12 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): React.Re
   }
 
   // 拖拽中
-  function handleTableDragOver(event: React.DragEvent<HTMLTableRowElement>): void {
+  function handleTableDragOver(event: DragEvent<HTMLTableRowElement>): void {
     event.preventDefault();
   }
 
   // 放置
-  function handleTableDrop(event: React.DragEvent<HTMLTableRowElement>): void {
+  function handleTableDrop(event: DragEvent<HTMLTableRowElement>): void {
     event.preventDefault();
 
     // 获取目标的信息
@@ -215,9 +222,9 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): React.Re
   // table components
   const components: TableComponents<any> = {
     body: {
-      row: (item: any): React.ReactElement<'tr'> => {
+      row: (item: any): ReactElement<'tr'> => {
         const { children, className }: {
-          children: React.ReactNodeArray;
+          children: ReactNodeArray;
           className: string;
         } = item;
         const index: number = Number(item['data-row-key']);
@@ -241,18 +248,18 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): React.Re
   };
 
   // 编辑位置框修改位置
-  function handleInputDisplayClick(index: number, event: React.MouseEvent<HTMLElement, MouseEvent>): void {
+  function handleInputDisplayClick(index: number, event: RMouseEvent<HTMLElement, MouseEvent>): void {
     setInputDisplayIndex(index);
     setInputChangeIndex(String(index + 1));
   }
 
   // 编辑位置框数据修改
-  function handleIndexInputChange(event: React.ChangeEvent<HTMLInputElement>): void {
+  function handleIndexInputChange(event: ChangeEvent<HTMLInputElement>): void {
     setInputChangeIndex(event.target.value);
   }
 
   // 编辑位置框失去焦点
-  function handleIndexInputBlur(index: number, event: React.FocusEvent<HTMLInputElement> | React.KeyboardEvent<HTMLInputElement>): void {
+  function handleIndexInputBlur(index: number, event: FocusEvent<HTMLInputElement> | KeyboardEvent<HTMLInputElement>): void {
     let tableValue: Array<any> | any = form.getFieldValue(id);
 
     tableValue = isNil(tableValue) ? (root.$defaultValue || []) : tableValue;
@@ -300,7 +307,7 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): React.Re
   }
 
   // 删除数据
-  function handleDeleteDataClick(index: number, event: React.MouseEvent<HTMLElement, MouseEvent>): void {
+  function handleDeleteDataClick(index: number, event: RMouseEvent<HTMLElement, MouseEvent>): void {
     let tableValue: Array<any> | any = form.getFieldValue(id);
 
     tableValue = isNil(tableValue) ? (root.$defaultValue || []) : tableValue;
@@ -310,13 +317,13 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): React.Re
   }
 
   // 修改数据抽屉的显示
-  function handleDrawEditDataDisplayClick(index: number, event: React.MouseEvent<HTMLElement, MouseEvent>): void {
+  function handleDrawEditDataDisplayClick(index: number, event: RMouseEvent<HTMLElement, MouseEvent>): void {
     setIsDisplayDataDrawer(true);
     setEditIndex(index);
   }
 
   // 抽屉的显示和隐藏
-  function handleDrawerDisplayClick(value: boolean, event?: React.MouseEvent<HTMLElement, MouseEvent>): void {
+  function handleDrawerDisplayClick(value: boolean, event?: RMouseEvent<HTMLElement, MouseEvent>): void {
     setIsDisplayDataDrawer(value);
 
     if (!value) setEditIndex(undefined);
@@ -328,7 +335,7 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): React.Re
   }
 
   // 删除选中的数据
-  function handleDeleteSelectDataClick(event: React.MouseEvent<HTMLElement, MouseEvent>): void {
+  function handleDeleteSelectDataClick(event: RMouseEvent<HTMLElement, MouseEvent>): void {
     const id: string = root.id;
     let tableValue: Array<any> | any = form.getFieldValue(id);
 
@@ -352,10 +359,10 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): React.Re
       key: 'lineNumber',
       align: 'center',
       width: 65,
-      render: (value: any, record: object, index: number): React.ReactNode => {
+      render: (value: any, record: object, index: number): ReactNode => {
         if (inputDisplayIndex === undefined || inputDisplayIndex !== index) {
           return (
-            <a onClick={ (event: React.MouseEvent<HTMLElement, MouseEvent>): void => handleInputDisplayClick(index, event) }>
+            <a onClick={ (event: RMouseEvent<HTMLElement, MouseEvent>): void => handleInputDisplayClick(index, event) }>
               { index + 1 }
             </a>
           );
@@ -364,8 +371,8 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): React.Re
             <Input ref={ changeIndexRef }
               value={ inputChangeIndex }
               onChange={ handleIndexInputChange }
-              onBlur={ (event: React.FocusEvent<HTMLInputElement>): void => handleIndexInputBlur(index, event) }
-              onPressEnter={ (event: React.KeyboardEvent<HTMLInputElement>): void => handleIndexInputBlur(index, event) }
+              onBlur={ (event: FocusEvent<HTMLInputElement>): void => handleIndexInputBlur(index, event) }
+              onPressEnter={ (event: KeyboardEvent<HTMLInputElement>): void => handleIndexInputBlur(index, event) }
             />
           );
         }
@@ -421,14 +428,14 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): React.Re
       title: languagePack && languagePack.formArray.operating,
       key: 'handle',
       width: 160,
-      render: (value: any, record: object, index: number): React.ReactNode => {
+      render: (value: any, record: object, index: number): ReactNode => {
         return (
           <Button.Group>
-            <Button onClick={ (event: React.MouseEvent<HTMLElement, MouseEvent>): void => handleDrawEditDataDisplayClick(index, event) }>
+            <Button onClick={ (event: RMouseEvent<HTMLElement, MouseEvent>): void => handleDrawEditDataDisplayClick(index, event) }>
               { languagePack.formArray.operatingEdit }
             </Button>
             <Popconfirm title={ languagePack.formArray.operatingPopconfirmTitle }
-              onConfirm={ (event: React.MouseEvent<HTMLElement, MouseEvent>): void => handleDeleteDataClick(index, event) }
+              onConfirm={ (event: RMouseEvent<HTMLElement, MouseEvent>): void => handleDeleteDataClick(index, event) }
             >
               <Button type="danger">{ languagePack.formArray.operatingDelete }</Button>
             </Popconfirm>
@@ -490,17 +497,17 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): React.Re
         columns={ columns() }
         bordered={ true }
         title={
-          (): React.ReactNodeArray => [
+          (): ReactNodeArray => [
             <Button key="add"
               type="primary"
               icon={ <IconPlusCircle /> }
-              onClick={ (event: React.MouseEvent<HTMLElement, MouseEvent>): void => handleDrawerDisplayClick(true, event) }
+              onClick={ (event: RMouseEvent<HTMLElement, MouseEvent>): void => handleDrawerDisplayClick(true, event) }
             >
               { languagePack.formArray.operatingAdd }
             </Button>,
             <Popconfirm key="delete"
               title={ languagePack.formArray.deleteSelectedText }
-              onConfirm={ (event: React.MouseEvent<HTMLElement, MouseEvent>): void => handleDeleteSelectDataClick(event) }
+              onConfirm={ (event: RMouseEvent<HTMLElement, MouseEvent>): void => handleDeleteSelectDataClick(event) }
             >
               <Button className={ styleName('array-deleteAll') } type="danger" icon={ <IconDelete /> }>
                 { languagePack.formArray.deleteSelected }

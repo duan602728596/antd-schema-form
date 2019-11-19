@@ -1,5 +1,13 @@
 import * as React from 'react';
-import { Fragment, useContext, PropsWithChildren } from 'react';
+import {
+  Fragment,
+  useContext,
+  PropsWithChildren,
+  MouseEvent as RMouseEvent,
+  ReactElement,
+  ReactNode,
+  ReactNodeArray
+} from 'react';
 import * as PropTypes from 'prop-types';
 import isArray from 'lodash-es/isArray';
 import isNil from 'lodash-es/isNil';
@@ -30,7 +38,7 @@ interface FormObjectProps {
   footer?: Function;
 }
 
-function FormObject(props: PropsWithChildren<FormObjectProps>): React.ReactElement | null {
+function FormObject(props: PropsWithChildren<FormObjectProps>): ReactElement | null {
   const context: ContextValue | {} = useContext(AntdSchemaFormContext);
 
   if (!('form' in context)) return null; // 类型判断
@@ -46,7 +54,7 @@ function FormObject(props: PropsWithChildren<FormObjectProps>): React.ReactEleme
   }: FormObjectProps = props;
 
   // 根据type渲染不同的组件
-  function renderComponentByTypeView(root: SchemaItem, required?: boolean): React.ReactNode {
+  function renderComponentByTypeView(root: SchemaItem, required?: boolean): ReactNode {
     const { id, type }: SchemaItem = root;
     const _required: boolean = !!required;
     const props: {
@@ -85,9 +93,9 @@ function FormObject(props: PropsWithChildren<FormObjectProps>): React.ReactEleme
   }
 
   // oneOf组件
-  function renderOneOfComponentView(root: SchemaItem, required: boolean): React.ReactNode {
+  function renderOneOfComponentView(root: SchemaItem, required: boolean): ReactNode {
     const { oneOf, $oneOfComponentType }: SchemaItem = root;
-    const element: React.ReactNodeArray = [];
+    const element: ReactNodeArray = [];
 
     (oneOf || []).forEach((value: SchemaItem, index: number, array: Array<SchemaItem>): void => {
       const childrenRoot: SchemaItem = { ...value };
@@ -102,7 +110,7 @@ function FormObject(props: PropsWithChildren<FormObjectProps>): React.ReactEleme
       element.push(renderComponentByTypeView(childrenRoot, required));
     });
 
-    let oneOfElement: React.ReactNode = null;
+    let oneOfElement: ReactNode = null;
 
     if (customComponent) {
       oneOfElement = $oneOfComponentType && $oneOfComponentType in customComponent
@@ -130,18 +138,18 @@ function FormObject(props: PropsWithChildren<FormObjectProps>): React.ReactEleme
   }
 
   // 渲染一个object组件
-  function renderObjectComponentView(root: SchemaItem): React.ReactNode {
+  function renderObjectComponentView(root: SchemaItem): ReactNode {
     const { $componentType }: SchemaItem = root;
     const required: Array<string> = root.required || [];
     const properties: object = root.properties || {};
-    const element: React.ReactNodeArray = [];
+    const element: ReactNodeArray = [];
 
     // 判断object下组件的类型并渲染，只要有一个有值就要显示
     for (const key in properties) {
       element.push(renderComponentByTypeView(properties[key], required.includes(key)));
     }
 
-    let objectElement: React.ReactNode = null;
+    let objectElement: ReactNode = null;
 
     if (customComponent) {
       objectElement = ($componentType && $componentType in customComponent)
@@ -153,7 +161,7 @@ function FormObject(props: PropsWithChildren<FormObjectProps>): React.ReactEleme
   }
 
   // ok事件
-  async function handleOkClick(event: React.MouseEvent<HTMLElement, MouseEvent>): Promise<void> {
+  async function handleOkClick(event: RMouseEvent<HTMLElement, MouseEvent>): Promise<void> {
     try {
       const keys: string[] = getKeysFromObject(formObjectRoot);
       const formValue: Store = await form.validateFields(keys);
@@ -167,12 +175,12 @@ function FormObject(props: PropsWithChildren<FormObjectProps>): React.ReactEleme
   }
 
   // cancel事件
-  function handleCancelClick(event: React.MouseEvent<HTMLElement, MouseEvent>): void {
+  function handleCancelClick(event: RMouseEvent<HTMLElement, MouseEvent>): void {
     onCancel && onCancel(form);
   }
 
   // 确认和取消按钮
-  function footerView(): React.ReactNode {
+  function footerView(): ReactNode {
     if (onOk || onCancel) {
       return (
         <div className={ styleName('object-click-button-box') }>
@@ -183,7 +191,9 @@ function FormObject(props: PropsWithChildren<FormObjectProps>): React.ReactEleme
           }
           {
             onCancel ? (
-              <Button className={ onOk ? styleName('object-cancel') : undefined } onClick={ handleCancelClick }>
+              <Button className={ onOk ? styleName('object-cancel') : undefined }
+                onClick={ handleCancelClick }
+              >
                 { cancelText }
               </Button>
             ) : null

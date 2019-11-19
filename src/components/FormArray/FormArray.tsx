@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useContext, PropsWithChildren } from 'react';
+import { useContext, PropsWithChildren, ReactElement } from 'react';
 import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Form } from 'antd';
@@ -22,7 +22,7 @@ interface FormArrayProps {
   required: boolean;
 }
 
-function FormArray(props: PropsWithChildren<FormArrayProps>): React.ReactElement | null {
+function FormArray(props: PropsWithChildren<FormArrayProps>): ReactElement | null {
   const context: ContextValue | {} = useContext(AntdSchemaFormContext);
 
   if (!('form' in context)) return null; // 类型判断
@@ -32,7 +32,7 @@ function FormArray(props: PropsWithChildren<FormArrayProps>): React.ReactElement
   const { id, title, description, $componentType, $defaultValue, $hidden }: ArrayItem = root;
   const rules: Array<Rule> = createArrayRules(languagePack, root, required);
   let isTableComponent: boolean = false; // 判断是否为table组件
-  let element: React.ReactElement | null = null;
+  let element: ReactElement | null = null;
 
   if (customComponent) {
     if ($componentType && $componentType in customComponent) {

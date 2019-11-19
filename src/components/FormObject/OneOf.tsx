@@ -1,5 +1,16 @@
 import * as React from 'react';
-import { Fragment, useState, useEffect, useContext, PropsWithChildren, Dispatch, SetStateAction } from 'react';
+import {
+  Fragment,
+  useState,
+  useEffect,
+  useContext,
+  PropsWithChildren,
+  Dispatch as D,
+  SetStateAction as S,
+  ReactElement,
+  ReactNodeArray,
+  ReactNode
+} from 'react';
 import * as PropTypes from 'prop-types';
 import isNumber from 'lodash-es/isNumber';
 import { Radio } from 'antd';
@@ -10,10 +21,10 @@ import styleName from '../../utils/styleName';
 
 interface OneOfProps {
   root: SchemaItem;
-  element: React.ReactNodeArray;
+  element: ReactNodeArray;
 }
 
-function OneOf(props: PropsWithChildren<OneOfProps>): React.ReactElement | null {
+function OneOf(props: PropsWithChildren<OneOfProps>): ReactElement | null {
   const context: ContextValue | {} = useContext(AntdSchemaFormContext);
 
   if (!('form' in context)) return null; // 类型判断
@@ -23,7 +34,7 @@ function OneOf(props: PropsWithChildren<OneOfProps>): React.ReactElement | null 
   const { id, oneOf, $oneOfDisabled, $oneOfIndex }: SchemaItem = root;
 
   // oneOf选项卡的index
-  const [index, setIndex]: [number, Dispatch<SetStateAction<number>>]
+  const [index, setIndex]: [number, D<S<number>>]
     = useState(($oneOfIndex !== undefined && isNumber($oneOfIndex)) ? $oneOfIndex : 0);
 
   // 切换的callback
@@ -57,7 +68,7 @@ function OneOf(props: PropsWithChildren<OneOfProps>): React.ReactElement | null 
   }, [root]);
 
   // 渲染radio
-  function radioGroupView(): React.ReactNode {
+  function radioGroupView(): ReactNode {
     const options: { label: string; value: number }[] = [];
     const of: Array<SchemaItem> = oneOf || [];
 
