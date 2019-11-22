@@ -1,10 +1,10 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import asyncModule from './asyncModule';
-import Index from '../modules/Index/Layout';
+import Index from '../pages/Index/Layout';
 
-const CreateForm = asyncModule(() => import(/* webpackChunkName: 'createForm' */'../modules/CreateForm/Layout'));
-const Preview = asyncModule(() => import(/* webpackChunkName: 'preview' */'../modules/Preview/Layout'));
+const CreateForm = asyncModule(() => import(/* webpackChunkName: 'createForm' */'../pages/CreateForm/Layout'));
+const Preview = asyncModule(() => import(/* webpackChunkName: 'preview' */'../pages/Preview/Layout'));
 
 function Routers(props) {
   return (
