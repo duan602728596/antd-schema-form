@@ -54,6 +54,9 @@
       "pre-commit": "lint-staged"
     }
   },
+  "lint-staged": {
+    "**/*.{js,jsx}": "eslint"
+  },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
