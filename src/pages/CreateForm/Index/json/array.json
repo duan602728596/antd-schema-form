@@ -97,6 +97,11 @@
       "type": "boolean",
       "title": "Hide form fields (form values still exist)"
     },
+    "$order": {
+      "id": "$root/properties/$order",
+      "type": "number",
+      "title": "Default the order in which components are arranged"
+    },
     "$tableColumnHidden": {
       "id": "$root/properties/$tableColumnHidden",
       "type": "boolean",

@@ -28,6 +28,11 @@
       "type": "string",
       "title": "说明，用于描述关键字的作用"
     },
+    "$order": {
+      "id": "$root/properties/$order",
+      "type": "number",
+      "title": "定义组件的排列顺序"
+    },
     "required": {
       "id": "$root/properties/required",
       "type": "array",

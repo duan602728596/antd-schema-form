@@ -28,6 +28,11 @@
       "type": "string",
       "title": "Description, used to describe the role of the keyword"
     },
+    "$order": {
+      "id": "$root/properties/$order",
+      "type": "number",
+      "title": "Default the order in which components are arranged"
+    },
     "required": {
       "id": "$root/properties/required",
       "type": "array",

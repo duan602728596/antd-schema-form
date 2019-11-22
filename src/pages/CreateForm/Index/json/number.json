@@ -104,6 +104,11 @@
       "type": "number",
       "title": "Default value of the form"
     },
+    "$order": {
+      "id": "$root/properties/$order",
+      "type": "number",
+      "title": "Default the order in which components are arranged"
+    },
     "$componentType": {
       "id": "$root/properties/$componentType",
       "type": "string",

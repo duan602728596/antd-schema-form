@@ -104,6 +104,11 @@
       "type": "number",
       "title": "表单的默认值"
     },
+    "$order": {
+      "id": "$root/properties/$order",
+      "type": "number",
+      "title": "定义组件的排列顺序"
+    },
     "$componentType": {
       "id": "$root/properties/$componentType",
       "type": "string",
