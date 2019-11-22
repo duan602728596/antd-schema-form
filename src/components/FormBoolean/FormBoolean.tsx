@@ -36,7 +36,11 @@ function FormBoolean(props: PropsWithChildren<FormBooleanProps>): ReactElement |
   }
 
   return element ? (
-    <Form.Item className={ $hidden ? styleName('hidden') : undefined } name={ id } label={ title }>
+    <Form.Item className={ $hidden ? styleName('hidden') : undefined }
+      name={ id }
+      label={ title }
+      valuePropName="checked"
+    >
       { element }
     </Form.Item>
   ) : null;
