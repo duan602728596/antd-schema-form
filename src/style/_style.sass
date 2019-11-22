@@ -67,6 +67,15 @@
       -webkit-transition: border-color .3s
       transition: border-color .3s
 
+      // table内tr的拖拽
+      tbody > tr.#{ $prefix }-array
+        &-drop-over
+          &-downward td
+            border-bottom: 2px dashed $array-table-drop-over-border-color
+
+          &-upward td
+            border-top: 2px dashed $array-table-drop-over-border-color
+
     &-table-component-has-error
       border-color: $error-color
 
@@ -79,12 +88,3 @@
 
     &-deleteAll
       margin-left: 10px
-
-  // table拖拽
-  tr.#{ $prefix }-array
-    &-drop-over
-      &-downward td
-        border-bottom: 2px dashed $array-table-drop-over-border-color
-
-      &-upward td
-        border-top: 2px dashed $array-table-drop-over-border-color
