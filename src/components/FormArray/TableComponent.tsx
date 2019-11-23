@@ -227,10 +227,9 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
           children: ReactNodeArray;
           className: string;
         } = item;
-        const index: number | undefined = (children.length > 0 && typeof children[0] === 'object')
-          // @ts-ignore
-          ? children[0]?.props?.index
-          : undefined;
+
+        // @ts-ignore
+        const index: number = children[0]?.props?.index;
 
         return (
           <tr className={ className }
