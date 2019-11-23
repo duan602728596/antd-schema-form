@@ -26,6 +26,7 @@ export interface SchemaItem {
   $tableRender?: string;
   $componentType?: string;
   $oneOfComponentType?: string;
+  $order?: number;
 }
 
 export interface StringItem extends SchemaItem {

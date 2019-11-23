@@ -23,6 +23,7 @@ import FormArray from '../FormArray/FormArray';
 import getValueFromObject from '../../utils/getValueFromObject';
 import getKeysFromObject from '../../utils/getKeysFromObject';
 import createElement from '../../utils/createElement';
+import sortProperties from '../../utils/sortProperties';
 import { SchemaItem, ContextValue } from '../../types';
 
 /**
@@ -141,7 +142,7 @@ function FormObject(props: PropsWithChildren<FormObjectProps>): ReactElement | n
   function renderObjectComponentView(root: SchemaItem): ReactNode {
     const { $componentType }: SchemaItem = root;
     const required: Array<string> = root.required || [];
-    const properties: object = root.properties || {};
+    const properties: object = sortProperties(root.properties || {});
     const element: ReactNodeArray = [];
 
     // 判断object下组件的类型并渲染，只要有一个有值就要显示
