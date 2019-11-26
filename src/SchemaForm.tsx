@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { useEffect, PropsWithChildren } from 'react';
+import { useEffect, PropsWithChildren, FunctionComponent } from 'react';
 import * as PropTypes from 'prop-types';
 import isPlainObject from 'lodash-es/isPlainObject';
 import { Form } from 'antd';
-import { FormComponentProps } from 'antd/lib/form/Form';
+import { FormCreateOption, FormComponentProps } from 'antd/lib/form/Form';
 import AntdSchemaFormContext from './context';
 import FormObject from './components/FormObject/FormObject';
 import getObjectFromValue from './utils/getObjectFromValue';
@@ -23,6 +23,7 @@ export interface SchemaFormProps extends FormComponentProps {
   };
   customTableRender?: object;
   languagePack?: object;
+  formOptions?: FormCreateOption<SchemaFormProps>;
 }
 
 function SchemaForm(props: PropsWithChildren<SchemaFormProps>): React.ReactElement | null {
@@ -39,6 +40,7 @@ function SchemaForm(props: PropsWithChildren<SchemaFormProps>): React.ReactEleme
     customTableRender
   }: SchemaFormProps = props;
   // 获取系统语言
+  // eslint-disable-next-line @typescript-eslint/tslint/config
   const language: string = typeof window === 'object' // 服务器端渲染判断
     ? (window.navigator.language || window.navigator['userLanguage']).toLocaleLowerCase()
     : 'default';
@@ -98,6 +100,11 @@ SchemaForm.defaultProps = {
   customComponent: {},
   customTableRender: {}
 };
+
+export function createSchemaForm(options: FormCreateOption<SchemaFormProps>): FunctionComponent<any> {
+  // @ts-ignore
+  return Form.create(options)(SchemaForm);
+}
 
 // @ts-ignore
 export default Form.create()(SchemaForm);
