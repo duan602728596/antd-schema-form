@@ -41,6 +41,7 @@
 * `title: string`: 标题，用于描述关键字的作用。表单的标题。
 * `description: string`: 说明，用于描述关键字的作用。表单的描述。
 * `$componentType: string`: 渲染为其他组件（当没有*oneOf*属性时）。
+* `$order: number`: 定义组件的排列顺序。数值越小，排列越靠前。当没有配置该属性时，默认为0。
 * `oneOf: Array<object>`: 关键字可能的多个类型。
 * `$oneOfComponentType: string`: 当有*oneOf*属性时，渲染为其他组件，此时`$componentType`属性只对`oneOf`内的schema配置生效。函数返回的组件[参考](https://github.com/duan602728596/antd-schema-form/blob/master/src/components/FormObject/OneOf.tsx)。
 * `$oneOfIndex: number`: *oneOf*下选中的Radio.Group的索引。
