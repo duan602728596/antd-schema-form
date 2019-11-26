@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { useContext, PropsWithChildren } from 'react';
 import * as PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { Form, Tooltip } from 'antd';
 import { ValidationRule } from 'antd/lib/form';
 import { GetFieldDecoratorOptions } from 'antd/lib/form/Form';
+import omit from 'lodash-es/omit';
 import AntdSchemaFormContext from '../../context';
 import styleName from '../../utils/styleName';
 import createNumberRules from './createNumberRules';
@@ -36,7 +38,8 @@ function FormNumber(props: PropsWithChildren<FormNumberProps>): React.ReactEleme
     description,
     $componentType,
     $defaultValue,
-    $hidden
+    $hidden,
+    $formItemProps
   }: NumberItem = root;
   const rules: Array<ValidationRule> = createNumberRules(languagePack, root, required, type === 'integer');
   const option: GetFieldDecoratorOptions = { rules };
@@ -53,7 +56,10 @@ function FormNumber(props: PropsWithChildren<FormNumberProps>): React.ReactEleme
   }
 
   return (
-    <Form.Item className={ $hidden ? styleName('hidden') : undefined } label={ title }>
+    <Form.Item className={ classNames($hidden ? styleName('hidden') : undefined, $formItemProps?.className) }
+      label={ title }
+      { ...omit($formItemProps, ['className']) }
+    >
       <Tooltip title={ description } placement="topRight">
         { element }
       </Tooltip>

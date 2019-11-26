@@ -29,6 +29,9 @@ export interface SchemaItem {
   $componentType?: string;
   $oneOfComponentType?: string;
   $order?: number;
+  $formItemProps?: {
+    [key: string]: any;
+  };
 }
 
 export interface StringItem extends SchemaItem {

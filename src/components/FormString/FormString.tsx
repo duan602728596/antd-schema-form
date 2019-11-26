@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { useContext, PropsWithChildren } from 'react';
 import * as PropTypes from 'prop-types';
-import { isString } from 'lodash-es';
+import classNames from 'classnames';
+import isString from 'lodash-es/isString';
+import omit from 'lodash-es/omit';
 import { Form, Tooltip } from 'antd';
 import { ValidationRule } from 'antd/lib/form';
 import { GetFieldDecoratorOptions } from 'antd/lib/form/Form';
@@ -37,7 +39,8 @@ function FormString(props: PropsWithChildren<FormStringProps>): React.ReactEleme
     description,
     $componentType,
     $defaultValue,
-    $hidden
+    $hidden,
+    $formItemProps
   }: StringItem = root;
   const rules: Array<ValidationRule> = createStringRules(languagePack, root, required);
   const option: GetFieldDecoratorOptions = { rules };
@@ -59,7 +62,10 @@ function FormString(props: PropsWithChildren<FormStringProps>): React.ReactEleme
   }
 
   return (
-    <Form.Item className={ $hidden ? styleName('hidden') : undefined } label={ title }>
+    <Form.Item className={ classNames($hidden ? styleName('hidden') : undefined, $formItemProps?.className) }
+      label={ title }
+      { ...omit($formItemProps, ['className']) }
+    >
       <Tooltip title={ description } placement="topRight">
         { element }
       </Tooltip>

@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { useContext, PropsWithChildren } from 'react';
 import * as PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { Form, Tooltip } from 'antd';
 import { GetFieldDecoratorOptions } from 'antd/lib/form/Form';
+import omit from 'lodash-es/omit';
 import AntdSchemaFormContext from '../../context';
 import styleName from '../../utils/styleName';
 import createElement from '../../utils/createElement';
@@ -27,7 +29,7 @@ function FormBoolean(props: PropsWithChildren<FormBooleanProps>): React.ReactEle
 
   const { form, customComponent }: ContextValue = context;
   const { root, required }: FormBooleanProps = props;
-  const { title, description, $componentType, $defaultValue, $hidden }: BooleanItem = root;
+  const { title, description, $componentType, $defaultValue, $hidden, $formItemProps }: BooleanItem = root;
   const option: GetFieldDecoratorOptions = {
     valuePropName: 'checked'
   };
@@ -44,7 +46,10 @@ function FormBoolean(props: PropsWithChildren<FormBooleanProps>): React.ReactEle
   }
 
   return (
-    <Form.Item className={ $hidden ? styleName('hidden') : undefined } label={ title }>
+    <Form.Item className={ classNames($hidden ? styleName('hidden') : undefined, $formItemProps?.className) }
+      label={ title }
+      { ...omit($formItemProps, ['className']) }
+    >
       <Tooltip title={ description } placement="topRight">
         { element }
       </Tooltip>
