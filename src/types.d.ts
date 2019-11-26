@@ -32,6 +32,7 @@ export interface SchemaItem {
   $formItemProps?: {
     [key: string]: any;
   };
+  $disabled?: boolean;
 }
 
 export interface StringItem extends SchemaItem {

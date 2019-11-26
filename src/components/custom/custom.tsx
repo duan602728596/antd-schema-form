@@ -19,9 +19,11 @@ export function defaultString(
   required: boolean
 ): React.ReactNode {
   const { getFieldDecorator }: WrappedFormUtils = form;
-  const { id, $readOnly, $placeholder }: StringItem = root;
+  const { id, $readOnly, $placeholder, $disabled }: StringItem = root;
 
-  return getFieldDecorator(id, option)(<Input readOnly={ $readOnly } placeholder={ $placeholder } />);
+  return getFieldDecorator(id, option)(
+    <Input readOnly={ $readOnly } placeholder={ $placeholder } disabled={ $disabled ?? undefined } />
+  );
 }
 
 // 文本域
@@ -32,10 +34,10 @@ export function textArea(
   required: boolean
 ): React.ReactNode {
   const { getFieldDecorator }: WrappedFormUtils = form;
-  const { id, $readOnly, $placeholder }: StringItem = root;
+  const { id, $readOnly, $placeholder, $disabled }: StringItem = root;
 
   return getFieldDecorator(id, option)(
-    <Input.TextArea rows={ 6 } readOnly={ $readOnly } placeholder={ $placeholder } />
+    <Input.TextArea rows={ 6 } readOnly={ $readOnly } placeholder={ $placeholder } disabled={ $disabled ?? undefined } />
   );
 }
 
@@ -47,12 +49,13 @@ export function select(
   required: boolean
 ): React.ReactNode {
   const { getFieldDecorator }: WrappedFormUtils = form;
-  const { id, $required, $options = [], $placeholder }: StringItem = root;
+  const { id, $required, $options = [], $placeholder, $disabled }: StringItem = root;
 
   return getFieldDecorator(id, option)(
     <Select className={ styleName('string-select') }
       placeholder={ $placeholder }
       allowClear={ !($required || required) }
+      disabled={ $disabled ?? undefined }
     >
       { selectOptionsRender($options) }
     </Select>
@@ -67,9 +70,9 @@ export function radio(
   required: boolean
 ): React.ReactNode {
   const { getFieldDecorator }: WrappedFormUtils = form;
-  const { id, $options = [] }: StringItem | NumberItem = root;
+  const { id, $options = [], $disabled }: StringItem | NumberItem = root;
 
-  return getFieldDecorator(id, option)(<Radio.Group options={ $options } />);
+  return getFieldDecorator(id, option)(<Radio.Group options={ $options } disabled={ $disabled ?? undefined } />);
 }
 
 // date
@@ -80,10 +83,14 @@ export function date(
   required: boolean
 ): React.ReactNode {
   const { getFieldDecorator }: WrappedFormUtils = form;
-  const { id, $placeholder }: StringItem = root;
+  const { id, $placeholder, $disabled }: StringItem = root;
 
   return getFieldDecorator(id, option)(
-    <DatePicker format="YYYY-MM-DD HH:mm:ss" showTime={ true } placeholder={ $placeholder } />
+    <DatePicker format="YYYY-MM-DD HH:mm:ss"
+      showTime={ true }
+      placeholder={ $placeholder }
+      disabled={ $disabled ?? undefined }
+    />
   );
 }
 
@@ -95,9 +102,11 @@ export function password(
   required: boolean
 ): React.ReactNode {
   const { getFieldDecorator }: WrappedFormUtils = form;
-  const { id, $readOnly, $placeholder }: StringItem = root;
+  const { id, $readOnly, $placeholder, $disabled }: StringItem = root;
 
-  return getFieldDecorator(id, option)(<Input.Password readOnly={ $readOnly } placeholder={ $placeholder } />);
+  return getFieldDecorator(id, option)(
+    <Input.Password readOnly={ $readOnly } placeholder={ $placeholder } disabled={ $disabled ?? undefined } />
+  );
 }
 
 /* number类型组件 */
@@ -109,10 +118,14 @@ export function defaultNumber(
   required: boolean
 ): React.ReactNode {
   const { getFieldDecorator }: WrappedFormUtils = form;
-  const { id, $readOnly, $placeholder }: NumberItem = root;
+  const { id, $readOnly, $placeholder, $disabled }: NumberItem = root;
 
   return getFieldDecorator(id, option)(
-    <InputNumber className={ styleName('number-input') } readOnly={ $readOnly } placeholder={ $placeholder } />
+    <InputNumber className={ styleName('number-input') }
+      readOnly={ $readOnly }
+      placeholder={ $placeholder }
+      disabled={ $disabled ?? undefined }
+    />
   );
 }
 
@@ -125,9 +138,9 @@ export function defaultBoolean(
   required: boolean
 ): React.ReactNode {
   const { getFieldDecorator }: WrappedFormUtils = form;
-  const { id }: BooleanItem = root;
+  const { id, $disabled }: BooleanItem = root;
 
-  return getFieldDecorator(id, option)(<Checkbox />);
+  return getFieldDecorator(id, option)(<Checkbox disabled={ $disabled ?? undefined } />);
 }
 
 // switch组件
@@ -138,9 +151,9 @@ export function switchComponent(
   required: boolean
 ): React.ReactNode {
   const { getFieldDecorator }: WrappedFormUtils = form;
-  const { id }: BooleanItem = root;
+  const { id, $disabled }: BooleanItem = root;
 
-  return getFieldDecorator(id, option)(<Switch />);
+  return getFieldDecorator(id, option)(<Switch disabled={ $disabled ?? undefined } />);
 }
 
 /* Array类型组件 */
@@ -182,11 +195,11 @@ export function multipleOrTags(
   required: boolean
 ): React.ReactNode {
   const { getFieldDecorator }: WrappedFormUtils = form;
-  const { id, $options = [], $componentType }: ArrayItem = root;
+  const { id, $options = [], $componentType, $disabled }: ArrayItem = root;
   const mode: any = $componentType; // select ModeOption
 
   return getFieldDecorator(id, option)(
-    <Select className={ styleName('array-multiple') } mode={ mode }>
+    <Select className={ styleName('array-multiple') } mode={ mode } disabled={ $disabled ?? undefined }>
       { selectOptionsRender($options) }
     </Select>
   );
