@@ -1,3 +1,10 @@
+### v3.2.0
+
+* 🌟添加`$disabled`字段，禁用组件。
+* 🌟添加`$formItemProps`字段，配置`Form.Item`的props。
+* 🌟添加`formOptions`API，配置`Form.create`的参数。
+* 🐛修复number类型最大值的验证文字错误。
+
 ### v3.1.0
 
 * 🌟添加`$order`字段，允许定义组件的排列顺序。

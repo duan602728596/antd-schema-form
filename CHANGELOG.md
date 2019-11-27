@@ -1,3 +1,10 @@
+### v3.2.0
+
+* 🌟Add the `$disabled` field to disable the component.
+* 🌟Add the `$formItemProps` field and configure the properties of `Form.Item`.
+* 🌟Add the `formOptions` API and configure the parameters of `Form.create`.
+* 🐛Fixed validation text error for maximum number type.
+
 ### v3.1.0
 
 * 🌟Add the `$order` field to allow you to define the order in which components are arranged.
