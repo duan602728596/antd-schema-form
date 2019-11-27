@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Input, Icon } from 'antd';
 import SchemaForm from '../SchemaForm';
 import stringJson from '../json/string.json';

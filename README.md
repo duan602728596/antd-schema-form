@@ -90,6 +90,7 @@ Antd-schema-form based [Ant Design](https://ant.design/), quickly generate inter
 | customComponent   | Custom rendering component, [reference](docs/custom_rendering_component.md) | object                 |
 | customTableRender | Custom table column rendering component, [reference](docs/custom_rendering_component.md#custom-table-column-rendering-component) | object |
 | languagePack      | Language configuration, [reference](language/default.json)                  | object                 |
+| formOptions       | Options of `Form.create`, [reference](https://ant.design/components/form/#Form.create(options)) | object                 |
 
 ## [Json schema configuration](docs/json_schema_configuration.md)
 

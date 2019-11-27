@@ -90,6 +90,7 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
 | customComponent   | 自定义渲染组件，[参考](docs/custom_rendering_component-zhCN.md) | object                 |
 | customTableRender | 自定义表格列渲染组件，[参考](docs/custom_rendering_component-zhCN.md#自定义表格列渲染组件) | object                 |
 | languagePack      | 语言配置，[参考](language/zh-CN.json)                           | object                 |
+| formOptions       | `Form.create`的参数，[参考](https://ant.design/components/form-cn/#Form.create(options)) | object                 |
 
 ## [json schema配置](docs/json_schema_configuration-zhCN.md)
 
