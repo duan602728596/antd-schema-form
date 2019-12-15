@@ -24,7 +24,7 @@ import isBoolean from 'lodash-es/isBoolean';
 import isObject from 'lodash-es/isObject';
 import classNames from 'classnames';
 import { Table, Button, Popconfirm, Drawer, Input } from 'antd';
-import { PlusCircle as IconPlusCircle, Delete as IconDelete } from '@ant-design/icons';
+import { PlusCircleOutlined as IconPlusCircleOutlined, DeleteOutlined as IconDeleteOutlined } from '@ant-design/icons';
 import { FormInstance } from 'antd/es/form/Form';
 import { TableComponents } from 'rc-table/es/interface';
 import { Store } from 'rc-field-form/es/interface';
@@ -502,7 +502,7 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
           (): ReactNodeArray => [
             <Button key="add"
               type="primary"
-              icon={ <IconPlusCircle /> }
+              icon={ <IconPlusCircleOutlined /> }
               onClick={ (event: RMouseEvent<HTMLElement, MouseEvent>): void => handleDrawerDisplayClick(true, event) }
             >
               { languagePack.formArray.operatingAdd }
@@ -511,7 +511,7 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
               title={ languagePack.formArray.deleteSelectedText }
               onConfirm={ (event: RMouseEvent<HTMLElement, MouseEvent>): void => handleDeleteSelectDataClick(event) }
             >
-              <Button className={ styleName('array-deleteAll') } type="danger" icon={ <IconDelete /> }>
+              <Button className={ styleName('array-deleteAll') } type="danger" icon={ <IconDeleteOutlined /> }>
                 { languagePack.formArray.deleteSelected }
               </Button>
             </Popconfirm>
