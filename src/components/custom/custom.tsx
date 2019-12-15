@@ -11,26 +11,33 @@ import { SchemaItem, StringItem, NumberItem, BooleanItem, ArrayItem } from '../.
 /* string类型组件 */
 // 默认组件
 export function defaultString(root: StringItem, form: FormInstance, required: boolean): ReactNode {
-  const { $readOnly, $placeholder }: StringItem = root;
+  const { $readOnly, $placeholder, $disabled }: StringItem = root;
 
-  return <Input readOnly={ $readOnly } placeholder={ $placeholder } />;
+  return <Input readOnly={ $readOnly } placeholder={ $placeholder } disabled={ $disabled ?? undefined } />;
 }
 
 // 文本域
 export function textArea(root: StringItem, form: FormInstance, required: boolean): ReactNode {
-  const { $readOnly, $placeholder }: StringItem = root;
+  const { $readOnly, $placeholder, $disabled }: StringItem = root;
 
-  return <Input.TextArea rows={ 6 } readOnly={ $readOnly } placeholder={ $placeholder } />;
+  return (
+    <Input.TextArea rows={ 6 }
+      readOnly={ $readOnly }
+      placeholder={ $placeholder }
+      disabled={ $disabled ?? undefined }
+    />
+  );
 }
 
 // select
 export function select(root: StringItem, form: FormInstance, required: boolean): ReactNode {
-  const { $required, $options = [], $placeholder }: StringItem = root;
+  const { $required, $options = [], $placeholder, $disabled }: StringItem = root;
 
   return (
     <Select className={ styleName('string-select') }
       placeholder={ $placeholder }
       allowClear={ !($required || required) }
+      disabled={ $disabled ?? undefined }
     >
       { selectOptionsRender($options) }
     </Select>
@@ -39,42 +46,58 @@ export function select(root: StringItem, form: FormInstance, required: boolean):
 
 // radio（string类型和number类型都能用）
 export function radio(root: StringItem, form: FormInstance, required: boolean): ReactNode {
-  const { $options = [] }: StringItem | NumberItem = root;
+  const { $options = [], $disabled }: StringItem | NumberItem = root;
 
-  return <Radio.Group options={ $options } />;
+  return <Radio.Group options={ $options } disabled={ $disabled ?? undefined } />;
 }
 
 // date
 export function date(root: StringItem, form: FormInstance, required: boolean): ReactNode {
-  const { id, $placeholder }: StringItem = root;
+  const { id, $placeholder, $disabled }: StringItem = root;
 
-  return <DatePicker format="YYYY-MM-DD HH:mm:ss" showTime={ true } placeholder={ $placeholder } />;
+  return (
+    <DatePicker format="YYYY-MM-DD HH:mm:ss"
+      showTime={ true }
+      placeholder={ $placeholder }
+      disabled={ $disabled ?? undefined }
+    />
+  );
 }
 
 // password
 export function password(root: StringItem, form: FormInstance, required: boolean): ReactNode {
-  const { $readOnly, $placeholder }: StringItem = root;
+  const { $readOnly, $placeholder, $disabled }: StringItem = root;
 
-  return <Input.Password readOnly={ $readOnly } placeholder={ $placeholder } />;
+  return <Input.Password readOnly={ $readOnly } placeholder={ $placeholder } disabled={ $disabled ?? undefined } />;
 }
 
 /* number类型组件 */
 // 默认组件
 export function defaultNumber(root: NumberItem, form: FormInstance, required: boolean): ReactNode {
-  const { $readOnly, $placeholder }: NumberItem = root;
+  const { $readOnly, $placeholder, $disabled }: NumberItem = root;
 
-  return <InputNumber className={ styleName('number-input') } readOnly={ $readOnly } placeholder={ $placeholder } />;
+  return (
+    <InputNumber className={ styleName('number-input') }
+      readOnly={ $readOnly }
+      placeholder={ $placeholder }
+      disabled={ $disabled ?? undefined }
+    />
+  );
 }
 
 /* boolean类型组件 */
 // 默认组件
 export function defaultBoolean(root: BooleanItem, form: FormInstance, required: boolean): ReactNode {
-  return <Checkbox />;
+  const { $disabled }: BooleanItem = root;
+
+  return <Checkbox disabled={ $disabled ?? undefined } />;
 }
 
 // switch组件
 export function switchComponent(root: BooleanItem, form: FormInstance, required: boolean): ReactNode {
-  return <Switch />;
+  const { $disabled }: BooleanItem = root;
+
+  return <Switch disabled={ $disabled ?? undefined } />;
 }
 
 /* Array类型组件 */
@@ -85,20 +108,20 @@ export function defaultArray(root: ArrayItem, form: FormInstance, required: bool
 
 // checkbox group
 export function checkboxGroup(root: ArrayItem, form: FormInstance, required: boolean): ReactNode {
-  const { $options = [] }: ArrayItem = root;
+  const { $options = [], $disabled }: ArrayItem = root;
 
-  return <Checkbox.Group options={ $options } />;
+  return <Checkbox.Group options={ $options } disabled={ $disabled ?? undefined } />;
 }
 
 // multiple and tags
 export function multipleOrTags(root: ArrayItem, form: FormInstance, required: boolean): ReactNode {
-  const { $options = [], $componentType }: ArrayItem = root;
+  const { $options = [], $componentType, $disabled }: ArrayItem = root;
   const mode: 'multiple' | 'tags' | undefined = ($componentType === 'multiple' || $componentType === 'tags')
     ? $componentType
     : undefined;
 
   return (
-    <Select className={ styleName('array-multiple') } mode={ mode }>
+    <Select className={ styleName('array-multiple') } mode={ mode } disabled={ $disabled ?? undefined }>
       { selectOptionsRender($options) }
     </Select>
   );
