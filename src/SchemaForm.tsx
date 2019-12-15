@@ -7,12 +7,14 @@ import {
   ForwardRefExoticComponent,
   PropsWithoutRef,
   RefAttributes,
-  ReactElement
+  ReactElement,
+  FunctionComponent
 } from 'react';
 import * as PropTypes from 'prop-types';
 import isPlainObject from 'lodash-es/isPlainObject';
 import { Form } from 'antd';
 import { FormInstance } from 'antd/es/form';
+import { FormProps } from 'antd/es/form/Form';
 import { Store } from 'rc-field-form/es/interface';
 import AntdSchemaFormContext from './context';
 import FormObject from './components/FormObject/FormObject';
@@ -34,6 +36,7 @@ export interface SchemaFormProps {
   };
   customTableRender?: object;
   languagePack?: object;
+  formOptions?: FormProps;
 }
 
 type SchemaFormComponent = ForwardRefExoticComponent<PropsWithoutRef<SchemaFormProps> & RefAttributes<any>>;
@@ -49,7 +52,8 @@ const SchemaForm: SchemaFormComponent = forwardRef(function(props: PWC<SchemaFor
     cancelText,
     footer,
     customComponent,
-    customTableRender
+    customTableRender,
+    formOptions = {}
   }: SchemaFormProps = props;
 
   // 获取系统语言
@@ -82,7 +86,7 @@ const SchemaForm: SchemaFormComponent = forwardRef(function(props: PWC<SchemaFor
     if (ref) {
       if (typeof ref === 'object' && ('current' in ref)) {
         // @ts-ignore
-        ref.current = form;
+        ref['current'] = form;
       }
 
       if (typeof ref === 'function') {
@@ -93,7 +97,7 @@ const SchemaForm: SchemaFormComponent = forwardRef(function(props: PWC<SchemaFor
 
   return (
     <AntdSchemaFormContext.Provider value={ contextValue }>
-      <Form layout="vertical" form={ form }>
+      <Form layout="vertical" form={ form } { ...formOptions }>
         <FormObject root={ json }
           onOk={ onOk }
           onCancel={ onCancel }
