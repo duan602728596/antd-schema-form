@@ -2,6 +2,8 @@ import * as React from 'react';
 import { useContext, PropsWithChildren, ReactElement } from 'react';
 import * as PropTypes from 'prop-types';
 import { Form } from 'antd';
+import classNames from 'classnames';
+import omit from 'lodash-es/omit';
 import AntdSchemaFormContext from '../../context';
 import styleName from '../../utils/styleName';
 import createElement from '../../utils/createElement';
@@ -26,7 +28,7 @@ function FormBoolean(props: PropsWithChildren<FormBooleanProps>): ReactElement |
 
   const { form, customComponent }: ContextValue = context;
   const { root, required }: FormBooleanProps = props;
-  const { id, title, description, $componentType, $hidden }: BooleanItem = root;
+  const { id, title, description, $componentType, $hidden, $formItemProps }: BooleanItem = root;
   let element: ReactElement | null = null;
 
   if (customComponent) {
@@ -36,10 +38,11 @@ function FormBoolean(props: PropsWithChildren<FormBooleanProps>): ReactElement |
   }
 
   return element ? (
-    <Form.Item className={ $hidden ? styleName('hidden') : undefined }
+    <Form.Item className={ classNames($hidden ? styleName('hidden') : undefined, $formItemProps?.className) }
       name={ id }
       label={ title }
       valuePropName="checked"
+      { ...omit($formItemProps, ['className']) }
     >
       { element }
     </Form.Item>

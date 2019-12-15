@@ -3,6 +3,8 @@ import { useContext, PropsWithChildren, ReactElement } from 'react';
 import * as PropTypes from 'prop-types';
 import { Form } from 'antd';
 import { Rule } from 'rc-field-form/es/interface';
+import classNames from 'classnames';
+import omit from 'lodash-es/omit';
 import AntdSchemaFormContext from '../../context';
 import styleName from '../../utils/styleName';
 import createStringRules from './createStringRules';
@@ -29,7 +31,7 @@ function FormString(props: PropsWithChildren<FormStringProps>): ReactElement | n
 
   const { form, customComponent, languagePack }: ContextValue = context;
   const { root, required }: FormStringProps = props; // type=object时，会判断key是否存在于required数组中
-  const { id, title, description, $componentType, $hidden }: StringItem = root;
+  const { id, title, description, $componentType, $hidden, $formItemProps }: StringItem = root;
   const rules: Array<Rule> = createStringRules(languagePack, root, required);
   let element: ReactElement | null = null;
 
@@ -40,10 +42,11 @@ function FormString(props: PropsWithChildren<FormStringProps>): ReactElement | n
   }
 
   return element ? (
-    <Form.Item className={ $hidden ? styleName('hidden') : undefined }
+    <Form.Item className={ classNames($hidden ? styleName('hidden') : undefined, $formItemProps?.className) }
       name={ id }
       rules={ rules }
       label={ title }
+      { ...omit($formItemProps, ['className']) }
     >
       { element }
     </Form.Item>

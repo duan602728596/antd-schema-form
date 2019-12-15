@@ -4,6 +4,7 @@ import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Form } from 'antd';
 import { Rule } from 'rc-field-form/es/interface';
+import omit from 'lodash-es/omit';
 import AntdSchemaFormContext from '../../context';
 import styleName from '../../utils/styleName';
 import createArrayRules from './createArrayRules';
@@ -29,7 +30,7 @@ function FormArray(props: PropsWithChildren<FormArrayProps>): ReactElement | nul
 
   const { form, customComponent, languagePack }: ContextValue = context;
   const { root, required }: FormArrayProps = props;
-  const { id, title, description, $componentType, $defaultValue, $hidden }: ArrayItem = root;
+  const { id, title, description, $componentType, $defaultValue, $hidden, $formItemProps }: ArrayItem = root;
   const rules: Array<Rule> = createArrayRules(languagePack, root, required);
   let isTableComponent: boolean = false; // 判断是否为table组件
   let element: ReactElement | null = null;
@@ -43,16 +44,21 @@ function FormArray(props: PropsWithChildren<FormArrayProps>): ReactElement | nul
     }
   }
 
-  const classname: string = classNames({
+  let classname: string = classNames({
     [styleName('array-table-form-item')]: isTableComponent,
     [styleName('hidden')]: $hidden
   });
+
+  if ($formItemProps && $formItemProps.className) {
+    classname = classNames(classname, $formItemProps.className);
+  }
 
   return element ? (
     <Form.Item className={ classname }
       name={ id }
       rules={ rules }
       label={ title }
+      { ...omit($formItemProps, ['className']) }
     >
       { element }
     </Form.Item>

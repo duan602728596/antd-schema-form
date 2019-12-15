@@ -3,6 +3,8 @@ import { useContext, PropsWithChildren, ReactElement } from 'react';
 import * as PropTypes from 'prop-types';
 import { Form } from 'antd';
 import { Rule } from 'rc-field-form/es/interface';
+import classNames from 'classnames';
+import omit from 'lodash-es/omit';
 import AntdSchemaFormContext from '../../context';
 import styleName from '../../utils/styleName';
 import createNumberRules from './createNumberRules';
@@ -29,7 +31,7 @@ function FormNumber(props: PropsWithChildren<FormNumberProps>): ReactElement | n
 
   const { form, customComponent, languagePack }: ContextValue = context;
   const { root, required }: FormNumberProps = props; // type=object时，会判断key是否存在于required数组中
-  const { id, type, title, description, $componentType, $hidden }: NumberItem = root;
+  const { id, type, title, description, $componentType, $hidden, $formItemProps }: NumberItem = root;
   const rules: Array<Rule> = createNumberRules(languagePack, root, required, type === 'integer');
   let element: ReactElement | null = null;
 
@@ -40,10 +42,11 @@ function FormNumber(props: PropsWithChildren<FormNumberProps>): ReactElement | n
   }
 
   return element ? (
-    <Form.Item className={ $hidden ? styleName('hidden') : undefined }
+    <Form.Item className={ classNames($hidden ? styleName('hidden') : undefined, $formItemProps?.className) }
       name={ id }
       rules={ rules }
       label={ title }
+      { ...omit($formItemProps, ['className']) }
     >
       { element }
     </Form.Item>

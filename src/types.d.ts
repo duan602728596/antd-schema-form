@@ -1,5 +1,4 @@
 import { FormInstance } from 'antd/es/form';
-import { StoreValue } from 'rc-field-form/es/interface';
 
 export interface ContextValue {
   form: FormInstance;
@@ -27,6 +26,10 @@ export interface SchemaItem {
   $componentType?: string;
   $oneOfComponentType?: string;
   $order?: number;
+  $formItemProps?: {
+    [key: string]: any;
+  };
+  $disabled?: boolean;
 }
 
 export interface StringItem extends SchemaItem {
