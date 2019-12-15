@@ -47,6 +47,8 @@
 * `$oneOfIndex: number`: *oneOf*下选中的Radio.Group的索引。
 * `$oneOfDisabled: boolean`: *oneOf*下Radio.Group禁止切换。
 * `$hidden: boolean`: 隐藏表单域（表单值仍然存在）。
+* `$disabled: boolean`: 禁用组件。
+* `$formItemProps: object`: 配置`Form.Item`的props。
 * `$tableColumnHidden: boolean`: 为数组内的对象且组件为表格时，隐藏列（表单值仍然存在）。
 * `$tableRender: string`: 渲染为其他的自定义表格列渲染组件。
 

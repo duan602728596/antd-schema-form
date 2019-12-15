@@ -47,6 +47,8 @@ You can use [form generation](https://duan602728596.github.io/antd-schema-form/#
 * `$oneOfIndex: number`: The index of the selected Radio.Group under *oneOf*.
 * `$oneOfDisabled: boolean`: *OneOf* is disabled under Radio.Group.
 * `$hidden: boolean`: Hide form fields (form values still exist).
+* `$disabled: boolean`: Disable components.
+* `$formItemProps: object`: Configure `Form.Item` props.
 * `$tableColumnHidden: boolean`: When the object is an object in the array and the component is a table, the column is hidden (the form value still exists).
 * `$tableRender: string`: Rendering to other custom table column rendering components.
 
