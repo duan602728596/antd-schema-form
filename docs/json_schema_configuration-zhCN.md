@@ -58,7 +58,6 @@
 
 * `properties: object`: 当**type**为**object**时，列出对象下面的属性。
 * `required: Array<string>`: 对象必须包含的属性。不同于`$required`属性。
-* `dependencies: { [key: string]: Array<string> }`: 对象的属性指定的依赖项。当该属性没有值时，依赖项的组件不会被渲染；当该属性有值时，依赖项的组件会渲染，且依赖项的表单必填。该属性不会控制表单的渲染顺序。
 
 ### `type="string"`:
 
