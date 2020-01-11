@@ -1,3 +1,10 @@
+### v4.0.0-beta.0
+
+* 🎉 Upgrade antd to v4.
+* Removed `dependencies` configuration, because the form of antd4 can't achieve the effect of v3 dependencies.
+
+---
+
 ### v3.0.1
 
 * 🐛Fix the `TableComponent` component to confirm the error of the event.
