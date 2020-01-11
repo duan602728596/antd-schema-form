@@ -14,11 +14,18 @@ const libPath = 'lib';
 const esPath = 'es';
 const stylePath = 'style';
 
+const typescriptConfig = {
+  allowSyntheticDefaultImports: true
+};
+
 /* ----- 生产环境编译 ----- */
 /* lib */
 function proLibProject() {
   const result = gulp.src(tsSrc)
-    .pipe(typescript(tsconfigES5.compilerOptions));
+    .pipe(typescript({
+      ...tsconfigES5.compilerOptions,
+      ...typescriptConfig
+    }));
 
   return merge([
     result.js.pipe(gulp.dest(libPath)),
@@ -34,7 +41,10 @@ function proLibProject() {
 /* es */
 function proEsProject() {
   const result = gulp.src(tsSrc)
-    .pipe(typescript(tsconfig.compilerOptions));
+    .pipe(typescript({
+      ...tsconfig.compilerOptions,
+      ...typescriptConfig
+    }));
 
   return merge([
     result.js.pipe(gulp.dest(esPath)),
