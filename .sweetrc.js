@@ -23,11 +23,6 @@ module.exports = {
     index: [path.join(__dirname, 'src/index.js')]
   },
   output: { publicPath: isDevelopment ? '/' : 'https://duan602728596.github.io/antd-schema-form/' },
-  resolve: {
-    alias: {
-      '@ant-design/icons/lib/dist$': path.join(__dirname, 'src/components/icons/icons')
-    }
-  },
   js: {
     plugins: [
       [
