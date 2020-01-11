@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { createSelector, createStructuredSelector } from 'reselect';
 import classNames from 'classnames';
 import { Button, Input, message } from 'antd';
+import { CopyOutlined as IconCopyOutlined, RedoOutlined as IconRedoOutlined } from '@ant-design/icons';
 import useActions from '../../../store/useActions';
 import { setSchemaJson } from '../reducer/reducer';
 import style from './style.sass';
@@ -60,12 +61,12 @@ function JsonInputTextArea(props) {
     <Fragment>
       <div>
         <Button className={ classNames(style.mr10, style.mb10) }
-          icon="copy"
+          icon={ <IconCopyOutlined /> }
           onClick={ handleCopyTextClick.bind(this, 'jsonSchemaTextArea', msg.copyMessage) }
         >
           { createForm.copy }
         </Button>
-        <Button className={ style.mb10 } icon="redo" onClick={ handleRedoJsonSchema }>
+        <Button className={ style.mb10 } icon={ <IconRedoOutlined /> } onClick={ handleRedoJsonSchema }>
           { createForm.refreshFormConfiguration }
         </Button>
       </div>

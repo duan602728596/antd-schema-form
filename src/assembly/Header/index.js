@@ -1,5 +1,6 @@
 import React from 'react';
-import { Layout, Icon, Select, Dropdown, Menu } from 'antd';
+import { Layout, Select, Dropdown, Menu } from 'antd';
+import { GithubOutlined as IconGithubOutlined } from '@ant-design/icons';
 import { version } from 'antd-schema-form/package.json';
 import style from './style.sass';
 import Nav from './Nav';
@@ -50,7 +51,7 @@ function Header(props) {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Icon type="github" />
+            <IconGithubOutlined />
           </a>
         </div>
       </div>

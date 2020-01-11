@@ -1,6 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Icon } from 'antd';
+import {
+  HomeTwoTone as IconHomeTwoTone,
+  FileTextTwoTone as IconFileTextTwoTone,
+  EyeTwoTone as IconEyeTwoTone,
+  BookTwoTone as IconBookTwoTone
+} from '@ant-design/icons';
 import style from './style.sass';
 import { I18NContext } from '../../components/I18N/I18N';
 
@@ -20,25 +25,25 @@ function Nav(props) {
               <ul className={ style.navList }>
                 <li>
                   <Link to="/">
-                    <Icon type="home" theme="twoTone" />
+                    <IconHomeTwoTone />
                     <span>{ nav[0] }</span>
                   </Link>
                 </li>
                 <li>
                   <Link to="/CreateForm">
-                    <Icon type="file-text" theme="twoTone" />
+                    <IconFileTextTwoTone />
                     <span>{ nav[1] }</span>
                   </Link>
                 </li>
                 <li>
                   <Link to="/Preview">
-                    <Icon type="eye" theme="twoTone" />
+                    <IconEyeTwoTone />
                     <span>{ nav[2] }</span>
                   </Link>
                 </li>
                 <li>
                   <a href={ docUrl } target="_blank" rel="noopener noreferrer">
-                    <Icon type="book" theme="twoTone" />
+                    <IconBookTwoTone />
                     <span>{ nav[3] }</span>
                   </a>
                 </li>

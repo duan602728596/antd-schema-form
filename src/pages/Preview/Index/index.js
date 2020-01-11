@@ -1,9 +1,9 @@
-import React, { Component, Fragment, useState, useEffect, useContext } from 'react';
-import PropTypes from 'prop-types';
+import React, { Fragment, useState, useContext } from 'react';
 import { bindActionCreators } from 'redux';
-import { connect, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { createSelector, createStructuredSelector } from 'reselect';
 import { Row, Col, Input, Button, message, Modal, Empty } from 'antd';
+import { CopyOutlined as IconCopyOutlined, TableOutlined as IconTableOutlined } from '@ant-design/icons';
 import useActions from '../../../store/useActions';
 import { setSchemaJson } from '../reducer/reducer';
 import style from './style.sass';
@@ -77,12 +77,17 @@ function Index(props) {
         <Col xs={ 24 } sm={ 24 } md={ 8 }>
           <div className={ style.tools }>
             <Button className={ style.mr10 }
-              icon="copy"
+              icon={ <IconCopyOutlined /> }
               onClick={ handleCopyTextClick.bind(this, 'jsonSchemaTextArea2', langMessage.copyMessage) }
             >
               { preview.copy }
             </Button>
-            <Button type="primary" icon="tablet" onClick={ handleRedoJsonSchema }>{ preview.generateForm }</Button>
+            <Button type="primary"
+              icon={ <IconTableOutlined /> }
+              onClick={ handleRedoJsonSchema }
+            >
+              { preview.generateForm }
+            </Button>
           </div>
           <Input.TextArea id="jsonSchemaTextArea2"
             rows={ 20 }

@@ -3,6 +3,11 @@ import { bindActionCreators } from 'redux';
 import { useSelector } from 'react-redux';
 import { createSelector, createStructuredSelector } from 'reselect';
 import { Tag, Button, Collapse } from 'antd';
+import {
+  PlusOutlined as IconPlusOutlined,
+  EditOutlined as IconEditOutlined,
+  DeleteOutlined as IconDeleteOutlined
+} from '@ant-design/icons';
 import useActions from '../../../store/useActions';
 import { setSchemaJson } from '../reducer/reducer';
 import style from './style.sass';
@@ -213,14 +218,18 @@ function ChangeJson(props) {
             </div>
             <div className={ style.fr }>
               <Button.Group size="small">
-                <Button icon="plus"
+                <Button icon={ <IconPlusOutlined /> }
                   title={ createForm.add }
                   disabled={ !(type === 'object' || type === 'array') }
                   onClick={ (event) => handleOpenAddDrawerClick(item, event) }
                 />
-                <Button icon="edit" title={ createForm.edit } onClick={ (event) => handleOpenEditDrawerClick(item, event) } />
-                <Button type="danger"
-                  icon="delete"
+                <Button icon={ <IconEditOutlined /> }
+                  title={ createForm.edit }
+                  onClick={ (event) => handleOpenEditDrawerClick(item, event) }
+                />
+                <Button type="primary"
+                  danger={ true }
+                  icon={ <IconDeleteOutlined /> }
                   title={ createForm.delete }
                   disabled={ disableDelete }
                   onClick={ (event) => handleDeleteItemClick(item, event) }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { message, Empty, Icon } from 'antd';
+import { message, Empty } from 'antd';
+import { FrownOutlined as IconFrownOutlined } from '@ant-design/icons';
 import SchemaForm from 'antd-schema-form';
 import style from './style.sass';
 
@@ -47,7 +48,7 @@ class SchemaFormPreview extends Component {
     if (hasError) {
       return (
         <div className={ style.errData }>
-          <Empty description=" " image={ <Icon className={ style.frown } type="frown" /> } />
+          <Empty description=" " image={ <IconFrownOutlined className={ style.frown } /> } />
         </div>
       );
     } else {
