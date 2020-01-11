@@ -155,7 +155,7 @@ function FormObject(props: PropsWithChildren<FormObjectProps>): ReactElement | n
       onOk && onOk(form, value, keys);
     } catch (err) {
       console.error(err);
-      form.scrollToField(err.errorFields[0].name);
+      form.scrollToField(err?.errorFields?.[0]?.name);
     }
   }
 
