@@ -2,6 +2,7 @@
 
 * 🎉 Upgrade antd to v4.
 * Removed `dependencies` configuration, because the form of antd4 can't achieve the effect of v3 dependencies.
+* The `description` property is no longer displayed via` Tooltip`.
 
 ---
 
