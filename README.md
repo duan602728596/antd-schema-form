@@ -5,7 +5,7 @@
 [![NPM version][react-dom-image]][react-dom-url]
 [![NPM version][ant-design-image]][ant-design-url]
 
-[antd-schema-form-image]: https://img.shields.io/badge/antd--schema--form-3.0.1-blue.svg
+[antd-schema-form-image]: https://img.shields.io/badge/antd--schema--form-4.0.0-blue.svg
 [antd-schema-form-url]: https://www.npmjs.com/package/antd-schema-form
 
 [react-image]: https://img.shields.io/badge/react-%3E=16.7.0-red.svg
@@ -14,7 +14,7 @@
 [react-dom-image]: https://img.shields.io/badge/react--dom-%3E=16.7.0-red.svg
 [react-dom-url]: https://github.com/facebook/react
 
-[ant-design-image]: https://img.shields.io/badge/ant--design-%3E=3.12.0-red.svg
+[ant-design-image]: https://img.shields.io/badge/ant--design-%3E=4-red.svg
 [ant-design-url]: https://github.com/ant-design/ant-design
 
 [中文文档](README-zhCN.md)
