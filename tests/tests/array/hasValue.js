@@ -141,7 +141,7 @@ export function CheckboxGroupHastDefaultValue() {
       type: 'string',
       title: '值'
     },
-    $componentType: 'checkbox',
+    $componentType: 'checkboxGroup',
     $options: [
       { label: '选项1', value: '值1' },
       { label: '选项2', value: '值2' },
@@ -150,11 +150,11 @@ export function CheckboxGroupHastDefaultValue() {
     $defaultValue: ['值1', '值3']
   };
   const wrapper = mount(<SchemaForm json={ json } />);
-  const antCheckboxChecked = wrapper.find('.ant-checkbox-input');
+  const antCheckboxChecked = wrapper.find('.ant-checkbox');
 
-  expect(antCheckboxChecked.at(0).getDOMNode().checked).to.be.true;
-  expect(antCheckboxChecked.at(1).getDOMNode().checked).to.be.false;
-  expect(antCheckboxChecked.at(2).getDOMNode().checked).to.be.true;
+  expect(antCheckboxChecked.at(0).hasClass('ant-checkbox-checked')).to.be.true;
+  expect(antCheckboxChecked.at(1).hasClass('ant-checkbox-checked')).to.be.false;
+  expect(antCheckboxChecked.at(2).hasClass('ant-checkbox-checked')).to.be.true;
 }
 
 /* 多选框有值 */
@@ -179,9 +179,9 @@ export function CheckboxGroupHastValue() {
     $root: ['值2']
   };
   const wrapper = mount(<SchemaForm json={ json } value={ value } />);
-  const antCheckboxChecked = wrapper.find('.ant-checkbox-input');
+  const antCheckboxChecked = wrapper.find('.ant-checkbox');
 
-  expect(antCheckboxChecked.at(0).getDOMNode().checked).to.be.false;
-  expect(antCheckboxChecked.at(1).getDOMNode().checked).to.be.true;
-  expect(antCheckboxChecked.at(2).getDOMNode().checked).to.be.false;
+  expect(antCheckboxChecked.at(0).hasClass('ant-checkbox-checked')).to.be.false;
+  expect(antCheckboxChecked.at(1).hasClass('ant-checkbox-checked')).to.be.true;
+  expect(antCheckboxChecked.at(2).hasClass('ant-checkbox-checked')).to.be.false;
 }

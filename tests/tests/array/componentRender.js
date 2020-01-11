@@ -78,7 +78,7 @@ export function renderSelectTags() {
   };
 
   const wrapper = mount(<SchemaForm json={ json } />);
-  const antSelectSelection = wrapper.find('.ant-select-selection');
+  const antSelectSelection = wrapper.find('.ant-select');
 
   expect(antSelectSelection).to.have.lengthOf(1);
 }

@@ -89,44 +89,4 @@ describe('component rendering', function() {
       expect(antRadioInput).to.have.lengthOf(3);
     });
   });
-
-  /* dependencies渲染 */
-  describe('dependencies component rendering', function() {
-    // dependencies
-    it('should dependencies component rendering', function() {
-      const json = {
-        id: '$root',
-        type: 'object',
-        title: 'dependencies',
-        properties: {
-          name: {
-            id: '$root/properties/name',
-            type: 'string'
-          },
-          age: {
-            id: '$root/properties/age',
-            type: 'number'
-          },
-          school: {
-            id: '$root/properties/school',
-            type: 'string'
-          }
-        },
-        dependencies: {
-          name: ['age', 'school']
-        }
-      };
-
-      const wrapper = mount(<SchemaForm json={ json } />);
-
-      expect(wrapper.find('.ant-input')).to.have.lengthOf(1);
-      expect(wrapper.find('.ant-input-number-input')).to.have.lengthOf(0);
-
-      // 模拟输入
-      wrapper.find('.ant-input').at(0).simulate('change', { target: { value: 'hahaha' } });
-
-      expect(wrapper.find('.ant-input')).to.have.lengthOf(2);
-      expect(wrapper.find('.ant-input-number-input')).to.have.lengthOf(1);
-    });
-  });
 });
