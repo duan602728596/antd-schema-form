@@ -439,7 +439,7 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
             <Popconfirm title={ languagePack.formArray.operatingPopconfirmTitle }
               onConfirm={ (event: RMouseEvent<HTMLElement, MouseEvent>): void => handleDeleteDataClick(index, event) }
             >
-              <Button type="danger">{ languagePack.formArray.operatingDelete }</Button>
+              <Button type="primary" danger={ true }>{ languagePack.formArray.operatingDelete }</Button>
             </Popconfirm>
           </Button.Group>
         );
@@ -511,7 +511,7 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
               title={ languagePack.formArray.deleteSelectedText }
               onConfirm={ (event: RMouseEvent<HTMLElement, MouseEvent>): void => handleDeleteSelectDataClick(event) }
             >
-              <Button className={ styleName('array-deleteAll') } type="danger" icon={ <IconDeleteOutlined /> }>
+              <Button className={ styleName('array-deleteAll') } type="primary" danger={ true } icon={ <IconDeleteOutlined /> }>
                 { languagePack.formArray.deleteSelected }
               </Button>
             </Popconfirm>
