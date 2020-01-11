@@ -101,6 +101,7 @@
     "webpack-merge": "^4.2.2"
   },
   "peerDependencies": {
+    "@ant-design/icons": ">=4",
     "antd": ">=4",
     "react": ">=16.7.0",
     "react-dom": ">=16.7.0"
