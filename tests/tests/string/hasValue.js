@@ -46,7 +46,7 @@ export function selectHasDefaultValue() {
     $defaultValue: '值2'
   };
   const wrapper = mount(<SchemaForm json={ json } />);
-  const antSelectSelectionSelectedValue = wrapper.find('.ant-select-selection-selected-value');
+  const antSelectSelectionSelectedValue = wrapper.find('.ant-select-selection-item');
 
   expect(antSelectSelectionSelectedValue.text()).to.be.equal('选项2');
 }
@@ -65,7 +65,7 @@ export function selectHasValue() {
   };
   const value = { $root: '值1' };
   const wrapper = mount(<SchemaForm json={ json } value={ value } />);
-  const antSelectSelectionSelectedValue = wrapper.find('.ant-select-selection-selected-value');
+  const antSelectSelectionSelectedValue = wrapper.find('.ant-select-selection-item');
 
   expect(antSelectSelectionSelectedValue.text()).to.be.equal('选项1');
 }
@@ -122,7 +122,7 @@ export function dateHasDefaultValue() {
     $defaultValue: moment('2018-12-01 22:43:17')
   };
   const wrapper = mount(<SchemaForm json={ json } />);
-  const antCalendarPickerInput = wrapper.find('.ant-calendar-picker-input');
+  const antCalendarPickerInput = wrapper.find('.ant-picker-input').find('input');
 
   expect(antCalendarPickerInput.getDOMNode().value).to.be.equal('2018-12-01 22:43:17');
 }
@@ -137,7 +137,7 @@ export function dateHasValue() {
   };
   const value = { $root: moment('2000-01-08 16:12:00') };
   const wrapper = mount(<SchemaForm json={ json } value={ value } />);
-  const antCalendarPickerInput = wrapper.find('.ant-calendar-picker-input');
+  const antCalendarPickerInput = wrapper.find('.ant-picker-input').find('input');
 
   expect(antCalendarPickerInput.getDOMNode().value).to.be.equal('2000-01-08 16:12:00');
 }

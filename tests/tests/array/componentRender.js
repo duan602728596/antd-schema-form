@@ -54,7 +54,7 @@ export function renderSelectMultiple() {
   };
 
   const wrapper = mount(<SchemaForm json={ json } />);
-  const antSelectSelection = wrapper.find('.ant-select-selection');
+  const antSelectSelection = wrapper.find('.ant-select-selector');
 
   expect(antSelectSelection).to.have.lengthOf(1);
 }

@@ -77,7 +77,7 @@ export function renderDate() {
     $componentType: 'date'
   };
   const wrapper = mount(<SchemaForm json={ json } />);
-  const antCalendarPicker = wrapper.find('.ant-calendar-picker');
+  const antCalendarPicker = wrapper.find('.ant-picker');
 
   expect(antCalendarPicker).to.have.lengthOf(1);
 }
