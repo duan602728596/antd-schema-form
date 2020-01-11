@@ -122,22 +122,6 @@ function FormObject(props: PropsWithChildren<FormObjectProps>): ReactElement | n
     return oneOfElement;
   }
 
-  // 判断是否显示
-  function dependenciesDisplay(id: string, key: string, keyDepMap: { [key: string]: string[] }): boolean {
-    let isDependenciesDisplay: boolean = false;
-
-    for (const item of keyDepMap[key]) {
-      const value: any = form.getFieldValue(`${ id }/properties/${ item }`);
-
-      if (!(isNil(value) || (isString(value) && value === ''))) {
-        isDependenciesDisplay = true;
-        break;
-      }
-    }
-
-    return isDependenciesDisplay;
-  }
-
   // 渲染一个object组件
   function renderObjectComponentView(root: SchemaItem): ReactNode {
     const { $componentType }: SchemaItem = root;
