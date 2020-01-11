@@ -74,6 +74,16 @@ const SchemaForm: SchemaFormComponent = forwardRef(function(props: PWC<SchemaFor
     languagePack: langP // 语言包
   };
 
+  if (ref) {
+    if (typeof ref === 'object' && ('current' in ref)) {
+      useImperativeHandle(ref, (): FormInstance => form );
+    }
+
+    if (typeof ref === 'function') {
+      ref(form);
+    }
+  }
+
   useEffect(function(): void {
     const defaultValue: Store = getObjectFromSchema(json);
     const obj: Store = getObjectFromValue(schemaFormValue);
@@ -81,18 +91,6 @@ const SchemaForm: SchemaFormComponent = forwardRef(function(props: PWC<SchemaFor
     form.resetFields();
     form.setFieldsValue({ ...defaultValue, ...obj });
   }, [schemaFormValue]);
-
-  useEffect(function(): void {
-    if (ref) {
-      if (typeof ref === 'object' && ('current' in ref)) {
-        useImperativeHandle(ref, (): FormInstance => form );
-      }
-
-      if (typeof ref === 'function') {
-        ref(form);
-      }
-    }
-  }, [ref]);
 
   return (
     <AntdSchemaFormContext.Provider value={ contextValue }>
