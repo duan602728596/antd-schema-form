@@ -74,15 +74,7 @@ const SchemaForm: SchemaFormComponent = forwardRef(function(props: PWC<SchemaFor
     languagePack: langP // 语言包
   };
 
-  if (ref) {
-    if (typeof ref === 'object' && ('current' in ref)) {
-      useImperativeHandle(ref, (): FormInstance => form );
-    }
-
-    if (typeof ref === 'function') {
-      ref(form);
-    }
-  }
+  useImperativeHandle(ref, (): FormInstance => form );
 
   useEffect(function(): void {
     const defaultValue: Store = getObjectFromSchema(json);
