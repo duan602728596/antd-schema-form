@@ -23,6 +23,7 @@ overrides:
     parser: '@typescript-eslint/parser'
     parserOptions:
       project: tsconfig.json
+      createDefaultProgram: true
     plugins:
       - '@typescript-eslint/eslint-plugin-tslint'
     rules:
