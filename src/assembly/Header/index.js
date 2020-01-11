@@ -17,9 +17,6 @@ function versionMenuOverlay() {
         </a>
       </Menu.Item>
       <Menu.Item>
-        <a href="https://duan602728596.github.io/antd-schema-form/v3/#/" target="_blank" rel="noopener noreferrer">v3</a>
-      </Menu.Item>
-      <Menu.Item>
         <a href="https://duan602728596.github.io/antd-schema-form/v2/#/" target="_blank" rel="noopener noreferrer">v2</a>
       </Menu.Item>
     </Menu>
