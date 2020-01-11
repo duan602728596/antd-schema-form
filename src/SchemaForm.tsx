@@ -8,7 +8,7 @@ import {
   PropsWithoutRef,
   RefAttributes,
   ReactElement,
-  FunctionComponent
+  useImperativeHandle
 } from 'react';
 import * as PropTypes from 'prop-types';
 import isPlainObject from 'lodash-es/isPlainObject';
@@ -85,8 +85,7 @@ const SchemaForm: SchemaFormComponent = forwardRef(function(props: PWC<SchemaFor
   useEffect(function(): void {
     if (ref) {
       if (typeof ref === 'object' && ('current' in ref)) {
-        // @ts-ignore
-        ref['current'] = form;
+        useImperativeHandle(ref, (): FormInstance => form );
       }
 
       if (typeof ref === 'function') {
