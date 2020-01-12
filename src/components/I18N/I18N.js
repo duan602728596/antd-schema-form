@@ -8,9 +8,11 @@ export const I18NContext = createContext({
 
 export function I18N(props) {
   const { children } = props;
-  const [language, setLanguage] = useState(typeof window === 'object'
-    ? (window.navigator.language || window.navigator.userLanguage).toLocaleLowerCase()
-    : 'default'); // 当前的语言环境
+  const [language, setLanguage] = useState(typeof window === 'object' ? do {
+    const lang = (window.navigator.language || window.navigator.userLanguage).toLocaleLowerCase();
+
+    lang === 'zh-hans-cn' ? 'zh-cn' : lang;
+  } : 'default'); // 当前的语言环境
 
   // 改变语言
   function handleLanguageSelect(value, option) {
