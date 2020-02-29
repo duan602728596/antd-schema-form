@@ -11,6 +11,7 @@ import {
   useImperativeHandle
 } from 'react';
 import * as PropTypes from 'prop-types';
+import { Validator } from 'prop-types';
 import isPlainObject from 'lodash-es/isPlainObject';
 import { Form } from 'antd';
 import { FormInstance } from 'antd/es/form';
@@ -41,7 +42,7 @@ export interface SchemaFormProps {
 
 type SchemaFormComponent = ForwardRefExoticComponent<PropsWithoutRef<SchemaFormProps> & RefAttributes<any>>;
 
-const SchemaForm: SchemaFormComponent = forwardRef(function(props: PWC<SchemaFormProps>, ref: Ref<any>): ReactElement | null {
+const SchemaForm: SchemaFormComponent = forwardRef(function(props: PWC<SchemaFormProps>, ref: Ref<any>): ReactElement {
   const [form]: [FormInstance] = Form.useForm();
   const {
     value: schemaFormValue,
@@ -99,9 +100,8 @@ const SchemaForm: SchemaFormComponent = forwardRef(function(props: PWC<SchemaFor
   );
 });
 
-// @ts-ignore
 SchemaForm.propTypes = {
-  json: PropTypes.object.isRequired,
+  json: PropTypes.object.isRequired as Validator<SchemaItem>,
   value: PropTypes.object,
   onOk: PropTypes.func,
   onCancel: PropTypes.func,
@@ -114,7 +114,7 @@ SchemaForm.propTypes = {
     PropTypes.number
   ]),
   footer: PropTypes.func,
-  customComponent: PropTypes.objectOf(PropTypes.func),
+  customComponent: PropTypes.objectOf(PropTypes.func) as Validator<{ [key: string]: Function } | null | undefined>,
   customTableRender: PropTypes.objectOf(PropTypes.func),
   languagePack: PropTypes.object
 };
