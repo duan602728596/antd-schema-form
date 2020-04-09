@@ -3,7 +3,7 @@ import { HashRouter, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/lib/locale-provider/zh_CN';
-import { hot } from '@sweet-milktea/milktea/react-hot-loader';
+import { hot } from '@sweet-milktea/milktea/react-hot-loader/root';
 import { storeFactory } from './store/store';
 import Arrangement from './assembly/Arrangement/index';
 import { I18N } from './components/I18N/I18N';
@@ -23,4 +23,4 @@ function App(props) {
   );
 }
 
-export default hot(module)(App);
+export default hot(App);
