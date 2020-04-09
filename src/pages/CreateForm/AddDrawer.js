@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { Drawer, Select } from 'antd';
+import { Drawer, Select, Space } from 'antd';
 import SchemaForm from 'antd-schema-form';
 import schemaFormDefaultLang from 'antd-schema-form/language/default.json';
 import schemaFormZhCNLang from 'antd-schema-form/language/zh-CN.json';
 import json from './json/json';
-import style from './style.sass';
+import commonStyle from './commonStyle.sass';
 import { I18NContext } from '../../components/I18N/I18N';
 
 function AddDrawer(props) {
@@ -48,16 +48,16 @@ function AddDrawer(props) {
 
   return (
     <Drawer visible={ visible } width={ 800 } destroyOnClose={ true } maskClosable={ false } onClose={ onCancel }>
-      <div className={ style.mb10 }>
-        <label className={ style.mr10 }>{ createForm.drawerLabel }</label>
-        <Select className={ style.typeSelect } value={ typeValue } onSelect={ handleTypeSelect }>
+      <Space className={ commonStyle.mb8 }>
+        <label>{ createForm.drawerLabel }</label>
+        <Select className={ commonStyle.typeSelect } value={ typeValue } onSelect={ handleTypeSelect }>
           <Select.Option key="string" value="string">{ createForm.selectOptions[0] }</Select.Option>
           <Select.Option key="number" value="number">{ createForm.selectOptions[1] }</Select.Option>
           <Select.Option key="boolean" value="boolean">{ createForm.selectOptions[2] }</Select.Option>
           <Select.Option key="array" value="array">{ createForm.selectOptions[3] }</Select.Option>
           <Select.Option key="object" value="object">{ createForm.selectOptions[4] }</Select.Option>
         </Select>
-      </div>
+      </Space>
       {
         typeValue ? (
           <SchemaForm json={ json2[typeValue] }

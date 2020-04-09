@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createSelector, createStructuredSelector } from 'reselect';
-import { Row, Col, Input, Button, message, Modal, Empty } from 'antd';
+import { Row, Col, Input, Button, message, Modal, Empty, Space } from 'antd';
 import { CopyOutlined as IconCopyOutlined, TableOutlined as IconTableOutlined } from '@ant-design/icons';
 import { setSchemaJson } from './models/models';
 import style from './preview.sass';
@@ -66,9 +66,8 @@ function Preview(props) {
       <p>{ preview.introduction }</p>
       <Row className={ style.mb10 } type="flex" gutter={ 10 }>
         <Col xs={ 24 } sm={ 24 } md={ 8 }>
-          <div className={ style.tools }>
-            <Button className={ style.mr10 }
-              icon={ <IconCopyOutlined /> }
+          <Space className={ style.tools }>
+            <Button icon={ <IconCopyOutlined /> }
               onClick={ handleCopyTextClick.bind(this, 'jsonSchemaTextArea2', langMessage.copyMessage) }
             >
               { preview.copy }
@@ -79,7 +78,7 @@ function Preview(props) {
             >
               { preview.generateForm }
             </Button>
-          </div>
+          </Space>
           <Input.TextArea id="jsonSchemaTextArea2"
             rows={ 20 }
             value={ textAreaValue }

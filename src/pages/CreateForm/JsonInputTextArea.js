@@ -1,11 +1,10 @@
 import React, { Fragment, useState, useEffect, useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createSelector, createStructuredSelector } from 'reselect';
-import classNames from 'classnames';
-import { Button, Input, message } from 'antd';
+import { Button, Input, message, Space } from 'antd';
 import { CopyOutlined as IconCopyOutlined, RedoOutlined as IconRedoOutlined } from '@ant-design/icons';
 import { setSchemaJson } from './models/models';
-import style from './style.sass';
+import commonStyle from './commonStyle.sass';
 import { handleCopyTextClick } from '../../utils';
 import { I18NContext } from '../../components/I18N/I18N';
 
@@ -50,17 +49,16 @@ function JsonInputTextArea(props) {
 
   return (
     <Fragment>
-      <div>
-        <Button className={ classNames(style.mr10, style.mb10) }
-          icon={ <IconCopyOutlined /> }
+      <Space className={ commonStyle.mb8 }>
+        <Button icon={ <IconCopyOutlined /> }
           onClick={ handleCopyTextClick.bind(this, 'jsonSchemaTextArea', msg.copyMessage) }
         >
           { createForm.copy }
         </Button>
-        <Button className={ style.mb10 } icon={ <IconRedoOutlined /> } onClick={ handleRedoJsonSchema }>
+        <Button icon={ <IconRedoOutlined /> } onClick={ handleRedoJsonSchema }>
           { createForm.refreshFormConfiguration }
         </Button>
-      </div>
+      </Space>
       <Input.TextArea id="jsonSchemaTextArea"
         rows={ 20 }
         value={ textAreaValue }
