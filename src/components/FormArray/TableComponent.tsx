@@ -218,9 +218,8 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
           children: ReactNodeArray;
           className: string;
         } = item;
-
         // @ts-ignore
-        const index: number = children[0]?.props?.index;
+        const index: number = item['data-row-key'] ? Number(item['data-row-key']) : children[0]?.props?.index;
 
         return (
           <tr className={ className }
