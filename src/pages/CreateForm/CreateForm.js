@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row, Col } from 'antd';
-import style from './style.sass';
+import style from './createForm.sass';
 import JsonInputTextArea from './JsonInputTextArea';
 import ChangeJson from './ChangeJson';
 import { I18NContext } from '../../components/I18N/I18N';

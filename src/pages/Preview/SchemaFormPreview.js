@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { message, Empty } from 'antd';
 import { FrownOutlined as IconFrownOutlined } from '@ant-design/icons';
 import SchemaForm from 'antd-schema-form';
-import style from './style.sass';
+import style from './schemaFormPreview.sass';
 
 class SchemaFormPreview extends Component {
   static propTypes = {
