@@ -1,6 +1,5 @@
 import React, { Fragment, useState, useEffect, useContext } from 'react';
-import { bindActionCreators } from 'redux';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { createSelector, createStructuredSelector } from 'reselect';
 import { Tag, Button, Collapse } from 'antd';
 import {
@@ -8,8 +7,7 @@ import {
   EditOutlined as IconEditOutlined,
   DeleteOutlined as IconDeleteOutlined
 } from '@ant-design/icons';
-import useActions from '../../store/useActions';
-import { setSchemaJson } from './reducer/reducer';
+import { setSchemaJson as reduxSetSchemaJson } from './models/models';
 import style from './changeJson.sass';
 import json from './json/json';
 import AddDrawer from './AddDrawer';
@@ -19,21 +17,14 @@ import { I18NContext } from '../../components/I18N/I18N';
 /* state */
 const state = createStructuredSelector({
   schemaJson: createSelector(
-    ($$state) => $$state.has('createForm') ? $$state.get('createForm') : null,
-    ($$data) => $$data ? $$data.get('schemaJson').toJS() : {}
+    ({ createForm: $$createForm }) => $$createForm?.get?.('schemaJson'),
+    ($$data) => $$data ? $$data.toJS() : {}
   )
-});
-
-/* actions */
-const actions = (dispatch) => ({
-  action: bindActionCreators({
-    setSchemaJson
-  }, dispatch)
 });
 
 function ChangeJson(props) {
   const { schemaJson: storeSchemaJson } = useSelector(state);
-  const { action } = useActions(actions);
+  const dispatch = useDispatch();
   const context = useContext(I18NContext);
   const [schemaJson, setSchemaJson] = useState(storeSchemaJson);
   const [isAddDrawerDisplay, setIsAddDrawerDisplay] = useState(false);   // 添加面板的显示和隐藏
@@ -88,7 +79,7 @@ function ChangeJson(props) {
       };
     }
 
-    action.setSchemaJson(schemaJson);
+    schemaJson |> reduxSetSchemaJson |> dispatch;
     setIsAddDrawerDisplay(false);
     setAddItem(null);
   }
@@ -106,8 +97,7 @@ function ChangeJson(props) {
 
     // 合并数据
     Object.assign(editItem, etcValue);
-
-    action.setSchemaJson(schemaJson);
+    schemaJson |> reduxSetSchemaJson |> dispatch;
     setIsEditDrawerDisplay(false);
     setEditItem(null);
   }
@@ -142,7 +132,7 @@ function ChangeJson(props) {
     const { id } = item;
 
     findAndDelete(id, schemaJson);
-    action.setSchemaJson(schemaJson);
+    schemaJson |> reduxSetSchemaJson |> dispatch;
   }
 
   // 根据不同的类型渲染不同的标签

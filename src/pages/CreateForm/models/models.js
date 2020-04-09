@@ -14,12 +14,12 @@ const initData = {
 export const setSchemaJson = createAction('表单生成-schemaJson');
 
 /* reducer */
-const reducer = handleActions({
+const models = handleActions({
   [setSchemaJson]($$state, action) {
     return $$state.set('schemaJson', Map(action.payload));
   }
 }, fromJS(initData));
 
 export default {
-  createForm: reducer
+  createForm: models
 };

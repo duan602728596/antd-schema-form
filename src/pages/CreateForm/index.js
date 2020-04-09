@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import Helmet from 'react-helmet';
-import loadReducer from '../../store/loadReducer';
-import reducer from './reducer/reducer';
+import loadModels from '../../store/loadModels';
+import models from './models/models';
 import CreateForm from './CreateForm';
 import { I18NContext } from '../../components/I18N/I18N';
 
@@ -17,4 +17,4 @@ function ModuleLayout(props) {
   ];
 }
 
-export default loadReducer(reducer)(ModuleLayout);
+export default loadModels(models)(ModuleLayout);

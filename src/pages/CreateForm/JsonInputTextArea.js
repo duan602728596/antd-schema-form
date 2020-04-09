@@ -1,12 +1,10 @@
 import React, { Fragment, useState, useEffect, useContext } from 'react';
-import { bindActionCreators } from 'redux';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { createSelector, createStructuredSelector } from 'reselect';
 import classNames from 'classnames';
 import { Button, Input, message } from 'antd';
 import { CopyOutlined as IconCopyOutlined, RedoOutlined as IconRedoOutlined } from '@ant-design/icons';
-import useActions from '../../store/useActions';
-import { setSchemaJson } from './reducer/reducer';
+import { setSchemaJson } from './models/models';
 import style from './style.sass';
 import { handleCopyTextClick } from '../../utils';
 import { I18NContext } from '../../components/I18N/I18N';
@@ -14,21 +12,14 @@ import { I18NContext } from '../../components/I18N/I18N';
 /* state */
 const state = createStructuredSelector({
   schemaJson: createSelector(
-    ($$state) => $$state.has('createForm') ? $$state.get('createForm') : null,
-    ($$data) => $$data ? $$data.get('schemaJson').toJS() : {}
+    ({ createForm: $$createForm }) => $$createForm?.get?.('schemaJson'),
+    ($$data) => $$data ? $$data.toJS() : {}
   )
-});
-
-/* actions */
-const actions = (dispatch) => ({
-  action: bindActionCreators({
-    setSchemaJson
-  }, dispatch)
 });
 
 function JsonInputTextArea(props) {
   const { schemaJson } = useSelector(state);
-  const { action } = useActions(actions);
+  const dispatch = useDispatch();
   const context = useContext(I18NContext);
   const [textAreaValue, setTextAreaValue] = useState(JSON.stringify(schemaJson, null, 2));
 
@@ -47,7 +38,7 @@ function JsonInputTextArea(props) {
 
     try {
       value = JSON.parse(textAreaValue);
-      action.setSchemaJson(value);
+      value |> setSchemaJson |> dispatch;
     } catch (err) {
       message.error(msg.jsonFormatError);
     }

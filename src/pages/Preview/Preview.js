@@ -1,11 +1,9 @@
 import React, { Fragment, useState, useContext } from 'react';
-import { bindActionCreators } from 'redux';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { createSelector, createStructuredSelector } from 'reselect';
 import { Row, Col, Input, Button, message, Modal, Empty } from 'antd';
 import { CopyOutlined as IconCopyOutlined, TableOutlined as IconTableOutlined } from '@ant-design/icons';
-import useActions from '../../store/useActions';
-import { setSchemaJson } from './reducer/reducer';
+import { setSchemaJson } from './models/models';
 import style from './preview.sass';
 import { handleCopyTextClick } from '../../utils';
 import schemaFormDefaultLang from 'antd-schema-form/language/default.json';
@@ -16,21 +14,14 @@ import SchemaFormPreview from './SchemaFormPreview';
 /* state */
 const state = createStructuredSelector({
   schemaJson: createSelector(
-    ($$state) => $$state.has('preview') ? $$state.get('preview') : null,
-    ($$data) => $$data ? ($$data.get('schemaJson') ? $$data.get('schemaJson').toJS() : null) : null
+    ({ preview: $$preview }) => $$preview?.get?.('schemaJson'),
+    ($$data) => $$data ? $$data?.toJS() : null
   )
-});
-
-/* actions */
-const actions = (dispatch) => ({
-  action: bindActionCreators({
-    setSchemaJson
-  }, dispatch)
 });
 
 function Preview(props) {
   const { schemaJson } = useSelector(state);
-  const { action } = useActions(actions);
+  const dispatch = useDispatch();
   const context = useContext(I18NContext);
   const [textAreaValue, setTextAreaValue]
     = useState(schemaJson === null ? '' : JSON.stringify(schemaJson, null, 2));
@@ -64,7 +55,7 @@ function Preview(props) {
 
     try {
       value = JSON.parse(textAreaValue);
-      action.setSchemaJson(value);
+      value |> setSchemaJson |> dispatch;
     } catch (err) {
       message.error(langMessage.jsonFormatError);
     }
