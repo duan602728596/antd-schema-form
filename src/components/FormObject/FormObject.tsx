@@ -10,8 +10,6 @@ import {
 } from 'react';
 import * as PropTypes from 'prop-types';
 import isArray from 'lodash-es/isArray';
-import isNil from 'lodash-es/isNil';
-import isString from 'lodash-es/isString';
 import { Button } from 'antd';
 import { Store } from 'rc-field-form/es/interface';
 import AntdSchemaFormContext from '../../context';
@@ -161,7 +159,9 @@ function FormObject(props: PropsWithChildren<FormObjectProps>): ReactElement | n
 
   // cancel事件
   function handleCancelClick(event: RMouseEvent<HTMLElement, MouseEvent>): void {
-    onCancel && onCancel(form);
+    const keys: string[] = getKeysFromObject(formObjectRoot);
+
+    onCancel && onCancel(form, keys);
   }
 
   // 确认和取消按钮

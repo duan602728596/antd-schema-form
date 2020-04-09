@@ -290,9 +290,9 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
     triggerChange([...tableValue]);
 
     // 重置状态
-    if (editIndex === undefined) {
-      form.resetFields(keys);
-    } else {
+    form.resetFields(keys);
+
+    if (editIndex !== undefined) {
       setIsDisplayDataDrawer(false);
       setEditIndex(undefined);
     }
@@ -319,6 +319,12 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
     setIsDisplayDataDrawer(value);
 
     if (!value) setEditIndex(undefined);
+  }
+
+  // 关闭抽屉
+  function handleDrawerCloseClick(objectForm: FormInstance, keys: string[]): void {
+    handleDrawerDisplayClick(false);
+    form.resetFields(keys);
   }
 
   // 表格的单选和多选
@@ -510,7 +516,7 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
           // eslint-disable-next-line @typescript-eslint/tslint/config
           cancelText={ editIndex !== undefined ? undefined : languagePack.formObject.addCancelText }
           onOk={ handleAddOrEditDataClick }
-          onCancel={ (): void => handleDrawerDisplayClick(false) }
+          onCancel={ handleDrawerCloseClick }
         />
       </Drawer>
     </Fragment>
