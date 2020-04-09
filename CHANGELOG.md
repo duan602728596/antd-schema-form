@@ -1,3 +1,11 @@
+### v4.0.0
+
+* Upgrade all dependencies to the latest version.
+* 🐛Fixed an issue where the `TableComponent` component did not re-render after being added or edited.
+* 🐛The addition and editing functions of the `TableComponent` component reset the form after canceling and closing. To avoid the problem of editing data left in the form when adding after editing.
+* 🐛The validation result of the rendered form of the `TableComponent` component has been removed. Fix the problem that the form verification result is displayed repeatedly.
+* 🐛Fixed the judgment of language under the new version of edge.
+
 ### v4.0.0-beta.0
 
 * 🎉 Upgrade antd to v4.
