@@ -1,20 +1,19 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { useRoutes } from 'react-router-dom';
 import asyncModule from './asyncModule';
-import Index from '../pages/Index/Layout';
+import Index from '../pages/Index/index';
 
-const CreateForm = asyncModule(() => import(/* webpackChunkName: 'createForm' */'../pages/CreateForm/Layout'));
-const Preview = asyncModule(() => import(/* webpackChunkName: 'preview' */'../pages/Preview/Layout'));
+const CreateForm = asyncModule(() => import(/* webpackChunkName: 'createForm' */'../pages/CreateForm/index'));
+const Preview = asyncModule(() => import(/* webpackChunkName: 'preview' */'../pages/Preview/index'));
 
 function Routers(props) {
-  return (
-    <Switch>
-      <Route path="/" component={ Index } exact={ true } />
-      <Route path="/Index" component={ Index } />
-      <Route path="/CreateForm" component={ CreateForm } />
-      <Route path="/Preview" component={ Preview } />
-    </Switch>
-  );
+  const routes = useRoutes([
+    { path: '//*', element: <Index /> },
+    { path: 'CreateForm', element: <CreateForm /> },
+    { path: 'Preview', element: <Preview /> }
+  ]);
+
+  return routes;
 }
 
 export default Routers;

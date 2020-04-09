@@ -4,13 +4,13 @@ import { Row, Col, Modal } from 'antd';
 import SchemaForm from 'antd-schema-form';
 import schemaFormDefaultLang from 'antd-schema-form/language/default.json';
 import schemaFormZhCNLang from 'antd-schema-form/language/zh-CN.json';
-import style from './style.sass';
+import style from './demo.sass';
 import demo from './demo.json';
 import demoZhCN from './demo-zhCN.json';
-import { I18NContext } from '../../../components/I18N/I18N';
-import hljs from '../../../components/highlight/highlight';
+import { I18NContext } from '../../components/I18N/I18N';
+import hljs from '../../components/highlight/highlight';
 
-function Index(props) {
+function Demo(props) {
   const context = useContext(I18NContext);
   const codeRef = useRef();
   const [language, setLanguage] = useState(context.language);
@@ -78,4 +78,4 @@ function Index(props) {
   );
 }
 
-export default Index;
+export default Demo;

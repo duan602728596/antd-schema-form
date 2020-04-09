@@ -1,22 +1,19 @@
-import React, { Component, useContext } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import React, { useContext } from 'react';
 import Helmet from 'react-helmet';
 import loadReducer from '../../store/loadReducer';
 import reducer from './reducer/reducer';
-import Index from './Index/index';
+import CreateForm from './CreateForm';
 import { I18NContext } from '../../components/I18N/I18N';
 
 function ModuleLayout(props) {
   const context = useContext(I18NContext);
-  const { preview } = context.languagePack;
+  const { createForm } = context.languagePack;
 
   return [
     <Helmet key="helmet">
-      <title>{ preview.title }</title>
+      <title>{ createForm.title }</title>
     </Helmet>,
-    <Switch key="main">
-      <Route path="/Preview" component={ Index } exact={ true } />
-    </Switch>
+    <CreateForm key="main" />
   ];
 }
 

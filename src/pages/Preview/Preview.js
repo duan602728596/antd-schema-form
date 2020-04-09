@@ -4,13 +4,13 @@ import { useSelector } from 'react-redux';
 import { createSelector, createStructuredSelector } from 'reselect';
 import { Row, Col, Input, Button, message, Modal, Empty } from 'antd';
 import { CopyOutlined as IconCopyOutlined, TableOutlined as IconTableOutlined } from '@ant-design/icons';
-import useActions from '../../../store/useActions';
-import { setSchemaJson } from '../reducer/reducer';
+import useActions from '../../store/useActions';
+import { setSchemaJson } from './reducer/reducer';
 import style from './style.sass';
-import { handleCopyTextClick } from '../../../utils';
+import { handleCopyTextClick } from '../../utils';
 import schemaFormDefaultLang from 'antd-schema-form/language/default.json';
 import schemaFormZhCNLang from 'antd-schema-form/language/zh-CN.json';
-import { I18NContext } from '../../../components/I18N/I18N';
+import { I18NContext } from '../../components/I18N/I18N';
 import SchemaFormPreview from './SchemaFormPreview';
 
 /* state */
@@ -28,7 +28,7 @@ const actions = (dispatch) => ({
   }, dispatch)
 });
 
-function Index(props) {
+function Preview(props) {
   const { schemaJson } = useSelector(state);
   const { action } = useActions(actions);
   const context = useContext(I18NContext);
@@ -114,4 +114,4 @@ function Index(props) {
   );
 }
 
-export default Index;
+export default Preview;

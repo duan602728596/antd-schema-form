@@ -8,13 +8,13 @@ import {
   EditOutlined as IconEditOutlined,
   DeleteOutlined as IconDeleteOutlined
 } from '@ant-design/icons';
-import useActions from '../../../store/useActions';
-import { setSchemaJson } from '../reducer/reducer';
+import useActions from '../../store/useActions';
+import { setSchemaJson } from './reducer/reducer';
 import style from './style.sass';
 import json from './json/json';
 import AddDrawer from './AddDrawer';
 import EditDrawer from './EditDrawer';
-import { I18NContext } from '../../../components/I18N/I18N';
+import { I18NContext } from '../../components/I18N/I18N';
 
 /* state */
 const state = createStructuredSelector({

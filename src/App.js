@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter, Switch, Route } from 'react-router-dom';
+import { HashRouter, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/lib/locale-provider/zh_CN';
@@ -15,9 +15,7 @@ function App(props) {
       <ConfigProvider locale={ zhCN }>
         <I18N>
           <HashRouter>
-            <Switch>
-              <Route component={ Arrangement } exact={ true } />
-            </Switch>
+            <Route element={ <Arrangement /> } />
           </HashRouter>
         </I18N>
       </ConfigProvider>
