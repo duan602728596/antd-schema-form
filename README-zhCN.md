@@ -83,7 +83,7 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
 | json              | json schema，必需                                               | object                 |
 | value             | 表单的值                                                        | object                 |
 | onOk              | 表单的确认事件                                                  | (form: object, value: object, keys: Array&lt;string&gt;) => void |
-| onCancel          | 表单的取消事件                                                  | (form: object) => void |
+| onCancel          | 表单的取消事件                                                  | (form: object, keys: Array&lt;string&gt;) => void |
 | okText            | 确认按钮文字                                                    | string                 |
 | cancelText        | 取消按钮文字                                                    | string                 |
 | footer            | 自定义底部内容，onOk事件[参考](https://github.com/duan602728596/antd-schema-form/blob/master/src/components/FormObject/FormObject.tsx#L185) | (form: object) => React.Node |

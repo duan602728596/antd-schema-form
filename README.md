@@ -83,7 +83,7 @@ Antd-schema-form based [Ant Design](https://ant.design/), quickly generate inter
 | json              | Json schema, required.                                                      | object                 |
 | value             | Form value.                                                                 | object                 |
 | onOk              | Form confirmation event.                                                    | (form: object, value: object, keys: Array&lt;string&gt;) => void |
-| onCancel          | Form cancellation event.                                                    | (form: object) => void |
+| onCancel          | Form cancellation event.                                                    | (form: object, keys: Array&lt;string&gt;) => void |
 | okText            | Confirm button text.                                                        | string                 |
 | cancelText        | Cancel button text.                                                         | string                 |
 | footer            | Custom bottom content, onOk event [reference](https://github.com/duan602728596/antd-schema-form/blob/master/src/components/FormObject/FormObject.tsx#L185) | (form: object) => React.Node |
