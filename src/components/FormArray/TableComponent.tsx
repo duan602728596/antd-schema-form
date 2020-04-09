@@ -22,7 +22,6 @@ import * as PropTypes from 'prop-types';
 import isNil from 'lodash-es/isNil';
 import isBoolean from 'lodash-es/isBoolean';
 import isObject from 'lodash-es/isObject';
-import classNames from 'classnames';
 import { Table, Button, Popconfirm, Drawer, Input } from 'antd';
 import { PlusCircleOutlined as IconPlusCircleOutlined, DeleteOutlined as IconDeleteOutlined } from '@ant-design/icons';
 import { FormInstance } from 'antd/es/form/Form';
@@ -35,7 +34,6 @@ import getObjectFromValue from '../../utils/getObjectFromValue';
 import { formatTableValue, sortIndex } from './tableFunction';
 import FormObject from '../FormObject/FormObject';
 import styleName from '../../utils/styleName';
-import template from '../../utils/template';
 import { SchemaItem, StringItem, NumberItem, BooleanItem, ArrayItem, ContextValue } from '../../types';
 
 // 拖拽相关变量
@@ -43,13 +41,6 @@ const tableDragClassName: [string, string] = [
   styleName('array-drop-over-downward'),
   styleName('array-drop-over-upward')
 ];
-
-/* 表格的className */
-function tableClassName(hasErr: boolean): string {
-  return classNames(styleName('array-table-component'), {
-    [styleName('array-table-component-has-error')]: hasErr
-  });
-}
 
 interface TableComponentProps {
   root: ArrayItem;
@@ -66,7 +57,7 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
 
   const { form, languagePack, customTableRender }: ContextValue = context;
   const { root }: TableComponentProps = props;
-  const { id, items, minItems, maxItems, $minItemsMessage, $maxItemsMessage }: ArrayItem = root;
+  const { id, items }: ArrayItem = root;
   const { type, properties, title, $tableRender }: StringItem | NumberItem | BooleanItem | ArrayItem = items;
   const changeIndexRef: RefObject<Input> = useRef(null);
   let dragTargetId: string | undefined = undefined;    // 被拖拽的id
@@ -477,23 +468,9 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
   value = isNil(value) ? [] : value;
 
   // 对数组内的元素数量进行验证
-  let arrayRulesVerificationResult: string | undefined = undefined;
-
-  if (minItems !== undefined && value.length < minItems) {
-    arrayRulesVerificationResult = template($minItemsMessage || languagePack.rules.array.minItems, {
-      '0': minItems
-    });
-  }
-
-  if (maxItems !== undefined && value.length > maxItems) {
-    arrayRulesVerificationResult = template($maxItemsMessage || languagePack.rules.array.maxItems, {
-      '0': maxItems
-    });
-  }
-
   return (
     <Fragment>
-      <Table className={ tableClassName(arrayRulesVerificationResult !== undefined) }
+      <Table className={ styleName('array-table-component') }
         size="middle"
         dataSource={ items.type === 'object' ? value : formatTableValue(value) }
         columns={ columns() }
@@ -526,9 +503,6 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
         components={ inputNotDisplay ? components : undefined }
         pagination={ false }
       />
-      <p className={ styleName('array-table-rules-verification-str') }>
-        { arrayRulesVerificationResult }
-      </p>
       {/* 添加和修改数据的抽屉组件 */}
       <Drawer width="100%" visible={ isDisplayDataDrawer } destroyOnClose={ true } closable={ false }>
         <FormObject root={ items }
