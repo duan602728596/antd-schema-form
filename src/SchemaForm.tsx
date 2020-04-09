@@ -71,8 +71,10 @@ const SchemaForm: SchemaFormComponent = forwardRef(function(props: PWC<SchemaFor
     form,
     customComponent,
     customTableRender,
-    language,           // 系统语言
-    languagePack: langP // 语言包
+    language,            // 系统语言
+    languagePack: langP, // 语言包
+    json,
+    schemaFormValue
   };
 
   useImperativeHandle(ref, (): FormInstance => form );

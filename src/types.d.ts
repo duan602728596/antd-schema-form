@@ -8,6 +8,8 @@ export interface ContextValue {
   customTableRender?: object;
   language?: string;
   languagePack?: any;
+  json: SchemaItem;
+  schemaFormValue: any;
 }
 
 export interface SchemaItem {

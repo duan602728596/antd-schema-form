@@ -297,7 +297,7 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
       tableValue[editIndex] = result['items'];
     }
 
-    triggerChange(tableValue);
+    triggerChange([...tableValue]);
 
     // 重置状态
     if (editIndex === undefined) {
@@ -315,7 +315,7 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
     tableValue = isNil(tableValue) ? (root.$defaultValue || []) : tableValue;
     tableValue.splice(index, 1);
 
-    triggerChange(tableValue);
+    triggerChange([...tableValue]);
   }
 
   // 修改数据抽屉的显示
