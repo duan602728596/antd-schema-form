@@ -3,7 +3,7 @@
  */
 import React, { lazy, Suspense } from 'react';
 import { injectReducers } from '../store/store';
-import SwitchLoading from '../assembly/SwitchLoading/index';
+import SwitchLoading from '../layouts/SwitchLoading/index';
 
 const Fallback = <SwitchLoading />;
 

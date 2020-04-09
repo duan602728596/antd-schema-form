@@ -1,7 +1,7 @@
 import React from 'react';
 import { Spin } from 'antd';
 import { LoadingOutlined as IconLoadingOutlined } from '@ant-design/icons';
-import style from './style.sass';
+import style from './index.sass';
 import { I18NContext } from '../../components/I18N/I18N';
 
 function SwitchLoading(props) {

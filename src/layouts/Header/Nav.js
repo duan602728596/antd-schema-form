@@ -6,7 +6,7 @@ import {
   EyeTwoTone as IconEyeTwoTone,
   BookTwoTone as IconBookTwoTone
 } from '@ant-design/icons';
-import style from './style.sass';
+import style from './nav.sass';
 import { I18NContext } from '../../components/I18N/I18N';
 
 function Nav(props) {
