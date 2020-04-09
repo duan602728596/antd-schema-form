@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { ReactNode, ReactNodeArray } from 'react';
+import type { ReactNode, ReactNodeArray } from 'react';
 import { Input, Select, Radio, DatePicker, InputNumber, Checkbox, Switch, Collapse } from 'antd';
-import { FormInstance } from 'antd/es/form';
+import type { FormInstance } from 'antd/es/form';
 import selectOptionsRender from './selectOptionsRender';
 import styleName from '../../utils/styleName';
 import TableComponent from '../FormArray/TableComponent';
 import OneOf from '../FormObject/OneOf';
-import { SchemaItem, StringItem, NumberItem, BooleanItem, ArrayItem } from '../../types';
+import type { SchemaItem, StringItem, NumberItem, BooleanItem, ArrayItem } from '../../types';
 
 /* string类型组件 */
 // 默认组件

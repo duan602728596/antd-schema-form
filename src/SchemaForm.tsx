@@ -22,7 +22,7 @@ import FormObject from './components/FormObject/FormObject';
 import getObjectFromValue from './utils/getObjectFromValue';
 import getObjectFromSchema from './utils/getObjectFromSchema';
 import languagePack from './languagePack';
-import { SchemaItem, ContextValue } from './types';
+import type { SchemaItem, ContextValue } from './types';
 
 export interface SchemaFormProps {
   json: SchemaItem;

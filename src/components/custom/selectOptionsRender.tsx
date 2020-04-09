@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ReactNode, ReactNodeArray } from 'react';
+import type { ReactNode, ReactNodeArray } from 'react';
 import { Select } from 'antd';
 
 /* 渲染select的下拉框 */

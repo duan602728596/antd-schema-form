@@ -1,5 +1,5 @@
 import { createContext, Context } from 'react';
-import { ContextValue } from './types';
+import type { ContextValue } from './types';
 
 const AntdSchemaFormContext: Context<ContextValue | {}> = createContext({});
 

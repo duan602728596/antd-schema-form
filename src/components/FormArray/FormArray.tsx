@@ -3,13 +3,13 @@ import { useContext, PropsWithChildren, ReactElement } from 'react';
 import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Form } from 'antd';
-import { Rule } from 'rc-field-form/es/interface';
+import type { Rule } from 'rc-field-form/es/interface';
 import omit from 'lodash-es/omit';
 import AntdSchemaFormContext from '../../context';
 import styleName from '../../utils/styleName';
 import createArrayRules from './createArrayRules';
 import createElement from '../../utils/createElement';
-import { ArrayItem, ContextValue } from '../../types';
+import type { ArrayItem, ContextValue } from '../../types';
 
 /**
  * 当类型为array时的组件渲染

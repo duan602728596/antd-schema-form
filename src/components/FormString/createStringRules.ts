@@ -1,9 +1,9 @@
 import isNil from 'lodash-es/isNil';
 import isNumber from 'lodash-es/isNumber';
 import isString from 'lodash-es/isString';
-import { Rule } from 'rc-field-form/es/interface';
+import type { Rule } from 'rc-field-form/es/interface';
 import template from '../../utils/template';
-import { StringItem } from '../../types';
+import type { StringItem } from '../../types';
 
 function createStringRules(languagePack: any, root: StringItem, required: boolean): Array<Rule> {
   const {

@@ -1,4 +1,4 @@
-import { FormInstance } from 'antd/es/form';
+import type { FormInstance } from 'antd/es/form';
 
 export interface ContextValue {
   form: FormInstance;

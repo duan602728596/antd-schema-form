@@ -14,10 +14,10 @@ import {
 import * as PropTypes from 'prop-types';
 import isNumber from 'lodash-es/isNumber';
 import { Radio } from 'antd';
-import { RadioChangeEvent } from 'antd/es/radio';
+import type { RadioChangeEvent } from 'antd/es/radio';
 import AntdSchemaFormContext from '../../context';
-import { SchemaItem, ContextValue } from '../../types';
 import styleName from '../../utils/styleName';
+import type { SchemaItem, ContextValue } from '../../types';
 
 interface OneOfProps {
   root: SchemaItem;

@@ -1,4 +1,4 @@
-import { SchemaItem } from '../types';
+import type { SchemaItem } from '../types';
 
 /**
  * 获取schema.json下所有的key

@@ -2,14 +2,14 @@ import * as React from 'react';
 import { useContext, PropsWithChildren, ReactElement } from 'react';
 import * as PropTypes from 'prop-types';
 import { Form } from 'antd';
-import { Rule } from 'rc-field-form/es/interface';
+import type { Rule } from 'rc-field-form/es/interface';
 import classNames from 'classnames';
 import omit from 'lodash-es/omit';
 import AntdSchemaFormContext from '../../context';
 import styleName from '../../utils/styleName';
 import createStringRules from './createStringRules';
 import createElement from '../../utils/createElement';
-import { StringItem, ContextValue } from '../../types';
+import type { StringItem, ContextValue } from '../../types';
 
 /**
  * 当类型为string时的组件渲染

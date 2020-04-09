@@ -1,6 +1,6 @@
 import * as moment from 'moment';
-import { Store } from 'rc-field-form/es/interface';
-import { SchemaItem, StringItem, NumberItem, BooleanItem, ArrayItem } from '../types';
+import type { Store } from 'rc-field-form/es/interface';
+import type { SchemaItem, StringItem, NumberItem, BooleanItem, ArrayItem } from '../types';
 
 
 type SchemaJson = SchemaItem | StringItem | NumberItem | BooleanItem | ArrayItem;

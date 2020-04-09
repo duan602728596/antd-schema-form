@@ -11,7 +11,7 @@ import {
 import * as PropTypes from 'prop-types';
 import isArray from 'lodash-es/isArray';
 import { Button } from 'antd';
-import { Store } from 'rc-field-form/es/interface';
+import type { Store } from 'rc-field-form/es/interface';
 import AntdSchemaFormContext from '../../context';
 import styleName from '../../utils/styleName';
 import FormString from '../FormString/FormString';
@@ -22,7 +22,7 @@ import getValueFromObject from '../../utils/getValueFromObject';
 import getKeysFromObject from '../../utils/getKeysFromObject';
 import createElement from '../../utils/createElement';
 import sortProperties from '../../utils/sortProperties';
-import { SchemaItem, ContextValue } from '../../types';
+import type { SchemaItem, ContextValue } from '../../types';
 
 /**
  * 当类型为object时的组件渲染

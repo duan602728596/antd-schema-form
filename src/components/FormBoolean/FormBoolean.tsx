@@ -7,7 +7,7 @@ import omit from 'lodash-es/omit';
 import AntdSchemaFormContext from '../../context';
 import styleName from '../../utils/styleName';
 import createElement from '../../utils/createElement';
-import { ContextValue, BooleanItem } from '../../types';
+import type { ContextValue, BooleanItem } from '../../types';
 
 /**
  * 当类型为boolean时的组件渲染

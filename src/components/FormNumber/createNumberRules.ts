@@ -1,8 +1,8 @@
 import isNil from 'lodash-es/isNil';
 import isNumber from 'lodash-es/isNumber';
-import { Rule, RuleObject } from 'rc-field-form/es/interface';
+import type { Rule, RuleObject } from 'rc-field-form/es/interface';
 import template from '../../utils/template';
-import { NumberItem } from '../../types';
+import type { NumberItem } from '../../types';
 
 function createNumberRules(languagePack: any, root: NumberItem, required: boolean, isInteger: boolean): Array<Rule> {
   const {
