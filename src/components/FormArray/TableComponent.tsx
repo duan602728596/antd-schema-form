@@ -440,6 +440,11 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
     return columnArr;
   }
 
+  const inputNotDisplay: boolean = isNil(inputDisplayIndex);
+  let value: Array<any> | any = form.getFieldValue(id);
+
+  value = isNil(value) ? [] : value;
+
   useEffect(function(): void {
     // 编辑位置框需要给一个焦点
     if (changeIndexRef.current) {
@@ -461,11 +466,6 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
       form.setFieldsValue(result);
     }
   }, [isDisplayDataDrawer, editIndex]);
-
-  const inputNotDisplay: boolean = isNil(inputDisplayIndex);
-  let value: Array<any> | any = form.getFieldValue(id);
-
-  value = isNil(value) ? [] : value;
 
   // 对数组内的元素数量进行验证
   return (
