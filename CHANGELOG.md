@@ -5,6 +5,7 @@
 * 🐛The addition and editing functions of the `TableComponent` component reset the form after canceling and closing. To avoid the problem of editing data left in the form when adding after editing.
 * 🐛The validation result of the rendered form of the `TableComponent` component has been removed. Fix the problem that the form verification result is displayed repeatedly.
 * 🐛Fixed the judgment of language under the new version of edge.
+* The `onCancel` event parameter passing adds` keys`, which is used when there may be a need to reset the form after executing the onCancel event.
 
 ### v4.0.0-beta.0
 
