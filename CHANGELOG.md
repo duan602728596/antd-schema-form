@@ -1,3 +1,7 @@
+### v4.0.1
+
+* 🐛Fixed the problem that the default value set when the `TableComponent` component is added.
+
 ### v4.0.0
 
 * Upgrade all dependencies to the latest version.
