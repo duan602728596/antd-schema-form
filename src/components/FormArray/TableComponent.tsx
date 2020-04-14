@@ -31,6 +31,7 @@ import update from 'immutability-helper';
 import AntdSchemaFormContext from '../../context';
 import getValueFromObject, { formatValueBeforeGetValue } from '../../utils/getValueFromObject';
 import getObjectFromValue from '../../utils/getObjectFromValue';
+import getObjectFromSchema from '../../utils/getObjectFromSchema';
 import { formatTableValue, sortIndex } from './tableFunction';
 import FormObject from '../FormObject/FormObject';
 import styleName from '../../utils/styleName';
@@ -459,16 +460,22 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
 
   useEffect(function(): void {
     // 打开抽屉时需要赋值
-    // eslint-disable-next-line @typescript-eslint/tslint/config
-    if (editIndex !== undefined) {
-      let tableValue: Array<any> | any = form.getFieldValue(id);
+    if (isDisplayDataDrawer) {
+      // eslint-disable-next-line @typescript-eslint/tslint/config
+      if (editIndex !== undefined) {
+        let tableValue: Array<any> | any = form.getFieldValue(id);
 
-      tableValue = isNil(tableValue) ? (root.$defaultValue || []) : tableValue;
+        tableValue = isNil(tableValue) ? (root.$defaultValue || []) : tableValue;
 
-      const itemValue: any = tableValue[editIndex];
-      const result: Store = getObjectFromValue({ items: itemValue }, id);
+        const itemValue: any = tableValue[editIndex];
+        const result: Store = getObjectFromValue({ items: itemValue }, id);
 
-      form.setFieldsValue(result);
+        form.setFieldsValue(result);
+      } else {
+        const result: Store = getObjectFromSchema(root.items);
+
+        form.setFieldsValue(result);
+      }
     }
   }, [isDisplayDataDrawer, editIndex]);
 
