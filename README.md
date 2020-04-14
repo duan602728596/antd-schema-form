@@ -19,7 +19,9 @@
 
 [中文文档](README-zhCN.md)
 
-Antd-schema-form based [Ant Design](https://ant.design/), quickly generate interactive forms with [JSON Schema](http://json-schema.org/draft-07/json-schema-validation.html) configuration.
+Antd-schema-form based [Ant Design](https://ant.design/), quickly generate interactive forms with [JSON Schema](http://json-schema.org/draft-07/json-schema-validation.html) configuration.   
+
+This [Demo] (https://duan602728596.github.io/antd-schema-form/#/) simply shows how to construct a form by configuring schema.json.
 
 ## Start using
 
@@ -90,7 +92,7 @@ Antd-schema-form based [Ant Design](https://ant.design/), quickly generate inter
 | customComponent   | Custom rendering component, [reference](docs/custom_rendering_component.md) | object                 |
 | customTableRender | Custom table column rendering component, [reference](docs/custom_rendering_component.md#custom-table-column-rendering-component) | object |
 | languagePack      | Language configuration, [reference](language/default.json)                  | object                 |
-| formOptions       | Options of `Form`, [reference](https://next.ant.design/components/form/#Form) | object                 |
+| formOptions       | Options of `Form`, [reference](https://ant.design/components/form/#Form)    | object                 |
 
 ## [Json schema configuration](docs/json_schema_configuration.md)
 

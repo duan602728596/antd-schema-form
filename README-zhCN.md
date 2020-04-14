@@ -17,7 +17,7 @@
 [ant-design-image]: https://img.shields.io/badge/ant--design-%3E=4-red.svg
 [ant-design-url]: https://github.com/ant-design/ant-design
 
-antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Schema](http://json-schema.org/draft-07/json-schema-validation.html)配置快速生成可交互的表单。
+antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Schema](http://json-schema.org/draft-07/json-schema-validation.html)配置快速生成可交互的表单。   
 
 这个[Demo](https://duan602728596.github.io/antd-schema-form/#/)简单的展示了通过配置schema.json构建一个表单。
 
@@ -90,7 +90,7 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
 | customComponent   | 自定义渲染组件，[参考](docs/custom_rendering_component-zhCN.md) | object                 |
 | customTableRender | 自定义表格列渲染组件，[参考](docs/custom_rendering_component-zhCN.md#自定义表格列渲染组件) | object                 |
 | languagePack      | 语言配置，[参考](language/zh-CN.json)                           | object                 |
-| formOptions       | `Form`的参数，[参考](https://next.ant.design/components/form-cn/#Form) | object                 |
+| formOptions       | `Form`的参数，[参考](https://ant.design/components/form-cn/#Form) | object                 |
 
 ## [json schema配置](docs/json_schema_configuration-zhCN.md)
 
