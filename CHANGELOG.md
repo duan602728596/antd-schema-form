@@ -1,3 +1,7 @@
+### v4.0.2
+
+* 🐛Fix the problem that there is no default value backfill when resetting the added form after adding the `TableComponent` component.
+
 ### v4.0.1
 
 * 🐛Fixed the problem that the default value set when the `TableComponent` component is added.
