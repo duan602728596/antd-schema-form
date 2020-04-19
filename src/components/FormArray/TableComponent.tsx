@@ -57,7 +57,7 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
   if (!('form' in context)) return null; // 类型判断
 
   const { form, languagePack, customTableRender }: ContextValue = context;
-  const { root }: TableComponentProps = props;
+  const { root, value: formComponentValue }: TableComponentProps = props;
   const { id, items }: ArrayItem = root;
   const { type, properties, title, $tableRender }: StringItem | NumberItem | BooleanItem | ArrayItem = items;
   const changeIndexRef: RefObject<Input> = useRef(null);
@@ -293,7 +293,11 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
     // 重置状态
     form.resetFields(keys);
 
-    if (editIndex !== undefined) {
+    if (editIndex === undefined) {
+      const result: Store = getObjectFromSchema(root.items);
+
+      form.setFieldsValue(result);
+    } else {
       setIsDisplayDataDrawer(false);
       setEditIndex(undefined);
     }
@@ -447,9 +451,8 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
   }
 
   const inputNotDisplay: boolean = isNil(inputDisplayIndex);
-  let value: Array<any> | any = form.getFieldValue(id);
-
-  value = isNil(value) ? [] : value;
+  const dataSourceValue: Array<any> | any = isNil(formComponentValue) ? [] : (
+    items.type === 'object' ? formComponentValue : formatTableValue(formComponentValue));
 
   useEffect(function(): void {
     // 编辑位置框需要给一个焦点
@@ -484,7 +487,7 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
     <Fragment>
       <Table className={ styleName('array-table-component') }
         size="middle"
-        dataSource={ items.type === 'object' ? value : formatTableValue(value) }
+        dataSource={ dataSourceValue }
         columns={ columns() }
         bordered={ true }
         title={
