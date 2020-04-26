@@ -5,6 +5,7 @@ import {
   useEffect,
   useContext,
   useRef,
+  useMemo,
   PropsWithChildren,
   Dispatch as D,
   SetStateAction as S,
@@ -451,8 +452,17 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
   }
 
   const inputNotDisplay: boolean = isNil(inputDisplayIndex);
-  const dataSourceValue: Array<any> | any = isNil(formComponentValue) ? [] : (
-    items.type === 'object' ? formComponentValue : formatTableValue(formComponentValue));
+  const dataSourceValue: Array<any> | any = useMemo(function(): Array<any> | any {
+    if (isNil(formComponentValue)) {
+      return [];
+    }
+
+    if (items.type === 'object') {
+      return formComponentValue;
+    } else {
+      return formatTableValue(formComponentValue);
+    }
+  }, [items, formComponentValue]);
 
   useEffect(function(): void {
     // 编辑位置框需要给一个焦点
