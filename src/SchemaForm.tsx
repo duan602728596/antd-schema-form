@@ -58,7 +58,6 @@ const SchemaForm: SchemaFormComponent = forwardRef(function(props: PWC<SchemaFor
   }: SchemaFormProps = props;
 
   // 获取系统语言
-  // eslint-disable-next-line @typescript-eslint/tslint/config
   const language: string = typeof window === 'object' // 服务器端渲染判断
     ? (window.navigator.language || window.navigator['userLanguage']).toLocaleLowerCase()
     : 'default';

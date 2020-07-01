@@ -6,7 +6,8 @@ import {
   PropsWithChildren as PWC,
   Dispatch as D,
   SetStateAction as S,
-  Ref
+  Ref,
+  ReactElement
 } from 'react';
 import SchemaForm, { SchemaFormProps } from './SchemaForm';
 import components from './customComponent';
@@ -14,7 +15,7 @@ import getKeysFromObject from './utils/getKeysFromObject';
 import getObjectFromValue from './utils/getObjectFromValue';
 import getValueFromObject from './utils/getValueFromObject';
 
-export default forwardRef(function(props: PWC<SchemaFormProps>, ref: Ref<any>): React.ReactElement | null {
+export default forwardRef(function(props: PWC<SchemaFormProps>, ref: Ref<any>): ReactElement | null {
   const { customComponent, ...otherProps }: SchemaFormProps = props;
   const [custom, setCustom]: [
     { [key: string]: Function } | undefined,
