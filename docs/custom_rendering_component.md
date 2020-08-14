@@ -12,16 +12,11 @@ const customComponent = {
   /**
    * Custom component
    * @param { object } item: schema object
-   * @param { GetFieldDecoratorOptions } option: getFieldDecorator option parameter
    * @param { object } form: antd form object
    * @param { boolean } required: whether the form value must exist
    */
-  custom(item, option, form, required){
-    const { getFieldDecorator } = form;
-
-    return getFieldDecorator(item.id, option) (
-      <Input placeholder="Custom rendering component." required={ required } />
-    );
+  custom(item, form, required){
+    return <Input placeholder="Custom rendering component." required={ required } />;
   },
   
   /**
@@ -56,7 +51,6 @@ Function parameters:
 | Parameter | Description                                                                          | Type    |
 | ---       | ---                                                                                  | ---     |
 | item      | Information about the id, title, etc. Json schema required by the current component. | object  |
-| option    | Form configuration for form.getFieldDecorator.                                       | object  |
 | form      | Antd's form object.                                                                  | object  |
 | required  | Field required                                                                       | boolean |
 

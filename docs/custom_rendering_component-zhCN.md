@@ -12,16 +12,11 @@ const customComponent = {
   /**
    * 自定义组件
    * @param { object } item: schema对象
-   * @param { GetFieldDecoratorOptions } option: form.getFieldDecorator的option参数
    * @param { object } form: antd的form对象
    * @param { boolean } required: 表单值是否必须存在
    */
-  custom(item, option, form, required) {
-    const { getFieldDecorator } = form;
-
-    return getFieldDecorator(item.id, option)(
-      <Input placeholder="自定义组件" required={ required } />
-    );
+  custom(item, form, required) {
+    return <Input placeholder="自定义组件" required={ required } />;
   },
 
   /**
@@ -56,7 +51,6 @@ SchemaForm的自定义组件属性`customComponent`类型为`object`，当`type`
 | 参数     | 说明                                         | 类型    |
 | ---      | ---                                          | ---     |
 | item     | 当前的组件需要的id、title等json schema的信息 | object  |
-| option   | form.getFieldDecorator的表单配置             | object  |
 | form     | antd的form对象                               | object  |
 | required | 字段是否必填                                 | boolean |
 
