@@ -24,10 +24,7 @@ interface FormArrayProps {
 }
 
 function FormArray(props: PropsWithChildren<FormArrayProps>): ReactElement | null {
-  const context: ContextValue | {} = useContext(AntdSchemaFormContext);
-
-  if (!('form' in context)) return null; // 类型判断
-
+  const context: ContextValue = useContext(AntdSchemaFormContext);
   const { form, customComponent, languagePack }: ContextValue = context;
   const { root, required }: FormArrayProps = props;
   const { id, title, description, $componentType, $defaultValue, $hidden, $formItemProps }: ArrayItem = root;

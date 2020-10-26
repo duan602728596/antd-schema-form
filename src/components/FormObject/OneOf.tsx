@@ -24,11 +24,8 @@ interface OneOfProps {
   element: ReactNodeArray;
 }
 
-function OneOf(props: PropsWithChildren<OneOfProps>): ReactElement | null {
-  const context: ContextValue | {} = useContext(AntdSchemaFormContext);
-
-  if (!('form' in context)) return null; // 类型判断
-
+function OneOf(props: PropsWithChildren<OneOfProps>): ReactElement {
+  const context: ContextValue = useContext(AntdSchemaFormContext);
   const { form }: ContextValue = context;
   const { element, root }: OneOfProps = props;
   const { id, oneOf, $oneOfDisabled, $oneOfIndex }: SchemaItem = root;

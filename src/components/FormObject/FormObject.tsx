@@ -37,11 +37,8 @@ interface FormObjectProps {
   footer?: Function;
 }
 
-function FormObject(props: PropsWithChildren<FormObjectProps>): ReactElement | null {
-  const context: ContextValue | {} = useContext(AntdSchemaFormContext);
-
-  if (!('form' in context)) return null; // 类型判断
-
+function FormObject(props: PropsWithChildren<FormObjectProps>): ReactElement {
+  const context: ContextValue = useContext(AntdSchemaFormContext);
   const { form, customComponent, languagePack }: ContextValue = context;
   const {
     root: formObjectRoot,
@@ -64,7 +61,7 @@ function FormObject(props: PropsWithChildren<FormObjectProps>): ReactElement | n
 
     // 渲染oneOf
     if ('oneOf' in root && root.oneOf && isArray(root.oneOf) && root.oneOf.length > 0) {
-      // eslint-disable-next-line no-use-before-define
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define
       return renderOneOfComponentView(root, _required);
     }
 
@@ -83,7 +80,7 @@ function FormObject(props: PropsWithChildren<FormObjectProps>): ReactElement | n
         return <FormArray { ...props } />;
 
       case 'object':
-        // eslint-disable-next-line no-use-before-define
+        // eslint-disable-next-line @typescript-eslint/no-use-before-define
         return renderObjectComponentView(root);
 
       default:

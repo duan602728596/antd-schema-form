@@ -25,10 +25,7 @@ interface FormNumberProps {
 }
 
 function FormNumber(props: PropsWithChildren<FormNumberProps>): ReactElement | null {
-  const context: ContextValue | {} = useContext(AntdSchemaFormContext);
-
-  if (!('form' in context)) return null; // 类型判断
-
+  const context: ContextValue = useContext(AntdSchemaFormContext);
   const { form, customComponent, languagePack }: ContextValue = context;
   const { root, required }: FormNumberProps = props; // type=object时，会判断key是否存在于required数组中
   const { id, type, title, description, $componentType, $hidden, $formItemProps }: NumberItem = root;

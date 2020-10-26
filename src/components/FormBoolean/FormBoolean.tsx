@@ -22,10 +22,7 @@ interface FormBooleanProps {
 }
 
 function FormBoolean(props: PropsWithChildren<FormBooleanProps>): ReactElement | null {
-  const context: ContextValue | {} = useContext(AntdSchemaFormContext);
-
-  if (!('form' in context)) return null; // 类型判断
-
+  const context: ContextValue = useContext(AntdSchemaFormContext);
   const { form, customComponent }: ContextValue = context;
   const { root, required }: FormBooleanProps = props;
   const { id, title, description, $componentType, $hidden, $formItemProps }: BooleanItem = root;

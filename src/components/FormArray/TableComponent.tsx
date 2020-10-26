@@ -52,11 +52,8 @@ interface TableComponentProps {
   onChange?: Function;
 }
 
-function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactElement | null {
-  const context: ContextValue | {} = useContext(AntdSchemaFormContext);
-
-  if (!('form' in context)) return null; // 类型判断
-
+function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactElement {
+  const context: ContextValue = useContext(AntdSchemaFormContext);
   const { form, languagePack, customTableRender }: ContextValue = context;
   const { root, value: formComponentValue }: TableComponentProps = props;
   const { id, items }: ArrayItem = root;
