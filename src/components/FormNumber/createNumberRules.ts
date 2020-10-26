@@ -16,7 +16,7 @@ function createNumberRules(languagePack: any, root: NumberItem, required: boolea
   if ($required || required) {
     rules.push({
       required: true,
-      message: $requiredMessage || languagePack.rules.required
+      message: $requiredMessage ?? languagePack.rules.required
     });
   }
 
@@ -25,7 +25,7 @@ function createNumberRules(languagePack: any, root: NumberItem, required: boolea
     rules.push({
       type: 'enum',
       enum: enums,
-      message: template($enumMessage || languagePack.rules.enum, {
+      message: template($enumMessage ?? languagePack.rules.enum, {
         '0': `[${ enums.join(', ') }]`
       })
     });
@@ -35,7 +35,7 @@ function createNumberRules(languagePack: any, root: NumberItem, required: boolea
   if (isInteger || $integer) {
     rules.push({
       type: 'integer',
-      message: $integerMessage || languagePack.rules.number.integer
+      message: $integerMessage ?? languagePack.rules.number.integer
     });
   }
 
@@ -54,7 +54,7 @@ function createNumberRules(languagePack: any, root: NumberItem, required: boolea
           return await Promise.resolve();
         }
       },
-      message: template($minimumMessage || languagePack.rules.number.minimum, {
+      message: template($minimumMessage ?? languagePack.rules.number.minimum, {
         '0': minimum
       })
     });
@@ -75,7 +75,7 @@ function createNumberRules(languagePack: any, root: NumberItem, required: boolea
           return await Promise.resolve();
         }
       },
-      message: template($maximumMessage || languagePack.rules.number.maximum, {
+      message: template($maximumMessage ?? languagePack.rules.number.maximum, {
         maximum
       })
     });

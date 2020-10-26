@@ -18,7 +18,7 @@ function createArrayRules(languagePack: any, root: ArrayItem, required: boolean)
           return await Promise.resolve();
         }
       },
-      message: template($minItemsMessage || languagePack.rules.array.minItems, {
+      message: template($minItemsMessage ?? languagePack.rules.array.minItems, {
         '0': minItems
       })
     });
@@ -34,7 +34,7 @@ function createArrayRules(languagePack: any, root: ArrayItem, required: boolean)
           return await Promise.resolve();
         }
       },
-      message: template($maxItemsMessage || languagePack.rules.array.maxItems, {
+      message: template($maxItemsMessage ?? languagePack.rules.array.maxItems, {
         '0': maxItems
       })
     });

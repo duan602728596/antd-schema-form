@@ -17,7 +17,7 @@ function createStringRules(languagePack: any, root: StringItem, required: boolea
   if ($required === true || required === true) {
     rules.push({
       required: true,
-      message: $requiredMessage || languagePack.rules.required,
+      message: $requiredMessage ?? languagePack.rules.required,
       whitespace: true
     });
   }
@@ -27,7 +27,7 @@ function createStringRules(languagePack: any, root: StringItem, required: boolea
     rules.push({
       type: 'enum',
       enum: enums,
-      message: template($enumMessage || languagePack.rules.enum, {
+      message: template($enumMessage ?? languagePack.rules.enum, {
         '0': `[${ enums.join(', ') }]`
       })
     });
@@ -37,7 +37,7 @@ function createStringRules(languagePack: any, root: StringItem, required: boolea
   if (!isNil(minLength) && isNumber(minLength)) {
     rules.push({
       min: minLength,
-      message: template($minLengthMessage || languagePack.rules.string.min, {
+      message: template($minLengthMessage ?? languagePack.rules.string.min, {
         '0': minLength
       })
     });
@@ -47,7 +47,7 @@ function createStringRules(languagePack: any, root: StringItem, required: boolea
   if (!isNil(maxLength)) {
     rules.push({
       max: maxLength,
-      message: template($maxLengthMessage || languagePack.rules.string.max, {
+      message: template($maxLengthMessage ?? languagePack.rules.string.max, {
         '0': maxLength
       })
     });
@@ -57,7 +57,7 @@ function createStringRules(languagePack: any, root: StringItem, required: boolea
   if (!isNil($length) && isNumber($length)) {
     rules.push({
       len: $length,
-      message: template($lengthMessage || languagePack.rules.string.length, {
+      message: template($lengthMessage ?? languagePack.rules.string.length, {
         '0': $length
       })
     });
@@ -69,7 +69,7 @@ function createStringRules(languagePack: any, root: StringItem, required: boolea
 
     rules.push({
       pattern: reg,
-      message: template($patternMessage || languagePack.rules.string.pattern, {
+      message: template($patternMessage ?? languagePack.rules.string.pattern, {
         '0': `/${ pattern }/${ isString($patternOption) ? $patternOption : '' }`
       })
     });
