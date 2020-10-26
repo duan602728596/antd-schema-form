@@ -165,7 +165,7 @@ function FormObject(props: PropsWithChildren<FormObjectProps>): ReactElement {
   function footerView(): ReactNode {
     if (onOk || onCancel) {
       return (
-        <Space className={ styleName('object-click-button-box') }>
+        <Space>
           { onOk ? <Button type="primary" onClick={ handleOkClick }>{ okText }</Button> : null }
           { onCancel ? <Button onClick={ handleCancelClick }>{ cancelText }</Button> : null }
         </Space>
