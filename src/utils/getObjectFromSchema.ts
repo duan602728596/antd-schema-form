@@ -31,10 +31,10 @@ function getObjectFromSchema(schemaJsonItem: SchemaJson, id?: string): Store {
       && schemaJsonItem.$defaultValue['_isAMomentObject'] !== true
     ) {
       // @ts-ignore
-      value[schemaJsonItem.id || id] = moment(schemaJsonItem.$defaultValue);
+      value[schemaJsonItem.id ?? id] = moment(schemaJsonItem.$defaultValue);
     } else {
       // @ts-ignore
-      value[schemaJsonItem.id || id] = schemaJsonItem.$defaultValue;
+      value[schemaJsonItem.id ?? id] = schemaJsonItem.$defaultValue;
     }
   }
 

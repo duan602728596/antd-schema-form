@@ -92,7 +92,7 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
   function moveRow(dragIndex: number, hoverIndex: number): void {
     let tableValue: Array<any> | any = form.getFieldValue(id);
 
-    tableValue = isNil(tableValue) ? (root.$defaultValue || []) : tableValue;
+    tableValue = isNil(tableValue) ? (root.$defaultValue ?? []) : tableValue;
 
     const dragRowItem: object = tableValue[dragIndex];
     const newData: { tableValue: Store } = update({ tableValue }, {
@@ -256,7 +256,7 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
   function handleIndexInputBlur(index: number, event: FocusEvent<HTMLInputElement> | KeyboardEvent<HTMLInputElement>): void {
     let tableValue: Array<any> | any = form.getFieldValue(id);
 
-    tableValue = isNil(tableValue) ? (root.$defaultValue || []) : tableValue;
+    tableValue = isNil(tableValue) ? (root.$defaultValue ?? []) : tableValue;
 
     const length: number = tableValue.length;
     let newIndex: number = Number(inputChangeIndex) - 1;
@@ -280,7 +280,7 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
     const result: object = getValueFromObject(formatValue);
     let tableValue: Array<any> | any = form.getFieldValue(id);
 
-    tableValue = isNil(tableValue) ? (root.$defaultValue || []) : tableValue;
+    tableValue = isNil(tableValue) ? (root.$defaultValue ?? []) : tableValue;
 
     // 判断是修改还是添加
     if (editIndex === undefined) {
@@ -308,7 +308,7 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
   function handleDeleteDataClick(index: number, event: RMouseEvent<HTMLElement, MouseEvent>): void {
     let tableValue: Array<any> | any = form.getFieldValue(id);
 
-    tableValue = isNil(tableValue) ? (root.$defaultValue || []) : tableValue;
+    tableValue = isNil(tableValue) ? (root.$defaultValue ?? []) : tableValue;
     tableValue.splice(index, 1);
 
     triggerChange([...tableValue]);
@@ -343,7 +343,7 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
     const id: string = root.id;
     let tableValue: Array<any> | any = form.getFieldValue(id);
 
-    tableValue = isNil(tableValue) ? (root.$defaultValue || []) : tableValue;
+    tableValue = isNil(tableValue) ? (root.$defaultValue ?? []) : tableValue;
     // 删除选中的数据
     const sortSelectedRowKeys: number[] = sortIndex(selectedRowKeys);
 
@@ -364,7 +364,7 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
       align: 'center',
       width: 65,
       render: (value: any, record: object, index: number): ReactNode => {
-        if (inputDisplayIndex === undefined || inputDisplayIndex !== index) {
+        if (inputDisplayIndex === undefined ?? inputDisplayIndex !== index) {
           return (
             <a onClick={ (event: RMouseEvent<HTMLElement, MouseEvent>): void => handleInputDisplayClick(index, event) }>
               { index + 1 }
@@ -477,7 +477,7 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
       if (editIndex !== undefined) {
         let tableValue: Array<any> | any = form.getFieldValue(id);
 
-        tableValue = isNil(tableValue) ? (root.$defaultValue || []) : tableValue;
+        tableValue = isNil(tableValue) ? (root.$defaultValue ?? []) : tableValue;
 
         const itemValue: any = tableValue[editIndex];
         const result: Store = getObjectFromValue({ items: itemValue }, id);
