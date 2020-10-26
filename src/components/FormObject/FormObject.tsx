@@ -10,7 +10,7 @@ import {
 } from 'react';
 import * as PropTypes from 'prop-types';
 import isArray from 'lodash-es/isArray';
-import { Button } from 'antd';
+import { Button, Space } from 'antd';
 import type { Store } from 'rc-field-form/es/interface';
 import AntdSchemaFormContext from '../../context';
 import styleName from '../../utils/styleName';
@@ -165,22 +165,10 @@ function FormObject(props: PropsWithChildren<FormObjectProps>): ReactElement {
   function footerView(): ReactNode {
     if (onOk || onCancel) {
       return (
-        <div className={ styleName('object-click-button-box') }>
-          {
-            onOk
-              ? <Button type="primary" onClick={ handleOkClick }>{ okText }</Button>
-              : null
-          }
-          {
-            onCancel ? (
-              <Button className={ onOk ? styleName('object-cancel') : undefined }
-                onClick={ handleCancelClick }
-              >
-                { cancelText }
-              </Button>
-            ) : null
-          }
-        </div>
+        <Space className={ styleName('object-click-button-box') }>
+          { onOk ? <Button type="primary" onClick={ handleOkClick }>{ okText }</Button> : null }
+          { onCancel ? <Button onClick={ handleCancelClick }>{ cancelText }</Button> : null }
+        </Space>
       );
     } else {
       return null;

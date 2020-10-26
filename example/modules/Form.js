@@ -71,6 +71,9 @@ function Form(props) {
     console.log(formRef);
   }
 
+  // cancel
+  function handleCancelClick() { /* ===== */ }
+
   return (
     <SchemaForm ref={ formRef }
       json={ json }
@@ -79,6 +82,7 @@ function Form(props) {
       customTableRender={ customTableRender }
       okText="提交"
       onOk={ handleOkSubmit }
+      onCancel={ handleCancelClick }
     />
   );
 }
