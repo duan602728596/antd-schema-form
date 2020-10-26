@@ -1,6 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-const { cssLoaderGetLocalIdent } = require('@sweet-milktea/milktea/lib/config/cssConfig');
 
 /* 基础配置 */
 exports.basicConfig = {
@@ -55,8 +54,7 @@ exports.rules = [
         loader: 'css-loader',
         options: {
           modules: {
-            localIdentName: '[path][name]__[local]___[hash:base64:5]',
-            getLocalIdent: cssLoaderGetLocalIdent
+            localIdentName: '[path][name]__[local]___[hash:base64:5]'
           }
         }
       },
