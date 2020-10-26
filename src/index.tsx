@@ -20,10 +20,10 @@ export default forwardRef(function(props: PWC<SchemaFormProps>, ref: Ref<any>): 
   const [custom, setCustom]: [
     { [key: string]: Function } | undefined,
     D<S<object>>
-  ] = useState(Object.assign(components, customComponent || {}));
+  ] = useState(Object.assign(components, customComponent ?? {}));
 
   useEffect(function(): void {
-    setCustom(Object.assign(components, customComponent || {}));
+    setCustom(Object.assign(components, customComponent ?? {}));
   }, [customComponent]);
 
   return <SchemaForm ref={ ref } customComponent={ custom } { ...otherProps } />;
