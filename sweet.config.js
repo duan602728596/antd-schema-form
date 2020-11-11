@@ -9,13 +9,12 @@ module.exports = {
     'react',
     'react-dom',
     'prop-types',
-    'react-router-dom',
-    'redux',
+    '@reduxjs/toolkit',
     'react-redux',
-    'redux-thunk',
-    'redux-actions',
-    'immutable',
     'reselect',
+    'react-router',
+    'react-router-dom',
+    'history',
     'react-helmet'
   ],
   entry: {
@@ -48,8 +47,7 @@ module.exports = {
     include: /src/
   },
   css: {
-    modules: false,
-    include: /(node_modules[\\/]antd(-schema-form)?|highlight\.js)/
+    include: /node_modules/
   },
   html: [{ template: path.join(__dirname, 'src/index.pug') }]
 };

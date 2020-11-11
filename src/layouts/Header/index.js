@@ -1,10 +1,12 @@
 import React from 'react';
 import { Layout, Select, Dropdown, Menu } from 'antd';
 import { GithubOutlined as IconGithubOutlined } from '@ant-design/icons';
-import { version } from 'antd-schema-form/package.json';
+import packageJson from 'antd-schema-form/package.json';
 import style from './index.sass';
 import Nav from './Nav';
 import { I18NContext } from '../../components/I18N/I18N';
+
+const { version } = packageJson;
 
 function versionMenuOverlay() {
   return (
