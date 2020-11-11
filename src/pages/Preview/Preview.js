@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { createSelector, createStructuredSelector } from 'reselect';
 import { Row, Col, Input, Button, message, Modal, Empty, Space } from 'antd';
 import { CopyOutlined as IconCopyOutlined, TableOutlined as IconTableOutlined } from '@ant-design/icons';
-import { setSchemaJson } from './models/models';
+import { setSchemaJson } from './reducers/reducers';
 import style from './preview.sass';
 import { handleCopyTextClick } from '../../utils';
 import schemaFormDefaultLang from 'antd-schema-form/language/default.json';
@@ -14,8 +14,8 @@ import SchemaFormPreview from './SchemaFormPreview';
 /* state */
 const state = createStructuredSelector({
   schemaJson: createSelector(
-    ({ preview: $$preview }) => $$preview?.get?.('schemaJson'),
-    ($$data) => $$data ? $$data?.toJS() : null
+    ({ preview }) => preview?.schemaJson,
+    (data) => data ?? null
   )
 });
 

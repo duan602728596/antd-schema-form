@@ -1,29 +1,23 @@
 /* 全局的store */
-import { createStore, compose, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import { fromJS } from 'immutable';
+import { configureStore } from '@reduxjs/toolkit';
 import { createReducer } from './reducers';
 
 /* reducer列表 */
 const reducer = createReducer({});
-
-/* 中间件 */
-const middleware = applyMiddleware(thunk);
+const asyncReducers = {}; // 异步的reducers
 
 /* store */
-const store = {
-  asyncReducers: {}
-};
+const store = {};
 
 export function storeFactory(initialState = {}) {
-  const $$initialState = {};
-
-  for (const key in initialState) {
-    $$initialState[key] = fromJS(initialState[key]);
+  // 避免热替换导致redux的状态丢失
+  if (Object.keys(store).length === 0) {
+    /* store */
+    Object.assign(store, configureStore({
+      reducer,
+      preloadedState: initialState
+    }));
   }
-
-  /* store */
-  Object.assign(store, createStore(reducer, $$initialState, compose(middleware)));
 
   return store;
 }
@@ -32,15 +26,15 @@ export function storeFactory(initialState = {}) {
 export function injectReducers(asyncReducer) {
   for (const key in asyncReducer) {
     // 获取reducer的key值，并将reducer保存起来
-    if (!(key in store.asyncReducers)) {
+    if (!(key in asyncReducers)) {
       const item = asyncReducer[key];
 
-      store.asyncReducers[key] = item;
+      asyncReducers[key] = item;
     }
   }
 
   // 异步注入reducer
-  store.replaceReducer(createReducer(store.asyncReducers));
+  store.replaceReducer(createReducer(asyncReducers));
 }
 
 export default store;

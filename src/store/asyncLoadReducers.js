@@ -1,10 +1,10 @@
-import { useEffect } from 'react';
+import { useMemo } from 'react';
 
 /**
  * 异步注入reducer的修饰器
- * @param { object } models
+ * @param { object } reducers
  */
-function loadModels(models) {
+function asyncLoadReducers(reducers) {
   let injectModels = true; // models是否需要注入
 
   /**
@@ -12,16 +12,11 @@ function loadModels(models) {
    */
   return function(Module) {
     return function(props) {
-      // 异步注入reducer
-      function injectReducers() {
+      useMemo(function() {
         if (injectModels) {
-          props.injectReducers?.(models);
+          props.injectReducers?.(reducers);
           injectModels = false;
         }
-      }
-
-      useEffect(function() {
-        injectReducers();
       }, []);
 
       return <Module />;
@@ -29,4 +24,4 @@ function loadModels(models) {
   };
 }
 
-export default loadModels;
+export default asyncLoadReducers;

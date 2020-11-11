@@ -7,23 +7,16 @@ import {
   EditOutlined as IconEditOutlined,
   DeleteOutlined as IconDeleteOutlined
 } from '@ant-design/icons';
-import { setSchemaJson as reduxSetSchemaJson } from './models/models';
+import { setSchemaJson as reduxSetSchemaJson } from './reducers/reducers';
+import { schemaJsonState } from './reducers/selectors';
 import style from './changeJson.sass';
 import json from './json/json';
 import AddDrawer from './AddDrawer';
 import EditDrawer from './EditDrawer';
 import { I18NContext } from '../../components/I18N/I18N';
 
-/* state */
-const state = createStructuredSelector({
-  schemaJson: createSelector(
-    ({ createForm: $$createForm }) => $$createForm?.get?.('schemaJson'),
-    ($$data) => $$data ? $$data.toJS() : {}
-  )
-});
-
 function ChangeJson(props) {
-  const { schemaJson: storeSchemaJson } = useSelector(state);
+  const { schemaJson: storeSchemaJson } = useSelector(schemaJsonState);
   const dispatch = useDispatch();
   const context = useContext(I18NContext);
   const [schemaJson, setSchemaJson] = useState(storeSchemaJson);

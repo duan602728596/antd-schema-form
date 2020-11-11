@@ -1,23 +1,15 @@
 import { Fragment, useState, useEffect, useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { createSelector, createStructuredSelector } from 'reselect';
 import { Button, Input, message, Space } from 'antd';
 import { CopyOutlined as IconCopyOutlined, RedoOutlined as IconRedoOutlined } from '@ant-design/icons';
-import { setSchemaJson } from './models/models';
+import { setSchemaJson } from './reducers/reducers';
+import { schemaJsonState } from './reducers/selectors';
 import commonStyle from './commonStyle.sass';
 import { handleCopyTextClick } from '../../utils';
 import { I18NContext } from '../../components/I18N/I18N';
 
-/* state */
-const state = createStructuredSelector({
-  schemaJson: createSelector(
-    ({ createForm: $$createForm }) => $$createForm?.get?.('schemaJson'),
-    ($$data) => $$data ? $$data.toJS() : {}
-  )
-});
-
 function JsonInputTextArea(props) {
-  const { schemaJson } = useSelector(state);
+  const { schemaJson } = useSelector(schemaJsonState);
   const dispatch = useDispatch();
   const context = useContext(I18NContext);
   const [textAreaValue, setTextAreaValue] = useState(JSON.stringify(schemaJson, null, 2));
