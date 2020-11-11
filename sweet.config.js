@@ -4,6 +4,30 @@ const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
+const plugins = [
+  [
+    'import',
+    {
+      libraryName: 'antd',
+      libraryDirectory: 'es',
+      style: true
+    }
+  ],
+  [
+    'import-components-style',
+    {
+      components: {
+        'highlight.js/lib/core': '~highlight.js/styles/github-gist.css',
+        'antd-schema-form': 'style/antd-schema-form.css'
+      }
+    }
+  ]
+];
+
+if (!isDevelopment) {
+  plugins.unshift(['transform-react-remove-prop-types', { mode: 'remove', removeImport: true }]);
+}
+
 module.exports = {
   frame: 'react',
   dll: [
@@ -23,25 +47,7 @@ module.exports = {
   },
   output: { publicPath: isDevelopment ? '/' : 'https://duan602728596.github.io/antd-schema-form/' },
   js: {
-    plugins: [
-      [
-        'import',
-        {
-          libraryName: 'antd',
-          libraryDirectory: 'es',
-          style: true
-        }
-      ],
-      [
-        'import-components-style',
-        {
-          components: {
-            'highlight.js/lib/core': '~highlight.js/styles/github-gist.css',
-            'antd-schema-form': 'style/antd-schema-form.css'
-          }
-        }
-      ]
-    ],
+    plugins,
     exclude: /node_modules[\\/](?!antd-schema-form)/
   },
   sass: {
