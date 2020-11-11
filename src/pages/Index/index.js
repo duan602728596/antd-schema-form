@@ -1,6 +1,6 @@
-import React from 'react';
+import { Fragment } from 'react';
 import { useRoutes } from 'react-router-dom';
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import Demo from './Demo';
 
 function ModuleLayout(props) {
@@ -9,12 +9,14 @@ function ModuleLayout(props) {
     { path: 'Index', element: <Demo /> }
   ]);
 
-  return [
-    <Helmet key="helmet">
-      <title>antd-schema-form</title>
-    </Helmet>,
-    routes
-  ];
+  return (
+    <Fragment>
+      <Helmet>
+        <title>antd-schema-form</title>
+      </Helmet>
+      { routes }
+    </Fragment>
+  );
 }
 
 export default ModuleLayout;

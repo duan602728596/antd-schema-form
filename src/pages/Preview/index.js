@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import loadModels from '../../store/loadModels';
 import models from './models/models';
 import Preview from './Preview';
