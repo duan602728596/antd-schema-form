@@ -1,4 +1,4 @@
-import React, { useState, createContext } from 'react';
+import { useState, createContext } from 'react';
 import PropTypes from 'prop-types';
 import languagePack from './languagePack';
 

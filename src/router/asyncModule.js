@@ -1,7 +1,7 @@
 /**
  * 异步加载模块
  */
-import React, { lazy, Suspense } from 'react';
+import { lazy, Suspense } from 'react';
 import { injectReducers } from '../store/store';
 import SwitchLoading from '../layouts/SwitchLoading/index';
 

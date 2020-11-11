@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Drawer, Select, Space } from 'antd';
 import SchemaForm from 'antd-schema-form';

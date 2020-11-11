@@ -1,9 +1,9 @@
-import React, { Fragment, useState, useEffect, useRef, useContext } from 'react';
-import classNames from 'classnames';
+import { Fragment, useState, useEffect, useRef, useContext } from 'react';
 import { Row, Col, Modal } from 'antd';
 import SchemaForm from 'antd-schema-form';
 import schemaFormDefaultLang from 'antd-schema-form/language/default.json';
 import schemaFormZhCNLang from 'antd-schema-form/language/zh-CN.json';
+import classNames from 'classnames';
 import style from './demo.sass';
 import demo from './demo.json';
 import demoZhCN from './demo-zhCN.json';

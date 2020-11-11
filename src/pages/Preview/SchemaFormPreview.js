@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { message, Empty } from 'antd';
 import { FrownOutlined as IconFrownOutlined } from '@ant-design/icons';

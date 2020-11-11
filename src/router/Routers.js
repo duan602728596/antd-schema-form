@@ -1,4 +1,3 @@
-import React from 'react';
 import { useRoutes } from 'react-router-dom';
 import asyncModule from './asyncModule';
 import Index from '../pages/Index/index';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Layout as AntdLayout } from 'antd';
 import style from './index.sass';
 import Header from '../Header/index';

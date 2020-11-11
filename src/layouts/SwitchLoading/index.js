@@ -1,4 +1,3 @@
-import React from 'react';
 import { Spin } from 'antd';
 import { LoadingOutlined as IconLoadingOutlined } from '@ant-design/icons';
 import style from './index.sass';

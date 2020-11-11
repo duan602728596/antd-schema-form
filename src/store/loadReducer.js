@@ -1,7 +1,7 @@
 /**
  * 异步注入reducer的修饰器
  */
-import React, { Component } from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 
 /**

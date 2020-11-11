@@ -1,4 +1,3 @@
-import React from 'react';
 import { Row, Col } from 'antd';
 import style from './createForm.sass';
 import JsonInputTextArea from './JsonInputTextArea';
