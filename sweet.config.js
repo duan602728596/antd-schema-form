@@ -35,7 +35,7 @@ module.exports = {
         'import-components-style',
         {
           components: {
-            'highlight.js/lib/highlight': '~highlight.js/styles/github-gist.css',
+            'highlight.js/lib/core': '~highlight.js/styles/github-gist.css',
             'antd-schema-form': 'style/antd-schema-form.css'
           }
         }

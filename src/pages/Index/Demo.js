@@ -40,7 +40,7 @@ function Demo(props) {
 
   useEffect(function() {
     codeRender();
-  });
+  }, []);
 
   return (
     <Fragment>
