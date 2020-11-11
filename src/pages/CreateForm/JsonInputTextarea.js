@@ -1,14 +1,16 @@
 import { Fragment, useState, useEffect, useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Button, Input, message, Space } from 'antd';
+import { Button, message, Space } from 'antd';
 import { CopyOutlined as IconCopyOutlined, RedoOutlined as IconRedoOutlined } from '@ant-design/icons';
 import copy from 'copy-to-clipboard';
+import MonacoEditor from 'react-monaco-editor';
 import { setSchemaJson } from './reducers/reducers';
 import { schemaJsonState } from './reducers/selectors';
+import style from './jsonInputTextarea.sass';
 import commonStyle from './commonStyle.sass';
 import { I18NContext } from '../../components/I18N/I18N';
 
-function JsonInputTextArea(props) {
+function JsonInputTextarea(props) {
   const { schemaJson } = useSelector(schemaJsonState);
   const dispatch = useDispatch();
   const context = useContext(I18NContext);
@@ -25,8 +27,8 @@ function JsonInputTextArea(props) {
   }
 
   // 表单的change事件
-  function handleInputTextAreaChange(event) {
-    setTextAreaValue(event.target.value);
+  function handleInputTextAreaChange(newValue, event) {
+    setTextAreaValue(newValue);
   }
 
   // 刷新表单并同步到store
@@ -53,13 +55,19 @@ function JsonInputTextArea(props) {
           { createForm.refreshFormConfiguration }
         </Button>
       </Space>
-      <Input.TextArea id="jsonSchemaTextArea"
-        rows={ 20 }
-        value={ textAreaValue }
-        onChange={ handleInputTextAreaChange }
-      />
+      <div className={ style.editor }>
+        <MonacoEditor theme="vs"
+          width="100%"
+          height="100%"
+          wordWrap="on"
+          language="json"
+          value={ textAreaValue }
+          onChange={ handleInputTextAreaChange }
+          options={{ fontSize: 12, wordWrap: 'on' }}
+        />
+      </div>
     </Fragment>
   );
 }
 
-export default JsonInputTextArea;
+export default JsonInputTextarea;

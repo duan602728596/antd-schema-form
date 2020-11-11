@@ -1,9 +1,10 @@
 import { Fragment, useState, useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createSelector, createStructuredSelector } from 'reselect';
-import { Row, Col, Input, Button, message, Modal, Empty, Space } from 'antd';
+import { Button, message, Modal, Empty, Space } from 'antd';
 import { CopyOutlined as IconCopyOutlined, TableOutlined as IconTableOutlined } from '@ant-design/icons';
 import copy from 'copy-to-clipboard';
+import MonacoEditor from 'react-monaco-editor';
 import { setSchemaJson } from './reducers/reducers';
 import style from './preview.sass';
 import schemaFormDefaultLang from 'antd-schema-form/language/default.json';
@@ -51,8 +52,8 @@ function Preview(props) {
   }
 
   // 表单的change事件
-  function handleInputTextAreaChange(event) {
-    setTextAreaValue(event.target.value);
+  function handleInputTextAreaChange(newValue, event) {
+    setTextAreaValue(newValue);
   }
 
   // 表单预览
@@ -70,21 +71,27 @@ function Preview(props) {
   return (
     <Fragment>
       <p>{ preview.introduction }</p>
-      <Row className={ style.mb10 } type="flex" gutter={ 10 }>
-        <Col xs={ 24 } sm={ 24 } md={ 8 }>
+      <div className={ style.flexBox }>
+        <div className={ style.flexLeftBox }>
           <Space className={ style.tools }>
             <Button icon={ <IconCopyOutlined /> } onClick={ handleCopyClick }>{ preview.copy }</Button>
             <Button type="primary" icon={ <IconTableOutlined /> } onClick={ handleRedoJsonSchema }>
               { preview.generateForm }
             </Button>
           </Space>
-          <Input.TextArea id="jsonSchemaTextArea2"
-            rows={ 20 }
-            value={ textAreaValue }
-            onChange={ handleInputTextAreaChange }
-          />
-        </Col>
-        <Col xs={ 24 } sm={ 24 } md={ 16 }>
+          <div className={ style.editor }>
+            <MonacoEditor theme="vs"
+              width="100%"
+              height="100%"
+              wordWrap="on"
+              language="json"
+              value={ textAreaValue }
+              onChange={ handleInputTextAreaChange }
+              options={{ fontSize: 12, wordWrap: 'on' }}
+            />
+          </div>
+        </div>
+        <div className={ style.flexRightBox }>
           {
             schemaJson ? (
               <SchemaFormPreview json={ schemaJson }
@@ -97,8 +104,8 @@ function Preview(props) {
               </div>
             )
           }
-        </Col>
-      </Row>
+        </div>
+      </div>
     </Fragment>
   );
 }

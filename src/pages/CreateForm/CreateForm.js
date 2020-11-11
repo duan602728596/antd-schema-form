@@ -1,6 +1,5 @@
-import { Row, Col } from 'antd';
 import style from './createForm.sass';
-import JsonInputTextArea from './JsonInputTextArea';
+import JsonInputTextarea from './JsonInputTextarea';
 import ChangeJson from './ChangeJson';
 import { I18NContext } from '../../components/I18N/I18N';
 
@@ -13,14 +12,14 @@ function CreateForm(props) {
 
           return [
             <p key="introduction">{ createForm.introduction }</p>,
-            <Row key="row" type="flex" gutter={ 10 }>
-              <Col className={ style.mediaMb10 } xs={ 24 } sm={ 24 } md={ 8 }>
-                <JsonInputTextArea />
-              </Col>
-              <Col xs={ 24 } sm={ 24 } md={ 16 }>
+            <div key="main" className={ style.flexBox }>
+              <div className={ style.flexLeftBox }>
+                <JsonInputTextarea />
+              </div>
+              <div className={ style.flexRightBox }>
                 <ChangeJson />
-              </Col>
-            </Row>
+              </div>
+            </div>
           ];
         }
       }

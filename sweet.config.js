@@ -1,5 +1,6 @@
 const path = require('path');
 const process = require('process');
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
@@ -49,5 +50,10 @@ module.exports = {
   css: {
     include: /node_modules/
   },
-  html: [{ template: path.join(__dirname, 'src/index.pug') }]
+  html: [{ template: path.join(__dirname, 'src/index.pug') }],
+  plugins: [
+    new MonacoWebpackPlugin({
+      languages: ['json']
+    })
+  ]
 };
