@@ -3,9 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { createSelector, createStructuredSelector } from 'reselect';
 import { Row, Col, Input, Button, message, Modal, Empty, Space } from 'antd';
 import { CopyOutlined as IconCopyOutlined, TableOutlined as IconTableOutlined } from '@ant-design/icons';
+import copy from 'copy-to-clipboard';
 import { setSchemaJson } from './reducers/reducers';
 import style from './preview.sass';
-import { handleCopyTextClick } from '../../utils';
 import schemaFormDefaultLang from 'antd-schema-form/language/default.json';
 import schemaFormZhCNLang from 'antd-schema-form/language/zh-CN.json';
 import { I18NContext } from '../../components/I18N/I18N';
@@ -29,6 +29,12 @@ function Preview(props) {
   const { language, languagePack } = context;
   const { preview } = languagePack;
   const langMessage = languagePack.message;
+
+  // 复制
+  function handleCopyClick(event) {
+    copy(textAreaValue);
+    message.info(langMessage.copyMessage);
+  }
 
   // 表单确认事件
   function handleOnFormOkClick(form, value, keys) {
@@ -67,15 +73,8 @@ function Preview(props) {
       <Row className={ style.mb10 } type="flex" gutter={ 10 }>
         <Col xs={ 24 } sm={ 24 } md={ 8 }>
           <Space className={ style.tools }>
-            <Button icon={ <IconCopyOutlined /> }
-              onClick={ handleCopyTextClick.bind(this, 'jsonSchemaTextArea2', langMessage.copyMessage) }
-            >
-              { preview.copy }
-            </Button>
-            <Button type="primary"
-              icon={ <IconTableOutlined /> }
-              onClick={ handleRedoJsonSchema }
-            >
+            <Button icon={ <IconCopyOutlined /> } onClick={ handleCopyClick }>{ preview.copy }</Button>
+            <Button type="primary" icon={ <IconTableOutlined /> } onClick={ handleRedoJsonSchema }>
               { preview.generateForm }
             </Button>
           </Space>

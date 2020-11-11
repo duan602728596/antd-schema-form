@@ -2,10 +2,10 @@ import { Fragment, useState, useEffect, useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, Input, message, Space } from 'antd';
 import { CopyOutlined as IconCopyOutlined, RedoOutlined as IconRedoOutlined } from '@ant-design/icons';
+import copy from 'copy-to-clipboard';
 import { setSchemaJson } from './reducers/reducers';
 import { schemaJsonState } from './reducers/selectors';
 import commonStyle from './commonStyle.sass';
-import { handleCopyTextClick } from '../../utils';
 import { I18NContext } from '../../components/I18N/I18N';
 
 function JsonInputTextArea(props) {
@@ -16,7 +16,13 @@ function JsonInputTextArea(props) {
 
   const { languagePack } = context;
   const { createForm } = languagePack;
-  const msg = languagePack.message;
+  const langMessage = languagePack.message;
+
+  // 复制
+  function handleCopyClick(event) {
+    copy(textAreaValue);
+    message.info(langMessage.copyMessage);
+  }
 
   // 表单的change事件
   function handleInputTextAreaChange(event) {
@@ -31,7 +37,7 @@ function JsonInputTextArea(props) {
       value = JSON.parse(textAreaValue);
       value |> setSchemaJson |> dispatch;
     } catch (err) {
-      message.error(msg.jsonFormatError);
+      message.error(langMessage.jsonFormatError);
     }
   }
 
@@ -42,11 +48,7 @@ function JsonInputTextArea(props) {
   return (
     <Fragment>
       <Space className={ commonStyle.mb8 }>
-        <Button icon={ <IconCopyOutlined /> }
-          onClick={ handleCopyTextClick.bind(this, 'jsonSchemaTextArea', msg.copyMessage) }
-        >
-          { createForm.copy }
-        </Button>
+        <Button icon={ <IconCopyOutlined /> } onClick={ handleCopyClick }>{ createForm.copy }</Button>
         <Button icon={ <IconRedoOutlined /> } onClick={ handleRedoJsonSchema }>
           { createForm.refreshFormConfiguration }
         </Button>
