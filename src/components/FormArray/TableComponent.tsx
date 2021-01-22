@@ -346,7 +346,7 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
 
     for (const item of sortSelectedRowKeys) tableValue.splice(item, 1);
 
-    triggerChange(tableValue);
+    triggerChange([...tableValue]);
     setSelectedRowKeys([]);
   }
 
