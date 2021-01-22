@@ -5,7 +5,7 @@
 [![NPM version][react-dom-image]][react-dom-url]
 [![NPM version][ant-design-image]][ant-design-url]
 
-[antd-schema-form-image]: https://img.shields.io/badge/antd--schema--form-4.0.0-blue.svg
+[antd-schema-form-image]: https://img.shields.io/badge/antd--schema--form-4.1.0-blue.svg
 [antd-schema-form-url]: https://www.npmjs.com/package/antd-schema-form
 
 [react-image]: https://img.shields.io/badge/react-%3E=16.7.0-red.svg
