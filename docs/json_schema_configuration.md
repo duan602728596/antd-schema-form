@@ -130,10 +130,10 @@ The component renders the table by default ([Table](https://ant.design/component
 
 * `items: object`: the contents of the array.
 * `$defaultValue: Array<any>`: The default value of the form control.
-* `minimum: number`: the minimum value of the form.
-* `$minimumMessage: string`: Customize the verification failure message for the minimum.
-* `maximum: number`: the maximum value of the form.
-* `$maximumMessage: string`: Customize the verification failure message for maximum.
+* `minItems: number`: the minimum value of the form.
+* `$minItemsMessage: string`: Customize the verification failure message for the minItems.
+* `maxItems: number`: the maximum value of the form.
+* `$maxItemsMessage: string`: Customize the verification failure message for maxItems.
 * `$addDataInReverseOrder: boolean`: When set to `true`, data is inserted into the header when the table component adds data.
 
   | Value    | Component Name                                                                                                       |
