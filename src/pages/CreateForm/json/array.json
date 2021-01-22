@@ -38,13 +38,13 @@
       "type": "string",
       "title": "Customize the verification failure message for the minimum"
     },
-    "maximum": {
-      "id": "$root/properties/maximum",
+    "maxItems": {
+      "id": "$root/properties/maxItems",
       "type": "number",
       "title": "The maximum value of the form"
     },
-    "$maximumMessage": {
-      "id": "$root/properties/$maximumMessage",
+    "$maxItemsMessage": {
+      "id": "$root/properties/$maxItemsMessage",
       "type": "string",
       "title": "Customize the verification failure message for maximum"
     },

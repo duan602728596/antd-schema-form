@@ -38,13 +38,13 @@
       "type": "string",
       "title": "自定义minItems的验证失败提示信息"
     },
-    "maximum": {
-      "id": "$root/properties/maximum",
+    "maxItems": {
+      "id": "$root/properties/maxItems",
       "type": "number",
       "title": "数组内元素的最大数量"
     },
-    "$maximumMessage": {
-      "id": "$root/properties/$maximumMessage",
+    "$maxItemsMessage": {
+      "id": "$root/properties/$maxItemsMessage",
       "type": "string",
       "title": "自定义maxItems的验证失败提示信息"
     },
