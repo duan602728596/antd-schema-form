@@ -52,8 +52,8 @@ const SchemaForm: SchemaFormComponent = forwardRef(function(props: PWC<SchemaFor
     okText,
     cancelText,
     footer,
-    customComponent,
-    customTableRender,
+    customComponent = {},
+    customTableRender = {},
     formOptions = {}
   }: SchemaFormProps = props;
 
@@ -118,11 +118,6 @@ SchemaForm.propTypes = {
   customComponent: PropTypes.objectOf(PropTypes.func) as Validator<{ [key: string]: Function } | null | undefined>,
   customTableRender: PropTypes.objectOf(PropTypes.func),
   languagePack: PropTypes.object
-};
-
-SchemaForm.defaultProps = {
-  customComponent: {},
-  customTableRender: {}
 };
 
 export default SchemaForm;
