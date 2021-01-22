@@ -2,7 +2,7 @@
  * 异步加载模块
  */
 import { lazy, Suspense } from 'react';
-import { injectReducers } from '../store/store';
+import { replaceReducer } from '../store/store';
 import SwitchLoading from '../layouts/SwitchLoading/index';
 
 const Fallback = <SwitchLoading />;
@@ -16,7 +16,7 @@ function asyncModule(loader) {
 
   return () => (
     <Suspense fallback={ Fallback }>
-      <Module injectReducers={ injectReducers } />
+      <Module replaceReducer={ replaceReducer } />
     </Suspense>
   );
 }

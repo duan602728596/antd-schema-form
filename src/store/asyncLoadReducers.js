@@ -14,7 +14,7 @@ function asyncLoadReducers(reducers) {
     return function(props) {
       useMemo(function() {
         if (injectModels) {
-          props.injectReducers?.(reducers);
+          props.replaceReducer?.(reducers);
           injectModels = false;
         }
       }, []);
