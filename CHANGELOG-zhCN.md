@@ -1,3 +1,8 @@
+### v4.1.0
+
+* 🐛修复`TableComponent`组件在勾选删除后，UI没有变化的问题。(#23)
+* Object组件的Footer区域，引入了`<Space></Space>`组件布局。
+
 ### v4.0.2
 
 * 🐛修复`TableComponent`组件在添加后，重置添加表单时没有默认值回填的问题。

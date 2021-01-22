@@ -1,3 +1,8 @@
+### v4.1.0
+
+* 🐛Fix the problem that the UI of the `TableComponent` component is not changed after ticking and deleting. (#23)
+* The Footer area of the Object component introduces the `<Space></Space>` component layout.
+
 ### v4.0.2
 
 * 🐛Fix the problem that there is no default value backfill when resetting the added form after adding the `TableComponent` component.
