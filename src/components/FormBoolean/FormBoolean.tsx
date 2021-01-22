@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { createElement } from 'react';
 import { useContext, PropsWithChildren, ReactElement } from 'react';
 import * as PropTypes from 'prop-types';
 import { Form } from 'antd';
@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import omit from 'lodash-es/omit';
 import AntdSchemaFormContext from '../../context';
 import styleName from '../../utils/styleName';
-import createElement from '../../utils/createElement';
+import createReactElement from '../../utils/createReactElement';
 import type { ContextValue, BooleanItem } from '../../types';
 
 /**
@@ -31,7 +31,7 @@ function FormBoolean(props: PropsWithChildren<FormBooleanProps>): ReactElement |
   if (customComponent) {
     element = ($componentType && $componentType in customComponent)
       ? customComponent[$componentType](root, form, required)
-      : createElement(customComponent.defaultBoolean, [root, form, required]);
+      : createReactElement(customComponent.defaultBoolean, [root, form, required]);
   }
 
   return element ? (

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { createElement } from 'react';
 import { useContext, PropsWithChildren, ReactElement } from 'react';
 import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -8,7 +8,7 @@ import omit from 'lodash-es/omit';
 import AntdSchemaFormContext from '../../context';
 import styleName from '../../utils/styleName';
 import createArrayRules from './createArrayRules';
-import createElement from '../../utils/createElement';
+import createReactElement from '../../utils/createReactElement';
 import type { ArrayItem, ContextValue } from '../../types';
 
 /**
@@ -36,7 +36,7 @@ function FormArray(props: PropsWithChildren<FormArrayProps>): ReactElement | nul
     if ($componentType && $componentType in customComponent) {
       element = customComponent[$componentType](root, form, required);
     } else {
-      element = createElement(customComponent.defaultArray, [root, form, required]);
+      element = createReactElement(customComponent.defaultArray, [root, form, required]);
       isTableComponent = true;
     }
   }

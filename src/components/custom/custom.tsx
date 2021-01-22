@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { createElement } from 'react';
 import type { ReactNode, ReactNodeArray } from 'react';
 import { Input, Select, Radio, DatePicker, InputNumber, Checkbox, Switch, Collapse } from 'antd';
 import type { FormInstance } from 'antd/es/form';

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { createElement } from 'react';
 import type { ReactNode, ReactNodeArray } from 'react';
 import { Select } from 'antd';
 

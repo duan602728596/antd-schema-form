@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { createElement } from 'react';
 import {
   Fragment,
   useContext,
@@ -19,7 +19,7 @@ import FormBoolean from '../FormBoolean/FormBoolean';
 import FormArray from '../FormArray/FormArray';
 import getValueFromObject from '../../utils/getValueFromObject';
 import getKeysFromObject from '../../utils/getKeysFromObject';
-import createElement from '../../utils/createElement';
+import createReactElement from '../../utils/createReactElement';
 import sortProperties from '../../utils/sortProperties';
 import type { SchemaItem, ContextValue } from '../../types';
 
@@ -110,7 +110,7 @@ function FormObject(props: PropsWithChildren<FormObjectProps>): ReactElement {
     if (customComponent) {
       oneOfElement = $oneOfComponentType && $oneOfComponentType in customComponent
         ? customComponent[$oneOfComponentType](root, form, element)
-        : createElement(customComponent.defaultOneOf, [root, form, element]);
+        : createReactElement(customComponent.defaultOneOf, [root, form, element]);
     }
 
     return oneOfElement;
@@ -133,7 +133,7 @@ function FormObject(props: PropsWithChildren<FormObjectProps>): ReactElement {
     if (customComponent) {
       objectElement = ($componentType && $componentType in customComponent)
         ? customComponent[$componentType](root, form, element)
-        : createElement(customComponent.defaultObject, [root, form, element]);
+        : createReactElement(customComponent.defaultObject, [root, form, element]);
     }
 
     return objectElement;

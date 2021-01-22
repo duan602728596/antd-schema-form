@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { createElement } from 'react';
 import { useContext, PropsWithChildren, ReactElement } from 'react';
 import * as PropTypes from 'prop-types';
 import { Form } from 'antd';
@@ -8,7 +8,7 @@ import omit from 'lodash-es/omit';
 import AntdSchemaFormContext from '../../context';
 import styleName from '../../utils/styleName';
 import createStringRules from './createStringRules';
-import createElement from '../../utils/createElement';
+import createReactElement from '../../utils/createReactElement';
 import type { StringItem, ContextValue } from '../../types';
 
 /**
@@ -35,7 +35,7 @@ function FormString(props: PropsWithChildren<FormStringProps>): ReactElement | n
   if (customComponent) {
     element = ($componentType && $componentType in customComponent)
       ? customComponent[$componentType](root, form, required)
-      : createElement(customComponent.defaultString, [root, form, required]);
+      : createReactElement(customComponent.defaultString, [root, form, required]);
   }
 
   return element ? (
