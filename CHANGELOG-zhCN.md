@@ -1,5 +1,6 @@
 ### v4.1.0
 
+* 按需加载`React.createElement`方法。
 * 🐛修复`TableComponent`组件在勾选删除后，UI没有变化的问题。(#23)
 * Object组件的Footer区域，引入了`<Space></Space>`组件布局。
 
