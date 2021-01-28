@@ -63,7 +63,7 @@ export interface NumberItem extends SchemaItem {
   maximum?: number;
   $minimumMessage?: string;
   $maximumMessage?: string;
-  $integer: boolean;
+  $integer?: boolean;
   $integerMessage?: string;
   enum?: Array<string>;
   $enumMessage?: string;
