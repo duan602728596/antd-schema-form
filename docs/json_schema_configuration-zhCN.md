@@ -135,6 +135,7 @@
 * `maxItems: number`: 数组内元素的最大数量。
 * `$maxItemsMessage: string`: 自定义maxItems的验证失败提示信息。
 * `$addDataInReverseOrder: boolean`: 设置为`true`时，表格组件添加数据时数据插入到头部。
+* `$rowKey: string`: 设置表格的rowKey字段。
 
   | 值            | 组件名称                                           |
   | ---           | ---                                               |

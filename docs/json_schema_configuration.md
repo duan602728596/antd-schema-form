@@ -135,6 +135,7 @@ The component renders the table by default ([Table](https://ant.design/component
 * `maxItems: number`: the maximum value of the form.
 * `$maxItemsMessage: string`: Customize the verification failure message for maxItems.
 * `$addDataInReverseOrder: boolean`: When set to `true`, data is inserted into the header when the table component adds data.
+* `$rowKey: string`: Set the rowKey field of the table.
 
   | Value    | Component Name                                                                                                       |
   | ---      | ---                                                                                                                  |

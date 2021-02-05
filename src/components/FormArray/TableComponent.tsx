@@ -515,7 +515,7 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
             </Popconfirm>
           ]
         }
-        rowKey={ (item: object, index: number): string => `${ index }` }
+        rowKey={ root.$rowKey ?? ((item: object, index: number): string => `${ index }`) }
         rowSelection={{
           type: 'checkbox',
           selectedRowKeys,
