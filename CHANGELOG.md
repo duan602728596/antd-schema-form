@@ -1,3 +1,8 @@
+### v4.1.1
+
+* Add `$rowKey` configuration to the array to set the rowKey field of the table.
+* 🐛Fix the type error of the number `$integer` configuration.
+
 ### v4.1.0
 
 * Load the `React.createElement` method on demand.
