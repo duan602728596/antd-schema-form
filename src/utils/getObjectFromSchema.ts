@@ -1,5 +1,5 @@
 import * as moment from 'moment';
-import type { Store } from 'rc-field-form/es/interface';
+import type { Store } from 'antd/es/form/interface';
 import type { SchemaItem, StringItem, NumberItem, BooleanItem, ArrayItem } from '../types';
 
 

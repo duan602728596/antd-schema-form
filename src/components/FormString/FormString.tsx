@@ -2,7 +2,7 @@ import { createElement } from 'react';
 import { useContext, PropsWithChildren, ReactElement } from 'react';
 import * as PropTypes from 'prop-types';
 import { Form } from 'antd';
-import type { Rule } from 'rc-field-form/es/interface';
+import type { Rule } from 'antd/es/form';
 import classNames from 'classnames';
 import omit from 'lodash-es/omit';
 import AntdSchemaFormContext from '../../context';

@@ -1,6 +1,6 @@
 import transform from 'lodash-es/transform';
 import isPlainObject from 'lodash-es/isPlainObject';
-import type { Store } from 'rc-field-form/es/interface';
+import type { Store } from 'antd/es/form/interface';
 
 /**
  * 格式化数据

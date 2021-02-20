@@ -1,5 +1,5 @@
 import isPlainObject from 'lodash-es/isPlainObject';
-import type { Store } from 'rc-field-form/es/interface';
+import type { Store } from 'antd/es/form/interface';
 
 /**
  * object对象，格式化成表单需要的值

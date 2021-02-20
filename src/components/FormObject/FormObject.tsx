@@ -11,7 +11,7 @@ import {
 import * as PropTypes from 'prop-types';
 import isArray from 'lodash-es/isArray';
 import { Button, Space } from 'antd';
-import type { Store } from 'rc-field-form/es/interface';
+import type { Store } from 'antd/es/form/interface';
 import AntdSchemaFormContext from '../../context';
 import FormString from '../FormString/FormString';
 import FormNumber from '../FormNumber/FormNumber';

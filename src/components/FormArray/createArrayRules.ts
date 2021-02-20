@@ -1,6 +1,6 @@
 import isNil from 'lodash-es/isNil';
 import isNumber from 'lodash-es/isNumber';
-import type { Rule, RuleObject } from 'rc-field-form/es/interface';
+import type { Rule, RuleObject } from 'antd/es/form';
 import template from '../../utils/template';
 import type { ArrayItem } from '../../types';
 

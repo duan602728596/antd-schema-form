@@ -78,7 +78,6 @@
     "lint-staged": "^10.4.2",
     "merge2": "^1.4.1",
     "mocha": "^8.2.0",
-    "rc-field-form": "^1.13.0",
     "rc-table": "^7.10.3",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
