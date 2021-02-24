@@ -8,7 +8,6 @@
     "clean": "rimraf ./dist",
     "server": "milktea server",
     "eslint": "eslint ./src --fix",
-    "case-check": "case-check --dir=\"./\" --css",
     "updateVersion": "milktea update"
   },
   "dependencies": {
@@ -43,7 +42,6 @@
     "commitizen": "^4.2.3",
     "cross-env": "^7.0.3",
     "cz-conventional-changelog": "^3.3.0",
-    "es-module-path-case-check": "^1.5.0",
     "eslint": "^7.20.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-react": "^7.22.0",
