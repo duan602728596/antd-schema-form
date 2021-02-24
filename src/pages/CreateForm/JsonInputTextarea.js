@@ -10,6 +10,7 @@ import style from './jsonInputTextarea.sass';
 import commonStyle from './commonStyle.sass';
 import { I18NContext } from '../../components/I18N/I18N';
 
+/* schema输入 */
 function JsonInputTextarea(props) {
   const { schemaJson } = useSelector(schemaJsonState);
   const dispatch = useDispatch();

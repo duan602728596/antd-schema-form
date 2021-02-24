@@ -5,7 +5,8 @@ import reducers from './reducers/reducers';
 import Preview from './Preview';
 import { I18NContext } from '../../components/I18N/I18N';
 
-function ModuleLayout(props) {
+/* 表单预览 */
+function Index(props) {
   const context = useContext(I18NContext);
   const { preview } = context.languagePack;
 
@@ -17,4 +18,4 @@ function ModuleLayout(props) {
   ];
 }
 
-export default asyncLoadReducers(reducers)(ModuleLayout);
+export default asyncLoadReducers(reducers)(Index);

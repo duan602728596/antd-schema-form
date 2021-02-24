@@ -20,6 +20,7 @@ const state = createStructuredSelector({
   )
 });
 
+/* 输入schema */
 function Preview(props) {
   const { schemaJson } = useSelector(state);
   const dispatch = useDispatch();

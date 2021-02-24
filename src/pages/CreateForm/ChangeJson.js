@@ -1,6 +1,5 @@
 import { Fragment, useState, useEffect, useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { createSelector, createStructuredSelector } from 'reselect';
 import { Tag, Button, Collapse } from 'antd';
 import {
   PlusOutlined as IconPlusOutlined,
@@ -15,6 +14,7 @@ import AddDrawer from './AddDrawer';
 import EditDrawer from './EditDrawer';
 import { I18NContext } from '../../components/I18N/I18N';
 
+/* 表单层级展示 */
 function ChangeJson(props) {
   const { schemaJson: storeSchemaJson } = useSelector(schemaJsonState);
   const dispatch = useDispatch();

@@ -10,6 +10,7 @@ import demoZhCN from './demo-zhCN.json';
 import { I18NContext } from '../../components/I18N/I18N';
 import hljs from '../../components/highlight/highlight';
 
+/* demo展示 */
 function Demo(props) {
   const context = useContext(I18NContext);
   const codeRef = useRef();

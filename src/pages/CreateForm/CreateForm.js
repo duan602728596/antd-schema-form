@@ -3,6 +3,7 @@ import JsonInputTextarea from './JsonInputTextarea';
 import ChangeJson from './ChangeJson';
 import { I18NContext } from '../../components/I18N/I18N';
 
+/* 表单创建 */
 function CreateForm(props) {
   return (
     <I18NContext.Consumer>

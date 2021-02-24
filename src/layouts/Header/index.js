@@ -7,6 +7,7 @@ import { I18NContext } from '../../components/I18N/I18N';
 
 const { version } = packageJson;
 
+/* 版本切换 */
 function versionMenuOverlay() {
   return (
     <Menu>
@@ -28,6 +29,7 @@ function versionMenuOverlay() {
   );
 }
 
+/* 网站headers */
 function Header(props) {
   return (
     <Layout.Header>

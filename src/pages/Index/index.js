@@ -3,7 +3,8 @@ import { useRoutes } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import Demo from './Demo';
 
-function ModuleLayout(props) {
+/* 网站首页 */
+function Index(props) {
   const routes = useRoutes([
     { path: '/', element: <Demo /> },
     { path: 'Index', element: <Demo /> }
@@ -19,4 +20,4 @@ function ModuleLayout(props) {
   );
 }
 
-export default ModuleLayout;
+export default Index;

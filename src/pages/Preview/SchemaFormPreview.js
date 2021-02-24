@@ -5,6 +5,7 @@ import { FrownOutlined as IconFrownOutlined } from '@ant-design/icons';
 import SchemaForm from 'antd-schema-form';
 import style from './schemaFormPreview.sass';
 
+/* 表单预览生成 */
 class SchemaFormPreview extends Component {
   static propTypes = {
     json: PropTypes.object,
