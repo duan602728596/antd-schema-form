@@ -8,9 +8,9 @@
   "switchLoading": "Loading...",
   "index": {
     "introduction": [
-      "Antd-schema-form based",
-      ", Quickly generate interactive forms with",
-      "configuration.",
+      "Antd-schema-form based ",
+      ", Quickly generate interactive forms with ",
+      " configuration.",
       "This demo simply shows how to build a form by configuring schema.json."
     ],
     "demoTitle": "Form:"
