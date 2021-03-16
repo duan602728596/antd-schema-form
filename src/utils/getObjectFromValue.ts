@@ -1,3 +1,4 @@
+import isPlainObject from 'lodash-es/isPlainObject';
 import type { Store } from 'antd/es/form/interface';
 import isAMomentObject from './isAMomentObject';
 
@@ -12,7 +13,7 @@ function getObjectFromValue(obj: object, basicId?: string): Store {
   for (const key in obj) {
     const item: any = obj[key];
 
-    if (isAMomentObject(item)) {
+    if (isPlainObject(item) && !isAMomentObject(item)) {
       const bid: string = basicId ? `${ basicId }/${ key }/properties` : `${ key }/properties`;
       const result: object = getObjectFromValue(item, bid);
 
