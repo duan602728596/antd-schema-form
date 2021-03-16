@@ -1,6 +1,6 @@
 /* 项目开发、预览的webpack配置 */
 const path = require('path');
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { basicConfig, rules, plugins } = require('./basic.config');
 
