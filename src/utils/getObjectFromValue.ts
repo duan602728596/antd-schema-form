@@ -1,5 +1,5 @@
-import isPlainObject from 'lodash-es/isPlainObject';
 import type { Store } from 'antd/es/form/interface';
+import isAMomentObject from './isAMomentObject';
 
 /**
  * object对象，格式化成表单需要的值
@@ -12,7 +12,7 @@ function getObjectFromValue(obj: object, basicId?: string): Store {
   for (const key in obj) {
     const item: any = obj[key];
 
-    if (isPlainObject(item) && !item._isAMomentObject) {
+    if (isAMomentObject(item)) {
       const bid: string = basicId ? `${ basicId }/${ key }/properties` : `${ key }/properties`;
       const result: object = getObjectFromValue(item, bid);
 

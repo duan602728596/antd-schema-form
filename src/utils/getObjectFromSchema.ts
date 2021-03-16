@@ -1,7 +1,7 @@
 import * as moment from 'moment';
 import type { Store } from 'antd/es/form/interface';
+import isAMomentObject from './isAMomentObject';
 import type { SchemaItem, StringItem, NumberItem, BooleanItem, ArrayItem } from '../types';
-
 
 type SchemaJson = SchemaItem | StringItem | NumberItem | BooleanItem | ArrayItem;
 
@@ -28,7 +28,7 @@ function getObjectFromSchema(schemaJsonItem: SchemaJson, id?: string): Store {
       schemaJsonItem.$defaultValue
       && schemaJsonItem.type === 'string'
       && schemaJsonItem.$componentType === 'date'
-      && schemaJsonItem.$defaultValue['_isAMomentObject'] !== true
+      && !isAMomentObject(schemaJsonItem.$defaultValue)
     ) {
       // @ts-ignore
       value[schemaJsonItem.id ?? id] = moment(schemaJsonItem.$defaultValue);
