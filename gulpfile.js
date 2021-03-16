@@ -1,10 +1,14 @@
 const gulp = require('gulp');
 const typescript = require('gulp-typescript');
-const sass = require('gulp-sass');
+const gulpSass = require('gulp-sass');
 const filter = require('gulp-filter');
 const merge = require('merge2');
+const sass = require('sass');
+const Fiber = require('fibers');
 const tsconfig = require('./tsconfig.json');
 const tsconfigES5 = require('./tsconfig.es5.json');
+
+gulpSass.compiler = sass;
 
 // 文件目录地址
 const tsSrc = 'src/**/*.{ts,tsx}';
@@ -67,9 +71,10 @@ function copy() {
 /* sass */
 function proSassProject() {
   return gulp.src(sassSrc)
-    .pipe(sass({
-      outputStyle: 'compressed'
-    }).on('error', sass.logError))
+    .pipe(gulpSass({
+      outputStyle: 'compressed',
+      fiber: Fiber
+    }).on('error', gulpSass.logError))
     .pipe(gulp.dest(stylePath));
 }
 
