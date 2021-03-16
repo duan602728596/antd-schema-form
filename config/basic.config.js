@@ -1,5 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
+const sass = require('sass');
+const Fiber = require('fibers');
 const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
 
 /* 基础配置 */
@@ -11,7 +13,7 @@ exports.basicConfig = {
     chunkFilename: '[name].js',
     publicPath: '/'
   },
-  devtool: 'module-eval-source-map',
+  devtool: 'eval-source-map',
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json']
   }
@@ -59,7 +61,15 @@ exports.rules = [
           }
         }
       },
-      'sass-loader'
+      {
+        loader: 'sass-loader',
+        options: {
+          sassOptions: {
+            fiber: Fiber
+          },
+          implementation: sass
+        }
+      }
     ],
     include: /(src|lib|example)/
   },
