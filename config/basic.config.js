@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
 
 /* 基础配置 */
 exports.basicConfig = {
@@ -74,5 +75,21 @@ exports.plugins = [
   new webpack.IgnorePlugin({
     resourceRegExp: /^\.\/locale$/,
     contextRegExp: /moment$/
+  }),
+  new AntdDayjsWebpackPlugin({
+    plugins: [
+      'isSameOrBefore',
+      'isSameOrAfter',
+      'advancedFormat',
+      'customParseFormat',
+      'weekday',
+      'weekYear',
+      'weekOfYear',
+      'isMoment',
+      'localeData',
+      'localizedFormat'
+    ],
+    replaceMoment: true,
+    preset: 'antd'
   })
 ];
