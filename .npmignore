@@ -34,6 +34,7 @@ docs
 .eslintrc.yml
 .lintstagedrc.yml
 .babelrc
+.eslintrc.js
 
 # cache
 .babelCache
