@@ -2,7 +2,7 @@ import stringJson from './string.json';
 import numberJson from './number.json';
 import booleanJson from './boolean.json';
 import objectJson from './object.json';
-import arraon from './array.json';
+import arrayJson from './array.json';
 import stringJsonZhCN from './string-zhCN.json';
 import numberJsonZhCN from './number-zhCN.json';
 import booleanJsonZhCN from './boolean-zhCN.json';
