@@ -29,8 +29,7 @@
     "clean:react-slick": "rimraf node_modules/@types/react-slick/node_modules",
     "test:init": "mocha init tests",
     "test": "webpack-dev-server --config=\"./config/webpack.test.js\" --hot --color --port=6060",
-    "eslint": "cross-env NODE_ENV=eslint eslint ./ --ext .js,.jsx,.ts,.tsx --fix",
-    "case-check": "case-check --dir=\"./\" --ext=\"sass\"",
+    "eslint": "eslint ./ --fix",
     "updateVersion": "milktea update"
   },
   "dependencies": {
@@ -70,6 +69,9 @@
     "enzyme": "^3.11.0",
     "es-module-path-case-check": "^1.5.0",
     "eslint": "^7.22.0",
+    "eslint-import-resolver-node": "^0.3.4",
+    "eslint-import-resolver-typescript": "^2.4.0",
+    "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-react": "^7.22.0",
     "fibers": "^5.0.0",
     "file-loader": "^6.2.0",
