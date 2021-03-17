@@ -1,3 +1,8 @@
+### v4.2.0
+
+* Add judgment on the dayjs object.
+* Upgrade all dependencies to the latest version.
+
 ### v4.1.1
 
 * Add `$rowKey` configuration to the array to set the rowKey field of the table.
