@@ -1,12 +1,11 @@
-import 'regenerator-runtime';
-import * as React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+import { render } from 'react-dom';
+import style from './style.sass';
+import Form from './modules/Form';
 
 /* app */
-ReactDOM.render(
-  <App />,
+render(
+  <div className={ style.box }>
+    <Form />
+  </div>,
   document.getElementById('app')
 );
-
-if (module.hot) module.hot.accept();

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { Input } from 'antd';
 import { SettingFilled as IconSettingFilled } from '@ant-design/icons';
 import SchemaForm from '../SchemaForm';

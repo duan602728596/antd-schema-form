@@ -2,7 +2,9 @@ const path = require('path');
 const webpack = require('webpack');
 const sass = require('sass');
 const Fiber = require('fibers');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
+const babelConfig = require('./babel.config');
 
 /* 基础配置 */
 exports.basicConfig = {
@@ -23,7 +25,12 @@ exports.basicConfig = {
 exports.rules = [
   {
     test: /.*\.jsx?$/,
-    use: ['babel-loader'],
+    use: [
+      {
+        loader: 'babel-loader',
+        options: babelConfig
+      }
+    ],
     exclude: /(node_modules|mocha|chai)/
   },
   {
@@ -33,7 +40,7 @@ exports.rules = [
         loader: 'babel-loader',
         options: {
           plugins: [
-            'react-hot-loader/babel',
+            'react-refresh/babel',
             [
               'import',
               {
@@ -85,6 +92,9 @@ exports.plugins = [
   new webpack.IgnorePlugin({
     resourceRegExp: /^\.\/locale$/,
     contextRegExp: /moment$/
+  }),
+  new ReactRefreshWebpackPlugin({
+    overlay: false
   }),
   new AntdDayjsWebpackPlugin({
     plugins: [
