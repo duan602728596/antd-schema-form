@@ -1,6 +1,7 @@
 const path = require('path');
 const process = require('process');
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
+const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
@@ -60,6 +61,22 @@ module.exports = {
   plugins: [
     new MonacoWebpackPlugin({
       languages: ['json']
+    }),
+    new AntdDayjsWebpackPlugin({
+      plugins: [
+        'isSameOrBefore',
+        'isSameOrAfter',
+        'advancedFormat',
+        'customParseFormat',
+        'weekday',
+        'weekYear',
+        'weekOfYear',
+        'isMoment',
+        'localeData',
+        'localizedFormat'
+      ],
+      replaceMoment: true,
+      preset: 'antd'
     })
   ]
 };
