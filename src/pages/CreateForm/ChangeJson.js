@@ -104,8 +104,8 @@ function ChangeJson(props) {
     }
 
     if (item.type === 'object') {
-      for (const key in item.properties) {
-        findAndDelete(id, item.properties[key], item.properties, key);
+      for (const propertiesKey in item.properties) {
+        findAndDelete(id, item.properties[propertiesKey], item.properties, propertiesKey);
       }
 
       return void 0;

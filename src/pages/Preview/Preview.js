@@ -40,8 +40,6 @@ function Preview(props) {
 
   // 表单确认事件
   function handleOnFormOkClick(form, value, keys) {
-    const langMessage = languagePack.message;
-
     Modal.info({
       content: (
         <div>
