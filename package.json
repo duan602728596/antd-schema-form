@@ -29,6 +29,7 @@
     "test:init": "mocha init tests",
     "test": "webpack-dev-server --config=\"./config/webpack.test.js\" --hot --color --port=6060",
     "eslint": "eslint ./ --fix",
+    "eslint:no-fix": "eslint ./",
     "updateVersion": "milktea update"
   },
   "dependencies": {

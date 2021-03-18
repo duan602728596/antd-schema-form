@@ -83,6 +83,11 @@ module.exports = {
         ],
         // Extension Rules
         '@typescript-eslint/no-array-constructor': 'error', // 禁止使用new Array()，但是可以使用new Array<type>()
+        'no-shadow': 'off',
+        '@typescript-eslint/no-shadow': [ // 禁止变量声明覆盖外层作用域的变量
+          'error',
+          { hoist: 'all' }
+        ],
         'no-use-before-define': 'off',
         '@typescript-eslint/no-use-before-define': 'error'  // 禁止定义前使用
       }
@@ -144,6 +149,12 @@ module.exports = {
     'require-await': 'error',                // 禁止使用不带 await 表达式的 async 函数
     // Variables
     'no-delete-var': 'error',                // 禁止删除变量
+    'no-label-var': 'error',                 // 禁用与变量同名的标签
+    'no-shadow': [                           // 禁止变量声明覆盖外层作用域的变量
+      'error',
+      { hoist: 'all' }
+    ],
+    'no-undef': 'error',                     // 禁用未声明的变量
     'no-use-before-define': 'error',         // 禁止定义前使用
     // Node.js and CommonJS
     'no-new-require': 'error',               // 禁止调用 require 时使用 new 操作符
@@ -272,7 +283,10 @@ module.exports = {
     // import
     'import/no-unresolved': [ // 确保导入的模块可以解析为本地文件系统上的模块
       'error',
-      { commonjs: true }
+      {
+        commonjs: true,
+        ignore: ['describe', 'it']
+      }
     ]
   }
 };

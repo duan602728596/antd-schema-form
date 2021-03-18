@@ -66,8 +66,8 @@ function Form(props) {
   const formRef = useRef();
 
   // 提交
-  function handleOkSubmit(form, value, keys) {
-    console.log(value, keys);
+  function handleOkSubmit(form, val, keys) {
+    console.log(val, keys);
     console.log(formRef);
   }
 

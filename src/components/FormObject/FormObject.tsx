@@ -52,7 +52,7 @@ function FormObject(props: PropsWithChildren<FormObjectProps>): ReactElement {
   function renderComponentByTypeView(root: SchemaItem, required?: boolean): ReactNode {
     const { id, type }: SchemaItem = root;
     const _required: boolean = !!required;
-    const props: {
+    const componentProps: {
       key: string;
       root: any;
       required: boolean;
@@ -66,17 +66,17 @@ function FormObject(props: PropsWithChildren<FormObjectProps>): ReactElement {
 
     switch (type) {
       case 'string':
-        return <FormString { ...props } />;
+        return <FormString { ...componentProps } />;
 
       case 'integer':
       case 'number':
-        return <FormNumber { ...props } />;
+        return <FormNumber { ...componentProps } />;
 
       case 'boolean':
-        return <FormBoolean { ...props } />;
+        return <FormBoolean { ...componentProps } />;
 
       case 'array':
-        return <FormArray { ...props } />;
+        return <FormArray { ...componentProps } />;
 
       case 'object':
         // eslint-disable-next-line @typescript-eslint/no-use-before-define

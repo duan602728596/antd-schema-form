@@ -104,10 +104,10 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
   // 开始拖拽
   function handleTableDragStart(event: DragEvent<HTMLTableRowElement>): void {
     const target: EventTarget = event.target;
-    const id: string = target['dataset'].id;
+    const datasetId: string = target['dataset'].id;
     const index: number = Number(target['dataset'].index);
 
-    dragTargetId = id;
+    dragTargetId = datasetId;
     dragTargetIndex = index;
   }
 
@@ -292,9 +292,9 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
     form.resetFields(keys);
 
     if (editIndex === undefined) {
-      const result: Store = getObjectFromSchema(root.items);
+      const formResult: Store = getObjectFromSchema(root.items);
 
-      form.setFieldsValue(result);
+      form.setFieldsValue(formResult);
     } else {
       setIsDisplayDataDrawer(false);
       setEditIndex(undefined);
@@ -331,14 +331,14 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
   }
 
   // 表格的单选和多选
-  function handleColumnCheckboxChange(selectedRowKeys: number[], selectedRows: object[]): void {
-    setSelectedRowKeys(selectedRowKeys);
+  function handleColumnCheckboxChange(selectedRowKeysValue: number[], selectedRows: object[]): void {
+    setSelectedRowKeys(selectedRowKeysValue);
   }
 
   // 删除选中的数据
   function handleDeleteSelectDataClick(event: RMouseEvent<HTMLElement, MouseEvent>): void {
-    const id: string = root.id;
-    let tableValue: Array<any> | any = form.getFieldValue(id);
+    const rootId: string = root.id;
+    let tableValue: Array<any> | any = form.getFieldValue(rootId);
 
     tableValue = isNil(tableValue) ? (root.$defaultValue ?? []) : tableValue;
     // 删除选中的数据

@@ -35,9 +35,9 @@ function getKeysFromObject(item: SchemaItem): Array<string> {
     // 获取oneOf内的id
     if (item.oneOf && item.oneOf.length > 0) {
       for (const oneOfItem of item.oneOf) {
-        const id: string | undefined = oneOfItem.id;
+        const oneOfItemId: string | undefined = oneOfItem.id;
 
-        if (id && !idArr.includes(id)) idArr.push(id);
+        if (oneOfItemId && !idArr.includes(oneOfItemId)) idArr.push(oneOfItemId);
       }
     }
   }
