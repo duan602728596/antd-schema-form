@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import style from './createForm.sass';
-import JsonInputTextarea from './JsonInputTextarea';
-import ChangeJson from './ChangeJson';
+import JsonInputTextarea from './JsonInputTextarea/JsonInputTextarea';
+import ChangeJson from './ChangeJson/ChangeJson';
 import { I18NContext } from '../../components/I18N/I18N';
 
 /* 表单创建 */

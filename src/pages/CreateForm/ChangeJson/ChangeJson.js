@@ -6,13 +6,13 @@ import {
   EditOutlined as IconEditOutlined,
   DeleteOutlined as IconDeleteOutlined
 } from '@ant-design/icons';
-import { setSchemaJson as reduxSetSchemaJson } from './reducers/reducers';
-import { schemaJsonState } from './reducers/selectors';
+import { setSchemaJson as reduxSetSchemaJson } from '../reducers/reducers';
+import { schemaJsonState } from '../reducers/selectors';
 import style from './changeJson.sass';
-import json from './json/json';
+import json from '../json/json';
 import AddDrawer from './AddDrawer';
 import EditDrawer from './EditDrawer';
-import { I18NContext } from '../../components/I18N/I18N';
+import { I18NContext } from '../../../components/I18N/I18N';
 
 /* 表单层级展示 */
 function ChangeJson(props) {

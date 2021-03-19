@@ -4,11 +4,12 @@ import { Drawer, Select, Space } from 'antd';
 import SchemaForm from 'antd-schema-form';
 import schemaFormDefaultLang from 'antd-schema-form/language/default.json';
 import schemaFormZhCNLang from 'antd-schema-form/language/zh-CN.json';
-import json from './json/json';
-import commonStyle from './commonStyle.sass';
-import { I18NContext } from '../../components/I18N/I18N';
+import json from '../json/json';
+import commonStyle from '../commonStyle.sass';
+import { I18NContext } from '../../../components/I18N/I18N';
 
-function AddDrawer(props) {
+/* 编辑抽屉 */
+function EditDrawer(props) {
   const { visible, onOk, onCancel, item: propsItem } = props;
   const context = useContext(I18NContext);
   const [typeValue, setTypeValue] = useState(null); // 选择数据类型
@@ -37,9 +38,13 @@ function AddDrawer(props) {
 
   useEffect(function() {
     if (propsItem && visible === true) {
+      const id = propsItem.id.split('/');
+
+      setTypeValue(propsItem.type);
       setValue({
         $root: {
-          id: propsItem.type === 'array' ? 'items' : null
+          ...propsItem,
+          id: id[id.length - 1]
         }
       });
       setItem(propsItem);
@@ -72,11 +77,11 @@ function AddDrawer(props) {
   );
 }
 
-AddDrawer.propTypes = {
+EditDrawer.propTypes = {
   item: PropTypes.object,
   visible: PropTypes.bool,
   onOk: PropTypes.func,
   onCancel: PropTypes.func
 };
 
-export default AddDrawer;
+export default EditDrawer;

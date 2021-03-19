@@ -4,11 +4,11 @@ import { Button, message, Space } from 'antd';
 import { CopyOutlined as IconCopyOutlined, RedoOutlined as IconRedoOutlined } from '@ant-design/icons';
 import copy from 'copy-to-clipboard';
 import MonacoEditor from 'react-monaco-editor';
-import { setSchemaJson } from './reducers/reducers';
-import { schemaJsonState } from './reducers/selectors';
+import { setSchemaJson } from '../reducers/reducers';
+import { schemaJsonState } from '../reducers/selectors';
 import style from './jsonInputTextarea.sass';
-import commonStyle from './commonStyle.sass';
-import { I18NContext } from '../../components/I18N/I18N';
+import commonStyle from '../commonStyle.sass';
+import { I18NContext } from '../../../components/I18N/I18N';
 
 /* schema输入 */
 function JsonInputTextarea(props) {
