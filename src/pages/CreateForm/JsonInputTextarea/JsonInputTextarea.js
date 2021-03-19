@@ -1,5 +1,6 @@
 import { Fragment, useState, useEffect, useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
 import { Button, message, Space } from 'antd';
 import { CopyOutlined as IconCopyOutlined, RedoOutlined as IconRedoOutlined } from '@ant-design/icons';
 import copy from 'copy-to-clipboard';
@@ -14,9 +15,11 @@ import { I18NContext } from '../../../components/I18N/I18N';
 function JsonInputTextarea(props) {
   const { schemaJson } = useSelector(schemaJsonState);
   const dispatch = useDispatch();
+  const [searchParams, setSearchParams] = useSearchParams();
   const context = useContext(I18NContext);
   const [textAreaValue, setTextAreaValue] = useState(JSON.stringify(schemaJson, null, 2));
 
+  const query = searchParams.get('q'); // 获取传递的字符串
   const { languagePack } = context;
   const { createForm } = languagePack;
   const langMessage = languagePack.message;
@@ -48,11 +51,28 @@ function JsonInputTextarea(props) {
     setTextAreaValue(JSON.stringify(schemaJson, null, 2));
   }, [schemaJson]);
 
+  useEffect(function() {
+    if (query) {
+      const queryDecodeStr = decodeURIComponent(query);
+
+      setTextAreaValue(queryDecodeStr);
+
+      let value = null;
+
+      try {
+        value = JSON.parse(queryDecodeStr);
+        value |> setSchemaJson |> dispatch;
+      } catch (err) {
+        message.error(langMessage.jsonFormatError);
+      }
+    }
+  }, []);
+
   return (
     <Fragment>
       <Space className={ commonStyle.mb8 }>
         <Button icon={ <IconCopyOutlined /> } onClick={ handleCopyClick }>{ createForm.copy }</Button>
-        <Button icon={ <IconRedoOutlined /> } onClick={ handleRedoJsonSchema }>
+        <Button type="primary" icon={ <IconRedoOutlined /> } onClick={ handleRedoJsonSchema }>
           { createForm.refreshFormConfiguration }
         </Button>
       </Space>

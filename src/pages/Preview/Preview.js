@@ -88,8 +88,9 @@ function Preview(props) {
     <Fragment>
       <p>
         { preview.introduction[0] }
-        <Tag className={ style.introductionTag } color="#f50">{ '/?q={{ encodeURIComponent(json) }}' }</Tag>
         { preview.introduction[1] }
+        <Tag className={ style.introductionTag } color="#f50">{ '/?q={{ encodeURIComponent(json) }}' }</Tag>
+        { preview.introduction[2] }
       </p>
       <div className={ style.flexBox }>
         <div className={ style.flexLeftBox }>

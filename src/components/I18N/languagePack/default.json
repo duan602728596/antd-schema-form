@@ -17,7 +17,11 @@
   },
   "createForm": {
     "title": "Form generation",
-    "introduction": "You can configure a form with the configuration function.",
+    "introduction": [
+      "You can configure a form with the configuration function. ",
+      "You can also add the parameter",
+      "in the address bar to preview the form."
+    ],
     "copy": "Copy",
     "refreshFormConfiguration": "Refresh Form Configuration",
     "add": "Add",
@@ -35,7 +39,8 @@
   "preview": {
     "title": "Form preview",
     "introduction": [
-      "You can paste json to generate and preview the form. You can also add the parameter",
+      "You can paste json to generate and preview the form. ",
+      "You can also add the parameter",
       "in the address bar to preview the form."
     ],
     "copy": "Copy",
