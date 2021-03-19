@@ -34,7 +34,10 @@
   },
   "preview": {
     "title": "Form preview",
-    "introduction": "You can paste json to generate and preview the form.",
+    "introduction": [
+      "You can paste json to generate and preview the form. You can also add the parameter",
+      "in the address bar to preview the form."
+    ],
     "copy": "Copy",
     "generateForm": "Generate form",
     "modalTitle": "The value of the form is:"

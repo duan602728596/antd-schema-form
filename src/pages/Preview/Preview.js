@@ -1,7 +1,8 @@
-import { Fragment, useState, useContext } from 'react';
+import { Fragment, useState, useEffect, useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createSelector, createStructuredSelector } from 'reselect';
-import { Button, message, Modal, Empty, Space } from 'antd';
+import { useSearchParams } from 'react-router-dom';
+import { Button, message, Modal, Empty, Space, Tag } from 'antd';
 import { CopyOutlined as IconCopyOutlined, TableOutlined as IconTableOutlined } from '@ant-design/icons';
 import copy from 'copy-to-clipboard';
 import MonacoEditor from 'react-monaco-editor';
@@ -14,20 +15,19 @@ import SchemaFormPreview from './SchemaFormPreview';
 
 /* state */
 const state = createStructuredSelector({
-  schemaJson: createSelector(
-    ({ preview }) => preview?.schemaJson,
-    (data) => data ?? null
-  )
+  schemaJson: createSelector(({ preview }) => preview?.schemaJson, (data) => data ?? null)
 });
 
 /* 输入schema */
 function Preview(props) {
   const { schemaJson } = useSelector(state);
   const dispatch = useDispatch();
+  const [searchParams, setSearchParams] = useSearchParams();
   const context = useContext(I18NContext);
   const [textAreaValue, setTextAreaValue]
     = useState(schemaJson === null ? '' : JSON.stringify(schemaJson, null, 2));
 
+  const query = searchParams.get('q'); // 获取传递的字符串
   const { language, languagePack } = context;
   const { preview } = languagePack;
   const langMessage = languagePack.message;
@@ -67,9 +67,30 @@ function Preview(props) {
     }
   }
 
+  useEffect(function() {
+    if (query) {
+      const queryDecodeStr = decodeURIComponent(query);
+
+      setTextAreaValue(queryDecodeStr);
+
+      let value = null;
+
+      try {
+        value = JSON.parse(queryDecodeStr);
+        value |> setSchemaJson |> dispatch;
+      } catch (err) {
+        message.error(langMessage.jsonFormatError);
+      }
+    }
+  }, []);
+
   return (
     <Fragment>
-      <p>{ preview.introduction }</p>
+      <p>
+        { preview.introduction[0] }
+        <Tag className={ style.introductionTag } color="#f50">{ '/?q={{ encodeURIComponent(json) }}' }</Tag>
+        { preview.introduction[1] }
+      </p>
       <div className={ style.flexBox }>
         <div className={ style.flexLeftBox }>
           <Space className={ style.tools }>

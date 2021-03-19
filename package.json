@@ -8,7 +8,7 @@
     "clean": "rimraf ./dist",
     "server": "milktea server",
     "eslint": "eslint ./ --fix",
-    "eslint:fix": "eslint ./",
+    "eslint:no-fix": "eslint ./",
     "updateVersion": "milktea update"
   },
   "dependencies": {
