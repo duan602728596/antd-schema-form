@@ -88,7 +88,7 @@ This [Demo] (https://duan602728596.github.io/antd-schema-form/#/) simply shows h
 | onCancel          | Form cancellation event.                                                    | (form: object, keys: Array&lt;string&gt;) => void |
 | okText            | Confirm button text.                                                        | string                 |
 | cancelText        | Cancel button text.                                                         | string                 |
-| footer            | Custom bottom content, onOk event [reference](https://github.com/duan602728596/antd-schema-form/blob/master/src/components/FormObject/FormObject.tsx#L185) | (form: object) => React.Node |
+| footer            | Custom bottom content, onOk event [reference](https://github.com/duan602728596/antd-schema-form/blob/master/src/components/FormObject/FormObject.tsx#L143) | (form: object) => React.Node |
 | customComponent   | Custom rendering component, [reference](docs/custom_rendering_component.md) | object                 |
 | customTableRender | Custom table column rendering component, [reference](docs/custom_rendering_component.md#custom-table-column-rendering-component) | object |
 | languagePack      | Language configuration, [reference](language/default.json)                  | object                 |
