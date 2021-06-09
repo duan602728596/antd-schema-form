@@ -28,6 +28,16 @@
       "type": "string",
       "title": "Description, used to describe the role of the keyword"
     },
+    "$required": {
+      "id": "$root/properties/$required",
+      "type": "boolean",
+      "title": "Value must exist"
+    },
+    "$requiredMessage": {
+      "id": "$root/properties/$requiredMessage",
+      "type": "string",
+      "title": "Customize the verification prompt for $required"
+    },
     "minItems": {
       "id": "$root/properties/minItems",
       "type": "number",

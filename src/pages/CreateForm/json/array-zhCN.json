@@ -28,6 +28,16 @@
       "type": "string",
       "title": "说明，用于描述关键字的作用"
     },
+    "$required": {
+      "id": "$root/properties/$required",
+      "type": "boolean",
+      "title": "值必须存在"
+    },
+    "$requiredMessage": {
+      "id": "$root/properties/$requiredMessage",
+      "type": "string",
+      "title": "自定义$required的验证提示信息"
+    },
     "minItems": {
       "id": "$root/properties/minItems",
       "type": "number",
