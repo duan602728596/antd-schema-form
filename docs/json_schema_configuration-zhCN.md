@@ -130,6 +130,8 @@
 
 * `items: object`: 数组的内容。
 * `$defaultValue: Array<any>`: 表单控件的默认值。
+* `$required: boolean`: 当前的对象值必须存在。对应表单的required验证。
+* `$requiredMessage: string`: 自定义required的验证失败提示信息。
 * `minItems: number`: 数组内元素的最小数量。
 * `$minItemsMessage: string`: 自定义minItems的验证失败提示信息。
 * `maxItems: number`: 数组内元素的最大数量。

@@ -130,6 +130,8 @@ The component renders the table by default ([Table](https://ant.design/component
 
 * `items: object`: the contents of the array.
 * `$defaultValue: Array<any>`: The default value of the form control.
+* `$required: boolean`: The current object value must exist. Corresponding validation of the corresponding form.
+* `$requiredMessage: string`: Customize the required verification failure message.
 * `minItems: number`: the minimum value of the form.
 * `$minItemsMessage: string`: Customize the verification failure message for the minItems.
 * `maxItems: number`: the maximum value of the form.
