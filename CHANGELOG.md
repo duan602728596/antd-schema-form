@@ -1,3 +1,7 @@
+### v4.2.2
+
+* The array type supports the configuration of `$required` and `$requiredMessage`.
+
 ### v4.2.1
 
 * 🐛Fix the error that `$minItemsMessage` cannot be customized.
