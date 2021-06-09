@@ -5,8 +5,16 @@ import template from '../../utils/template';
 import type { ArrayItem } from '../../types';
 
 function createArrayRules(languagePack: any, root: ArrayItem, required: boolean): Array<Rule> {
-  const { minItems, maxItems, $minItemsMessage, $maxItemsMessage }: ArrayItem = root;
+  const { $required, $requiredMessage, minItems, maxItems, $minItemsMessage, $maxItemsMessage }: ArrayItem = root;
   const rules: Rule[] = [];
+
+  // 判断表单是否必填
+  if ($required === true || required === true) {
+    rules.push({
+      required: true,
+      message: $requiredMessage ?? languagePack.rules.required
+    });
+  }
 
   // 数组内元素的数量最少值
   if (!isNil(minItems) && isNumber(minItems)) {

@@ -79,6 +79,8 @@ export interface ArrayItem extends SchemaItem {
   items: SchemaItem | StringItem | NumberItem | BooleanItem | ArrayItem;
   $defaultValue?: Array<any>;
   $options?: Array<{ label: string; value: any }>;
+  $required?: boolean;
+  $requiredMessage?: string;
   minItems?: number;
   maxItems?: number;
   $minItemsMessage?: string;

@@ -52,6 +52,8 @@
         "$required": true,
         "$tableRender": "green"
       },
+      "$required": true,
+      "$requiredMessage": "数组内必须有值",
       "$defaultValue": [1, 2, 3]
     },
     "arrayInArray": {
