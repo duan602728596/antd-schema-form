@@ -1,7 +1,8 @@
-const path = require('path');
-const process = require('process');
-const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
-const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
+import path from 'path';
+import process from 'process';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
+import MonacoWebpackPlugin from 'monaco-editor-webpack-plugin';
+import AntdDayjsWebpackPlugin from 'antd-dayjs-webpack-plugin';
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
@@ -18,7 +19,7 @@ const plugins = [
     'import-components-style',
     {
       components: {
-        'highlight.js/lib/core': '~highlight.js/styles/github-gist.css',
+        'highlight.js/lib/core': '~highlight.js/styles/github.css',
         'antd-schema-form': 'style/antd-schema-form.css'
       }
     }
@@ -59,6 +60,12 @@ module.exports = {
   },
   html: [{ template: path.join(__dirname, 'src/index.pug') }],
   plugins: [
+    new CopyWebpackPlugin({
+      patterns: [{
+        from: path.join(__dirname, 'build'),
+        to: path.join(__dirname, 'dist')
+      }]
+    }),
     new MonacoWebpackPlugin({
       languages: ['json']
     }),

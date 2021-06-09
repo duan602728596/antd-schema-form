@@ -44,6 +44,7 @@
     "babel-plugin-import-components-style": "^0.1.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "commitizen": "^4.2.4",
+    "copy-webpack-plugin": "^9.0.0",
     "cross-env": "^7.0.3",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^7.28.0",
