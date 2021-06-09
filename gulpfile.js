@@ -18,7 +18,8 @@ const esPath = 'es';
 const stylePath = 'style';
 
 const typescriptConfig = {
-  allowSyntheticDefaultImports: true
+  allowSyntheticDefaultImports: true,
+  rootDir: '.'
 };
 
 /* ----- 生产环境编译 ----- */
