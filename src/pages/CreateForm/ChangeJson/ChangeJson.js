@@ -6,6 +6,7 @@ import {
   EditOutlined as IconEditOutlined,
   DeleteOutlined as IconDeleteOutlined
 } from '@ant-design/icons';
+import classNames from 'classnames';
 import { setSchemaJson as reduxSetSchemaJson } from '../reducers/reducers';
 import { schemaJsonState } from '../reducers/selectors';
 import style from './changeJson.sass';
@@ -188,13 +189,13 @@ function ChangeJson(props) {
 
   // 渲染面板
   function collapseListView(item, disableDelete) {
-    const { type, title } = item;
+    const { type, title, id } = item;
     const { createForm } = context.languagePack;
 
     const element = [
       <Collapse key="collapse" bordered={ false }>
-        <Collapse.Panel header={
-          <div className="clearfix">
+        <Collapse.Panel key={ id } header={
+          <div className={ classNames(style.collapseView, 'clearfix') }>
             <div className={ style.fl }>
               <b className={ style.title }>{ title }</b>
               { typeTagView(type) }
