@@ -1,3 +1,7 @@
+### v4.2.1
+
+* 🐛Fix the error that `$minItemsMessage` cannot be customized.
+
 ### v4.2.0
 
 * Add judgment on the dayjs object.
