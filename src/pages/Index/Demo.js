@@ -36,7 +36,7 @@ function Demo(props) {
   // 渲染你高亮代码
   function codeRender() {
     setLanguage(context.language);
-    hljs.highlightBlock(codeRef.current);
+    hljs.highlightElement(codeRef.current);
   }
 
   useEffect(function() {
