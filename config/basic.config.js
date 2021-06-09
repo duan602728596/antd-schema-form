@@ -1,7 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const sass = require('sass');
-const Fiber = require('fibers');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
 const babelConfig = require('./babel.config');
@@ -72,9 +71,8 @@ exports.rules = [
         loader: 'sass-loader',
         options: {
           sassOptions: {
-            fiber: Fiber
-          },
-          implementation: sass
+            fiber: false
+          }
         }
       }
     ],
