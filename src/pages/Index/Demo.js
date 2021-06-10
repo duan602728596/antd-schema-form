@@ -16,7 +16,7 @@ function Demo(props) {
   const codeRef = useRef();
   const [language, setLanguage] = useState(context.language);
   const { index } = context.languagePack;
-  const demo2 = language === 'zh-cn' ? demoZhCN : demo;
+  const demoJson = language === 'zh-cn' ? demoZhCN : demo;
 
   // 表单确认事件
   function handleOnFormOkClick(form, value, keys) {
@@ -40,8 +40,8 @@ function Demo(props) {
   }
 
   useEffect(function() {
-    codeRender();
-  }, []);
+    setTimeout(codeRender, 0);
+  }, [context.language]);
 
   return (
     <Fragment>
@@ -61,7 +61,7 @@ function Demo(props) {
       <Row type="flex" gutter={ 10 }>
         <Col className={ style.mb10 } xs={ 24 } sm={ 24 } md={ 12 }>
           <h4>{ index.demoTitle }</h4>
-          <SchemaForm json={ demo2 }
+          <SchemaForm json={ demoJson }
             languagePack={ language === 'zh-cn' ? schemaFormZhCNLang : schemaFormDefaultLang }
             onOk={ handleOnFormOkClick }
           />
@@ -70,7 +70,7 @@ function Demo(props) {
           <h4>schema.json：</h4>
           <pre className={ style.codePre }>
             <code ref={ codeRef } className={ classNames('json', style.code) }>
-              { JSON.stringify(demo2, null, 2) }
+              { JSON.stringify(demoJson, null, 2) }
             </code>
           </pre>
         </Col>
