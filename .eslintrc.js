@@ -28,7 +28,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['*.js', '*.jsx'],
+      files: ['*.js', '*.jsx', '*.mjs', '*.cjs'],
       parser: '@babel/eslint-parser',
       parserOptions: {
         requireConfigFile: false,

@@ -56,7 +56,7 @@
     "rimraf": "^3.0.2"
   },
   "lint-staged": {
-    "**/*.{js,jsx}": "eslint"
+    "**/*.{js,jsx,mjs,cjs}": "eslint"
   },
   "config": {
     "commitizen": {
