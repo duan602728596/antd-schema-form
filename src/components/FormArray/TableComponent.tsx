@@ -344,7 +344,9 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
     // 删除选中的数据
     const sortSelectedRowKeys: number[] = sortIndex(selectedRowKeys);
 
-    for (const item of sortSelectedRowKeys) tableValue.splice(item, 1);
+    for (const item of sortSelectedRowKeys) {
+      tableValue.splice(item, 1);
+    }
 
     triggerChange([...tableValue]);
     setSelectedRowKeys([]);
