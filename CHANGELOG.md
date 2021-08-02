@@ -1,3 +1,7 @@
+### v4.3.0
+
+* The method provided by lodash has been removed and implemented using native methods instead. (For compatibility, the method provided by lodash was used. Considering that some methods can already be implemented using native APIs and reduce dependencies, lodash is removed)
+
 ### v4.2.2
 
 * The array type supports the configuration of `$required` and `$requiredMessage`.
