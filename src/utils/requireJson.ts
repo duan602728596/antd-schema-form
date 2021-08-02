@@ -1,4 +1,4 @@
-import { isObject } from 'lodash-es';
+import { isObject } from './lodash';
 
 function isModule<T>(value: T): boolean {
   return isObject(value) && Object.prototype.toString.call(value) === '[object Module]';

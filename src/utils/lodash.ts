@@ -42,3 +42,8 @@ export function isNumber(o: any): boolean {
 export function isString(o: any): boolean {
   return typeof o === 'string';
 }
+
+/* 判断是否为array类型 */
+export const isArray: (o: any) => boolean = Array.isArray ?? function(o: any): boolean {
+  return typeof o === 'object' && Object.prototype.toString.call(o) === '[object Array]';
+};

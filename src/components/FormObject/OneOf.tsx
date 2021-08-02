@@ -12,9 +12,9 @@ import {
   ReactNode
 } from 'react';
 import * as PropTypes from 'prop-types';
-import isNumber from 'lodash-es/isNumber';
 import { Radio } from 'antd';
 import type { RadioChangeEvent } from 'antd/es/radio';
+import { isNumber } from '../../utils/lodash';
 import AntdSchemaFormContext from '../../context';
 import styleName from '../../utils/styleName';
 import type { SchemaItem, ContextValue } from '../../types';

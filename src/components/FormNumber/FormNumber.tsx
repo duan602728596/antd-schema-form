@@ -4,7 +4,7 @@ import * as PropTypes from 'prop-types';
 import { Form } from 'antd';
 import type { Rule } from 'antd/es/form';
 import classNames from 'classnames';
-import omit from 'lodash-es/omit';
+import { omit } from '../../utils/lodash';
 import AntdSchemaFormContext from '../../context';
 import styleName from '../../utils/styleName';
 import createNumberRules from './createNumberRules';

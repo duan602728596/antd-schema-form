@@ -20,15 +20,13 @@ import {
   ReactNodeArray
 } from 'react';
 import * as PropTypes from 'prop-types';
-import isNil from 'lodash-es/isNil';
-import isBoolean from 'lodash-es/isBoolean';
-import isObject from 'lodash-es/isObject';
 import { Table, Button, Popconfirm, Drawer, Input } from 'antd';
 import type { FormInstance } from 'antd/es/form/Form';
 import type { Store } from 'antd/es/form/interface';
 import type { TableComponents } from 'rc-table/es/interface';
 import { PlusCircleOutlined as IconPlusCircleOutlined, DeleteOutlined as IconDeleteOutlined } from '@ant-design/icons';
 import update from 'immutability-helper';
+import { isNil, isBoolean, isObject } from '../../utils/lodash';
 import AntdSchemaFormContext from '../../context';
 import getValueFromObject, { formatValueBeforeGetValue } from '../../utils/getValueFromObject';
 import getObjectFromValue from '../../utils/getObjectFromValue';

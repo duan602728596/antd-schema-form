@@ -1,7 +1,5 @@
-import isNil from 'lodash-es/isNil';
-import isNumber from 'lodash-es/isNumber';
-import isString from 'lodash-es/isString';
 import type { Rule } from 'antd/es/form';
+import { isNil, isNumber, isString } from '../../utils/lodash';
 import template from '../../utils/template';
 import type { StringItem } from '../../types';
 

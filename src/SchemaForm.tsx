@@ -12,10 +12,10 @@ import {
 } from 'react';
 import * as PropTypes from 'prop-types';
 import { Validator } from 'prop-types';
-import isPlainObject from 'lodash-es/isPlainObject';
 import { Form } from 'antd';
 import type { FormInstance, FormProps } from 'antd/es/form';
 import type { Store } from 'antd/es/form/interface';
+import { isPlainObject } from './utils/lodash';
 import AntdSchemaFormContext from './context';
 import FormObject from './components/FormObject/FormObject';
 import getObjectFromValue from './utils/getObjectFromValue';

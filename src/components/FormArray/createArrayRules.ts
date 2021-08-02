@@ -1,6 +1,5 @@
-import isNil from 'lodash-es/isNil';
-import isNumber from 'lodash-es/isNumber';
 import type { Rule, RuleObject } from 'antd/es/form';
+import { isNil, isNumber } from '../../utils/lodash';
 import template from '../../utils/template';
 import type { ArrayItem } from '../../types';
 

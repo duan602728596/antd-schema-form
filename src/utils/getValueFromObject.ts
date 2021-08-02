@@ -1,6 +1,6 @@
 import transform from 'lodash-es/transform';
-import isPlainObject from 'lodash-es/isPlainObject';
 import type { Store } from 'antd/es/form/interface';
+import { isPlainObject } from './lodash';
 
 /**
  * 格式化数据

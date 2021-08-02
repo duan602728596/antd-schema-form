@@ -1,4 +1,4 @@
-import isPlainObject from 'lodash-es/isPlainObject';
+import { isPlainObject } from './lodash';
 
 /* 判断是否为moment对象或者是dayjs对象 */
 function isAMomentObject(value: any): boolean {
