@@ -1,16 +1,14 @@
-import sortBy from 'lodash-es/sortBy';
-import toPairs from 'lodash-es/toPairs';
-import fromPairs from 'lodash-es/fromPairs';
+import { ObjectEntries, ObjectFromEntries } from './lodash';
 
 /* 对root.properties进行排序 */
 function sortProperties(properties: object): object {
-  const propertiesArr: Array<[string, any]> = (Object.entries ?? toPairs)(properties);
-  const sortPropertiesArr: Array<[string, any]> = sortBy(propertiesArr, function(o: [string, any]): number {
-    return o[1].$order ?? 0;
-  });
+  const propertiesArr: Array<[string, any]> = ObjectEntries(properties);
+  const sortPropertiesArr: Array<[string, any]> = propertiesArr.sort(
+    function(a: [string, any], b: [string, any]): number {
+      return (a[1].$order ?? 0) - (b[1].$order ?? 0);
+    });
 
-  // @ts-ignore
-  return (Object.fromEntries || fromPairs)(sortPropertiesArr);
+  return ObjectFromEntries(sortPropertiesArr);
 }
 
 export default sortProperties;
