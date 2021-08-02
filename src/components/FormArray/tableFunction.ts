@@ -2,7 +2,7 @@
  * 格式化数据，使值满足antd的props-type
  * @param { Array<string | number> } rawArray: 原数据
  */
-export function formatTableValue(rawArray: Array<string | number>): Array<{ value: string | number }> {
+export function formatTableValue(rawArray: Array<string | number> = []): Array<{ value: string | number }> {
   return rawArray.reduce(function(result: Array<{ value: string | number }>, item: string | number): Array<{ value: string | number }> {
     result.push({ value: item });
 

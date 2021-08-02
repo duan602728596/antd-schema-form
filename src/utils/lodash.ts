@@ -1,34 +1,49 @@
 /* Object.entries的兼容方法 */
-export const ObjectEntries: (o: { [s: string]: any }) => Array<[string, any]>
-  = Object.entries ?? function(o: { [s: string]: any }): Array<[string, any]> {
-    const result: Array<[string, any]> = [];
+interface EntriesObj {
+  [s: string]: any;
+}
 
-    for (const key in o) {
-      result.push([key, o[key]]);
-    }
+type EntriesArr = Array<[string, any]>;
 
-    return result;
-  };
+interface ObjectEntriesFunc {
+  (o: EntriesObj): EntriesArr;
+}
 
-/* Object.fromEntries的兼容方法 */
-export const ObjectFromEntries: (o: Array<[string, any]>) => { [s: string]: any }
-  // @ts-ignore
-  = Object.fromEntries ?? function(o: Array<[string, any]>): { [s: string]: any } {
-    const result: { [s: string]: any } = {};
+interface ObjectFromEntriesFunc {
+  (o: EntriesArr): EntriesObj;
+}
 
-    o.forEach(function([k, v]: [string, any]): void {
-      result[k] = v;
-    });
+export const _ObjectEntries: ObjectEntriesFunc = Object.entries ?? function(o: EntriesObj): EntriesArr {
+  const result: Array<[string, any]> = [];
 
-    return result;
-  };
+  for (const key in o) {
+    result.push([key, o[key]]);
+  }
+
+  return result;
+};
+
+export const ObjectEntries: ObjectEntriesFunc = (o: EntriesObj = {}) => _ObjectEntries(o);
+
+/* @ts-ignore Object.fromEntries的兼容方法 */
+export const _ObjectFromEntries: ObjectFromEntriesFunc = Object.fromEntries ?? function(o: EntriesArr): EntriesObj {
+  const result: { [s: string]: any } = {};
+
+  o.forEach(function([k, v]: [string, any]): void {
+    result[k] = v;
+  });
+
+  return result;
+};
+
+export const ObjectFromEntries: ObjectFromEntriesFunc = (o: EntriesArr = []) => _ObjectFromEntries(o);
 
 /**
  * omit函数的实现
  * @param { T } obj: object
  * @param { string[] } delKeys: 从object中删除的keys
  */
-export function omit<T = object, U = T>(obj: T, delKeys: string[]): U {
+export function omit<T = object, U = T>(obj: T = {} as T, delKeys: string[]): U {
   return ObjectEntries(obj).reduce(function(result: U, [key, value]: [string, any]): U {
     if (!delKeys.includes(key)) {
       result[key] = value;
