@@ -1,6 +1,6 @@
 {
   "name": "antd-schema-form",
-  "version": "4.2.2",
+  "version": "4.3.0",
   "description": "基于antd，通过json schema配置表单。",
   "main": "lib/index.js",
   "module": "es/index.js",
