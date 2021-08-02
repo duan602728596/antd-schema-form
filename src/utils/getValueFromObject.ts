@@ -1,4 +1,3 @@
-import transform from 'lodash-es/transform';
 import type { Store } from 'antd/es/form/interface';
 import { isPlainObject } from './lodash';
 
@@ -9,12 +8,15 @@ import { isPlainObject } from './lodash';
  */
 export function formatValueBeforeGetValue(formValue: Store, basicId: string): Store {
   const reg: RegExp = new RegExp(`^${ basicId.replace(/\$/g, '\\$') }/`);
+  const result: object = {};
 
-  return transform(formValue, function(result: object, value: any, key: string): void {
+  for (const key in formValue) {
     const formatKey: string = key.replace(reg, '');
 
-    result[formatKey] = value;
-  }, {});
+    result[formatKey] = formValue[key];
+  }
+
+  return result;
 }
 
 /**
