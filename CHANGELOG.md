@@ -1,3 +1,9 @@
+### v4.4.0
+
+* Upgrade all dependencies to the latest version.
+* Remove immutability-helper dependency.
+* 🐛Fix the array table, rendering the input focus error that adjusts the array position.
+
 ### v4.3.0
 
 * The method provided by lodash has been removed and implemented using native methods instead. (For compatibility, the method provided by lodash was used. Considering that some methods can already be implemented using native APIs and reduce dependencies, lodash is removed)
