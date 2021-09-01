@@ -16,23 +16,19 @@ module.exports = merge(basicConfig, config, {
     index: path.join(__dirname, '../tests/index.js')
   },
   externals: {
-    mocha: 'window.mocha',
-    chai: 'window.chai',
-    describe: 'window.describe',
-    it: 'window.it'
+    mocha: 'globalThis.mocha',
+    chai: 'globalThis.chai',
+    describe: 'globalThis.describe',
+    it: 'globalThis.it'
   },
   module: {
     rules: [
       {
         test: /(mocha\.(js|css)|chai)/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[hash:5].[ext]'
-            }
-          }
-        ]
+        type: 'asset/resource',
+        generator: {
+          filename: '[name][ext]'
+        }
       }
     ]
   },
