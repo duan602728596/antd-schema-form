@@ -37,6 +37,7 @@ docs
 .babelrc
 .eslintrc.js
 .eslintrc.cjs
+.npmrc
 
 # cache
 .babelCache
