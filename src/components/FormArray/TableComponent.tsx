@@ -25,8 +25,8 @@ import type { FormInstance } from 'antd/es/form/Form';
 import type { Store } from 'antd/es/form/interface';
 import type { TableComponents } from 'rc-table/es/interface';
 import { PlusCircleOutlined as IconPlusCircleOutlined, DeleteOutlined as IconDeleteOutlined } from '@ant-design/icons';
-import update from 'immutability-helper';
 import { isNil, isBoolean, isObject } from '../../utils/lodash';
+import { arrayMoveImmutable } from '../../utils/arrayMove';
 import AntdSchemaFormContext from '../../context';
 import getValueFromObject, { formatValueBeforeGetValue } from '../../utils/getValueFromObject';
 import getObjectFromValue from '../../utils/getObjectFromValue';
@@ -83,20 +83,16 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
     }
   }
 
-  // 调换位置
+  /**
+   * 调换位置
+   * @param { number } dragIndex: old
+   * @param { number } hoverIndex: new
+   */
   function moveRow(dragIndex: number, hoverIndex: number): void {
     let tableValue: Array<any> | any = form.getFieldValue(id);
 
     tableValue = isNil(tableValue) ? (root.$defaultValue ?? []) : tableValue;
-
-    const dragRowItem: object = tableValue[dragIndex];
-    const newData: { tableValue: Store } = update({ tableValue }, {
-      tableValue: {
-        $splice: [[dragIndex, 1], [hoverIndex, 0, dragRowItem]]
-      }
-    });
-
-    triggerChange(newData.tableValue);
+    triggerChange(arrayMoveImmutable(tableValue, dragIndex, hoverIndex));
   }
 
   // 开始拖拽
