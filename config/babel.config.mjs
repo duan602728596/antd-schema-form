@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   presets: [
     ['@sweet-milktea/babel-preset-sweet', { env: { ecmascript: true } }]
   ],

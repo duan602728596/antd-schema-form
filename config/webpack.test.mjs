@@ -1,9 +1,11 @@
 /* 测试用例的webpack配置 */
-const path = require('path');
-const { merge } = require('webpack-merge');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { basicConfig, rules, plugins } = require('./basic.config');
+import path from 'path';
+import { merge } from 'webpack-merge';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import { metaHelper } from '@sweet-milktea/utils';
+import { basicConfig, rules, plugins } from './basic.config.mjs';
 
+const { __dirname } = metaHelper(import.meta.url);
 const config = {
   module: {
     rules
@@ -11,7 +13,7 @@ const config = {
   plugins
 };
 
-module.exports = merge(basicConfig, config, {
+export default merge(basicConfig, config, {
   entry: {
     index: path.join(__dirname, '../tests/index.js')
   },

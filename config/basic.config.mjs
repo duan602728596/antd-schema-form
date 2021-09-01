@@ -1,12 +1,14 @@
-const path = require('path');
-const webpack = require('webpack');
-const sass = require('sass');
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
-const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
-const babelConfig = require('./babel.config');
+import path from 'path';
+import webpack from 'webpack';
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+import AntdDayjsWebpackPlugin from 'antd-dayjs-webpack-plugin';
+import { metaHelper } from '@sweet-milktea/utils';
+import babelConfig from './babel.config.mjs';
+
+const { __dirname } = metaHelper(import.meta.url);
 
 /* 基础配置 */
-exports.basicConfig = {
+export const basicConfig = {
   mode: 'development',
   output: {
     path: path.join(__dirname, '../build'),
@@ -21,7 +23,7 @@ exports.basicConfig = {
 };
 
 /* rules */
-exports.rules = [
+export const rules = [
   {
     test: /.*\.jsx?$/,
     use: [
@@ -86,7 +88,7 @@ exports.rules = [
 ];
 
 /* plugins */
-exports.plugins = [
+export const plugins = [
   new webpack.IgnorePlugin({
     resourceRegExp: /^\.\/locale$/,
     contextRegExp: /moment$/

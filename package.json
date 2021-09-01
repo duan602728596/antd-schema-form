@@ -21,16 +21,16 @@
     "react-component"
   ],
   "scripts": {
-    "dev": "webpack-dev-server --config=\"./config/webpack.dev.js\" --hot --color --port=5050",
+    "dev": "webpack-dev-server --config=\"./config/webpack.dev.mjs\" --hot --color --port=5050",
     "build": "npm run clean:lib && npm run clean:es && npm run clean:style && cross-env NODE_ENV=production NODE_OPTIONS=\"--experimental-json-modules\" gulp",
     "clean:lib": "rimraf lib",
     "clean:es": "rimraf es",
     "clean:style": "rimraf style",
     "test:init": "mocha init tests",
-    "test": "webpack-dev-server --config=\"./config/webpack.test.js\" --hot --color --port=6060",
+    "test": "webpack-dev-server --config=\"./config/webpack.test.mjs\" --hot --color --port=6060",
     "eslint": "eslint ./ --fix",
     "eslint:no-fix": "eslint ./",
-    "updateVersion": "milktea update"
+    "updateVersion": "milktea-esm update"
   },
   "dependencies": {
     "classnames": "^2.3.1",
