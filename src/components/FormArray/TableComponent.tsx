@@ -357,7 +357,7 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
       align: 'center',
       width: 65,
       render: (value: any, record: object, index: number): ReactNode => {
-        if (inputDisplayIndex === undefined ?? inputDisplayIndex !== index) {
+        if (inputDisplayIndex === undefined || inputDisplayIndex !== index) {
           return (
             <a onClick={ (event: RMouseEvent<HTMLElement, MouseEvent>): void => handleInputDisplayClick(index, event) }>
               { index + 1 }
