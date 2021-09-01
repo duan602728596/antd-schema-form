@@ -14,6 +14,7 @@ module.exports = {
     serviceworker: true
   },
   parserOptions: {
+    ecmaVersion: 2021,
     ecmaFeatures: {
       globalReturn: true,
       jsx: true
@@ -37,6 +38,10 @@ module.exports = {
         extensions: ['.js', '.jsx', '.cjs', '.mjs', '.ts', '.tsx']
       }
     }
+  },
+  globals: {
+    NodeJS: 'readonly',
+    NodeRequire: 'readonly'
   },
   overrides: [
     {
@@ -89,17 +94,19 @@ module.exports = {
           { hoist: 'all' }
         ],
         'no-use-before-define': 'off',
-        '@typescript-eslint/no-use-before-define': 'error'  // 禁止定义前使用
+        '@typescript-eslint/no-use-before-define': 'error' // 禁止定义前使用
       }
     },
     {
-      files: ['*.js', '*.jsx'],
+      files: ['*.js', '*.jsx', '*.mjs', '*.cjs'],
       parser: '@babel/eslint-parser',
       parserOptions: {
         requireConfigFile: false,
         babelOptions: {
-          presets: ['@babel/preset-react'],
-          plugins: ['@babel/plugin-proposal-class-properties']
+          presets: [[
+            '@sweet-milktea/babel-preset-sweet',
+            { env: { ecmascript: true } }
+          ]]
         }
       }
     }
@@ -283,10 +290,7 @@ module.exports = {
     // import
     'import/no-unresolved': [ // 确保导入的模块可以解析为本地文件系统上的模块
       'error',
-      {
-        commonjs: true,
-        ignore: ['describe', 'it']
-      }
+      { commonjs: true, ignore: ['describe', 'it'] }
     ]
   }
 };
