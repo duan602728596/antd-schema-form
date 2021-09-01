@@ -18,6 +18,7 @@ example
 tests
 src
 gulpfile.js
+gulpfile.mjs
 tslint.json
 tsconfig.json
 tsconfig.es5.json

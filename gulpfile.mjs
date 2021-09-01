@@ -1,11 +1,11 @@
-const gulp = require('gulp');
-const typescript = require('gulp-typescript');
-const gulpDartSass = require('gulp-dart-sass');
-const filter = require('gulp-filter');
-const merge = require('merge2');
-const sass = require('sass');
-const tsconfig = require('./tsconfig.json');
-const tsconfigES5 = require('./tsconfig.es5.json');
+import gulp from 'gulp';
+import typescript from 'gulp-typescript';
+import gulpDartSass from 'gulp-dart-sass';
+import filter from 'gulp-filter';
+import merge from 'merge2';
+import sass from 'sass';
+import tsconfig from './tsconfig.json';
+import tsconfigES5 from './tsconfig.es5.json';
 
 gulpDartSass.compiler = sass;
 
@@ -77,4 +77,4 @@ function proSassProject() {
     .pipe(gulp.dest(stylePath));
 }
 
-exports.default = gulp.parallel(proLibProject, proEsProject, proSassProject, copy);
+export default gulp.parallel(proLibProject, proEsProject, proSassProject, copy);
