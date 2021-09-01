@@ -1,20 +1,8 @@
 module.exports = {
   presets: [
-    ['@babel/preset-react', { runtime: 'automatic' }]
+    ['@sweet-milktea/babel-preset-sweet', { env: { ecmascript: true } }]
   ],
   plugins: [
-    ['@babel/plugin-proposal-decorators', { decoratorsBeforeExport: true }],
-    '@babel/plugin-proposal-class-properties',
-    [
-      '@babel/plugin-transform-runtime',
-      {
-        'corejs': 3,
-        'helpers': true,
-        'regenerator': true,
-        'useESModules': true
-      }
-    ],
-    'react-refresh/babel',
     [
       'import',
       {
@@ -22,6 +10,7 @@ module.exports = {
         'libraryDirectory': 'es',
         'style': 'css'
       }
-    ]
+    ],
+    'react-refresh/babel'
   ]
 };
