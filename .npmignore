@@ -2,10 +2,15 @@
 node_modules
 npm-debug.log
 package-lock.json
+pnpm-lock.yaml
 
 # yarn
 yarn.lock
 yarn-error.log
+.yarnrc
+.yarn/*
+.pnp.js
+.pnp.cjs
 
 # webstorm
 .idea
@@ -39,6 +44,7 @@ docs
 .eslintrc.js
 .eslintrc.cjs
 .npmrc
+.yarnrc.yml
 
 # cache
 .babelCache
