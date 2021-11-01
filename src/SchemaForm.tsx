@@ -1,9 +1,9 @@
-import { createElement } from 'react';
 import {
+  createElement,
   useEffect,
   forwardRef,
-  PropsWithChildren as PWC,
-  Ref,
+  PropsWithChildren,
+  ForwardedRef,
   ForwardRefExoticComponent,
   PropsWithoutRef,
   RefAttributes,
@@ -41,7 +41,7 @@ export interface SchemaFormProps {
 
 type SchemaFormComponent = ForwardRefExoticComponent<PropsWithoutRef<SchemaFormProps> & RefAttributes<any>>;
 
-const SchemaForm: SchemaFormComponent = forwardRef(function(props: PWC<SchemaFormProps>, ref: Ref<any>): ReactElement {
+const SchemaForm: SchemaFormComponent = forwardRef(function(props: PropsWithChildren<SchemaFormProps>, ref: ForwardedRef<any>): ReactElement {
   const [form]: [FormInstance] = Form.useForm();
   const {
     value: schemaFormValue,

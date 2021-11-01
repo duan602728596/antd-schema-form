@@ -1,5 +1,5 @@
-import { createElement } from 'react';
 import {
+  createElement,
   Fragment,
   useState,
   useEffect,
@@ -8,7 +8,6 @@ import {
   Dispatch as D,
   SetStateAction as S,
   ReactElement,
-  ReactNodeArray,
   ReactNode
 } from 'react';
 import * as PropTypes from 'prop-types';
@@ -21,7 +20,7 @@ import type { SchemaItem, ContextValue } from '../../types';
 
 interface OneOfProps {
   root: SchemaItem;
-  element: ReactNodeArray;
+  element: Array<ReactNode>;
 }
 
 function OneOf(props: PropsWithChildren<OneOfProps>): ReactElement {

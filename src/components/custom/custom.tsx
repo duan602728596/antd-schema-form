@@ -1,5 +1,4 @@
-import { createElement } from 'react';
-import type { ReactNode, ReactNodeArray } from 'react';
+import { createElement, ReactNode } from 'react';
 import { Input, Select, Radio, DatePicker, InputNumber, Checkbox, Switch, Collapse } from 'antd';
 import type { FormInstance } from 'antd/es/form';
 import selectOptionsRender from './selectOptionsRender';
@@ -128,11 +127,11 @@ export function multipleOrTags(root: ArrayItem, form: FormInstance, required: bo
 }
 
 /* object类型组件 */
-export function defaultObject(root: SchemaItem, form: FormInstance, element: ReactNodeArray): ReactNode {
+export function defaultObject(root: SchemaItem, form: FormInstance, element: Array<ReactNode>): ReactNode {
   const { title, id, description }: SchemaItem = root;
 
   // header
-  const header: ReactNodeArray = [
+  const header: Array<ReactNode> = [
     <b key="title">{ title || id }</b>,
     <span key="description" className={ styleName('object-description') }>{ description }</span>
   ];
@@ -146,7 +145,7 @@ export function defaultObject(root: SchemaItem, form: FormInstance, element: Rea
   );
 }
 
-export function defaultOneOf(root: SchemaItem, form: FormInstance, element: ReactNodeArray): ReactNode {
+export function defaultOneOf(root: SchemaItem, form: FormInstance, element: Array<ReactNode>): ReactNode {
   const { id }: SchemaItem = root;
 
   return <OneOf key={ id } root={ root } element={ element } />;

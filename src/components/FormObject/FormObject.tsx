@@ -1,12 +1,11 @@
-import { createElement } from 'react';
 import {
+  createElement,
   Fragment,
   useContext,
   PropsWithChildren,
   MouseEvent as RMouseEvent,
   ReactElement,
-  ReactNode,
-  ReactNodeArray
+  ReactNode
 } from 'react';
 import * as PropTypes from 'prop-types';
 import { Button, Space } from 'antd';
@@ -90,7 +89,7 @@ function FormObject(props: PropsWithChildren<FormObjectProps>): ReactElement {
   // oneOf组件
   function renderOneOfComponentView(root: SchemaItem, required: boolean): ReactNode {
     const { oneOf, $oneOfComponentType }: SchemaItem = root;
-    const element: ReactNodeArray = [];
+    const element: Array<ReactNode> = [];
 
     (oneOf || []).forEach((value: SchemaItem, index: number, array: Array<SchemaItem>): void => {
       const childrenRoot: SchemaItem = { ...value };
@@ -121,7 +120,7 @@ function FormObject(props: PropsWithChildren<FormObjectProps>): ReactElement {
     const { $componentType }: SchemaItem = root;
     const required: Array<string> = root.required || [];
     const properties: object = sortProperties(root.properties || {});
-    const element: ReactNodeArray = [];
+    const element: Array<ReactNode> = [];
 
     // 判断object下组件的类型并渲染，只要有一个有值就要显示
     for (const key in properties) {

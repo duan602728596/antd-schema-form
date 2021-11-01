@@ -1,5 +1,5 @@
-import { createElement } from 'react';
 import {
+  createElement,
   Fragment,
   useState,
   useEffect,
@@ -16,8 +16,7 @@ import {
   FocusEvent,
   KeyboardEvent,
   ReactElement,
-  ReactNode,
-  ReactNodeArray
+  ReactNode
 } from 'react';
 import * as PropTypes from 'prop-types';
 import { Table, Button, Popconfirm, Drawer, Input } from 'antd';
@@ -208,7 +207,7 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
     body: {
       row: (item: any): ReactElement<'tr'> => {
         const { children, className }: {
-          children: ReactNodeArray;
+          children: Array<ReactNode>;
           className: string;
         } = item;
         // @ts-ignore
@@ -493,7 +492,7 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
         columns={ columns() }
         bordered={ true }
         title={
-          (): ReactNodeArray => [
+          (): Array<ReactNode> => [
             <Button key="add"
               type="primary"
               icon={ <IconPlusCircleOutlined /> }
