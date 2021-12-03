@@ -2,16 +2,16 @@ import {
   createElement,
   useEffect,
   forwardRef,
+  useImperativeHandle,
   PropsWithChildren,
   ForwardedRef,
   ForwardRefExoticComponent,
   PropsWithoutRef,
   RefAttributes,
-  ReactElement,
-  useImperativeHandle
+  ReactElement
 } from 'react';
 import * as PropTypes from 'prop-types';
-import { Validator } from 'prop-types';
+import type { Validator } from 'prop-types';
 import { Form } from 'antd';
 import type { FormInstance, FormProps } from 'antd/es/form';
 import type { Store } from 'antd/es/form/interface';
