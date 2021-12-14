@@ -7,7 +7,7 @@ const Preview = asyncModule(() => import(/* webpackChunkName: 'preview' */'../pa
 
 function Routers(props) {
   const routes = useRoutes([
-    { path: '//*', element: <Index /> },
+    { path: '/*', element: <Index /> },
     { path: 'CreateForm', element: <CreateForm /> },
     { path: 'Preview', element: <Preview /> }
   ]);

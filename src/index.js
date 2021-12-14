@@ -13,7 +13,7 @@ render(
     <ConfigProvider locale={ zhCN }>
       <I18N>
         <HashRouter>
-          <Route element={ <Layout /> } />
+          <Layout />
         </HashRouter>
       </I18N>
     </ConfigProvider>
