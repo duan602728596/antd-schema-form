@@ -39,16 +39,14 @@ module.exports = {
     '@reduxjs/toolkit',
     'react-redux',
     'reselect',
-    'react-router',
     'react-router-dom',
-    'history',
     'react-helmet'
   ],
   entry: {
     index: [path.join(__dirname, 'src/index.js')]
   },
   output: { publicPath: isDevelopment ? '/' : 'https://duan602728596.github.io/antd-schema-form/' },
-  js: {
+  javascript: {
     plugins,
     exclude: /node_modules[\\/](?!antd-schema-form)/
   },
