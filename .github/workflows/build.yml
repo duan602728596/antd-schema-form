@@ -19,7 +19,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - run: yarn install --ignore-scripts
+      - run: npm install --legacy-peer-deps=true
       - run: npm run build
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.1
