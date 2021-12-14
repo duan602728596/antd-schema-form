@@ -197,13 +197,13 @@ module.exports = {
         spacing: { objectLiterals: 'never' }
       }
     ],
-    'react/jsx-equals-spacing': 'error',       // 强制或禁止JSX属性中的等号周围的空格
-    'react/jsx-first-prop-new-line': 'error',  // 此规则检查所有JSX元素的第一个属性是否正确放置
-    'react/jsx-indent': ['error', 2],          // 验证JSX缩进
-    'react/jsx-indent-props': ['error', 2],    // 验证JSX中props的缩进
-    'react/jsx-key': 'error',                  // 在数组或迭代器中验证JSX具有key属性
-    'react/jsx-no-comment-textnodes': 'error', // 防止将注释插入为文本节点
-    'react/jsx-no-duplicate-props': 'error',   // 在JSX中防止重复的props
+    'react/jsx-equals-spacing': 'error',                 // 强制或禁止JSX属性中的等号周围的空格
+    'react/jsx-first-prop-new-line': ['error', 'never'], // 此规则检查所有JSX元素的第一个属性是否正确放置
+    'react/jsx-indent': ['error', 2],                    // 验证JSX缩进
+    'react/jsx-indent-props': ['error', 2],              // 验证JSX中props的缩进
+    'react/jsx-key': 'error',                            // 在数组或迭代器中验证JSX具有key属性
+    'react/jsx-no-comment-textnodes': 'error',           // 防止将注释插入为文本节点
+    'react/jsx-no-duplicate-props': 'error',             // 在JSX中防止重复的props
     'react/jsx-no-target-blank': [ // 创建具有标记的JSX元素时，通常需要使用target="_blank"属性在新选项卡中打开链接
       'error',
       { enforceDynamicLinks: 'never' }
