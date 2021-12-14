@@ -12,6 +12,10 @@
     "update-version": "milktea update",
     "prepare": "husky install"
   },
+  "packageManager": "yarn@3.1.0",
+  "engines": {
+    "pm": "yarn@^3.1.0"
+  },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@reduxjs/toolkit": "^1.7.0",
