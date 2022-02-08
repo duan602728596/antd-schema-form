@@ -73,7 +73,7 @@ function ChangeJson(props) {
       };
     }
 
-    schemaJson |> reduxSetSchemaJson |> dispatch;
+    schemaJson |> reduxSetSchemaJson(#) |> dispatch(#);
     setIsAddDrawerDisplay(false);
     setAddItem(null);
   }
@@ -91,7 +91,7 @@ function ChangeJson(props) {
 
     // 合并数据
     Object.assign(editItem, etcValue);
-    schemaJson |> reduxSetSchemaJson |> dispatch;
+    schemaJson |> reduxSetSchemaJson(#) |> dispatch(#);
     setIsEditDrawerDisplay(false);
     setEditItem(null);
   }
@@ -126,7 +126,7 @@ function ChangeJson(props) {
     const { id } = item;
 
     findAndDelete(id, schemaJson);
-    schemaJson |> reduxSetSchemaJson |> dispatch;
+    schemaJson |> reduxSetSchemaJson(#) |> dispatch(#);
   }
 
   // 根据不同的类型渲染不同的标签

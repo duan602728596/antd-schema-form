@@ -41,7 +41,7 @@ function JsonInputTextarea(props) {
 
     try {
       value = JSON.parse(textAreaValue);
-      value |> setSchemaJson |> dispatch;
+      value |> setSchemaJson(#) |> dispatch(#);
     } catch (err) {
       message.error(langMessage.jsonFormatError);
     }
@@ -61,7 +61,7 @@ function JsonInputTextarea(props) {
 
       try {
         value = JSON.parse(queryDecodeStr);
-        value |> setSchemaJson |> dispatch;
+        value |> setSchemaJson(#) |> dispatch(#);
       } catch (err) {
         message.error(langMessage.jsonFormatError);
       }
