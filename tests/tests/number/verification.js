@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import { mount } from 'enzyme';
 import React from 'react';
+import { render } from '@testing-library/react';
 import SchemaForm from '../../SchemaForm';
 import { createHandleClickFn, sleep } from '../utils';
 
@@ -12,9 +13,9 @@ export async function componentNoverification() {
     title: '组件值没有验证'
   };
   const result = { value: null };
-  const wrapper = mount(<SchemaForm json={ json } onOk={ createHandleClickFn(result) } />);
+  const wrapper = render(<SchemaForm json={ json } onOk={ createHandleClickFn(result) } />);
 
-  wrapper.find('button').simulate('click');
+  wrapper.container.querySelectorAll('button')[0].click();
   await sleep();
   expect(result.value.$root).to.be.undefined;
 }
@@ -29,9 +30,9 @@ export async function componentRequired() {
     $requiredMessage: '表单必填验证信息'
   };
   const result = { value: null };
-  const wrapper = mount(<SchemaForm json={ json } onOk={ createHandleClickFn(result) } />);
+  const wrapper = render(<SchemaForm json={ json } onOk={ createHandleClickFn(result) } />);
 
-  wrapper.find('button').simulate('click');
+  wrapper.container.querySelectorAll('button')[0].click();
   await sleep();
   expect(result.value).to.be.null;
 }
@@ -47,9 +48,9 @@ export async function componentEnum() {
   };
   const value = { $root: 52 };
   const result = { value: null };
-  const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
+  const wrapper = render(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
 
-  wrapper.find('button').simulate('click');
+  wrapper.container.querySelectorAll('button')[0].click();
   await sleep();
   expect(result.value).to.be.null;
 }

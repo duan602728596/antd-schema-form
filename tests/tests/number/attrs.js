@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import { mount } from 'enzyme';
 import React from 'react';
+import { render } from '@testing-library/react';
 import SchemaForm from '../../SchemaForm';
 
 /* 组件只读 */
@@ -11,10 +11,10 @@ export function componentReadOnly() {
     title: '组件只读',
     $readOnly: true
   };
-  const wrapper = mount(<SchemaForm json={ json } />);
-  const antInputNumberInput = wrapper.find('.ant-input-number-input');
+  const wrapper = render(<SchemaForm json={ json } />);
+  const antInputNumberInput = wrapper.container.querySelectorAll('.ant-input-number-input');
 
-  expect(antInputNumberInput.getDOMNode().readOnly).to.be.true;
+  expect(antInputNumberInput[0].readOnly).to.be.true;
 }
 
 /* 组件的placeholder属性 */
@@ -25,8 +25,8 @@ export function componentPlaceholder() {
     title: '组件的placeholder属性',
     $placeholder: '组件的placeholder属性'
   };
-  const wrapper = mount(<SchemaForm json={ json } />);
-  const antInputNumberInput = wrapper.find('.ant-input-number-input');
+  const wrapper = render(<SchemaForm json={ json } />);
+  const antInputNumberInput = wrapper.container.querySelectorAll('.ant-input-number-input');
 
-  expect(antInputNumberInput.getDOMNode().placeholder).to.be.equal('组件的placeholder属性');
+  expect(antInputNumberInput[0].placeholder).to.be.equal('组件的placeholder属性');
 }

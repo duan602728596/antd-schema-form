@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import { mount } from 'enzyme';
 import React from 'react';
+import { render } from '@testing-library/react';
 import SchemaForm from '../../SchemaForm';
 
 /* 渲染默认组件 */
@@ -10,8 +10,8 @@ export function renderDefault() {
     type: 'boolean',
     title: '渲染默认组件'
   };
-  const wrapper = mount(<SchemaForm json={ json } />);
-  const antCheckbox = wrapper.find('.ant-checkbox');
+  const wrapper = render(<SchemaForm json={ json } />);
+  const antCheckbox = wrapper.container.querySelectorAll('.ant-checkbox');
 
   expect(antCheckbox).to.have.lengthOf(1);
 }
@@ -24,8 +24,8 @@ export function renderSwitch() {
     title: '渲染开关组件',
     $componentType: 'switch'
   };
-  const wrapper = mount(<SchemaForm json={ json } />);
-  const antSwitch = wrapper.find('.ant-switch');
+  const wrapper = render(<SchemaForm json={ json } />);
+  const antSwitch = wrapper.container.querySelectorAll('.ant-switch');
 
   expect(antSwitch).to.have.lengthOf(1);
 }
