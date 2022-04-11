@@ -9,7 +9,7 @@ import {
   PropsWithChildren,
   Dispatch as D,
   SetStateAction as S,
-  RefObject,
+  Ref,
   DragEvent,
   MouseEvent as RMouseEvent,
   ChangeEvent,
@@ -19,7 +19,7 @@ import {
   ReactNode
 } from 'react';
 import * as PropTypes from 'prop-types';
-import { Table, Button, Popconfirm, Drawer, Input } from 'antd';
+import { Table, Button, Popconfirm, Drawer, Input, InputRef } from 'antd';
 import type { FormInstance } from 'antd/es/form/Form';
 import type { Store } from 'antd/es/form/interface';
 import type { TableComponents } from 'rc-table/es/interface';
@@ -55,7 +55,7 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
   const { root, value: formComponentValue }: TableComponentProps = props;
   const { id, items }: ArrayItem = root;
   const { type, properties, title, $tableRender }: StringItem | NumberItem | BooleanItem | ArrayItem = items;
-  const changeIndexRef: RefObject<Input> = useRef(null);
+  const changeIndexRef: Ref<InputRef> | undefined = useRef(null);
   let dragTargetId: string | undefined = undefined;    // 被拖拽的id
   let dragTargetIndex: number | undefined = undefined; // 被拖拽的index
 
