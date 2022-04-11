@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import { mount } from 'enzyme';
 import React from 'react';
+import { render, fireEvent } from '@testing-library/react';
 import SchemaForm from '../../SchemaForm';
 import { createHandleClickFn, sleep } from '../utils';
 
@@ -12,9 +12,9 @@ export async function componentNoverification() {
     title: '组件值没有验证'
   };
   const result = { value: null };
-  const wrapper = mount(<SchemaForm json={ json } onOk={ createHandleClickFn(result) } />);
+  const wrapper = render(<SchemaForm json={ json } onOk={ createHandleClickFn(result) } />);
 
-  wrapper.find('button').simulate('click');
+  wrapper.container.querySelectorAll('button')[0].click();
   await sleep();
   expect(result.value.$root).to.be.undefined;
 }
@@ -29,14 +29,17 @@ export async function componentRequired() {
     $requiredMessage: '表单必填验证信息'
   };
   const result = { value: null };
-  const wrapper = mount(<SchemaForm json={ json } onOk={ createHandleClickFn(result) } />);
+  const wrapper = render(<SchemaForm json={ json } onOk={ createHandleClickFn(result) } />);
 
-  wrapper.find('button').simulate('click');
+  wrapper.container.querySelectorAll('button')[0].click();
   await sleep();
   expect(result.value).to.be.null;
 
-  wrapper.find('.ant-input').simulate('change', { target: { value: 'hahaha' } });
-  wrapper.find('button').simulate('click');
+  fireEvent.change(
+    wrapper.container.querySelectorAll('.ant-input')[0],
+    { target: { value: 'hahaha' } }
+  );
+  wrapper.container.querySelectorAll('button')[0].click();
   await sleep();
   expect(result.value).to.be.eql({ $root: 'hahaha' });
 }
@@ -52,14 +55,17 @@ export async function componentEnum() {
   };
   const value = { $root: '枚举3' };
   const result = { value: null };
-  const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
+  const wrapper = render(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
 
-  wrapper.find('button').simulate('click');
+  wrapper.container.querySelectorAll('button')[0].click();
   await sleep();
   expect(result.value).to.be.null;
 
-  wrapper.find('.ant-input').simulate('change', { target: { value: '枚举1' } });
-  wrapper.find('button').simulate('click');
+  fireEvent.change(
+    wrapper.container.querySelectorAll('.ant-input')[0],
+    { target: { value: '枚举1' } }
+  );
+  wrapper.container.querySelectorAll('button')[0].click();
   await sleep();
   expect(result.value).to.be.eql({ $root: '枚举1' });
 }
@@ -75,14 +81,17 @@ export async function componentMinLength() {
   };
   const value = { $root: '组件的最大值' };
   const result = { value: null };
-  const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
+  const wrapper = render(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
 
-  wrapper.find('button').simulate('click');
+  wrapper.container.querySelectorAll('button')[0].click();
   await sleep();
   expect(result.value).to.be.null;
 
-  wrapper.find('.ant-input').simulate('change', { target: { value: 'abcdefghijklmn' } });
-  wrapper.find('button').simulate('click');
+  fireEvent.change(
+    wrapper.container.querySelectorAll('.ant-input')[0],
+    { target: { value: 'abcdefghijklmn' } }
+  );
+  wrapper.container.querySelectorAll('button')[0].click();
   await sleep();
   expect(result.value).to.be.eql({ $root: 'abcdefghijklmn' });
 }
@@ -98,14 +107,17 @@ export async function componentMaxLength() {
   };
   const value = { $root: '组件的最大值' };
   const result = { value: null };
-  const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
+  const wrapper = render(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
 
-  wrapper.find('button').simulate('click');
+  wrapper.container.querySelectorAll('button')[0].click();
   await sleep();
   expect(result.value).to.be.null;
 
-  wrapper.find('.ant-input').simulate('change', { target: { value: 'a' } });
-  wrapper.find('button').simulate('click');
+  fireEvent.change(
+    wrapper.container.querySelectorAll('.ant-input')[0],
+    { target: { value: 'a' } }
+  );
+  wrapper.container.querySelectorAll('button')[0].click();
   await sleep();
   expect(result.value).to.be.eql({ $root: 'a' });
 }
@@ -121,14 +133,17 @@ export async function componentLength() {
   };
   const value = { $root: '组件的固定长度' };
   const result = { value: null };
-  const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
+  const wrapper = render(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
 
-  wrapper.find('button').simulate('click');
+  wrapper.container.querySelectorAll('button')[0].click();
   await sleep();
   expect(result.value).to.be.null;
 
-  wrapper.find('.ant-input').simulate('change', { target: { value: 'abcde' } });
-  wrapper.find('button').simulate('click');
+  fireEvent.change(
+    wrapper.container.querySelectorAll('.ant-input')[0],
+    { target: { value: 'abcde' } }
+  );
+  wrapper.container.querySelectorAll('button')[0].click();
   await sleep();
   expect(result.value).to.be.eql({ $root: 'abcde' });
 }
@@ -144,14 +159,17 @@ export async function componentPattern() {
   };
   const value = { $root: '组件值的正则验证' };
   const result = { value: null };
-  const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
+  const wrapper = render(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
 
-  wrapper.find('button').simulate('click');
+  wrapper.container.querySelectorAll('button')[0].click();
   await sleep();
   expect(result.value).to.be.null;
 
-  wrapper.find('.ant-input').simulate('change', { target: { value: 'abcde' } });
-  wrapper.find('button').simulate('click');
+  fireEvent.change(
+    wrapper.container.querySelectorAll('.ant-input')[0],
+    { target: { value: 'abcde' } }
+  );
+  wrapper.container.querySelectorAll('button')[0].click();
   await sleep();
   expect(result.value).to.be.eql({ $root: 'abcde' });
 }

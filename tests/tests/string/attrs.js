@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import { mount } from 'enzyme';
 import React from 'react';
+import { render } from '@testing-library/react';
 import SchemaForm from '../../SchemaForm';
 
 /* 组件只读 */
@@ -11,10 +11,10 @@ export function componentReadOnly() {
     title: '组件只读',
     $readOnly: true
   };
-  const wrapper = mount(<SchemaForm json={ json } />);
-  const antInput = wrapper.find('.ant-input');
+  const wrapper = render(<SchemaForm json={ json } />);
+  const antInput = wrapper.container.querySelectorAll('.ant-input');
 
-  expect(antInput.getDOMNode().readOnly).to.be.true;
+  expect(antInput[0].readOnly).to.be.true;
 }
 
 /* 组件的placeholder属性 */
@@ -25,10 +25,10 @@ export function componentPlaceholder() {
     title: '组件的placeholder属性',
     $placeholder: '组件的placeholder属性'
   };
-  const wrapper = mount(<SchemaForm json={ json } />);
-  const antInput = wrapper.find('.ant-input');
+  const wrapper = render(<SchemaForm json={ json } />);
+  const antInput = wrapper.container.querySelectorAll('.ant-input');
 
-  expect(antInput.getDOMNode().placeholder).to.be.equal('组件的placeholder属性');
+  expect(antInput[0].placeholder).to.be.equal('组件的placeholder属性');
 }
 
 /* select组件的placeholder属性 */
@@ -40,10 +40,10 @@ export function selectComponentPlaceholder() {
     $componentType: 'select',
     $placeholder: 'select组件的placeholder属性'
   };
-  const wrapper = mount(<SchemaForm json={ json } />);
-  const antSelectSelectionPlaceholder = wrapper.find('.ant-select-selection-placeholder');
+  const wrapper = render(<SchemaForm json={ json } />);
+  const antSelectSelectionPlaceholder = wrapper.container.querySelectorAll('.ant-select-selection-placeholder');
 
-  expect(antSelectSelectionPlaceholder.text()).to.be.equal('select组件的placeholder属性');
+  expect(antSelectSelectionPlaceholder[0].innerText).to.be.equal('select组件的placeholder属性');
 }
 
 /* password组件的type属性 */
@@ -55,10 +55,10 @@ export function passwordComponentType() {
     $componentType: 'password'
   };
 
-  const wrapper = mount(<SchemaForm json={ json } />);
-  const antInput = wrapper.find('.ant-input');
+  const wrapper = render(<SchemaForm json={ json } />);
+  const antInput = wrapper.container.querySelectorAll('.ant-input');
 
-  expect(antInput.getDOMNode().type).to.be.equal('password');
-  wrapper.find('.ant-input-suffix').find('.anticon').simulate('click');
-  expect(antInput.getDOMNode().type).to.be.equal('text');
+  expect(antInput[0].type).to.be.equal('password');
+  wrapper.container.querySelectorAll('.ant-input-suffix .anticon')[0].click();
+  expect(antInput[0].type).to.be.equal('text');
 }

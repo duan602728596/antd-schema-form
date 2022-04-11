@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import { mount } from 'enzyme';
 import React from 'react';
+import { render } from '@testing-library/react';
 import SchemaForm from '../../SchemaForm';
 
 /* 渲染默认组件 */
@@ -10,11 +10,12 @@ export function renderDefault() {
     type: 'string',
     title: '渲染默认组件'
   };
-  const wrapper = mount(<SchemaForm json={ json } />);
-  const antInput = wrapper.find('.ant-input');
+
+  const wrapper = render(<SchemaForm json={ json } />);
+  const antInput = wrapper.container.querySelectorAll('.ant-input');
 
   expect(antInput).to.have.lengthOf(1);
-  expect(antInput.name()).to.be.equal('input');
+  expect(antInput[0].tagName.toLowerCase()).to.be.equal('input');
 }
 
 /* 渲染文本域 */
@@ -25,11 +26,11 @@ export function renderTextArea() {
     title: '渲染文本域',
     $componentType: 'textArea'
   };
-  const wrapper = mount(<SchemaForm json={ json } />);
-  const antInput = wrapper.find('.ant-input');
+  const wrapper = render(<SchemaForm json={ json } />);
+  const antInput = wrapper.container.querySelectorAll('.ant-input');
 
   expect(antInput).to.have.lengthOf(1);
-  expect(antInput.name()).to.be.equal('textarea');
+  expect(antInput[0].tagName.toLowerCase()).to.be.equal('textarea');
 }
 
 /* 渲染下拉框 */
@@ -44,8 +45,8 @@ export function renderSelect() {
       { label: '选项2', value: '值2' }
     ]
   };
-  const wrapper = mount(<SchemaForm json={ json } />);
-  const antSelect = wrapper.find('.ant-select');
+  const wrapper = render(<SchemaForm json={ json } />);
+  const antSelect = wrapper.container.querySelectorAll('.ant-select');
 
   expect(antSelect).to.have.lengthOf(1);
 }
@@ -62,8 +63,8 @@ export function renderRadio() {
       { label: '选项2', value: '值2' }
     ]
   };
-  const wrapper = mount(<SchemaForm json={ json } />);
-  const input = wrapper.find('input');
+  const wrapper = render(<SchemaForm json={ json } />);
+  const input = wrapper.container.querySelectorAll('input');
 
   expect(input).to.have.lengthOf(2);
 }
@@ -76,8 +77,8 @@ export function renderDate() {
     title: '渲染日期组件',
     $componentType: 'date'
   };
-  const wrapper = mount(<SchemaForm json={ json } />);
-  const antCalendarPicker = wrapper.find('.ant-picker');
+  const wrapper = render(<SchemaForm json={ json } />);
+  const antCalendarPicker = wrapper.container.querySelectorAll('.ant-picker');
 
   expect(antCalendarPicker).to.have.lengthOf(1);
 }
