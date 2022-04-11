@@ -4,8 +4,8 @@ import gulpDartSass from 'gulp-dart-sass';
 import filter from 'gulp-filter';
 import merge from 'merge2';
 import sass from 'sass';
-import tsconfig from './tsconfig.json';
-import tsconfigES5 from './tsconfig.es5.json';
+import tsconfig from './tsconfig.json' assert { type: 'json' };
+import tsconfigES5 from './tsconfig.es5.json' assert { type: 'json' };
 
 gulpDartSass.compiler = sass;
 
