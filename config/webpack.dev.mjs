@@ -1,5 +1,5 @@
 /* 项目开发、预览的webpack配置 */
-import path from 'path';
+import path from 'node:path';
 import { merge } from 'webpack-merge';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { metaHelper } from '@sweet-milktea/utils';
