@@ -15,7 +15,7 @@ const config = {
 
 export default merge(basicConfig, config, {
   entry: {
-    index: path.join(__dirname, '../tests/index.js')
+    index: path.join(__dirname, '../test/index.js')
   },
   externals: {
     mocha: 'globalThis.mocha',
@@ -37,7 +37,7 @@ export default merge(basicConfig, config, {
   plugins: [
     new HtmlWebpackPlugin({
       inject: true,
-      template: path.join(__dirname, '../tests/index.ejs'),
+      template: path.join(__dirname, '../test/index.ejs'),
       filename: 'index.html'
     })
   ]
