@@ -2,12 +2,20 @@ import describe from 'describe';
 import it from 'it';
 import { renderDefault, renderRadio } from './componentRendering';
 import {
-  componentHasDefaultValue, componentHastValue, radioHasDefaultValue, radioHastValue,
+  componentHasDefaultValue,
+  componentHastValue,
+  radioHasDefaultValue,
+  radioHastValue,
   theValueOfTheComponentOverridesTheDefaultValue
 } from './hasValue';
 import { componentPlaceholder, componentReadOnly } from './attrs';
 import {
-  componentNoverification, componentRequired, componentEnum, componentInteger, componentIntegerTrue, componentMinimum,
+  componentNoverification,
+  componentRequired,
+  componentEnum,
+  componentInteger,
+  componentIntegerTrue,
+  componentMinimum,
   componentMaximum
 } from './verification';
 

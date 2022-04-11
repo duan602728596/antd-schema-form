@@ -1,5 +1,4 @@
 import { expect } from 'chai';
-import React from 'react';
 import { render } from '@testing-library/react';
 import moment from 'moment';
 import SchemaForm from '../../SchemaForm';

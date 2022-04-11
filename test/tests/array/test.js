@@ -2,7 +2,10 @@ import describe from 'describe';
 import it from 'it';
 import { renderDefault, renderSelectMultiple, renderSelectTags, renderCheckboxGroup } from './componentRender';
 import {
-  componentHasDefaultValue, componentHasValue, componentItemsIsStringOrNumber, CheckboxGroupHastDefaultValue,
+  componentHasDefaultValue,
+  componentHasValue,
+  componentItemsIsStringOrNumber,
+  CheckboxGroupHastDefaultValue,
   CheckboxGroupHastValue
 } from './hasValue';
 import { tableComponentMinItems, tableComponentMaxItems } from './verification';

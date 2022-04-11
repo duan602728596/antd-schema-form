@@ -2,8 +2,15 @@ import describe from 'describe';
 import it from 'it';
 import { renderDefault, renderTextArea, renderSelect, renderRadio, renderDate } from './componentRendering';
 import {
-  componentHasDefaultValue, componentHastValue, selectHasDefaultValue, selectHasValue, radioHasDefaultValue,
-  radioHastValue, dateHasDefaultValue, dateHasValue, theValueOfTheComponentOverridesTheDefaultValue
+  componentHasDefaultValue,
+  componentHastValue,
+  selectHasDefaultValue,
+  selectHasValue,
+  radioHasDefaultValue,
+  radioHastValue,
+  dateHasDefaultValue,
+  dateHasValue,
+  theValueOfTheComponentOverridesTheDefaultValue
 } from './hasValue';
 import { componentReadOnly, componentPlaceholder, selectComponentPlaceholder, passwordComponentType } from './attrs';
 import {
