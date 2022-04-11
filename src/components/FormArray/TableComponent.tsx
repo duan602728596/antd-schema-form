@@ -33,6 +33,7 @@ import getObjectFromSchema from '../../utils/getObjectFromSchema';
 import { formatTableValue, sortIndex } from './tableFunction';
 import FormObject from '../FormObject/FormObject';
 import styleName from '../../utils/styleName';
+import isAMomentObject from '../../utils/isAMomentObject';
 import type { SchemaItem, StringItem, NumberItem, BooleanItem, ArrayItem, ContextValue } from '../../types';
 
 // 拖拽相关变量
@@ -380,7 +381,11 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
       if (isBoolean(value)) {
         return String(value);
       } else if (isObject(value)) {
-        return Object.prototype.toString.call(value);
+        if (isAMomentObject(value)) {
+          return value.format('YYYY-MM-DD HH:mm:ss');
+        } else {
+          return Object.prototype.toString.call(value);
+        }
       } else {
         return value;
       }
