@@ -25,7 +25,7 @@ export const _ObjectEntries: ObjectEntriesFunc = Object.entries ?? function(o: E
 
 export const ObjectEntries: ObjectEntriesFunc = (o: EntriesObj = {}) => _ObjectEntries(o);
 
-/* @ts-ignore Object.fromEntries的兼容方法 */
+/* Object.fromEntries的兼容方法 */
 export const _ObjectFromEntries: ObjectFromEntriesFunc = Object.fromEntries ?? function(o: EntriesArr): EntriesObj {
   const result: { [s: string]: any } = {};
 
