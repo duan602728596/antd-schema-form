@@ -1,10 +1,9 @@
 import describe from 'describe';
 import it from 'it';
 import { expect } from 'chai';
-import { mount } from 'enzyme';
 import React from 'react';
+import { render } from '@testing-library/react';
 import SchemaForm from '../../SchemaForm';
-import { sleep } from '../utils';
 
 /* 对象组件的测试用例 */
 describe('component rendering', function() {
@@ -52,10 +51,10 @@ describe('component rendering', function() {
         }
       };
 
-      const wrapper = mount(<SchemaForm json={ json } />);
-      const antInput = wrapper.find('.ant-input');
-      const antInputNumber = wrapper.find('.ant-input-number');
-      const antCheckboxInput = wrapper.find('.ant-checkbox-input');
+      const wrapper = render(<SchemaForm json={ json } />);
+      const antInput = wrapper.container.querySelectorAll('.ant-input');
+      const antInputNumber = wrapper.container.querySelectorAll('.ant-input-number');
+      const antCheckboxInput = wrapper.container.querySelectorAll('.ant-checkbox-input');
 
       expect(antInput).to.have.lengthOf(3);
       expect(antInputNumber).to.have.lengthOf(1);
@@ -83,8 +82,8 @@ describe('component rendering', function() {
         ]
       };
 
-      const wrapper = mount(<SchemaForm json={ json } />);
-      const antRadioInput = wrapper.find('.ant-radio-input');
+      const wrapper = render(<SchemaForm json={ json } />);
+      const antRadioInput = wrapper.container.querySelectorAll('.ant-radio-input');
 
       expect(antRadioInput).to.have.lengthOf(3);
     });
