@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import { mount } from 'enzyme';
 import React from 'react';
+import { render } from '@testing-library/react';
 import SchemaForm from '../../SchemaForm';
 import { createHandleClickFn } from '../utils';
 
@@ -29,10 +29,10 @@ export function tableComponentMinItems() {
     $root: ['值1', '值2']
   };
   const result = { value: null };
-  const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
-  const button = wrapper.find('button');
+  const wrapper = render(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
+  const button = Array.from(wrapper.container.querySelectorAll('button'));
 
-  button.at(button.length - 1).simulate('click');
+  button.at(-1).click();
   expect(result.value).to.be.null;
 }
 
@@ -56,9 +56,9 @@ export function tableComponentMaxItems() {
     $root: ['值1', '值2', '值3']
   };
   const result = { value: null };
-  const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
-  const button = wrapper.find('button');
+  const wrapper = render(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
+  const button = Array.from(wrapper.container.querySelectorAll('button'));
 
-  button.at(button.length - 1).simulate('click');
+  button.at(-1).click();
   expect(result.value).to.be.null;
 }

@@ -1,5 +1,4 @@
 import { expect } from 'chai';
-import { mount } from 'enzyme';
 import React from 'react';
 import { render } from '@testing-library/react';
 import SchemaForm from '../../SchemaForm';
@@ -65,9 +64,9 @@ export async function componentInteger() {
   };
   const value = { $root: 13.42 };
   const result = { value: null };
-  const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
+  const wrapper = render(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
 
-  wrapper.find('button').simulate('click');
+  wrapper.container.querySelectorAll('button')[0].click();
   await sleep();
   expect(result.value).to.be.null;
 }
@@ -83,9 +82,9 @@ export async function componentIntegerTrue() {
   };
   const value = { $root: 13.42 };
   const result = { value: null };
-  const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
+  const wrapper = render(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
 
-  wrapper.find('button').simulate('click');
+  wrapper.container.querySelectorAll('button')[0].click();
   await sleep();
   expect(result.value).to.be.null;
 }
@@ -101,9 +100,9 @@ export async function componentMinimum() {
   };
   const value = { $root: 2 };
   const result = { value: null };
-  const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
+  const wrapper = render(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
 
-  wrapper.find('button').simulate('click');
+  wrapper.container.querySelectorAll('button')[0].click();
   await sleep();
   expect(result.value).to.be.null;
 }
@@ -119,9 +118,9 @@ export async function componentMaximum() {
   };
   const value = { $root: 200 };
   const result = { value: null };
-  const wrapper = mount(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
+  const wrapper = render(<SchemaForm json={ json } value={ value } onOk={ createHandleClickFn(result) } />);
 
-  wrapper.find('button').simulate('click');
+  wrapper.container.querySelectorAll('button')[0].click();
   await sleep();
   expect(result.value).to.be.null;
 }

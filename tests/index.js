@@ -1,13 +1,8 @@
 import mocha from 'mocha';
-import Enzyme from 'enzyme';
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 
 // 初始化测试配置项
 mocha.setup('bdd');
 mocha.timeout(180000);
-Enzyme.configure({
-  adapter: new Adapter()
-});
 
 (async function() {
   await Promise.all([

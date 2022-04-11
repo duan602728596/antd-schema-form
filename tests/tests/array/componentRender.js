@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import { mount } from 'enzyme';
 import React from 'react';
+import { render } from '@testing-library/react';
 import SchemaForm from '../../SchemaForm';
 
 /* 渲染默认组件 */
@@ -27,9 +27,9 @@ export function renderDefault() {
       }
     }
   };
-  const wrapper = mount(<SchemaForm json={ json } />);
-  const antTable = wrapper.find('.ant-table');
-  const table = antTable.find('table');
+  const wrapper = render(<SchemaForm json={ json } />);
+  const antTable = wrapper.container.querySelectorAll('.ant-table');
+  const table = antTable[0].querySelectorAll('table');
 
   expect(antTable).to.have.lengthOf(1);
   expect(table).to.have.lengthOf(1);
@@ -53,8 +53,8 @@ export function renderSelectMultiple() {
     ]
   };
 
-  const wrapper = mount(<SchemaForm json={ json } />);
-  const antSelectSelection = wrapper.find('.ant-select-selector');
+  const wrapper = render(<SchemaForm json={ json } />);
+  const antSelectSelection = wrapper.container.querySelectorAll('.ant-select-selector');
 
   expect(antSelectSelection).to.have.lengthOf(1);
 }
@@ -77,8 +77,8 @@ export function renderSelectTags() {
     ]
   };
 
-  const wrapper = mount(<SchemaForm json={ json } />);
-  const antSelectSelection = wrapper.find('.ant-select');
+  const wrapper = render(<SchemaForm json={ json } />);
+  const antSelectSelection = wrapper.container.querySelectorAll('.ant-select');
 
   expect(antSelectSelection).to.have.lengthOf(1);
 }
@@ -100,8 +100,8 @@ export function renderCheckboxGroup() {
       { label: '选项2', value: '值2' }
     ]
   };
-  const wrapper = mount(<SchemaForm json={ json } />);
-  const antCheckbox = wrapper.find('.ant-checkbox');
+  const wrapper = render(<SchemaForm json={ json } />);
+  const antCheckbox = wrapper.container.querySelectorAll('.ant-checkbox');
 
   expect(antCheckbox).to.have.lengthOf(2);
 }

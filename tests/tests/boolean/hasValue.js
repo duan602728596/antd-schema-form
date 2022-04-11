@@ -1,5 +1,4 @@
 import { expect } from 'chai';
-import { mount } from 'enzyme';
 import React from 'react';
 import { render } from '@testing-library/react';
 import SchemaForm from '../../SchemaForm';
