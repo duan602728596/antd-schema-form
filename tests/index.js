@@ -2,7 +2,7 @@ import mocha from 'mocha';
 
 // 初始化测试配置项
 mocha.setup('bdd');
-mocha.timeout(180000);
+mocha.timeout(180_000);
 
 (async function() {
   await Promise.all([

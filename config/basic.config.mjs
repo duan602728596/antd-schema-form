@@ -83,7 +83,8 @@ export const rules = [
   {
     test: /.*\.css/,
     use: ['style-loader', 'css-loader'],
-    include: /node_modules/
+    include: /node_modules/,
+    exclude: /mocha\.css/
   }
 ];
 
