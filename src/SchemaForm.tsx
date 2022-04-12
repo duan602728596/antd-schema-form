@@ -31,10 +31,8 @@ export interface SchemaFormProps {
   okText?: string | number;
   cancelText?: string | number;
   footer?: Function;
-  customComponent?: {
-    [key: string]: Function;
-  };
-  customTableRender?: object;
+  customComponent?: Record<string, Function>;
+  customTableRender?: Record<string, Function>;
   languagePack?: object;
   formOptions?: FormProps;
 }
@@ -114,8 +112,8 @@ SchemaForm.propTypes = {
     PropTypes.number
   ]),
   footer: PropTypes.func,
-  customComponent: PropTypes.objectOf(PropTypes.func) as Validator<{ [key: string]: Function } | null | undefined>,
-  customTableRender: PropTypes.objectOf(PropTypes.func),
+  customComponent: PropTypes.objectOf<any>(PropTypes.func),
+  customTableRender: PropTypes.objectOf<any>(PropTypes.func),
   languagePack: PropTypes.object
 };
 

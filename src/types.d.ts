@@ -2,10 +2,8 @@ import type { FormInstance } from 'antd/es/form';
 
 export interface ContextValue {
   form: FormInstance;
-  customComponent?: {
-    [key: string]: Function;
-  };
-  customTableRender?: object;
+  customComponent?: Record<string, Function>;
+  customTableRender?: Record<string, Function>;
   language?: string;
   languagePack?: any;
   json: SchemaItem;
