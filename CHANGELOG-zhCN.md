@@ -1,3 +1,10 @@
+### v4.5.0
+
+* 升级所有依赖到最新版本。
+* string类型的`date`组件添加配置`$showTime`和`$format`，控制date-picker是否可以选择时间。(#30)
+* 🐛修复moment对象在表格中的展示，现在展示为格式化后的字符串。(#31)
+* 测试用例中，使用`@testing-library/react`替换`enzyme`来渲染react组件。
+
 ### v4.4.0
 
 * 升级所有依赖到最新版本。

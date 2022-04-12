@@ -1,3 +1,10 @@
+### v4.5.0
+
+* Upgrade all dependencies to the latest version.
+* The `date` component of type string adds the configuration `show Time` and `format` to control whether the date-picker can select the time. (#30)
+* 🐛The display of complex moment objects in the table is now displayed as a formatted string. (#31)
+* In the test case, use `@testing-libraryreact` instead of `enzyme` to render the react components.
+
 ### v4.4.0
 
 * Upgrade all dependencies to the latest version.
