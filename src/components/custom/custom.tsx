@@ -52,11 +52,12 @@ export function radio(root: StringItem, form: FormInstance, required: boolean): 
 
 // date
 export function date(root: StringItem, form: FormInstance, required: boolean): ReactNode {
-  const { id, $placeholder, $disabled }: StringItem = root;
+  const { id, $placeholder, $disabled, $showTime = true, $format }: StringItem = root;
+  const formatString: string = $format ?? ($showTime ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD');
 
   return (
-    <DatePicker format="YYYY-MM-DD HH:mm:ss"
-      showTime={ true }
+    <DatePicker format={ formatString }
+      showTime={ $showTime }
       placeholder={ $placeholder }
       disabled={ $disabled ?? undefined }
     />

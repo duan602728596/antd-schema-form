@@ -51,6 +51,8 @@ export interface StringItem extends SchemaItem {
   enum?: Array<string>;
   $enumMessage?: string;
   $defaultValue?: string;
+  $showTime?: boolean;
+  $format?: string;
   $options?: Array<{ label: string; value: string }>;
 }
 

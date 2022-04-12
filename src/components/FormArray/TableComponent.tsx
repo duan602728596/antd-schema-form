@@ -382,7 +382,10 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
         return String(value);
       } else if (isObject(value)) {
         if (isAMomentObject(value)) {
-          return value.format('YYYY-MM-DD HH:mm:ss');
+          const { $showTime = true, $format }: StringItem = items as StringItem;
+          const formatString: string = $format ?? ($showTime ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD');
+
+          return value.format(formatString);
         } else {
           return Object.prototype.toString.call(value);
         }
