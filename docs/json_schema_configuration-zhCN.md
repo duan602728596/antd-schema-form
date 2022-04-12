@@ -79,6 +79,8 @@
 * `$readOnly: boolean`: 表单控件只读。
 * `$placeholder: string`: 表单控件的placeholder属性。
 * `$defaultValue: string`: 表单控件的默认值。
+* `$showTime`：当组件类型为`date`时，增加时间选择功能。默认开启。
+* `$format`：当组件类型为`date`时，设置日期格式。开启时间选择功能时，默认值是`YYYY-MM-DD HH:mm:ss`；关闭时间选择功能时，默认值是`YYYY-MM-DD`。
 
   | 值       | 组件名称 |
   | ---      | ---      |
