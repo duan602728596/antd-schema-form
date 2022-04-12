@@ -1,12 +1,12 @@
 import { Fragment, useState, useEffect, useRef, useContext } from 'react';
 import { Row, Col, Modal } from 'antd';
 import SchemaForm from 'antd-schema-form';
-import schemaFormDefaultLang from 'antd-schema-form/language/default.json';
-import schemaFormZhCNLang from 'antd-schema-form/language/zh-CN.json';
+import schemaFormDefaultLang from 'antd-schema-form/language/default.json' assert { type: 'json' };
+import schemaFormZhCNLang from 'antd-schema-form/language/zh-CN.json' assert { type: 'json' };
 import classNames from 'classnames';
 import style from './demo.sass';
-import demo from './demo.json';
-import demoZhCN from './demo-zhCN.json';
+import demo from './demo.json' assert { type: 'json' };
+import demoZhCN from './demo-zhCN.json' assert { type: 'json' };
 import { I18NContext } from '../../components/I18N/I18N';
 import hljs from '../../components/highlight/highlight';
 

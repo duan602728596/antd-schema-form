@@ -8,8 +8,8 @@ import copy from 'copy-to-clipboard';
 import MonacoEditor from 'react-monaco-editor';
 import { setSchemaJson } from './reducers/reducers';
 import style from './preview.sass';
-import schemaFormDefaultLang from 'antd-schema-form/language/default.json';
-import schemaFormZhCNLang from 'antd-schema-form/language/zh-CN.json';
+import schemaFormDefaultLang from 'antd-schema-form/language/default.json' assert { type: 'json' };
+import schemaFormZhCNLang from 'antd-schema-form/language/zh-CN.json' assert { type: 'json' };
 import { I18NContext } from '../../components/I18N/I18N';
 import SchemaFormPreview from './SchemaFormPreview';
 
