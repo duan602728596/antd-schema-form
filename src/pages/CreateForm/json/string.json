@@ -129,6 +129,16 @@
       "type": "number",
       "title": "Default the order in which components are arranged"
     },
+    "$showTime": {
+      "id": "$root/properties/$showTime",
+      "type": "boolean",
+      "title": "When the component type is date, the time selection function is added. On by default."
+    },
+    "$format": {
+      "id": "$root/properties/$format",
+      "type": "string",
+      "title": "When the component type is date, set the date format. When the time selection function is turned on, the default value is YYYY-MM-DD HH:mm:ss; when the time selection function is turned off, the default value is YYYY-MM-DD."
+    },
     "$componentType": {
       "id": "$root/properties/$componentType",
       "type": "string",

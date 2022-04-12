@@ -129,6 +129,16 @@
       "type": "number",
       "title": "定义组件的排列顺序"
     },
+    "$showTime": {
+      "id": "$root/properties/$showTime",
+      "type": "boolean",
+      "title": "当组件类型为date时，增加时间选择功能。默认开启。"
+    },
+    "$format": {
+      "id": "$root/properties/$format",
+      "type": "string",
+      "title": "当组件类型为date时，设置日期格式。开启时间选择功能时，默认值是YYYY-MM-DD HH:mm:ss；关闭时间选择功能时，默认值是YYYY-MM-DD。"
+    },
     "$componentType": {
       "id": "$root/properties/$componentType",
       "type": "string",

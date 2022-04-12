@@ -8,14 +8,20 @@ const reducer = combineReducers(reducersMapObject);
 /* store */
 export let store;
 
+function createStore(initialState = {}) {
+  store = configureStore({
+    reducer,
+    preloadedState: initialState,
+    middleware(getDefaultMiddleware) {
+      return getDefaultMiddleware();
+    }
+  });
+}
+
 export function storeFactory(initialState = {}) {
   // 避免热替换导致redux的状态丢失
   if (!store) {
-    /* store */
-    store = configureStore({
-      reducer,
-      preloadedState: initialState
-    });
+    createStore(initialState);
   }
 
   return store;
