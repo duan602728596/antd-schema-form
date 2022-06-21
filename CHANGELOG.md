@@ -1,3 +1,7 @@
+### v4.5.1
+
+* 🐛Fixed an error that the moment object could not pass the verification under the required verification, and the value was always empty.
+
 ### v4.5.0
 
 * Upgrade all dependencies to the latest version.
