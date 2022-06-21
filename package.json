@@ -20,7 +20,7 @@
     "@ant-design/icons": "^4.7.0",
     "@reduxjs/toolkit": "^1.8.1",
     "antd": "^4.19.5",
-    "antd-schema-form": "^4.5.0",
+    "antd-schema-form": "^4.5.1",
     "classnames": "^2.3.1",
     "copy-to-clipboard": "^3.3.1",
     "dayjs": "^1.11.0",
