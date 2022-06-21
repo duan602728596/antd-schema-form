@@ -1,12 +1,13 @@
 import type { Rule } from 'antd/es/form';
 import { isNil, isNumber, isString } from '../../utils/lodash';
 import template from '../../utils/template';
+import isAMomentObject from '../../utils/isAMomentObject';
 import type { StringItem } from '../../types';
 
 function createStringRules(languagePack: any, root: StringItem, required: boolean): Array<Rule> {
   const {
     $required, $requiredMessage, pattern, $patternOption, $patternMessage, minLength, maxLength, $minLengthMessage,
-    $maxLengthMessage, $length, $lengthMessage, $enumMessage
+    $maxLengthMessage, $length, $lengthMessage, $enumMessage, $showTime, $format
   }: StringItem = root;
   const enums: string[] | undefined = root.enum;
   const rules: Rule[] = [];
@@ -16,7 +17,14 @@ function createStringRules(languagePack: any, root: StringItem, required: boolea
     rules.push({
       required: true,
       message: $requiredMessage ?? languagePack.rules.required,
-      whitespace: true
+      whitespace: true,
+      transform(value: any): string | undefined {
+        if (isAMomentObject(value)) {
+          return value.format($format ?? ($showTime ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD'));
+        }
+
+        return value;
+      }
     });
   }
 
