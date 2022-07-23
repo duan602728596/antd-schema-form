@@ -33,6 +33,11 @@
       "type": "boolean",
       "title": "Value must exist"
     },
+    "$requiredMessage": {
+      "id": "$root/properties/$requiredMessage",
+      "type": "string",
+      "title": "Customize the verification prompt for $required"
+    },
     "minimum": {
       "id": "$root/properties/minimum",
       "type": "number",
