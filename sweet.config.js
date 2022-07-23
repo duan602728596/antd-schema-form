@@ -34,7 +34,7 @@ module.exports = {
   frame: 'react',
   dll: [
     'react',
-    'react-dom',
+    'react-dom/client',
     'prop-types',
     '@reduxjs/toolkit',
     'react-redux',
