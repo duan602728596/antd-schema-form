@@ -1,7 +1,5 @@
 import { useContext } from 'react';
 import { Helmet } from 'react-helmet';
-import asyncLoadReducers from '../../store/asyncLoadReducers';
-import reducers from './reducers/reducers';
 import Preview from './Preview';
 import { I18NContext } from '../../components/I18N/I18N';
 
@@ -18,4 +16,4 @@ function Index(props) {
   ];
 }
 
-export default asyncLoadReducers(reducers)(Index);
+export default Index;
