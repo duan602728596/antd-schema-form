@@ -1,9 +1,7 @@
 import { useRoutes } from 'react-router-dom';
-import asyncModule from './asyncModule';
 import Index from '../pages/Index/index';
-
-const CreateForm = asyncModule(() => import(/* webpackChunkName: 'createForm' */'../pages/CreateForm/index'));
-const Preview = asyncModule(() => import(/* webpackChunkName: 'preview' */'../pages/Preview/index'));
+import CreateForm from '../pages/CreateForm/index';
+import Preview from '../pages/Preview/index';
 
 function Routers(props) {
   const routes = useRoutes([

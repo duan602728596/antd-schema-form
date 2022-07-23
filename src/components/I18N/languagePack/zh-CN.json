@@ -5,7 +5,6 @@
     "表单预览",
     "文档"
   ],
-  "switchLoading": "加载中...",
   "index": {
     "introduction": [
       "antd-schema-form基于",
