@@ -40,15 +40,7 @@ export const rules = [
         loader: 'babel-loader',
         options: {
           plugins: [
-            'react-refresh/babel',
-            [
-              'import',
-              {
-                libraryName: 'antd',
-                libraryDirectory: 'es',
-                style: 'css'
-              }
-            ]
+            'react-refresh/babel'
           ]
         }
       },
