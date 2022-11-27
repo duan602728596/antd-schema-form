@@ -1,8 +1,5 @@
 /* Object.entries的兼容方法 */
-interface EntriesObj {
-  [s: string]: any;
-}
-
+type EntriesObj = Record<string, any>;
 type EntriesArr = Array<[string, any]>;
 
 interface ObjectEntriesFunc {
@@ -40,17 +37,17 @@ export const ObjectFromEntries: ObjectFromEntriesFunc = (o: EntriesArr = []) => 
 
 /**
  * omit函数的实现
- * @param { T } obj: object
+ * @param { EntriesObj } obj: object
  * @param { string[] } delKeys: 从object中删除的keys
  */
-export function omit<T = object, U = T>(obj: T = {} as T, delKeys: string[]): U {
-  return ObjectEntries(obj).reduce(function(result: U, [key, value]: [string, any]): U {
+export function omit(obj: EntriesObj = {}, delKeys: string[]): EntriesObj {
+  return ObjectEntries(obj).reduce(function(result: EntriesObj, [key, value]: [string, any]): EntriesObj {
     if (!delKeys.includes(key)) {
       result[key] = value;
     }
 
     return result;
-  }, {} as U);
+  }, {});
 }
 
 /* 判断是否为null或undefined */

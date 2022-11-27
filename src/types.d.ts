@@ -26,9 +26,7 @@ export interface SchemaItem {
   $componentType?: string;
   $oneOfComponentType?: string;
   $order?: number;
-  $formItemProps?: {
-    [key: string]: any;
-  };
+  $formItemProps?: Record<string, any>;
   $disabled?: boolean;
 }
 

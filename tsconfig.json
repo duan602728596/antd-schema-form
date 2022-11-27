@@ -11,6 +11,10 @@
     "jsxFactory": "createElement",
     "declaration": true,
     "experimentalDecorators": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "lib": [
+      "ES2019",
+      "DOM"
+    ]
   }
 }

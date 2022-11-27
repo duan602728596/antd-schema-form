@@ -2,7 +2,7 @@ import { createElement, useContext, PropsWithChildren, ReactElement } from 'reac
 import * as PropTypes from 'prop-types';
 import { Form } from 'antd';
 import type { Rule } from 'antd/es/form';
-import classNames from 'classnames';
+import * as classNames from 'classnames';
 import { omit } from '../../utils/lodash';
 import AntdSchemaFormContext from '../../context';
 import styleName from '../../utils/styleName';
