@@ -1,7 +1,6 @@
 import path from 'node:path';
 import webpack from 'webpack';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
-import AntdDayjsWebpackPlugin from 'antd-dayjs-webpack-plugin';
 import { metaHelper } from '@sweet-milktea/utils';
 import babelConfig from './babel.config.mjs';
 
@@ -96,21 +95,5 @@ export const plugins = [
   }),
   new ReactRefreshWebpackPlugin({
     overlay: false
-  }),
-  new AntdDayjsWebpackPlugin({
-    plugins: [
-      'isSameOrBefore',
-      'isSameOrAfter',
-      'advancedFormat',
-      'customParseFormat',
-      'weekday',
-      'weekYear',
-      'weekOfYear',
-      'isMoment',
-      'localeData',
-      'localizedFormat'
-    ],
-    replaceMoment: true,
-    preset: 'antd'
   })
 ];
