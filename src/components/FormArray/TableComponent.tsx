@@ -528,7 +528,7 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
         pagination={ false }
       />
       {/* 添加和修改数据的抽屉组件 */}
-      <Drawer width="100%" visible={ isDisplayDataDrawer } destroyOnClose={ true } closable={ false }>
+      <Drawer width="100%" open={ isDisplayDataDrawer } destroyOnClose={ true } closable={ false }>
         <FormObject root={ items }
           okText={ editIndex !== undefined ? undefined : languagePack.formObject.addOkText }
           cancelText={ editIndex !== undefined ? undefined : languagePack.formObject.addCancelText }
