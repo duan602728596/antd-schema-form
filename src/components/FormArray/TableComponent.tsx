@@ -388,7 +388,9 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
     const renderCallback: Function = (value: any, record: object, index: number): string | number => {
       if (isBoolean(value)) {
         return String(value);
-      } else if (isObject(value)) {
+      }
+
+      if (isObject(value)) {
         if (isAMomentObject(value)) {
           const { $showTime = true, $format }: StringItem = items as StringItem;
           const formatString: string = $format ?? ($showTime ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD');
@@ -397,9 +399,9 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
         } else {
           return Object.prototype.toString.call(value);
         }
-      } else {
-        return value;
       }
+
+      return value;
     };
 
     // 渲染自定义render
