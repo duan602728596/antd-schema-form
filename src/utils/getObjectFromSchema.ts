@@ -1,4 +1,4 @@
-import * as moment from 'moment';
+import * as dayjs from 'dayjs';
 import type { Store } from 'antd/es/form/interface';
 import isAMomentObject from './isAMomentObject';
 import type { SchemaItem, StringItem, NumberItem, BooleanItem, ArrayItem } from '../types';
@@ -31,7 +31,7 @@ function getObjectFromSchema(schemaJsonItem: SchemaJson, id?: string): Store {
       && !isAMomentObject(schemaJsonItem.$defaultValue)
     ) {
       // @ts-ignore
-      value[schemaJsonItem.id ?? id] = moment(schemaJsonItem.$defaultValue);
+      value[schemaJsonItem.id ?? id] = dayjs(schemaJsonItem.$defaultValue);
     } else {
       // @ts-ignore
       value[schemaJsonItem.id ?? id] = schemaJsonItem.$defaultValue;
