@@ -12,6 +12,7 @@
     "declaration": true,
     "experimentalDecorators": true,
     "strictNullChecks": true,
+    "importHelpers": true,
     "lib": [
       "ES2015",
       "ES2016",
