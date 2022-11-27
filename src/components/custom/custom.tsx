@@ -5,18 +5,18 @@ import selectOptionsRender from './selectOptionsRender';
 import styleName from '../../utils/styleName';
 import TableComponent from '../FormArray/TableComponent';
 import OneOf from '../FormObject/OneOf';
-import type { SchemaItem, StringItem, NumberItem, BooleanItem, ArrayItem } from '../../types';
+import type { SchemaItem, StringItem, NumberItem, BooleanItem, ArrayItem, CustomComponentFuncArgs } from '../../types';
 
 /* string类型组件 */
 // 默认组件
-export function defaultString(root: StringItem, form: FormInstance, required: boolean): ReactNode {
+export function defaultString({ root, form, required }: CustomComponentFuncArgs<StringItem>): ReactNode {
   const { $readOnly, $placeholder, $disabled }: StringItem = root;
 
   return <Input readOnly={ $readOnly } placeholder={ $placeholder } disabled={ $disabled ?? undefined } />;
 }
 
 // 文本域
-export function textArea(root: StringItem, form: FormInstance, required: boolean): ReactNode {
+export function textArea({ root, form, required }: CustomComponentFuncArgs<StringItem>): ReactNode {
   const { $readOnly, $placeholder, $disabled }: StringItem = root;
 
   return (
@@ -29,7 +29,7 @@ export function textArea(root: StringItem, form: FormInstance, required: boolean
 }
 
 // select
-export function select(root: StringItem, form: FormInstance, required: boolean): ReactNode {
+export function select({ root, form, required }: CustomComponentFuncArgs<StringItem>): ReactNode {
   const { $required, $options = [], $placeholder, $disabled }: StringItem = root;
 
   return (
@@ -44,14 +44,14 @@ export function select(root: StringItem, form: FormInstance, required: boolean):
 }
 
 // radio（string类型和number类型都能用）
-export function radio(root: StringItem, form: FormInstance, required: boolean): ReactNode {
+export function radio({ root, form, required }: CustomComponentFuncArgs<StringItem | NumberItem>): ReactNode {
   const { $options = [], $disabled }: StringItem | NumberItem = root;
 
   return <Radio.Group options={ $options } disabled={ $disabled ?? undefined } />;
 }
 
 // date
-export function date(root: StringItem, form: FormInstance, required: boolean): ReactNode {
+export function date({ root, form, required }: CustomComponentFuncArgs<StringItem>): ReactNode {
   const { id, $placeholder, $disabled, $showTime = true, $format }: StringItem = root;
   const formatString: string = $format ?? ($showTime ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD');
 
@@ -65,7 +65,7 @@ export function date(root: StringItem, form: FormInstance, required: boolean): R
 }
 
 // password
-export function password(root: StringItem, form: FormInstance, required: boolean): ReactNode {
+export function password({ root, form, required }: CustomComponentFuncArgs<StringItem>): ReactNode {
   const { $readOnly, $placeholder, $disabled }: StringItem = root;
 
   return <Input.Password readOnly={ $readOnly } placeholder={ $placeholder } disabled={ $disabled ?? undefined } />;
@@ -73,7 +73,7 @@ export function password(root: StringItem, form: FormInstance, required: boolean
 
 /* number类型组件 */
 // 默认组件
-export function defaultNumber(root: NumberItem, form: FormInstance, required: boolean): ReactNode {
+export function defaultNumber({ root, form, required }: CustomComponentFuncArgs<NumberItem>): ReactNode {
   const { $readOnly, $placeholder, $disabled }: NumberItem = root;
 
   return (
@@ -87,14 +87,14 @@ export function defaultNumber(root: NumberItem, form: FormInstance, required: bo
 
 /* boolean类型组件 */
 // 默认组件
-export function defaultBoolean(root: BooleanItem, form: FormInstance, required: boolean): ReactNode {
+export function defaultBoolean({ root, form, required }: CustomComponentFuncArgs<BooleanItem>): ReactNode {
   const { $disabled }: BooleanItem = root;
 
   return <Checkbox disabled={ $disabled ?? undefined } />;
 }
 
 // switch组件
-export function switchComponent(root: BooleanItem, form: FormInstance, required: boolean): ReactNode {
+export function switchComponent({ root, form, required }: CustomComponentFuncArgs<BooleanItem>): ReactNode {
   const { $disabled }: BooleanItem = root;
 
   return <Switch disabled={ $disabled ?? undefined } />;
@@ -102,19 +102,19 @@ export function switchComponent(root: BooleanItem, form: FormInstance, required:
 
 /* Array类型组件 */
 // 默认组件
-export function defaultArray(root: ArrayItem, form: FormInstance, required: boolean): ReactNode {
+export function defaultArray({ root, form, required }: CustomComponentFuncArgs<ArrayItem>): ReactNode {
   return <TableComponent root={ root } />;
 }
 
 // checkbox group
-export function checkboxGroup(root: ArrayItem, form: FormInstance, required: boolean): ReactNode {
+export function checkboxGroup({ root, form, required }: CustomComponentFuncArgs<ArrayItem>): ReactNode {
   const { $options = [], $disabled }: ArrayItem = root;
 
   return <Checkbox.Group options={ $options } disabled={ $disabled ?? undefined } />;
 }
 
 // multiple and tags
-export function multipleOrTags(root: ArrayItem, form: FormInstance, required: boolean): ReactNode {
+export function multipleOrTags({ root, form, required }: CustomComponentFuncArgs<ArrayItem>): ReactNode {
   const { $options = [], $componentType, $disabled }: ArrayItem = root;
   const mode: 'multiple' | 'tags' | undefined = ($componentType === 'multiple' || $componentType === 'tags')
     ? $componentType
@@ -128,7 +128,7 @@ export function multipleOrTags(root: ArrayItem, form: FormInstance, required: bo
 }
 
 /* object类型组件 */
-export function defaultObject(root: SchemaItem, form: FormInstance, element: Array<ReactNode>): ReactNode {
+export function defaultObject({ root, form, element = [] }: CustomComponentFuncArgs<SchemaItem>): ReactNode {
   const { title, id, description }: SchemaItem = root;
 
   // header
@@ -146,7 +146,7 @@ export function defaultObject(root: SchemaItem, form: FormInstance, element: Arr
   );
 }
 
-export function defaultOneOf(root: SchemaItem, form: FormInstance, element: Array<ReactNode>): ReactNode {
+export function defaultOneOf({ root, form, element = [] }: CustomComponentFuncArgs<SchemaItem>): ReactNode {
   const { id }: SchemaItem = root;
 
   return <OneOf key={ id } root={ root } element={ element } />;

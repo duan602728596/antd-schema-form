@@ -1,4 +1,4 @@
-import { createElement, useContext, PropsWithChildren, ReactElement } from 'react';
+import { createElement, useContext, PropsWithChildren, ReactElement, ReactNode } from 'react';
 import * as PropTypes from 'prop-types';
 import * as classNames from 'classnames';
 import { Form } from 'antd';
@@ -29,11 +29,11 @@ function FormArray(props: PropsWithChildren<FormArrayProps>): ReactElement | nul
   const { id, title, description, $componentType, $defaultValue, $hidden, $formItemProps }: ArrayItem = root;
   const rules: Array<Rule> = createArrayRules(languagePack, root, required);
   let isTableComponent: boolean = false; // 判断是否为table组件
-  let element: ReactElement | null = null;
+  let element: ReactNode | null = null;
 
   if (customComponent) {
     if ($componentType && $componentType in customComponent) {
-      element = customComponent[$componentType](root, form, required);
+      element = customComponent[$componentType]({ root, form, required });
     } else {
       element = createReactElement(customComponent.defaultArray, [root, form, required]);
       isTableComponent = true;

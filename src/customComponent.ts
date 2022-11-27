@@ -14,8 +14,9 @@ import {
   defaultObject,
   defaultOneOf
 } from './components/custom/custom';
+import type { CustomComponentObject } from './types';
 
-const customComponent: object = {
+const customComponent: CustomComponentObject = {
   defaultString,
   textArea,
   select,

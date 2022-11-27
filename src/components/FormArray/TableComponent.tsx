@@ -34,7 +34,15 @@ import { formatTableValue, sortIndex } from './tableFunction';
 import FormObject from '../FormObject/FormObject';
 import styleName from '../../utils/styleName';
 import isAMomentObject from '../../utils/isAMomentObject';
-import type { SchemaItem, StringItem, NumberItem, BooleanItem, ArrayItem, ContextValue } from '../../types';
+import type {
+  CustomTableRenderFunc,
+  SchemaItem,
+  StringItem,
+  NumberItem,
+  BooleanItem,
+  ArrayItem,
+  ContextValue
+} from '../../types';
 
 // 拖拽相关变量
 const tableDragClassName: [string, string] = [
@@ -395,9 +403,9 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
     };
 
     // 渲染自定义render
-    const createRenderCallback: Function = (renderItem: SchemaItem, customFunc: Function): Function => {
-      return (value: any, record: object, index: number): any => {
-        return customFunc(value, record, index, renderItem, form);
+    const createRenderCallback: Function = (renderItem: SchemaItem, customFunc: CustomTableRenderFunc): Function => {
+      return (value: any, record: object, index: number): ReactNode => {
+        return customFunc({ value, record, index, root: renderItem, form });
       };
     };
 

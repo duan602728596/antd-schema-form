@@ -1,4 +1,4 @@
-import { createElement, useContext, PropsWithChildren, ReactElement } from 'react';
+import { createElement, useContext, PropsWithChildren, ReactElement, ReactNode } from 'react';
 import * as PropTypes from 'prop-types';
 import { Form } from 'antd';
 import type { Rule } from 'antd/es/form';
@@ -29,11 +29,11 @@ function FormNumber(props: PropsWithChildren<FormNumberProps>): ReactElement | n
   const { root, required }: FormNumberProps = props; // type=object时，会判断key是否存在于required数组中
   const { id, type, title, description, $componentType, $hidden, $formItemProps }: NumberItem = root;
   const rules: Array<Rule> = createNumberRules(languagePack, root, required, type === 'integer');
-  let element: ReactElement | null = null;
+  let element: ReactNode | null = null;
 
   if (customComponent) {
     element = ($componentType && $componentType in customComponent)
-      ? customComponent[$componentType](root, form, required)
+      ? customComponent[$componentType]({ root, form, required })
       : createReactElement(customComponent.defaultNumber, [root, form, required]);
   }
 

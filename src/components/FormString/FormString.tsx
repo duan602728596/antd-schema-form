@@ -1,4 +1,4 @@
-import { createElement, useContext, PropsWithChildren, ReactElement } from 'react';
+import { createElement, useContext, PropsWithChildren, ReactElement, ReactNode } from 'react';
 import * as PropTypes from 'prop-types';
 import { Form } from 'antd';
 import type { Rule } from 'antd/es/form';
@@ -29,11 +29,11 @@ function FormString(props: PropsWithChildren<FormStringProps>): ReactElement | n
   const { root, required }: FormStringProps = props; // type=object时，会判断key是否存在于required数组中
   const { id, title, description, $componentType, $hidden, $formItemProps }: StringItem = root;
   const rules: Array<Rule> = createStringRules(languagePack, root, required);
-  let element: ReactElement | null = null;
+  let element: ReactNode | null = null;
 
   if (customComponent) {
     element = ($componentType && $componentType in customComponent)
-      ? customComponent[$componentType](root, form, required)
+      ? customComponent[$componentType]({ root, form, required })
       : createReactElement(customComponent.defaultString, [root, form, required]);
   }
 

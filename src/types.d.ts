@@ -1,9 +1,30 @@
+import type { ReactNode } from 'react';
 import type { FormInstance } from 'antd/es/form';
+
+export interface CustomComponentFuncArgs<Root = SchemaItem | StringItem | NumberItem | BooleanItem | ArrayItem> {
+  root: Root;
+  form: FormInstance;
+  required?: boolean;
+  element?: Array<ReactNode>;
+}
+
+export type CustomComponentObject = Record<string, (arg: CustomComponentFuncArgs) => ReactNode>;
+
+export interface CustomTableRenderFuncArgs<Root = SchemaItem | StringItem | NumberItem | BooleanItem | ArrayItem> {
+  value: any;
+  record: any;
+  index: number;
+  root: Root;
+  form: FormInstance;
+}
+
+export type CustomTableRenderFunc = (arg: CustomTableRenderFuncArgs) => ReactNode;
+export type CustomTableRenderObject = Record<string, CustomTableRenderFunc>;
 
 export interface ContextValue {
   form: FormInstance;
-  customComponent?: Record<string, Function>;
-  customTableRender?: Record<string, Function>;
+  customComponent?: CustomComponentObject;
+  customTableRender?: CustomTableRenderObject;
   language?: string;
   languagePack?: any;
   json: SchemaItem;

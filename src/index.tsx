@@ -14,12 +14,13 @@ import components from './customComponent';
 import getKeysFromObject from './utils/getKeysFromObject';
 import getObjectFromValue from './utils/getObjectFromValue';
 import getValueFromObject from './utils/getValueFromObject';
+import type { CustomComponentObject } from './types';
 
 export default forwardRef(function(props: PropsWithChildren<SchemaFormProps>, ref: ForwardedRef<any>): ReactElement | null {
   const { customComponent, ...otherProps }: SchemaFormProps = props;
   const [custom, setCustom]: [
-    { [key: string]: Function } | undefined,
-    D<S<object>>
+    CustomComponentObject | undefined,
+    D<S<CustomComponentObject | undefined>>
   ] = useState(Object.assign(components, customComponent ?? {}));
 
   useEffect(function(): void {

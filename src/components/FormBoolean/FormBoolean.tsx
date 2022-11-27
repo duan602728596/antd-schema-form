@@ -1,4 +1,4 @@
-import { createElement, useContext, PropsWithChildren, ReactElement } from 'react';
+import { createElement, useContext, PropsWithChildren, ReactElement, ReactNode } from 'react';
 import * as PropTypes from 'prop-types';
 import { Form } from 'antd';
 import * as classNames from 'classnames';
@@ -25,11 +25,11 @@ function FormBoolean(props: PropsWithChildren<FormBooleanProps>): ReactElement |
   const { form, customComponent }: ContextValue = context;
   const { root, required }: FormBooleanProps = props;
   const { id, title, description, $componentType, $hidden, $formItemProps }: BooleanItem = root;
-  let element: ReactElement | null = null;
+  let element: ReactNode | null = null;
 
   if (customComponent) {
     element = ($componentType && $componentType in customComponent)
-      ? customComponent[$componentType](root, form, required)
+      ? customComponent[$componentType]({ root, form, required })
       : createReactElement(customComponent.defaultBoolean, [root, form, required]);
   }
 
