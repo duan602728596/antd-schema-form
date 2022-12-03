@@ -1,5 +1,7 @@
 import { useState, createContext } from 'react';
 import PropTypes from 'prop-types';
+import { ConfigProvider } from 'antd';
+import zhCN from 'antd/locale/zh_CN';
 import languagePack from './languagePack';
 
 export const I18NContext = createContext({
@@ -25,7 +27,13 @@ export function I18N(props) {
     languagePack: language in languagePack ? languagePack[language] : languagePack.default
   };
 
-  return <I18NContext.Provider value={ contextValue }>{ children }</I18NContext.Provider>;
+  return (
+    <ConfigProvider locale={ language === 'zh-cn' ? zhCN : undefined }>
+      <I18NContext.Provider value={ contextValue }>
+        { children }
+      </I18NContext.Provider>
+    </ConfigProvider>
+  );
 }
 
 I18N.propTypes = {
