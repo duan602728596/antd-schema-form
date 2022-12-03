@@ -2,7 +2,7 @@ import createFormReducers from '../pages/CreateForm/reducers/reducers';
 import previewReducers from '../pages/Preview/reducers/reducers';
 
 /* reducers */
-export const reducersMapObject = {
-  ...createFormReducers,
-  ...previewReducers
-};
+export const reducersMapObject = Object.assign({},
+  createFormReducers,
+  previewReducers
+);
