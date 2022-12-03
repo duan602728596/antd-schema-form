@@ -33,14 +33,13 @@ function Demo(props) {
     });
   }
 
-  // 渲染你高亮代码
-  function codeRender() {
-    setLanguage(context.language);
+  // 渲染高亮代码
+  useEffect(function() {
     hljs.highlightElement(codeRef.current);
-  }
+  }, [language]);
 
   useEffect(function() {
-    setTimeout(codeRender, 0);
+    setLanguage(context.language);
   }, [context.language]);
 
   return (
