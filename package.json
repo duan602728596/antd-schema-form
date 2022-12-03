@@ -1,6 +1,6 @@
 {
   "name": "antd-schema-form",
-  "version": "4.5.1",
+  "version": "5.0.0",
   "description": "Based on antd, the form is configured through json schema. - 基于antd，通过json schema配置表单。",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -35,7 +35,6 @@
   },
   "dependencies": {
     "classnames": "^2.3.2",
-    "moment": "^2.29.4",
     "prop-types": "^15.8.1",
     "tslib": "^2.4.1"
   },
@@ -92,7 +91,6 @@
   "peerDependencies": {
     "@ant-design/icons": ">=4",
     "antd": ">=5",
-    "moment": ">=2",
     "react": ">=16.7.0",
     "react-dom": ">=16.7.0"
   },
