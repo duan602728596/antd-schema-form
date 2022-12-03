@@ -1,3 +1,10 @@
+### v5.0.0
+
+* 🎉antd升级到v5版本。
+* 破坏性更新：customComponent和customTableRender的函数参数从多个参数修改为object类型。
+
+---
+
 ### v4.5.1
 
 * 🐛修复moment对象在required验证下，无法通过验证，总是提示值为空的错误。

@@ -1,3 +1,10 @@
+### v5.0.0
+
+* 🎉antd is upgraded to v5 version.
+* Breaking change: The function parameters of customComponent and customTableRender are changed from multiple parameters to object type.
+
+---
+
 ### v4.5.1
 
 * 🐛Fixed an error that the moment object could not pass the verification under the required verification, and the value was always empty.
