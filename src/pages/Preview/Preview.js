@@ -23,6 +23,8 @@ function Preview(props) {
   const { schemaJson } = useSelector(state);
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
+  const [modalApi, modalContextHolder] = Modal.useModal();
+  const [messageApi, messageContextHolder] = message.useMessage();
   const context = useContext(I18NContext);
   const [textAreaValue, setTextAreaValue]
     = useState(schemaJson === null ? '' : JSON.stringify(schemaJson, null, 2));
@@ -35,12 +37,12 @@ function Preview(props) {
   // 复制
   function handleCopyClick(event) {
     copy(textAreaValue);
-    message.info(langMessage.copyMessage);
+    messageApi.info(langMessage.copyMessage);
   }
 
   // 表单确认事件
   function handleOnFormOkClick(form, value, keys) {
-    Modal.info({
+    modalApi.info({
       content: (
         <div>
           <h4>{ langMessage.modalTitle }</h4>
@@ -63,7 +65,7 @@ function Preview(props) {
       value = JSON.parse(textAreaValue);
       value |> setSchemaJson(#) |> dispatch(#);
     } catch (err) {
-      message.error(langMessage.jsonFormatError);
+      messageApi.error(langMessage.jsonFormatError);
     }
   }
 
@@ -79,7 +81,7 @@ function Preview(props) {
         value = JSON.parse(queryDecodeStr);
         value |> setSchemaJson(#) |> dispatch(#);
       } catch (err) {
-        message.error(langMessage.jsonFormatError);
+        messageApi.error(langMessage.jsonFormatError);
       }
     }
   }, []);
@@ -127,6 +129,8 @@ function Preview(props) {
           }
         </div>
       </div>
+      { modalContextHolder }
+      { messageContextHolder }
     </Fragment>
   );
 }

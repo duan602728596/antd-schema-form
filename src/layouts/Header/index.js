@@ -49,7 +49,7 @@ function Header(props) {
               )
             }
           </I18NContext.Consumer>
-          <Dropdown placement="bottomLeft" overlay={ versionMenuOverlay() }>
+          <Dropdown placement="bottomLeft" menu={ versionMenuOverlay() }>
             <a className={ style.version }>v{ version }</a>
           </Dropdown>
           <a className={ style.github }

@@ -15,6 +15,7 @@ function Demo(props) {
   const context = useContext(I18NContext);
   const codeRef = useRef();
   const [language, setLanguage] = useState(context.language);
+  const [modalApi, modalContextHolder] = Modal.useModal();
   const { index } = context.languagePack;
   const demoJson = language === 'zh-cn' ? demoZhCN : demo;
 
@@ -23,7 +24,7 @@ function Demo(props) {
     const { languagePack } = context;
     const { message } = languagePack;
 
-    Modal.info({
+    modalApi.info({
       content: (
         <div>
           <h4>{ message.modalTitle }</h4>
@@ -74,6 +75,7 @@ function Demo(props) {
           </pre>
         </Col>
       </Row>
+      { modalContextHolder }
     </Fragment>
   );
 }
