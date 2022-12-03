@@ -18,6 +18,9 @@ export const basicConfig = {
   devtool: 'eval-source-map',
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json']
+  },
+  experiments: {
+    topLevelAwait: true
   }
 };
 
