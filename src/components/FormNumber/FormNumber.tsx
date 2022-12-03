@@ -34,7 +34,7 @@ function FormNumber(props: PropsWithChildren<FormNumberProps>): ReactElement | n
   if (customComponent) {
     element = ($componentType && $componentType in customComponent)
       ? customComponent[$componentType]({ root, form, required })
-      : createReactElement(customComponent.defaultNumber, [root, form, required]);
+      : createReactElement(customComponent.defaultNumber, [{ root, form, required }]);
   }
 
   return element ? (

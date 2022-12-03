@@ -47,17 +47,17 @@ const value = {
 
 // 自定义组件
 const customComponent = {
-  custom(item, form, required) {
+  custom({ item, form, required }) {
     return <Input placeholder="自定义组件" required={ required } addonAfter={ <IconSettingFilled /> } />;
   }
 };
 
 // 自定义表格渲染
 const customTableRender = {
-  red(text, record, index, item, form) {
+  red({ value: text, record, index, foor, form }) {
     return <span style={{ color: '#f00' }}>{ text }</span>;
   },
-  green(text, record, index, item, form) {
+  green({ value: text, record, index, foor, form }) {
     return <span style={{ color: '#0f0' }}>{ text }</span>;
   }
 };

@@ -34,7 +34,7 @@ function FormString(props: PropsWithChildren<FormStringProps>): ReactElement | n
   if (customComponent) {
     element = ($componentType && $componentType in customComponent)
       ? customComponent[$componentType]({ root, form, required })
-      : createReactElement(customComponent.defaultString, [root, form, required]);
+      : createReactElement(customComponent.defaultString, [{ root, form, required }]);
   }
 
   return element ? (

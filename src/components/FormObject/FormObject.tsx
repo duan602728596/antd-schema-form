@@ -109,7 +109,7 @@ function FormObject(props: PropsWithChildren<FormObjectProps>): ReactElement {
     if (customComponent) {
       oneOfElement = $oneOfComponentType && $oneOfComponentType in customComponent
         ? customComponent[$oneOfComponentType]({ root, form, element })
-        : createReactElement(customComponent.defaultOneOf, [root, form, element]);
+        : createReactElement(customComponent.defaultOneOf, [{ root, form, element }]);
     }
 
     return oneOfElement;
@@ -132,7 +132,7 @@ function FormObject(props: PropsWithChildren<FormObjectProps>): ReactElement {
     if (customComponent) {
       objectElement = ($componentType && $componentType in customComponent)
         ? customComponent[$componentType]({ root, form, element })
-        : createReactElement(customComponent.defaultObject, [root, form, element]);
+        : createReactElement(customComponent.defaultObject, [{ root, form, element }]);
     }
 
     return objectElement;

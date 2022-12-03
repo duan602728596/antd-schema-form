@@ -35,7 +35,7 @@ function FormArray(props: PropsWithChildren<FormArrayProps>): ReactElement | nul
     if ($componentType && $componentType in customComponent) {
       element = customComponent[$componentType]({ root, form, required });
     } else {
-      element = createReactElement(customComponent.defaultArray, [root, form, required]);
+      element = createReactElement(customComponent.defaultArray, [{ root, form, required }]);
       isTableComponent = true;
     }
   }

@@ -30,7 +30,7 @@ function FormBoolean(props: PropsWithChildren<FormBooleanProps>): ReactElement |
   if (customComponent) {
     element = ($componentType && $componentType in customComponent)
       ? customComponent[$componentType]({ root, form, required })
-      : createReactElement(customComponent.defaultBoolean, [root, form, required]);
+      : createReactElement(customComponent.defaultBoolean, [{ root, form, required }]);
   }
 
   return element ? (
