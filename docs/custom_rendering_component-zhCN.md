@@ -15,7 +15,7 @@ const customComponent = {
    * @param { object } form: antd的form对象
    * @param { boolean } required: 表单值是否必须存在
    */
-  custom(item, form, required) {
+  custom({ item, form, required }) {
     return <Input placeholder="自定义组件" required={ required } />;
   },
 
@@ -25,7 +25,7 @@ const customComponent = {
    * @param { object } form: antd的form对象
    * @param { React.ReactNodeArray || React.ReactNode } element: 渲染的React组件
    */
-  objectCustom(item, form, element) {
+  objectCustom({ item, form, element }) {
     return <div>{ element }</div>;
   },
 
@@ -45,7 +45,7 @@ ReactDOM.render(
 );
 ```
 
-SchemaForm的自定义组件属性`customComponent`类型为`object`，当`type`属性不为`object`时，值的类型为`(item, option, form, required) => React.Node`。
+SchemaForm的自定义组件属性`customComponent`类型为`object`，当`type`属性不为`object`时，值的类型为`({ item, form, required }) => React.Node`。
 函数参数:
 
 | 参数     | 说明                                         | 类型    |
@@ -54,7 +54,7 @@ SchemaForm的自定义组件属性`customComponent`类型为`object`，当`type`
 | form     | antd的form对象                               | object  |
 | required | 字段是否必填                                 | boolean |
 
-当`type`属性为`object`时，值的类型为`(item, form, element) => React.Node`。
+当`type`属性为`object`时，值的类型为`({ item, form, element }) => React.Node`。
 
 | 参数    | 说明                                         | 类型   |
 | ---     | ---                                          | ---    |
@@ -74,7 +74,7 @@ import 'antd-schema-form/style/antd-schema-form.css';
 
 const customTableRender = {
   // 自定义组件
-  custom(text, record, index, item, form) {
+  custom({ text, record, index, root, form }) {
     return <span>{ text }</span>;
   },
   // ...其他自定义组件
@@ -108,10 +108,10 @@ ReactDOM.render(
 SchemaForm的自定义表格列渲染组件属性`customTableRender`类型为`object`，其中的每个值的类型都为`(text, record, index, item, form) => React.Node`。
 函数参数:
 
-| 参数   | 说明                         | 类型   |
-| ---    | ---                          | ---    |
+| 参数     | 说明                         | 类型   |
+|--------| ---                          | ---    |
 | value  | 当前渲染的值                 | any    |
 | record | 当前列的数据信息             | object |
 | index  | 列的索引                     | number |
-| item   | id、title等json schema的信息 | object |
+| root   | id、title等json schema的信息 | object |
 | form   | antd的form对象               | object |

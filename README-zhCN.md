@@ -23,34 +23,8 @@ antd-schema-form基于[Ant Design](https://ant.design/)，可以通过[JSON Sche
 
 ## 开始使用
 
-1. 在使用之前，你需要在babel配置antd的[按需加载](https://ant.design/docs/react/introduce-cn#按需加载)。
-2. 需要为babel-loader做如下配置:
-
-  ```javascript
-  {
-    test: /node_modules[\\/]antd-schema-form[\\/].*\.jsx?$/,
-    use: [
-      {
-        loader: 'babel-loader',
-        options: {
-          plugins: [
-            [
-              'import',
-              {
-                libraryName: 'antd',
-                libraryDirectory: 'es',
-                style: 'css'
-              }
-            ]
-          ]
-        }
-      }
-    ]
-  }
-  ```
-
-3. React的版本`>=16.7.0`。
-4. 组件的使用:
+1. React的版本`>=16.7.0`。
+2. 组件的使用:
 
   ```javascript
   import React, { Component } from 'react';

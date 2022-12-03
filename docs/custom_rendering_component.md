@@ -15,7 +15,7 @@ const customComponent = {
    * @param { object } form: antd form object
    * @param { boolean } required: whether the form value must exist
    */
-  custom(item, form, required){
+  custom({ item, form, required }) {
     return <Input placeholder="Custom rendering component." required={ required } />;
   },
   
@@ -25,7 +25,7 @@ const customComponent = {
    * @param { object } form: antd form object
    * @param { React.ReactNodeArray || React.ReactNode } element: Rendered React component
    */
-   objectCustom(item, form, element) {
+   objectCustom({ item, form, element }) {
      return <div>{ element }</div>;
    },
    
@@ -45,7 +45,7 @@ ReactDOM.render(
 );
 ```
 
-SchemaForm's custom component property `customComponent` is of type `object`, when the `type` attribute is not `object`, the type of the value is `(item, option, form, required) => React.Node`.
+SchemaForm's custom component property `customComponent` is of type `object`, when the `type` attribute is not `object`, the type of the value is `({ item, form, required }) => React.Node`.
 Function parameters:
 
 | Parameter | Description                                                                          | Type    |
@@ -54,7 +54,7 @@ Function parameters:
 | form      | Antd's form object.                                                                  | object  |
 | required  | Field required                                                                       | boolean |
 
-When the `type` attribute is `object`, the value type is `(item, form, element) => React.Node`.
+When the `type` attribute is `object`, the value type is `({ item, form, element }) => React.Node`.
 
 | Parameter | Description                                                                          | Type   |
 | ---       | ---                                                                                  | ---    |
@@ -74,7 +74,7 @@ import 'antd-schema-form/style/antd-schema-form.css';
 
 const customTableRender = {
   // Custom component
-  custom(text, record, index, item, form) {
+  custom({ text, record, index, root, form }) {
     return <span>{ text }</span>;
   },
   // ...Other custom components
@@ -113,5 +113,5 @@ Function parameters:
 | value     | Currently rendered value.                           | any    |
 | record    | Current column of data information.                 | object |
 | index     | Column index.                                       | number |
-| item      | Information about json schema such as id and title. | object |
+| root      | Information about json schema such as id and title. | object |
 | form      | Antd's form object.                                 | object |

@@ -25,35 +25,9 @@ This [Demo] (https://duan602728596.github.io/antd-schema-form/#/) simply shows h
 
 ## Start using
 
-1. Before using, you need to configure antd in the babel [on-demand loading](https://ant.design/docs/react/introduce#Use-modularized-antd).
-2. You need to configure the babel-loader as follows:
-
-  ```javascript
-  {
-    test: /node_modules[\\/]antd-schema-form[\\/].*\.jsx?$/,
-    use: [
-      {
-        loader: 'babel-loader',
-        options: {
-          plugins: [
-            [
-              'import',
-              {
-                libraryName: 'antd',
-                libraryDirectory: 'es',
-                style: 'css'
-              }
-            ]
-          ]
-        }
-      }
-    ]
-  }
-  ```
-
-3. React version `>=16.7.0`.
-4. Use of components:
-
+1. React version `>=16.7.0`.
+2. Use of components:
+s
   ```javascript
   import React, { Component } from 'react';
   import ReactDOM from 'react-dom';
