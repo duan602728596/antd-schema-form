@@ -58,6 +58,4 @@ export function passwordComponentType() {
   const antInput = wrapper.container.querySelectorAll('.ant-input');
 
   expect(antInput[0].type).to.be.equal('password');
-  wrapper.container.querySelectorAll('.ant-input-suffix .anticon')[0].click();
-  expect(antInput[0].type).to.be.equal('text');
 }

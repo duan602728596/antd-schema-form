@@ -13,6 +13,7 @@
     "experimentalDecorators": true,
     "strictNullChecks": true,
     "importHelpers": true,
+    "skipLibCheck": true,
     "lib": [
       "ES2019",
       "DOM"
