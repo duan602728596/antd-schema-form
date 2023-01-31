@@ -79,8 +79,8 @@ The component renders the input box by default ([Input](https://ant.design/compo
 * `$readOnly: boolean`: The form control is read-only.
 * `$placeholder: string`: The placeholder property of the form control.
 * `$defaultValue: string`: The default value of the form control.
-* `showTime`: When the component type is `date`, add the time selection function. On by default. 
-* `format`: When the component type is `date`, set the date format. When the time selection function is turned on, the default value is `YYYY-MM-DD HH:mm:ss`; when the time selection function is turned off, the default value is `YYYY-MM-DD`.
+* `$showTime`: When the component type is `date`, add the time selection function. On by default. 
+* `$format`: When the component type is `date`, set the date format. When the time selection function is turned on, the default value is `YYYY-MM-DD HH:mm:ss`; when the time selection function is turned off, the default value is `YYYY-MM-DD`.
 
   | Value    | Component Name                                                                                                                                |
   | ---      | ---                                                                                                                                           |
