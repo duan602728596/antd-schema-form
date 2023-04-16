@@ -75,7 +75,7 @@ function createNumberRules(languagePack: any, root: NumberItem, required: boolea
         }
       },
       message: template($maximumMessage ?? languagePack.rules.number.maximum, {
-        maximum
+        '0': maximum
       })
     });
   }
