@@ -1,3 +1,7 @@
+### v5.0.1
+
+* 🐛Fix the error in the prompt message of verifying the maximum when the number type is verified.
+
 ### v5.0.0
 
 * 🎉antd is upgraded to v5 version.
