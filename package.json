@@ -1,6 +1,6 @@
 {
   "name": "antd-schema-form",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "Based on antd, the form is configured through json schema. - 基于antd，通过json schema配置表单。",
   "main": "lib/index.js",
   "module": "es/index.js",
