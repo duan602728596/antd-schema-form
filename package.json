@@ -39,7 +39,7 @@
     "tslib": "^2.4.1"
   },
   "devDependencies": {
-    "@ant-design/icons": "^4.8.0",
+    "@ant-design/icons": "^5.3.2",
     "@babel/core": "^7.20.2",
     "@babel/eslint-parser": "^7.19.1",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.10",
