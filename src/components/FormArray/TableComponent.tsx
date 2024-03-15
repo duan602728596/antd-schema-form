@@ -93,8 +93,8 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
 
   /**
    * 调换位置
-   * @param { number } dragIndex: old
-   * @param { number } hoverIndex: new
+   * @param { number } dragIndex - old
+   * @param { number } hoverIndex - new
    */
   function moveRow(dragIndex: number, hoverIndex: number): void {
     let tableValue: Array<any> | any = form.getFieldValue(id);

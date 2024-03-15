@@ -7,8 +7,8 @@ type SchemaJson = SchemaItem | StringItem | NumberItem | BooleanItem | ArrayItem
 
 /**
  * 从schema里面提取出$defaultValue
- * @param { SchemaJson } schemaJsonItem: 对象
- * @param { string } id: 可能不存在id，使用上一个对象的id
+ * @param { SchemaJson } schemaJsonItem - 对象
+ * @param { string } [id] - 可能不存在id，使用上一个对象的id
  */
 function getObjectFromSchema(schemaJsonItem: SchemaJson, id?: string): Store {
   let value: Store = {};

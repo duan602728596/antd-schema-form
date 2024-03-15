@@ -3,8 +3,8 @@ import { isPlainObject } from './lodash';
 
 /**
  * 格式化数据
- * @param { Store } formValue: 表单值
- * @param { string } basicId: 格式化数据的id
+ * @param { Store } formValue - 表单值
+ * @param { string } basicId - 格式化数据的id
  */
 export function formatValueBeforeGetValue(formValue: Store, basicId: string): Store {
   const reg: RegExp = new RegExp(`^${ basicId.replace(/\$/g, '\\$') }/`);
@@ -21,7 +21,7 @@ export function formatValueBeforeGetValue(formValue: Store, basicId: string): St
 
 /**
  * 从form获取到的表单的值，格式化成object对象
- * @param { object } value: 表单值
+ * @param { Store } value - 表单值
  */
 function getValueFromObject(value: Store): object {
   const obj: object = {};

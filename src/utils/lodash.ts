@@ -37,8 +37,8 @@ export const ObjectFromEntries: ObjectFromEntriesFunc = (o: EntriesArr = []) => 
 
 /**
  * omit函数的实现
- * @param { EntriesObj } obj: object
- * @param { string[] } delKeys: 从object中删除的keys
+ * @param { EntriesObj } [obj = {}] - object
+ * @param { string[] } delKeys - 从object中删除的keys
  */
 export function omit(obj: EntriesObj = {}, delKeys: string[]): EntriesObj {
   return ObjectEntries(obj).reduce(function(result: EntriesObj, [key, value]: [string, any]): EntriesObj {

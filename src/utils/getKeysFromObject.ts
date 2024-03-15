@@ -2,7 +2,7 @@ import type { SchemaItem } from '../types';
 
 /**
  * 获取schema.json下所有的key
- * @param { SchemaItem } item: 对象
+ * @param { SchemaItem } item - 对象
  */
 
 function getKeysFromObject(item: SchemaItem): Array<string> {

@@ -4,8 +4,8 @@ import isAMomentObject from './isAMomentObject';
 
 /**
  * object对象，格式化成表单需要的值
- * @param { object } obj: 对象
- * @param { string } basicId: 前置id
+ * @param { object } obj - 对象
+ * @param { string } [basicId] - 前置id
  */
 function getObjectFromValue(obj: object, basicId?: string): Store {
   let value: Store = {};
