@@ -1,5 +1,4 @@
 import { createElement, useContext, PropsWithChildren, ReactElement, ReactNode } from 'react';
-import * as PropTypes from 'prop-types';
 import { Form } from 'antd';
 import type { Rule } from 'antd/es/form';
 import * as classNames from 'classnames';
@@ -48,10 +47,5 @@ function FormNumber(props: PropsWithChildren<FormNumberProps>): ReactElement | n
     </Form.Item>
   ) : null;
 }
-
-FormNumber.propTypes = {
-  root: PropTypes.object,
-  required: PropTypes.bool
-};
 
 export default FormNumber;

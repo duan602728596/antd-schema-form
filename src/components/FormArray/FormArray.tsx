@@ -1,5 +1,4 @@
 import { createElement, useContext, PropsWithChildren, ReactElement, ReactNode } from 'react';
-import * as PropTypes from 'prop-types';
 import * as classNames from 'classnames';
 import { Form } from 'antd';
 import type { Rule } from 'antd/es/form';
@@ -60,10 +59,5 @@ function FormArray(props: PropsWithChildren<FormArrayProps>): ReactElement | nul
     </Form.Item>
   ) : null;
 }
-
-FormArray.propTypes = {
-  root: PropTypes.object,
-  required: PropTypes.bool
-};
 
 export default FormArray;

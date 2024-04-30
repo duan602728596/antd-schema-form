@@ -7,7 +7,6 @@ import {
   ReactElement,
   ReactNode
 } from 'react';
-import * as PropTypes from 'prop-types';
 import { Button, Space } from 'antd';
 import type { Store } from 'antd/es/form/interface';
 import { isArray } from '../../utils/lodash';
@@ -180,20 +179,5 @@ function FormObject(props: PropsWithChildren<FormObjectProps>): ReactElement {
     </Fragment>
   );
 }
-
-FormObject.propTypes = {
-  root: PropTypes.object,
-  onOk: PropTypes.func,
-  onCancel: PropTypes.func,
-  okText: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number
-  ]),
-  cancelText: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number
-  ]),
-  footer: PropTypes.func
-};
 
 export default FormObject;

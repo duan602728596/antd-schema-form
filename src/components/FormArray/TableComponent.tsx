@@ -18,7 +18,6 @@ import {
   ReactElement,
   ReactNode
 } from 'react';
-import * as PropTypes from 'prop-types';
 import { Table, Button, Popconfirm, Drawer, Input, InputRef } from 'antd';
 import type { FormInstance } from 'antd/es/form/Form';
 import type { Store } from 'antd/es/form/interface';
@@ -549,9 +548,5 @@ function TableComponent(props: PropsWithChildren<TableComponentProps>): ReactEle
     </Fragment>
   );
 }
-
-TableComponent.propTypes = {
-  root: PropTypes.object
-};
 
 export default TableComponent;

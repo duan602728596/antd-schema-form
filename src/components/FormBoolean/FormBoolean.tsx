@@ -1,5 +1,4 @@
 import { createElement, useContext, PropsWithChildren, ReactElement, ReactNode } from 'react';
-import * as PropTypes from 'prop-types';
 import { Form } from 'antd';
 import * as classNames from 'classnames';
 import { omit } from '../../utils/lodash';
@@ -44,9 +43,5 @@ function FormBoolean(props: PropsWithChildren<FormBooleanProps>): ReactElement |
     </Form.Item>
   ) : null;
 }
-
-FormBoolean.propTypes = {
-  root: PropTypes.object
-};
 
 export default FormBoolean;

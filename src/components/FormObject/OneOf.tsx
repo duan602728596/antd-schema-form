@@ -10,7 +10,6 @@ import {
   ReactElement,
   ReactNode
 } from 'react';
-import * as PropTypes from 'prop-types';
 import { Radio } from 'antd';
 import type { RadioChangeEvent } from 'antd/es/radio';
 import { isNumber } from '../../utils/lodash';
@@ -93,10 +92,5 @@ function OneOf(props: PropsWithChildren<OneOfProps>): ReactElement {
     </Fragment>
   );
 }
-
-OneOf.propTypes = {
-  root: PropTypes.object,
-  element: PropTypes.arrayOf(PropTypes.node)
-};
 
 export default OneOf;

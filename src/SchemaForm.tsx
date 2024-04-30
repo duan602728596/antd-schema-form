@@ -10,8 +10,6 @@ import {
   RefAttributes,
   ReactElement
 } from 'react';
-import * as PropTypes from 'prop-types';
-import type { Validator } from 'prop-types';
 import { Form } from 'antd';
 import type { FormInstance, FormProps } from 'antd/es/form';
 import type { Store } from 'antd/es/form/interface';
@@ -98,24 +96,5 @@ const SchemaForm: SchemaFormComponent = forwardRef(
       </AntdSchemaFormContext.Provider>
     );
   });
-
-SchemaForm.propTypes = {
-  json: PropTypes.object.isRequired as Validator<SchemaItem>,
-  value: PropTypes.object,
-  onOk: PropTypes.func,
-  onCancel: PropTypes.func,
-  okText: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number
-  ]),
-  cancelText: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number
-  ]),
-  footer: PropTypes.func,
-  customComponent: PropTypes.objectOf<any>(PropTypes.func),
-  customTableRender: PropTypes.objectOf<any>(PropTypes.func),
-  languagePack: PropTypes.object
-};
 
 export default SchemaForm;
