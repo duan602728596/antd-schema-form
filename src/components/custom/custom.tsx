@@ -1,6 +1,6 @@
 import { createElement, ReactNode } from 'react';
 import { Input, Select, Radio, DatePicker, InputNumber, Checkbox, Switch, Collapse } from 'antd';
-import type { FormInstance } from 'antd/es/form';
+import type { ItemType } from 'rc-collapse/es/interface';
 import selectOptionsRender from './selectOptionsRender';
 import styleName from '../../utils/styleName';
 import TableComponent from '../FormArray/TableComponent';
@@ -130,20 +130,17 @@ export function multipleOrTags({ root, form, required }: CustomComponentFuncArgs
 /* object类型组件 */
 export function defaultObject({ root, form, element = [] }: CustomComponentFuncArgs<SchemaItem>): ReactNode {
   const { title, id, description }: SchemaItem = root;
+  const objectCollapseItems: Array<ItemType> = [{
+    key: id,
+    id,
+    label: [
+      <b key="title">{ title || id }</b>,
+      <span key="description" className={ styleName('object-description') }>{ description }</span>
+    ],
+    children: element
+  }];
 
-  // header
-  const header: Array<ReactNode> = [
-    <b key="title">{ title || id }</b>,
-    <span key="description" className={ styleName('object-description') }>{ description }</span>
-  ];
-
-  return (
-    <Collapse key={ id } className={ styleName('object-collapse') } defaultActiveKey={ [id] }>
-      <Collapse.Panel key={ id } header={ header }>
-        { element }
-      </Collapse.Panel>
-    </Collapse>
-  );
+  return <Collapse key={ id } className={ styleName('object-collapse') } items={ objectCollapseItems } defaultActiveKey={ [id] } />;
 }
 
 export function defaultOneOf({ root, form, element = [] }: CustomComponentFuncArgs<SchemaItem>): ReactNode {
