@@ -1,4 +1,4 @@
-import { Layout, Select, Dropdown, Menu } from 'antd';
+import { Layout, Select, Dropdown } from 'antd';
 import { GithubOutlined as IconGithubOutlined } from '@ant-design/icons';
 import packageJson from 'antd-schema-form/package.json' assert { type: 'json' };
 import style from './index.sass';
@@ -7,33 +7,35 @@ import { I18NContext } from '../../components/I18N/I18N';
 
 const { version } = packageJson;
 
-/* 版本切换 */
-function versionMenuOverlay() {
-  return (
-    <Menu>
-      <Menu.Item>
+/* 网站headers */
+function Header(props) {
+  // 版本切换
+  const menuItems = [
+    {
+      key: 'now',
+      label: (
         <a className={ style.nowVersion }
           href="https://duan602728596.github.io/antd-schema-form/#/"
           target="_blank" rel="noopener noreferrer"
         >
-          { version }
+          {version}
         </a>
-      </Menu.Item>
-      <Menu.Item>
-        <a href="https://duan602728596.github.io/antd-schema-form/v4/#/" target="_blank" rel="noopener noreferrer">v4</a>
-      </Menu.Item>
-      <Menu.Item>
-        <a href="https://duan602728596.github.io/antd-schema-form/v3/#/" target="_blank" rel="noopener noreferrer">v3</a>
-      </Menu.Item>
-      <Menu.Item>
-        <a href="https://duan602728596.github.io/antd-schema-form/v2/#/" target="_blank" rel="noopener noreferrer">v2</a>
-      </Menu.Item>
-    </Menu>
-  );
-}
+      )
+    },
+    {
+      key: 'v4',
+      label: <a href="https://duan602728596.github.io/antd-schema-form/v4/#/" target="_blank" rel="noopener noreferrer">v4</a>
+    },
+    {
+      key: 'v3',
+      label: <a href="https://duan602728596.github.io/antd-schema-form/v3/#/" target="_blank" rel="noopener noreferrer">v3</a>
+    },
+    {
+      key: 'v2',
+      label: <a href="https://duan602728596.github.io/antd-schema-form/v2/#/" target="_blank" rel="noopener noreferrer">v2</a>
+    }
+  ];
 
-/* 网站headers */
-function Header(props) {
   return (
     <Layout.Header>
       <div className={ style.headerBox }>
@@ -49,7 +51,7 @@ function Header(props) {
               )
             }
           </I18NContext.Consumer>
-          <Dropdown placement="bottomLeft" menu={ versionMenuOverlay() }>
+          <Dropdown placement="bottomLeft" menu={{ items: menuItems }}>
             <a className={ style.version }>v{ version }</a>
           </Dropdown>
           <a className={ style.github }
