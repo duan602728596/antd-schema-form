@@ -1,5 +1,4 @@
 import { Fragment, Component } from 'react';
-import PropTypes from 'prop-types';
 import { message, Empty } from 'antd';
 import { FrownOutlined as IconFrownOutlined } from '@ant-design/icons';
 import SchemaForm from 'antd-schema-form';
@@ -7,13 +6,6 @@ import style from './schemaFormPreview.sass';
 
 /* 表单预览生成 */
 class SchemaFormPreviewErrorCache extends Component {
-  static propTypes = {
-    messageApi: PropTypes.object,
-    json: PropTypes.object,
-    languagePack: PropTypes.object,
-    onOk: PropTypes.func
-  };
-
   constructor() {
     super(...arguments);
 

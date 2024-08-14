@@ -1,5 +1,4 @@
 import { useState, useEffect, useContext } from 'react';
-import PropTypes from 'prop-types';
 import { Drawer, Select, Space } from 'antd';
 import SchemaForm from 'antd-schema-form';
 import schemaFormDefaultLang from 'antd-schema-form/language/default.json' assert { type: 'json' };
@@ -8,7 +7,13 @@ import json from '../json/json';
 import commonStyle from '../commonStyle.sass';
 import { I18NContext } from '../../../components/I18N/I18N';
 
-/* 编辑抽屉 */
+/**
+ * 编辑抽屉
+ * @param { object } props.item
+ * @param { boolean } props.visible
+ * @param { Function } props.onOk
+ * @param { Function } props.onCancel
+ */
 function EditDrawer(props) {
   const { visible, onOk, onCancel, item: propsItem } = props;
   const context = useContext(I18NContext);
@@ -76,12 +81,5 @@ function EditDrawer(props) {
     </Drawer>
   );
 }
-
-EditDrawer.propTypes = {
-  item: PropTypes.object,
-  visible: PropTypes.bool,
-  onOk: PropTypes.func,
-  onCancel: PropTypes.func
-};
 
 export default EditDrawer;

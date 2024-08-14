@@ -1,5 +1,4 @@
 import { useState, createContext } from 'react';
-import PropTypes from 'prop-types';
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/locale/zh_CN';
 import languagePack from './languagePack';
@@ -35,7 +34,3 @@ export function I18N(props) {
     </ConfigProvider>
   );
 }
-
-I18N.propTypes = {
-  children: PropTypes.node
-};

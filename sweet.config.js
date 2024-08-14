@@ -1,5 +1,5 @@
-import path from 'path';
-import process from 'process';
+import path from 'node:path';
+import process from 'node:process';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import MonacoWebpackPlugin from 'monaco-editor-webpack-plugin';
 
@@ -14,27 +14,19 @@ const plugins = [
         'antd-schema-form': 'style/antd-schema-form.css'
       }
     }
-  ],
-  !isDevelopment && [
-    'transform-react-remove-prop-types',
-    {
-      mode: 'remove',
-      removeImport: true
-    }
   ]
-].filter(Boolean);
+];
 
 module.exports = {
   frame: 'react',
   dll: [
+    '@reduxjs/toolkit',
     'react',
     'react-dom/client',
-    'prop-types',
-    '@reduxjs/toolkit',
+    'react-helmet',
     'react-redux',
-    'reselect',
     'react-router-dom',
-    'react-helmet'
+    'reselect'
   ],
   entry: {
     index: [path.join(__dirname, 'src/index.js')]
