@@ -33,6 +33,11 @@
       "type": "boolean",
       "title": "值必须存在"
     },
+    "$requiredMessage": {
+      "id": "$root/properties/$requiredMessage",
+      "type": "string",
+      "title": "自定义$required的验证提示信息"
+    },
     "minimum": {
       "id": "$root/properties/minimum",
       "type": "number",

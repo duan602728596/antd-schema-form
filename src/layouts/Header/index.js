@@ -20,6 +20,9 @@ function versionMenuOverlay() {
         </a>
       </Menu.Item>
       <Menu.Item>
+        <a href="https://duan602728596.github.io/antd-schema-form/v4/#/" target="_blank" rel="noopener noreferrer">v4</a>
+      </Menu.Item>
+      <Menu.Item>
         <a href="https://duan602728596.github.io/antd-schema-form/v3/#/" target="_blank" rel="noopener noreferrer">v3</a>
       </Menu.Item>
       <Menu.Item>
@@ -46,7 +49,7 @@ function Header(props) {
               )
             }
           </I18NContext.Consumer>
-          <Dropdown placement="bottomLeft" overlay={ versionMenuOverlay() }>
+          <Dropdown placement="bottomLeft" menu={ versionMenuOverlay() }>
             <a className={ style.version }>v{ version }</a>
           </Dropdown>
           <a className={ style.github }

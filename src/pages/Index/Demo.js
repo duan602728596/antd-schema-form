@@ -15,6 +15,7 @@ function Demo(props) {
   const context = useContext(I18NContext);
   const codeRef = useRef();
   const [language, setLanguage] = useState(context.language);
+  const [modalApi, modalContextHolder] = Modal.useModal();
   const { index } = context.languagePack;
   const demoJson = language === 'zh-cn' ? demoZhCN : demo;
 
@@ -23,7 +24,7 @@ function Demo(props) {
     const { languagePack } = context;
     const { message } = languagePack;
 
-    Modal.info({
+    modalApi.info({
       content: (
         <div>
           <h4>{ message.modalTitle }</h4>
@@ -33,14 +34,13 @@ function Demo(props) {
     });
   }
 
-  // 渲染你高亮代码
-  function codeRender() {
-    setLanguage(context.language);
+  // 渲染高亮代码
+  useEffect(function() {
     hljs.highlightElement(codeRef.current);
-  }
+  }, [language]);
 
   useEffect(function() {
-    setTimeout(codeRender, 0);
+    setLanguage(context.language);
   }, [context.language]);
 
   return (
@@ -75,6 +75,7 @@ function Demo(props) {
           </pre>
         </Col>
       </Row>
+      { modalContextHolder }
     </Fragment>
   );
 }

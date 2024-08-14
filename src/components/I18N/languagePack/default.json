@@ -5,7 +5,6 @@
     "Form Preview",
     "Document"
   ],
-  "switchLoading": "Loading...",
   "index": {
     "introduction": [
       "Antd-schema-form based ",

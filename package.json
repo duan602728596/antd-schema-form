@@ -10,63 +10,60 @@
     "eslint": "cross-env COMMITLINT=1 eslint ./ --fix --cache --cache-location .eslintcache",
     "eslint:no-fix": "cross-env COMMITLINT=1 eslint ./ --cache --cache-location .eslintcache",
     "update-version": "milktea-esm update",
-    "prepare": "husky install"
+    "postinstall": "husky install"
   },
-  "packageManager": "yarn@3.2.0",
+  "packageManager": "yarn@3.2.4",
   "engines": {
-    "pm": "yarn@^3.2.0"
+    "pm": "yarn@^3.2.4"
   },
   "dependencies": {
-    "@ant-design/icons": "^4.7.0",
-    "@reduxjs/toolkit": "^1.8.1",
-    "antd": "^4.19.5",
-    "antd-schema-form": "^4.5.1",
-    "classnames": "^2.3.1",
-    "copy-to-clipboard": "^3.3.1",
-    "dayjs": "^1.11.0",
-    "highlight.js": "^11.5.1",
+    "@ant-design/icons": "^4.8.0",
+    "@reduxjs/toolkit": "^1.9.0",
+    "antd": "^5.0.3",
+    "antd-schema-form": "^5.0.1",
+    "classnames": "^2.3.2",
+    "copy-to-clipboard": "^3.3.3",
+    "dayjs": "^1.11.6",
+    "highlight.js": "^11.7.0",
     "lodash-es": "^4.17.21",
-    "monaco-editor": "^0.33.0",
+    "monaco-editor": "^0.34.1",
     "prop-types": "^15.8.1",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
-    "react-monaco-editor": "^0.47.0",
-    "react-redux": "^8.0.0-rc.0",
-    "react-router-dom": "^6.3.0",
-    "reselect": "^4.1.5"
+    "react-monaco-editor": "^0.51.0",
+    "react-redux": "^8.0.5",
+    "react-router-dom": "^6.4.4",
+    "reselect": "^4.1.7"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.23.3",
     "@eslint/compat": "^1.1.1",
-    "@sweet-milktea/babel-preset-sweet": "^4.3.0",
-    "@sweet-milktea/milktea": "^3.1.10",
-    "@sweet-milktea/milktea-cli": "^3.1.1",
-    "@sweet-milktea/server": "^3.1.11",
-    "@sweet-milktea/util-tools": "^3.1.6",
-    "antd-dayjs-webpack-plugin": "^1.0.6",
-    "babel-plugin-import": "^1.13.3",
+    "@sweet-milktea/milktea": "^4.0.0",
+    "@sweet-milktea/milktea-cli": "^4.1.0",
+    "@sweet-milktea/server": "^4.0.0",
+    "@sweet-milktea/util-tools": "^4.1.0",
     "babel-plugin-import-components-style": "^1.0.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
-    "commitizen": "^4.3.0",
-    "copy-webpack-plugin": "^10.2.4",
+    "commitizen": "^4.2.5",
+    "copy-webpack-plugin": "^11.0.0",
     "cross-env": "^7.0.3",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^9.7.0",
+    "eslint": "^9.9.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-react": "^7.35.0",
-    "globals": "^15.9.0",
-    "husky": "^9.1.4",
-    "lint-staged": "^15.2.9",
+    "globals": "^15.8.0",
+    "husky": "^8.0.2",
+    "lint-staged": "^13.0.4",
     "monaco-editor-webpack-plugin": "^7.0.1",
-    "rimraf": "^6.0.1"
+    "rimraf": "^3.0.2"
   },
   "lint-staged": {
-    "**/*.{js,jsx,mjs,cjs}": "cross-env COMMITLINT=1 eslint --cache --cache-location .eslintcache"
+    "**/*.{js,jsx,mjs,cjs}": "cross-env COMMITLINT=1 eslint --cache --cache-location .eslintcache --no-warn-ignored"
   },
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
+      "path": "cz-conventional-changelog"
     }
   }
 }

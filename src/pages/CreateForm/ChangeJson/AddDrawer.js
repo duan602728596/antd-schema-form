@@ -48,7 +48,7 @@ function AddDrawer(props) {
   }, [propsItem, visible]);
 
   return (
-    <Drawer visible={ visible } width={ 800 } destroyOnClose={ true } maskClosable={ false } onClose={ onCancel }>
+    <Drawer open={ visible } width={ 800 } destroyOnClose={ true } maskClosable={ false } onClose={ onCancel }>
       <Space className={ commonStyle.mb8 }>
         <label>{ createForm.drawerLabel }</label>
         <Select className={ commonStyle.typeSelect } value={ typeValue } onSelect={ handleTypeSelect }>

@@ -16,6 +16,7 @@ function JsonInputTextarea(props) {
   const { schemaJson } = useSelector(schemaJsonState);
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
+  const [messageApi, messageContextHolder] = message.useMessage();
   const context = useContext(I18NContext);
   const [textAreaValue, setTextAreaValue] = useState(JSON.stringify(schemaJson, null, 2));
 
@@ -27,7 +28,7 @@ function JsonInputTextarea(props) {
   // 复制
   function handleCopyClick(event) {
     copy(textAreaValue);
-    message.info(langMessage.copyMessage);
+    messageApi.info(langMessage.copyMessage);
   }
 
   // 表单的change事件
@@ -43,7 +44,7 @@ function JsonInputTextarea(props) {
       value = JSON.parse(textAreaValue);
       value |> setSchemaJson(#) |> dispatch(#);
     } catch (err) {
-      message.error(langMessage.jsonFormatError);
+      messageApi.error(langMessage.jsonFormatError);
     }
   }
 
@@ -63,7 +64,7 @@ function JsonInputTextarea(props) {
         value = JSON.parse(queryDecodeStr);
         value |> setSchemaJson(#) |> dispatch(#);
       } catch (err) {
-        message.error(langMessage.jsonFormatError);
+        messageApi.error(langMessage.jsonFormatError);
       }
     }
   }, []);
@@ -87,6 +88,7 @@ function JsonInputTextarea(props) {
           options={{ fontSize: 12, wordWrap: 'on' }}
         />
       </div>
+      { messageContextHolder }
     </Fragment>
   );
 }

@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Fragment, Component } from 'react';
 import PropTypes from 'prop-types';
 import { message, Empty } from 'antd';
 import { FrownOutlined as IconFrownOutlined } from '@ant-design/icons';
@@ -6,8 +6,9 @@ import SchemaForm from 'antd-schema-form';
 import style from './schemaFormPreview.sass';
 
 /* 表单预览生成 */
-class SchemaFormPreview extends Component {
+class SchemaFormPreviewErrorCache extends Component {
   static propTypes = {
+    messageApi: PropTypes.object,
     json: PropTypes.object,
     languagePack: PropTypes.object,
     onOk: PropTypes.func
@@ -38,7 +39,7 @@ class SchemaFormPreview extends Component {
   }
 
   componentDidCatch(err, info) {
-    message.error('Schema has error!');
+    this.props.messageApi.error('Schema has error!');
   }
 
   render() {
@@ -56,6 +57,17 @@ class SchemaFormPreview extends Component {
       return <SchemaForm { ...props } />;
     }
   }
+}
+
+function SchemaFormPreview(props) {
+  const [messageApi, messageContextHolder] = message.useMessage();
+
+  return (
+    <Fragment>
+      <SchemaFormPreviewErrorCache messageApi={ messageApi } { ...props } />
+      { messageContextHolder }
+    </Fragment>
+  );
 }
 
 export default SchemaFormPreview;

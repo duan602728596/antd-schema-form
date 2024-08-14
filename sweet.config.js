@@ -2,19 +2,10 @@ import path from 'path';
 import process from 'process';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import MonacoWebpackPlugin from 'monaco-editor-webpack-plugin';
-import AntdDayjsWebpackPlugin from 'antd-dayjs-webpack-plugin';
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
 const plugins = [
-  [
-    'import',
-    {
-      libraryName: 'antd',
-      libraryDirectory: 'es',
-      style: true
-    }
-  ],
   [
     'import-components-style',
     {
@@ -23,18 +14,21 @@ const plugins = [
         'antd-schema-form': 'style/antd-schema-form.css'
       }
     }
+  ],
+  !isDevelopment && [
+    'transform-react-remove-prop-types',
+    {
+      mode: 'remove',
+      removeImport: true
+    }
   ]
-];
-
-if (!isDevelopment) {
-  plugins.unshift(['transform-react-remove-prop-types', { mode: 'remove', removeImport: true }]);
-}
+].filter(Boolean);
 
 module.exports = {
   frame: 'react',
   dll: [
     'react',
-    'react-dom',
+    'react-dom/client',
     'prop-types',
     '@reduxjs/toolkit',
     'react-redux',
@@ -48,7 +42,7 @@ module.exports = {
   output: { publicPath: isDevelopment ? '/' : 'https://duan602728596.github.io/antd-schema-form/' },
   javascript: {
     plugins,
-    exclude: /node_modules[\\/](?!antd-schema-form)/
+    exclude: /node_modules/
   },
   sass: {
     include: /src/
@@ -66,22 +60,6 @@ module.exports = {
     }),
     new MonacoWebpackPlugin({
       languages: ['json']
-    }),
-    new AntdDayjsWebpackPlugin({
-      plugins: [
-        'isSameOrBefore',
-        'isSameOrAfter',
-        'advancedFormat',
-        'customParseFormat',
-        'weekday',
-        'weekYear',
-        'weekOfYear',
-        'isMoment',
-        'localeData',
-        'localizedFormat'
-      ],
-      replaceMoment: true,
-      preset: 'antd'
     })
   ]
 };

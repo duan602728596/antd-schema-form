@@ -14,8 +14,9 @@ const ignores = [
   '.pnp.js',
   '.pnp.cjs',
   '.sweet/dll/**',
-  './app',
-  './build'
+  'build/v2/**',
+  'build/v3/**',
+  'build/v4/**'
 ];
 
 function globalsSettings(keys) {
