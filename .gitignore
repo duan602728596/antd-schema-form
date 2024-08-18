@@ -18,6 +18,7 @@ yarn-error.log
 
 # cache
 .babelCache
+.eslintcache
 
 # build
 lib
