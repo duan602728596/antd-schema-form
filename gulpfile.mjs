@@ -1,13 +1,13 @@
 import gulp from 'gulp';
-import typescript from 'gulp-typescript';
-import gulpDartSass from 'gulp-dart-sass';
-import filter from 'gulp-filter';
+import gulpTypescript from 'gulp-typescript';
+import gulpSass from 'gulp-sass';
+import gulpFilter from 'gulp-filter';
 import merge from 'merge2';
-import sass from 'sass';
+import * as sassCompiler from 'sass';
 import tsconfig from './tsconfig.json' assert { type: 'json' };
 import tsconfigES5 from './tsconfig.es5.json' assert { type: 'json' };
 
-gulpDartSass.compiler = sass;
+gulpSass.compiler = sassCompiler;
 
 // 文件目录地址
 const tsSrc = 'src/**/*.{ts,tsx}';
@@ -26,7 +26,7 @@ const typescriptConfig = {
 /* lib */
 function proLibProject() {
   const result = gulp.src(tsSrc)
-    .pipe(typescript({
+    .pipe(gulpTypescript({
       ...tsconfigES5.compilerOptions,
       ...typescriptConfig
     }));
@@ -35,7 +35,7 @@ function proLibProject() {
     result.js.pipe(gulp.dest(libPath)),
     result.dts
       // 不输出warning.d.ts，因为是空文件
-      .pipe(filter((file) => !/warning\.d\.ts/.test(file.path), {
+      .pipe(gulpFilter((file) => !/warning\.d\.ts/.test(file.path), {
         restore: false
       }))
       .pipe(gulp.dest(libPath))
@@ -45,7 +45,7 @@ function proLibProject() {
 /* es */
 function proEsProject() {
   const result = gulp.src(tsSrc)
-    .pipe(typescript({
+    .pipe(gulpTypescript({
       ...tsconfig.compilerOptions,
       ...typescriptConfig
     }));
@@ -54,7 +54,7 @@ function proEsProject() {
     result.js.pipe(gulp.dest(esPath)),
     result.dts
       // 不输出warning.d.ts，因为是空文件
-      .pipe(filter((file) => !/warning\.d\.ts/.test(file.path), {
+      .pipe(gulpFilter((file) => !/warning\.d\.ts/.test(file.path), {
         restore: false
       }))
       .pipe(gulp.dest(esPath))
@@ -71,9 +71,9 @@ function copy() {
 /* sass */
 function proSassProject() {
   return gulp.src(sassSrc)
-    .pipe(gulpDartSass({
+    .pipe(gulpSass({
       outputStyle: 'compressed'
-    }).on('error', gulpDartSass.logError))
+    }).on('error', gulpSass.logError))
     .pipe(gulp.dest(stylePath));
 }
 

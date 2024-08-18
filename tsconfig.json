@@ -2,7 +2,6 @@
   "compilerOptions": {
     "alwaysStrict": true,
     "moduleResolution": "node",
-    "locale": "zh-CN",
     "module": "ES6",
     "target": "ES2018",
     "newLine": "LF",
@@ -16,6 +15,11 @@
     "skipLibCheck": true,
     "lib": [
       "ES2019",
+      "ES2020",
+      "ES2021",
+      "ES2022",
+      "ES2023",
+      "ESNext",
       "DOM"
     ]
   }
