@@ -52,6 +52,29 @@ export const rules = [
     exclude: /node_modules/
   },
   {
+    test: /.*\.s(a|c)ss$/,
+    use: [
+      'style-loader',
+      {
+        loader: 'css-loader',
+        options: {
+          modules: {
+            localIdentName: '[path][name]__[local]___[hash:base64:5]'
+          }
+        }
+      },
+      {
+        loader: 'sass-loader',
+        options: {
+          sassOptions: {
+            fiber: false
+          }
+        }
+      }
+    ],
+    include: /(src|lib|example)/
+  },
+  {
     test: /.*\.css/,
     use: ['style-loader', 'css-loader'],
     include: /node_modules/,
