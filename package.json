@@ -74,7 +74,6 @@
     "lint-staged": "^15.2.9",
     "merge2": "^1.4.1",
     "mocha": "^10.7.3",
-    "rc-table": "^7.47.3",
     "react": "rc",
     "react-dom": "rc",
     "react-refresh": "^0.14.2",
