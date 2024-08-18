@@ -32,7 +32,7 @@ export interface SchemaFormProps {
   customComponent?: CustomComponentObject;
   customTableRender?: CustomTableRenderObject;
   languagePack?: object;
-  formOptions?: FormProps;
+  formOptions?: Omit<FormProps, 'children'>;
 }
 
 type SchemaFormComponent = ForwardRefExoticComponent<PropsWithoutRef<SchemaFormProps> & RefAttributes<any>>;

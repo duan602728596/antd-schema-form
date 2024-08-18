@@ -1,7 +1,6 @@
 import { createElement, ReactNode } from 'react';
 import { Input, Select, Radio, DatePicker, InputNumber, Checkbox, Switch, Collapse } from 'antd';
 import type { ItemType } from 'rc-collapse/es/interface';
-import selectOptionsRender from './selectOptionsRender';
 import styleName from '../../utils/styleName';
 import TableComponent from '../FormArray/TableComponent';
 import OneOf from '../FormObject/OneOf';
@@ -37,9 +36,8 @@ export function select({ root, form, required }: CustomComponentFuncArgs<StringI
       placeholder={ $placeholder }
       allowClear={ !($required || required) }
       disabled={ $disabled ?? undefined }
-    >
-      { selectOptionsRender($options) }
-    </Select>
+      options={ $options }
+    />
   );
 }
 
@@ -120,11 +118,7 @@ export function multipleOrTags({ root, form, required }: CustomComponentFuncArgs
     ? $componentType
     : undefined;
 
-  return (
-    <Select className={ styleName('array-multiple') } mode={ mode } disabled={ $disabled ?? undefined }>
-      { selectOptionsRender($options) }
-    </Select>
-  );
+  return <Select className={ styleName('array-multiple') } mode={ mode } disabled={ $disabled ?? undefined } options={ $options } />;
 }
 
 /* object类型组件 */

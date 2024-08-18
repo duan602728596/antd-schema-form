@@ -18,6 +18,7 @@ import styleName from '../../utils/styleName';
 import type { SchemaItem, ContextValue } from '../../types';
 
 interface OneOfProps {
+  key?: string;
   root: SchemaItem;
   element: Array<ReactNode>;
 }
