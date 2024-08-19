@@ -15,14 +15,14 @@ yarn-error.log
 
 # webstorm
 .idea
+.DS_Store
 
 # cache
 .babelCache
 .eslintcache
+.cache
 
 # build
 lib
 es
 style/*.css
-
-.DS_Store

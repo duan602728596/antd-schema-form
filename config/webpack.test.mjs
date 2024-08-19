@@ -6,14 +6,8 @@ import { metaHelper } from '@sweet-milktea/utils';
 import { basicConfig, rules, plugins } from './basic.config.mjs';
 
 const { __dirname } = metaHelper(import.meta.url);
-const config = {
-  module: {
-    rules
-  },
-  plugins
-};
 
-export default merge(basicConfig, config, {
+export default merge(basicConfig, {
   entry: {
     index: path.join(__dirname, '../test/index.js')
   },

@@ -6,26 +6,8 @@ import babelConfig from './babel.config.mjs';
 
 const { __dirname } = metaHelper(import.meta.url);
 
-/* 基础配置 */
-export const basicConfig = {
-  mode: 'development',
-  output: {
-    path: path.join(__dirname, '../build'),
-    filename: '[name].js',
-    chunkFilename: '[name].js',
-    publicPath: '/'
-  },
-  devtool: 'eval-source-map',
-  resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.json']
-  },
-  experiments: {
-    topLevelAwait: true
-  }
-};
-
 /* rules */
-export const rules = [
+const rules = [
   {
     test: /.*\.jsx?$/,
     use: [
@@ -59,18 +41,12 @@ export const rules = [
         loader: 'css-loader',
         options: {
           modules: {
-            localIdentName: '[path][name]__[local]___[hash:base64:5]'
+            localIdentName: '[path][name]__[local]___[hash:base64:5]',
+            namedExport: false
           }
         }
       },
-      {
-        loader: 'sass-loader',
-        options: {
-          sassOptions: {
-            fiber: false
-          }
-        }
-      }
+      'sass-loader'
     ],
     include: /(src|lib|example)/
   },
@@ -83,7 +59,7 @@ export const rules = [
 ];
 
 /* plugins */
-export const plugins = [
+const plugins = [
   new webpack.IgnorePlugin({
     resourceRegExp: /^\.\/locale$/,
     contextRegExp: /moment$/
@@ -92,3 +68,25 @@ export const plugins = [
     overlay: false
   })
 ];
+
+/* 基础配置 */
+export const basicConfig = {
+  mode: 'development',
+  output: {
+    path: path.join(__dirname, '../build'),
+    filename: '[name].js',
+    chunkFilename: '[name].js',
+    publicPath: '/'
+  },
+  devtool: 'eval-source-map',
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.json']
+  },
+  module: {
+    rules
+  },
+  plugins,
+  experiments: {
+    topLevelAwait: true
+  }
+};

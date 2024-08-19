@@ -3,17 +3,11 @@ import path from 'node:path';
 import { merge } from 'webpack-merge';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { metaHelper } from '@sweet-milktea/utils';
-import { basicConfig, rules, plugins } from './basic.config.mjs';
+import { basicConfig } from './basic.config.mjs';
 
 const { __dirname } = metaHelper(import.meta.url);
-const config = {
-  module: {
-    rules
-  },
-  plugins
-};
 
-export default merge(basicConfig, config, {
+export default merge(basicConfig, {
   entry: {
     index: path.join(__dirname, '../example/index.js')
   },
@@ -23,5 +17,9 @@ export default merge(basicConfig, config, {
       template: path.join(__dirname, '../example/index.ejs'),
       filename: 'index.html'
     })
-  ]
+  ],
+  cache: {
+    type: 'filesystem',
+    cacheDirectory: path.join(__dirname, '../.cache/webpackCache')
+  }
 });
