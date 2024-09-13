@@ -41,7 +41,6 @@
     "@ant-design/icons": "^5.4.0",
     "@babel/core": "^7.25.2",
     "@babel/eslint-parser": "^7.25.1",
-    "@eslint/compat": "^1.1.1",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.15",
     "@sweet-milktea/babel-preset-sweet": "^4.3.0",
     "@sweet-milktea/milktea-cli": "^4.1.0",
