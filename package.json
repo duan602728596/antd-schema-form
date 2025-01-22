@@ -39,6 +39,7 @@
   },
   "devDependencies": {
     "@ant-design/icons": "^5.4.0",
+    "@ant-design/v5-patch-for-react-19": "^1.0.3",
     "@babel/core": "^7.25.2",
     "@babel/eslint-parser": "^7.25.1",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.15",
