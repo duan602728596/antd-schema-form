@@ -46,6 +46,7 @@
     "@sweet-milktea/babel-preset-sweet": "^4.3.0",
     "@sweet-milktea/milktea-cli": "^4.1.0",
     "@sweet-milktea/util-tools": "^4.1.0",
+    "@testing-library/dom": "^10.4.0",
     "@testing-library/react": "^16.0.0",
     "@types/react": "^19.0.7",
     "@types/react-dom": "^19.0.3",

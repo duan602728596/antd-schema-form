@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { render } from '@testing-library/react';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import SchemaForm from '../../SchemaForm';
 
 /* 组件有默认值 */
@@ -118,7 +118,7 @@ export function dateHasDefaultValue() {
     type: 'string',
     title: '日期选择有默认值',
     $componentType: 'date',
-    $defaultValue: moment('2018-12-01 22:43:17')
+    $defaultValue: dayjs('2018-12-01 22:43:17')
   };
   const wrapper = render(<SchemaForm json={ json } />);
   const antCalendarPickerInput = wrapper.container
@@ -136,7 +136,7 @@ export function dateHasValue() {
     title: '日期选择有值',
     $componentType: 'date'
   };
-  const value = { $root: moment('2000-01-08 16:12:00') };
+  const value = { $root: dayjs('2000-01-08 16:12:00') };
   const wrapper = render(<SchemaForm json={ json } value={ value } />);
   const antCalendarPickerInput = wrapper.container
     .querySelectorAll('.ant-picker-input')[0]
