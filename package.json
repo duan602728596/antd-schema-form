@@ -24,6 +24,8 @@
   "scripts": {
     "dev": "webpack-dev-server --config=\"./config/webpack.dev.mjs\" --hot --color --port=5050",
     "build": "npm run clean:lib && npm run clean:es && npm run clean:style && cross-env NODE_ENV=production gulp",
+    "build:ts:es": "tsc -p tsconfig.json --outDir es",
+    "build:ts:lib": "tsc -p tsconfig.es5.json --outDir lib",
     "clean:lib": "rimraf lib",
     "clean:es": "rimraf es",
     "clean:style": "rimraf style",
@@ -67,9 +69,7 @@
     "eslint-plugin-react": "^7.35.0",
     "globals": "^15.9.0",
     "gulp": "^5.0.0",
-    "gulp-filter": "^9.0.1",
     "gulp-sass": "^5.1.0",
-    "gulp-typescript": "^6.0.0-alpha.1",
     "html-webpack-plugin": "^5.6.0",
     "husky": "^9.1.4",
     "lint-staged": "^15.2.9",

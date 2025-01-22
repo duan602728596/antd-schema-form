@@ -17,5 +17,8 @@ export default merge(basicConfig, {
       template: path.join(__dirname, '../test/index.ejs'),
       filename: 'index.html'
     })
-  ]
+  ],
+  stats: {
+    warningsFilter: /Critical dependency: the request of a dependency is an expression/i
+  }
 });

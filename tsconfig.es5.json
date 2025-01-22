@@ -1,26 +1,7 @@
 {
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "alwaysStrict": true,
-    "moduleResolution": "node",
     "module": "commonjs",
-    "target": "ES5",
-    "newLine": "LF",
-    "resolveJsonModule": true,
-    "jsx": "react",
-    "jsxFactory": "createElement",
-    "declaration": true,
-    "experimentalDecorators": true,
-    "strictNullChecks": true,
-    "importHelpers": true,
-    "skipLibCheck": true,
-    "lib": [
-      "ES2019",
-      "ES2020",
-      "ES2021",
-      "ES2022",
-      "ES2023",
-      "ESNext",
-      "DOM"
-    ]
+    "target": "ES5"
   }
 }

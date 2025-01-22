@@ -1,8 +1,7 @@
 {
-  "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "module": "ES6",
-    "target": "ES2018",
+    "alwaysStrict": true,
+    "moduleResolution": "node",
     "newLine": "LF",
     "resolveJsonModule": true,
     "jsx": "react",
@@ -20,6 +19,7 @@
       "ES2023",
       "ESNext",
       "DOM"
-    ]
+    ],
+    "rootDir": "./src"
   }
 }

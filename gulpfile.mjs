@@ -1,64 +1,59 @@
+import process from 'node:process';
+import { spawn } from 'node:child_process';
 import gulp from 'gulp';
-import gulpTypescript from 'gulp-typescript';
 import gulpSass from 'gulp-sass';
-import gulpFilter from 'gulp-filter';
-import merge from 'merge2';
 import * as sassCompiler from 'sass';
-import tsconfig from './tsconfig.json' with { type: 'json' };
-import tsconfigES5 from './tsconfig.es5.json' with { type: 'json' };
+import { metaHelper } from '@sweet-milktea/utils';
 
 const sass = gulpSass(sassCompiler);
+const { __dirname } = metaHelper(import.meta.url);
+const isWindows = process.platform === 'win32';
 
 // 文件目录地址
-const tsSrc = 'src/**/*.{ts,tsx}';
 const dTsSrc = 'src/**/*.d.ts';
 const sassSrc = 'src/style/**/*.sass';
 const libPath = 'lib';
 const esPath = 'es';
 const stylePath = 'style';
 
-const typescriptConfig = {
-  allowSyntheticDefaultImports: true,
-  rootDir: '.'
-};
+/**
+ * 执行命令
+ * @param { string } cmd - 命令
+ * @param { Array<string> } args - 参数
+ * @param { string } cwdPath - 文件夹
+ */
+function command(cmd, args, cwdPath) {
+  return new Promise((resolve, reject) => {
+    const spawnOptions = {
+      stdio: 'inherit',
+      cwd: cwdPath
+    };
+
+    if (isWindows) spawnOptions.shell = true;
+
+    const child = spawn(cmd, args, spawnOptions);
+
+    child.on('close', function(code) {
+      resolve();
+    });
+
+    child.on('error', function(error) {
+      reject(error);
+    });
+  });
+}
+
+const npm = isWindows ? 'npm.cmd' : 'npm';
 
 /* ----- 生产环境编译 ----- */
 /* lib */
-function proLibProject() {
-  const result = gulp.src(tsSrc)
-    .pipe(gulpTypescript({
-      ...tsconfigES5.compilerOptions,
-      ...typescriptConfig
-    }));
-
-  return merge([
-    result.js.pipe(gulp.dest(libPath)),
-    result.dts
-      // 不输出warning.d.ts，因为是空文件
-      .pipe(gulpFilter((file) => !/warning\.d\.ts/.test(file.path), {
-        restore: false
-      }))
-      .pipe(gulp.dest(libPath))
-  ]);
+async function proLibProject() {
+  await command('npm', ['run', 'build:ts:lib'], __dirname);
 }
 
 /* es */
-function proEsProject() {
-  const result = gulp.src(tsSrc)
-    .pipe(gulpTypescript({
-      ...tsconfig.compilerOptions,
-      ...typescriptConfig
-    }));
-
-  return merge([
-    result.js.pipe(gulp.dest(esPath)),
-    result.dts
-      // 不输出warning.d.ts，因为是空文件
-      .pipe(gulpFilter((file) => !/warning\.d\.ts/.test(file.path), {
-        restore: false
-      }))
-      .pipe(gulp.dest(esPath))
-  ]);
+async function proEsProject() {
+  await command('npm', ['run', 'build:ts:es'], __dirname);
 }
 
 /* 拷贝d.ts */
