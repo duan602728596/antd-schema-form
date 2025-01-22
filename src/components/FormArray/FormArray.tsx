@@ -1,5 +1,5 @@
 import { createElement, useContext, PropsWithChildren, ReactElement, ReactNode } from 'react';
-import * as classNames from 'classnames';
+import classNames from 'classnames';
 import { Form } from 'antd';
 import type { Rule } from 'antd/es/form';
 import { omit } from '../../utils/lodash';
