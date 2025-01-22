@@ -3,7 +3,7 @@ import path from 'node:path';
 import { merge } from 'webpack-merge';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { metaHelper } from '@sweet-milktea/utils';
-import { basicConfig, rules, plugins } from './basic.config.mjs';
+import { basicConfig } from './basic.config.mjs';
 
 const { __dirname } = metaHelper(import.meta.url);
 
