@@ -1,4 +1,5 @@
-import mocha from 'mocha';
+import mocha from 'mocha/mocha.js';
+import 'mocha/mocha.css';
 
 // 初始化测试配置项
 mocha.setup('bdd');

@@ -1,5 +1,3 @@
-import describe from 'describe';
-import it from 'it';
 import { renderDefault, renderRadio } from './componentRendering';
 import {
   componentHasDefaultValue,

@@ -1,6 +1,7 @@
 import path from 'node:path';
 import webpack from 'webpack';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { metaHelper } from '@sweet-milktea/utils';
 import babelConfig from './babel.config.mjs';
 
@@ -16,7 +17,7 @@ const rules = [
         options: babelConfig
       }
     ],
-    exclude: /(node_modules|mocha|chai)/
+    exclude: /node_modules/
   },
   {
     test: /.*\.tsx?$/,
@@ -36,7 +37,7 @@ const rules = [
   {
     test: /.*\.s(a|c)ss$/,
     use: [
-      'style-loader',
+      MiniCssExtractPlugin.loader,
       {
         loader: 'css-loader',
         options: {
@@ -52,9 +53,8 @@ const rules = [
   },
   {
     test: /.*\.css/,
-    use: ['style-loader', 'css-loader'],
-    include: /node_modules/,
-    exclude: /mocha\.css/
+    use: [MiniCssExtractPlugin.loader, 'css-loader'],
+    include: /node_modules/
   }
 ];
 
@@ -66,6 +66,11 @@ const plugins = [
   }),
   new ReactRefreshWebpackPlugin({
     overlay: false
+  }),
+  new MiniCssExtractPlugin({
+    filename: '[name].css',
+    chunkFilename: '[name].css',
+    ignoreOrder: true
   })
 ];
 

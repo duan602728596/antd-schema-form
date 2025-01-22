@@ -11,23 +11,6 @@ export default merge(basicConfig, {
   entry: {
     index: path.join(__dirname, '../test/index.js')
   },
-  externals: {
-    mocha: 'globalThis.mocha',
-    chai: 'globalThis.chai',
-    describe: 'globalThis.describe',
-    it: 'globalThis.it'
-  },
-  module: {
-    rules: [
-      {
-        test: /(mocha\.(js|css)|chai)/,
-        type: 'asset/resource',
-        generator: {
-          filename: '[name][ext]'
-        }
-      }
-    ]
-  },
   plugins: [
     new HtmlWebpackPlugin({
       inject: true,

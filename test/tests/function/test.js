@@ -1,5 +1,3 @@
-import describe from 'describe';
-import it from 'it';
 import { expect } from 'chai';
 import { getKeysFromObjectTest0, getKeysFromObjectTest1, getKeysFromObjectTestOneOf } from './getKeysFromObjectTest';
 import { getObjectFromValueTest0, getObjectFromValueTest1 } from './getObjectFromValueTest';
