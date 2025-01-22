@@ -23,7 +23,7 @@
   "packageManager": "yarn@4.4.0",
   "scripts": {
     "dev": "webpack-dev-server --config=\"./config/webpack.dev.mjs\" --hot --color --port=5050",
-    "build": "npm run clean:lib && npm run clean:es && npm run clean:style && cross-env NODE_ENV=production NODE_OPTIONS=\"--experimental-json-modules\" gulp",
+    "build": "npm run clean:lib && npm run clean:es && npm run clean:style && cross-env NODE_ENV=production gulp",
     "clean:lib": "rimraf lib",
     "clean:es": "rimraf es",
     "clean:style": "rimraf style",

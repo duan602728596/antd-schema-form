@@ -4,10 +4,10 @@ import gulpSass from 'gulp-sass';
 import gulpFilter from 'gulp-filter';
 import merge from 'merge2';
 import * as sassCompiler from 'sass';
-import tsconfig from './tsconfig.json' assert { type: 'json' };
-import tsconfigES5 from './tsconfig.es5.json' assert { type: 'json' };
+import tsconfig from './tsconfig.json' with { type: 'json' };
+import tsconfigES5 from './tsconfig.es5.json' with { type: 'json' };
 
-gulpSass.compiler = sassCompiler;
+const sass = gulpSass(sassCompiler);
 
 // 文件目录地址
 const tsSrc = 'src/**/*.{ts,tsx}';
@@ -71,9 +71,9 @@ function copy() {
 /* sass */
 function proSassProject() {
   return gulp.src(sassSrc)
-    .pipe(gulpSass({
+    .pipe(sass({
       outputStyle: 'compressed'
-    }).on('error', gulpSass.logError))
+    }).on('error', sass.logError))
     .pipe(gulp.dest(stylePath));
 }
 
