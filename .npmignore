@@ -26,6 +26,7 @@ src
 gulpfile.js
 gulpfile.mjs
 tslint.json
+tsconfig.base.json
 tsconfig.json
 tsconfig.es5.json
 docs
