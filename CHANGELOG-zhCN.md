@@ -1,3 +1,8 @@
+### 5.1.0
+
+* 从代码中移除`prop-types`. 因为`react`不再使用它验证类型。
+* 修改`classNames`的import方式。
+
 ### v5.0.1
 
 * 🐛修复number类型时验证maximum的提示信息错误。

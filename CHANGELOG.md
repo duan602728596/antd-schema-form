@@ -1,3 +1,8 @@
+### 5.1.0
+
+* Remove `prop-types` from code. Because `react` no longer uses it to validate types.
+* Modify the import of `classNames`.
+
 ### v5.0.1
 
 * 🐛Fix the error in the prompt message of verifying the maximum when the number type is verified.
