@@ -47,8 +47,8 @@
     "@sweet-milktea/milktea-cli": "^4.1.0",
     "@sweet-milktea/util-tools": "^4.1.0",
     "@testing-library/react": "^16.0.0",
-    "@types/react": "npm:types-react@rc",
-    "@types/react-dom": "npm:types-react-dom@rc",
+    "@types/react": "^19.0.7",
+    "@types/react-dom": "^19.0.3",
     "@typescript-eslint/eslint-plugin": "^8.1.0",
     "@typescript-eslint/parser": "^8.1.0",
     "antd": "^5.20.1",
@@ -74,8 +74,8 @@
     "lint-staged": "^15.2.9",
     "merge2": "^1.4.1",
     "mocha": "^10.7.3",
-    "react": "rc",
-    "react-dom": "rc",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "react-refresh": "^0.14.2",
     "rimraf": "^6.0.1",
     "sass": "^1.77.8",
@@ -93,12 +93,6 @@
     "antd": ">=5",
     "react": ">=16.7.0",
     "react-dom": ">=16.7.0"
-  },
-  "resolutions": {
-    "@types/react": "npm:types-react@rc",
-    "@types/react-dom": "npm:types-react-dom@rc",
-    "react": "rc",
-    "react-dom": "rc"
   },
   "lint-staged": {
     "**/*.{js,jsx,mjs,cjs,ts,tsx,mts,cts}": "cross-env COMMITLINT=1 eslint --cache --cache-location .eslintcache --no-warn-ignored"
