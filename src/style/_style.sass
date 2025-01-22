@@ -1,14 +1,14 @@
-@import './variable'
+@use './variable' as variable
 
 /* common */
 @mixin common()
   // 隐藏表单域
-  .#{ $prefix }-hidden
+  .#{ variable.$prefix }-hidden
     display: none
 
 /* object */
 @mixin object()
-  .#{ $prefix }-object
+  .#{ variable.$prefix }-object
     &-description
       margin-left: 8px
       font-size: 12px
@@ -26,12 +26,12 @@
     &-radio-group
       margin-bottom: 8px
 
-  .ant-radio-group + .#{ $prefix }-object-collapse
+  .ant-radio-group + .#{ variable.$prefix }-object-collapse
     margin-top: 8px
 
 /* string */
 @mixin string()
-  .#{ $prefix }-string
+  .#{ variable.$prefix }-string
     &-select
       width: 100%
 
@@ -40,14 +40,14 @@
 
 /* number */
 @mixin number()
-  .#{ $prefix }-number
+  .#{ variable.$prefix }-number
     &-input
       width: 100%
       max-width: 300px
 
 /* array */
 @mixin array()
-  .#{ $prefix }-array
+  .#{ variable.$prefix }-array
     // 隐藏table的错误校验提示
     &-table-form-item .has-error .ant-form-explain
       display: none
@@ -62,13 +62,13 @@
       transition: border-color .3s
 
       // table内tr的拖拽
-      tbody > tr.#{ $prefix }-array
+      tbody > tr.#{ variable.$prefix }-array
         &-drop-over
           &-downward td
-            border-bottom: 2px dashed $array-table-drop-over-border-color
+            border-bottom: 2px dashed variable.$array-table-drop-over-border-color
 
           &-upward td
-            border-top: 2px dashed $array-table-drop-over-border-color
+            border-top: 2px dashed variable.$array-table-drop-over-border-color
 
     &-multiple
       width: 100%

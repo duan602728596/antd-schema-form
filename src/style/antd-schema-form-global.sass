@@ -1,8 +1,8 @@
-@import './style'
+@use './style' as style
 
 \:global
-  @include common()
-  @include object()
-  @include string()
-  @include number()
-  @include array()
+  @include style.common()
+  @include style.object()
+  @include style.string()
+  @include style.number()
+  @include style.array()
