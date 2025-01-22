@@ -22,6 +22,7 @@ config
 bin
 example
 tests
+test
 src
 gulpfile.js
 gulpfile.mjs
@@ -47,7 +48,9 @@ docs
 .eslintrc.cjs
 .npmrc
 .yarnrc.yml
+eslint.config.mjs
 
 # cache
 .babelCache
 .cache
+.eslintcache
